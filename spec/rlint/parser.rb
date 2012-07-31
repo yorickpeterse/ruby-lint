@@ -1,6 +1,75 @@
 require File.expand_path('../../helper', __FILE__)
 
 describe 'Rlint::Parser' do
+  it 'Parse an integer' do
+    int = Rlint::Parser.new('10').parse[0]
+
+    int.is_a?(Rlint::Token::ValueToken).should == true
+
+    int.line.should   == 1
+    int.column.should == 0
+    int.type.should   == :integer
+    int.value.should  == '10'
+  end
+
+  it 'Parse an array' do
+    array = Rlint::Parser.new('[10]').parse[0]
+
+    array.is_a?(Rlint::Token::ValueToken).should == true
+
+    array.line.should   == 1
+    array.type.should   == :array
+
+    array.value.is_a?(Array).should == true
+
+    array.value[0].is_a?(Rlint::Token::ValueToken).should == true
+
+    array.value[0].type.should  == :integer
+    array.value[0].value.should == '10'
+  end
+
+  it 'Parse a Hash' do
+    hash = Rlint::Parser.new('{"key" => "value"}').parse[0]
+
+    hash.is_a?(Rlint::Token::ValueToken).should == true
+
+    hash.line.should               == 1
+    hash.value.is_a?(Array).should == true
+    hash.value.length.should       == 1
+
+    pair = hash.value[0]
+
+    pair.is_a?(Rlint::Token::KeyValueToken).should    == true
+    pair.key.is_a?(Rlint::Token::ValueToken).should   == true
+    pair.value.is_a?(Rlint::Token::ValueToken).should == true
+
+    pair.key.value.should   == 'key'
+    pair.value.value.should == 'value'
+
+    pair.key.type.should   == :string
+    pair.value.type.should == :string
+  end
+
+  it 'Parse a Hash using symbols for the keys' do
+    hash = Rlint::Parser.new('{:key => "value"}').parse[0]
+
+    hash.line.should               == 1
+    hash.value.is_a?(Array).should == true
+    hash.value.length.should       == 1
+
+    pair = hash.value[0]
+
+    pair.is_a?(Rlint::Token::KeyValueToken).should    == true
+    pair.key.is_a?(Rlint::Token::ValueToken).should   == true
+    pair.value.is_a?(Rlint::Token::ValueToken).should == true
+
+    pair.key.value.should   == 'key'
+    pair.value.value.should == 'value'
+
+    pair.key.type.should   == :symbol
+    pair.value.type.should == :string
+  end
+
   it 'Parse the assignment of a variable' do
     parser = Rlint::Parser.new('number = 10')
     tokens = parser.parse

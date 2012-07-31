@@ -322,17 +322,98 @@ module Rlint
     #
     # @since  2012-07-29
     # @param  [Array] string Array containing details about the string.
-    # @return [Rlint::Token::Token]
+    # @return [Rlint::Token::ValueToken]
     #
     def on_string_literal(string)
       string = string[1]
 
-      return Token::Token.new(
+      return Token::ValueToken.new(
         :type   => :string,
         :value  => string[1],
         :line   => string[2][0],
         :column => string[2][1],
         :code   => code(string[2][0])
+      )
+    end
+
+    ##
+    # Called when a symbol is found.
+    #
+    # @since  2012-07-30
+    # @param  [Array] symbol Array containing details about the symbol.
+    # @return [Rlint::Token::ValueToken]
+    #
+    def on_symbol_literal(symbol)
+      symbol = symbol[1]
+
+      return Token::ValueToken.new(
+        :type   => :symbol,
+        :value  => symbol[1],
+        :line   => symbol[2][0],
+        :column => symbol[2][1],
+        :code   => code(symbol[2][0])
+      )
+    end
+
+    ##
+    # Called when an array is found.
+    #
+    # @since  2012-07-30
+    # @param  [Array] values An array containing the values of the found array.
+    # @return [Rlint::Token::ValueToken]
+    #
+    def on_array(values)
+      values ||= []
+
+      return Token::ValueToken.new(
+        :type   => :array,
+        :value  => values,
+        :line   => lineno,
+        :column => column,
+        :code   => code(lineno)
+      )
+    end
+
+    ##
+    # Called when a hash is found.
+    #
+    # @since  2012-07-30
+    # @param  [Array] hash Array containing details about the hash.
+    # @return [Rlint::Token::ValueToken]
+    #
+    def on_hash(hash)
+      return Token::ValueToken.new(
+        :name   => hash,
+        :value  => hash,
+        :line   => lineno,
+        :column => column,
+        :code   => code(lineno)
+      )
+    end
+
+    ##
+    # Called when a set of key/value pairs is found.
+    #
+    # @since 2012-07-30
+    #
+    def on_assoclist_from_args(args)
+      return args
+    end
+
+    ##
+    # Called for each key/value pair of a hash.
+    #
+    # @since 2012-07-30
+    # @param [Rlint::Token::Token] key Token containing details about the key.
+    # @param [Rlint::Token::Token] value Token containing details about the
+    #  value of the key.
+    # @return [Rlint::Token::KeyValueToken]
+    #
+    def on_assoc_new(key, value)
+      return Token::KeyValueToken.new(
+        :type  => :key_value,
+        :key   => key,
+        :value => value
       )
     end
 
