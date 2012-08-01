@@ -394,6 +394,28 @@ module Rlint
     end
 
     ##
+    # Called when a regular expression is found.
+    #
+    # @since 2012-08-02
+    # @param [Array] regex Array containing the details about the regular
+    #  expression's value.
+    # @param [Array] regex_end Array containing details about the regular
+    #  expression mode.
+    # @return [Rlint::Token::ValueToken]
+    #
+    def on_regexp_literal(regex, regex_end)
+      regex = regex[0]
+
+      return Token::ValueToken.new(
+        :type   => :regular_expression,
+        :value  => '/' + regex.value + regex_end[1],
+        :line   => regex.line,
+        :column => regex.column,
+        :code   => regex.code
+      )
+    end
+
+    ##
     # Called when a hash is found.
     #
     # @since  2012-07-30
@@ -402,7 +424,6 @@ module Rlint
     #
     def on_hash(hash)
       return Token::ValueToken.new(
-        :name   => hash,
         :value  => hash,
         :line   => lineno,
         :column => column,

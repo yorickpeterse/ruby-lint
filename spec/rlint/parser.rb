@@ -88,6 +88,17 @@ describe 'Rlint::Parser' do
     string.type.should   == :string
   end
 
+  it 'Parse a regular expression' do
+    regex = Rlint::Parser.new('/foo/i').parse[0]
+
+    regex.is_a?(Rlint::Token::ValueToken).should == true
+
+    regex.line.should   == 1
+    regex.column.should == 1
+    regex.type.should   == :regular_expression
+    regex.value.should  == '/foo/i'
+  end
+
   it 'Parse an array using %w[]' do
     array = Rlint::Parser.new('%w[10 20]').parse[0]
 
