@@ -148,6 +148,35 @@ describe 'Rlint::Parser' do
     array.value[1].value.should == '20'
   end
 
+  it 'Parse a string using %q{}' do
+    string = Rlint::Parser.new('%q{hello}').parse[0]
+
+    string.line.should   == 1
+    string.column.should == 3
+    string.value.should  == 'hello'
+    string.type.should   == :string
+  end
+
+  it 'Parse a string using %Q{}' do
+    string = Rlint::Parser.new('%Q{hello}').parse[0]
+
+    string.line.should   == 1
+    string.column.should == 3
+    string.value.should  == 'hello'
+    string.type.should   == :string
+  end
+
+  it 'Parse a regular expression using %r{}' do
+    regex = Rlint::Parser.new('%r{foo}i').parse[0]
+
+    regex.is_a?(Rlint::Token::ValueToken).should == true
+
+    regex.line.should   == 1
+    regex.column.should == 3
+    regex.type.should   == :regular_expression
+    regex.value.should  == '/foo/i'
+  end
+
   it 'Parse the assignment of a variable' do
     parser = Rlint::Parser.new('number = 10')
     tokens = parser.parse

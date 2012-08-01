@@ -422,11 +422,13 @@ module Rlint
     # @return [Rlint::Token::ValueToken]
     #
     def on_regexp_literal(regex, regex_end)
-      regex = regex[0]
+      regex   = regex[0]
+      mode    = regex_end[1]
+      mode[0] = '/'
 
       return Token::ValueToken.new(
         :type   => :regular_expression,
-        :value  => '/' + regex.value + regex_end[1],
+        :value  => '/' + regex.value + mode,
         :line   => regex.line,
         :column => regex.column,
         :code   => regex.code
