@@ -70,6 +70,62 @@ describe 'Rlint::Parser' do
     pair.value.type.should == :string
   end
 
+  it 'Parse a string using single quotes' do
+    string = Rlint::Parser.new("'hello'").parse[0]
+
+    string.line.should   == 1
+    string.column.should == 1
+    string.value.should  == 'hello'
+    string.type.should   == :string
+  end
+
+  it 'Parse a string using double quotes' do
+    string = Rlint::Parser.new('"hello"').parse[0]
+
+    string.line.should   == 1
+    string.column.should == 1
+    string.value.should  == 'hello'
+    string.type.should   == :string
+  end
+
+  it 'Parse an array using %w[]' do
+    array = Rlint::Parser.new('%w[10 20]').parse[0]
+
+    array.is_a?(Rlint::Token::ValueToken).should == true
+
+    array.value.length.should == 2
+    array.line.should         == 1
+
+    array.value[0].is_a?(Rlint::Token::ValueToken).should == true
+
+    array.value[0].type.should  == :string
+    array.value[0].value.should == '10'
+
+    array.value[1].is_a?(Rlint::Token::ValueToken).should == true
+
+    array.value[1].type.should  == :string
+    array.value[1].value.should == '20'
+  end
+
+  it 'Parse an array using %W[]' do
+    array = Rlint::Parser.new('%W[10 20]').parse[0]
+
+    array.is_a?(Rlint::Token::ValueToken).should == true
+
+    array.value.length.should == 2
+    array.line.should         == 1
+
+    array.value[0].is_a?(Rlint::Token::ValueToken).should == true
+
+    array.value[0].type.should  == :string
+    array.value[0].value.should == '10'
+
+    array.value[1].is_a?(Rlint::Token::ValueToken).should == true
+
+    array.value[1].type.should  == :string
+    array.value[1].value.should == '20'
+  end
+
   it 'Parse the assignment of a variable' do
     parser = Rlint::Parser.new('number = 10')
     tokens = parser.parse

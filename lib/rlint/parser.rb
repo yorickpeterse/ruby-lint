@@ -325,14 +325,23 @@ module Rlint
     # @return [Rlint::Token::ValueToken]
     #
     def on_string_literal(string)
-      string = string[1]
+      return string[1]
+    end
 
+    ##
+    # Called when a string is found.
+    #
+    # @since  2012-08-01
+    # @param  [String] string The content of the string.
+    # @return [Rlint::Token::ValueToken]
+    #
+    def on_tstring_content(string)
       return Token::ValueToken.new(
         :type   => :string,
-        :value  => string[1],
-        :line   => string[2][0],
-        :column => string[2][1],
-        :code   => code(string[2][0])
+        :value  => string,
+        :line   => lineno,
+        :column => column,
+        :code   => code(lineno)
       )
     end
 
@@ -364,6 +373,16 @@ module Rlint
     #
     def on_array(values)
       values ||= []
+
+      # When using %W each value is returned as an array containing a single
+      # token (instead of directly returning a token).
+      values.map! do |v|
+        if v.is_a?(Array)
+          v[0]
+        else
+          v
+        end
+      end
 
       return Token::ValueToken.new(
         :type   => :array,
