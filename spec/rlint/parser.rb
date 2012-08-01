@@ -12,6 +12,17 @@ describe 'Rlint::Parser' do
     int.value.should  == '10'
   end
 
+  it 'Parse a float' do
+    float = Rlint::Parser.new('10.2').parse[0]
+
+    float.is_a?(Rlint::Token::ValueToken).should == true
+
+    float.line.should   == 1
+    float.column.should == 0
+    float.type.should   == :float
+    float.value.should  == '10.2'
+  end
+
   it 'Parse an array' do
     array = Rlint::Parser.new('[10]').parse[0]
 

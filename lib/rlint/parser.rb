@@ -318,6 +318,24 @@ module Rlint
     end
 
     ##
+    # Called when a floating point number is found.
+    #
+    # @since 2012-08-02
+    # @param [Array] float Array containing details about the floating point
+    #  number.
+    # @return [Rlint::Token::ValueToken]
+    #
+    def on_float(float)
+      return Token::ValueToken.new(
+        :type   => :float,
+        :value  => float,
+        :line   => lineno,
+        :column => column,
+        :code   => code(lineno)
+      )
+    end
+
+    ##
     # Called when a string literal was found.
     #
     # @since  2012-07-29
