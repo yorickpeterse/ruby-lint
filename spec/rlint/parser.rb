@@ -102,12 +102,12 @@ describe 'Rlint::Parser' do
   it 'Parse a regular expression' do
     regex = Rlint::Parser.new('/foo/i').parse[0]
 
-    regex.is_a?(Rlint::Token::ValueToken).should == true
+    regex.is_a?(Rlint::Token::RegexpToken).should == true
 
     regex.line.should   == 1
     regex.column.should == 1
-    regex.type.should   == :regular_expression
-    regex.value.should  == '/foo/i'
+    regex.value.should  == 'foo'
+    regex.modes.should  == ['i']
   end
 
   it 'Parse a range' do
@@ -183,12 +183,12 @@ describe 'Rlint::Parser' do
   it 'Parse a regular expression using %r{}' do
     regex = Rlint::Parser.new('%r{foo}i').parse[0]
 
-    regex.is_a?(Rlint::Token::ValueToken).should == true
+    regex.is_a?(Rlint::Token::RegexpToken).should == true
 
     regex.line.should   == 1
     regex.column.should == 3
-    regex.type.should   == :regular_expression
-    regex.value.should  == '/foo/i'
+    regex.value.should  == 'foo'
+    regex.modes.should  == ['i']
   end
 
   it 'Parse the assignment of a variable' do

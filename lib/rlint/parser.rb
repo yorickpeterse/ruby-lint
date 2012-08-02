@@ -424,11 +424,11 @@ module Rlint
     def on_regexp_literal(regex, regex_end)
       regex   = regex[0]
       mode    = regex_end[1]
-      mode[0] = '/'
+      mode[0] = ''
 
-      return Token::ValueToken.new(
-        :type   => :regular_expression,
-        :value  => '/' + regex.value + mode,
+      return Token::RegexpToken.new(
+        :value  => regex.value,
+        :modes  => mode.chars.to_a,
         :line   => regex.line,
         :column => regex.column,
         :code   => regex.code

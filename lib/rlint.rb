@@ -14,6 +14,7 @@ require 'rlint/token/value_token'
 require 'rlint/token/operator_token'
 require 'rlint/token/key_value_token'
 require 'rlint/token/range_token'
+require 'rlint/token/regexp_token'
 
 module Rlint
   def self.lint(code, file = nil)
