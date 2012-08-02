@@ -436,6 +436,26 @@ module Rlint
     end
 
     ##
+    # Called when a range is found.
+    #
+    # @since 2012-08-02
+    # @param [Rlint::Token::ValueToken|Rlint::Token::VariableToken] start The
+    #  start value of the range.
+    # @param [Rlint::Token::ValueToken|Rlint::Token::VariableToken] stop The
+    #  end value of the range.
+    # @return [Rlint::Token::RangeToken]
+    #
+    def on_dot2(start, stop)
+      return Token::RangeToken.new(
+        :start_value => start,
+        :end_value   => stop,
+        :line        => start.line,
+        :column      => start.column,
+        :code        => start.code
+      )
+    end
+
+    ##
     # Called when a hash is found.
     #
     # @since  2012-07-30

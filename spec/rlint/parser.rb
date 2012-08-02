@@ -110,6 +110,20 @@ describe 'Rlint::Parser' do
     regex.value.should  == '/foo/i'
   end
 
+  it 'Parse a range' do
+    range = Rlint::Parser.new('1..10').parse[0]
+
+    range.is_a?(Rlint::Token::RangeToken).should             == true
+    range.start_value.is_a?(Rlint::Token::ValueToken).should == true
+    range.end_value.is_a?(Rlint::Token::ValueToken).should   == true
+
+    range.line.should   == 1
+    range.column.should == 0
+
+    range.start_value.value.should == '1'
+    range.end_value.value.should   == '10'
+  end
+
   it 'Parse an array using %w[]' do
     array = Rlint::Parser.new('%w[10 20]').parse[0]
 
