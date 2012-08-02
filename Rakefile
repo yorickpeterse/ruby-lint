@@ -10,3 +10,5 @@ Gem::PackageTask.new(GEMSPEC) do |pkg|
   pkg.need_tar = false
   pkg.need_zip = false
 end
+
+task :default => :test
