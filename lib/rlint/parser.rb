@@ -52,6 +52,16 @@ module Rlint
     end
 
     ##
+    # Called when a void statement is found.
+    #
+    # @since  2012-08-02
+    # @return [NilClass]
+    #
+    def on_void_stmt
+      return nil
+    end
+
+    ##
     # Called when a set of method arguments are defined using a parenthesis.
     #
     # Instead of returning the tokens this method stores them in the
@@ -105,9 +115,8 @@ module Rlint
           col   = arg[0][2][1]
         end
 
-        retval << Token::Token.new(
+        retval << Token::ValueToken.new(
           :name   => name,
-          :type   => :parameter,
           :value  => value,
           :line   => line,
           :column => col,
@@ -136,12 +145,11 @@ module Rlint
     # @param  [Array] name Array containing details about the method name.
     # @param  [Array] params Array containing the method parameters.
     # @param  [Array] body Array containing the body of the method.
-    # @return [Rlint::Token::MethodToken]
+    # @return [Rlint::Token::MethodDefinitionToken]
     #
     def on_def(name, params, body)
-      return Token::MethodToken.new(
+      return Token::MethodDefinitionToken.new(
         :name       => name[1],
-        :type       => :def,
         :value      => body,
         :parameters => params,
         :line       => name[2][0],
@@ -162,11 +170,28 @@ module Rlint
     def on_class(klass, parent, body)
       return Token::ClassToken.new(
         :name   => klass.name,
-        :type   => :class,
         :line   => klass.line,
         :column => klass.column,
-        :parent => parent.name,
-        :value  => body
+        :parent => !parent.nil? ? parent.name : nil,
+        :value  => body.select { |n| !n.nil? }
+      )
+    end
+
+    ##
+    # Called when a module is found.
+    #
+    # @since  2012-08-02
+    # @param  [Array] mod Array containing details about the module name.
+    # @param  [Array] value The contents of the module.
+    # @return [Rlint::Token::ModuleToken]
+    #
+    def on_module(mod, value)
+      return Token::ModuleToken.new(
+        :name   => mod.name,
+        :line   => mod.line,
+        :column => mod.column,
+        :code   => mod.code,
+        :value  => value.select { |n| !n.nil? }
       )
     end
 
@@ -234,12 +259,11 @@ module Rlint
     #
     # @since  2012-07-29
     # @param  [Array] retval Array containing details about the return value.
-    # @return [Rlint::Token::Token]
+    # @return [Rlint::Token::MethodToken]
     #
     def on_return(retval)
-      return Token::Token.new(
+      return Token::MethodToken.new(
         :name       => 'return',
-        :type       => :statement,
         :parameters => retval,
         :line       => lineno,
         :column     => column,

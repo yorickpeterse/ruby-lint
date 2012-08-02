@@ -191,6 +191,96 @@ describe 'Rlint::Parser' do
     regex.modes.should  == ['i']
   end
 
+  it 'Parse a method' do
+    m = Rlint::Parser.new('def example; return 10; end').parse[0]
+
+    m.is_a?(Rlint::Token::MethodDefinitionToken).should == true
+
+    m.line.should   == 1
+    m.column.should == 4
+
+    m.value.is_a?(Array).should                  == true
+    m.value[0].is_a?(Rlint::Token::Token).should == true
+    m.value[0].name.should                       == 'return'
+
+    m.value[0].parameters.is_a?(Array).should                       == true
+    m.value[0].parameters[0].is_a?(Rlint::Token::ValueToken).should == true
+    m.value[0].parameters[0].value.should                           == '10'
+  end
+
+  it 'Parse a method with parameters' do
+    m = Rlint::Parser.new('def example(n = 10); return n; end').parse[0]
+
+    m.is_a?(Rlint::Token::MethodDefinitionToken).should == true
+
+    m.parameters.is_a?(Array).should == true
+    m.parameters.length.should       == 1
+
+    param = m.parameters[0]
+
+    param.is_a?(Rlint::Token::Token).should            == true
+    param.value.is_a?(Rlint::Token::ValueToken).should == true
+
+    param.value.type.should  == :integer
+    param.value.value.should == '10'
+  end
+
+  it 'Parse a class' do
+    klass = Rlint::Parser.new('class Example; end').parse[0]
+
+    klass.is_a?(Rlint::Token::ClassToken).should == true
+
+    klass.name.should   == 'Example'
+    klass.parent.should == nil
+  end
+
+  it 'Parse a class with a parent class' do
+    klass = Rlint::Parser.new('class Example < Object; end').parse[0]
+
+    klass.is_a?(Rlint::Token::ClassToken).should == true
+
+    klass.name.should   == 'Example'
+    klass.parent.should == 'Object'
+  end
+
+  it 'Parse a module' do
+    mod = Rlint::Parser.new('module Example; end').parse[0]
+
+    mod.is_a?(Rlint::Token::ModuleToken).should == true
+
+    mod.name.should   == 'Example'
+    mod.line.should   == 1
+    mod.column.should == 7
+  end
+
+  it 'Parse a class inside a module' do
+    mod = Rlint::Parser.new('module A; class B; end; end').parse[0]
+
+    mod.is_a?(Rlint::Token::ModuleToken).should == true
+
+    mod.name.should               == 'A'
+    mod.value.is_a?(Array).should == true
+    mod.value.length.should       == 1
+
+    klass = mod.value[0]
+
+    klass.name.should == 'B'
+  end
+
+  it 'Parse a class inside a class' do
+    klass = Rlint::Parser.new('class A; class B; end; end').parse[0]
+
+    klass.is_a?(Rlint::Token::ClassToken).should == true
+
+    klass.name.should               == 'A'
+    klass.value.is_a?(Array).should == true
+    klass.value.length.should       == 1
+
+    sub_klass = klass.value[0]
+
+    sub_klass.name.should == 'B'
+  end
+
   it 'Parse the assignment of a variable' do
     parser = Rlint::Parser.new('number = 10')
     tokens = parser.parse
