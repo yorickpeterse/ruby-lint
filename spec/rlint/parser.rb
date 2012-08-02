@@ -281,6 +281,22 @@ describe 'Rlint::Parser' do
     sub_klass.name.should == 'B'
   end
 
+  it 'Parse a class with multiple name segments' do
+    klass = Rlint::Parser.new('class A::B; end').parse[0]
+
+    klass.name.should   == 'A::B'
+    klass.line.should   == 1
+    klass.column.should == 6
+  end
+
+  it 'Parse a module with multiple name segments' do
+    mod = Rlint::Parser.new('module A::B; end').parse[0]
+
+    mod.name.should   == 'A::B'
+    mod.line.should   == 1
+    mod.column.should == 7
+  end
+
   it 'Parse the assignment of a variable' do
     parser = Rlint::Parser.new('number = 10')
     tokens = parser.parse

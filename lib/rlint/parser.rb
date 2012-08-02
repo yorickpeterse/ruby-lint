@@ -168,10 +168,33 @@ module Rlint
     # @return [Rlint::Token::ClassToken]
     #
     def on_class(klass, parent, body)
+      if klass.is_a?(Array)
+        first_token = nil
+        name        = []
+
+        # Build the name based on the namespace segments.
+        klass.each do |segment|
+          next unless segment.respond_to?(:name)
+
+          first_token = segment unless first_token
+
+          name << segment.name
+        end
+
+        name   = name.join('::')
+        line   = first_token.line
+        column = first_token.column
+      else
+        name   = klass.name
+        line   = klass.line
+        column = klass.column
+      end
+
       return Token::ClassToken.new(
-        :name   => klass.name,
-        :line   => klass.line,
-        :column => klass.column,
+        :name   => name,
+        :line   => line,
+        :column => column,
+        :code   => code(line),
         :parent => !parent.nil? ? parent.name : nil,
         :value  => body.select { |n| !n.nil? }
       )
@@ -186,11 +209,33 @@ module Rlint
     # @return [Rlint::Token::ModuleToken]
     #
     def on_module(mod, value)
+      if mod.is_a?(Array)
+        first_token = nil
+        name        = []
+
+        # Build the name based on the namespace segments.
+        mod.each do |segment|
+          next unless segment.respond_to?(:name)
+
+          first_token = segment unless first_token
+
+          name << segment.name
+        end
+
+        name   = name.join('::')
+        line   = first_token.line
+        column = first_token.column
+      else
+        name   = mod.name
+        line   = mod.line
+        column = mod.column
+      end
+
       return Token::ModuleToken.new(
-        :name   => mod.name,
-        :line   => mod.line,
-        :column => mod.column,
-        :code   => mod.code,
+        :name   => name,
+        :line   => line,
+        :column => column,
+        :code   => code(line),
         :value  => value.select { |n| !n.nil? }
       )
     end
@@ -302,6 +347,8 @@ module Rlint
     # @return [Rlint::Token::VariableToken]
     #
     def on_var_ref(variable)
+      return variable unless variable.is_a?(Array)
+
       type  = variable[0]
       var   = variable[1]
 
@@ -322,6 +369,22 @@ module Rlint
     #
     def on_const_ref(const)
       return on_var_ref(const)
+    end
+
+    ##
+    # Called when an undefined constant is found.
+    #
+    # @since  2012-08-02
+    # @return [Rlint::Token::VariableToken]
+    #
+    def on_const(const)
+      return Token::VariableToken.new(
+        :name   => const,
+        :type   => :constant,
+        :line   => lineno,
+        :column => column,
+        :code   => code(lineno)
+      )
     end
 
     ##
