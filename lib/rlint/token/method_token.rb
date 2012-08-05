@@ -7,6 +7,22 @@ module Rlint
     #
     class MethodToken < Token
       ##
+      # The receiver of the method call, if any.
+      #
+      # @since  2012-08-05
+      # @return [Rlint::Token::Token]
+      #
+      attr_reader :receiver
+
+      ##
+      # Symbol containing the method separator, if any.
+      #
+      # @since  2012-08-05
+      # @return [Symbol]
+      #
+      attr_reader :separator
+
+      ##
       # Array of tokens for the method parameters.
       #
       # @since  2012-07-29
@@ -20,7 +36,7 @@ module Rlint
       # @since  2012-08-05
       # @return [Rlint::Token::BlockToken]
       #
-      attr_reader :block
+      attr_accessor :block
     end # MethodToken
   end # Token
 end # Rlint

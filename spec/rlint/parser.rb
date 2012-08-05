@@ -300,71 +300,74 @@ describe 'Rlint::Parser' do
   it 'Parse a proc' do
     found = Rlint::Parser.new('proc { |n| n }').parse[0]
 
-    found.is_a?(Rlint::Token::BlockToken).should == true
+    found.is_a?(Rlint::Token::MethodToken).should      == true
+    found.block.is_a?(Rlint::Token::BlockToken).should == true
 
-    found.parameters.is_a?(Array).should == true
-    found.parameters.length.should       == 1
+    found.block.parameters.is_a?(Array).should == true
+    found.block.parameters.length.should       == 1
 
-    param = found.parameters[0]
+    param = found.block.parameters[0]
 
     param.is_a?(Rlint::Token::VariableToken).should == true
     param.value.nil?.should                         == true
 
-    found.value.is_a?(Array).should == true
-    found.value.length.should       == 1
+    found.block.value.is_a?(Array).should == true
+    found.block.value.length.should       == 1
   end
 
   it 'Parse a proc using do/end instead of braces' do
     found = Rlint::Parser.new('proc do |n|; n; end').parse[0]
 
-    found.is_a?(Rlint::Token::BlockToken).should == true
+    found.is_a?(Rlint::Token::MethodToken).should == true
 
-    found.parameters.is_a?(Array).should == true
-    found.parameters.length.should       == 1
+    found.block.parameters.is_a?(Array).should == true
+    found.block.parameters.length.should       == 1
 
-    param = found.parameters[0]
+    param = found.block.parameters[0]
 
     param.is_a?(Rlint::Token::VariableToken).should == true
     param.value.nil?.should                         == true
 
-    found.value.is_a?(Array).should == true
-    found.value.length.should       == 1
+    found.block.value.is_a?(Array).should == true
+    found.block.value.length.should       == 1
   end
 
   it 'Parse a lambda using braces' do
     found = Rlint::Parser.new('lambda { |n| n }').parse[0]
 
-    found.is_a?(Rlint::Token::BlockToken).should == true
+    found.is_a?(Rlint::Token::MethodToken).should == true
 
-    found.parameters.is_a?(Array).should == true
-    found.parameters.length.should       == 1
+    found.block.parameters.is_a?(Array).should == true
+    found.block.parameters.length.should       == 1
 
-    param = found.parameters[0]
+    param = found.block.parameters[0]
 
     param.is_a?(Rlint::Token::VariableToken).should == true
     param.value.nil?.should                         == true
 
-    found.value.is_a?(Array).should == true
-    found.value.length.should       == 1
+    found.block.value.is_a?(Array).should == true
+    found.block.value.length.should       == 1
   end
 
   it 'Parse a lambda using do/end' do
     found = Rlint::Parser.new('lambda do |n|; n; end').parse[0]
 
-    found.is_a?(Rlint::Token::BlockToken).should == true
+    found.is_a?(Rlint::Token::MethodToken).should == true
 
-    found.parameters.is_a?(Array).should == true
-    found.parameters.length.should       == 1
+    found.block.parameters.is_a?(Array).should == true
+    found.block.parameters.length.should       == 1
 
-    param = found.parameters[0]
+    param = found.block.parameters[0]
 
     param.is_a?(Rlint::Token::VariableToken).should == true
     param.value.nil?.should                         == true
 
-    found.value.is_a?(Array).should == true
-    found.value.length.should       == 1
+    found.block.value.is_a?(Array).should == true
+    found.block.value.length.should       == 1
   end
 
+  # The dash rocket isn't parsed as a method, thus the returned token is a
+  # BlockToken and not a MethodToken instance.
   it 'Parse a lambda using the dashrocket syntax' do
     found = Rlint::Parser.new('-> n { n }').parse[0]
 
@@ -503,5 +506,120 @@ describe 'Rlint::Parser' do
 
     param1.column.should == 5
     param2.column.should == 9
+  end
+
+  it 'Call a class method without parenthesis' do
+    call = Rlint::Parser.new('Kernel.puts "hello"').parse[0]
+
+    call.is_a?(Rlint::Token::MethodToken).should            == true
+    call.receiver.is_a?(Rlint::Token::VariableToken).should == true
+
+    call.receiver.name.should == 'Kernel'
+    call.receiver.type.should == :constant
+
+    call.separator.should == :'.'
+    call.name.should      == 'puts'
+
+    call.parameters.is_a?(Array).should == true
+
+    param = call.parameters[0]
+
+    param.is_a?(Rlint::Token::ValueToken).should == true
+
+    param.type.should  == :string
+    param.value.should == 'hello'
+  end
+
+  it 'Call a class method wit parenthesis' do
+    call = Rlint::Parser.new('Kernel.puts("hello")').parse[0]
+
+    call.is_a?(Rlint::Token::MethodToken).should            == true
+    call.receiver.is_a?(Rlint::Token::VariableToken).should == true
+
+    call.receiver.name.should == 'Kernel'
+    call.receiver.type.should == :constant
+
+    call.separator.should == :'.'
+    call.name.should      == 'puts'
+
+    call.parameters.is_a?(Array).should == true
+
+    param = call.parameters[0]
+
+    param.is_a?(Rlint::Token::ValueToken).should == true
+
+    param.type.should  == :string
+    param.value.should == 'hello'
+  end
+
+  it 'Call an instance method without parenthesis' do
+    call = Rlint::Parser.new('$stdout.puts "hello"').parse[0]
+
+    call.is_a?(Rlint::Token::MethodToken).should            == true
+    call.receiver.is_a?(Rlint::Token::VariableToken).should == true
+
+    call.receiver.name.should == '$stdout'
+    call.receiver.type.should == :global_variable
+
+    call.separator.should == :'.'
+    call.name.should      == 'puts'
+
+    call.parameters.is_a?(Array).should == true
+
+    param = call.parameters[0]
+
+    param.is_a?(Rlint::Token::ValueToken).should == true
+
+    param.type.should  == :string
+    param.value.should == 'hello'
+  end
+
+  it 'Chain a set of method calls' do
+    call = Rlint::Parser.new('"HELLO".downcase.capitalize').parse[0]
+
+    call.is_a?(Rlint::Token::MethodToken).should == true
+    call.name.should                             == 'capitalize'
+
+    call.receiver.is_a?(Rlint::Token::MethodToken).should == true
+    call.receiver.name.should                             == 'downcase'
+
+    origin = call.receiver.receiver
+
+    origin.is_a?(Rlint::Token::ValueToken).should == true
+    origin.type.should                            == :string
+  end
+
+  it 'Call a class method on an object using a block' do
+    call = Rlint::Parser.new('Proc.new { |n| n * 2 }').parse[0]
+
+    call.is_a?(Rlint::Token::MethodToken).should            == true
+    call.receiver.is_a?(Rlint::Token::VariableToken).should == true
+    call.block.is_a?(Rlint::Token::BlockToken).should       == true
+
+    call.name.should      == 'new'
+    call.separator.should == :'.'
+
+    call.receiver.name.should == 'Proc'
+    call.receiver.type.should == :constant
+  end
+
+  it 'Call an instance method on an object using a block' do
+    call = Rlint::Parser.new('[10].map { |i| i * 2 }').parse[0]
+
+    call.is_a?(Rlint::Token::MethodToken).should      == true
+    call.block.is_a?(Rlint::Token::BlockToken).should == true
+
+    call.block.parameters.is_a?(Array).should == true
+    call.block.parameters.length.should       == 1
+  end
+
+  it 'Call an instance method on an object using a block using do/end' do
+    call = Rlint::Parser.new('[10].map do |i|; i * 2; end').parse[0]
+
+    call.is_a?(Rlint::Token::MethodToken).should      == true
+    call.block.is_a?(Rlint::Token::BlockToken).should == true
+
+    call.block.parameters.is_a?(Array).should == true
+    call.block.parameters.length.should       == 1
   end
 end

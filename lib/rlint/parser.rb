@@ -149,13 +149,21 @@ module Rlint
     #  array of tokens of the block's body.
     #
     def on_method_add_block(block, details)
-      return Token::BlockToken.new(
+      token = Token::BlockToken.new(
         :parameters => details[0],
         :value      => details[1].select { |v| !v.nil? },
         :line       => block.line,
         :column     => block.column,
         :code       => block.code
       )
+
+      if block.is_a?(Rlint::Token::MethodToken)
+        block.block = token
+
+        return block
+      else
+        return token
+      end
     end
 
     ##
@@ -352,6 +360,43 @@ module Rlint
         :code       => code(method[2][0]),
         :parameters => args
       )
+    end
+
+    ##
+    # Called when a method is invoked on an object without using parenthesis.
+    #
+    # @since 2012-08-05
+    # @param [Rlint::Token::Token] receiver The object on which the method was
+    #  called.
+    # @param [String] sep The method separator that was used.
+    # @param [Array] method Array containing details about the method that was
+    #  invoked.
+    # @param  [Array] args The arguments passed to the method call.
+    # @return [Array]
+    #
+    def on_command_call(receiver, sep, method, args)
+      return Token::MethodToken.new(
+        :receiver   => receiver,
+        :separator  => sep,
+        :name       => method[1],
+        :line       => method[2][0],
+        :column     => method[2][1],
+        :code       => code(method[2][0]),
+        :parameters => args
+      )
+    end
+
+    ##
+    # Called when a method is invoked on an object using parenthesis.
+    #
+    # @since 2012-08-05
+    # @see   Rlint::Parser#on_command_call
+    #
+    def on_call(receiver, sep, method)
+      token       = on_command_call(receiver, sep, method, @parameters)
+      @parameters = nil
+
+      return token
     end
 
     ##
