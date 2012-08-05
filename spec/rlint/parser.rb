@@ -218,7 +218,7 @@ describe 'Rlint::Parser' do
 
     param = m.parameters[0]
 
-    param.is_a?(Rlint::Token::Token).should            == true
+    param.is_a?(Rlint::Token::VariableToken).should    == true
     param.value.is_a?(Rlint::Token::ValueToken).should == true
 
     param.value.type.should  == :integer
@@ -295,6 +295,91 @@ describe 'Rlint::Parser' do
     mod.name.should   == 'A::B'
     mod.line.should   == 1
     mod.column.should == 7
+  end
+
+  it 'Parse a proc' do
+    found = Rlint::Parser.new('proc { |n| n }').parse[0]
+
+    found.is_a?(Rlint::Token::BlockToken).should == true
+
+    found.parameters.is_a?(Array).should == true
+    found.parameters.length.should       == 1
+
+    param = found.parameters[0]
+
+    param.is_a?(Rlint::Token::VariableToken).should == true
+    param.value.nil?.should                         == true
+
+    found.value.is_a?(Array).should == true
+    found.value.length.should       == 1
+  end
+
+  it 'Parse a proc using do/end instead of braces' do
+    found = Rlint::Parser.new('proc do |n|; n; end').parse[0]
+
+    found.is_a?(Rlint::Token::BlockToken).should == true
+
+    found.parameters.is_a?(Array).should == true
+    found.parameters.length.should       == 1
+
+    param = found.parameters[0]
+
+    param.is_a?(Rlint::Token::VariableToken).should == true
+    param.value.nil?.should                         == true
+
+    found.value.is_a?(Array).should == true
+    found.value.length.should       == 1
+  end
+
+  it 'Parse a lambda using braces' do
+    found = Rlint::Parser.new('lambda { |n| n }').parse[0]
+
+    found.is_a?(Rlint::Token::BlockToken).should == true
+
+    found.parameters.is_a?(Array).should == true
+    found.parameters.length.should       == 1
+
+    param = found.parameters[0]
+
+    param.is_a?(Rlint::Token::VariableToken).should == true
+    param.value.nil?.should                         == true
+
+    found.value.is_a?(Array).should == true
+    found.value.length.should       == 1
+  end
+
+  it 'Parse a lambda using do/end' do
+    found = Rlint::Parser.new('lambda do |n|; n; end').parse[0]
+
+    found.is_a?(Rlint::Token::BlockToken).should == true
+
+    found.parameters.is_a?(Array).should == true
+    found.parameters.length.should       == 1
+
+    param = found.parameters[0]
+
+    param.is_a?(Rlint::Token::VariableToken).should == true
+    param.value.nil?.should                         == true
+
+    found.value.is_a?(Array).should == true
+    found.value.length.should       == 1
+  end
+
+  it 'Parse a lambda using the dashrocket syntax' do
+    found = Rlint::Parser.new('-> n { n }').parse[0]
+
+    found.is_a?(Rlint::Token::BlockToken).should == true
+
+    found.parameters.is_a?(Array).should == true
+    found.parameters.length.should       == 1
+
+    param = found.parameters[0]
+
+    param.is_a?(Rlint::Token::VariableToken).should == true
+    param.value.nil?.should                         == true
+
+    found.value.is_a?(Array).should == true
+    found.value.length.should       == 1
   end
 
   it 'Parse the assignment of a variable' do

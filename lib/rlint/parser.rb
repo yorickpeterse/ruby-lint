@@ -115,7 +115,7 @@ module Rlint
           col   = arg[0][2][1]
         end
 
-        retval << Token::ValueToken.new(
+        retval << Token::VariableToken.new(
           :name   => name,
           :value  => value,
           :line   => line,
@@ -136,6 +136,79 @@ module Rlint
     #
     def on_paren(args)
       return args
+    end
+
+    ##
+    # Called when a block is passed to a method call.
+    #
+    # @since 2012-08-05
+    # @param [Rlint::Token::MethodToken] block Token containing basic details
+    #  about the proc.
+    # @param [Array] details Array containing two elements. The first element
+    #  is an array containing the block parameters, the second element is an
+    #  array of tokens of the block's body.
+    #
+    def on_method_add_block(block, details)
+      return Token::BlockToken.new(
+        :parameters => details[0],
+        :value      => details[1].select { |v| !v.nil? },
+        :line       => block.line,
+        :column     => block.column,
+        :code       => block.code
+      )
+    end
+
+    ##
+    # Called when a lambda is found.
+    #
+    # @since  2012-08-05
+    # @param  [Array] params Array of token classes for each parameter.
+    # @param  [Array] body Array containing the tokens of the lambda's body.
+    # @return [Rlint::Token::BlockToken]
+    #
+    def on_lambda(params, body)
+      return Token::BlockToken.new(
+        :parameters => params,
+        :value      => body.select { |v| !v.nil? },
+        :line       => lineno,
+        :column     => column,
+        :code       => code(lineno)
+      )
+    end
+
+    ##
+    # Called when a set of block parameters is found.
+    #
+    # @since  2012-08-05
+    # @param  [Array] params The parameters of the block.
+    # @param  [Mixed] extra Extra parameter of which I don't know the purpose
+    #  (so much for proper Ripper documentation).
+    # @return [Array]
+    #
+    def on_block_var(params, extra)
+      return params
+    end
+
+    ##
+    # Called when a block is created using braces is found.
+    #
+    # @since  2012-08-05
+    # @param  [Array] params An array of block parameters.
+    # @param  [Array] body Array containing the tokens of the block's body.
+    # @return [Array]
+    #
+    def on_brace_block(params, body)
+      return [params, body]
+    end
+
+    ##
+    # Called when a block is created using `do/end` instead of braces.
+    #
+    # @since 2012-08-05
+    # @see   Rlint::Parser#on_brace_block
+    #
+    def on_do_block(params, body)
+      return [params, body]
     end
 
     ##

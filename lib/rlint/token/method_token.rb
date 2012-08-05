@@ -13,6 +13,14 @@ module Rlint
       # @return [Array]
       #
       attr_reader :parameters
+
+      ##
+      # Token containing details about the block passed to the method.
+      #
+      # @since  2012-08-05
+      # @return [Rlint::Token::BlockToken]
+      #
+      attr_reader :block
     end # MethodToken
   end # Token
 end # Rlint
