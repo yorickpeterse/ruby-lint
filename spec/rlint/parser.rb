@@ -225,6 +225,20 @@ describe 'Rlint::Parser' do
     param.value.value.should == '10'
   end
 
+  it 'Parse a method with a block parameter' do
+    m = Rlint::Parser.new('def example(&block); block.call; end').parse[0]
+
+    m.is_a?(Rlint::Token::MethodDefinitionToken).should == true
+
+    m.parameters.is_a?(Array).should == true
+    m.parameters.length.should       == 1
+
+    param = m.parameters[0]
+
+    param.name.should == '&block'
+    param.type.should == :local_variable
+  end
+
   it 'Parse a class' do
     klass = Rlint::Parser.new('class Example; end').parse[0]
 

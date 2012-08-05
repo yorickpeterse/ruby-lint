@@ -118,6 +118,7 @@ module Rlint
         retval << Token::VariableToken.new(
           :name   => name,
           :value  => value,
+          :type   => :local_variable,
           :line   => line,
           :column => col,
           :code   => code(line)
@@ -125,6 +126,20 @@ module Rlint
       end
 
       return retval
+    end
+
+    ##
+    # Called when a block is specified as a parameter (by prefixing the
+    # parameter with an ampersand).
+    #
+    # @since  2012-08-05
+    # @param  [Array] arg Array containing details about the parameter.
+    # @return [Array]
+    #
+    def on_blockarg(arg)
+      arg[1] = '&' + arg[1]
+
+      return [arg]
     end
 
     ##
