@@ -636,4 +636,14 @@ describe 'Rlint::Parser' do
     call.block.parameters.is_a?(Array).should == true
     call.block.parameters.length.should       == 1
   end
+
+  it 'Parse invalid Ruby code' do
+    error = should.raise?(Rlint::ParserError) do
+      Rlint::Parser.new('def; end').parse
+    end
+
+    error.line.should   == 1
+    error.column.should == 4
+    error.file.should   == '(rlint)'
+  end
 end

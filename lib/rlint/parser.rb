@@ -11,11 +11,23 @@ module Rlint
     # @since 2012-07-29
     # @see   Ripper::SexpBuilderPP#initialize
     #
-    def initialize(code, file = '(ripper)', line = 1)
+    def initialize(code, file = '(rlint)', line = 1)
       @lines      = code.lines.to_a
       @parameters = nil
+      @file       = file
 
       super
+    end
+
+    ##
+    # Called when a parser error is found.
+    #
+    # @since  2012-08-05
+    # @param  [String] message The error message for the parser error.
+    # @raise  Rlint::ParserError
+    #
+    def on_parse_error(message)
+      raise ParserError.new(message, lineno, column, @file)
     end
 
     ##
