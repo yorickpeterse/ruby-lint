@@ -118,13 +118,26 @@ module Rlint
             param = [param]
           end
 
+          block_var = false
+          rest_var  = false
+
+          if param[0].respond_to?(:block_variable)
+            block_var = param[0].block_variable
+          end
+
+          if param[0].respond_to?(:rest_variable)
+            rest_var = param[0].rest_variable
+          end
+
           retval << Token::VariableToken.new(
-            :name   => param[0].name,
-            :value  => param[1],
-            :type   => :local_variable,
-            :line   => param[0].line,
-            :column => param[0].column,
-            :code   => code(param[0].line)
+            :name           => param[0].name,
+            :value          => param[1],
+            :type           => :local_variable,
+            :line           => param[0].line,
+            :column         => param[0].column,
+            :code           => code(param[0].line),
+            :block_variable => block_var,
+            :rest_variable  => rest_var
           )
         end
       end

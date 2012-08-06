@@ -247,8 +247,28 @@ describe 'Rlint::Parser' do
 
     param = m.parameters[0]
 
-    param.name.should == 'block'
-    param.type.should == :local_variable
+    param.is_a?(Rlint::Token::VariableToken).should == true
+
+    param.name.should           == 'block'
+    param.type.should           == :local_variable
+    param.block_variable.should == true
+  end
+
+  it 'Parse a method with a rest parameter' do
+    m = Rlint::Parser.new('def example(*args); args; end').parse[0]
+
+    m.is_a?(Rlint::Token::MethodDefinitionToken).should == true
+
+    m.parameters.is_a?(Array).should == true
+    m.parameters.length.should       == 1
+
+    param = m.parameters[0]
+
+    param.is_a?(Rlint::Token::VariableToken).should == true
+
+    param.name.should          == 'args'
+    param.type.should          == :local_variable
+    param.rest_variable.should == true
   end
 
   it 'Parse a class' do
