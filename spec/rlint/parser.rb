@@ -451,6 +451,87 @@ describe 'Rlint::Parser' do
     ref.code.should   == 'number'
   end
 
+  it 'Parse the assignment of an instance variable' do
+    var = Rlint::Parser.new('@number = 10').parse[0]
+
+    var.is_a?(Rlint::Token::VariableToken).should == true
+
+    var.name.should   == '@number'
+    var.type.should   == :instance_variable
+    var.line.should   == 1
+    var.column.should == 0
+
+    var.value.is_a?(Rlint::Token::ValueToken).should == true
+
+    var.value.type.should  == :integer
+    var.value.value.should == '10'
+  end
+
+  it 'Parse the assignment and reference of an instance variable' do
+    var = Rlint::Parser.new("@number = 10\n@number").parse[1]
+
+    var.is_a?(Rlint::Token::VariableToken).should == true
+
+    var.name.should   == '@number'
+    var.type.should   == :instance_variable
+    var.line.should   == 2
+    var.column.should == 0
+  end
+
+  it 'Parse the assignment of a class variable' do
+    var = Rlint::Parser.new('@@number = 10').parse[0]
+
+    var.is_a?(Rlint::Token::VariableToken).should == true
+
+    var.name.should   == '@@number'
+    var.type.should   == :class_variable
+    var.line.should   == 1
+    var.column.should == 0
+
+    var.value.is_a?(Rlint::Token::ValueToken).should == true
+
+    var.value.type.should  == :integer
+    var.value.value.should == '10'
+  end
+
+  it 'Parse the assignment and reference of a class variable' do
+    var = Rlint::Parser.new("@@number = 10\n@@number").parse[1]
+
+    var.is_a?(Rlint::Token::VariableToken).should == true
+
+    var.name.should   == '@@number'
+    var.type.should   == :class_variable
+    var.line.should   == 2
+    var.column.should == 0
+  end
+
+  it 'Parse the assignment of a global variable' do
+    var = Rlint::Parser.new('$number = 10').parse[0]
+
+    var.is_a?(Rlint::Token::VariableToken).should == true
+
+    var.name.should   == '$number'
+    var.type.should   == :global_variable
+    var.line.should   == 1
+    var.column.should == 0
+
+    var.value.is_a?(Rlint::Token::ValueToken).should == true
+
+    var.value.type.should  == :integer
+    var.value.value.should == '10'
+  end
+
+  it 'Parse the assignment and reference of a global variable' do
+    var = Rlint::Parser.new("$number = 10\n$number").parse[1]
+
+    var.is_a?(Rlint::Token::VariableToken).should == true
+
+    var.name.should   == '$number'
+    var.type.should   == :global_variable
+    var.line.should   == 2
+    var.column.should == 0
+  end
+
   it 'Parse basic operator usage' do
     # Parse the * operator.
     parser = Rlint::Parser.new('10 * 2')

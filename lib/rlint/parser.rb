@@ -493,7 +493,7 @@ module Rlint
 
       if variable.is_a?(Rlint::Token::Token)
         name   = variable.name
-        type   = :local_variable
+        type   = variable.respond_to?(:type) ? variable.type : :local_variable
         line   = variable.line
         column = variable.column
         code   = variable.code
