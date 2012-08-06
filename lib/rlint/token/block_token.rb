@@ -12,7 +12,7 @@ module Rlint
       # @since  2012-08-05
       # @return [Array]
       #
-      attr_reader :parameters
+      attr_accessor :parameters
 
       ##
       # The local scope of the block.
@@ -20,7 +20,7 @@ module Rlint
       # @since  2012-08-05
       # @return [Rlint::Scope]
       #
-      attr_reader :scope
+      attr_accessor :scope
     end
   end # Token
 end # Rlint

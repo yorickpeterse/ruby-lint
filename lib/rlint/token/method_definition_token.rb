@@ -13,7 +13,7 @@ module Rlint
       # @since  2012-07-29
       # @return [Rlint::Scope]
       #
-      attr_reader :scope
+      attr_accessor :scope
     end # MethodDefinitionToken
   end # Token
 end # Rlint

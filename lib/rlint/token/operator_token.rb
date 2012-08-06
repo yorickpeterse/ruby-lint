@@ -17,7 +17,7 @@ module Rlint
       # @since  2012-07-29
       # @return [Rlint::Token::Token]
       #
-      attr_reader :left
+      attr_accessor :left
 
       ##
       # The token to the right of the operator.
@@ -25,7 +25,7 @@ module Rlint
       # @since  2012-07-29
       # @return [Rlint::Token::Token]
       #
-      attr_reader :right
+      attr_accessor :right
     end # OperatorToken
   end # Token
 end # Rlint

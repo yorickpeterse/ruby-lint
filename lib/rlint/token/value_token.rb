@@ -24,7 +24,7 @@ module Rlint
       # @since  2012-07-29
       # @return [Symbol]
       #
-      attr_reader :type
+      attr_accessor :type
 
       ##
       # Override {Rlint::Token::Token#initialize} so that the variable type can

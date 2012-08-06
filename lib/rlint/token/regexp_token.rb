@@ -12,7 +12,7 @@ module Rlint
       # @since  2012-08-02
       # @return [Array]
       #
-      attr_reader :modes
+      attr_accessor :modes
     end # RegexpToken
   end # Token
 end # Rlint

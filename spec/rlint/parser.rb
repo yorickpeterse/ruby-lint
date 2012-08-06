@@ -225,6 +225,18 @@ describe 'Rlint::Parser' do
     param.value.value.should == '10'
   end
 
+  it 'Parse a method with two parameters' do
+    m = Rlint::Parser.new('def example(a = 1, b = "2"); return a; end').parse[0]
+
+    m.is_a?(Rlint::Token::MethodDefinitionToken).should == true
+
+    m.parameters.is_a?(Array).should == true
+    m.parameters.length.should       == 2
+
+    m.parameters[0].value.type.should == :integer
+    m.parameters[1].value.type.should == :string
+  end
+
   it 'Parse a method with a block parameter' do
     m = Rlint::Parser.new('def example(&block); block.call; end').parse[0]
 
@@ -235,7 +247,7 @@ describe 'Rlint::Parser' do
 
     param = m.parameters[0]
 
-    param.name.should == '&block'
+    param.name.should == 'block'
     param.type.should == :local_variable
   end
 

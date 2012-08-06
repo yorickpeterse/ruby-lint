@@ -11,7 +11,7 @@ module Rlint
       #
       # @since 2012-07-29
       #
-      attr_reader :parent
+      attr_accessor :parent
     end # ClassToken
   end # Token
 end # Rlint

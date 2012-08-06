@@ -12,7 +12,7 @@ module Rlint
       # @since 2012-08-02
       # @param [Rlint::Token::ValueToken|Rlint::Token::VariableToken]
       #
-      attr_reader :start_value
+      attr_accessor :start_value
 
       ##
       # The end value of the range.
@@ -20,7 +20,7 @@ module Rlint
       # @since 2012-08-02
       # @param [Rlint::Token::ValueToken|Rlint::Token::VariableToken]
       #
-      attr_reader :end_value
+      attr_accessor :end_value
     end # RangeToken
   end # Token
 end # Rlint

@@ -5,7 +5,7 @@ unless $:.include?(File.expand_path('../', __FILE__))
 end
 
 require 'rlint/parser'
-#require 'rlint/scope'
+
 require 'rlint/token/token'
 require 'rlint/token/variable_token'
 require 'rlint/token/method_token'

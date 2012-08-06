@@ -12,7 +12,7 @@ module Rlint
       # @since  2012-08-05
       # @return [Rlint::Token::Token]
       #
-      attr_reader :receiver
+      attr_accessor :receiver
 
       ##
       # Symbol containing the method separator, if any.
@@ -20,7 +20,7 @@ module Rlint
       # @since  2012-08-05
       # @return [Symbol]
       #
-      attr_reader :separator
+      attr_accessor :separator
 
       ##
       # Array of tokens for the method parameters.
@@ -28,7 +28,7 @@ module Rlint
       # @since  2012-07-29
       # @return [Array]
       #
-      attr_reader :parameters
+      attr_accessor :parameters
 
       ##
       # Token containing details about the block passed to the method.

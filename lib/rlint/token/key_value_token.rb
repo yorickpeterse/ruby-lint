@@ -13,7 +13,7 @@ module Rlint
       # @since  2012-07-30
       # @return [Rlint::Token::ValueToken]
       #
-      attr_reader :key
+      attr_accessor :key
     end # KeyValueToken
   end # Token
 end # Rlint

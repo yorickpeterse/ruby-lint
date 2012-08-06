@@ -29,7 +29,7 @@ module Rlint
       # @since  2012-07-29
       # @return [String]
       #
-      attr_reader :name
+      attr_accessor :name
 
       ##
       # The value of the token. For example, if the token is a variable this
@@ -38,7 +38,7 @@ module Rlint
       # @since  2012-07-29
       # @return [Rlint::Token::Token]
       #
-      attr_reader :value
+      attr_accessor :value
 
       ##
       # The line number on which the token was defined.
@@ -46,7 +46,7 @@ module Rlint
       # @since  2012-07-29
       # @return [Fixnum|Bignum]
       #
-      attr_reader :line
+      attr_accessor :line
 
       ##
       # The column number on which the token was defined.
@@ -54,7 +54,7 @@ module Rlint
       # @since  2012-07-29
       # @return [Fixnum|Bignum]
       #
-      attr_reader :column
+      attr_accessor :column
 
       ##
       # The source code of the line on which the token was defined. Due to
@@ -64,7 +64,7 @@ module Rlint
       # @since  2012-07-29
       # @return [String]
       #
-      attr_reader :code
+      attr_accessor :code
 
       ##
       # Creates a new instance of the token and sets various instance variables

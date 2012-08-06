@@ -104,37 +104,29 @@ module Rlint
     # Called for a set of method parameters.
     #
     # @since  2012-07-29
-    # @param  [Array] args Array of arguments passed to this method.
+    # @param  [Array] param_tokens Array of arguments passed to this method.
     # @return [Array]
     #
-    def on_params(*args)
+    def on_params(*param_tokens)
       retval = []
 
-      args.each do |arg|
-        next unless arg.is_a?(Array)
+      param_tokens.each do |params|
+        next if params.nil?
 
-        arg = arg[0]
+        params.each do |param|
+          if !param.is_a?(Array)
+            param = [param]
+          end
 
-        if arg.length == 3
-          name  = arg[1]
-          value = nil
-          line  = arg[2][0]
-          col   = arg[2][1]
-        else
-          name  = arg[0][1]
-          value = arg[1]
-          line  = arg[0][2][0]
-          col   = arg[0][2][1]
+          retval << Token::VariableToken.new(
+            :name   => param[0].name,
+            :value  => param[1],
+            :type   => :local_variable,
+            :line   => param[0].line,
+            :column => param[0].column,
+            :code   => code(param[0].line)
+          )
         end
-
-        retval << Token::VariableToken.new(
-          :name   => name,
-          :value  => value,
-          :type   => :local_variable,
-          :line   => line,
-          :column => col,
-          :code   => code(line)
-        )
       end
 
       return retval
@@ -145,13 +137,39 @@ module Rlint
     # parameter with an ampersand).
     #
     # @since  2012-08-05
-    # @param  [Array] arg Array containing details about the parameter.
+    # @param  [Rlint::Token::Token] arg The argument that was found.
     # @return [Array]
     #
     def on_blockarg(arg)
-      arg[1] = '&' + arg[1]
+      token = Token::VariableToken.new(
+        :name           => arg.name,
+        :type           => :local_variable,
+        :line           => arg.line,
+        :column         => arg.column,
+        :code           => arg.code,
+        :block_variable => true
+      )
 
-      return [arg]
+      return [[token]]
+    end
+
+    ##
+    # Returned when a "catch all" parameter is found.
+    #
+    # @since 2012-08-06
+    # @see   Rlint::Parser#on_blockarg
+    #
+    def on_rest_param(arg)
+      token = Token::VariableToken.new(
+        :name          => arg.name,
+        :type          => :local_variable,
+        :line          => arg.line,
+        :column        => arg.column,
+        :code          => arg.code,
+        :rest_variable => true
+      )
+
+      return [[token]]
     end
 
     ##
@@ -257,12 +275,12 @@ module Rlint
     #
     def on_def(name, params, body)
       return Token::MethodDefinitionToken.new(
-        :name       => name[1],
+        :name       => name.name,
         :value      => body,
         :parameters => params,
-        :line       => name[2][0],
-        :column     => name[2][1],
-        :code       => code(name[2][0])
+        :line       => name.line,
+        :column     => name.column,
+        :code       => code(name.line)
       )
     end
 
@@ -357,11 +375,11 @@ module Rlint
     #
     def on_fcall(method)
       token = Token::MethodToken.new(
-        :name       => method[1],
+        :name       => method.name,
         :type       => :method,
-        :line       => method[2][0],
-        :column     => method[2][1],
-        :code       => code(lineno),
+        :line       => method.line,
+        :column     => method.column,
+        :code       => method.code,
         :parameters => @parameters
       )
 
@@ -380,11 +398,11 @@ module Rlint
     #
     def on_command(method, args)
       return Token::MethodToken.new(
-        :name       => method[1],
+        :name       => method.name,
         :type       => :method,
-        :line       => method[2][0],
-        :column     => method[2][1],
-        :code       => code(method[2][0]),
+        :line       => method.line,
+        :column     => method.column,
+        :code       => method.code,
         :parameters => args
       )
     end
@@ -405,10 +423,10 @@ module Rlint
       return Token::MethodToken.new(
         :receiver   => receiver,
         :separator  => sep,
-        :name       => method[1],
-        :line       => method[2][0],
-        :column     => method[2][1],
-        :code       => code(method[2][0]),
+        :name       => method.name,
+        :line       => method.line,
+        :column     => method.column,
+        :code       => method.code,
         :parameters => args
       )
     end
@@ -471,15 +489,29 @@ module Rlint
     # @return [Rlint::Token::VariableToken]
     #
     def on_assign(variable, value)
-      line_number = variable[1][2][0]
+      variable = variable[1]
+
+      if variable.is_a?(Rlint::Token::Token)
+        name   = variable.name
+        type   = :local_variable
+        line   = variable.line
+        column = variable.column
+        code   = variable.code
+      else
+        name   = variable[1]
+        type   = variable[0]
+        line   = variable[2][0]
+        column = variable[2][1]
+        code   = code(line)
+      end
 
       return Token::VariableToken.new(
-        :name   => variable[1][1],
-        :type   => variable[1][0],
+        :name   => name,
+        :type   => type,
+        :line   => line,
+        :column => column,
+        :code   => code,
         :value  => value,
-        :line   => line_number,
-        :column => variable[1][2][1],
-        :code   => code(line_number)
       )
     end
 
@@ -488,21 +520,31 @@ module Rlint
     # called when an undefined variable is referenced.
     #
     # @since  2012-07-29
-    # @param  [Array] variable Array containing details about the variable.
+    # @param  [Rlint::Token::Token] variable Token class containing details
+    #  about the found variable.
     # @return [Rlint::Token::VariableToken]
     #
     def on_var_ref(variable)
-      return variable unless variable.is_a?(Array)
-
-      type  = variable[0]
-      var   = variable[1]
+      if variable.is_a?(Rlint::Token::Token)
+        name   = variable.name
+        type   = variable.respond_to?(:type) ? variable.type : :local_variable
+        line   = variable.line
+        column = variable.column
+        code   = variable.code
+      else
+        name   = variable[1]
+        type   = variable[0]
+        line   = variable[2][0]
+        column = variable[2][1]
+        code   = code(line)
+      end
 
       return Token::VariableToken.new(
-        :name   => var,
+        :name   => name,
         :type   => type,
-        :line   => variable[2][0],
-        :column => variable[2][1],
-        :code   => code(lineno)
+        :line   => line,
+        :column => column,
+        :code   => code
       )
     end
 
@@ -513,7 +555,26 @@ module Rlint
     # @return [Rlint::Token::VariableToken]
     #
     def on_const_ref(const)
-      return on_var_ref(const)
+      token      = on_var_ref(const)
+      token.type = :constant
+
+      return token
+    end
+
+    ##
+    # Called when an indentifier is found.
+    #
+    # @since  2012-08-06
+    # @param  [String] ident The identifier that was found.
+    # @return [Rlint::Token::Token]
+    #
+    def on_ident(ident)
+      return Token::Token.new(
+        :name   => ident,
+        :line   => lineno,
+        :column => column,
+        :code   => code(lineno)
+      )
     end
 
     ##
@@ -607,10 +668,10 @@ module Rlint
 
       return Token::ValueToken.new(
         :type   => :symbol,
-        :value  => symbol[1],
-        :line   => symbol[2][0],
-        :column => symbol[2][1],
-        :code   => code(symbol[2][0])
+        :value  => symbol.name,
+        :line   => symbol.line,
+        :column => symbol.column,
+        :code   => code(symbol.line)
       )
     end
 
