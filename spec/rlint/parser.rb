@@ -39,6 +39,64 @@ describe 'Rlint::Parser' do
     array.value[0].value.should == '10'
   end
 
+  it 'Parse accessing an array by index' do
+    ref = Rlint::Parser.new('arr = [10]; arr[0]').parse[-1]
+
+    ref.is_a?(Rlint::Token::VariableToken).should == true
+
+    ref.name.should == 'arr'
+
+    ref.key.is_a?(Rlint::Token::ValueToken).should == true
+
+    ref.key.type.should  == :integer
+    ref.key.value.should == '0'
+  end
+
+  it 'Parse accessing an array by range' do
+    ref = Rlint::Parser.new('arr = [10]; arr[0..1]').parse[-1]
+
+    ref.is_a?(Rlint::Token::VariableToken).should == true
+
+    ref.name.should == 'arr'
+
+    ref.key.is_a?(Rlint::Token::RangeToken).should == true
+
+    ref.key.start_value.is_a?(Rlint::Token::ValueToken).should == true
+    ref.key.end_value.is_a?(Rlint::Token::ValueToken).should   == true
+
+    ref.key.start_value.value.should == '0'
+    ref.key.start_value.type.should  == :integer
+
+    ref.key.end_value.value.should == '1'
+    ref.key.end_value.type.should  == :integer
+  end
+
+  it 'Parse accessing a hash using a string' do
+    ref = Rlint::Parser.new('hash = {"name" => "Foo"}; hash["name"]').parse[1]
+
+    ref.is_a?(Rlint::Token::VariableToken).should == true
+
+    ref.name.should == 'hash'
+
+    ref.key.is_a?(Rlint::Token::ValueToken).should == true
+
+    ref.key.type.should  == :string
+    ref.key.value.should == 'name'
+  end
+
+  it 'Parse accessing a hash using a symbol' do
+    ref = Rlint::Parser.new('hash = {:name => "Foo"}; hash[:name]').parse[1]
+
+    ref.is_a?(Rlint::Token::VariableToken).should == true
+
+    ref.name.should == 'hash'
+
+    ref.key.is_a?(Rlint::Token::ValueToken).should == true
+
+    ref.key.type.should  == :symbol
+    ref.key.value.should == 'name'
+  end
+
   it 'Parse a Hash' do
     hash = Rlint::Parser.new('{"key" => "value"}').parse[0]
 

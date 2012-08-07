@@ -42,6 +42,15 @@ module Rlint
       attr_accessor :rest_variable
 
       ##
+      # The key or index of the variable to access, set for code such as
+      # `some_array[10]`.
+      #
+      # @since  2012-08-07
+      # @return [Rlint::Token::ValueToken]
+      #
+      attr_accessor :key
+
+      ##
       # Override {Rlint::Token::Token#initialize} so that the type can be set
       # to `:local_variable` for local variables instead of `:identifier`.
       #

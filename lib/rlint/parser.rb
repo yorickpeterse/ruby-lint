@@ -859,6 +859,21 @@ module Rlint
       )
     end
 
+    ##
+    # Found when an array or hash, stored in a variable, is accessed using a
+    # key.
+    #
+    # @since  2012-08-07
+    # @param  [Rlint::Token::VariableToken] var The variable that was accessed.
+    # @param  [Rlint::Token::ValueToken] value The value of the key.
+    # @return [Rlint::Token::VariableToken]
+    #
+    def on_aref(var, value)
+      var.key = value[0]
+
+      return var
+    end
+
     private
 
     ##
