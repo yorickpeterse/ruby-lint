@@ -44,6 +44,7 @@ describe 'Rlint::Parser' do
 
     hash.is_a?(Rlint::Token::ValueToken).should == true
 
+    hash.type.should               == :hash
     hash.line.should               == 1
     hash.value.is_a?(Array).should == true
     hash.value.length.should       == 1
@@ -64,6 +65,7 @@ describe 'Rlint::Parser' do
   it 'Parse a Hash using symbols for the keys' do
     hash = Rlint::Parser.new('{:key => "value"}').parse[0]
 
+    hash.type.should               == :hash
     hash.line.should               == 1
     hash.value.is_a?(Array).should == true
     hash.value.length.should       == 1
@@ -79,6 +81,39 @@ describe 'Rlint::Parser' do
 
     pair.key.type.should   == :symbol
     pair.value.type.should == :string
+  end
+
+  it 'Parse a Hash without curly braces' do
+    method = Rlint::Parser.new('foo(:a => 10, :b => 20)').parse[0]
+    param  = method.parameters[0]
+
+    param.is_a?(Rlint::Token::ValueToken).should == true
+
+    param.type.should         == :hash
+    param.value.length.should == 2
+
+    pair1 = param.value[0]
+    pair2 = param.value[1]
+
+    pair1.key.is_a?(Rlint::Token::ValueToken).should == true
+
+    pair1.key.value.should == 'a'
+    pair1.key.type.should  == :symbol
+
+    pair1.value.is_a?(Rlint::Token::ValueToken).should == true
+
+    pair1.value.type.should  == :integer
+    pair1.value.value.should == '10'
+
+    pair2.key.is_a?(Rlint::Token::ValueToken).should == true
+
+    pair2.key.value.should == 'b'
+    pair2.key.type.should  == :symbol
+
+    pair2.value.is_a?(Rlint::Token::ValueToken).should == true
+
+    pair2.value.type.should  == :integer
+    pair2.value.value.should == '20'
   end
 
   it 'Parse a string using single quotes' do

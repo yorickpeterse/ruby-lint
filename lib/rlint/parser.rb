@@ -805,8 +805,21 @@ module Rlint
         :value  => hash,
         :line   => lineno,
         :column => column,
+        :type   => :hash,
         :code   => code(lineno)
       )
+    end
+
+    ##
+    # Called when a hash was found but was declared without the explicit use of
+    # curly braces.
+    #
+    # @since  2012-08-07
+    # @param  [Array] hash Array containing details about the hash' contents.
+    # @return [Rlint::Token::ValueToken]
+    #
+    def on_bare_assoc_hash(hash)
+      return on_hash(hash)
     end
 
     ##
