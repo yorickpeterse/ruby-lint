@@ -396,6 +396,30 @@ describe 'Rlint::Parser' do
     constant.type.should == :constant
   end
 
+  it 'Parse a private method' do
+    code = <<CODE
+class Example
+  private
+
+  def private_method
+    return 10
+  end
+end
+CODE
+
+    klass  = Rlint::Parser.new(code).parse[0]
+    vcall  = klass.value[0]
+    method = klass.value[1]
+
+    vcall.is_a?(Rlint::Token::Token).should == true
+
+    vcall.name.should == 'private'
+
+    method.is_a?(Rlint::Token::MethodDefinitionToken).should == true
+
+    method.name.should == 'private_method'
+  end
+
   it 'Parse a proc' do
     found = Rlint::Parser.new('proc { |n| n }').parse[0]
 

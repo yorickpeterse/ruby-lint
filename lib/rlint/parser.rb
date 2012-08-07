@@ -469,6 +469,17 @@ module Rlint
     end
 
     ##
+    # Called when certain methods such as `private` are invoked.
+    #
+    # @since  2012-08-07
+    # @param  [Rlint::Token::Token] token The token that was found.
+    # @return [Rlint::Token::Token]
+    #
+    def on_vcall(token)
+      return token
+    end
+
+    ##
     # Called when an operator (`*` and `<<` for example) is used.
     #
     # @since 2012-07-29

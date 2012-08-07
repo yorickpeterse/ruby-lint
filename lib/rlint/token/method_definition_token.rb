@@ -14,6 +14,14 @@ module Rlint
       # @return [Rlint::Scope]
       #
       attr_accessor :scope
+
+      ##
+      # The visibility of the method, set to `:public` by default.
+      #
+      # @since  2012-08-07
+      # @return [Symbol]
+      #
+      attr_accessor :visibility
     end # MethodDefinitionToken
   end # Token
 end # Rlint
