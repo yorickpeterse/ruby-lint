@@ -335,12 +335,30 @@ describe 'Rlint::Parser' do
     klass.column.should == 6
   end
 
+  it 'Parse a class of which the parent name has multiple segments' do
+    klass = Rlint::Parser.new('class A < B::C; end').parse[0]
+
+    klass.is_a?(Rlint::Token::ClassToken).should == true
+
+    klass.name.should   == 'A'
+    klass.parent.should == 'B::C'
+  end
+
   it 'Parse a module with multiple name segments' do
     mod = Rlint::Parser.new('module A::B; end').parse[0]
 
     mod.name.should   == 'A::B'
     mod.line.should   == 1
     mod.column.should == 7
+  end
+
+  it 'Parse a constant that is referenced using the top level namespace' do
+    constant = Rlint::Parser.new('::String').parse[0]
+
+    constant.is_a?(Rlint::Token::VariableToken).should == true
+
+    constant.name.should == 'String'
+    constant.type.should == :constant
   end
 
   it 'Parse a proc' do

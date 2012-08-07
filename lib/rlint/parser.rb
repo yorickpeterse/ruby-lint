@@ -329,12 +329,23 @@ module Rlint
         column = klass.column
       end
 
+      # TODO: this process removes too much information about the parent class.
+      # Once it's more clear what information is exactly needed for proper
+      # static code analysis this should probably be modified.
+      parent_class = nil
+
+      if parent.is_a?(Rlint::Token::Token)
+        parent_class = parent.name
+      elsif parent.is_a?(Array)
+        parent_class = parent.map { |token| token.name }.join('::')
+      end
+
       return Token::ClassToken.new(
         :name   => name,
         :line   => line,
         :column => column,
         :code   => code(line),
-        :parent => !parent.nil? ? parent.name : nil,
+        :parent => parent_class,
         :value  => body.select { |n| !n.nil? }
       )
     end
@@ -572,6 +583,27 @@ module Rlint
       token.type = :constant
 
       return token
+    end
+
+    ##
+    # Called when a constant is referenced using multiple namespace segments.
+    #
+    # @since 2012-08-07
+    # @see   Rlint::Parser#on_const_ref
+    #
+    def on_top_const_ref(const)
+      return on_const_ref(const)
+    end
+
+    ##
+    # Called when a constant is referenced using multiple namespace segments.
+    #
+    # @since  2012-08-07
+    # @param  [Array] tokens An array of tokens for each segment.
+    # @return [Array]
+    #
+    def on_const_path_ref(*tokens)
+      return tokens
     end
 
     ##
