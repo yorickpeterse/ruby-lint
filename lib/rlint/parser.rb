@@ -874,6 +874,20 @@ module Rlint
       return var
     end
 
+    ##
+    # Called when a new value is assigned to a variable unless there's no
+    # existing value that evaluates to true.
+    #
+    # @since 2012-08-07
+    # @see   Rlint::Parser#on_binary
+    #
+    def on_opassign(left, operator, right)
+      left     = left[1]
+      operator = operator[1]
+
+      return on_binary(left, operator, right)
+    end
+
     private
 
     ##

@@ -606,6 +606,16 @@ CODE
     ref.code.should   == 'number'
   end
 
+  it 'Parse the assignment of a variable using ||=' do
+    op = Rlint::Parser.new('number ||= 10').parse[0]
+
+    op.is_a?(Rlint::Token::OperatorToken).should    == true
+    op.left.is_a?(Rlint::Token::Token).should       == true
+    op.right.is_a?(Rlint::Token::ValueToken).should == true
+
+    op.name.should == '||='
+  end
+
   it 'Parse the assignment of an instance variable' do
     var = Rlint::Parser.new('@number = 10').parse[0]
 
