@@ -697,6 +697,71 @@ CODE
     var.column.should == 0
   end
 
+  it 'Parse an if statement' do
+    code = <<CODE
+if 10 == "foo"
+  puts 'This is impossible'
+elsif 10 == 15
+  puts 'This is also impossible'
+elsif true == false
+  puts 'This is even better!'
+else
+  puts 'This is more like it'
+end
+CODE
+
+    statement = Rlint::Parser.new(code).parse[0]
+
+    statement.is_a?(Rlint::Token::IfToken).should                 == true
+    statement.statement.is_a?(Rlint::Token::OperatorToken).should == true
+    statement.elsif.is_a?(Array).should                           == true
+    statement.else.is_a?(Rlint::Token::StatementToken).should     == true
+
+    # Check the if statement and the body.
+    statement.statement.left.type.should   == :integer
+    statement.statement.left.value.should  == '10'
+    statement.statement.name.should        == :==
+    statement.statement.right.type.should  == :string
+    statement.statement.right.value.should == 'foo'
+
+    statement.value.is_a?(Array).should                        == true
+    statement.value[0].is_a?(Rlint::Token::MethodToken).should == true
+
+    statement.value[0].name.should              == 'puts'
+    statement.value[0].parameters.length.should == 1
+
+    # Check all the elsif statements
+    statement.elsif.length.should == 2
+
+    first  = statement.elsif[0]
+    second = statement.elsif[1]
+
+    first.statement.is_a?(Rlint::Token::OperatorToken).should  == true
+    second.statement.is_a?(Rlint::Token::OperatorToken).should == true
+
+    first.value.is_a?(Array).should  == true
+    second.value.is_a?(Array).should == true
+
+    first.value.length.should  == 1
+    second.value.length.should == 1
+
+    first.value[0].is_a?(Rlint::Token::MethodToken).should  == true
+    second.value[0].is_a?(Rlint::Token::MethodToken).should == true
+
+    # Check the else statement
+    statement.else.is_a?(Rlint::Token::StatementToken).should       == true
+    statement.else.value.is_a?(Array).should                        == true
+    statement.else.value[0].is_a?(Rlint::Token::MethodToken).should == true
+  end
+
+  it 'Parse a case statement' do
+    should.flunk('Parse case statements')
+  end
+
+  it 'Parse a for loop' do
+    should.flunk('Parse for loops')
+  end
+
   it 'Parse basic operator usage' do
     # Parse the * operator.
     parser = Rlint::Parser.new('10 * 2')

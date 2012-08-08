@@ -15,6 +15,8 @@ module Rlint
       @lines      = code.lines.to_a
       @parameters = nil
       @file       = file
+      @elsif      = []
+      @else       = nil
 
       super
     end
@@ -886,6 +888,77 @@ module Rlint
       operator = operator[1]
 
       return on_binary(left, operator, right)
+    end
+
+    ##
+    # Called when an if statement is found.
+    #
+    # @since 2012-08-08
+    # @param [Rlint::Token::Token] statement The tokens of the statement.
+    # @parma [Array] body Array containing the tokens of the body of the
+    #  statement.
+    # @param [Array] rest Array containing details about any `elsif` and `else`
+    #  statements.
+    # @return [Rlint::Token::IfToken]
+    #
+    def on_if(statement, body, rest)
+      token = Token::IfToken.new(
+        :statement => statement,
+        :value     => body,
+        :else      => @else,
+        :elsif     => @elsif.reverse,
+        :line      => lineno,
+        :column    => column,
+        :code      => code(lineno)
+      )
+
+      @else  = nil
+      @elsif = []
+
+      return token
+    end
+
+    ##
+    # Called when an `else` statement is found.
+    #
+    # @since 2012-08-08
+    # @param [Array] body Array containing the tokens of the body of the
+    #  statement.
+    # @return [NilClass]
+    #
+    def on_else(body)
+      @else = Token::StatementToken.new(
+        :name   => :else,
+        :value  => body,
+        :line   => lineno,
+        :column => column,
+        :code   => code(lineno)
+      )
+
+      return nil
+    end
+
+    ##
+    # Called when an `elsif` statement is found.
+    #
+    # @since  2012-08-08
+    # @param  [Rlint::Token::Token] statement The statement to evaluate.
+    # @param  [Array] body Array containing the tokens of the body.
+    # @param  [Rlint::Token::StatementToken|NilClass] previous Token containing
+    #  details about the previous statement.
+    # @return [Array]
+    #
+    def on_elsif(statement, body, previous)
+      @elsif << Token::StatementToken.new(
+        :name      => :elsif,
+        :value     => body,
+        :statement => statement,
+        :line      => lineno,
+        :column    => column,
+        :code      => code(lineno)
+      )
+
+      return nil
     end
 
     private
