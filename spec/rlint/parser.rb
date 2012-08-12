@@ -755,7 +755,66 @@ CODE
   end
 
   it 'Parse a case statement' do
-    should.flunk('Parse case statements')
+    code = <<CODE
+case number
+when 10
+  puts 'The number is 10'
+when 20
+  puts 'The number is 20'
+else
+  puts 'No matching number was found'
+end
+CODE
+
+    token = Rlint::Parser.new(code).parse[0]
+
+    token.is_a?(Rlint::Token::CaseToken).should           == true
+    token.statement.is_a?(Rlint::Token::Token).should     == true
+    token.else.is_a?(Rlint::Token::StatementToken).should == true
+    token.when.is_a?(Array).should                        == true
+
+    # Check the case statement.
+    token.statement.name.should == 'number'
+
+    # Check the first when statement.
+    token.when[0].statement.is_a?(Array).should                       == true
+    token.when[0].statement[0].is_a?(Rlint::Token::ValueToken).should == true
+
+    token.when[0].statement[0].type.should               == :integer
+    token.when[0].statement[0].value.should              == '10'
+
+    value = token.when[0].value[0]
+
+    value.is_a?(Rlint::Token::MethodToken).should == true
+    value.name.should                             == 'puts'
+
+    value.parameters.is_a?(Array).should == true
+    value.parameters[0].type.should      == :string
+    value.parameters[0].value.should     == 'The number is 10'
+
+    # Check the second when statement
+    token.when[1].statement[0].type.should  == :integer
+    token.when[1].statement[0].value.should == '20'
+
+    value = token.when[1].value[0]
+
+    value.is_a?(Rlint::Token::MethodToken).should == true
+    value.name.should                             == 'puts'
+
+    value.parameters.is_a?(Array).should == true
+    value.parameters[0].type.should      == :string
+    value.parameters[0].value.should     == 'The number is 20'
+
+    # Check the else statement
+    token.else.statement.nil?.should == true
+
+    value = token.else.value[0]
+
+    value.is_a?(Rlint::Token::MethodToken).should == true
+
+    value.name.should                == 'puts'
+    value.parameters[0].type.should  == :string
+    value.parameters[0].value.should == 'No matching number was found'
   end
 
   it 'Parse a for loop' do

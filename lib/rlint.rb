@@ -20,6 +20,7 @@ require 'rlint/token/module_token'
 require 'rlint/token/block_token'
 require 'rlint/token/statement_token'
 require 'rlint/token/if_token'
+require 'rlint/token/case_token'
 
 require 'rlint/parser_error'
 

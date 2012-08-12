@@ -16,6 +16,7 @@ module Rlint
       @parameters = nil
       @file       = file
       @elsif      = []
+      @when       = []
       @else       = nil
 
       super
@@ -953,6 +954,49 @@ module Rlint
         :name      => :elsif,
         :value     => body,
         :statement => statement,
+        :line      => lineno,
+        :column    => column,
+        :code      => code(lineno)
+      )
+
+      return nil
+    end
+
+    ##
+    # Called when a `case` statement is found.
+    #
+    # @since 2012-08-12
+    # @param [Rlint::Token::Token] statement The statement to evaluate.
+    # @param [NilClass] rest The last `when` token, ignored since these tokens
+    #  are stored in an array.
+    # @return [Rlint::Token::CaseToken]
+    #
+    def on_case(statement, rest)
+      token = Token::CaseToken.new(
+        :statement => statement,
+        :else      => @else,
+        :when      => @when.reverse,
+        :line      => lineno,
+        :column    => column,
+        :code      => code(lineno)
+      )
+
+      @else, @when = nil, nil
+
+      return token
+    end
+
+    ##
+    # Called when a `when` statement is found.
+    #
+    # @since 2012-08-12
+    # @see   Rlint::Parser#on_elsif
+    #
+    def on_when(statements, body, previous)
+      @when << Token::StatementToken.new(
+        :name      => :when,
+        :statement => statements,
+        :value     => body,
         :line      => lineno,
         :column    => column,
         :code      => code(lineno)
