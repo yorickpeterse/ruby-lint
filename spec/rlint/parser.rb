@@ -818,7 +818,44 @@ CODE
   end
 
   it 'Parse a for loop' do
-    should.flunk('Parse for loops')
+    code = <<CODE
+for number in [10, 20, 30]
+  puts number
+end
+CODE
+
+    token = Rlint::Parser.new(code).parse[0]
+
+    token.is_a?(Rlint::Token::ForToken).should              == true
+    token.variables.is_a?(Array).should                     == true
+    token.enumerable.is_a?(Rlint::Token::ValueToken).should == true
+
+    token.variables[0].name.should == 'number'
+    token.enumerable.type.should   == :array
+
+    token.value[0].is_a?(Rlint::Token::MethodToken).should == true
+    token.value[0].name.should                             == 'puts'
+
+    param = token.value[0].parameters[0]
+
+    param.is_a?(Rlint::Token::VariableToken).should == true
+    param.type.should                               == :local_variable
+  end
+
+  it 'Parse a for loop using a Hash' do
+    code = <<CODE
+for key, value in {:name => 'Ruby'}
+  puts key, value
+end
+CODE
+
+    token = Rlint::Parser.new(code).parse[0]
+
+    token.variables.is_a?(Array).should == true
+    token.variables.length.should       == 2
+
+    token.variables[0].name.should == 'key'
+    token.variables[1].name.should == 'value'
   end
 
   it 'Parse basic operator usage' do

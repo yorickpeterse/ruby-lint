@@ -527,8 +527,6 @@ module Rlint
     # @return [Rlint::Token::VariableToken]
     #
     def on_assign(variable, value)
-      variable = variable[1]
-
       if variable.is_a?(Rlint::Token::Token)
         name   = variable.name
         type   = variable.respond_to?(:type) ? variable.type : :local_variable
@@ -584,6 +582,17 @@ module Rlint
         :column => column,
         :code   => code
       )
+    end
+
+    ##
+    # Called when a `var_field` token is found (e.g. in `for` loops).
+    #
+    # @since  2012-08-13
+    # @param  [Rlint::Token::Token] variable The variable that was found.
+    # @return [Rlint::Token::Token]
+    #
+    def on_var_field(variable)
+      return variable
     end
 
     ##
@@ -885,7 +894,6 @@ module Rlint
     # @see   Rlint::Parser#on_binary
     #
     def on_opassign(left, operator, right)
-      left     = left[1]
       operator = operator[1]
 
       return on_binary(left, operator, right)
@@ -1003,6 +1011,32 @@ module Rlint
       )
 
       return nil
+    end
+
+    ##
+    # Called when a `for` statement is found.
+    #
+    # @since 2012-08-13
+    # @param [Rlint::Token::Token|Array] variables The variables to create for
+    #  each iteration.
+    # @param  [Rlint::Token::Token] enumerable The enumerable to iterate over.
+    # @param  [Array] body The body of the for loop.
+    # @return [Rlint::Token::ForToken]
+    #
+    def on_for(variables, enumerable, body)
+      unless variables.is_a?(Array)
+        variables = [variables]
+      end
+
+      return Token::ForToken.new(
+        :name       => :for,
+        :variables  => variables,
+        :enumerable => enumerable,
+        :value      => body,
+        :line       => lineno,
+        :column     => column,
+        :code       => code(lineno)
+      )
     end
 
     private
