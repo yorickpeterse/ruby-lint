@@ -527,6 +527,14 @@ module Rlint
     # @return [Rlint::Token::VariableToken]
     #
     def on_assign(variable, value)
+      # AttributeToken classes should not be overwritten with a new
+      # VariableToken class.
+      if variable.class == Rlint::Token::AttributeToken
+        variable.value = value
+
+        return variable
+      end
+
       if variable.is_a?(Rlint::Token::Token)
         name   = variable.name
         type   = variable.respond_to?(:type) ? variable.type : :local_variable
@@ -593,6 +601,27 @@ module Rlint
     #
     def on_var_field(variable)
       return variable
+    end
+
+    ##
+    # Called when an attribute is set on an object.
+    #
+    # @since 2012-08-13
+    # @param [Rlint::Token::Token] object The object on which to call the
+    #  setter.
+    # @param  [Symbol] operator The operator that was used for the call.
+    # @param  [Rlint::Token::Token] attribute The attribute to set.
+    # @return [Rlint::Token::AttributeToken]
+    #
+    def on_field(object, operator, attribute)
+      return Token::AttributeToken.new(
+        :name     => attribute.name,
+        :receiver => object,
+        :operator => operator,
+        :line     => lineno,
+        :column   => column,
+        :code     => code(lineno)
+      )
     end
 
     ##

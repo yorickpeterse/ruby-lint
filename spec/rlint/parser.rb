@@ -697,6 +697,31 @@ CODE
     var.column.should == 0
   end
 
+  it 'Parse an object setter' do
+    code = <<CODE
+obj = Struct.new(:name).new('Ruby')
+
+obj.name = 'RUBY!'
+CODE
+
+    token = Rlint::Parser.new(code).parse[1]
+
+    token.is_a?(Rlint::Token::AttributeToken).should == true
+
+    token.name.should     == 'name'
+    token.operator.should == :'.'
+
+    token.receiver.is_a?(Rlint::Token::VariableToken).should == true
+
+    token.receiver.name.should == 'obj'
+    token.receiver.type.should == :local_variable
+
+    token.value.is_a?(Rlint::Token::ValueToken).should == true
+
+    token.value.type.should  == :string
+    token.value.value.should == 'RUBY!'
+  end
+
   it 'Parse an if statement' do
     code = <<CODE
 if 10 == "foo"
