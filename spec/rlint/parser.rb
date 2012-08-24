@@ -1,5 +1,7 @@
 require File.expand_path('../../helper', __FILE__)
 
+=begin
+
 describe 'Rlint::Parser' do
   it 'Parse an integer' do
     int = Rlint::Parser.new('10').parse[0]
@@ -50,6 +52,12 @@ describe 'Rlint::Parser' do
 
     ref.key.type.should  == :integer
     ref.key.value.should == '0'
+  end
+
+  it 'Parse the assignment of a particular array index' do
+    token = Rlint::Parser.new('arr = [10]; arr[1] = 2').parse[1]
+
+    should.flunk('Implement this')
   end
 
   it 'Parse accessing an array by range' do
@@ -1091,3 +1099,5 @@ CODE
     error.file.should   == '(rlint)'
   end
 end
+
+=end

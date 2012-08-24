@@ -7,20 +7,14 @@ module Rlint
     #
     class VariableToken < Token
       ##
-      # The type of variable that was defined.
+      # The action that was performed on the variable. This attribute is set to
+      # `:assign` for variable assignments and `:reference` for variable
+      # references.
       #
-      # @since  2012-07-29
+      # @since  2012-08-20
       # @return [Symbol]
       #
-      attr_accessor :type
-
-      ##
-      # Boolean that indicates if the variable is used or not.
-      #
-      # @since  2012-07-29
-      # @return [TrueClass|FalseClass]
-      #
-      attr_accessor :used
+      attr_accessor :action
 
       ##
       # Boolean that indicates whether or not the variable is a block variable.
@@ -42,15 +36,6 @@ module Rlint
       attr_accessor :rest_variable
 
       ##
-      # The key or index of the variable to access, set for code such as
-      # `some_array[10]`.
-      #
-      # @since  2012-08-07
-      # @return [Rlint::Token::ValueToken]
-      #
-      attr_accessor :key
-
-      ##
       # Override {Rlint::Token::Token#initialize} so that the type can be set
       # to `:local_variable` for local variables instead of `:identifier`.
       #
@@ -58,9 +43,9 @@ module Rlint
       # @see   Rlint::Token::Token#initialize
       #
       def initialize(*args)
-        @used           = false
         @block_variable = false
         @rest_variable  = false
+        @action         = :reference
 
         super
 

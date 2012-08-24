@@ -8,23 +8,27 @@ module Rlint
     #
     class Token
       ##
-      # Hash containing various Ripper tokens and the Rlint tokens to use
+      # Hash containing various Ripper types and the Rlint types to use
       # instead.
       #
       # @since  2012-07-29
       # @return [Hash]
       #
-      TOKEN_MAPPING = {
-        :@ident => :identifier,
-        :@gvar  => :global_variable,
-        :@ivar  => :instance_variable,
-        :@cvar  => :class_variable,
-        :@const => :constant
+      TYPE_MAPPING = {
+        :ident           => :identifier,
+        :gvar            => :global_variable,
+        :ivar            => :instance_variable,
+        :cvar            => :class_variable,
+        :const           => :constant,
+        :int             => :integer,
+        :float           => :float,
+        :tstring_content => :string,
+        :int             => :integer
       }
 
       ##
-      # The name of the token. For example, when the token is a variable this
-      # is set to the name of the variable.
+      # The name of the token. For example, when the token is an identifier
+      # this value is set to `:ident`.
       #
       # @since  2012-07-29
       # @return [String]
@@ -39,6 +43,15 @@ module Rlint
       # @return [Rlint::Token::Token]
       #
       attr_accessor :value
+
+      ##
+      # The type of token. For example, if the token is a local variable then
+      # this value is set to `:local_variable`.
+      #
+      # @since  2012-07-29
+      # @return [Symbol]
+      #
+      attr_accessor :type
 
       ##
       # The line number on which the token was defined.
@@ -57,14 +70,14 @@ module Rlint
       attr_accessor :column
 
       ##
-      # The source code of the line on which the token was defined. Due to
-      # these values being references to a single list of lines these values
-      # should never be modified directly (e.g. by using `#gsub!()`).
+      # The key, index or object member that was accessed from the token. When
+      # setting array indexes this value is always an array as multiple indexes
+      # can be accessed at the same time.
       #
-      # @since  2012-07-29
-      # @return [String]
+      # @since  2012-08-24
+      # @return [Rlint::Token::Token]
       #
-      attr_accessor :code
+      attr_accessor :key
 
       ##
       # Creates a new instance of the token and sets various instance variables
@@ -82,10 +95,8 @@ module Rlint
           end
         end
 
-        # If the token class has a `type` attribute it should be mapped to a
-        # nicer version of the token as stored in TOKEN_MAPPING.
-        if TOKEN_MAPPING[@type]
-          @type = TOKEN_MAPPING[@type]
+        if TYPE_MAPPING[@type]
+          @type = TYPE_MAPPING[@type]
         end
       end
     end # Token

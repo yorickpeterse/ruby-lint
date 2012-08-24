@@ -5,7 +5,7 @@ module Rlint
     #
     # @since 2012-08-13
     #
-    class AttributeToken < VariableToken
+    class AttributeToken < Token
       ##
       # The operator that was used to separate the object and attribute.
       #
