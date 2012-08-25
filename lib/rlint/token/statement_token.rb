@@ -14,6 +14,15 @@ module Rlint
       # @return [Rlint::Token::Token]
       #
       attr_accessor :statement
+
+      ##
+      # @see Rlint::Token::Token#initialize
+      #
+      def initialize(*args)
+        @type = :statement
+
+        super
+      end
     end # StatementToken
   end # Token
 end # Rlint

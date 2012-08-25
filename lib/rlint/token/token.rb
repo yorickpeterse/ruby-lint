@@ -24,7 +24,8 @@ module Rlint
         :float           => :float,
         :tstring_content => :string,
         :int             => :integer,
-        :label           => :symbol
+        :label           => :symbol,
+        :kw              => :keyword
       }
 
       ##

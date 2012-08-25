@@ -62,4 +62,26 @@ describe 'Rlint::Parser' do
     token.line.should   == 1
     token.column.should == 0
   end
+
+  it 'Parse a boolean' do
+    token = Rlint::Parser.new('true').parse[0]
+
+    token.class.should  == Rlint::Token::VariableToken
+    token.action.should == :reference
+    token.type.should   == :keyword
+    token.name.should   == 'true'
+    token.line.should   == 1
+    token.column.should == 0
+  end
+
+  it 'Parse a nil value' do
+    token = Rlint::Parser.new('nil').parse[0]
+
+    token.class.should  == Rlint::Token::VariableToken
+    token.action.should == :reference
+    token.type.should   == :keyword
+    token.name.should   == 'nil'
+    token.line.should   == 1
+    token.column.should == 0
+  end
 end
