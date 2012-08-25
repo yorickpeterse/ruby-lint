@@ -13,6 +13,24 @@ describe 'Rlint::Parser' do
     end
   end
 
+  it 'Parse a Symbol' do
+    token = Rlint::Parser.new(':hello').parse[0]
+
+    token.class.should  == Rlint::Token::Token
+    token.type.should   == :symbol
+    token.value.should  == 'hello'
+    token.line.should   == 1
+    token.column.should == 1
+
+    token = Rlint::Parser.new(':"hello"').parse[0]
+
+    token.class.should  == Rlint::Token::Token
+    token.type.should   == :symbol
+    token.value.should  == 'hello'
+    token.line.should   == 1
+    token.column.should == 2
+  end
+
   it 'Parse a string using %q{} and %Q{}' do
     ['%q{hello}', '%Q{hello}'].each do |string|
       token = Rlint::Parser.new(string).parse[0]

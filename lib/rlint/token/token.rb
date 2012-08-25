@@ -23,7 +23,8 @@ module Rlint
         :int             => :integer,
         :float           => :float,
         :tstring_content => :string,
-        :int             => :integer
+        :int             => :integer,
+        :label           => :symbol
       }
 
       ##
@@ -70,12 +71,10 @@ module Rlint
       attr_accessor :column
 
       ##
-      # The key, index or object member that was accessed from the token. When
-      # setting array indexes this value is always an array as multiple indexes
-      # can be accessed at the same time.
+      # The key, index or object member that was accessed from the token.
       #
       # @since  2012-08-24
-      # @return [Rlint::Token::Token]
+      # @return [Array]
       #
       attr_accessor :key
 
