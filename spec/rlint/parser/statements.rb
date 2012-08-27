@@ -129,31 +129,91 @@ end
     token.value.length.should == 1
   end
 
-  it 'Parse a begin/rescue statement' do
-    code = <<-CODE
-begin
-  raise 'Foo'
-rescue => e
-  puts e.message
-end
-    CODE
+  it 'Parse a simple if statement' do
+    token = Rlint::Parser.new('if 10 == 20; return 10; end').parse[0]
 
-    token = Rlint::Parser.new(code).parse[0]
+    token.class.should        == Rlint::Token::IfToken
+    token.else.nil?.should    == true
+    token.elsif.class.should  == Array
+    token.elsif.length.should == 0
 
-    require 'awesome_print'
-    ap token
+    token.statement.class.should        == Rlint::Token::Token
+    token.statement.value.class.should  == Array
+    token.statement.value.length.should == 3
+
+    token.statement.value[0].class.should == Rlint::Token::Token
+    token.statement.value[0].type.should  == :integer
+    token.statement.value[0].value.should == '10'
+
+    token.statement.value[1].should == :==
+
+    token.statement.value[2].class.should == Rlint::Token::Token
+    token.statement.value[2].type.should  == :integer
+    token.statement.value[2].value.should == '20'
   end
 
-=begin
-
-  it 'Parse an if statement' do
+  it 'Parse an if, elsif and else statement' do
     code = <<-CODE
 if 10 == 20
   return 10
 elsif 10 == 15
   return 20
-else
+elsif 10 == 10
   return 30
+else
+  return 40
+end
+    CODE
+
+    token = Rlint::Parser.new(code).parse[0]
+
+    token.class.should  == Rlint::Token::IfToken
+    token.name.should   == :if
+    token.line.should   == 1
+    token.column.should == 3
+
+    token.elsif.class.should  == Array
+    token.elsif.length.should == 2
+
+    first = token.elsif[0]
+    last  = token.elsif[1]
+
+    first.class.should  == Rlint::Token::StatementToken
+    first.name.should   == :elsif
+    first.line.should   == 3
+    first.column.should == 6
+
+    first.statement.class.should        == Rlint::Token::Token
+    first.statement.value.class.should  == Array
+    first.statement.value.length.should == 3
+
+    last.class.should  == Rlint::Token::StatementToken
+    last.name.should   == :elsif
+    last.line.should   == 5
+    last.column.should == 6
+
+    last.statement.class.should        == Rlint::Token::Token
+    last.statement.value.class.should  == Array
+    last.statement.value.length.should == 3
+
+    token.else.class.should          == Rlint::Token::StatementToken
+    token.else.statement.nil?.should == true
+
+    token.else.value.class.should  == Array
+    token.else.value.length.should == 1
+  end
+
+=begin
+  it 'Parse a begin/rescue statement' do
+    code = <<-CODE
+begin
+  10
+rescue => e
+  20
+else
+  30
+ensure
+  40
 end
     CODE
 
@@ -161,6 +221,8 @@ end
 
     require 'awesome_print'
     ap token
+
+    token.class.should == Rlint::Token::BeginToken
   end
 =end
 end

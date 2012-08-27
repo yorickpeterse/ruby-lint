@@ -29,6 +29,7 @@ module Rlint
       #
       def initialize(*args)
         @elsif = []
+        @name  = :if
 
         super
       end

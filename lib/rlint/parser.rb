@@ -229,6 +229,94 @@ module Rlint
     end
 
     ##
+    # Called when an if statement is found.
+    #
+    # @param  [Rlint::Token::Token] statement The if statement to evaluate.
+    # @param  [Array] value Array containing the tokens of the code that will
+    #  be executed if the if statement evaluates to true.
+    # @param  [Array] rest Array containing the tokens for the elsif and else
+    #  statements (if any).
+    # @return [Rlint::Token::IfToken]
+    #
+    def on_if(statement, value, rest)
+      else_statement   = nil
+      elsif_statements = []
+
+      if rest and rest.respond_to?(:each)
+        rest.each do |token|
+          if token.name == :elsif
+            elsif_statements << token
+          else
+            else_statement = token
+          end
+        end
+      end
+
+      return Token::IfToken.new(
+        :statement => statement,
+        :value     => value,
+        :line      => statement.line,
+        :column    => statement.column,
+        :else      => else_statement,
+        :elsif     => elsif_statements.reverse
+      )
+    end
+
+    ##
+    # Called when an else statement is found.
+    #
+    # @param  [Array] value The value of the statement.
+    # @return [Rlint::Token::StatementToken]
+    #
+    def on_else(value)
+      return Token::StatementToken.new(
+        :name   => :else,
+        :value  => value,
+        :column => column,
+        :line   => lineno
+      )
+    end
+
+    ##
+    # Called when an elsif statement is found.
+    #
+    # @param  [Rlint::Token::Token] statement The statement to evaluate.
+    # @param  [Array] value The value of the elsif statement.
+    # @param  [Array] list A list of else and elsif statements.
+    # @return [Array]
+    #
+    def on_elsif(statement, value, list)
+      token = Token::StatementToken.new(
+        :name      => :elsif,
+        :statement => statement,
+        :value     => value,
+        :line      => statement.line,
+        :column    => statement.column
+      )
+
+      unless list.is_a?(Array)
+        list = [list]
+      end
+
+      list << token
+    end
+
+    ##
+    # Called when a begin statement is found.
+    #
+    # @param [Array] value The body of the begin statement.
+    # @param [Rlint::Token::StatementToken] rescue_stmt The token for the
+    #  rescue statement.
+    # @param [Rlint::Token::StatementToken] else_stmt The token for the else
+    #  statement.
+    # @param [Rlint::Token::StatementToken] ensure_stmt The token for the
+    #  ensure statement.
+    # @return [Rlint::Token::BeginToken]
+    #
+    def on_bodystmt(value, rescue_stmt, else_stmt, ensure_stmt)
+    end
+
+    ##
     # Called when a variable is referenced.
     #
     # @param  [Rlint::Token::Token] variable The variable that was referenced.
