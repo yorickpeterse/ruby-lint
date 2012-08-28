@@ -203,26 +203,86 @@ end
     token.else.value.length.should == 1
   end
 
-=begin
   it 'Parse a begin/rescue statement' do
     code = <<-CODE
 begin
-  10
-rescue => e
-  20
+  return 10
+rescue RuntimeError, StandardError => e
+  return 20
+rescue StandardError => e
+  return 30
 else
-  30
+  return 40
 ensure
-  40
+  return 50
 end
     CODE
 
     token = Rlint::Parser.new(code).parse[0]
 
-    require 'awesome_print'
-    ap token
+    token.class.should == Rlint::Token::BeginRescueToken
 
-    token.class.should == Rlint::Token::BeginToken
+    token.else.class.should        == Rlint::Token::StatementToken
+    token.else.name.should         == :else
+    token.else.value.class.should  == Array
+    token.else.value.length.should == 1
+
+    token.ensure.class.should        == Rlint::Token::StatementToken
+    token.ensure.name.should         == :ensure
+    token.ensure.value.class.should  == Array
+    token.ensure.value.length.should == 1
+
+    token.rescue.class.should  == Array
+    token.rescue.length.should == 2
+
+    first, second = token.rescue
+
+    first.name.should         == :rescue
+    first.value.class.should  == Array
+    first.value.length.should == 1
+
+    first.statement.class.should  == Array
+    first.statement.length.should == 2
+
+    constants = first.statement[0]
+    var       = first.statement[1]
+
+    constants.class.should  == Array
+    constants.length.should == 2
+
+    constants[0].class.should == Rlint::Token::VariableToken
+    constants[0].type.should  == :constant
+    constants[0].name.should  == 'RuntimeError'
+    constants[0].line.should  == 3
+
+    constants[1].class.should == Rlint::Token::VariableToken
+    constants[1].type.should  == :constant
+    constants[1].name.should  == 'StandardError'
+    constants[1].line.should  == 3
+
+    var.class.should == Rlint::Token::Token
+    var.type.should  == :identifier
+    var.value.should == 'e'
+    var.line.should  == 3
+
+    second.name.should         == :rescue
+    second.value.class.should  == Array
+    second.value.length.should == 1
+
+    constants = second.statement[0]
+    var       = second.statement[1]
+
+    constants.class.should  == Array
+    constants.length.should == 1
+
+    constants[0].class.should == Rlint::Token::VariableToken
+    constants[0].type.should  == :constant
+    constants[0].name.should  == 'StandardError'
+    constants[0].line.should  == 5
+
+    var.class.should == Rlint::Token::Token
+    var.type.should  == :identifier
+    var.value.should == 'e'
+    var.line.should  == 5
   end
-=end
 end

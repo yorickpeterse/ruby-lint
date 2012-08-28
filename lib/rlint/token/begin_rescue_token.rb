@@ -4,7 +4,7 @@ module Rlint
     # Token class used for storing information about begin/rescue/ensure
     # statements.
     #
-    class BeginToken < Token
+    class BeginRescueToken < Token
       ##
       # Array of rescue statements. Each item is an instance of
       # {Rlint::Token::StatementToken}.
@@ -26,6 +26,6 @@ module Rlint
       # @return [Rlint::Token::StatementToken]
       #
       attr_accessor :else
-    end # BeginToken
+    end # BeginRescueToken
   end # Token
 end # Rlint

@@ -4,13 +4,20 @@ module Rlint
     # Array containing all the event names of which the methods should simply
     # returned the passed argument.
     #
-    RETURN_ARG_EVENTS = [
+    RETURN_FIRST_ARG_EVENTS = [
       :program,
       :var_field,
       :args_add_block,
       :assoclist_from_args,
-      :symbol_literal
+      :symbol_literal,
+      :begin
     ]
+
+    ##
+    # Array of events of which the methods should simply return the passed
+    # arguments.
+    #
+    RETURN_ARG_EVENTS = [:mrhs_new_from_args]
 
     # Return an Rlint::Token::Token instance for each scanner event instead of
     # an array with multiple indexes.
@@ -26,6 +33,12 @@ module Rlint
     end
 
     RETURN_ARG_EVENTS.each do |event|
+      define_method("on_#{event}") do |arg|
+        return arg
+      end
+    end
+
+    RETURN_FIRST_ARG_EVENTS.each do |event|
       define_method("on_#{event}") do |*args|
         return args[0]
       end
@@ -280,9 +293,10 @@ module Rlint
     ##
     # Called when an elsif statement is found.
     #
-    # @param  [Rlint::Token::Token] statement The statement to evaluate.
-    # @param  [Array] value The value of the elsif statement.
-    # @param  [Array] list A list of else and elsif statements.
+    # @param [Rlint::Token::Token] statement The statement to evaluate.
+    # @param [Array] value The value of the elsif statement.
+    # @param [Array|Rlint::Token::Token] list A list of else and elsif
+    #  statements.
     # @return [Array]
     #
     def on_elsif(statement, value, list)
@@ -302,18 +316,61 @@ module Rlint
     end
 
     ##
-    # Called when a begin statement is found.
+    # Called when a collection of begin, rescue, ensure and else statements are
+    # found.
     #
-    # @param [Array] value The body of the begin statement.
-    # @param [Rlint::Token::StatementToken] rescue_stmt The token for the
-    #  rescue statement.
-    # @param [Rlint::Token::StatementToken] else_stmt The token for the else
-    #  statement.
-    # @param [Rlint::Token::StatementToken] ensure_stmt The token for the
-    #  ensure statement.
-    # @return [Rlint::Token::BeginToken]
     #
-    def on_bodystmt(value, rescue_stmt, else_stmt, ensure_stmt)
+    def on_bodystmt(value, rescues, elses, ensures)
+      return Token::BeginRescueToken.new(
+        :name   => :begin,
+        :value  => value,
+        :rescue => (rescues.reverse || []).select { |t| !t.nil? },
+        :ensure => ensures,
+        :else   => elses,
+        :line   => lineno,
+        :column => column
+      )
+    end
+
+    ##
+    # Called when a rescue statement is found.
+    #
+    # @param [Array] exceptions An array of exceptions to catch.
+    # @param [Rlint::Token::Token] variable The variable in which to store
+    #  the exception details.
+    # @param  [Array] value The value of the rescue statement.
+    # @param  [Array|Rlint::Token::Token] list A set of all the rescue tokens.
+    # @return [Rlint::Token::StatementToken]
+    #
+    def on_rescue(exceptions, variable, value, list)
+      token = Token::StatementToken.new(
+        :name      => :rescue,
+        :statement => [exceptions, variable],
+        :line      => lineno,
+        :column    => column,
+        :value     => value
+      )
+
+      unless list.is_a?(Array)
+        list = [list]
+      end
+
+      list << token
+    end
+
+    ##
+    # Called when an ensure statement is found.
+    #
+    # @param  [Array] value The value of the statement.
+    # @return [Rlint::Token::StatementToken]
+    #
+    def on_ensure(value)
+      return Token::StatementToken.new(
+        :name   => :ensure,
+        :value  => value,
+        :line   => lineno,
+        :column => column
+      )
     end
 
     ##
