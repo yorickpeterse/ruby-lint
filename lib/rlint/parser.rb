@@ -319,14 +319,22 @@ module Rlint
     # Called when a collection of begin, rescue, ensure and else statements are
     # found.
     #
+    # @param [Array] value Array containing the tokens of the begin statement's
+    #  body.
+    # @param [Array] rescues An array of rescue statements.
+    # @param [Rlint::Token::StatementToken] else_statement The else statement
+    #  of the block.
+    # @param [Rlint::Token::StatementToken] ensure_statement The ensure
+    #  statement of the block.
+    # @return [Rlint::Token::BeginRescueToken]
     #
-    def on_bodystmt(value, rescues, elses, ensures)
+    def on_bodystmt(value, rescues, else_statement, ensure_statement)
       return Token::BeginRescueToken.new(
         :name   => :begin,
         :value  => value,
-        :rescue => (rescues.reverse || []).select { |t| !t.nil? },
-        :ensure => ensures,
-        :else   => elses,
+        :rescue => (rescues || []).reverse.select { |t| !t.nil? },
+        :ensure => ensure_statement,
+        :else   => else_statement,
         :line   => lineno,
         :column => column
       )
