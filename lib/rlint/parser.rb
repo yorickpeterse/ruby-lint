@@ -4,26 +4,34 @@ module Rlint
     # Array containing all the event names of which the methods should simply
     # returned the passed argument.
     #
+    # @return [Array]
+    #
     RETURN_FIRST_ARG_EVENTS = [
       :program,
       :var_field,
       :args_add_block,
       :assoclist_from_args,
       :symbol_literal,
-      :begin
+      :begin,
+      :paren,
+      :mrhs_new_from_args,
+      :blockarg,
+      :rest_param
     ]
 
     ##
-    # Array of events of which the methods should simply return the passed
-    # arguments.
+    # Array of events of which the callback method should simply return nil.
     #
-    RETURN_ARG_EVENTS = [:mrhs_new_from_args]
+    # @return [Array]
+    #
+    RETURN_NIL_EVENTS = [:void_stmt]
 
     # Return an Rlint::Token::Token instance for each scanner event instead of
     # an array with multiple indexes.
     SCANNER_EVENTS.each do |event|
       define_method("on_#{event}") do |token|
         return Token::Token.new(
+          :name   => token,
           :type   => event,
           :value  => token,
           :line   => lineno,
@@ -32,16 +40,28 @@ module Rlint
       end
     end
 
-    RETURN_ARG_EVENTS.each do |event|
-      define_method("on_#{event}") do |arg|
-        return arg
-      end
-    end
-
     RETURN_FIRST_ARG_EVENTS.each do |event|
       define_method("on_#{event}") do |*args|
         return args[0]
       end
+    end
+
+    RETURN_NIL_EVENTS.each do |event|
+      define_method("on_#{event}") do |*args|
+        return nil
+      end
+    end
+
+    ##
+    # Creates a new instance of the parser and pre-defines various instance
+    # variables.
+    #
+    # @see Ripper::SexpBuilderPP#initialize
+    #
+    def initialize(*args)
+      super
+
+      @visibility = :public
     end
 
     ##
@@ -316,11 +336,10 @@ module Rlint
     end
 
     ##
-    # Called when a collection of begin, rescue, ensure and else statements are
-    # found.
+    # Called when the body of a block of Ruby code is found (e.g. a method
+    # definition or a begin/rescue block).
     #
-    # @param [Array] value Array containing the tokens of the begin statement's
-    #  body.
+    # @param [Array] value Array containing the tokens of the body/statement.
     # @param [Array] rescues An array of rescue statements.
     # @param [Rlint::Token::StatementToken] else_statement The else statement
     #  of the block.
@@ -329,6 +348,10 @@ module Rlint
     # @return [Rlint::Token::BeginRescueToken]
     #
     def on_bodystmt(value, rescues, else_statement, ensure_statement)
+      if rescues.nil? and else_statement.nil? and ensure_statement.nil?
+        return value
+      end
+
       return Token::BeginRescueToken.new(
         :name   => :begin,
         :value  => value,
@@ -394,6 +417,85 @@ module Rlint
         :column => variable.column,
         :name   => variable.value,
         :type   => variable.type
+      )
+    end
+
+    ##
+    # Called when a new method is defined.
+    #
+    # @param [Rlint::Token::Token] name Token containing details about the
+    #  method name.
+    # @param [Rlint::Token::ParametersToken] params Token containing details
+    #  about the method parameters.
+    # @param [Array] body Array containing the tokens of the method's body.
+    # @return [Rlint::Token::MethodDefinitionToken]
+    #
+    def on_def(name, params, body)
+      return Token::MethodDefinitionToken.new(
+        :name       => name.value,
+        :line       => name.line,
+        :column     => name.column,
+        :type       => :instance_method,
+        :parameters => params,
+        :visibility => @visibility,
+        :value      => body.select { |t| !t.nil? }
+      )
+    end
+
+    ##
+    # Called when a set of method parameters is found. The order of the `args`
+    # parameter is the following:
+    #
+    # * 0: array of required parameters
+    # * 1: array of optional parameters
+    # * 2: the rest parameter (if any)
+    # * 3: array of "more" parameters (parameters set after the rest parameter)
+    # * 4: the block parameter (if any)
+    #
+    # @param  [Array] args Array containing all the passed method parameters.
+    # @return [Rlint::Token::ParametersToken]
+    #
+    def on_params(*args)
+      # Convert all the arguments from regular Token instances to VariableToken
+      # instances.
+      args.each_with_index do |arg, index|
+        # Required, optional and more parameters.
+        if arg.is_a?(Array)
+          args[index] = arg.map do |token|
+            value = nil
+
+            if token.is_a?(Array)
+              value = token[1]
+              token = token[0]
+            end
+
+            Token::VariableToken.new(
+              :action => :assign,
+              :name   => token.value,
+              :value  => value,
+              :line   => token.line,
+              :column => token.column,
+              :type   => token.type
+            )
+          end
+        # Rest and block parameters.
+        elsif !arg.nil?
+          args[index] = Token::VariableToken.new(
+            :action => :assign,
+            :name   => arg.value,
+            :line   => arg.line,
+            :column => arg.column,
+            :type   => arg.type
+          )
+        end
+      end
+
+      return Token::ParametersToken.new(
+        :value    => args[0],
+        :optional => args[1],
+        :rest     => args[2],
+        :more     => args[3],
+        :block    => args[4]
       )
     end
   end # Parser

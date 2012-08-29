@@ -37,6 +37,7 @@ module Rlint
       def initialize(*args)
         @parameters = []
         @visibility = :public
+        @type       = :instance_method
 
         super
       end
