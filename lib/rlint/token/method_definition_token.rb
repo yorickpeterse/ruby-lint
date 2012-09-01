@@ -7,6 +7,21 @@ module Rlint
     #
     class MethodDefinitionToken < Token
       ##
+      # The object the method is defined on, only set when this is explicitly
+      # stated.
+      #
+      # @return [Rlint::Token::Token]
+      #
+      attr_accessor :receiver
+
+      ##
+      # The operator that was used to separate the receiver and method name.
+      #
+      # @return [Rlint::Token::Token]
+      #
+      attr_accessor :operator
+
+      ##
       # The scope for this method. Note that this attribute is only set when
       # the token is used for defining a method, not when calling one.
       #

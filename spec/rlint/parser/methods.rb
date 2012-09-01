@@ -81,4 +81,29 @@ end
     params.block.class.should == Rlint::Token::VariableToken
     params.block.name.should  == 'block'
   end
+
+  it 'Parse a class method definition' do
+    code = <<-CODE
+def self.example(number = 10)
+  return number
+end
+    CODE
+
+    token = Rlint::Parser.new(code).parse[0]
+
+    token.class.should == Rlint::Token::MethodDefinitionToken
+    token.name.should  == 'example'
+
+    token.receiver.class.should == Rlint::Token::VariableToken
+    token.receiver.name.should  == 'self'
+    token.receiver.type.should  == :keyword
+
+    token.operator.class.should == Rlint::Token::Token
+    token.operator.value.should == '.'
+    token.operator.type.should  == :period
+
+    token.parameters.class.should           == Rlint::Token::ParametersToken
+    token.parameters.optional.class.should  == Array
+    token.parameters.optional.length.should == 1
+  end
 end

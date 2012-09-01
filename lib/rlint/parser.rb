@@ -443,6 +443,27 @@ module Rlint
     end
 
     ##
+    # Called when a method is defined on a specific constant/location
+    # (e.g. `self`).
+    #
+    # @param [Rlint::Token::Token] receiver The object that the method was
+    #  defined on.
+    # @param [Rlint::Token::Token] operator The operator that was used to
+    #  separate the receiver and method name.
+    # @param [Rlint::Token::Token] name The name of the method.
+    # @param [Rlint::Token::ParametersToken] params The method parameters.
+    # @param [Array] body The body of the method.
+    # @return [Rlint::Token::MethodDefinitionToken]
+    #
+    def on_defs(receiver, operator, name, params, body)
+      token          = on_def(name, params, body)
+      token.receiver = receiver
+      token.operator = operator
+
+      return token
+    end
+
+    ##
     # Called when a set of method parameters is found. The order of the `args`
     # parameter is the following:
     #
