@@ -17,7 +17,6 @@ module Rlint
       :mrhs_new_from_args,
       :blockarg,
       :rest_param,
-      :fcall,
       :arg_paren
     ]
 
@@ -27,6 +26,14 @@ module Rlint
     # @return [Array]
     #
     RETURN_NIL_EVENTS = [:void_stmt]
+
+    ##
+    # Array of event names that should return an instance of
+    # {Rlint::Token::MethodToken}.
+    #
+    # @return [Array]
+    #
+    RETURN_METHOD_EVENTS = [:fcall, :vcall]
 
     # Return an Rlint::Token::Token instance for each scanner event instead of
     # an array with multiple indexes.
@@ -51,6 +58,17 @@ module Rlint
     RETURN_NIL_EVENTS.each do |event|
       define_method("on_#{event}") do |*args|
         return nil
+      end
+    end
+
+    RETURN_METHOD_EVENTS.each do |event|
+      define_method("on_#{event}") do |token|
+        return Token::MethodToken.new(
+          :name   => token.name,
+          :line   => token.line,
+          :column => token.column,
+          :value  => token.name,
+        )
       end
     end
 

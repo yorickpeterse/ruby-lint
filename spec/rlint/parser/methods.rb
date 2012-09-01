@@ -107,7 +107,21 @@ end
     token.parameters.optional.length.should == 1
   end
 
+  it 'Parse a method call' do
+    token = Rlint::Parser.new('puts').parse[0]
+
+    token.class.should == Rlint::Token::MethodToken
+    token.name.should  == 'puts'
+  end
+
   it 'Parse a method call with parenthesis' do
+    token = Rlint::Parser.new('puts()').parse[0]
+
+    token.class.should == Rlint::Token::MethodToken
+    token.name.should  == 'puts'
+  end
+
+  it 'Parse a method call with parenthesis and parameters' do
     token = Rlint::Parser.new('puts(10)').parse[0]
 
     token.class.should == Rlint::Token::MethodToken
@@ -123,7 +137,7 @@ end
     param.value.should == '10'
   end
 
-  it 'Parse a method call without parenthesis' do
+  it 'Parse a method call with parameters but without parenthesis' do
     token = Rlint::Parser.new('puts 10').parse[0]
 
     token.class.should == Rlint::Token::MethodToken
