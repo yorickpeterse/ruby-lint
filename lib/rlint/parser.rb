@@ -16,7 +16,9 @@ module Rlint
       :paren,
       :mrhs_new_from_args,
       :blockarg,
-      :rest_param
+      :rest_param,
+      :fcall,
+      :arg_paren
     ]
 
     ##
@@ -518,6 +520,31 @@ module Rlint
         :more     => args[3],
         :block    => args[4]
       )
+    end
+
+    ##
+    # Called when a method call using parenthesis is found.
+    #
+    # @param [Rlint::Token::Token] name The name of the method that was called.
+    # @param [Array] params The parameters of the method call.
+    # @return [Rlint::Token::MethodToken]
+    #
+    def on_method_add_arg(name, params)
+      return Token::MethodToken.new(
+        :name       => name.value,
+        :parameters => params,
+        :line       => name.line,
+        :column     => name.column
+      )
+    end
+
+    ##
+    # Called when a method call without parenthesis was found.
+    #
+    # @see Rlint::Parser#on_method_add_arg
+    #
+    def on_command(name, params)
+      return on_method_add_arg(name, params)
     end
   end # Parser
 end # Rlint

@@ -20,7 +20,7 @@ module Rlint
       # @since  2012-08-05
       # @return [Symbol]
       #
-      attr_accessor :separator
+      attr_accessor :operator
 
       ##
       # Array of tokens for the method parameters.
