@@ -98,6 +98,10 @@ module Rlint
         if TYPE_MAPPING[@type]
           @type = TYPE_MAPPING[@type]
         end
+
+        # Remove NilClass instances from the `value` array, these serve no
+        # useful purpose.
+        @value.select! { |t| !t.nil? } if @value.is_a?(Array)
       end
     end # Token
   end # Token

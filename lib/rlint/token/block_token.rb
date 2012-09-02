@@ -7,20 +7,11 @@ module Rlint
     #
     class BlockToken < Token
       ##
-      # Array of parameters that the block takes.
+      # The parameters of the block.
       #
-      # @since  2012-08-05
-      # @return [Array]
+      # @return [Rlint::Token::ParametersToken]
       #
       attr_accessor :parameters
-
-      ##
-      # The local scope of the block.
-      #
-      # @since  2012-08-05
-      # @return [Rlint::Scope]
-      #
-      attr_accessor :scope
     end
   end # Token
 end # Rlint

@@ -17,7 +17,8 @@ module Rlint
       :mrhs_new_from_args,
       :blockarg,
       :rest_param,
-      :arg_paren
+      :arg_paren,
+      :block_var
     ]
 
     ##
@@ -67,7 +68,7 @@ module Rlint
           :name   => token.name,
           :line   => token.line,
           :column => token.column,
-          :value  => token.name,
+          :value  => token.name
         )
       end
     end
@@ -173,6 +174,36 @@ module Rlint
       key.value = value
 
       return key
+    end
+
+    ##
+    # Called when a block is created using curly braces.
+    #
+    # @param [Rlint::Token::ParametersToken] params The parameters of the
+    #  block.
+    # @param  [Array] body Array containing the tokens of the block.
+    # @return [Rlint::Token::BlockToken]
+    #
+    def on_brace_block(params, body)
+      return Token::BlockToken.new(
+        :parameters => params,
+        :value      => body,
+        :line       => lineno,
+        :column     => column,
+        :type       => :brace_block
+      )
+    end
+
+    ##
+    # Called when a block is created using the do/end statements.
+    #
+    # @see Rlint::Parser#on_brace_block
+    #
+    def on_do_block(params, body)
+      token      = on_brace_block(params, body)
+      token.type = :do_block
+
+      return token
     end
 
     ##
@@ -554,6 +585,21 @@ module Rlint
         :line       => name.line,
         :column     => name.column
       )
+    end
+
+    ##
+    # Called when a block is passed to a method call.
+    #
+    # @param [Rlint::Token::MethodToken] method Token class for the method that
+    #  the block is passed to.
+    # @param [Rlint::Token::BlockToken] block The block that was passed to the
+    #  method.
+    # @return [Rlint::Token::MethodToken]
+    #
+    def on_method_add_block(method, block)
+      method.block = block
+
+      return method
     end
 
     ##
