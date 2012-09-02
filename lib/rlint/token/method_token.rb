@@ -37,19 +37,6 @@ module Rlint
       # @return [Rlint::Token::BlockToken]
       #
       attr_accessor :block
-
-      ##
-      # @see Rlint::Token::Token#initialize
-      #
-      def initialize(*args)
-        super
-
-        # Ensure that the parameters attribute always contains an instance of
-        # `Rlint::Token::ParametersToken`.
-        unless @parameters.class == ParametersToken
-          @parameters = ParametersToken.new
-        end
-      end
     end # MethodToken
   end # Token
 end # Rlint

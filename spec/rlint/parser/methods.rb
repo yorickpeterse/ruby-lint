@@ -152,4 +152,57 @@ end
     param.type.should  == :integer
     param.value.should == '10'
   end
+
+  it 'Parse a method called on an object with parenthesis' do
+    token = Rlint::Parser.new('Struct.new(:name)').parse[0]
+
+    token.class.should == Rlint::Token::MethodToken
+    token.name.should  == 'new'
+
+    token.receiver.class.should == Rlint::Token::VariableToken
+    token.receiver.type.should  == :constant
+    token.receiver.name.should  == 'Struct'
+
+    token.parameters.class.should  == Array
+    token.parameters.length.should == 1
+
+    token.parameters[0].class.should == Rlint::Token::Token
+    token.parameters[0].type.should  == :symbol
+    token.parameters[0].value.should == 'name'
+  end
+
+  it 'Parse a method called on an object without parenthesis' do
+    token = Rlint::Parser.new('Struct.new :name').parse[0]
+
+    token.class.should == Rlint::Token::MethodToken
+    token.name.should  == 'new'
+
+    token.receiver.class.should == Rlint::Token::VariableToken
+    token.receiver.type.should  == :constant
+    token.receiver.name.should  == 'Struct'
+
+    token.parameters.class.should  == Array
+    token.parameters.length.should == 1
+
+    token.parameters[0].class.should == Rlint::Token::Token
+    token.parameters[0].type.should  == :symbol
+    token.parameters[0].value.should == 'name'
+  end
+
+  it 'Parse a method called on an object with a block passed' do
+    token = Rlint::Parser.new('Foo.bar { |example| example }').parse[0]
+
+    token.class.should == Rlint::Token::MethodToken
+    token.name.should  == 'bar'
+
+    token.receiver.class.should == Rlint::Token::VariableToken
+    token.receiver.type.should  == :constant
+    token.receiver.name.should  == 'Foo'
+
+    token.block.class.should            == Rlint::Token::BlockToken
+    token.block.parameters.class.should == Rlint::Token::ParametersToken
+
+    token.block.parameters.value.class.should  == Array
+    token.block.parameters.value.length.should == 1
+  end
 end

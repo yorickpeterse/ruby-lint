@@ -55,6 +55,12 @@ module Rlint
         @type       = :instance_method
 
         super
+
+        # Ensure that the parameters attribute always contains an instance of
+        # `Rlint::Token::ParametersToken`.
+        unless @parameters.class == ParametersToken
+          @parameters = ParametersToken.new
+        end
       end
     end # MethodDefinitionToken
   end # Token

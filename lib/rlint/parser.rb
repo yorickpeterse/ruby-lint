@@ -579,6 +579,12 @@ module Rlint
     # @return [Rlint::Token::MethodToken]
     #
     def on_method_add_arg(name, params)
+      if name.class == Rlint::Token::MethodToken
+        name.parameters = params
+
+        return name
+      end
+
       return Token::MethodToken.new(
         :name       => name.value,
         :parameters => params,
@@ -609,6 +615,45 @@ module Rlint
     #
     def on_command(name, params)
       return on_method_add_arg(name, params)
+    end
+
+    ##
+    # Called when a method was invoked on an object.
+    #
+    # @param [Rlint::Token::Token] receiver The object that the method was
+    #  invoked on.
+    # @param [Symbol] operator The operator that was used to separate the
+    #  receiver and method name.
+    # @param [Rlint::Token::Token] name Token containing details about the
+    #  method name.
+    # @return [Rlint::Token::MethodToken]
+    #
+    def on_call(receiver, operator, name)
+      return Token::MethodToken.new(
+        :name     => name.value,
+        :line     => name.line,
+        :column   => name.column,
+        :receiver => receiver,
+        :operator => operator
+      )
+    end
+
+    ##
+    # Called when a method was invoked on an object without using parenthesis.
+    #
+    # @see Rlint::Parser#on_call
+    # @param  [Array] params The parameters passed to the method.
+    # @return [Rlint::Token::MethodToken]
+    #
+    def on_command_call(receiver, operator, name, params)
+      return Token::MethodToken.new(
+        :name       => name.value,
+        :line       => name.line,
+        :column     => name.column,
+        :receiver   => receiver,
+        :operator   => operator,
+        :parameters => params
+      )
     end
   end # Parser
 end # Rlint
