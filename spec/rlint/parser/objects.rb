@@ -9,9 +9,8 @@ obj.name = 'Ruby'
 
     token = Rlint::Parser.new(code).parse[1]
 
-    token.class.should  == Rlint::Token::VariableToken
-    token.action.should == :assign
-    token.name.should   == 'name'
+    token.class.should == Rlint::Token::AssignmentToken
+    token.name.should  == 'name'
 
     token.value.class.should == Rlint::Token::Token
     token.value.type.should  == :string
@@ -19,5 +18,6 @@ obj.name = 'Ruby'
 
     token.receiver.class.should == Rlint::Token::VariableToken
     token.receiver.name.should  == 'obj'
+    token.receiver.type.should  == :local_variable
   end
 end

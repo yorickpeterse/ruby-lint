@@ -242,14 +242,13 @@ module Rlint
     # @return [Rlint::Token::VariableToken]
     #
     def on_assign(variable, value)
-      if variable.class == Rlint::Token::VariableToken
+      if variable.class == Rlint::Token::AssignmentToken
         variable.value = value
 
         return variable
       end
 
-      return Token::VariableToken.new(
-        :action => :assign,
+      return Token::AssignmentToken.new(
         :line   => variable.line,
         :column => variable.column,
         :name   => variable.value,
@@ -270,8 +269,7 @@ module Rlint
     # @return [Rlint::Token::VariableToken]
     #
     def on_field(receiver, operator, attribute)
-      return Token::VariableToken.new(
-        :action   => :assign,
+      return Token::AssignmentToken.new(
         :name     => attribute.value,
         :line     => attribute.line,
         :column   => attribute.column,
@@ -504,7 +502,6 @@ module Rlint
     #
     def on_var_ref(variable)
       return Token::VariableToken.new(
-        :action => :reference,
         :line   => variable.line,
         :column => variable.column,
         :name   => variable.value,
@@ -583,7 +580,6 @@ module Rlint
             end
 
             Token::VariableToken.new(
-              :action => :assign,
               :name   => token.value,
               :value  => value,
               :line   => token.line,
@@ -594,7 +590,6 @@ module Rlint
         # Rest and block parameters.
         elsif !arg.nil?
           args[index] = Token::VariableToken.new(
-            :action => :assign,
             :name   => arg.value,
             :line   => arg.line,
             :column => arg.column,

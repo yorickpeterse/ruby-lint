@@ -52,7 +52,6 @@ end
     params.value.length.should    == 1
     params.value[0].class.should  == Rlint::Token::VariableToken
     params.value[0].name.should   == 'a'
-    params.value[0].action.should == :assign
 
     # Optional parameters
     params.optional.class.should  == Array
@@ -62,7 +61,6 @@ end
 
     optional.class.should  == Rlint::Token::VariableToken
     optional.name.should   == 'b'
-    optional.action.should == :assign
 
     optional.value.class.should == Rlint::Token::Token
     optional.value.type.should  == :integer

@@ -4,7 +4,7 @@ describe 'Rlint::Parser' do
   it 'Parse the assignment of a local variable' do
     token = Rlint::Parser.new('number = 10').parse[0]
 
-    token.class.should  == Rlint::Token::VariableToken
+    token.class.should  == Rlint::Token::AssignmentToken
     token.line.should   == 1
     token.column.should == 0
 
@@ -19,7 +19,7 @@ describe 'Rlint::Parser' do
   it 'Parse the assignment of a global variable' do
     token = Rlint::Parser.new('$number = 10').parse[0]
 
-    token.class.should  == Rlint::Token::VariableToken
+    token.class.should  == Rlint::Token::AssignmentToken
     token.line.should   == 1
     token.column.should == 0
 
@@ -34,7 +34,7 @@ describe 'Rlint::Parser' do
   it 'Parse the assignment of an instance variable' do
     token = Rlint::Parser.new('@number = 10').parse[0]
 
-    token.class.should  == Rlint::Token::VariableToken
+    token.class.should  == Rlint::Token::AssignmentToken
     token.line.should   == 1
     token.column.should == 0
 
@@ -49,7 +49,7 @@ describe 'Rlint::Parser' do
   it 'Parse the assignment of a class variable' do
     token = Rlint::Parser.new('@@number = 10').parse[0]
 
-    token.class.should  == Rlint::Token::VariableToken
+    token.class.should  == Rlint::Token::AssignmentToken
     token.line.should   == 1
     token.column.should == 0
 
@@ -64,7 +64,7 @@ describe 'Rlint::Parser' do
   it 'Parse the assignment of a constant' do
     token = Rlint::Parser.new('NUMBER = 10').parse[0]
 
-    token.class.should  == Rlint::Token::VariableToken
+    token.class.should  == Rlint::Token::AssignmentToken
     token.line.should   == 1
     token.column.should == 0
 

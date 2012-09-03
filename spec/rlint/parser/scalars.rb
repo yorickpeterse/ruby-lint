@@ -67,7 +67,6 @@ describe 'Rlint::Parser' do
     token = Rlint::Parser.new('true').parse[0]
 
     token.class.should  == Rlint::Token::VariableToken
-    token.action.should == :reference
     token.type.should   == :keyword
     token.name.should   == 'true'
     token.line.should   == 1
@@ -78,7 +77,6 @@ describe 'Rlint::Parser' do
     token = Rlint::Parser.new('nil').parse[0]
 
     token.class.should  == Rlint::Token::VariableToken
-    token.action.should == :reference
     token.type.should   == :keyword
     token.name.should   == 'nil'
     token.line.should   == 1

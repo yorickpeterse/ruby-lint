@@ -114,7 +114,6 @@ describe 'Rlint::Parser' do
     token = Rlint::Parser.new("hash = {:name => 'Ruby'}\nhash[:name]").parse[1]
 
     token.class.should  == Rlint::Token::VariableToken
-    token.action.should == :reference
 
     token.key.class.should  == Array
     token.key.length.should == 1
