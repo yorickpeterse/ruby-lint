@@ -11,10 +11,25 @@ module Rlint
       # `:assign` for variable assignments and `:reference` for variable
       # references.
       #
-      # @since  2012-08-20
       # @return [Symbol]
       #
       attr_accessor :action
+
+      ##
+      # The object receiver, set when a value is assigned to an object
+      # attribute.
+      #
+      # @return [Rlint::Token::Token]
+      #
+      attr_accessor :receiver
+
+      ##
+      # Symbol containing the operator that was used to separate the receiver
+      # and attribute name.
+      #
+      # @return [Symbol]
+      #
+      attr_accessor :operator
 
       ##
       # @see Rlint::Token::Token#initialize

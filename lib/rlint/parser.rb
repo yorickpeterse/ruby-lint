@@ -242,6 +242,12 @@ module Rlint
     # @return [Rlint::Token::VariableToken]
     #
     def on_assign(variable, value)
+      if variable.class == Rlint::Token::VariableToken
+        variable.value = value
+
+        return variable
+      end
+
       return Token::VariableToken.new(
         :action => :assign,
         :line   => variable.line,
@@ -249,6 +255,29 @@ module Rlint
         :name   => variable.value,
         :type   => variable.type,
         :value  => value
+      )
+    end
+
+    ##
+    # Called when a value is assigned to an object attribute.
+    #
+    # @param [Rlint::Token::VariableToken] receiver The receiver of the
+    #  assignment.
+    # @param [Symbol] operator The operator that was used to separate the
+    #  object and attribute.
+    # @param [Rlint::Token::Token] attribute The attribute to which the value
+    #  is assigned.
+    # @return [Rlint::Token::VariableToken]
+    #
+    def on_field(receiver, operator, attribute)
+      return Token::VariableToken.new(
+        :action   => :assign,
+        :name     => attribute.value,
+        :line     => attribute.line,
+        :column   => attribute.column,
+        :type     => attribute.type,
+        :receiver => receiver,
+        :operator => operator
       )
     end
 
