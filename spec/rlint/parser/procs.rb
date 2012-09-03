@@ -50,18 +50,64 @@ describe 'Rlint::Parser' do
   it 'Parse a Proc using Proc.new' do
     token = Rlint::Parser.new('Proc.new { |example| example }').parse[0]
 
-    require 'awesome_print'; ap token
+    token.class.should == Rlint::Token::MethodToken
+    token.name.should  == 'new'
+
+    token.receiver.class.should == Rlint::Token::VariableToken
+    token.receiver.name.should  == 'Proc'
+    token.receiver.type.should  == :constant
+
+    token.block.class.should            == Rlint::Token::BlockToken
+    token.block.parameters.class.should == Rlint::Token::ParametersToken
+    token.block.type.should             == :brace_block
+
+    token.block.parameters.value.class.should  == Array
+    token.block.parameters.value.length.should == 1
+
+    param = token.block.parameters.value[0]
+
+    param.class.should == Rlint::Token::VariableToken
+    param.name.should  == 'example'
+    param.type.should  == :local_variable
   end
 
   it 'Parse a Lambda' do
+    token = Rlint::Parser.new('lambda { |example| example }').parse[0]
 
+    token.class.should == Rlint::Token::MethodToken
+    token.name.should  == 'lambda'
+
+    token.block.class.should == Rlint::Token::BlockToken
+    token.block.type.should  == :brace_block
+
+    token.block.parameters.class.should        == Rlint::Token::ParametersToken
+    token.block.parameters.value.class.should  == Array
+    token.block.parameters.value.length.should == 1
+
+    param = token.block.parameters.value[0]
+
+    param.class.should == Rlint::Token::VariableToken
+    param.name.should  == 'example'
+    param.type.should  == :local_variable
   end
 
   it 'Parse a Lambda using the dash rocket syntax' do
+    token = Rlint::Parser.new('-> example { example }').parse[0]
 
-  end
+    token.class.should == Rlint::Token::BlockToken
+    token.type.should  == :lambda
 
-  it 'Parse a block' do
+    token.parameters.class.should        == Rlint::Token::ParametersToken
+    token.parameters.value.class.should  == Array
+    token.parameters.value.length.should == 1
 
+    param = token.parameters.value[0]
+
+    param.class.should == Rlint::Token::VariableToken
+    param.name.should  == 'example'
+    param.type.should  == :local_variable
+
+    token.value.class.should  == Array
+    token.value.length.should == 1
   end
 end

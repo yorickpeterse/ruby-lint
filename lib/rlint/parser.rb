@@ -207,6 +207,18 @@ module Rlint
     end
 
     ##
+    # Called when a lambda is found.
+    #
+    # @see Rlint::Parser#on_brace_block
+    #
+    def on_lambda(params, body)
+      token      = on_brace_block(params, body)
+      token.type = :lambda
+
+      return token
+    end
+
+    ##
     # Called when a Range is found.
     #
     # @param  [Rlint::Token::Token] start The start value of the range.
