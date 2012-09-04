@@ -495,6 +495,63 @@ module Rlint
     end
 
     ##
+    # Called for an entire case/when/else block.
+    #
+    # @param [Rlint::Token::Token] statement The statement of the `case`
+    #  statement itself.
+    # @param [Array] list Array containing the various when statements and
+    #  optionally an else statement.
+    # @return [Rlint::Token::CaseToken]
+    #
+    def on_case(statement, list)
+      when_statements = []
+      else_statement  = nil
+
+      if list and list.respond_to?(:each)
+        list.each do |token|
+          if token.name == :when
+            when_statements << token
+          else
+            else_statement = token
+          end
+        end
+      end
+
+      return Token::CaseToken.new(
+        :name      => :case,
+        :statement => statement,
+        :else      => else_statement,
+        :when      => when_statements.reverse,
+        :line      => statement.line,
+        :column    => statement.column
+      )
+    end
+
+    ##
+    # Called when a `when` statement is found.
+    #
+    # @param  [Array] statement Array of statements to evaluate.
+    # @param  [Array] body Array containing the tokens of the statement's body.
+    # @param  [Array] list The list of `when` tokens.
+    # @return [Array]
+    #
+    def on_when(statement, body, list)
+      token = Token::StatementToken.new(
+        :name      => :when,
+        :statement => statement,
+        :value     => body,
+        :line      => lineno,
+        :column    => column
+      )
+
+      unless list.is_a?(Array)
+        list = [list]
+      end
+
+      list << token
+    end
+
+    ##
     # Called when a variable is referenced.
     #
     # @param  [Rlint::Token::Token] variable The variable that was referenced.

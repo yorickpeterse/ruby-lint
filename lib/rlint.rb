@@ -16,7 +16,7 @@ require 'rlint/token/parameters_token'
 require 'rlint/token/method_token'
 require 'rlint/token/block_token'
 require 'rlint/token/assignment_token'
-# require 'rlint/token/case_token'
+require 'rlint/token/case_token'
 # require 'rlint/token/class_token'
 # require 'rlint/token/regexp_token'
 

@@ -285,4 +285,80 @@ end
     var.value.should == 'e'
     var.line.should  == 5
   end
+
+  it 'Parse a case statement' do
+    code = <<-CODE
+case number
+when 10, 20
+  puts '10 or 20'
+when 30
+  puts '30'
+else
+  puts 'something else'
+end
+    CODE
+
+    token = Rlint::Parser.new(code).parse[0]
+
+    token.class.should == Rlint::Token::CaseToken
+    token.name.should  == :case
+
+    token.statement.class.should == Rlint::Token::MethodToken
+    token.statement.name.should  == 'number'
+
+    token.when.class.should  == Array
+    token.when.length.should == 2
+
+    first, second = token.when
+
+    # Check the first when statement.
+    first.class.should            == Rlint::Token::StatementToken
+    first.statement.class         == Array
+    first.statement.length.should == 2
+
+    first.statement[0].class.should == Rlint::Token::Token
+    first.statement[0].type.should  == :integer
+    first.statement[0].value.should == '10'
+
+    first.statement[1].class.should == Rlint::Token::Token
+    first.statement[1].type.should  == :integer
+    first.statement[1].value.should == '20'
+
+    first.value.class.should  == Array
+    first.value.length.should == 1
+
+    first.value[0].class.should             == Rlint::Token::MethodToken
+    first.value[0].name.should              == 'puts'
+    first.value[0].parameters.class.should  == Array
+    first.value[0].parameters.length.should == 1
+
+    # Check the second when statement.
+    second.class.should            == Rlint::Token::StatementToken
+    second.statement.class.should  == Array
+    second.statement.length.should == 1
+
+    second.statement[0].class.should == Rlint::Token::Token
+    second.statement[0].type.should  == :integer
+    second.statement[0].value.should == '30'
+
+    second.value.class.should  == Array
+    second.value.length.should == 1
+
+    second.value[0].class.should             == Rlint::Token::MethodToken
+    second.value[0].name.should              == 'puts'
+    second.value[0].parameters.class.should  == Array
+    second.value[0].parameters.length.should == 1
+
+    # Check the else statement.
+    token.else.class.should == Rlint::Token::StatementToken
+
+    token.else.value.class.should  == Array
+    token.else.value.length.should == 1
+
+    token.else.value[0].class.should == Rlint::Token::MethodToken
+    token.else.value[0].name.should  == 'puts'
+
+    token.else.value[0].parameters.class.should  == Array
+    token.else.value[0].parameters.length.should == 1
+  end
 end
