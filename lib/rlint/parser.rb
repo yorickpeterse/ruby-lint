@@ -388,6 +388,8 @@ module Rlint
 
       if rest and rest.respond_to?(:each)
         rest.each do |token|
+          next if token.nil?
+
           if token.name == :elsif
             elsif_statements << token
           else
@@ -455,8 +457,8 @@ module Rlint
         :name      => :elsif,
         :statement => statement,
         :value     => value,
-        :line      => statement.line,
-        :column    => statement.column
+        :line      => lineno,
+        :column    => column
       )
 
       unless list.is_a?(Array)
