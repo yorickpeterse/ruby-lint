@@ -123,6 +123,8 @@ module Rlint
     # @return [Rlint::Token::Token]
     #
     def on_array(values)
+      values ||= []
+
       return Token::Token.new(
         :type   => :array,
         :value  => values.map { |v| v.is_a?(Array) ? v[0] : v },
@@ -291,8 +293,8 @@ module Rlint
       return Token::Token.new(
         :type   => :binary,
         :value  => [left, op, right],
-        :line   => left.line,
-        :column => left.column
+        :line   => lineno,
+        :column => column
       )
     end
 
