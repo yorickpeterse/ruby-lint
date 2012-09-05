@@ -361,4 +361,39 @@ end
     token.else.value[0].parameters.class.should  == Array
     token.else.value[0].parameters.length.should == 1
   end
+
+  it 'Parse a single line if statement' do
+    token = Rlint::Parser.new('foo if bar').parse[0]
+
+    token.class.should == Rlint::Token::IfToken
+    token.name.should  == :if_mod
+
+    token.statement.class.should == Rlint::Token::MethodToken
+    token.statement.name.should  == 'bar'
+
+    token.value.class.should  == Array
+    token.value.length.should == 1
+
+    token.value[0].class.should == Rlint::Token::MethodToken
+    token.value[0].name.should  == 'foo'
+  end
+
+  it 'Parse a single line begin/rescue statement' do
+    token = Rlint::Parser.new('foo rescue bar').parse[0]
+
+    token.class.should == Rlint::Token::BeginRescueToken
+    token.name.should  == :begin_rescue_mod
+
+    token.rescue.class.should  == Array
+    token.rescue.length.should == 1
+
+    token.rescue[0].class.should == Rlint::Token::MethodToken
+    token.rescue[0].name.should  == 'bar'
+
+    token.value.class.should  == Array
+    token.value.length.should == 1
+
+    token.value[0].class.should == Rlint::Token::MethodToken
+    token.value[0].name.should  == 'foo'
+  end
 end

@@ -26,6 +26,15 @@ module Rlint
       # @return [Rlint::Token::StatementToken]
       #
       attr_accessor :else
+
+      ##
+      # @see Rlint::Token#initialize
+      #
+      def initialize(*args)
+        @name = :begin_rescue
+
+        super
+      end
     end # BeginRescueToken
   end # Token
 end # Rlint

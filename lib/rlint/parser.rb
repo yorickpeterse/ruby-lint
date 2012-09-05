@@ -386,6 +386,26 @@ module Rlint
     end
 
     ##
+    # Called when a single line if statement (in the form of `[VALUE] if
+    # [STATEMENT]`) is found.
+    #
+    # @param  [Rlint::Token::Token] statement The statement to evaluate.
+    # @param  [Rlint::Token::Token|Array] value The body if the if statement.
+    # @return [Rlint::Token::IfToken]
+    #
+    def on_if_mod(statement, value)
+      value = [value] unless value.is_a?(Array)
+
+      return Token::IfToken.new(
+        :name      => :if_mod,
+        :statement => statement,
+        :value     => value,
+        :line      => lineno,
+        :column    => column
+      )
+    end
+
+    ##
     # Called when an else statement is found.
     #
     # @param  [Array] value The value of the statement.
@@ -477,6 +497,29 @@ module Rlint
       end
 
       list << token
+    end
+
+    ##
+    # Called when a single line rescue statement (in the form of `[VALUE]
+    # rescue [RESCUE VALUE]`) is found.
+    #
+    # @param [Rlint::Token::Token|Array] value The body of the begin/rescue
+    #  statement.
+    # @param [Rlint::Token::Token] statement The statement to evaluate when the
+    #  data in `value` raised an exception.
+    # @return [Rlint::Token::BeginRescueToken]
+    #
+    def on_rescue_mod(value, statement)
+      value     = [value]     unless value.is_a?(Array)
+      statement = [statement] unless statement.is_a?(Array)
+
+      return Token::BeginRescueToken.new(
+        :name   => :begin_rescue_mod,
+        :rescue => statement,
+        :value  => value,
+        :line   => lineno,
+        :column => column
+      )
     end
 
     ##
