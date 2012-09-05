@@ -7,8 +7,6 @@ describe 'Rlint::Parser' do
 
       token.class.should  == Rlint::Token::Token
       token.type.should   == :binary
-      token.line.should   == 1
-      token.column.should == 0
 
       token.value.class.should  == Array
       token.value.length.should == 3
@@ -32,8 +30,6 @@ describe 'Rlint::Parser' do
 
     token.class.should  == Rlint::Token::Token
     token.type.should   == :binary
-    token.line.should   == 1
-    token.column.should == 0
 
     token.value.class.should  == Array
     token.value.length.should == 3

@@ -167,10 +167,8 @@ end
 
     token = Rlint::Parser.new(code).parse[0]
 
-    token.class.should  == Rlint::Token::IfToken
-    token.name.should   == :if
-    token.line.should   == 1
-    token.column.should == 3
+    token.class.should == Rlint::Token::IfToken
+    token.name.should  == :if
 
     token.elsif.class.should  == Array
     token.elsif.length.should == 2
@@ -178,19 +176,15 @@ end
     first = token.elsif[0]
     last  = token.elsif[1]
 
-    first.class.should  == Rlint::Token::StatementToken
-    first.name.should   == :elsif
-    first.line.should   == 3
-    first.column.should == 6
+    first.class.should == Rlint::Token::StatementToken
+    first.name.should  == :elsif
 
     first.statement.class.should        == Rlint::Token::Token
     first.statement.value.class.should  == Array
     first.statement.value.length.should == 3
 
-    last.class.should  == Rlint::Token::StatementToken
-    last.name.should   == :elsif
-    last.line.should   == 5
-    last.column.should == 6
+    last.class.should == Rlint::Token::StatementToken
+    last.name.should  == :elsif
 
     last.statement.class.should        == Rlint::Token::Token
     last.statement.value.class.should  == Array

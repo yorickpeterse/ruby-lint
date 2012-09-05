@@ -114,4 +114,24 @@ describe 'Rlint::Parser' do
     token.key[1].type.should  == :integer
     token.key[1].value.should == '1'
   end
+
+  it 'Parse the assignment of a value to an array index' do
+    token = Rlint::Parser.new('numbers = []; numbers[0] = 10').parse[1]
+
+    token.class.should == Rlint::Token::AssignmentToken
+
+    token.value.class.should == Rlint::Token::Token
+    token.value.type.should  == :integer
+    token.value.value.should == '10'
+
+    token.receiver.class.should == Rlint::Token::VariableToken
+    token.receiver.name.should  == 'numbers'
+
+    token.receiver.key.class.should  == Array
+    token.receiver.key.length.should == 1
+
+    token.receiver.key[0].class.should == Rlint::Token::Token
+    token.receiver.key[0].type.should  == :integer
+    token.receiver.key[0].value.should == '0'
+  end
 end

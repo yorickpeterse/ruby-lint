@@ -147,6 +147,25 @@ module Rlint
     end
 
     ##
+    # Called when a value is assigned to an array index.
+    #
+    # @param [Rlint::Token::Token] array The array that was referenced.
+    # @param [Rlint::Token::Token] index The index of the array that was
+    #  referenced.
+    # @return [Rlint::Token::Token]
+    #
+    def on_aref_field(array, index)
+      array.key = index
+
+      return Token::AssignmentToken.new(
+        :receiver => array,
+        :line     => lineno,
+        :column   => column,
+        :type     => array.type
+      )
+    end
+
+    ##
     # Called when a Hash is found.
     #
     # @param  [Array] pairs An array of key/value pairs of the hash.
