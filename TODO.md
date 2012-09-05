@@ -6,7 +6,6 @@ Rlint becomes even remotely useful.
 ## Parser
 
 * Regular expressions
-* case statements
 * single line statements (`foo rescue bar`, `foo = 10 if bar`, etc)
 * other syntax elements as I bump into them
 
