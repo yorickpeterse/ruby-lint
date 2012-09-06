@@ -410,4 +410,20 @@ end
     token.value[0].class.should == Rlint::Token::MethodToken
     token.value[0].name.should  == 'bar'
   end
+
+  it 'Parse a single line unless statement' do
+    token = Rlint::Parser.new('foo unless bar').parse[0]
+
+    token.class.should == Rlint::Token::StatementToken
+    token.type.should  == :unless_mod
+
+    token.statement.class.should == Rlint::Token::MethodToken
+    token.statement.name.should  == 'bar'
+
+    token.value.class.should  == Array
+    token.value.length.should == 1
+
+    token.value[0].class.should == Rlint::Token::MethodToken
+    token.value[0].name.should  == 'foo'
+  end
 end
