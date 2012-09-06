@@ -17,7 +17,7 @@ describe 'Rlint::Parser' do
     token.value.length.should == 1
 
     token.value[0].class.should == Rlint::Token::StatementToken
-    token.value[0].name.should  == :return
+    token.value[0].type.should  == :return
 
     token.value[0].value.class.should  == Array
     token.value[0].value.length.should == 1

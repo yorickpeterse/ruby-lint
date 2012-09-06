@@ -24,6 +24,7 @@ module Rlint
       #
       def initialize(*args)
         @when = []
+        @type = :case
 
         super
       end

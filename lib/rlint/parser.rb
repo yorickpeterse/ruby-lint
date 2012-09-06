@@ -328,7 +328,7 @@ module Rlint
       col = (values[0].column rescue column) - 7
 
       return Token::StatementToken.new(
-        :name   => :return,
+        :type   => :return,
         :line   => lineno,
         :column => col,
         :value  => values
@@ -346,7 +346,7 @@ module Rlint
       col = (statement.column rescue column) - 6
 
       return Token::StatementToken.new(
-        :name      => :while,
+        :type      => :while,
         :statement => statement,
         :value     => value,
         :line      => statement.line,
@@ -364,7 +364,7 @@ module Rlint
     #
     def on_for(variables, enumerable, value)
       return Token::StatementToken.new(
-        :name      => :for,
+        :type      => :for,
         :statement => [variables, enumerable],
         :value     => value,
         :column    => column,
@@ -380,7 +380,7 @@ module Rlint
     #  be executed if the if statement evaluates to true.
     # @param  [Array] rest Array containing the tokens for the elsif and else
     #  statements (if any).
-    # @return [Rlint::Token::IfToken]
+    # @return [Rlint::Token::StatementToken]
     #
     def on_if(statement, value, rest)
       else_statement   = nil
@@ -390,7 +390,7 @@ module Rlint
         rest.each do |token|
           next if token.nil?
 
-          if token.name == :elsif
+          if token.type == :elsif
             elsif_statements << token
           else
             else_statement = token
@@ -398,7 +398,8 @@ module Rlint
         end
       end
 
-      return Token::IfToken.new(
+      return Token::StatementToken.new(
+        :type      => :if,
         :statement => statement,
         :value     => value,
         :line      => statement.line,
@@ -414,13 +415,13 @@ module Rlint
     #
     # @param  [Rlint::Token::Token] statement The statement to evaluate.
     # @param  [Rlint::Token::Token|Array] value The body if the if statement.
-    # @return [Rlint::Token::IfToken]
+    # @return [Rlint::Token::StatementToken]
     #
     def on_if_mod(statement, value)
       value = [value] unless value.is_a?(Array)
 
-      return Token::IfToken.new(
-        :name      => :if_mod,
+      return Token::StatementToken.new(
+        :type      => :if_mod,
         :statement => statement,
         :value     => value,
         :line      => lineno,
@@ -436,7 +437,7 @@ module Rlint
     #
     def on_else(value)
       return Token::StatementToken.new(
-        :name   => :else,
+        :type   => :else,
         :value  => value,
         :column => column,
         :line   => lineno
@@ -454,7 +455,7 @@ module Rlint
     #
     def on_elsif(statement, value, list)
       token = Token::StatementToken.new(
-        :name      => :elsif,
+        :type      => :elsif,
         :statement => statement,
         :value     => value,
         :line      => lineno,
@@ -486,7 +487,7 @@ module Rlint
       end
 
       return Token::BeginRescueToken.new(
-        :name   => :begin,
+        :type   => :begin,
         :value  => value,
         :rescue => (rescues || []).reverse.select { |t| !t.nil? },
         :ensure => ensure_statement,
@@ -508,7 +509,7 @@ module Rlint
     #
     def on_rescue(exceptions, variable, value, list)
       token = Token::StatementToken.new(
-        :name      => :rescue,
+        :type      => :rescue,
         :statement => [exceptions, variable],
         :line      => lineno,
         :column    => column,
@@ -537,7 +538,7 @@ module Rlint
       statement = [statement] unless statement.is_a?(Array)
 
       return Token::BeginRescueToken.new(
-        :name   => :begin_rescue_mod,
+        :type   => :begin_rescue_mod,
         :rescue => statement,
         :value  => value,
         :line   => lineno,
@@ -553,7 +554,7 @@ module Rlint
     #
     def on_ensure(value)
       return Token::StatementToken.new(
-        :name   => :ensure,
+        :type   => :ensure,
         :value  => value,
         :line   => lineno,
         :column => column
@@ -575,7 +576,7 @@ module Rlint
 
       if list and list.respond_to?(:each)
         list.each do |token|
-          if token.name == :when
+          if token.type == :when
             when_statements << token
           else
             else_statement = token
@@ -584,7 +585,7 @@ module Rlint
       end
 
       return Token::CaseToken.new(
-        :name      => :case,
+        :type      => :case,
         :statement => statement,
         :else      => else_statement,
         :when      => when_statements.reverse,
@@ -603,7 +604,7 @@ module Rlint
     #
     def on_when(statement, body, list)
       token = Token::StatementToken.new(
-        :name      => :when,
+        :type      => :when,
         :statement => statement,
         :value     => body,
         :line      => lineno,
@@ -615,6 +616,26 @@ module Rlint
       end
 
       list << token
+    end
+
+    ##
+    # Called when a unless statement is found.
+    #
+    # @param [Rlint::Token::Token] statement The statement to evaluate.
+    # @param [Array] body The body of the unless statement.
+    # @param [Rlint::Token::StatementToken] else_token An optional else
+    #  statement.
+    # @return [Rlint::Token::StatementToken]
+    #
+    def on_unless(statement, body, else_token)
+      return Token::StatementToken.new(
+        :type      => :unless,
+        :statement => statement,
+        :else      => else_token,
+        :value     => body,
+        :line      => lineno,
+        :column    => column
+      )
     end
 
     ##

@@ -31,7 +31,7 @@ module Rlint
       # @see Rlint::Token#initialize
       #
       def initialize(*args)
-        @name = :begin_rescue
+        @type = :begin_rescue
 
         super
       end

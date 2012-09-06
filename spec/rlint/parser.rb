@@ -745,7 +745,7 @@ CODE
 
     statement = Rlint::Parser.new(code).parse[0]
 
-    statement.is_a?(Rlint::Token::IfToken).should                 == true
+    statement.is_a?(Rlint::Token::StatementToken).should                 == true
     statement.statement.is_a?(Rlint::Token::OperatorToken).should == true
     statement.elsif.is_a?(Array).should                           == true
     statement.else.is_a?(Rlint::Token::StatementToken).should     == true

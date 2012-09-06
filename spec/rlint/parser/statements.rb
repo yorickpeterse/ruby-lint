@@ -5,8 +5,7 @@ describe 'Rlint::Parser' do
     token = Rlint::Parser.new('return 10').parse[0]
 
     token.class.should  == Rlint::Token::StatementToken
-    token.name.should   == :return
-    token.type.should   == :statement
+    token.type.should   == :return
     token.line.should   == 1
     token.column.should == 0
 
@@ -26,8 +25,7 @@ describe 'Rlint::Parser' do
     token = Rlint::Parser.new('return 10, 20').parse[0]
 
     token.class.should  == Rlint::Token::StatementToken
-    token.name.should   == :return
-    token.type.should   == :statement
+    token.type.should   == :return
     token.line.should   == 1
     token.column.should == 0
 
@@ -55,7 +53,7 @@ describe 'Rlint::Parser' do
     token = Rlint::Parser.new('while true; return 10; end').parse[0]
 
     token.class.should  == Rlint::Token::StatementToken
-    token.name.should   == :while
+    token.type.should   == :while
     token.line.should   == 1
     token.column.should == 0
 
@@ -69,7 +67,7 @@ describe 'Rlint::Parser' do
     val = token.value[0]
 
     val.class.should == Rlint::Token::StatementToken
-    val.name.should  == :return
+    val.type.should  == :return
 
     val.value.class.should  == Array
     val.value.length.should == 1
@@ -89,8 +87,7 @@ end
     token = Rlint::Parser.new(code).parse[0]
 
     token.class.should == Rlint::Token::StatementToken
-    token.type.should  == :statement
-    token.name.should  == :for
+    token.type.should  == :for
 
     token.statement.class.should  == Array
     token.statement.length.should == 2
@@ -132,7 +129,7 @@ end
   it 'Parse a simple if statement' do
     token = Rlint::Parser.new('if 10 == 20; return 10; end').parse[0]
 
-    token.class.should        == Rlint::Token::IfToken
+    token.class.should        == Rlint::Token::StatementToken
     token.else.nil?.should    == true
     token.elsif.class.should  == Array
     token.elsif.length.should == 0
@@ -167,8 +164,8 @@ end
 
     token = Rlint::Parser.new(code).parse[0]
 
-    token.class.should == Rlint::Token::IfToken
-    token.name.should  == :if
+    token.class.should == Rlint::Token::StatementToken
+    token.type.should  == :if
 
     token.elsif.class.should  == Array
     token.elsif.length.should == 2
@@ -177,14 +174,14 @@ end
     last  = token.elsif[1]
 
     first.class.should == Rlint::Token::StatementToken
-    first.name.should  == :elsif
+    first.type.should  == :elsif
 
     first.statement.class.should        == Rlint::Token::Token
     first.statement.value.class.should  == Array
     first.statement.value.length.should == 3
 
     last.class.should == Rlint::Token::StatementToken
-    last.name.should  == :elsif
+    last.type.should  == :elsif
 
     last.statement.class.should        == Rlint::Token::Token
     last.statement.value.class.should  == Array
@@ -217,12 +214,12 @@ end
     token.class.should == Rlint::Token::BeginRescueToken
 
     token.else.class.should        == Rlint::Token::StatementToken
-    token.else.name.should         == :else
+    token.else.type.should         == :else
     token.else.value.class.should  == Array
     token.else.value.length.should == 1
 
     token.ensure.class.should        == Rlint::Token::StatementToken
-    token.ensure.name.should         == :ensure
+    token.ensure.type.should         == :ensure
     token.ensure.value.class.should  == Array
     token.ensure.value.length.should == 1
 
@@ -231,7 +228,7 @@ end
 
     first, second = token.rescue
 
-    first.name.should         == :rescue
+    first.type.should         == :rescue
     first.value.class.should  == Array
     first.value.length.should == 1
 
@@ -259,7 +256,7 @@ end
     var.value.should == 'e'
     var.line.should  == 3
 
-    second.name.should         == :rescue
+    second.type.should         == :rescue
     second.value.class.should  == Array
     second.value.length.should == 1
 
@@ -295,7 +292,7 @@ end
     token = Rlint::Parser.new(code).parse[0]
 
     token.class.should == Rlint::Token::CaseToken
-    token.name.should  == :case
+    token.type.should  == :case
 
     token.statement.class.should == Rlint::Token::MethodToken
     token.statement.name.should  == 'number'
@@ -359,8 +356,8 @@ end
   it 'Parse a single line if statement' do
     token = Rlint::Parser.new('foo if bar').parse[0]
 
-    token.class.should == Rlint::Token::IfToken
-    token.name.should  == :if_mod
+    token.class.should == Rlint::Token::StatementToken
+    token.type.should  == :if_mod
 
     token.statement.class.should == Rlint::Token::MethodToken
     token.statement.name.should  == 'bar'
@@ -376,7 +373,7 @@ end
     token = Rlint::Parser.new('foo rescue bar').parse[0]
 
     token.class.should == Rlint::Token::BeginRescueToken
-    token.name.should  == :begin_rescue_mod
+    token.type.should  == :begin_rescue_mod
 
     token.rescue.class.should  == Array
     token.rescue.length.should == 1
@@ -389,5 +386,28 @@ end
 
     token.value[0].class.should == Rlint::Token::MethodToken
     token.value[0].name.should  == 'foo'
+  end
+
+  it 'Parse an unless statement' do
+    token = Rlint::Parser.new('unless foo; bar; else; baz; end').parse[0]
+
+    token.class.should == Rlint::Token::StatementToken
+    token.type.should  == :unless
+
+    token.statement.class.should == Rlint::Token::MethodToken
+    token.statement.name.should  == 'foo'
+
+    token.else.class.should == Rlint::Token::StatementToken
+    token.else.type.should  == :else
+
+    token.else.value.class.should    == Array
+    token.else.value[0].class.should == Rlint::Token::MethodToken
+    token.else.value[0].name.should  == 'baz'
+
+    token.value.class.should  == Array
+    token.value.length.should == 1
+
+    token.value[0].class.should == Rlint::Token::MethodToken
+    token.value[0].name.should  == 'bar'
   end
 end
