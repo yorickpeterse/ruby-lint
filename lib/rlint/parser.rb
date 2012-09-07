@@ -256,6 +256,30 @@ module Rlint
     end
 
     ##
+    # Called when a regular expression is found.
+    #
+    # @param [Array] regexp The regular expression's value.
+    # @param [Rlint::Token::Token] modes The modes of the regular expression.
+    # @return [Rlint::Token::RegexpToken]
+    #
+    def on_regexp_literal(regexp, modes)
+      regexp      = regexp[0]
+      modes_array = []
+
+      if modes
+        modes_array = modes.value.split('').select { |c| c =~ /\w/ }
+      end
+
+      return Token::RegexpToken.new(
+        :type   => :regexp,
+        :value  => regexp.value,
+        :line   => regexp.line,
+        :column => regexp.column,
+        :modes  => modes_array
+      )
+    end
+
+    ##
     # Called when a value is assigned to a variable.
     #
     # @param  [Rlint::Token::Token] variable The variable that is assigned.
