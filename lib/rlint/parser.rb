@@ -36,6 +36,14 @@ module Rlint
     #
     RETURN_METHOD_EVENTS = [:fcall, :vcall]
 
+    ##
+    # Array containing the names of various event callbacks that should return
+    # a token class containing details about a single line statement.
+    #
+    # @return [Array]
+    #
+    MOD_STATEMENT_EVENTS = [:while_mod, :if_mod, :unless_mod, :until_mod]
+
     # Return an Rlint::Token::Token instance for each scanner event instead of
     # an array with multiple indexes.
     SCANNER_EVENTS.each do |event|
@@ -69,6 +77,20 @@ module Rlint
           :line   => token.line,
           :column => token.column,
           :value  => token.name
+        )
+      end
+    end
+
+    MOD_STATEMENT_EVENTS.each do |event|
+      define_method("on_#{event}") do |statement, value|
+        value = [value] unless value.is_a?(Array)
+
+        return Token::StatementToken.new(
+          :type      => event,
+          :statement => statement,
+          :value     => value,
+          :line      => lineno,
+          :column    => column
         )
       end
     end
@@ -379,24 +401,6 @@ module Rlint
     end
 
     ##
-    # Called when a single line while statement (in the form of `[VALUE] while
-    # [STATEMENT]`) is found.
-    #
-    # @see Rlint::Parser#on_while
-    #
-    def on_while_mod(statement, value)
-      value = [value] unless value.is_a?(Array)
-
-      return Token::StatementToken.new(
-        :type      => :while_mod,
-        :statement => statement,
-        :value     => value,
-        :line      => lineno,
-        :column    => column
-      )
-    end
-
-    ##
     # Called when a for loop is found.
     #
     # @param  [Array] variables Array of variables to create for each iteration.
@@ -448,26 +452,6 @@ module Rlint
         :column    => statement.column,
         :else      => else_statement,
         :elsif     => elsif_statements.reverse
-      )
-    end
-
-    ##
-    # Called when a single line if statement (in the form of `[VALUE] if
-    # [STATEMENT]`) is found.
-    #
-    # @param  [Rlint::Token::Token] statement The statement to evaluate.
-    # @param  [Rlint::Token::Token|Array] value The body if the if statement.
-    # @return [Rlint::Token::StatementToken]
-    #
-    def on_if_mod(statement, value)
-      value = [value] unless value.is_a?(Array)
-
-      return Token::StatementToken.new(
-        :type      => :if_mod,
-        :statement => statement,
-        :value     => value,
-        :line      => lineno,
-        :column    => column
       )
     end
 
@@ -580,7 +564,7 @@ module Rlint
       statement = [statement] unless statement.is_a?(Array)
 
       return Token::BeginRescueToken.new(
-        :type   => :begin_rescue_mod,
+        :type   => :rescue_mod,
         :rescue => statement,
         :value  => value,
         :line   => lineno,
@@ -681,24 +665,6 @@ module Rlint
     end
 
     ##
-    # Called when a single line unless statement (in the form of `[VALUE]
-    # unless [STATEMENT]`) is found.
-    #
-    # @see Rlint::Parser#on_unless
-    #
-    def on_unless_mod(statement, body)
-      body = [body] unless body.is_a?(Array)
-
-      return Token::StatementToken.new(
-        :type      => :unless_mod,
-        :statement => statement,
-        :value     => body,
-        :line      => lineno,
-        :column    => column
-      )
-    end
-
-    ##
     # Called when an until statement is found.
     #
     # @see Rlint::Parser#on_unless
@@ -706,24 +672,6 @@ module Rlint
     def on_until(statement, body)
       return Token::StatementToken.new(
         :type      => :until,
-        :statement => statement,
-        :value     => body,
-        :line      => lineno,
-        :column    => column
-      )
-    end
-
-    ##
-    # Called when a single line unless statement (in the form of `[VALUE] until
-    # [STATEMENT]`) is found.
-    #
-    # @see Rlint::Parser#on_until
-    #
-    def on_until_mod(statement, body)
-      body = [body] unless body.is_a?(Array)
-
-      return Token::StatementToken.new(
-        :type      => :until_mod,
         :statement => statement,
         :value     => body,
         :line      => lineno,

@@ -389,7 +389,7 @@ end
     token = Rlint::Parser.new('foo rescue bar').parse[0]
 
     token.class.should == Rlint::Token::BeginRescueToken
-    token.type.should  == :begin_rescue_mod
+    token.type.should  == :rescue_mod
 
     token.rescue.class.should  == Array
     token.rescue.length.should == 1
