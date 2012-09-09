@@ -77,6 +77,22 @@ describe 'Rlint::Parser' do
     val.value[0].value.should == '10'
   end
 
+  it 'Parse a single line while loop' do
+    token = Rlint::Parser.new('foo while bar').parse[0]
+
+    token.class.should == Rlint::Token::StatementToken
+    token.type.should  == :while_mod
+
+    token.statement.class.should == Rlint::Token::MethodToken
+    token.statement.name.should  == 'bar'
+
+    token.value.class.should  == Array
+    token.value.length.should == 1
+
+    token.value[0].class.should == Rlint::Token::MethodToken
+    token.value[0].name.should  == 'foo'
+  end
+
   it 'Parse a for loop' do
     code = <<-CODE
 for key, value in {:name => 'Ruby'}

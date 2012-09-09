@@ -379,6 +379,24 @@ module Rlint
     end
 
     ##
+    # Called when a single line while statement (in the form of `[VALUE] while
+    # [STATEMENT]`) is found.
+    #
+    # @see Rlint::Parser#on_while
+    #
+    def on_while_mod(statement, value)
+      value = [value] unless value.is_a?(Array)
+
+      return Token::StatementToken.new(
+        :type      => :while_mod,
+        :statement => statement,
+        :value     => value,
+        :line      => lineno,
+        :column    => column
+      )
+    end
+
+    ##
     # Called when a for loop is found.
     #
     # @param  [Array] variables Array of variables to create for each iteration.
