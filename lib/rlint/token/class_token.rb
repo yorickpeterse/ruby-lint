@@ -3,13 +3,11 @@ module Rlint
     ##
     # Token class used for storing data about classes.
     #
-    # @since 2012-07-29
-    #
     class ClassToken < Token
       ##
-      # The parent class, if any.
+      # The name of the parent class, if specified.
       #
-      # @since 2012-07-29
+      # @return [String]
       #
       attr_accessor :parent
     end # ClassToken

@@ -18,7 +18,9 @@ module Rlint
       :blockarg,
       :rest_param,
       :arg_paren,
-      :block_var
+      :block_var,
+      :const_ref,
+      :top_const_ref
     ]
 
     ##
@@ -51,6 +53,13 @@ module Rlint
     # @return [Array]
     #
     METHOD_VISIBILITY = ['public', 'protected', 'private']
+
+    ##
+    # Symbol containing the default method visibility.
+    #
+    # @return [Symbol]
+    #
+    DEFAULT_VISIBILITY = :public
 
     # Return an Rlint::Token::Token instance for each scanner event instead of
     # an array with multiple indexes.
@@ -118,7 +127,7 @@ module Rlint
     def initialize(*args)
       super
 
-      @visibility = :public
+      @visibility = DEFAULT_VISIBILITY
     end
 
     ##
@@ -418,6 +427,8 @@ module Rlint
     # Called when a for loop is found.
     #
     # @param  [Array] variables Array of variables to create for each iteration.
+    #
+    # pry_binding
     # @param  [Rlint::Token::Token] enumerable The enumerable to iterate.
     # @param  [Array] value The body of the for loop.
     # @return [Rlint::Token::StatementToken]
@@ -709,6 +720,16 @@ module Rlint
     end
 
     ##
+    # Called when a constant path reference is found.
+    #
+    # @param  [Array] segments The path segments.
+    # @return [Array]
+    #
+    def on_const_path_ref(*segments)
+      return segments
+    end
+
+    ##
     # Called when a new method is defined.
     #
     # @param [Rlint::Token::Token] name Token containing details about the
@@ -841,6 +862,51 @@ module Rlint
       method.block = block
 
       return method
+    end
+
+    ##
+    # Called when a class declaration is found.
+    #
+    # @param  [Array|Rlint::Token::Token] name The name of the class.
+    # @param  [Array|NilClass] parent The name of the parent class.
+    # @param  [Array] body The body of the class.
+    # @return [Rlint::Token::ClassToken]
+    #
+    def on_class(name, parent, body)
+      line = lineno
+      col  = column
+
+      name_segments   = []
+      parent_segments = []
+
+      # Extract the name segments.
+      if name.is_a?(Rlint::Token::Token)
+        name_segments << name.name
+        line          = name.line
+        col           = name.column
+      elsif name.is_a?(Array)
+        name_segments = name.map { |t| t.name }
+        line          = name[0].line
+        col           = name[0].column
+      end
+
+      # Extract the name segments of the parent class.
+      if parent.is_a?(Rlint::Token::Token)
+        parent_segments << parent.name
+      elsif parent.is_a?(Array)
+        parent_segments = parent.map { |t| t.name }
+      end
+
+      @visibility = DEFAULT_VISIBILITY
+
+      return Token::ClassToken.new(
+        :name   => name_segments,
+        :parent => parent_segments,
+        :type   => :class,
+        :value  => (body || []).select { |t| !t.nil? },
+        :line   => line,
+        :column => col
+      )
     end
 
     ##
