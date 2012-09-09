@@ -6,6 +6,7 @@ Rlint becomes even remotely useful.
 ## Parser
 
 * single line statements (`foo rescue bar`, `foo = 10 if bar`, etc)
+  * while
 * other syntax elements as I bump into them
 
 ## Analyzing

@@ -681,6 +681,39 @@ module Rlint
     end
 
     ##
+    # Called when an until statement is found.
+    #
+    # @see Rlint::Parser#on_unless
+    #
+    def on_until(statement, body)
+      return Token::StatementToken.new(
+        :type      => :until,
+        :statement => statement,
+        :value     => body,
+        :line      => lineno,
+        :column    => column
+      )
+    end
+
+    ##
+    # Called when a single line unless statement (in the form of `[VALUE] until
+    # [STATEMENT]`) is found.
+    #
+    # @see Rlint::Parser#on_until
+    #
+    def on_until_mod(statement, body)
+      body = [body] unless body.is_a?(Array)
+
+      return Token::StatementToken.new(
+        :type      => :until_mod,
+        :statement => statement,
+        :value     => body,
+        :line      => lineno,
+        :column    => column
+      )
+    end
+
+    ##
     # Called when a variable is referenced.
     #
     # @param  [Rlint::Token::Token] variable The variable that was referenced.

@@ -426,4 +426,52 @@ end
     token.value[0].class.should == Rlint::Token::MethodToken
     token.value[0].name.should  == 'foo'
   end
+
+  it 'Parse a until statement' do
+    code = <<-CODE
+until foo == bar
+  puts 'foo'
+end
+    CODE
+
+    token = Rlint::Parser.new(code).parse[0]
+
+    token.class.should == Rlint::Token::StatementToken
+    token.type.should  == :until
+
+    token.statement.class.should == Rlint::Token::Token
+    token.statement.type.should  == :binary
+
+    token.statement.value.class.should  == Array
+    token.statement.value.length.should == 3
+
+    left, op, right = token.statement.value
+
+    left.class.should == Rlint::Token::MethodToken
+    left.name.should  == 'foo'
+
+    op.should == :==
+
+    right.class.should == Rlint::Token::MethodToken
+    right.name.should  == 'bar'
+
+    token.value.class.should  == Array
+    token.value.length.should == 1
+  end
+
+  it 'Parse a single line until statement' do
+    token = Rlint::Parser.new('foo until bar').parse[0]
+
+    token.class.should == Rlint::Token::StatementToken
+    token.type.should  == :until_mod
+
+    token.statement.class.should == Rlint::Token::MethodToken
+    token.statement.name.should  == 'bar'
+
+    token.value.class.should  == Array
+    token.value.length.should == 1
+
+    token.value[0].class.should == Rlint::Token::MethodToken
+    token.value[0].name.should  == 'foo'
+  end
 end
