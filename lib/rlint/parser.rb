@@ -44,6 +44,14 @@ module Rlint
     #
     MOD_STATEMENT_EVENTS = [:while_mod, :if_mod, :unless_mod, :until_mod]
 
+    ##
+    # Array containing the three method calls that set the visibility of a
+    # method.
+    #
+    # @return [Array]
+    #
+    METHOD_VISIBILITY = ['public', 'protected', 'private']
+
     # Return an Rlint::Token::Token instance for each scanner event instead of
     # an array with multiple indexes.
     SCANNER_EVENTS.each do |event|
@@ -72,6 +80,12 @@ module Rlint
 
     RETURN_METHOD_EVENTS.each do |event|
       define_method("on_#{event}") do |token|
+        if METHOD_VISIBILITY.include?(token.name)
+          @visibility = token.name.to_sym
+
+          return nil
+        end
+
         return Token::MethodToken.new(
           :name   => token.name,
           :line   => token.line,

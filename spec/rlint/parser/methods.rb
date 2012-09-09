@@ -105,6 +105,25 @@ end
     token.parameters.optional.length.should == 1
   end
 
+  it 'Parse a private method definition' do
+    code = <<-CODE
+private
+
+def example
+  return 10
+end
+    CODE
+
+    token = Rlint::Parser.new(code).parse[1]
+
+    token.class.should      == Rlint::Token::MethodDefinitionToken
+    token.name.should       == 'example'
+    token.visibility.should == :private
+
+    token.value.class.should  == Array
+    token.value.length.should == 1
+  end
+
   it 'Parse a method call' do
     token = Rlint::Parser.new('puts').parse[0]
 
