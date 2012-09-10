@@ -5,7 +5,6 @@ unless $:.include?(File.expand_path('../', __FILE__))
 end
 
 require 'rlint/parser'
-
 require 'rlint/token/token'
 require 'rlint/token/variable_token'
 require 'rlint/token/statement_token'
@@ -18,8 +17,8 @@ require 'rlint/token/assignment_token'
 require 'rlint/token/case_token'
 require 'rlint/token/regexp_token'
 require 'rlint/token/class_token'
-
 require 'rlint/parser_error'
+require 'rlint/iterator'
 
 module Rlint
   def self.lint(code, file = nil)

@@ -37,6 +37,15 @@ module Rlint
       # @return [Rlint::Token::BlockToken]
       #
       attr_accessor :block
+
+      ##
+      # @see Rlint::Token#initialize
+      #
+      def initialize(*args)
+        @type = :method
+
+        super
+      end
     end # MethodToken
   end # Token
 end # Rlint

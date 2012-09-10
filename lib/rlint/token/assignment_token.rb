@@ -27,7 +27,8 @@ module Rlint
       def initialize(*args)
         super
 
-        @type = :local_variable if @type == :identifier
+        @type  = :local_variable if @type == :identifier
+        @event = :assignment
       end
     end # AssignmentToken
   end # Token

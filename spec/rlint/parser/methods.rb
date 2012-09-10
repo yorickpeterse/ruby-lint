@@ -9,7 +9,7 @@ describe 'Rlint::Parser' do
     token.column.should     == 4
     token.name.should       == 'number'
     token.visibility.should == :public
-    token.type.should       == :instance_method
+    token.type.should       == :method_definition
 
     token.parameters.class.should == Rlint::Token::ParametersToken
 

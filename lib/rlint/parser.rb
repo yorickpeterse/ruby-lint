@@ -765,7 +765,6 @@ module Rlint
         :name       => name.value,
         :line       => name.line,
         :column     => name.column,
-        :type       => :instance_method,
         :parameters => params,
         :visibility => @visibility,
         :value      => body.select { |t| !t.nil? }

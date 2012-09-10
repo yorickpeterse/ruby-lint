@@ -80,6 +80,14 @@ module Rlint
       attr_accessor :key
 
       ##
+      # The name of the event to call when iterating over an AST. Set to the
+      # value of {Rlint::Token#type} unless specified otherwise.
+      #
+      # @return [Symbol]
+      #
+      attr_reader :event
+
+      ##
       # Creates a new instance of the token and sets various instance variables
       # based on the specified hash.
       #
@@ -98,6 +106,8 @@ module Rlint
         if TYPE_MAPPING[@type]
           @type = TYPE_MAPPING[@type]
         end
+
+        @event = @type
 
         # Remove NilClass instances from the `value` array, these serve no
         # useful purpose.
