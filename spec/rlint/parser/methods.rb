@@ -222,4 +222,28 @@ end
     token.block.parameters.value.class.should  == Array
     token.block.parameters.value.length.should == 1
   end
+
+  it 'Parse a method call with a bare Hash as a parameter' do
+    token = Rlint::Parser.new('language(:name => "Ruby")').parse[0]
+
+    token.class.should == Rlint::Token::MethodToken
+
+    token.parameters.class.should  == Array
+    token.parameters.length.should == 1
+
+    token.parameters[0].class.should == Rlint::Token::Token
+    token.parameters[0].type.should  == :hash
+  end
+
+  it 'Parse a method call with a bare JSON style Hash as a parameter' do
+    token = Rlint::Parser.new('language(name: "Ruby")').parse[0]
+
+    token.class.should == Rlint::Token::MethodToken
+
+    token.parameters.class.should  == Array
+    token.parameters.length.should == 1
+
+    token.parameters[0].class.should == Rlint::Token::Token
+    token.parameters[0].type.should  == :hash
+  end
 end

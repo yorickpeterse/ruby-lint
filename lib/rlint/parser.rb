@@ -229,6 +229,16 @@ module Rlint
     end
 
     ##
+    # Called when a bare Hash is found. A bare Hash is a hash that's declared
+    # without the curly braces.
+    #
+    # @see Rlint::Parser#on_hash
+    #
+    def on_bare_assoc_hash(pairs)
+      return on_hash(pairs)
+    end
+
+    ##
     # Called when a new key/value pair of a Hash is found.
     #
     # @param  [Rlint::Token::Token] key The key of the pair.
