@@ -920,6 +920,39 @@ module Rlint
     end
 
     ##
+    # Called when a module definition is found.
+    #
+    # @param [Rlint::Token::Token|Array] name The name of the module, either a
+    #  single token class or an array of token classes.
+    # @param [Array|NilClass] body The body of the module.
+    # @return [Rlint::Token::Token]
+    #
+    def on_module(name, body)
+      line          = lineno
+      col           = column
+      name_segments = []
+
+      if name.is_a?(Rlint::Token::Token)
+        line = name.line
+        col  = name.column
+
+        name_segments << name.name
+      elsif name.is_a?(Array)
+        line          = name[0].line
+        col           = name[0].column
+        name_segments = name.map { |t| t.name }
+      end
+
+      return Token::Token.new(
+        :type   => :module,
+        :name   => name_segments,
+        :value  => body,
+        :line   => line,
+        :column => col
+      )
+    end
+
+    ##
     # Called when a method call without parenthesis was found.
     #
     # @see Rlint::Parser#on_method_add_arg
