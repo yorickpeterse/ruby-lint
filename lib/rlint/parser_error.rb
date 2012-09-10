@@ -3,13 +3,10 @@ module Rlint
   # Exception class that's raised when the parser {Rlint::Parser} detects
   # syntax errors.
   #
-  # @since 2012-08-05
-  #
   class ParserError < SyntaxError
     ##
     # The line number on which the error occured.
     #
-    # @since  2012-08-05
     # @return [Fixnum|Bignum]
     #
     attr_reader :line
@@ -17,7 +14,6 @@ module Rlint
     ##
     # The column on which the error occured.
     #
-    # @since  2012-08-05
     # @return [Fixnum|Bignum]
     #
     attr_reader :column
@@ -25,7 +21,6 @@ module Rlint
     ##
     # The name of the file in which the error occured.
     #
-    # @since  2012-08-05
     # @return [String]
     #
     attr_reader :file
@@ -33,7 +28,6 @@ module Rlint
     ##
     # Creates a new instance of the error class.
     #
-    # @since 2012-08-05
     # @param [String] message The error message.
     # @param [Fixnum|Bignum] line The line of the error.
     # @param [Fixnum|Bignum] column The column of the error.

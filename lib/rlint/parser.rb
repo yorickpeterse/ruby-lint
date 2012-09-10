@@ -124,10 +124,21 @@ module Rlint
     #
     # @see Ripper::SexpBuilderPP#initialize
     #
-    def initialize(*args)
+    def initialize(code, file = '(rlint)', line = 1)
       super
 
+      @file       = file
       @visibility = DEFAULT_VISIBILITY
+    end
+
+    ##
+    # Called when a parser error was encountered.
+    #
+    # @param [String] message The error message.
+    # @raise [Rlint::ParserError]
+    #
+    def on_parse_error(message)
+      raise ParserError.new(message, lineno, column, @file)
     end
 
     ##
