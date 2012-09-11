@@ -20,6 +20,7 @@ require 'rlint/token/class_token'
 require 'rlint/parser_error'
 require 'rlint/iterator'
 require 'rlint/report'
+require 'rlint/scope'
 require 'rlint/formatter/text'
 
 module Rlint
