@@ -18,7 +18,7 @@ module Rlint
 
     def iterate(nodes, file = '(rlint)')
       nodes.each do |node|
-        next if node.nil?
+        next unless node.is_a?(Rlint::Token::Token)
 
         callback_name = 'on_' + node.event.to_s
 
@@ -31,6 +31,12 @@ module Rlint
         # Iterate over all the child nodes.
         if node.value and node.value.respond_to?(:each)
           iterate(node.value, file)
+        end
+
+        # Loop through method parameters.
+        if node.respond_to?(:parameters) \
+        and node.parameters.respond_to?(:each)
+          iterate(node.parameters, file)
         end
       end
     end
