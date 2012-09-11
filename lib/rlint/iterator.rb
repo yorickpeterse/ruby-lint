@@ -5,15 +5,18 @@ module Rlint
   # it finds.
   #
   class Iterator
+    ##
+    # Array containing a set of instance specific callback objects.
+    #
+    # @return [Array]
+    #
     attr_reader :callbacks
 
-    def initialize(ast, file = '(rlint)')
-      @ast       = ast
-      @file      = file
+    def initialize
       @callbacks = []
     end
 
-    def iterate(nodes = @ast)
+    def iterate(nodes, file = '(rlint)')
       nodes.each do |node|
         next if node.nil?
 
@@ -21,19 +24,19 @@ module Rlint
 
         @callbacks.each do |obj|
           if obj.respond_to?(callback_name)
-            obj.send(callback_name, node)
+            obj.send(callback_name, node, file)
           end
         end
 
         # Iterate over all the child nodes.
         if node.value and node.value.respond_to?(:each)
-          iterate(node.value)
+          iterate(node.value, file)
         end
       end
     end
 
     def bind(callback_class)
-      @callbacks << callback_class.new(@file)
+      @callbacks << callback_class.new
     end
   end # Iterator
 end # Rlint
