@@ -4,7 +4,12 @@ module Rlint
   # list of defined constants.
   #
   class Scope
-    LOOKUP_PARENT = [:instance, :class, :global, :method]
+    LOOKUP_PARENT = [
+      :instance_variable,
+      :class_variable,
+      :global_variable,
+      :method
+    ]
 
     attr_reader :parent
     attr_reader :symbols
@@ -12,11 +17,11 @@ module Rlint
     def initialize(parent = nil)
       @parent  = parent
       @symbols = {
-        :local    => {},
-        :instance => {},
-        :class    => {},
-        :global   => {},
-        :method   => {}
+        :local_variable    => {},
+        :instance_variable => {},
+        :class_variable    => {},
+        :global_variable   => {},
+        :method            => {}
       }
     end
 
