@@ -19,6 +19,7 @@ require 'rlint/token/regexp_token'
 require 'rlint/token/class_token'
 require 'rlint/parser_error'
 require 'rlint/iterator'
+require 'rlint/report'
 
 module Rlint
   def self.lint(code, file = nil)
