@@ -1,104 +1,81 @@
 require File.expand_path('../../helper', __FILE__)
 
 describe 'Rlint::Iterator' do
-  it 'Iterate over a simple AST using blocks for callbacks' do
+  it 'Iterate over a simple AST' do
     code = <<-CODE
 number = 10
 number
     CODE
 
-    tokens     = Rlint::Parser.new(code).parse
-    iterator   = Rlint::Iterator.new(tokens)
-    assigned   = false
-    referenced = false
-    files      = []
+    tokens   = Rlint::Parser.new(code).parse
+    iterator = Rlint::Iterator.new(tokens)
 
-    iterator.bind(:assignment) do |token, file|
-      assigned = true
-      files    << file
+    callback = Class.new do
+      attr_reader :assigned
+      attr_reader :referenced
+      attr_reader :file
+
+      def initialize(file)
+        @file = file
+      end
+
+      def on_assignment(token)
+        @assigned = true
+      end
+
+      def on_local_variable(token)
+        @referenced = true
+      end
     end
 
-    iterator.bind(:local_variable) do |token, file|
-      referenced = true
-      files      << file
-    end
+    iterator.bind(callback)
 
     iterator.iterate
 
-    assigned.should   == true
-    referenced.should == true
-    files.should      == ['(rlint)', '(rlint)']
+    iterator.callbacks[0].assigned.should   == true
+    iterator.callbacks[0].referenced.should == true
+    iterator.callbacks[0].file.should       == '(rlint)'
   end
 
-  it 'Iterate over a multi dimensional AST using blocks for callbacks' do
+  it 'Iterate over a multi dimensional AST' do
     code = <<-CODE
 class Foo
-  def foo
-    return 10
+  def initialize
+    @number = 10
   end
 end
     CODE
 
-    tokens       = Rlint::Parser.new(code).parse
-    iterator     = Rlint::Iterator.new(tokens)
-    class_name   = nil
-    method_name  = nil
-    return_value = nil
-
-    iterator.bind(:class) do |token|
-      class_name = token.name[0]
-    end
-
-    iterator.bind(:method_definition) do |token|
-      method_name = token.name
-    end
-
-    iterator.bind(:return) do |token|
-      return_value = token.value[0].value
-    end
-
-    iterator.iterate
-
-    class_name.should   == 'Foo'
-    method_name.should  == 'foo'
-    return_value.should == '10'
-  end
-
-  it 'Bind a class using a global callback method to an iterator event' do
-    tokens   = Rlint::Parser.new('number = 10').parse
+    tokens   = Rlint::Parser.new(code).parse
     iterator = Rlint::Iterator.new(tokens)
-
-    callback_class = Class.new do
+    callback = Class.new do
+      attr_reader :class_name
+      attr_reader :method_name
       attr_reader :assigned
 
-      def call(token, file)
+      def initialize(file)
+        @file = file
+      end
+
+      def on_class(token)
+        @class_name = token.name[0]
+      end
+
+      def on_method_definition(token)
+        @method_name = token.name
+      end
+
+      def on_assignment(token)
         @assigned = true
       end
     end
 
-    iterator.bind_class(:assignment, callback_class)
+    iterator.bind(callback)
 
     iterator.iterate
 
-    iterator.callbacks[:assignment][0].assigned.should == true
-  end
-
-  it 'Bind a class using a specific callback method to an iterator event' do
-    tokens   = Rlint::Parser.new('number = 10').parse
-    iterator = Rlint::Iterator.new(tokens)
-
-    callback_class = Class.new do
-      attr_reader :assigned
-
-      def on_assignment(token, file)
-        @assigned = true
-      end
-    end
-
-    iterator.bind_class(:assignment, callback_class)
-
-    iterator.iterate
-
-    iterator.callbacks[:assignment][0].assigned.should == true
+    iterator.callbacks[0].class_name.should  == 'Foo'
+    iterator.callbacks[0].method_name.should == 'initialize'
+    iterator.callbacks[0].assigned.should    == true
   end
 end
