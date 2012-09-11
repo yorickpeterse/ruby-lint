@@ -14,6 +14,8 @@ Rlint becomes even remotely useful.
 
 ## Analyzing
 
+* get rid of the second (file name) parameter for callback methods, it's
+  annoying as hell and isn't always as useful.
 * reporting errors, warnings and other types of messages
 * formatting errors as plain text, JSON, etc
 * class for storing scope related data (such as local variables)
