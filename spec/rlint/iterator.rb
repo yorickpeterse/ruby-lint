@@ -13,14 +13,14 @@ number
     callback = Class.new do
       attr_reader :assigned
       attr_reader :referenced
-      attr_reader :file
 
-      def on_assignment(token, file)
-        @file     = file
+      def initialize(report); end
+
+      def on_assignment(token)
         @assigned = true
       end
 
-      def on_local_variable(token, file)
+      def on_local_variable(token)
         @referenced = true
       end
     end
@@ -31,7 +31,6 @@ number
 
     iterator.callbacks[0].assigned.should   == true
     iterator.callbacks[0].referenced.should == true
-    iterator.callbacks[0].file.should       == '(rlint)'
   end
 
   it 'Iterate over a multi dimensional AST' do
@@ -50,16 +49,17 @@ end
       attr_reader :method_name
       attr_reader :assigned
 
-      def on_class(token, file)
-        @file       = file
+      def initialize(report); end
+
+      def on_class(token)
         @class_name = token.name[0]
       end
 
-      def on_method_definition(token, file)
+      def on_method_definition(token)
         @method_name = token.name
       end
 
-      def on_assignment(token, file)
+      def on_assignment(token)
         @assigned = true
       end
     end

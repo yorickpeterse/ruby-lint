@@ -12,11 +12,12 @@ module Rlint
     #
     attr_reader :callbacks
 
-    def initialize
+    def initialize(report = nil)
       @callbacks = []
+      @report    = nil
     end
 
-    def iterate(nodes, file = '(rlint)')
+    def iterate(nodes)
       nodes.each do |node|
         next unless node.is_a?(Rlint::Token::Token)
 
@@ -24,25 +25,25 @@ module Rlint
 
         @callbacks.each do |obj|
           if obj.respond_to?(callback_name)
-            obj.send(callback_name, node, file)
+            obj.send(callback_name, node)
           end
         end
 
         # Iterate over all the child nodes.
         if node.value and node.value.respond_to?(:each)
-          iterate(node.value, file)
+          iterate(node.value)
         end
 
         # Loop through method parameters.
         if node.respond_to?(:parameters) \
         and node.parameters.respond_to?(:each)
-          iterate(node.parameters, file)
+          iterate(node.parameters)
         end
       end
     end
 
     def bind(callback_class)
-      @callbacks << callback_class.new
+      @callbacks << callback_class.new(@report)
     end
   end # Iterator
 end # Rlint

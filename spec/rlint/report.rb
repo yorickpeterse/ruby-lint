@@ -4,7 +4,7 @@ describe 'Rlint::Report' do
   it 'Add an error message to a report' do
     report = Rlint::Report.new
 
-    report.add(:error, 'test error', 1, 1, '(rlint)')
+    report.add(:error, 'test error', 1, 1)
 
     report.messages.class.should  == Hash
     report.messages.length.should == 1
@@ -15,13 +15,14 @@ describe 'Rlint::Report' do
     report.messages[:error][0][:message].should == 'test error'
     report.messages[:error][0][:line].should    == 1
     report.messages[:error][0][:column].should  == 1
-    report.messages[:error][0][:file].should    == '(rlint)'
+
+    report.file.should == '(rlint)'
   end
 
   it 'Ignore disabled reporting levels' do
-    report = Rlint::Report.new([:error])
+    report = Rlint::Report.new('(rlint)', [:error])
 
-    report.add(:info, 'test info', 1, 1, '(rlint)')
+    report.add(:info, 'test info', 1, 1)
 
     report.messages.class.should       == Hash
     report.messages[:info].nil?.should == true

@@ -5,24 +5,13 @@ module Rlint
     #
     class Text
       def format(report)
-        lines    = []
-        per_file = {}
+        lines = []
 
-        # Organize the messages per file.
-        report.each do |level, messages|
+        report.messages.sort.each do |level, messages|
           messages.each do |message|
-            message[:level]            = level
-            per_file[message[:file]] ||= []
-            per_file[message[:file]] << message
-          end
-        end
-
-        # Sort the messages per file and level and create each line to output.
-        per_file.sort.each do |file, messages|
-          messages.sort { |l, r| l[:level] <=> r[:level] }.each do |message|
             lines << '%s: %s: line %s, column %s: %s' % [
-              message[:file],
-              message[:level],
+              report.file,
+              level,
               message[:line],
               message[:column],
               message[:message]

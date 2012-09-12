@@ -7,13 +7,15 @@ module Rlint
   class Report
     attr_reader :messages
     attr_reader :levels
+    attr_reader :file
 
-    def initialize(levels = [:error, :warning, :info])
+    def initialize(file = '(rlint)', levels = [:error, :warning, :info])
+      @file      = file
       @levels    = levels
       @messages  = {}
     end
 
-    def add(level, message, line, column, file)
+    def add(level, message, line, column)
       level = level.to_sym
 
       return unless @levels.include?(level)
@@ -23,8 +25,7 @@ module Rlint
       @messages[level] << {
         :message => message,
         :line    => line,
-        :column  => column,
-        :file    => file
+        :column  => column
       }
     end
   end # Report
