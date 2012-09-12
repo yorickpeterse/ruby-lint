@@ -21,11 +21,12 @@ module Rlint
         :instance_variable => {},
         :class_variable    => {},
         :global_variable   => {},
-        :method            => {}
+        :method            => {},
+        :class             => {}
       }
     end
 
-    def add(type, name, value)
+    def add(type, name, value = nil)
       @symbols[type.to_sym][name] = value
     end
 

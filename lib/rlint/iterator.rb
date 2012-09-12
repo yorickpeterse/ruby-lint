@@ -21,7 +21,9 @@ module Rlint
       nodes.each do |node|
         next unless node.is_a?(Rlint::Token::Token)
 
-        callback_name = 'on_' + node.event.to_s
+        event_name     = node.event.to_s
+        callback_name  = 'on_' + event_name
+        after_callback = 'after_' + event_name
 
         @callbacks.each do |obj|
           if obj.respond_to?(callback_name)
@@ -38,6 +40,12 @@ module Rlint
         if node.respond_to?(:parameters) \
         and node.parameters.respond_to?(:each)
           iterate(node.parameters)
+        end
+
+        @callbacks.each do |obj|
+          if obj.respond_to?(after_callback)
+            obj.send(after_callback, node)
+          end
         end
       end
     end

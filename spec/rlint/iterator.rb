@@ -72,4 +72,35 @@ end
     iterator.callbacks[0].method_name.should == 'initialize'
     iterator.callbacks[0].assigned.should    == true
   end
+
+  it 'Call an event after iterating over a node' do
+    code = <<-CODE
+def some_method
+  return 10
+end
+    CODE
+
+    tokens   = Rlint::Parser.new(code).parse
+    iterator = Rlint::Iterator.new
+    callback = Class.new do
+      attr_reader :before
+      attr_reader :after
+
+      def initialize(report); end
+
+      def on_method_definition(token)
+        @before = token.name
+      end
+
+      def after_method_definition(token)
+        @after = token.name
+      end
+    end
+
+    iterator.bind(callback)
+    iterator.iterate(tokens)
+
+    iterator.callbacks[0].before.should == 'some_method'
+    iterator.callbacks[0].after.should  == 'some_method'
+  end
 end
