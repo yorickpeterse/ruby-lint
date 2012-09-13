@@ -10,11 +10,9 @@ number
     tokens   = Rlint::Parser.new(code).parse
     iterator = Rlint::Iterator.new
 
-    callback = Class.new do
+    callback = Class.new(Rlint::Callback) do
       attr_reader :assigned
       attr_reader :referenced
-
-      def initialize(report); end
 
       def on_assignment(token)
         @assigned = true
@@ -44,12 +42,10 @@ end
 
     tokens   = Rlint::Parser.new(code).parse
     iterator = Rlint::Iterator.new
-    callback = Class.new do
+    callback = Class.new(Rlint::Callback) do
       attr_reader :class_name
       attr_reader :method_name
       attr_reader :assigned
-
-      def initialize(report); end
 
       def on_class(token)
         @class_name = token.name[0]
@@ -82,11 +78,9 @@ end
 
     tokens   = Rlint::Parser.new(code).parse
     iterator = Rlint::Iterator.new
-    callback = Class.new do
+    callback = Class.new(Rlint::Callback) do
       attr_reader :before
       attr_reader :after
-
-      def initialize(report); end
 
       def on_method_definition(token)
         @before = token.name
