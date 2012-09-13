@@ -14,6 +14,9 @@ Rlint becomes even remotely useful.
 
 ## Analyzing
 
+* introduce the pedantic option: info, error or warning messages that are only
+  displayed when this option is enabled. Useful for messages a lot of Rubyists
+  will disagree with.
 * various classes that are capable of analyzing Ruby code
   * defined classes, methods, variables and the likes
   * incorrect coding styles such as camelCasing for method names
