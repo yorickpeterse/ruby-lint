@@ -12,6 +12,7 @@ describe 'Rlint::Parser' do
 
     token.line.should   == 1
     token.column.should == 8
+    token.code.should   == '[10, 20]'
 
     token.value[0].class.should == Rlint::Token::Token
     token.value[0].type.should  == :integer
@@ -33,6 +34,7 @@ describe 'Rlint::Parser' do
 
     token.line.should   == 1
     token.column.should == 9
+    token.code.should   == '%w{10 20}'
 
     token.value[0].class.should == Rlint::Token::Token
     token.value[0].type.should  == :string
@@ -54,6 +56,7 @@ describe 'Rlint::Parser' do
 
     token.line.should   == 1
     token.column.should == 9
+    token.code.should   == '%W{10 20}'
 
     token.value[0].class.should == Rlint::Token::Token
     token.value[0].type.should  == :string
@@ -70,6 +73,7 @@ describe 'Rlint::Parser' do
     token.class.should  == Rlint::Token::Token
     token.line.should   == 1
     token.column.should == 4
+    token.code.should   == '[10][0]'
 
     token.key.class.should  == Array
     token.key.length.should == 1
@@ -86,6 +90,7 @@ describe 'Rlint::Parser' do
     token.line.should   == 2
     token.column.should == 0
     token.name.should   == 'numbers'
+    token.code.should   == 'numbers[0]'
 
     token.key.class.should  == Array
     token.key.length.should == 1
@@ -102,6 +107,7 @@ describe 'Rlint::Parser' do
     token.line.should   == 2
     token.column.should == 0
     token.name.should   == 'numbers'
+    token.code.should   == 'numbers[0,1]'
 
     token.key.class.should  == Array
     token.key.length.should == 2
@@ -116,9 +122,13 @@ describe 'Rlint::Parser' do
   end
 
   it 'Parse the assignment of a value to an array index' do
-    token = Rlint::Parser.new('numbers = []; numbers[0] = 10').parse[1]
+    token = Rlint::Parser.new("numbers = []\nnumbers[0] = 10").parse[1]
 
     token.class.should == Rlint::Token::AssignmentToken
+
+    token.line.should   == 2
+    token.column.should == 12
+    token.code.should   == 'numbers[0] = 10'
 
     token.value.class.should == Rlint::Token::Token
     token.value.type.should  == :integer

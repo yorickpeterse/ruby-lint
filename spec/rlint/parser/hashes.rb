@@ -2,11 +2,13 @@ require File.expand_path('../../../helper', __FILE__)
 
 describe 'Rlint::Parser' do
   it 'Parse a Hash' do
-    token = Rlint::Parser.new('{"name" => "Ruby", "Foo" => "Bar"}').parse[0]
+    input = '{"name" => "Ruby", "Foo" => "Bar"}'
+    token = Rlint::Parser.new(input).parse[0]
 
     token.class.should  == Rlint::Token::Token
     token.line.should   == 1
     token.column.should == 2
+    token.code.should   == input
 
     token.value.class.should  == Array
     token.value.length.should == 2
@@ -32,11 +34,13 @@ describe 'Rlint::Parser' do
   end
 
   it 'Parse a Hash using symbols' do
-    token = Rlint::Parser.new('{:name => "Ruby", :Foo => "Bar"}').parse[0]
+    input = '{:name => "Ruby", :Foo => "Bar"}'
+    token = Rlint::Parser.new(input).parse[0]
 
     token.class.should  == Rlint::Token::Token
     token.line.should   == 1
     token.column.should == 2
+    token.code.should   == input
 
     token.value.class.should  == Array
     token.value.length.should == 2
@@ -62,11 +66,13 @@ describe 'Rlint::Parser' do
   end
 
   it 'Parse a Hash using symbols and the JSON syntax' do
-    token = Rlint::Parser.new('{name: "Ruby"}').parse[0]
+    input = '{name: "Ruby"}'
+    token = Rlint::Parser.new(input).parse[0]
 
     token.class.should  == Rlint::Token::Token
     token.line.should   == 1
     token.column.should == 1
+    token.code.should   == input
 
     token.value.class.should  == Array
     token.value.length.should == 1
@@ -82,12 +88,14 @@ describe 'Rlint::Parser' do
   end
 
   it 'Parse a Hash key reference' do
-    token = Rlint::Parser.new('{:name => "Ruby"}[:name]').parse[0]
+    input = '{:name => "Ruby"}[:name]'
+    token = Rlint::Parser.new(input).parse[0]
 
     token.class.should  == Rlint::Token::Token
     token.type.should   == :hash
     token.line.should   == 1
     token.column.should == 2
+    token.code.should   == input
 
     token.key.class.should  == Array
     token.key.length.should == 1
@@ -114,6 +122,9 @@ describe 'Rlint::Parser' do
     token = Rlint::Parser.new("hash = {:name => 'Ruby'}\nhash[:name]").parse[1]
 
     token.class.should  == Rlint::Token::VariableToken
+    token.line.should   == 2
+    token.column.should == 0
+    token.code.should   == 'hash[:name]'
 
     token.key.class.should  == Array
     token.key.length.should == 1

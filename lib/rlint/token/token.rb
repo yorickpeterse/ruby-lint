@@ -72,6 +72,13 @@ module Rlint
       attr_accessor :column
 
       ##
+      # The code of the current line.
+      #
+      # @return [String]
+      #
+      attr_accessor :code
+
+      ##
       # The key, index or object member that was accessed from the token.
       #
       # @since  2012-08-24

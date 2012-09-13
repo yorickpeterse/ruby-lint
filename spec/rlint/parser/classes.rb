@@ -9,6 +9,7 @@ describe 'Rlint::Parser' do
     token.type.should   == :class
     token.line.should   == 1
     token.column.should == 6
+    token.code.should   == 'class Foo; end'
 
     token.value.class.should  == Array
     token.value.length.should == 0
@@ -31,6 +32,7 @@ describe 'Rlint::Parser' do
     token.type.should   == :class
     token.line.should   == 1
     token.column.should == 6
+    token.code.should   == 'class Foo < Bar; end'
 
     token.value.class.should  == Array
     token.value.length.should == 0
@@ -46,6 +48,7 @@ describe 'Rlint::Parser' do
     token.parent.should == ['A', 'B']
     token.line.should   == 1
     token.column.should == 6
+    token.code.should   == 'class Foo::Bar < A::B; end'
   end
 
   it 'Parse a top level class declaration with multiple name segments' do
@@ -56,6 +59,7 @@ describe 'Rlint::Parser' do
     token.name.should   == ['Foo', 'Bar']
     token.line.should   == 1
     token.column.should == 8
+    token.code.should   == 'class ::Foo::Bar; end'
   end
 
   it 'Parse the assignments of method visibilities' do
@@ -83,12 +87,18 @@ end
 
     first, pub_method, second = Rlint::Parser.new(code).parse
 
-    first.class.should == Rlint::Token::ClassToken
-    first.name.should  == ['First']
+    first.class.should  == Rlint::Token::ClassToken
+    first.name.should   == ['First']
+    first.line.should   == 1
+    first.column.should == 6
+    first.code.should   == 'class First'
 
     first.value[0].class.should      == Rlint::Token::MethodDefinitionToken
     first.value[0].name.should       == 'private_method'
     first.value[0].visibility.should == :private
+    first.value[0].line.should       == 4
+    first.value[0].column.should     == 6
+    first.value[0].code.should       == '  def private_method'
 
     pub_method.class.should      == Rlint::Token::MethodDefinitionToken
     pub_method.name.should       == 'public_method'

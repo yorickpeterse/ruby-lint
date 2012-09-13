@@ -70,7 +70,8 @@ module Rlint
           :type   => event,
           :value  => token,
           :line   => lineno,
-          :column => column
+          :column => column,
+          :code   => code(lineno)
         )
       end
     end
@@ -99,7 +100,8 @@ module Rlint
           :name   => token.name,
           :line   => token.line,
           :column => token.column,
-          :value  => token.name
+          :value  => token.name,
+          :code   => code(token.line)
         )
       end
     end
@@ -113,7 +115,8 @@ module Rlint
           :statement => statement,
           :value     => value,
           :line      => lineno,
-          :column    => column
+          :column    => column,
+          :code      => code(lineno)
         )
       end
     end
@@ -129,6 +132,11 @@ module Rlint
 
       @file       = file
       @visibility = DEFAULT_VISIBILITY
+      @lines      = []
+
+      code.each_line do |code_line|
+        @lines << code_line.chomp
+      end
     end
 
     ##
@@ -185,7 +193,8 @@ module Rlint
         :type   => :array,
         :value  => values.map { |v| v.is_a?(Array) ? v[0] : v },
         :line   => lineno,
-        :column => column
+        :column => column,
+        :code   => code(lineno)
       )
     end
 
@@ -217,7 +226,8 @@ module Rlint
         :receiver => array,
         :line     => lineno,
         :column   => column,
-        :type     => array.type
+        :type     => array.type,
+        :code     => code(lineno)
       )
     end
 
@@ -235,7 +245,8 @@ module Rlint
         :type   => :hash,
         :value  => pairs,
         :line   => lineno,
-        :column => col
+        :column => col,
+        :code   => code(lineno)
       )
     end
 
@@ -277,7 +288,8 @@ module Rlint
         :value      => body,
         :line       => lineno,
         :column     => column,
-        :type       => :brace_block
+        :type       => :brace_block,
+        :code       => code(lineno)
       )
     end
 
@@ -317,7 +329,8 @@ module Rlint
         :type   => :range,
         :line   => start.line,
         :column => start.line,
-        :value  => [start, stop]
+        :value  => [start, stop],
+        :code   => code(start.line)
       )
     end
 
@@ -341,7 +354,8 @@ module Rlint
         :value  => regexp.value,
         :line   => regexp.line,
         :column => regexp.column,
-        :modes  => modes_array
+        :modes  => modes_array,
+        :code   => code(lineno)
       )
     end
 
@@ -364,7 +378,8 @@ module Rlint
         :column => variable.column,
         :name   => variable.value,
         :type   => variable.type,
-        :value  => value
+        :value  => value,
+        :code   => code(variable.line)
       )
     end
 
@@ -386,7 +401,8 @@ module Rlint
         :column   => attribute.column,
         :type     => attribute.type,
         :receiver => receiver,
-        :operator => operator
+        :operator => operator,
+        :code     => code(attribute.line)
       )
     end
 
@@ -403,7 +419,8 @@ module Rlint
         :type   => :binary,
         :value  => [left, op, right],
         :line   => lineno,
-        :column => column
+        :column => column,
+        :code   => code(lineno)
       )
     end
 
@@ -421,7 +438,8 @@ module Rlint
         :type   => :return,
         :line   => lineno,
         :column => col,
-        :value  => values
+        :value  => values,
+        :code   => code(lineno)
       )
     end
 
@@ -440,7 +458,8 @@ module Rlint
         :statement => statement,
         :value     => value,
         :line      => statement.line,
-        :column    => col
+        :column    => col,
+        :code      => code(lineno)
       )
     end
 
@@ -460,7 +479,8 @@ module Rlint
         :statement => [variables, enumerable],
         :value     => value,
         :column    => column,
-        :line      => lineno
+        :line      => lineno,
+        :code      => code(lineno)
       )
     end
 
@@ -497,7 +517,8 @@ module Rlint
         :line      => statement.line,
         :column    => statement.column,
         :else      => else_statement,
-        :elsif     => elsif_statements.reverse
+        :elsif     => elsif_statements.reverse,
+        :code      => code(statement.line)
       )
     end
 
@@ -512,7 +533,8 @@ module Rlint
         :type   => :else,
         :value  => value,
         :column => column,
-        :line   => lineno
+        :line   => lineno,
+        :code   => code(lineno)
       )
     end
 
@@ -531,7 +553,8 @@ module Rlint
         :statement => statement,
         :value     => value,
         :line      => lineno,
-        :column    => column
+        :column    => column,
+        :code      => code(lineno)
       )
 
       unless list.is_a?(Array)
@@ -565,7 +588,8 @@ module Rlint
         :ensure => ensure_statement,
         :else   => else_statement,
         :line   => lineno,
-        :column => column
+        :column => column,
+        :code   => code(lineno)
       )
     end
 
@@ -585,7 +609,8 @@ module Rlint
         :statement => [exceptions, variable],
         :line      => lineno,
         :column    => column,
-        :value     => value
+        :value     => value,
+        :code      => code(lineno)
       )
 
       unless list.is_a?(Array)
@@ -614,7 +639,8 @@ module Rlint
         :rescue => statement,
         :value  => value,
         :line   => lineno,
-        :column => column
+        :column => column,
+        :code   => code(lineno)
       )
     end
 
@@ -629,7 +655,8 @@ module Rlint
         :type   => :ensure,
         :value  => value,
         :line   => lineno,
-        :column => column
+        :column => column,
+        :code   => code(lineno)
       )
     end
 
@@ -662,7 +689,8 @@ module Rlint
         :else      => else_statement,
         :when      => when_statements.reverse,
         :line      => statement.line,
-        :column    => statement.column
+        :column    => statement.column,
+        :code      => code(statement.line)
       )
     end
 
@@ -680,7 +708,8 @@ module Rlint
         :statement => statement,
         :value     => body,
         :line      => lineno,
-        :column    => column
+        :column    => column,
+        :code      => code(lineno)
       )
 
       unless list.is_a?(Array)
@@ -706,7 +735,8 @@ module Rlint
         :else      => else_token,
         :value     => body,
         :line      => lineno,
-        :column    => column
+        :column    => column,
+        :code      => code(lineno)
       )
     end
 
@@ -721,7 +751,8 @@ module Rlint
         :statement => statement,
         :value     => body,
         :line      => lineno,
-        :column    => column
+        :column    => column,
+        :code      => code(lineno)
       )
     end
 
@@ -736,7 +767,8 @@ module Rlint
         :line   => variable.line,
         :column => variable.column,
         :name   => variable.value,
-        :type   => variable.type
+        :type   => variable.type,
+        :code   => code(variable.line)
       )
     end
 
@@ -767,7 +799,8 @@ module Rlint
         :column     => name.column,
         :parameters => params,
         :visibility => @visibility,
-        :value      => body.select { |t| !t.nil? }
+        :value      => body.select { |t| !t.nil? },
+        :code       => code(name.line)
       )
     end
 
@@ -824,7 +857,8 @@ module Rlint
               :value  => value,
               :line   => token.line,
               :column => token.column,
-              :type   => token.type
+              :type   => token.type,
+              :code   => code(token.line)
             )
           end
         # Rest and block parameters.
@@ -833,7 +867,8 @@ module Rlint
             :name   => arg.value,
             :line   => arg.line,
             :column => arg.column,
-            :type   => arg.type
+            :type   => arg.type,
+            :code   => code(arg.line)
           )
         end
       end
@@ -865,7 +900,8 @@ module Rlint
         :name       => name.value,
         :parameters => params,
         :line       => name.line,
-        :column     => name.column
+        :column     => name.column,
+        :code       => code(name.line)
       )
     end
 
@@ -925,7 +961,8 @@ module Rlint
         :type   => :class,
         :value  => (body || []).select { |t| !t.nil? },
         :line   => line,
-        :column => col
+        :column => col,
+        :code   => code(line)
       )
     end
 
@@ -958,7 +995,8 @@ module Rlint
         :name   => name_segments,
         :value  => body,
         :line   => line,
-        :column => col
+        :column => col,
+        :code   => code(line)
       )
     end
 
@@ -988,7 +1026,8 @@ module Rlint
         :line     => name.line,
         :column   => name.column,
         :receiver => receiver,
-        :operator => operator
+        :operator => operator,
+        :code     => code(name.line)
       )
     end
 
@@ -1006,8 +1045,21 @@ module Rlint
         :column     => name.column,
         :receiver   => receiver,
         :operator   => operator,
-        :parameters => params
+        :parameters => params,
+        :code       => code(name.line)
       )
+    end
+
+    private
+
+    ##
+    # Returns a string containing the code for the specified line number.
+    #
+    # @param  [Fixnum|Bignum] line The line number.
+    # @return [String]
+    #
+    def code(line)
+      return @lines[line - 1]
     end
   end # Parser
 end # Rlint

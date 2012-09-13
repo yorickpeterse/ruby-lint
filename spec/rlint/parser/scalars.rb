@@ -10,6 +10,7 @@ describe 'Rlint::Parser' do
       token.value.should  == 'hello'
       token.line.should   == 1
       token.column.should == 1
+      token.code.should   == string
     end
   end
 
@@ -21,6 +22,7 @@ describe 'Rlint::Parser' do
     token.value.should  == 'hello'
     token.line.should   == 1
     token.column.should == 1
+    token.code.should   == ':hello'
 
     token = Rlint::Parser.new(':"hello"').parse[0]
 
@@ -29,6 +31,7 @@ describe 'Rlint::Parser' do
     token.value.should  == 'hello'
     token.line.should   == 1
     token.column.should == 2
+    token.code.should   == ':"hello"'
   end
 
   it 'Parse a string using %q{} and %Q{}' do
@@ -40,6 +43,7 @@ describe 'Rlint::Parser' do
       token.value.should  == 'hello'
       token.line.should   == 1
       token.column.should == 3
+      token.code.should   == string
     end
   end
 
@@ -51,6 +55,7 @@ describe 'Rlint::Parser' do
     token.value.should  == '10'
     token.line.should   == 1
     token.column.should == 0
+    token.code.should   == '10'
   end
 
   it 'Parse a Float' do
@@ -61,6 +66,7 @@ describe 'Rlint::Parser' do
     token.value.should  == '10.2'
     token.line.should   == 1
     token.column.should == 0
+    token.code.should   == '10.2'
   end
 
   it 'Parse a boolean' do
@@ -71,6 +77,7 @@ describe 'Rlint::Parser' do
     token.name.should   == 'true'
     token.line.should   == 1
     token.column.should == 0
+    token.code.should   == 'true'
   end
 
   it 'Parse a nil value' do
@@ -81,5 +88,6 @@ describe 'Rlint::Parser' do
     token.name.should   == 'nil'
     token.line.should   == 1
     token.column.should == 0
+    token.code.should   == 'nil'
   end
 end
