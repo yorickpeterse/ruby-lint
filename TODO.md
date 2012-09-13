@@ -14,7 +14,4 @@ Rlint becomes even remotely useful.
 
 ## Analyzing
 
-* reporting errors, warnings and other types of messages
-* formatting errors as plain text, JSON, etc
-* class for storing scope related data (such as local variables)
 * various classes that are capable of analyzing Ruby code
