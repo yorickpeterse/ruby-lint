@@ -24,6 +24,8 @@ require 'rlint/report'
 require 'rlint/scope'
 require 'rlint/formatter/text'
 
+require 'rlint/analyze/coding_style'
+
 module Rlint
   def self.lint(code, file = nil)
     parser = Parser.new(code)

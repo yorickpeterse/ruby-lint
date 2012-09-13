@@ -14,7 +14,7 @@ module Rlint
 
     def initialize(report = nil)
       @callbacks = []
-      @report    = nil
+      @report    = report
     end
 
     def iterate(nodes)
