@@ -15,3 +15,9 @@ Rlint becomes even remotely useful.
 ## Analyzing
 
 * various classes that are capable of analyzing Ruby code
+  * defined classes, methods, variables and the likes
+  * incorrect coding styles such as camelCasing for method names
+  * modifying standard classes such as String, Time, etc
+  * warning for potentially dangerous/confusing operations such as defining
+    global methods and the use of `method_missing()`
+  * shadowing previously defined variables/methods (e.g. in an `#each()` loop)
