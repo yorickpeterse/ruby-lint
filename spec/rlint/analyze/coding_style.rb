@@ -83,4 +83,30 @@ THIS_CONSTANT_NAME_IS_WAY_TOO_LONG = 10
     info[:line].should    == 1
     info[:column].should  == 0
   end
+
+  it 'Check for the use of parenthesis in if statements' do
+    code = <<-CODE
+if ( name == 'Ruby' )
+  puts 'This is some weird code'
+end
+    CODE
+
+    tokens   = Rlint::Parser.new(code).parse
+    report   = Rlint::Report.new
+    iterator = Rlint::Iterator.new(report)
+
+    iterator.bind(Rlint::Analyze::CodingStyle)
+    iterator.iterate(tokens)
+
+    report.messages[:info].class.should  == Array
+    report.messages[:info].length.should == 1
+
+    info = report.messages[:info][0]
+
+    info[:message].should == 'the use of parenthesis for statements ' \
+      'is discouraged'
+
+    info[:line].should   == 1
+    info[:column].should == 1
+  end
 end

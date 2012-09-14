@@ -464,14 +464,14 @@ module Rlint
     # @return [Rlint::Token::StatementToken]
     #
     def on_while(statement, value)
-      source = code(lineno)
+      source = code(statement.line)
       col    = calculate_column(source, 'while')
 
       return Token::StatementToken.new(
         :type      => :while,
         :statement => statement,
         :value     => value,
-        :line      => lineno,
+        :line      => statement.line,
         :column    => col,
         :code      => source
       )
@@ -488,7 +488,7 @@ module Rlint
     # @return [Rlint::Token::StatementToken]
     #
     def on_for(variables, enumerable, value)
-      source = code(lineno)
+      source = code(variables[0].line)
       col    = calculate_column(source, 'for')
 
       return Token::StatementToken.new(
@@ -496,7 +496,7 @@ module Rlint
         :statement => [variables, enumerable],
         :value     => value,
         :column    => col,
-        :line      => lineno,
+        :line      => variables[0].line,
         :code      => source
       )
     end
@@ -512,7 +512,7 @@ module Rlint
     # @return [Rlint::Token::StatementToken]
     #
     def on_if(statement, value, rest)
-      source = code(lineno)
+      source = code(statement.line)
       col    = calculate_column(source, 'if')
 
       else_statement   = nil
@@ -534,7 +534,7 @@ module Rlint
         :type      => :if,
         :statement => statement,
         :value     => value,
-        :line      => lineno,
+        :line      => statement.line,
         :column    => col,
         :else      => else_statement,
         :elsif     => elsif_statements.reverse,
@@ -568,14 +568,14 @@ module Rlint
     # @return [Array]
     #
     def on_elsif(statement, value, list)
-      source = code(lineno)
+      source = code(statement.line)
       col    = calculate_column(source, 'elsif')
 
       token = Token::StatementToken.new(
         :type      => :elsif,
         :statement => statement,
         :value     => value,
-        :line      => lineno,
+        :line      => statement.line,
         :column    => col,
         :code      => source
       )
@@ -716,7 +716,7 @@ module Rlint
         :statement => statement,
         :else      => else_statement,
         :when      => when_statements.reverse,
-        :line      => lineno,
+        :line      => statement.line,
         :column    => col,
         :code      => source
       )
@@ -738,7 +738,7 @@ module Rlint
         :type      => :when,
         :statement => statement,
         :value     => body,
-        :line      => lineno,
+        :line      => statement[0].line,
         :column    => col,
         :code      => source
       )
@@ -784,7 +784,7 @@ module Rlint
         :type      => :until,
         :statement => statement,
         :value     => body,
-        :line      => lineno,
+        :line      => statement.line,
         :column    => col,
         :code      => source
       )
@@ -1106,7 +1106,7 @@ module Rlint
     #
     def calculate_column(line, stop)
       matches = line.match(/^(.+)#{stop}/)
-      number  = 0
+      number  = 1
 
       if matches and matches[1]
         number = matches[1].to_i

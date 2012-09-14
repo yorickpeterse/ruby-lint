@@ -7,7 +7,7 @@ describe 'Rlint::Parser' do
     token.class.should  == Rlint::Token::StatementToken
     token.type.should   == :return
     token.line.should   == 1
-    token.column.should == 0
+    token.column.should == 1
 
     token.value.class.should  == Array
     token.value.length.should == 1
@@ -27,7 +27,7 @@ describe 'Rlint::Parser' do
     token.class.should  == Rlint::Token::StatementToken
     token.type.should   == :return
     token.line.should   == 1
-    token.column.should == 0
+    token.column.should == 1
 
     token.value.class.should  == Array
     token.value.length.should == 2
@@ -55,7 +55,7 @@ describe 'Rlint::Parser' do
     token.class.should  == Rlint::Token::StatementToken
     token.type.should   == :return
     token.line.should   == 1
-    token.column.should == 0
+    token.column.should == 1
     token.code.should   == 'return ( 10 )'
 
     token.value.class.should  == Array
@@ -68,7 +68,7 @@ describe 'Rlint::Parser' do
     token.class.should  == Rlint::Token::StatementToken
     token.type.should   == :while
     token.line.should   == 1
-    token.column.should == 0
+    token.column.should == 1
 
     token.statement.class.should == Rlint::Token::VariableToken
     token.statement.type.should  == :keyword
@@ -112,7 +112,7 @@ describe 'Rlint::Parser' do
     token.class.should  == Rlint::Token::StatementToken
     token.type.should   == :while
     token.line.should   == 1
-    token.column.should == 0
+    token.column.should == 1
     token.code.should   == 'while ( true ); return 10; end'
 
     token.value.class.should  == Array

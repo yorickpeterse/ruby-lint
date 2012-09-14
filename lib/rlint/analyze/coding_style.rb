@@ -62,6 +62,10 @@ module Rlint
         end
       end
 
+      def on_if(token)
+        validate_parenthesis(token)
+      end
+
       private
 
       def validate_name(token)
@@ -89,6 +93,16 @@ module Rlint
           info(
             "method and variable names should not be longer than " \
               "#{MAXIMUM_NAME_LENGTH} characters",
+            token.line,
+            token.column
+          )
+        end
+      end
+
+      def validate_parenthesis(token)
+        if token.code =~ /#{token.type}\s*\(/
+          info(
+            'the use of parenthesis for statements is discouraged',
             token.line,
             token.column
           )
