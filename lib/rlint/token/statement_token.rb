@@ -10,7 +10,7 @@ module Rlint
       ##
       # The value of the statement in case of `if` and `elsif` statements.
       #
-      # @return [Rlint::Token::Token]
+      # @return [Rlint::Token::Token|Array]
       #
       attr_accessor :statement
 
@@ -36,6 +36,33 @@ module Rlint
         @elsif = []
 
         super
+      end
+
+      ##
+      # @see Rlint::Token::Token#child_nodes
+      #
+      def child_nodes
+        nodes = []
+
+        if @statement
+          if @statement.is_a?(Array)
+            nodes << @statement.flatten
+          else
+            nodes << [@statement]
+          end
+        end
+
+        nodes += super
+
+        if @elsif
+          nodes << @elsif
+        end
+
+        if @else
+          nodes << [@else]
+        end
+
+        return nodes.select { |array| array.length > 0 }
       end
     end # StatementToken
   end # Token

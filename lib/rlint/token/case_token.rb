@@ -28,6 +28,17 @@ module Rlint
 
         super
       end
+
+      ##
+      # @see Rlint::Token::Token#child_nodes
+      #
+      def child_nodes
+        nodes = super
+
+        nodes.insert(1, @when)
+
+        return nodes.select { |array| array.length > 0 }
+      end
     end # CaseToken
   end # Token
 end # Rlint

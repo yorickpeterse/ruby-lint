@@ -35,6 +35,23 @@ module Rlint
 
         super
       end
+
+      ##
+      # @see Rlint::Token::Token#child_nodes
+      #
+      def child_nodes
+        nodes = [@rescue]
+
+        if @ensure
+          nodes << [@ensure]
+        end
+
+        if @else
+          nodes << [@else]
+        end
+
+        return super + nodes
+      end
     end # BeginRescueToken
   end # Token
 end # Rlint

@@ -50,6 +50,31 @@ module Rlint
 
         super
       end
+
+      ##
+      # @see Rlint::Token::Token#child_nodes
+      #
+      def child_nodes
+        nodes = super
+
+        if @optional
+          nodes << @optional
+        end
+
+        if @rest
+          nodes << [@rest]
+        end
+
+        if @more
+          nodes << @more
+        end
+
+        if @block
+          nodes << [@block]
+        end
+
+        return nodes.select { |array| array.length > 0 }
+      end
     end # ParametersToken
   end # Token
 end # Rlint

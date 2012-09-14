@@ -4,6 +4,8 @@ describe 'Rlint::Analyze::CodingStyle' do
   it 'Check the casing of method names and variables' do
     code = <<-CODE
 def getNumber(theNumber = 10)
+  valid_number = theNumber
+
   return theNumber
 end
     CODE
@@ -19,7 +21,7 @@ end
     message  = 'the use of camelCase for names is discouraged'
 
     messages.class.should  == Array
-    messages.length.should == 3
+    messages.length.should == 4
 
     messages[0][:message].should == message
     messages[0][:line].should    == 1
@@ -31,7 +33,11 @@ end
 
     messages[2][:message].should == message
     messages[2][:line].should    == 2
-    messages[2][:column].should  == 9
+    messages[2][:column].should  == 17
+
+    messages[3][:message].should == message
+    messages[3][:line].should    == 4
+    messages[3][:column].should  == 9
   end
 
   it 'Check the length of method and variable names' do
@@ -84,10 +90,31 @@ THIS_CONSTANT_NAME_IS_WAY_TOO_LONG = 10
     info[:column].should  == 0
   end
 
-  it 'Check for the use of parenthesis in if statements' do
+  it 'Check for the use of parenthesis in various statements' do
     code = <<-CODE
 if ( name == 'Ruby' )
   puts 'This is some weird code'
+elsif ( name == 'Python')
+  puts 10
+end
+
+while ( true )
+  puts 'Infinite loop'
+end
+
+case ( number )
+when ( 10 )
+  puts 'The number is 10'
+else
+  puts 'Something else'
+end
+
+until ( number == 10 )
+  number += 1
+end
+
+unless ( foobar )
+  something
 end
     CODE
 
@@ -99,14 +126,14 @@ end
     iterator.iterate(tokens)
 
     report.messages[:info].class.should  == Array
-    report.messages[:info].length.should == 1
+    report.messages[:info].length.should == 7
 
-    info = report.messages[:info][0]
+    message = 'the use of parenthesis for statements is discouraged'
 
-    info[:message].should == 'the use of parenthesis for statements ' \
-      'is discouraged'
-
-    info[:line].should   == 1
-    info[:column].should == 0
+    [1, 3, 7, 11, 12, 18, 22].each_with_index do |line, index|
+      report.messages[:info][index][:message].should == message
+      report.messages[:info][index][:line].should    == line
+      report.messages[:info][index][:column].should  == 0
+    end
   end
 end

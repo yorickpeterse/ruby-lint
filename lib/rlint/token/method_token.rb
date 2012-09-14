@@ -39,12 +39,19 @@ module Rlint
       attr_accessor :block
 
       ##
-      # @see Rlint::Token#initialize
+      # @see Rlint::Token::Token#initialize
       #
       def initialize(*args)
         @type = :method
 
         super
+      end
+
+      ##
+      # @see Rlint::Token::Token#child_nodes
+      #
+      def child_nodes
+        return super << @parameters
       end
     end # MethodToken
   end # Token

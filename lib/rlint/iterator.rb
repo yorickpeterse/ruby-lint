@@ -31,15 +31,10 @@ module Rlint
           end
         end
 
-        # Iterate over all the child nodes.
-        if node.value and node.value.respond_to?(:each)
-          iterate(node.value)
-        end
-
-        # Loop through method parameters.
-        if node.respond_to?(:parameters) \
-        and node.parameters.respond_to?(:each)
-          iterate(node.parameters)
+        node.child_nodes.each do |child_nodes|
+          if child_nodes.respond_to?(:each)
+            iterate(child_nodes)
+          end
         end
 
         @callbacks.each do |obj|

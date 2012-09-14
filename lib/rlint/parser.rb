@@ -760,14 +760,17 @@ module Rlint
     # @return [Rlint::Token::StatementToken]
     #
     def on_unless(statement, body, else_token)
+      source = code(statement.line)
+      col    = calculate_column(source, 'unless')
+
       return Token::StatementToken.new(
         :type      => :unless,
         :statement => statement,
         :else      => else_token,
         :value     => body,
-        :line      => lineno,
-        :column    => column,
-        :code      => code(lineno)
+        :line      => statement.line,
+        :column    => col,
+        :code      => source
       )
     end
 
@@ -777,7 +780,7 @@ module Rlint
     # @see Rlint::Parser#on_unless
     #
     def on_until(statement, body)
-      source = code(lineno)
+      source = code(statement.line)
       col    = calculate_column(source, 'until')
 
       return Token::StatementToken.new(

@@ -36,7 +36,6 @@ module Rlint
 
       def on_assignment(token)
         validate_name(token)
-        validate_name(token.value)
 
         if token.type == :class_variable
           info(
@@ -49,20 +48,33 @@ module Rlint
 
       def on_method_definition(token)
         validate_name(token)
-
-        # Check the various parameters.
-        METHOD_PARAMETER_TYPES.each do |key|
-          param = token.parameters.send(key)
-
-          if param.is_a?(Array)
-            param.each { |sub_param| validate_name(sub_param) }
-          else
-            validate_name(param)
-          end
-        end
       end
 
       def on_if(token)
+        validate_parenthesis(token)
+      end
+
+      def on_elsif(token)
+        validate_parenthesis(token)
+      end
+
+      def on_while(token)
+        validate_parenthesis(token)
+      end
+
+      def on_case(token)
+        validate_parenthesis(token)
+      end
+
+      def on_when(token)
+        validate_parenthesis(token)
+      end
+
+      def on_until(token)
+        validate_parenthesis(token)
+      end
+
+      def on_unless(token)
         validate_parenthesis(token)
       end
 

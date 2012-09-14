@@ -53,7 +53,7 @@ module Rlint
       # @since  2012-07-29
       # @return [Symbol]
       #
-      attr_accessor :type
+      attr_reader :type
 
       ##
       # The line number on which the token was defined.
@@ -119,6 +119,44 @@ module Rlint
         # Remove NilClass instances from the `value` array, these serve no
         # useful purpose.
         @value.select! { |t| !t.nil? } if @value.is_a?(Array)
+      end
+
+      ##
+      # Sets the type of the token and updates the event name accordingly.
+      #
+      # @param [Symbol] type The new type of the token.
+      #
+      def type=(type)
+        if TYPE_MAPPING[type]
+          type = TYPE_MAPPING[type]
+        end
+
+        @type  = type
+        @event = type
+      end
+
+      ##
+      # Returns an array containing all the child nodes that can be iterated by
+      # {Rlint::Iterator}.
+      #
+      # @return [Array]
+      #
+      def child_nodes
+        nodes = []
+
+        if @value
+          if @value.is_a?(Array)
+            nodes << @value
+          else
+            nodes << [@value]
+          end
+        end
+
+        if @key
+          nodes << @key
+        end
+
+        return nodes
       end
     end # Token
   end # Token

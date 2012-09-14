@@ -22,19 +22,9 @@ module Rlint
       attr_accessor :operator
 
       ##
-      # The scope for this method. Note that this attribute is only set when
-      # the token is used for defining a method, not when calling one.
+      # The parameters of the method.
       #
-      # @since  2012-07-29
-      # @return [Rlint::Scope]
-      #
-      attr_accessor :scope
-
-      ##
-      # Array of tokens for the method parameters.
-      #
-      # @since  2012-07-29
-      # @return [Array]
+      # @return [Rlint::Token::ParametersToken]
       #
       attr_accessor :parameters
 
@@ -61,6 +51,13 @@ module Rlint
         unless @parameters.class == ParametersToken
           @parameters = ParametersToken.new
         end
+      end
+
+      ##
+      # @see Rlint::Token::Token#child_nodes
+      #
+      def child_nodes
+        return @parameters.child_nodes + super
       end
     end # MethodDefinitionToken
   end # Token
