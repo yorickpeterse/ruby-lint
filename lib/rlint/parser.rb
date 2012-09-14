@@ -698,7 +698,7 @@ module Rlint
     def on_case(statement, list)
       when_statements = []
       else_statement  = nil
-      source          = code(lineno)
+      source          = code(statement.line)
       col             = calculate_column(source, 'case')
 
       if list and list.respond_to?(:each)
@@ -731,7 +731,7 @@ module Rlint
     # @return [Array]
     #
     def on_when(statement, body, list)
-      source = code(lineno)
+      source = code(statement[0].line)
       col    = calculate_column(source, 'when')
 
       token = Token::StatementToken.new(
