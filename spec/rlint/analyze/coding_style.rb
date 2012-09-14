@@ -107,6 +107,6 @@ end
       'is discouraged'
 
     info[:line].should   == 1
-    info[:column].should == 1
+    info[:column].should == 0
   end
 end

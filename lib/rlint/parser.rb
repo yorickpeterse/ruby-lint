@@ -1106,7 +1106,7 @@ module Rlint
     #
     def calculate_column(line, stop)
       matches = line.match(/^(.+)#{stop}/)
-      number  = 1
+      number  = 0
 
       if matches and matches[1]
         number = matches[1].to_i
