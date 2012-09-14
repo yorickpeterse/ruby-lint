@@ -49,6 +49,19 @@ describe 'Rlint::Parser' do
     val.value.should  == '20'
   end
 
+  it 'Parse a return statement with parenthesis' do
+    token = Rlint::Parser.new('return ( 10 )').parse[0]
+
+    token.class.should  == Rlint::Token::StatementToken
+    token.type.should   == :return
+    token.line.should   == 1
+    token.column.should == 0
+    token.code.should   == 'return ( 10 )'
+
+    token.value.class.should  == Array
+    token.value.length.should == 1
+  end
+
   it 'Parse a while loop' do
     token = Rlint::Parser.new('while true; return 10; end').parse[0]
 
@@ -91,6 +104,19 @@ describe 'Rlint::Parser' do
 
     token.value[0].class.should == Rlint::Token::MethodToken
     token.value[0].name.should  == 'foo'
+  end
+
+  it 'Parse a while loop using parenthesis' do
+    token = Rlint::Parser.new('while ( true ); return 10; end').parse[0]
+
+    token.class.should  == Rlint::Token::StatementToken
+    token.type.should   == :while
+    token.line.should   == 1
+    token.column.should == 0
+    token.code.should   == 'while ( true ); return 10; end'
+
+    token.value.class.should  == Array
+    token.value.length.should == 1
   end
 
   it 'Parse a for loop' do

@@ -13,7 +13,6 @@ module Rlint
       :assoclist_from_args,
       :symbol_literal,
       :begin,
-      :paren,
       :mrhs_new_from_args,
       :blockarg,
       :rest_param,
@@ -425,21 +424,35 @@ module Rlint
     end
 
     ##
+    # Called when a set of parenthesis is found.
+    #
+    # @param  [Array] value The data inside the parenthesis.
+    # @return [Rlint::Token::Token]
+    #
+    def on_paren(value)
+      if value.is_a?(Array)
+        return value[0]
+      else
+        return value
+      end
+    end
+
+    ##
     # Called when a return statement is found.
     #
     # @param  [Array] values The return values of the statement.
     # @return [Rlint::Token::StatementToken]
     #
     def on_return(values)
-      # 7 is the length of the string "return ".
-      col = (values[0].column rescue column) - 7
+      source = code(lineno)
+      col    = calculate_column(source, 'return')
 
       return Token::StatementToken.new(
         :type   => :return,
         :line   => lineno,
         :column => col,
         :value  => values,
-        :code   => code(lineno)
+        :code   => source
       )
     end
 
@@ -451,15 +464,16 @@ module Rlint
     # @return [Rlint::Token::StatementToken]
     #
     def on_while(statement, value)
-      col = (statement.column rescue column) - 6
+      source = code(lineno)
+      col    = calculate_column(source, 'while')
 
       return Token::StatementToken.new(
         :type      => :while,
         :statement => statement,
         :value     => value,
-        :line      => statement.line,
+        :line      => lineno,
         :column    => col,
-        :code      => code(lineno)
+        :code      => source
       )
     end
 
@@ -474,13 +488,16 @@ module Rlint
     # @return [Rlint::Token::StatementToken]
     #
     def on_for(variables, enumerable, value)
+      source = code(lineno)
+      col    = calculate_column(source, 'for')
+
       return Token::StatementToken.new(
         :type      => :for,
         :statement => [variables, enumerable],
         :value     => value,
-        :column    => column,
+        :column    => col,
         :line      => lineno,
-        :code      => code(lineno)
+        :code      => source
       )
     end
 
@@ -495,6 +512,9 @@ module Rlint
     # @return [Rlint::Token::StatementToken]
     #
     def on_if(statement, value, rest)
+      source = code(lineno)
+      col    = calculate_column(source, 'if')
+
       else_statement   = nil
       elsif_statements = []
 
@@ -514,11 +534,11 @@ module Rlint
         :type      => :if,
         :statement => statement,
         :value     => value,
-        :line      => statement.line,
-        :column    => statement.column,
+        :line      => lineno,
+        :column    => col,
         :else      => else_statement,
         :elsif     => elsif_statements.reverse,
-        :code      => code(statement.line)
+        :code      => source
       )
     end
 
@@ -548,13 +568,16 @@ module Rlint
     # @return [Array]
     #
     def on_elsif(statement, value, list)
+      source = code(lineno)
+      col    = calculate_column(source, 'elsif')
+
       token = Token::StatementToken.new(
         :type      => :elsif,
         :statement => statement,
         :value     => value,
         :line      => lineno,
-        :column    => column,
-        :code      => code(lineno)
+        :column    => col,
+        :code      => source
       )
 
       unless list.is_a?(Array)
@@ -604,13 +627,16 @@ module Rlint
     # @return [Rlint::Token::StatementToken]
     #
     def on_rescue(exceptions, variable, value, list)
+      source = code(lineno)
+      col    = calculate_column(source, 'rescue')
+
       token = Token::StatementToken.new(
         :type      => :rescue,
         :statement => [exceptions, variable],
         :line      => lineno,
-        :column    => column,
+        :column    => col,
         :value     => value,
-        :code      => code(lineno)
+        :code      => source
       )
 
       unless list.is_a?(Array)
@@ -672,6 +698,8 @@ module Rlint
     def on_case(statement, list)
       when_statements = []
       else_statement  = nil
+      source          = code(lineno)
+      col             = calculate_column(source, 'case')
 
       if list and list.respond_to?(:each)
         list.each do |token|
@@ -688,9 +716,9 @@ module Rlint
         :statement => statement,
         :else      => else_statement,
         :when      => when_statements.reverse,
-        :line      => statement.line,
-        :column    => statement.column,
-        :code      => code(statement.line)
+        :line      => lineno,
+        :column    => col,
+        :code      => source
       )
     end
 
@@ -703,13 +731,16 @@ module Rlint
     # @return [Array]
     #
     def on_when(statement, body, list)
+      source = code(lineno)
+      col    = calculate_column(source, 'when')
+
       token = Token::StatementToken.new(
         :type      => :when,
         :statement => statement,
         :value     => body,
         :line      => lineno,
-        :column    => column,
-        :code      => code(lineno)
+        :column    => col,
+        :code      => source
       )
 
       unless list.is_a?(Array)
@@ -746,13 +777,16 @@ module Rlint
     # @see Rlint::Parser#on_unless
     #
     def on_until(statement, body)
+      source = code(lineno)
+      col    = calculate_column(source, 'until')
+
       return Token::StatementToken.new(
         :type      => :until,
         :statement => statement,
         :value     => body,
         :line      => lineno,
-        :column    => column,
-        :code      => code(lineno)
+        :column    => col,
+        :code      => source
       )
     end
 
@@ -1060,6 +1094,25 @@ module Rlint
     #
     def code(line)
       return @lines[line - 1]
+    end
+
+    ##
+    # Calculates the column position based on a given line and a stop string.
+    #
+    # @param [String] line The line of code to use for calculating the column
+    #  number.
+    # @param [String] stop The string that indicates the start of the token.
+    # @return [Fixnum]
+    #
+    def calculate_column(line, stop)
+      matches = line.match(/^(.+)#{stop}/)
+      number  = 0
+
+      if matches and matches[1]
+        number = matches[1].to_i
+      end
+
+      return number
     end
   end # Parser
 end # Rlint
