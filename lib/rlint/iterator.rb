@@ -67,6 +67,19 @@ module Rlint
   # Note that the "after" callback is not executed until all child nodes have
   # been processed.
   #
+  # Each method should take a single parameter that contains details about the
+  # token that is currently being processed. Each token is an instance of
+  # {Rlint::Token::Token} or one of its child classes.
+  #
+  # If you wanted to display the values of all strings in your console you'd
+  # write the following class:
+  #
+  #     class StringPrinter < Rlint::Callback
+  #       def on_string(token)
+  #         puts token.value
+  #       end
+  #     end
+  #
   class Iterator
     ##
     # Array containing a set of instance specific callback objects.
@@ -75,11 +88,24 @@ module Rlint
     #
     attr_reader :callbacks
 
+    ##
+    # Creates a new instance of the iterator class.
+    #
+    # @param [Rlint::Report|NilClass] report The report to use, set to `nil` by
+    #  default.
+    #
     def initialize(report = nil)
       @callbacks = []
       @report    = report
     end
 
+    ##
+    # Iterates over the specified array of token classes and executes defined
+    # callback methods.
+    #
+    # @param [#each] nodes An array (or a different object that responds to
+    #  `#each()`) that contains a set of tokens to process.
+    #
     def iterate(nodes)
       nodes.each do |node|
         next unless node.is_a?(Rlint::Token::Token)
@@ -108,6 +134,17 @@ module Rlint
       end
     end
 
+    ##
+    # Adds the specified class to the list of callback classes for this
+    # instance.
+    #
+    # @example
+    #  iterator = Rlint::Iterator.new
+    #
+    #  iterator.bind(CustomCallbackClass)
+    #
+    # @param [Class] callback_class The class to add.
+    #
     def bind(callback_class)
       @callbacks << callback_class.new(@report)
     end
