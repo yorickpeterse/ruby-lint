@@ -1,0 +1,10 @@
+./lib/rlint/**/*.rb ./lib/rlint.rb
+-m markdown
+-M redcarpet
+-o ./doc
+-r ./README.md
+--private
+--protected
+--asset ./guide/css/common.css:css/common.css
+-
+LICENSE

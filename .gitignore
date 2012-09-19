@@ -1,2 +1,5 @@
+doc/
+!doc/.gitkeep
+
 pkg
 Gemfile.lock

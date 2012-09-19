@@ -1,4 +1,46 @@
 module Rlint
+  ##
+  # {Rlint::Parser} uses Ripper to parse Ruby source code and turn it into an
+  # AST. Instead of returning arrays (the Ripper default) this class uses the
+  # various token classes such as {Rlint::Token::Token} and
+  # {Rlint::Token::VariableToken}. It also takes care of a few more things such
+  # as saving the associated line of code and setting method visibility.
+  #
+  # Parsing Ruby code requires two steps:
+  #
+  # 1. Create a new instance of this class and pass a string containing source
+  #    code to the constructor method.
+  # 2. Call the method {Rlint::Parser#parse} and do something with the returned
+  #    AST.
+  #
+  # For example, to parse a simple "Hello World" example you'd use this parser
+  # as following:
+  #
+  #     require 'pp'
+  #
+  #     parser = Rlint::Parser.new('puts "Hello, world!"')
+  #
+  #     pp parser.parse
+  #
+  # This outputs the following AST:
+  #
+  #     [#<Rlint::Token::MethodToken:0x000000012f04d0
+  #       @code="puts \"Hello, world!\"",
+  #       @column=0,
+  #       @event=:method,
+  #       @line=1,
+  #       @name="puts",
+  #       @parameters=
+  #        [#<Rlint::Token::Token:0x000000012e9fb8
+  #          @code="puts \"Hello, world!\"",
+  #          @column=6,
+  #          @event=:string,
+  #          @line=1,
+  #          @name="Hello, world!",
+  #          @type=:string,
+  #          @value="Hello, world!">],
+  #       @type=:method>]
+  #
   class Parser < Ripper::SexpBuilderPP
     ##
     # Array containing all the event names of which the methods should simply

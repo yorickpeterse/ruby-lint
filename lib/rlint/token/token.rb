@@ -88,7 +88,7 @@ module Rlint
 
       ##
       # The name of the event to call when iterating over an AST. Set to the
-      # value of {Rlint::Token#type} unless specified otherwise.
+      # value of {Rlint::Token::Token#type} unless specified otherwise.
       #
       # @return [Symbol]
       #
