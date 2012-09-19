@@ -28,6 +28,9 @@ module Rlint
     #   in Ruby.
     # * The use of camelCase for method and variable names instead of
     #   `snake_case`, the latter is what Ruby code should use.
+    # * Whether or not predicate methods are named correctly.
+    # * If a particular method name should be replaced by a different one (e.g.
+    #   "map" instead of "collect").
     #
     class CodingStyle < Rlint::Callback
       ##
