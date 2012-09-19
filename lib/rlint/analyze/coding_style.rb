@@ -13,6 +13,7 @@ module Rlint
     #
     # * https://github.com/styleguide/ruby
     # * https://github.com/bbatsov/ruby-style-guide
+    # * http://confluence.jetbrains.net/display/RUBYDEV/RubyMine+Inspections
     # * My own opinion
     #
     # ## Checks
@@ -35,6 +36,30 @@ module Rlint
       # @return [Fixnum]
       #
       MAXIMUM_NAME_LENGTH = 30
+
+      ##
+      # Hash containing the names of method names and the names that should be
+      # used instead.
+      #
+      # @return [Hash]
+      #
+      RECOMMENDED_METHOD_NAMES = {
+        'collect'  => 'map',
+        'detect'   => 'find',
+        'find_all' => 'select',
+        'inject'   => 'reduce',
+        'length'   => 'size'
+      }
+
+      ##
+      # @see Rlint::Callback#initialize
+      #
+      def initialize(*args)
+        super
+
+        @in_method        = false
+        @predicate_method = false
+      end
 
       ##
       # Called when an instance variable is found.
@@ -122,12 +147,84 @@ module Rlint
       end
 
       ##
+      # Called when a return statement is found.
+      #
+      # @param [Rlint::Token::StatementToken] token The token of the return
+      #  statement.
+      #
+      def on_return(token)
+        if !token.value or token.value.empty? or !@in_method
+          return
+        end
+
+        token.value.each do |value|
+          # TODO: this probably won't work very well if there's a lambda inside
+          # a method that returns `true` or `false`.
+          if value.type == :keyword \
+          and (value.name == 'true' or value.name == 'false')
+            @predicate_method = true
+
+            break
+          end
+        end
+      end
+
+      ##
       # Called when a method is defined.
       #
       # @see Rlint::Analyze::CodingStyle#on_instance_variable
       #
       def on_method_definition(token)
         validate_name(token)
+
+        @in_method = true
+      end
+
+      ##
+      # Called after a method token has been processed. This callback checks if
+      # a method is a predicate method and if so if the name is set correctly.
+      #
+      # @param [Rlint::Token::MethodDefinitionToken] token The token containing
+      #  details about the method definition.
+      # @todo This method currently only performs a very limited check for
+      #  predicate methods. Once a proper scoping system has been implemented
+      #  this method should be updated accordingly.
+      #
+      def after_method_definition(token)
+        if @predicate_method and token.name !~ /\?$/
+          info(
+            'predicate methods should end with a question mark',
+            token.line,
+            token.column
+          )
+        end
+
+        @in_method        = false
+        @predicate_method = false
+      end
+
+      ##
+      # Called when a method call is found.
+      #
+      # This method checks if the used method should be named differently
+      # instead (e.g. "map" instead of "collect").
+      #
+      # @param [Rlint::Token::MethodToken] token Token containing details about
+      #  the method.
+      #
+      def on_method(token)
+        if RECOMMENDED_METHOD_NAMES.key?(token.name)
+          recommended = RECOMMENDED_METHOD_NAMES[token.name]
+
+          info(
+            'it is recommended to use the method "%s" instead of "%s"' % [
+              recommended,
+              token.name
+            ],
+            token.line,
+            token.column
+          )
+        end
       end
 
       ##
@@ -257,6 +354,6 @@ module Rlint
           )
         end
       end
-    end # CodingStyle < Rlint::Callback
+    end # CodingStyle
   end # Analyze
 end # Rlint

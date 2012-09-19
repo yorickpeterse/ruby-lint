@@ -136,4 +136,55 @@ end
       report.messages[:info][index][:column].should  == 0
     end
   end
+
+  it 'Check for correct names for predicate methods' do
+    code = <<-CODE
+def invalid_name
+  return true
+end
+
+def valid_name?
+  return true
+end
+    CODE
+
+    tokens   = Rlint::Parser.new(code).parse
+    report   = Rlint::Report.new
+    iterator = Rlint::Iterator.new(report)
+
+    iterator.bind(Rlint::Analyze::CodingStyle)
+    iterator.iterate(tokens)
+
+    message = 'predicate methods should end with a question mark'
+
+    report.messages[:info].class.should  == Array
+    report.messages[:info].length.should == 1
+
+    report.messages[:info][0][:message].should == message
+    report.messages[:info][0][:line].should    == 1
+    report.messages[:info][0][:column].should  == 4
+  end
+
+  it 'Check for recommending alternative method names' do
+    code = <<-CODE
+[].collect { |a| }
+[].map { |a| }
+    CODE
+
+    tokens   = Rlint::Parser.new(code).parse
+    report   = Rlint::Report.new
+    iterator = Rlint::Iterator.new(report)
+
+    iterator.bind(Rlint::Analyze::CodingStyle)
+    iterator.iterate(tokens)
+
+    message = 'it is recommended to use the method "map" instead of "collect"'
+
+    report.messages[:info].class.should  == Array
+    report.messages[:info].length.should == 1
+
+    report.messages[:info][0][:message].should == message
+    report.messages[:info][0][:line].should    == 1
+    report.messages[:info][0][:column].should  == 3
+  end
 end
