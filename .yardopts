@@ -1,10 +1,10 @@
 ./lib/rlint/**/*.rb ./lib/rlint.rb
 -m markdown
 -M redcarpet
--o ./doc
+-o ./doc/build
 -r ./README.md
 --private
 --protected
---asset ./guide/css/common.css:css/common.css
+--asset ./doc/css/common.css:css/common.css
 -
 LICENSE
