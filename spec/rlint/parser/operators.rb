@@ -57,4 +57,19 @@ describe 'Rlint::Parser' do
     last.type.should  == :integer
     last.value.should == '30'
   end
+
+  it 'Parse unary operators' do
+    token = Rlint::Parser.new('!foobar').parse[0]
+
+    token.class.should == Rlint::Token::Token
+    token.type.should  == :unary
+
+    token.value.class.should  == Array
+    token.value.length.should == 2
+
+    token.value[0].should == :!
+
+    token.value[1].class.should == Rlint::Token::MethodToken
+    token.value[1].name.should  == 'foobar'
+  end
 end

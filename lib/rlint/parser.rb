@@ -466,6 +466,23 @@ module Rlint
     end
 
     ##
+    # Called when an unary operator/operation is found.
+    #
+    # @param [Symbol] operator The unary operator.
+    # @param [Rlint::Token::Token] token The token after the unary operator.
+    # @return [Rlint::Token::Token]
+    #
+    def on_unary(operator, token)
+      return Token::Token.new(
+        :type   => :unary,
+        :value  => [operator, token],
+        :line   => lineno,
+        :column => column,
+        :code   => code(lineno)
+      )
+    end
+
+    ##
     # Called when a set of parenthesis is found.
     #
     # @param  [Array] value The data inside the parenthesis.
