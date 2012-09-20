@@ -125,4 +125,33 @@ describe 'Rlint::Parser' do
     token.type.should   == :constant
     token.name.should   == 'NUMBER'
   end
+
+  it 'Parse the mass assignment of multiple variables' do
+    token = Rlint::Parser.new('foo, bar = 10, 20').parse[0]
+
+    token.class.should == Rlint::Token::AssignmentToken
+
+    token.name.class.should  == Array
+    token.name.length.should == 2
+    token.type.should        == :mass_assign
+
+    token.name[0].class.should == Rlint::Token::Token
+    token.name[0].name.should  == 'foo'
+    token.name[0].type.should  == :local_variable
+
+    token.name[1].class.should == Rlint::Token::Token
+    token.name[1].name.should  == 'bar'
+    token.name[1].type.should  == :local_variable
+
+    token.value.class.should  == Array
+    token.value.length.should == 2
+
+    token.value[0].class.should == Rlint::Token::Token
+    token.value[0].value.should == '10'
+    token.value[0].type.should  == :integer
+
+    token.value[1].class.should == Rlint::Token::Token
+    token.value[1].value.should == '20'
+    token.value[1].type.should  == :integer
+  end
 end

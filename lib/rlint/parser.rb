@@ -425,6 +425,24 @@ module Rlint
     end
 
     ##
+    # Called when a set of values is assigned to multiple variables.
+    #
+    # @param [Array] variables The variables that are being assigned values.
+    # @param [Array] values The values to assign.
+    # @return [Rlint::Token::AssignmentToken]
+    #
+    def on_massign(variables, values)
+      return Token::AssignmentToken.new(
+        :line   => variables[0].line,
+        :column => variables[0].column,
+        :code   => code(variables[0].line),
+        :type   => :mass_assign,
+        :name   => variables,
+        :value  => values
+      )
+    end
+
+    ##
     # Called when a value is assigned to an object attribute.
     #
     # @param [Rlint::Token::VariableToken] receiver The receiver of the
