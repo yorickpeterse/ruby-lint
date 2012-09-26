@@ -31,6 +31,24 @@ module Rlint
       end
 
       ##
+      # Called when a new method is defined.
+      #
+      # @param [Rlint::Token::MethodDefinitionToken] token
+      #
+      def on_method_definition(token)
+        @scopes << Scope.new(@scopes[-1])
+      end
+
+      ##
+      # Called after a method definition has been processed.
+      #
+      # @see Rlint::Analyze::Definitions#on_method_definition
+      #
+      def after_method_definition(token)
+        @scopes.pop
+      end
+
+      ##
       # Called when an instance variable is found.
       #
       # @param [Rlint::Token::VariableToken] token
