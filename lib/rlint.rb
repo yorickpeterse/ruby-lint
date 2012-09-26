@@ -23,6 +23,7 @@ require 'rlint/iterator'
 require 'rlint/callback'
 require 'rlint/report'
 require 'rlint/scope'
+require 'rlint/symbols'
 require 'rlint/formatter/text'
-
 require 'rlint/analyze/coding_style'
+require 'rlint/analyze/definitions'

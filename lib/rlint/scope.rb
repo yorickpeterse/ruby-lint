@@ -8,7 +8,8 @@ module Rlint
       :instance_variable,
       :class_variable,
       :global_variable,
-      :method
+      :method,
+      :constant
     ]
 
     attr_reader :parent
@@ -21,8 +22,8 @@ module Rlint
         :instance_variable => {},
         :class_variable    => {},
         :global_variable   => {},
+        :constant          => {},
         :method            => {},
-        :class             => {}
       }
     end
 
