@@ -47,6 +47,7 @@ module Rlint
       def initialize(*args)
         @optional = []
         @more     = []
+        @value    = []
 
         super
       end

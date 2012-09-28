@@ -51,7 +51,7 @@ module Rlint
       # @see Rlint::Token::Token#child_nodes
       #
       def child_nodes
-        return super << @parameters
+        return super << @parameters << [@receiver]
       end
     end # MethodToken
   end # Token

@@ -197,7 +197,17 @@ module Rlint
     # @return [Rlint::Token::Token]
     #
     def on_string_literal(token)
-      return token[1]
+      if token and token[1]
+        return token[1]
+      else
+        return Token::Token.new(
+          :name   => '',
+          :value  => '',
+          :line   => lineno,
+          :column => column,
+          :type   => :string
+        )
+      end
     end
 
     ##

@@ -9,13 +9,14 @@ module Rlint
       :class_variable,
       :global_variable,
       :method,
+      :instance_method,
       :constant
     ]
 
     attr_reader :parent
     attr_reader :symbols
 
-    def initialize(parent = nil)
+    def initialize(parent = nil, core = false)
       @parent  = parent
       @symbols = {
         :local_variable    => {},
@@ -24,7 +25,10 @@ module Rlint
         :global_variable   => {},
         :constant          => {},
         :method            => {},
+        :instance_method   => {}
       }
+
+      @symbols[:constant] = Rlint::METHODS if core
     end
 
     def add(type, name, value = nil)
@@ -35,7 +39,7 @@ module Rlint
       symbol = nil
       type   = type.to_sym
 
-      if @symbols[type][name]
+      if @symbols[type] and @symbols[type][name]
         symbol = @symbols[type][name]
       elsif LOOKUP_PARENT.include?(type) and @parent
         symbol = @parent.lookup(type, name)

@@ -10,6 +10,15 @@ module Rlint
       # @return [String]
       #
       attr_accessor :parent
+
+      ##
+      # @see Rlint::Token::Token#initialize
+      #
+      def initialize(*args)
+        super
+
+        @parent = ['Object'] if @parent.empty?
+      end
     end # ClassToken
   end # Token
 end # Rlint
