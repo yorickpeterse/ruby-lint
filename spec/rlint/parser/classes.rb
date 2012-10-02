@@ -111,4 +111,42 @@ end
     second.value[0].name.should       == 'protected_method'
     second.value[0].visibility.should == :protected
   end
+
+  it 'Parse the creation of methods using class << self' do
+    code = <<-CODE
+class Person
+  class << self
+    def class_method_1
+
+    end
+
+    def class_method_2
+
+    end
+  end
+end
+    CODE
+
+    token = Rlint::Parser.new(code).parse[0]
+
+    token.class.should == Rlint::Token::ClassToken
+    token.name.should  == ['Person']
+
+    token.value.class.should  == Array
+    token.value.length.should == 2
+
+    method_1, method_2 = token.value
+
+    method_1.class.should == Rlint::Token::MethodDefinitionToken
+    method_1.name.should  == 'class_method_1'
+
+    method_1.receiver.class.should == Rlint::Token::VariableToken
+    method_1.receiver.name.should  == 'self'
+
+    method_2.class.should == Rlint::Token::MethodDefinitionToken
+    method_2.name.should  == 'class_method_2'
+
+    method_2.receiver.class.should == Rlint::Token::VariableToken
+    method_2.receiver.name.should  == 'self'
+  end
 end

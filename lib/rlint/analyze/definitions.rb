@@ -30,8 +30,9 @@ module Rlint
       def initialize(*args)
         super
 
-        @global_scope = Scope.new(nil, true)
-        @scopes       = [Scope.new(@global_scope)]
+        @global_scope  = Scope.new(nil, true)
+        @scopes        = [Scope.new(@global_scope)]
+        @current_class = nil
       end
 
       ##
@@ -55,7 +56,34 @@ module Rlint
       # @param [Rlint::Token::MethodDefinitionToken] token
       #
       def on_method_definition(token)
-        scope.add(:instance_method, token.name, token)
+        type  = :instance_method
+        added = false
+
+        # If a receiver is specified the method should be added as a class
+        # method.
+        if token.receiver
+          # Method for the current class.
+          if token.receiver.name == 'self' \
+          or token.receiver.name == @current_class
+            type = :method
+          # Method for a different class (e.g. `def String.foo; ...; end`
+          else
+            found = scope.lookup(token.receiver.type, token.receiver.name)
+            added = true
+
+            if found
+              found.add(:method, token.name, token)
+            else
+              error(
+                "undefined method receiver #{token.receiver.name}",
+                token.receiver.line,
+                token.receiver.column
+              )
+            end
+          end
+        end
+
+        scope.add(type, token.name, token) unless added
 
         @scopes << Scope.new(scope)
       end
@@ -66,14 +94,15 @@ module Rlint
       # @param [Rlint::Token::ClassToken] token
       #
       def on_class(token)
-        parent    = scope.lookup(:constant, token.parent.join('::'))
-        new_scope = Scope.new(parent)
+        parent         = scope.lookup(:constant, token.parent.join('::'))
+        new_scope      = Scope.new(parent)
+        @current_class = token.name.join('::')
 
         scope.symbols[:constant].each do |const, data|
           new_scope.symbols[:constant][const] = data
         end
 
-        scope.add(:constant, token.name.join('::'), new_scope)
+        scope.add(:constant, @current_class, new_scope)
 
         @scopes << new_scope
       end
@@ -85,6 +114,7 @@ module Rlint
       #
       def after_class(token)
         @scopes.pop
+        @current_class = nil
       end
 
       ##

@@ -1059,6 +1059,12 @@ module Rlint
       name_segments   = []
       parent_segments = []
 
+      if body
+        body = body.flatten.select { |t| !t.nil? }
+      else
+        body = []
+      end
+
       # Extract the name segments.
       if name.is_a?(Rlint::Token::Token)
         name_segments << name.name
@@ -1083,11 +1089,32 @@ module Rlint
         :name   => name_segments,
         :parent => parent_segments,
         :type   => :class,
-        :value  => (body || []).select { |t| !t.nil? },
+        :value  => body,
         :line   => line,
         :column => col,
         :code   => code(line)
       )
+    end
+
+    ##
+    # Called when a set of class methods are added using a `class << self`
+    # block.
+    #
+    # @param [Rlint::Token::VariableToken] receiver The receiver for all the
+    #  methods.
+    # @param  [Array] value The body of the block.
+    # @return [Array]
+    #
+    def on_sclass(receiver, value)
+      value.each_with_index do |token, index|
+        if token.respond_to?(:receiver)
+          token.receiver = receiver
+        end
+
+        value[index] = token
+      end
+
+      return value
     end
 
     ##
