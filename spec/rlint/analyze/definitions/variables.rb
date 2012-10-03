@@ -1,7 +1,7 @@
 require File.expand_path('../../../../helper', __FILE__)
 
-describe 'Rlint::Analyze::Definitions' do
-  it 'Add errors for undefined variables' do
+describe 'Rlint::Analyze::Definitions: variables' do
+  it 'Use of undefined variables' do
     code = <<-CODE
 number = 10
 
@@ -58,7 +58,7 @@ puts NUMBER
     errors[4][:column].should  == 5
   end
 
-  it 'Add errors for undefined variables using a method scope' do
+  it 'Use of undefined variables using a method scope' do
     code = <<-CODE
 a  = 10
 @a = 10

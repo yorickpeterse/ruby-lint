@@ -1,7 +1,7 @@
 require File.expand_path('../../../../helper', __FILE__)
 
-describe 'Rlint::Analyze::Definitions' do
-  it 'Add errors for invalid method calls on custom classes' do
+describe 'Rlint::Analyze::Definitions: classes' do
+  it 'Invalid method calls on custom classes' do
     code = <<-CODE
 class Person
   def name
@@ -34,7 +34,7 @@ person.name
     error[:column].should  == 7
   end
 
-  it 'Add errors for calling a class method as an instance method' do
+  it 'Calling class methods as instance methods' do
     code = <<-CODE
 class Person
   def self.class_method_1
@@ -78,7 +78,7 @@ person.class_method_2
     errors[1][:column].should  == 7
   end
 
-  it 'Add errors for calling methods defined using a receiver' do
+  it 'Calling methods defined using a receiver' do
     code = <<-CODE
 def String.class_method
 

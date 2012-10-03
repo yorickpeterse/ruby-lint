@@ -1,7 +1,7 @@
 require File.expand_path('../../../../helper', __FILE__)
 
-describe 'Rlint::Analyze::Definitions' do
-  it 'Add errors for undefined methods' do
+describe 'Rlint::Analyze::Definitions: methods' do
+  it 'Calling undefined methods' do
     code = <<-CODE
 def defined_method; end
 
@@ -28,7 +28,7 @@ defined_method
     error[:column].should == 0
   end
 
-  it 'Add errors for invalid method calls on constants' do
+  it 'Invalid method calls on constants' do
     code = <<-CODE
 String.new
 String.newx
@@ -56,7 +56,7 @@ Foobar.new
     errors[1][:column].should  == 0
   end
 
-  it 'Add errors for invalid method calls' do
+  it 'Invalid method calls' do
     code = <<-CODE
 name = 'Ruby'
 
