@@ -85,7 +85,14 @@ module Rlint
 
         scope.add(type, token.name, token) unless added
 
-        @scopes << Scope.new(scope)
+        new_scope = Scope.new(scope)
+
+        # Add all the parameters as local variables to the scope.
+        token.parameters.each do |param|
+          new_scope.add(param.type, param.name, param)
+        end
+
+        @scopes << new_scope
       end
 
       ##
@@ -95,7 +102,7 @@ module Rlint
       #
       def on_class(token)
         parent         = scope.lookup(:constant, token.parent.join('::'))
-        new_scope      = Scope.new(parent)
+        new_scope      = Scope.new([parent, scope])
         @current_class = token.name.join('::')
 
         scope.symbols[:constant].each do |const, data|

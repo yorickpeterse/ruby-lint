@@ -76,6 +76,24 @@ module Rlint
 
         return nodes.select { |array| array.length > 0 }
       end
+
+      ##
+      # Executes the provided block for every parameter of the method. The
+      # order in which parameters are processed is the following:
+      #
+      # 1. Required parameters
+      # 2. Optional parameters
+      # 3. Rest parameters
+      # 4. "More" parameters
+      # 5. Block parameters
+      #
+      def each
+        params = [@value, @optional, @rest, @more, @block].select do |p|
+          !p.nil?
+        end
+
+        params.flatten.each { |param| yield param }
+      end
     end # ParametersToken
   end # Token
 end # Rlint

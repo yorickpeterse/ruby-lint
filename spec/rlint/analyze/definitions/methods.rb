@@ -92,4 +92,31 @@ foo.upcase
     errors[2][:line].should    == 8
     errors[2][:column].should  == 3
   end
+
+  it 'Method parameters should be added as local variables' do
+    code = <<-CODE
+def uppercase(name = 'Ruby', *args, &block)
+  name.upcase
+  namex.upcase
+  args.flatten
+  block.call
+end
+    CODE
+
+    tokens   = Rlint::Parser.new(code).parse
+    report   = Rlint::Report.new
+    iterator = Rlint::Iterator.new(report)
+
+    iterator.bind(Rlint::Analyze::Definitions)
+    iterator.iterate(tokens)
+
+    report.messages[:error].class.should  == Array
+    report.messages[:error].length.should == 1
+
+    error = report.messages[:error][0]
+
+    error[:message].should == 'undefined local variable or method namex'
+    error[:line].should    == 3
+    error[:column].should  == 2
+  end
 end

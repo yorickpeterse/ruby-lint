@@ -16,8 +16,12 @@ module Rlint
     attr_reader :parent
     attr_reader :symbols
 
-    def initialize(parent = nil, core = false)
-      @parent  = parent
+    def initialize(parent = [], core = false)
+      unless parent.is_a?(Array)
+        parent = [parent]
+      end
+
+      @parent  = parent.select { |p| p.is_a?(Rlint::Scope) }
       @symbols = {
         :local_variable    => {},
         :instance_variable => {},
@@ -41,8 +45,15 @@ module Rlint
 
       if @symbols[type] and @symbols[type][name]
         symbol = @symbols[type][name]
-      elsif LOOKUP_PARENT.include?(type) and @parent
-        symbol = @parent.lookup(type, name)
+      elsif LOOKUP_PARENT.include?(type) and !@parent.empty?
+        @parent.each do |parent|
+          parent_symbol = parent.lookup(type, name)
+
+          if parent_symbol
+            symbol = parent_symbol
+            break
+          end
+        end
       end
 
       return symbol

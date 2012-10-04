@@ -38,4 +38,17 @@ describe 'Rlint::Scope' do
 
     method.parameters.value.should == [nil]
   end
+
+  it 'Create a scope with multiple parent scopes' do
+    scope_1 = Rlint::Scope.new
+    scope_2 = Rlint::Scope.new
+
+    scope_1.add(:method, 'method_1', true)
+    scope_2.add(:method, 'method_2', true)
+
+    scope_3 = Rlint::Scope.new([scope_1, scope_2])
+
+    scope_3.lookup(:method, 'method_1').should == true
+    scope_3.lookup(:method, 'method_2').should == true
+  end
 end
