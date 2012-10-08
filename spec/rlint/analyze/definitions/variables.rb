@@ -99,4 +99,54 @@ puts b # b was defined inside the method and isn't available outside it
     errors[2][:line].should    == 13
     errors[2][:column].should  == 5
   end
+
+  it 'Instance variables should be available outside a method' do
+    code = <<-CODE
+def number
+  @number = 10
+end
+
+puts @number
+    CODE
+
+    tokens   = Rlint::Parser.new(code).parse
+    report   = Rlint::Report.new
+    iterator = Rlint::Iterator.new(report)
+
+    iterator.bind(Rlint::Analyze::Definitions)
+    iterator.iterate(tokens)
+
+    report.messages[:error].nil?.should == true
+  end
+
+  it 'Instance variables should be available across a class\' methods' do
+    code = <<-CODE
+class Person
+  def initialize
+    @name = 'Ruby'
+  end
+
+  def some_method
+    @name.upcase
+    @namex.upcase
+  end
+end
+    CODE
+
+    tokens   = Rlint::Parser.new(code).parse
+    report   = Rlint::Report.new
+    iterator = Rlint::Iterator.new(report)
+
+    iterator.bind(Rlint::Analyze::Definitions)
+    iterator.iterate(tokens)
+
+    report.messages[:error].class.should  == Array
+    report.messages[:error].length.should == 1
+
+    error = report.messages[:error][0]
+
+    error[:message].should == 'undefined instance variable @namex'
+    error[:line].should    == 8
+    error[:column].should  == 4
+  end
 end

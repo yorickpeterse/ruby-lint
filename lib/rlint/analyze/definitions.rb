@@ -25,13 +25,21 @@ module Rlint
       }
 
       ##
+      # Array containing the key names of the variables that should be exported
+      # out of a method definition.
+      #
+      # @return [Array]
+      #
+      EXPORT_VARIABLES = [:instance_variable, :class_variable, :constant]
+
+      ##
       # @see Rlint::Callback#initialize
       #
       def initialize(*args)
         super
 
         @global_scope  = Scope.new(nil, true)
-        @scopes        = [Scope.new(@global_scope)]
+        @scopes        = []
         @current_class = nil
       end
 
@@ -42,12 +50,12 @@ module Rlint
       #
       def on_assignment(token)
         if token.type == :global_variable
-          scope = @global_scope
+          variable_scope = @global_scope
         else
-          scope = @scopes[-1]
+          variable_scope = scope
         end
 
-        scope.add(token.type, token.name, token.value)
+        variable_scope.add(token.type, token.name, token.value)
       end
 
       ##
@@ -96,6 +104,23 @@ module Rlint
       end
 
       ##
+      # Called after a method definition has been processed.
+      #
+      # @see Rlint::Analyze::Definitions#on_method_definition
+      #
+      def after_method_definition(token)
+        # TODO: exporting these variables should only be done if the method is
+        # actually called.
+        last_scope = @scopes.pop
+
+        EXPORT_VARIABLES.each do |key|
+          scope.symbols[key] = scope.symbols[key].merge(
+            last_scope.symbols[key]
+          )
+        end
+      end
+
+      ##
       # Called when a class definition is found.
       #
       # @param [Rlint::Token::ClassToken] token
@@ -122,15 +147,6 @@ module Rlint
       def after_class(token)
         @scopes.pop
         @current_class = nil
-      end
-
-      ##
-      # Called after a method definition has been processed.
-      #
-      # @see Rlint::Analyze::Definitions#on_method_definition
-      #
-      def after_method_definition(token)
-        @scopes.pop
       end
 
       ##
@@ -212,7 +228,7 @@ module Rlint
           if token.receiver.is_a?(Token::VariableToken) \
           and token.receiver.type != :constant
             value = scope.lookup(token.receiver.type, token.receiver.name)
-            type  = TYPE_CLASSES[value.type]
+            type  = !value.nil? ? TYPE_CLASSES[value.type] : nil
 
             # Extract the class from a method call.
             if value.respond_to?(:receiver)
@@ -265,7 +281,7 @@ module Rlint
       # @return [Rlint::Scope]
       #
       def scope
-        return @scopes[-1]
+        return @scopes.length > 0 ? @scopes[-1] : @global_scope
       end
     end # Definitions
   end # Analyze
