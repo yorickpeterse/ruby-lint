@@ -112,4 +112,32 @@ String.class_method
     errors[1][:line].should    == 10
     errors[1][:column].should  == 3
   end
+
+  it 'Calling class methods inside a class declaration' do
+    code = <<-CODE
+class Foobar
+  attr_reader :name
+
+  invalid_method :derp
+end
+    CODE
+
+    tokens   = Rlint::Parser.new(code).parse
+    report   = Rlint::Report.new
+    iterator = Rlint::Iterator.new(report)
+
+    iterator.bind(Rlint::Analyze::Definitions)
+    iterator.iterate(tokens)
+
+    report.messages[:error].class.should  == Array
+    report.messages[:error].length.should == 1
+
+    error = report.messages[:error][0]
+
+    error[:message].should == 'undefined local variable or method ' \
+      'invalid_method'
+
+    error[:line].should   == 4
+    error[:column].should == 2
+  end
 end

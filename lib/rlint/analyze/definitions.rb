@@ -33,14 +33,24 @@ module Rlint
       EXPORT_VARIABLES = [:instance_variable, :class_variable, :constant]
 
       ##
+      # Array containing the names of modules that are included into classes by
+      # default.
+      #
+      # @return [Array]
+      #
+      DEFAULT_INCLUDES = ['Kernel', 'Module']
+
+      ##
       # @see Rlint::Callback#initialize
       #
       def initialize(*args)
         super
 
-        @global_scope  = Scope.new(nil, true)
-        @scopes        = []
-        @current_class = nil
+        @global_scope     = Scope.new(nil, true)
+        @scopes           = []
+        @current_class    = nil
+        @call_types       = []
+        @included_modules = DEFAULT_INCLUDES.dup
       end
 
       ##
@@ -100,7 +110,8 @@ module Rlint
           new_scope.add(param.type, param.name, param)
         end
 
-        @scopes << new_scope
+        @call_types << type
+        @scopes     << new_scope
       end
 
       ##
@@ -118,6 +129,8 @@ module Rlint
             last_scope.symbols[key]
           )
         end
+
+        @call_types.pop
       end
 
       ##
@@ -129,6 +142,7 @@ module Rlint
         parent         = scope.lookup(:constant, token.parent.join('::'))
         new_scope      = Scope.new([parent, scope])
         @current_class = token.name.join('::')
+        @call_types    << :method
 
         scope.symbols[:constant].each do |const, data|
           new_scope.symbols[:constant][const] = data
@@ -146,6 +160,8 @@ module Rlint
       #
       def after_class(token)
         @scopes.pop
+        @call_types.pop
+
         @current_class = nil
       end
 
@@ -212,13 +228,19 @@ module Rlint
       # @param [Rlint::Token::MethodToken] token
       #
       def after_method(token)
-        method_exists   = scope.lookup(:instance_method, token.name)
+        method_exists   = scope.lookup(call_type, token.name)
         var_exists      = scope.lookup(:local_variable, token.name)
+        included_method = false
 
-        # TODO: this clearly won't work for other methods that have been
-        # included into the global scope.
-        kernel_method = scope.lookup(:constant, 'Kernel') \
-          .lookup(:method, token.name)
+        # Determine if the called method comes from an included module.
+        @included_modules.each do |name|
+          found = scope.lookup(:constant, name).lookup(call_type, token.name)
+
+          if found
+            included_method = true
+            break
+          end
+        end
 
         # Method called on an object.
         if token.receiver
@@ -263,7 +285,7 @@ module Rlint
           end
         # Global method called.
         elsif !token.receiver \
-        and (!method_exists and !var_exists and !kernel_method)
+        and (!method_exists and !var_exists and !included_method)
           error(
             "undefined local variable or method #{token.name}",
             token.line,
@@ -282,6 +304,15 @@ module Rlint
       #
       def scope
         return @scopes.length > 0 ? @scopes[-1] : @global_scope
+      end
+
+      ##
+      # Returns the last method call type to use.
+      #
+      # @return [Symbol]
+      #
+      def call_type
+        return @call_types.length > 0 ? @call_types[-1] : :instance_method
       end
     end # Definitions
   end # Analyze

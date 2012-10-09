@@ -7,8 +7,10 @@ module Rlint
   METHODS = {}
 
   keys = {
-    :methods          => :method,
-    :instance_methods => :instance_method
+    :methods                  => :method,
+    :instance_methods         => :instance_method,
+    :private_methods          => :method,
+    :private_instance_methods => :instance_method
   }
 
   # The use of the Config constant on 1.9.x triggers a warning so it should be
@@ -37,6 +39,8 @@ module Rlint
       const.send(source).each do |method|
         arity = const.send(target, method).arity
         token = Token::MethodDefinitionToken.new(:name => method.to_s)
+
+        token.visibility = :private if source =~ /^private/
 
         if arity > 0
           arity.times do
