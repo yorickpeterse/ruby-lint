@@ -187,4 +187,38 @@ end
     report.messages[:info][0][:line].should    == 1
     report.messages[:info][0][:column].should  == 3
   end
+
+  it 'Add warnings when modifying core Ruby constants' do
+    code = <<-CODE
+class String
+  def custom_method
+
+  end
+end
+
+def String.class_method
+
+end
+    CODE
+
+    tokens   = Rlint::Parser.new(code).parse
+    report   = Rlint::Report.new
+    iterator = Rlint::Iterator.new(report)
+
+    iterator.bind(Rlint::Analyze::CodingStyle)
+    iterator.iterate(tokens)
+
+    report.messages[:warning].class.should  == Array
+    report.messages[:warning].length.should == 2
+
+    warnings = report.messages[:warning]
+
+    warnings[0][:message].should == 'modification of a core Ruby constant'
+    warnings[0][:line].should    == 1
+    warnings[0][:column].should  == 6
+
+    warnings[1][:message].should == 'modification of a core Ruby constant'
+    warnings[1][:line].should    == 7
+    warnings[1][:column].should  == 4
+  end
 end

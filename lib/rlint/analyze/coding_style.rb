@@ -173,14 +173,31 @@ module Rlint
       end
 
       ##
-      # Called when a method is defined.
+      # Called when a method is defined. This method validates the name similar
+      # to instance variables as well as checking if the method definition
+      # modifies a core Ruby constant.
       #
       # @see Rlint::Analyze::CodingStyle#on_instance_variable
       #
       def on_method_definition(token)
         validate_name(token)
 
+        if token.receiver
+          validate_ruby_constant_modification(token.receiver)
+        end
+
         @in_method = true
+      end
+
+      ##
+      # Called when a class is created. This callback adds a warning if a core
+      # Ruby constant is modified.
+      #
+      # @param [Rlint::Token::ClassToken] token Token class containing details
+      #  about the newly created class.
+      #
+      def on_class(token)
+        validate_ruby_constant_modification(token)
       end
 
       ##
@@ -352,6 +369,27 @@ module Rlint
         if token.code =~ /#{token.type}\s*\(/
           info(
             'the use of parenthesis for statements is discouraged',
+            token.line,
+            token.column
+          )
+        end
+      end
+
+      ##
+      # Adds a warning for modifying a core Ruby constant.
+      #
+      # @param [Rlint::Token::Token] token The token class to validate.
+      #
+      def validate_ruby_constant_modification(token)
+        if token.name.is_a?(Array)
+          name = token.name.join('::')
+        else
+          name = token.name
+        end
+
+        if METHODS.key?(name)
+          warning(
+            'modification of a core Ruby constant',
             token.line,
             token.column
           )
