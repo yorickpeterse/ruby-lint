@@ -339,7 +339,7 @@ module Rlint
         :value      => body,
         :line       => lineno,
         :column     => column,
-        :type       => :brace_block,
+        :type       => :block,
         :code       => code(lineno)
       )
     end
@@ -350,10 +350,7 @@ module Rlint
     # @see Rlint::Parser#on_brace_block
     #
     def on_do_block(params, body)
-      token      = on_brace_block(params, body)
-      token.type = :do_block
-
-      return token
+      return on_brace_block(params, body)
     end
 
     ##

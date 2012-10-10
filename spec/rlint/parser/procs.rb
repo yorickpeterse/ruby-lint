@@ -9,7 +9,7 @@ describe 'Rlint::Parser' do
 
     token.block.class.should            == Rlint::Token::BlockToken
     token.block.parameters.class.should == Rlint::Token::ParametersToken
-    token.block.type.should             == :brace_block
+    token.block.type.should             == :block
 
     params = token.block.parameters
 
@@ -32,7 +32,7 @@ describe 'Rlint::Parser' do
 
     token.block.class.should            == Rlint::Token::BlockToken
     token.block.parameters.class.should == Rlint::Token::ParametersToken
-    token.block.type.should             == :do_block
+    token.block.type.should             == :block
 
     params = token.block.parameters
 
@@ -59,7 +59,7 @@ describe 'Rlint::Parser' do
 
     token.block.class.should            == Rlint::Token::BlockToken
     token.block.parameters.class.should == Rlint::Token::ParametersToken
-    token.block.type.should             == :brace_block
+    token.block.type.should             == :block
 
     token.block.parameters.value.class.should  == Array
     token.block.parameters.value.length.should == 1
@@ -78,7 +78,7 @@ describe 'Rlint::Parser' do
     token.name.should  == 'lambda'
 
     token.block.class.should == Rlint::Token::BlockToken
-    token.block.type.should  == :brace_block
+    token.block.type.should  == :block
 
     token.block.parameters.class.should        == Rlint::Token::ParametersToken
     token.block.parameters.value.class.should  == Array
