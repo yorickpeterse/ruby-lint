@@ -73,7 +73,7 @@ module Rlint
         :instance_method   => {}
       }
 
-      @symbols[:constant] = Rlint::METHODS if core
+      @symbols[:constant] = Rlint::METHODS.dup if core
     end
 
     ##

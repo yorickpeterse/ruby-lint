@@ -144,10 +144,6 @@ module Rlint
         @current_class = token.name.join('::')
         @call_types    << :method
 
-        scope.symbols[:constant].each do |const, data|
-          new_scope.symbols[:constant][const] = data
-        end
-
         scope.add(:constant, @current_class, new_scope)
 
         @scopes << new_scope
@@ -163,6 +159,31 @@ module Rlint
         @call_types.pop
 
         @current_class = nil
+      end
+
+      ##
+      # Called when a module is defined.
+      #
+      # @param [Rlint::Token::Token] token Token class containing details about
+      #  the module.
+      #
+      def on_module(token)
+        new_scope = Scope.new(scope)
+
+        scope.add(:constant, token.name.join('::'), new_scope)
+
+        @call_types << :method
+        @scopes     << new_scope
+      end
+
+      ##
+      # Called after a module definition has been processed.
+      #
+      # @see Rlint::Analyze::Definitions#on_module
+      #
+      def after_module(token)
+        @call_types.pop
+        @scopes.pop
       end
 
       ##
