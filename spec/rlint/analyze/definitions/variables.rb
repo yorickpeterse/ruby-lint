@@ -175,4 +175,36 @@ end
     warning[:line].should    == 3
     warning[:column].should  == 18
   end
+
+  it 'Add errors for non existing constant paths' do
+    code = <<-CODE
+A::B = 10
+
+module A
+
+end
+
+puts A::B
+    CODE
+
+    tokens   = Rlint::Parser.new(code).parse
+    report   = Rlint::Report.new
+    iterator = Rlint::Iterator.new(report)
+
+    iterator.bind(Rlint::Analyze::Definitions)
+    iterator.iterate(tokens)
+
+    report.messages[:error].class.should  == Array
+    report.messages[:error].length.should == 2
+
+    errors = report.messages[:error]
+
+    errors[0][:message].should == 'undefined constant A'
+    errors[0][:line].should    == 1
+    errors[0][:column].should  == 0
+
+    errors[1][:message].should == 'undefined constant A::B'
+    errors[1][:line].should    == 7
+    errors[1][:column].should  == 5
+  end
 end

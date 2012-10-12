@@ -421,13 +421,25 @@ module Rlint
         return variable
       end
 
+      if variable.is_a?(Array)
+        line = variable[-1].line
+        col  = variable[-1].column
+        type = variable[-1].type
+        name = variable
+      else
+        line = variable.line
+        col  = variable.column
+        type = variable.type
+        name = variable.name
+      end
+
       return Token::AssignmentToken.new(
-        :line   => variable.line,
-        :column => variable.column,
-        :name   => variable.value,
-        :type   => variable.type,
+        :line   => line,
+        :column => col,
+        :name   => name,
+        :type   => type,
         :value  => value,
-        :code   => code(variable.line)
+        :code   => code(line)
       )
     end
 
@@ -900,7 +912,22 @@ module Rlint
     # @return [Array]
     #
     def on_const_path_ref(*segments)
-      return segments
+      return Token::VariableToken.new(
+        :name   => segments.map { |t| t.name }.flatten,
+        :type   => :constant_path,
+        :line   => segments[0].line,
+        :column => segments[0].column,
+        :code   => code(segments[-1].line)
+      )
+    end
+
+    ##
+    # Called when a constant path is assigned.
+    #
+    # @see Rlint::Parser#on_const_path_ref
+    #
+    def on_const_path_field(*segments)
+      return on_const_path_ref(*segments)
     end
 
     ##
@@ -1050,35 +1077,14 @@ module Rlint
     # @return [Rlint::Token::ClassToken]
     #
     def on_class(name, parent, body)
-      line = lineno
-      col  = column
-
-      name_segments   = []
+      name_segments   = name.name.is_a?(Array)   ? name.name   : [name.name]
       parent_segments = []
 
-      if body
-        body = body.flatten.select { |t| !t.nil? }
-      else
-        body = []
+      if parent
+        parent_segments = parent.name.is_a?(Array) ? parent.name : [parent.name]
       end
 
-      # Extract the name segments.
-      if name.is_a?(Rlint::Token::Token)
-        name_segments << name.name
-        line          = name.line
-        col           = name.column
-      elsif name.is_a?(Array)
-        name_segments = name.map { |t| t.name }
-        line          = name[0].line
-        col           = name[0].column
-      end
-
-      # Extract the name segments of the parent class.
-      if parent.is_a?(Rlint::Token::Token)
-        parent_segments << parent.name
-      elsif parent.is_a?(Array)
-        parent_segments = parent.map { |t| t.name }
-      end
+      body = body.is_a?(Array) ? body.flatten.select { |t| !t.nil? } : []
 
       @visibility = DEFAULT_VISIBILITY
 
@@ -1087,9 +1093,9 @@ module Rlint
         :parent => parent_segments,
         :type   => :class,
         :value  => body,
-        :line   => line,
-        :column => col,
-        :code   => code(line)
+        :line   => name.line,
+        :column => name.column,
+        :code   => name.code
       )
     end
 
@@ -1123,28 +1129,15 @@ module Rlint
     # @return [Rlint::Token::Token]
     #
     def on_module(name, body)
-      line          = lineno
-      col           = column
-      name_segments = []
-
-      if name.is_a?(Rlint::Token::Token)
-        line = name.line
-        col  = name.column
-
-        name_segments << name.name
-      elsif name.is_a?(Array)
-        line          = name[0].line
-        col           = name[0].column
-        name_segments = name.map { |t| t.name }
-      end
+      name_segments = name.name.is_a?(Array) ? name.name : [name.name]
 
       return Token::Token.new(
         :type   => :module,
         :name   => name_segments,
         :value  => body,
-        :line   => line,
-        :column => col,
-        :code   => code(line)
+        :line   => name.line,
+        :column => name.column,
+        :code   => name.code
       )
     end
 

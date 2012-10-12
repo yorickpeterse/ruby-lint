@@ -154,4 +154,28 @@ describe 'Rlint::Parser' do
     token.value[1].value.should == '20'
     token.value[1].type.should  == :integer
   end
+
+  it 'Parse the reference of a constant path' do
+    token = Rlint::Parser.new('A::B::C').parse[0]
+
+    token.class.should  == Rlint::Token::VariableToken
+    token.type.should   == :constant_path
+    token.name.should   == ['A', 'B', 'C']
+    token.line.should   == 1
+    token.column.should == 0
+  end
+
+  it 'Parse the assignment of a constant path' do
+    token = Rlint::Parser.new('A::B::C = 10').parse[0]
+
+    token.class.should  == Rlint::Token::AssignmentToken
+    token.type.should   == :constant_path
+    token.name.should   == ['A', 'B', 'C']
+    token.line.should   == 1
+    token.column.should == 0
+
+    token.value.class.should == Rlint::Token::Token
+    token.value.type.should  == :integer
+    token.value.value.should == '10'
+  end
 end

@@ -65,7 +65,32 @@ module Rlint
           variable_scope = scope
         end
 
-        variable_scope.add(token.type, token.name, token.value)
+        # Assignment using a constant path. In this case each path segment
+        # should exist (with the exception of the last one) for the assignment
+        # to take place.
+        if token.name.is_a?(Array)
+          name_scope = scope
+
+          token.name[0..-2].each do |segment|
+            name_scope = name_scope.lookup(:constant, segment)
+          end
+
+          if name_scope
+            variable_scope = name_scope
+          else
+            on_constant_path(token)
+
+            return
+          end
+
+          name = token.name[-1]
+          type = :constant
+        else
+          name = token.name
+          type = token.type
+        end
+
+        variable_scope.add(type, name, token.value)
       end
 
       ##
@@ -243,6 +268,35 @@ module Rlint
       end
 
       ##
+      # Called when a constant path is found.
+      #
+      # @see Rlint::Analyze::Definitions#on_constant
+      #
+      def on_constant_path(token)
+        name_scope = scope
+        segments   = []
+
+        token.name.each do |name|
+          segments << name
+          found    = name_scope.lookup(:constant, name)
+
+          if found
+            name_scope = found
+          else
+            name_scope = nil
+
+            break
+          end
+        end
+
+        name = segments.join('::')
+
+        if !name_scope
+          error("undefined constant #{name}", token.line, token.column)
+        end
+      end
+
+      ##
       # Called after a method or undefined local variable is found and has been
       # processed.
       #
@@ -259,18 +313,29 @@ module Rlint
 
           if found
             included_method = true
+
             break
           end
         end
 
         # Method called on an object.
         if token.receiver
-          key = :instance_method
+          receiver_scope = scope
+          receiver_type  = token.receiver.type
+          receiver_name  = token.receiver.name
+          key            = :instance_method
+
+          if token.receiver.name.is_a?(Array)
+            receiver_scope = resolve_scope(token.receiver.name)
+          end
+
+          return unless receiver_scope
 
           # Variables that aren't constants.
           if token.receiver.is_a?(Token::VariableToken) \
-          and token.receiver.type != :constant
-            value = scope.lookup(token.receiver.type, token.receiver.name)
+          and receiver_type != :constant \
+          and receiver_type != :constant_path
+            value = receiver_scope.lookup(receiver_type, receiver_name)
             type  = !value.nil? ? TYPE_CLASSES[value.type] : nil
 
             # Extract the class from a method call.
@@ -283,17 +348,19 @@ module Rlint
             end
 
           # Ruby values being used directly (e.g. `'foo'.upcase`).
-          elsif TYPE_CLASSES.key?(token.receiver.type)
-            type = TYPE_CLASSES[token.receiver.type]
+          elsif TYPE_CLASSES.key?(receiver_type)
+            type = TYPE_CLASSES[receiver_type]
 
           # Constants and everything else.
           else
             key  = :method
-            type = token.receiver.name
+            type = receiver_name.is_a?(Array) \
+              ? receiver_name[-1] \
+              : receiver_name
           end
 
           # Retrieve the constant to check for the existence of the method.
-          found = scope.lookup(:constant, type)
+          found = receiver_scope.lookup(:constant, type)
 
           if found.is_a?(Scope) and !found.lookup(key, token.name)
             if key == :instance_method
@@ -353,6 +420,25 @@ module Rlint
       #
       def call_type
         return @call_types.length > 0 ? @call_types[-1] : :instance_method
+      end
+
+      ##
+      # Given an Array of constant names (e.g. the names of a constant path)
+      # this method will return the scope to use for the last segment.
+      #
+      # @param  [Array] segments The name segments to use for the lookup.
+      # @return [Rlint::Scope|NilClass]
+      #
+      def resolve_scope(segments)
+        resolved = scope
+
+        segments.each do |name|
+          break unless resolved
+
+          resolved = resolved.lookup(:constant, name)
+        end
+
+        return resolved
       end
     end # Definitions
   end # Analyze

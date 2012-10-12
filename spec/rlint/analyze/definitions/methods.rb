@@ -119,4 +119,49 @@ end
     error[:line].should    == 3
     error[:column].should  == 2
   end
+
+  it 'Calling methods on a constant path' do
+    code = <<-CODE
+A::B.invalid_method
+
+module A; end
+
+A::B.invalid_method
+
+module A
+  module B
+    def self.valid_method
+
+    end
+  end
+end
+
+A::B.invalid_method
+A::B.valid_method
+    CODE
+
+    tokens   = Rlint::Parser.new(code).parse
+    report   = Rlint::Report.new
+    iterator = Rlint::Iterator.new(report)
+
+    iterator.bind(Rlint::Analyze::Definitions)
+    iterator.iterate(tokens)
+
+    report.messages[:error].class.should  == Array
+    report.messages[:error].length.should == 3
+
+    errors = report.messages[:error]
+
+    errors[0][:message].should == 'undefined constant A'
+    errors[0][:line].should    == 1
+    errors[0][:column].should  == 0
+
+    errors[1][:message].should == 'undefined constant A::B'
+    errors[1][:line].should    == 5
+    errors[1][:column].should  == 0
+
+    errors[2][:message].should == 'undefined class method invalid_method'
+    errors[2][:line].should    == 15
+    errors[2][:column].should  == 5
+  end
 end

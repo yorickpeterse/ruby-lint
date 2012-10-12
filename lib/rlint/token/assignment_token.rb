@@ -34,7 +34,8 @@ module Rlint
         # for mass assignments).
         if @name and @name.is_a?(Array)
           @name.each_with_index do |value, index|
-            if @name[index].type == :identifier
+            if @name[index].respond_to?(:type) \
+            and @name[index].type == :identifier
               @name[index].type = :local_variable
             end
           end
