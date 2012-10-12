@@ -48,4 +48,34 @@ end
 
     report.messages[:error].nil?.should == true
   end
+
+  it 'Redefining modules should not reset scoping related data' do
+    code = <<-CODE
+module Person
+  def self.example
+
+  end
+end
+
+Person.example
+
+module Person
+  def self.another_example
+
+  end
+end
+
+Person.example
+Person.another_example
+    CODE
+
+    tokens   = Rlint::Parser.new(code).parse
+    report   = Rlint::Report.new
+    iterator = Rlint::Iterator.new(report)
+
+    iterator.bind(Rlint::Analyze::Definitions)
+    iterator.iterate(tokens)
+
+    report.messages[:error].nil?.should == true
+  end
 end

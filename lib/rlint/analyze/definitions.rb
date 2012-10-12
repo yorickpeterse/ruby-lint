@@ -48,7 +48,7 @@ module Rlint
 
         @global_scope     = Scope.new(nil, true)
         @scopes           = []
-        @current_class    = nil
+        @current_constant    = nil
         @call_types       = []
         @included_modules = DEFAULT_INCLUDES.dup
       end
@@ -107,7 +107,7 @@ module Rlint
         if token.receiver
           # Method for the current class.
           if token.receiver.name == 'self' \
-          or token.receiver.name == @current_class
+          or token.receiver.name == @current_constant
             type = :method
           # Method for a different class (e.g. `def String.foo; ...; end`
           else
@@ -164,12 +164,22 @@ module Rlint
       # @param [Rlint::Token::ClassToken] token
       #
       def on_class(token)
-        parent         = scope.lookup(:constant, token.parent.join('::'))
-        new_scope      = Scope.new([parent, scope])
-        @current_class = token.name.join('::')
-        @call_types    << :method
+        name              = token.name.join('::')
+        @current_constant = name
+        @call_types       << :method
 
-        scope.add(:constant, @current_class, new_scope)
+        # If a class has already been defined the scoping data should not be
+        # overwritten.
+        if scope.lookup(:constant, name)
+          @scopes << scope
+
+          return
+        end
+
+        parent    = scope.lookup(:constant, token.parent.join('::'))
+        new_scope = Scope.new([parent, scope])
+
+        scope.add(:constant, @current_constant, new_scope)
 
         @scopes << new_scope
       end
@@ -183,7 +193,7 @@ module Rlint
         @scopes.pop
         @call_types.pop
 
-        @current_class = nil
+        @current_constant = nil
       end
 
       ##
@@ -193,12 +203,23 @@ module Rlint
       #  the module.
       #
       def on_module(token)
+        name              = token.name.join('::')
+        @current_constant = name
+        @call_types       << :method
+
+        # If a module has already been defined the scope should not be
+        # overwritten.
+        if scope.lookup(:constant, name)
+          @scopes << scope
+
+          return
+        end
+
         new_scope = Scope.new(scope)
 
-        scope.add(:constant, token.name.join('::'), new_scope)
+        scope.add(:constant, name, new_scope)
 
-        @call_types << :method
-        @scopes     << new_scope
+        @scopes << new_scope
       end
 
       ##
@@ -209,6 +230,8 @@ module Rlint
       def after_module(token)
         @call_types.pop
         @scopes.pop
+
+        @current_constant = nil
       end
 
       ##

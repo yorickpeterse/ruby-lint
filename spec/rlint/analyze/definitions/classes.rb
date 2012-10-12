@@ -140,4 +140,41 @@ end
     error[:line].should   == 4
     error[:column].should == 2
   end
+
+  it 'Redefining classes should not reset scoping related data' do
+    code = <<-CODE
+class Person
+  def example
+
+  end
+end
+
+p1 = Person.new
+
+p1.example
+
+class Person
+  def another_example
+
+  end
+end
+
+p2 = Person.new
+
+p1.example
+p1.another_example
+
+p2.example
+p2.another_example
+    CODE
+
+    tokens   = Rlint::Parser.new(code).parse
+    report   = Rlint::Report.new
+    iterator = Rlint::Iterator.new(report)
+
+    iterator.bind(Rlint::Analyze::Definitions)
+    iterator.iterate(tokens)
+
+    report.messages[:error].nil?.should == true
+  end
 end
