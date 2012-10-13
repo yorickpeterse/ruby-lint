@@ -78,4 +78,142 @@ Person.another_example
 
     report.messages[:error].nil?.should == true
   end
+
+  it 'Including a module into the global scope' do
+    code = <<-CODE
+module A
+  NUMBER = 10
+
+  def example_instance_method
+
+  end
+end
+
+NUMBER
+example_instance_method
+
+include A
+
+NUMBER
+example_instance_method
+    CODE
+
+    tokens   = Rlint::Parser.new(code).parse
+    report   = Rlint::Report.new
+    iterator = Rlint::Iterator.new(report)
+
+    iterator.bind(Rlint::Analyze::Definitions)
+    iterator.iterate(tokens)
+
+    report.messages[:error].class.should  == Array
+    report.messages[:error].length.should == 2
+
+    errors = report.messages[:error]
+
+    errors[0][:message].should == 'undefined constant NUMBER'
+    errors[0][:line].should    == 9
+    errors[0][:column].should  == 0
+
+    errors[1][:message].should == 'undefined local variable or ' \
+      'method example_instance_method'
+
+    errors[1][:line].should   == 10
+    errors[1][:column].should == 0
+  end
+
+  it 'Including a module into a class' do
+    code = <<-CODE
+module A
+  NUMBER = 10
+
+  def example_method
+
+  end
+end
+
+class Person
+
+end
+
+Person::NUMBER
+
+person = Person.new
+person.example_method
+
+class Person
+  include A
+end
+
+Person::NUMBER
+
+person = Person.new
+person.example_method
+    CODE
+
+    tokens   = Rlint::Parser.new(code).parse
+    report   = Rlint::Report.new
+    iterator = Rlint::Iterator.new(report)
+
+    iterator.bind(Rlint::Analyze::Definitions)
+    iterator.iterate(tokens)
+
+    report.messages[:error].class.should  == Array
+    report.messages[:error].length.should == 2
+
+    errors = report.messages[:error]
+
+    errors[0][:message].should == 'undefined constant Person::NUMBER'
+    errors[0][:line].should    == 13
+    errors[0][:column].should  == 0
+
+    errors[1][:message].should == 'undefined instance method example_method'
+    errors[1][:line].should    == 16
+    errors[1][:column].should  == 7
+  end
+
+  it 'Extend a class using a module' do
+    code = <<-CODE
+module A
+  NUMBER = 10
+
+  def example_method
+
+  end
+end
+
+class Person
+
+end
+
+Person::NUMBER
+Person.example_method
+
+class Person
+  extend A
+end
+
+Person::NUMBER
+Person.example_method
+    CODE
+
+    tokens   = Rlint::Parser.new(code).parse
+    report   = Rlint::Report.new
+    iterator = Rlint::Iterator.new(report)
+
+    iterator.bind(Rlint::Analyze::Definitions)
+    iterator.iterate(tokens)
+
+    report.messages[:error].class.should  == Array
+    report.messages[:error].length.should == 2
+
+    errors = report.messages[:error]
+
+    errors[0][:message].should == 'undefined constant Person::NUMBER'
+    errors[0][:line].should    == 13
+    errors[0][:column].should  == 0
+
+    errors[1][:message].should == 'undefined class method example_method'
+    errors[1][:line].should    == 14
+    errors[1][:column].should  == 7
+  end
 end
