@@ -29,15 +29,21 @@ module Rlint
   # have the following structure:
   #
   #     class MyCallback
-  #       def initialize(report)
-  #         @report = report
+  #       attr_reader :options
+  #
+  #       def initialize(report = nil, options = {})
+  #         @report  = report
+  #         @options = options
   #       end
   #     end
   #
-  # The constructor method should take a single parameter which is used for
-  # storing an instance of {Rlint::Report} (see the documentation of that class
-  # for more information about it). To make this, as well as adding errors and
-  # such to a report easier your own classes can extend {Rlint::Callback}:
+  # The constructor method should take two parameters: the first one is used
+  # for storing a instance of {Rlint::Report} (this parameter should be set to
+  # `nil` by default). The second parameter is a Hash containing custom options
+  # that can be set to alter the behaviour of the callback class.
+  #
+  # To make this, as well as adding errors and such to a report easier your own
+  # classes can extend {Rlint::Callback}:
   #
   #     class MyCallback < Rlint::Callback
   #
@@ -144,9 +150,10 @@ module Rlint
     #  iterator.bind(CustomCallbackClass)
     #
     # @param [Class] callback_class The class to add.
+    # @param [Hash] options Custom options to pass to the callback.
     #
-    def bind(callback_class)
-      @callbacks << callback_class.new(@report)
+    def bind(callback_class, options = {})
+      @callbacks << callback_class.new(@report, options)
     end
   end # Iterator
 end # Rlint

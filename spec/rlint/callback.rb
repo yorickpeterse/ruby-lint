@@ -25,4 +25,10 @@ describe 'Rlint::Callback' do
 
     report.messages[:error].nil?.should == true
   end
+
+  it 'Pass custom options to a callback class' do
+    callback = Rlint::Callback.new(nil, :name => 'Ruby')
+
+    callback.options[:name].should == 'Ruby'
+  end
 end

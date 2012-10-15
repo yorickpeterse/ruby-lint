@@ -383,4 +383,12 @@ end
 
     obj.params.should == %w{Foo Bar}
   end
+
+  it 'Pass options to a callback class' do
+    iterator = Rlint::Iterator.new
+
+    iterator.bind(Rlint::Callback, :name => 'Ruby')
+
+    iterator.callbacks[0].options[:name].should == 'Ruby'
+  end
 end
