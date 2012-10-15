@@ -387,7 +387,7 @@ module Rlint
           name = token.name
         end
 
-        if METHODS.key?(name)
+        if DEFAULT_CONSTANTS.key?(name)
           warning(
             'modification of a core Ruby constant',
             token.line,

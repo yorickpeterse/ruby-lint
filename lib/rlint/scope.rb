@@ -54,10 +54,10 @@ module Rlint
     #
     # @param [Array|Rlint::Scope] parent The parent scope(s). Set this to an
     #  Array of {Rlint::Scope} instances to use multiple parent scopes.
-    # @param [TrueClass|FalseClass] core When set to `true` the symbols for
-    #  this scope will be filled with core Ruby constants and their methods.
+    # @param [TrueClass|FalseClass] import_core When set to `true` the instance
+    #  will try to import constants for each failed constant lookup.
     #
-    def initialize(parent = [], core = false)
+    def initialize(parent = [], import_core = false)
       unless parent.is_a?(Array)
         parent = [parent]
       end
@@ -73,7 +73,13 @@ module Rlint
         :instance_method   => {}
       }
 
-      @symbols[:constant] = Rlint::METHODS.dup if core
+      # The Kernel module is pretty much always used and thus should be
+      # imported by default.
+      if import_core
+        @symbols[:constant] = ConstantImporter.import(['Kernel'])
+      end
+
+      @import_core = import_core
     end
 
     ##
@@ -109,6 +115,16 @@ module Rlint
             break
           end
         end
+      end
+
+      # Lazy import the constant if it exists.
+      if @import_core and type == :constant and !symbol \
+      and DEFAULT_CONSTANTS.key?(name)
+        @symbols[type] = @symbols[type].merge(
+          ConstantImporter.import([name])
+        )
+
+        symbol = lookup(type, name)
       end
 
       return symbol

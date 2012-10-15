@@ -5,6 +5,7 @@ unless $:.include?(File.expand_path('../', __FILE__))
 end
 
 require 'rlint/version'
+require 'rlint/default_constants'
 require 'rlint/parser'
 require 'rlint/token/token'
 require 'rlint/token/variable_token'
@@ -24,7 +25,7 @@ require 'rlint/callback'
 require 'rlint/report'
 require 'rlint/scope'
 require 'rlint/constant_importer'
-require 'rlint/methods'
 require 'rlint/formatter/text'
 require 'rlint/analyze/coding_style'
 require 'rlint/analyze/definitions'
+require 'rlint/analyze/require_processor'

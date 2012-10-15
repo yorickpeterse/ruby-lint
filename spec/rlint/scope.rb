@@ -46,6 +46,16 @@ describe 'Rlint::Scope' do
     param.type.should  == :local_variable
   end
 
+  it 'Lazy import the Time class' do
+    scope = Rlint::Scope.new
+
+    scope.lookup(:constant, 'Time').nil?.should == true
+
+    scope = Rlint::Scope.new(nil, true)
+
+    scope.lookup(:constant, 'Time').class.should == Rlint::Scope
+  end
+
   it 'Create a scope with multiple parent scopes' do
     scope_1 = Rlint::Scope.new
     scope_2 = Rlint::Scope.new
