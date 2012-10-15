@@ -36,7 +36,14 @@ describe 'Rlint::Scope' do
     method.class.should == Rlint::Token::MethodDefinitionToken
     method.name.should  == 'warn'
 
-    method.parameters.value.should == [nil]
+    method.parameters.value.class.should  == Array
+    method.parameters.value.length.should == 1
+
+    param = method.parameters.value[0]
+
+    param.class.should == Rlint::Token::VariableToken
+    param.name.should  == ''
+    param.type.should  == :local_variable
   end
 
   it 'Create a scope with multiple parent scopes' do
