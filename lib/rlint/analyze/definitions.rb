@@ -113,17 +113,16 @@ module Rlint
         # If a receiver is specified the method should be added as a class
         # method.
         if token.receiver
+          type = :method
+
           # Method for the current class.
-          if token.receiver.name == 'self' \
-          or token.receiver.name == @current_constant
-            type = :method
-          # Method for a different class (e.g. `def String.foo; ...; end`
-          else
+          if token.receiver.name != 'self' \
+          and token.receiver.name != @current_constant
             found = scope.lookup(token.receiver.type, token.receiver.name)
             added = true
 
             if found
-              found.add(:method, token.name, token)
+              found.add(type, token.name, token)
             else
               error(
                 "undefined method receiver #{token.receiver.name}",
