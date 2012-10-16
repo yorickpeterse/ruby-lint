@@ -28,7 +28,7 @@ module Rlint
         super
 
         @type  = :local_variable if @type == :identifier
-        @event = :assignment
+        @event = :assignment unless @event == :mass_assignment
 
         # Correct the types for local variable tokens in the name (only used
         # for mass assignments).

@@ -455,7 +455,8 @@ module Rlint
         :line   => variables[0].line,
         :column => variables[0].column,
         :code   => code(variables[0].line),
-        :type   => :mass_assign,
+        :type   => :mass_assignment,
+        :event  => :mass_assignment,
         :name   => variables,
         :value  => values
       )

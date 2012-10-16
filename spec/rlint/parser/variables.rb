@@ -133,7 +133,7 @@ describe 'Rlint::Parser' do
 
     token.name.class.should  == Array
     token.name.length.should == 2
-    token.type.should        == :mass_assign
+    token.type.should        == :mass_assignment
 
     token.name[0].class.should == Rlint::Token::Token
     token.name[0].name.should  == 'foo'
