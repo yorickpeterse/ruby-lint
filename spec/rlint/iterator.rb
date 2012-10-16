@@ -391,4 +391,42 @@ end
 
     iterator.callbacks[0].options[:name].should == 'Ruby'
   end
+
+  it 'Call an event before and after iterating over all nodes' do
+    code = <<-CODE
+class Person
+  def initialize
+    @name = 'Matz'
+  end
+end
+    CODE
+
+    tokens   = Rlint::Parser.new(code).parse
+    iterator = Rlint::Iterator.new
+    callback = Class.new(Rlint::Callback) do
+      attr_reader :start
+      attr_reader :finish
+
+      def initialize(*args)
+        super
+
+        @start  = 0
+        @finish = 0
+      end
+
+      def on_start
+        @start += 1
+      end
+
+      def on_finish
+        @finish += 1
+      end
+    end
+
+    iterator.bind(callback)
+    iterator.iterate(tokens)
+
+    iterator.callbacks[0].start.should  == 1
+    iterator.callbacks[0].finish.should == 1
+  end
 end

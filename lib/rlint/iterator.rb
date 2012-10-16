@@ -111,8 +111,13 @@ module Rlint
     #
     # @param [#each] nodes An array (or a different object that responds to
     #  `#each()`) that contains a set of tokens to process.
+    # @param [TrueClass|FalseClass] When set to `true` (the default) the
+    #  callbacks `on_start` and `on_finish` will be called before and after
+    #  processing all the tokens.
     #
-    def iterate(nodes)
+    def iterate(nodes, run_start_finish = true)
+      execute_callback(:on_start) if run_start_finish
+
       nodes.each do |node|
         next unless node.is_a?(Rlint::Token::Token)
 
@@ -120,24 +125,18 @@ module Rlint
         callback_name  = 'on_' + event_name
         after_callback = 'after_' + event_name
 
-        @callbacks.each do |obj|
-          if obj.respond_to?(callback_name)
-            obj.send(callback_name, node)
-          end
-        end
+        execute_callback(callback_name, node)
 
         node.child_nodes.each do |child_nodes|
           if child_nodes.respond_to?(:each)
-            iterate(child_nodes)
+            iterate(child_nodes, false)
           end
         end
 
-        @callbacks.each do |obj|
-          if obj.respond_to?(after_callback)
-            obj.send(after_callback, node)
-          end
-        end
+        execute_callback(after_callback, node)
       end
+
+      execute_callback(:on_finish) if run_start_finish
     end
 
     ##
@@ -154,6 +153,21 @@ module Rlint
     #
     def bind(callback_class, options = {})
       @callbacks << callback_class.new(@report, options)
+    end
+
+    private
+
+    ##
+    # Loops through all the bound callback classes and executes the specified
+    # callback method if it exists.
+    #
+    # @param [String|Symbol] name The name of the callback method to execute.
+    # @param [Array] args Arguments to pass to the callback method.
+    #
+    def execute_callback(name, *args)
+      @callbacks.each do |obj|
+        obj.send(name, *args) if obj.respond_to?(name)
+      end
     end
   end # Iterator
 end # Rlint
