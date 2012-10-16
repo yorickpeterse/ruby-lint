@@ -26,7 +26,7 @@ describe 'Rlint::Scope' do
   end
 
   it 'Create a scope with default Ruby constants and methods' do
-    scope = Rlint::Scope.new(nil, true)
+    scope = Rlint::Scope.new(nil, true, true)
     found = scope.lookup(:constant, 'Kernel')
 
     found.class.should == Rlint::Scope
@@ -54,6 +54,29 @@ describe 'Rlint::Scope' do
     scope = Rlint::Scope.new(nil, true)
 
     scope.lookup(:constant, 'Time').class.should == Rlint::Scope
+  end
+
+  it 'Lazy import the Encoding class and a child constant' do
+    scope = Rlint::Scope.new(nil, true)
+    enc   = scope.lookup(:constant, 'Encoding')
+
+    enc.class.should == Rlint::Scope
+
+    enc.lookup(:constant, 'BINARY').class.should == Rlint::Scope
+  end
+
+  it 'Lazy import Rlint::Scope' do
+    scope = Rlint::Scope.new(nil, true)
+
+    rlint = scope.lookup(:constant, 'Rlint')
+
+    rlint.class.should == Rlint::Scope
+
+    rlint_scope = rlint.lookup(:constant, 'Scope')
+
+    rlint_scope.class.should == Rlint::Scope
+
+    rlint_scope.lookup(:constant, 'LOOKUP_PARENT').class.should == Rlint::Scope
   end
 
   it 'Create a scope with multiple parent scopes' do

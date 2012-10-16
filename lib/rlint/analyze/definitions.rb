@@ -55,7 +55,7 @@ module Rlint
       def initialize(*args)
         super
 
-        @global_scope     = Scope.new(nil, true)
+        @global_scope     = Scope.new(nil, true, true)
         @scopes           = []
         @current_constant = nil
         @call_types       = []
@@ -408,6 +408,8 @@ module Rlint
               ? receiver_name[-1] \
               : receiver_name
           end
+
+          return unless type
 
           # Retrieve the constant to check for the existence of the method.
           found = receiver_scope.lookup(:constant, type)

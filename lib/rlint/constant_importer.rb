@@ -59,7 +59,7 @@ module Rlint
         next unless const
 
         name  = name.to_s
-        scope = Scope.new
+        scope = Scope.new(nil, true, false, const)
 
         METHOD_KEYS.each do |source, target|
           next unless const.respond_to?(source)

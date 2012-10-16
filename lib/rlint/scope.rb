@@ -50,14 +50,25 @@ module Rlint
     attr_reader :symbols
 
     ##
+    # The constant to lazy import child constants from, set to `Object` by
+    # default.
+    #
+    # @return [Mixed]
+    #
+    attr_reader :constant
+
+    ##
     # Creates a new instance of the scope class and sets the default symbols.
     #
     # @param [Array|Rlint::Scope] parent The parent scope(s). Set this to an
     #  Array of {Rlint::Scope} instances to use multiple parent scopes.
-    # @param [TrueClass|FalseClass] import_core When set to `true` the instance
+    # @param [TrueClass|FalseClass] lazy When set to `true` core constants will
+    #  be lazy loaded when they're not already defined.
+    # @param [TrueClass|FalseClass] kernel When set to `true` the instance
     #  will try to import constants for each failed constant lookup.
+    # @param [Mixed] constant See Rlint::Scope#constant.
     #
-    def initialize(parent = [], import_core = false)
+    def initialize(parent = [], lazy = false, kernel = false, constant = Object)
       unless parent.is_a?(Array)
         parent = [parent]
       end
@@ -73,13 +84,13 @@ module Rlint
         :instance_method   => {}
       }
 
-      # The Kernel module is pretty much always used and thus should be
-      # imported by default.
-      if import_core
+      @constant      = constant
+      @lazy_load     = lazy
+      @import_kernel = kernel
+
+      if lazy and kernel
         @symbols[:constant] = ConstantImporter.import(['Kernel'])
       end
-
-      @import_core = import_core
     end
 
     ##
@@ -118,10 +129,10 @@ module Rlint
       end
 
       # Lazy import the constant if it exists.
-      if @import_core and type == :constant and !symbol \
-      and DEFAULT_CONSTANTS.key?(name)
-        @symbols[type] = @symbols[type].merge(
-          ConstantImporter.import([name])
+      if @lazy_load and type == :constant and !symbol \
+      and @constant.constants.include?(name.to_sym)
+        @symbols[:constant] = @symbols[:constant].merge(
+          ConstantImporter.import([name], @constant)
         )
 
         symbol = lookup(type, name)
