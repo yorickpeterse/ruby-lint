@@ -58,6 +58,18 @@ puts NUMBER
     errors[4][:column].should  == 5
   end
 
+  it 'Default global variables should not trigger errors' do
+    code     = Kernel.global_variables.join("\n")
+    tokens   = Rlint::Parser.new(code).parse
+    report   = Rlint::Report.new
+    iterator = Rlint::Iterator.new(report)
+
+    iterator.bind(Rlint::Analyze::Definitions)
+    iterator.iterate(tokens)
+
+    report.messages[:error].nil?.should == true
+  end
+
   it 'Use of undefined variables using a method scope' do
     code = <<-CODE
 a  = 10

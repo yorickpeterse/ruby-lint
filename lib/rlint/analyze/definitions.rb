@@ -267,7 +267,8 @@ module Rlint
       # @param [Rlint::Token::VariableToken] token
       #
       def on_global_variable(token)
-        unless scope.lookup(:global_variable, token.name)
+        if !Kernel.global_variables.include?(token.name.to_sym) \
+        and !scope.lookup(:global_variable, token.name)
           error(
             "undefined global variable #{token.name}",
             token.line,
