@@ -17,7 +17,7 @@ module Rlint
       ##
       # The content of the `else` statement.
       #
-      # @return [Rlint::Token::Token]
+      # @return [Rlint::Token::StatementToken]
       #
       attr_accessor :else
 

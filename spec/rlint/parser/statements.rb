@@ -516,4 +516,35 @@ end
     token.value[0].class.should == Rlint::Token::MethodToken
     token.value[0].name.should  == 'foo'
   end
+
+  it 'Parse a tenary operator' do
+    token = Rlint::Parser.new('statement ? true : false').parse[0]
+
+    token.class.should == Rlint::Token::StatementToken
+    token.type.should  == :if
+
+    token.statement.class.should  == Rlint::Token::MethodToken
+    token.statement.name.should   == 'statement'
+    token.statement.column.should == 0
+    token.statement.line.should   == 1
+
+    token.value.class.should  == Array
+    token.value.length.should == 1
+
+    token.value[0].class.should  == Rlint::Token::VariableToken
+    token.value[0].name.should   == 'true'
+    token.value[0].line.should   == 1
+    token.value[0].column.should == 12
+
+    token.else.class.should          == Rlint::Token::StatementToken
+    token.else.statement.nil?.should == true
+    token.else.line.should           == 1
+    token.else.column.should         == 19
+
+    token.else.value.class.should  == Array
+    token.else.value.length.should == 1
+
+    token.else.value[0].class.should == Rlint::Token::VariableToken
+    token.else.value[0].name.should  == 'false'
+  end
 end

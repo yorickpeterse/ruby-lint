@@ -640,6 +640,31 @@ module Rlint
     end
 
     ##
+    # Called whne a tenary operator is found.
+    #
+    # @see Rlint::Parser#on_if
+    #
+    def on_ifop(statement, value, else_statement)
+      else_statement = Token::StatementToken.new(
+        :type   => :else,
+        :value  => [else_statement],
+        :line   => else_statement.line,
+        :column => else_statement.column,
+        :code   => code(else_statement.line)
+      )
+
+      return Token::StatementToken.new(
+        :type      => :if,
+        :statement => statement,
+        :value     => [value],
+        :line      => statement.line,
+        :column    => statement.column,
+        :code      => code(statement.line),
+        :else      => else_statement
+      )
+    end
+
+    ##
     # Called when an else statement is found.
     #
     # @param  [Array] value The value of the statement.
