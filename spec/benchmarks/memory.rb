@@ -21,7 +21,7 @@ end
 
 memory_kb = 0.0
 amount    = ENV['AMOUNT'] ? ENV['AMOUNT'].to_i : 100
-path      = File.expand_path('../../../lib/rlint/scope.rb', __FILE__)
+path      = File.expand_path('../../../lib/rlint/parser.rb', __FILE__)
 code      = File.read(path, File.size(path))
 
 amount.times do
