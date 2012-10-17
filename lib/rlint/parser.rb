@@ -80,12 +80,17 @@ module Rlint
     RETURN_METHOD_EVENTS = [:fcall, :vcall]
 
     ##
-    # Array containing the names of various event callbacks that should return
+    # Hash containing the names of various event callbacks that should return
     # a token class containing details about a single line statement.
     #
-    # @return [Array]
+    # @return [Hash]
     #
-    MOD_STATEMENT_EVENTS = [:while_mod, :if_mod, :unless_mod, :until_mod]
+    MOD_STATEMENT_EVENTS = {
+      :while_mod  => :while,
+      :if_mod     => :if,
+      :unless_mod => :unless,
+      :until_mod  => :until
+    }
 
     ##
     # Array containing the three method calls that set the visibility of a
@@ -147,12 +152,12 @@ module Rlint
       end
     end
 
-    MOD_STATEMENT_EVENTS.each do |event|
-      define_method("on_#{event}") do |statement, value|
+    MOD_STATEMENT_EVENTS.each do |ripper_event, rlint_event|
+      define_method("on_#{ripper_event}") do |statement, value|
         value = [value] unless value.is_a?(Array)
 
         return Token::StatementToken.new(
-          :type      => event,
+          :type      => rlint_event,
           :statement => statement,
           :value     => value,
           :line      => lineno,
@@ -783,7 +788,7 @@ module Rlint
       statement = [statement] unless statement.is_a?(Array)
 
       return Token::BeginRescueToken.new(
-        :type   => :rescue_mod,
+        :type   => :rescue,
         :rescue => statement,
         :value  => value,
         :line   => lineno,

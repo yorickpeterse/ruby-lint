@@ -94,7 +94,7 @@ describe 'Rlint::Parser' do
     token = Rlint::Parser.new('foo while bar').parse[0]
 
     token.class.should == Rlint::Token::StatementToken
-    token.type.should  == :while_mod
+    token.type.should  == :while
 
     token.statement.class.should == Rlint::Token::MethodToken
     token.statement.name.should  == 'bar'
@@ -399,7 +399,7 @@ end
     token = Rlint::Parser.new('foo if bar').parse[0]
 
     token.class.should == Rlint::Token::StatementToken
-    token.type.should  == :if_mod
+    token.type.should  == :if
 
     token.statement.class.should == Rlint::Token::MethodToken
     token.statement.name.should  == 'bar'
@@ -415,7 +415,7 @@ end
     token = Rlint::Parser.new('foo rescue bar').parse[0]
 
     token.class.should == Rlint::Token::BeginRescueToken
-    token.type.should  == :rescue_mod
+    token.type.should  == :rescue
 
     token.rescue.class.should  == Array
     token.rescue.length.should == 1
@@ -457,7 +457,7 @@ end
     token = Rlint::Parser.new('foo unless bar').parse[0]
 
     token.class.should == Rlint::Token::StatementToken
-    token.type.should  == :unless_mod
+    token.type.should  == :unless
 
     token.statement.class.should == Rlint::Token::MethodToken
     token.statement.name.should  == 'bar'
@@ -505,7 +505,7 @@ end
     token = Rlint::Parser.new('foo until bar').parse[0]
 
     token.class.should == Rlint::Token::StatementToken
-    token.type.should  == :until_mod
+    token.type.should  == :until
 
     token.statement.class.should == Rlint::Token::MethodToken
     token.statement.name.should  == 'bar'
