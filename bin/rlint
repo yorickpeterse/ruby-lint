@@ -1,3 +1,7 @@
 #!/usr/bin/env ruby
 
 require File.expand_path('../../lib/rlint', __FILE__)
+require 'shebang'
+require 'rlint/cli'
+
+Shebang.run

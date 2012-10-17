@@ -32,6 +32,13 @@ module Rlint
   #
   class Report
     ##
+    # Array containing the levels that are enabled by default.
+    #
+    # @return [Array]
+    #
+    DEFAULT_LEVELS = [:error, :warning, :info]
+
+    ##
     # A hash containing the various messages stored per level.
     #
     # @return [Hash]
@@ -60,7 +67,7 @@ module Rlint
     #  to.
     # @param [Array] levels The message levels to use for this report.
     #
-    def initialize(file = '(rlint)', levels = [:error, :warning, :info])
+    def initialize(file = '(rlint)', levels = DEFAULT_LEVELS)
       @file     = file
       @levels   = levels
       @messages = {}
