@@ -55,10 +55,10 @@ module Rlint
       def initialize(*args)
         super
 
-        @global_scope     = Scope.new(nil, true, true)
-        @scopes           = []
-        @current_constant = nil
-        @call_types       = []
+        @global_scope = Scope.new(nil, true, true)
+        @scopes       = []
+        @namespace    = []
+        @call_types   = []
       end
 
       ##
@@ -117,7 +117,7 @@ module Rlint
 
           # Method for the current class.
           if token.receiver.name != 'self' \
-          and token.receiver.name != @current_constant
+          and token.receiver.name != @namespace[-1]
             found = scope.lookup(token.receiver.type, token.receiver.name)
             added = true
 
@@ -171,22 +171,18 @@ module Rlint
       # @param [Rlint::Token::ClassToken] token
       #
       def on_class(token)
-        name              = token.name.join('::')
-        @current_constant = name
-        @call_types       << :method
+        name        = token.name.join('::')
+        @namespace  << name
+        @call_types << :method
 
         # If a class has already been defined the scoping data should not be
         # overwritten.
-        if scope.lookup(:constant, name)
-          @scopes << scope
-
-          return
-        end
+        return if scope.lookup(:constant, name)
 
         parent    = scope.lookup(:constant, token.parent.join('::'))
         new_scope = Scope.new([parent, scope])
 
-        scope.add(:constant, @current_constant, new_scope)
+        scope.add(:constant, name, new_scope)
 
         @scopes << new_scope
       end
@@ -199,8 +195,7 @@ module Rlint
       def after_class(token)
         @scopes.pop
         @call_types.pop
-
-        @current_constant = nil
+        @namespace.pop
       end
 
       ##
@@ -210,17 +205,13 @@ module Rlint
       #  the module.
       #
       def on_module(token)
-        name              = token.name.join('::')
-        @current_constant = name
-        @call_types       << :method
+        name        = token.name.join('::')
+        @namespace  << name
+        @call_types << :method
 
         # If a module has already been defined the scope should not be
         # overwritten.
-        if scope.lookup(:constant, name)
-          @scopes << scope
-
-          return
-        end
+        return if scope.lookup(:constant, name)
 
         new_scope = Scope.new(scope)
 
@@ -237,8 +228,7 @@ module Rlint
       def after_module(token)
         @call_types.pop
         @scopes.pop
-
-        @current_constant = nil
+        @namespace.pop
       end
 
       ##
@@ -292,7 +282,24 @@ module Rlint
       # @param [Rlint::Token::VariableToken] token
       #
       def on_constant(token)
-        if !scope.lookup(:constant, token.name)
+        found = !scope.lookup(:constant, token.name).nil?
+
+        # Constants defined in a parent constants are inherited when defining
+        # Ruby code inside a namespace (e.g. a nested module). For example,
+        # `Creature::Human` is available in `Creature::Fish` even when
+        # referenced just as `Fish`.
+        if !found and !@namespace.empty?
+          @namespace.each do |segment|
+            segment_found = scope.lookup(:constant, segment)
+
+            if segment_found and segment_found.lookup(:constant, token.name)
+              found = true
+              break
+            end
+          end
+        end
+
+        unless found
           error("undefined constant #{token.name}", token.line, token.column)
         end
       end

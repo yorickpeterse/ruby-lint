@@ -111,6 +111,7 @@ module Rlint
     # @param [String] name The name of the symbol to look up.
     #
     def lookup(type, name)
+      name   = name.to_s unless name.is_a?(String)
       symbol = nil
       type   = type.to_sym
 

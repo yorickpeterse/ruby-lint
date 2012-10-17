@@ -139,6 +139,7 @@ Person::NUMBER
 
 person = Person.new
 person.example_method
+NUMBER
 
 class Person
   include A
@@ -158,7 +159,7 @@ person.example_method
     iterator.iterate(tokens)
 
     report.messages[:error].class.should  == Array
-    report.messages[:error].length.should == 2
+    report.messages[:error].length.should == 3
 
     errors = report.messages[:error]
 
@@ -169,6 +170,10 @@ person.example_method
     errors[1][:message].should == 'undefined instance method example_method'
     errors[1][:line].should    == 16
     errors[1][:column].should  == 7
+
+    errors[2][:message].should == 'undefined constant NUMBER'
+    errors[2][:line].should    == 17
+    errors[2][:column].should  == 0
   end
 
   it 'Extend a class using a module' do
@@ -187,6 +192,7 @@ end
 
 Person::NUMBER
 Person.example_method
+NUMBER
 
 class Person
   extend A
@@ -204,7 +210,7 @@ Person.example_method
     iterator.iterate(tokens)
 
     report.messages[:error].class.should  == Array
-    report.messages[:error].length.should == 2
+    report.messages[:error].length.should == 3
 
     errors = report.messages[:error]
 
@@ -215,5 +221,9 @@ Person.example_method
     errors[1][:message].should == 'undefined class method example_method'
     errors[1][:line].should    == 14
     errors[1][:column].should  == 7
+
+    errors[2][:message].should == 'undefined constant NUMBER'
+    errors[2][:line].should    == 15
+    errors[2][:column].should  == 0
   end
 end

@@ -207,4 +207,31 @@ puts A::B
     errors[1][:line].should    == 7
     errors[1][:column].should  == 5
   end
+
+  it 'Look up a constant using an implicit constant path' do
+    code = <<-CODE
+module Rlint
+  module Derp
+    Foobar.name
+    ConstantImporter.name
+  end
+end
+    CODE
+
+    tokens   = Rlint::Parser.new(code).parse
+    report   = Rlint::Report.new
+    iterator = Rlint::Iterator.new(report)
+
+    iterator.bind(Rlint::Analyze::Definitions)
+    iterator.iterate(tokens)
+
+    report.messages[:error].class.should  == Array
+    report.messages[:error].length.should == 1
+
+    error = report.messages[:error][0]
+
+    error[:message].should == 'undefined constant Foobar'
+    error[:line].should    == 3
+    error[:column].should  == 4
+  end
 end
