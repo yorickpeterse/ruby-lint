@@ -50,6 +50,19 @@ module Rlint
       }
 
       ##
+      # Array containing the variable types to use for checking for unused
+      # variables.
+      #
+      # @return [Array]
+      #
+      UNUSED_VARIABLES = [
+        :local_variable,
+        :instance_variable,
+        :class_variable,
+        :global_variable
+      ]
+
+      ##
       # @see Rlint::Callback#initialize
       #
       def initialize(*args)
@@ -59,6 +72,14 @@ module Rlint
         @scopes       = []
         @namespace    = []
         @call_types   = []
+      end
+
+      ##
+      # Called after all the supplied tokens have been processed. This method
+      # is primarily used for checking unused variables in the global scope.
+      #
+      def on_finish
+        warn_for_unused_variables
       end
 
       ##
@@ -152,6 +173,8 @@ module Rlint
       # @see Rlint::Analyze::Definitions#on_method_definition
       #
       def after_method_definition(token)
+        warn_for_unused_variables
+
         # TODO: exporting these variables should only be done if the method is
         # actually called.
         last_scope = @scopes.pop
@@ -193,6 +216,8 @@ module Rlint
       # @see Rlint::Analyze::Definitions#on_class
       #
       def after_class(token)
+        warn_for_unused_variables
+
         @scopes.pop
         @call_types.pop
         @namespace.pop
@@ -226,9 +251,20 @@ module Rlint
       # @see Rlint::Analyze::Definitions#on_module
       #
       def after_module(token)
+        warn_for_unused_variables
+
         @call_types.pop
         @scopes.pop
         @namespace.pop
+      end
+
+      ##
+      # Called when a local variable is found.
+      #
+      # @param [Rlint::Token::VariableToken] token
+      #
+      def on_local_variable(token)
+        scope.lookup(:local_variable, token.name).used = true
       end
 
       ##
@@ -237,7 +273,11 @@ module Rlint
       # @param [Rlint::Token::VariableToken] token
       #
       def on_instance_variable(token)
-        unless scope.lookup(:instance_variable, token.name)
+        found = scope.lookup(:instance_variable, token.name)
+
+        if found
+          found.used = true
+        else
           error(
             "undefined instance variable #{token.name}",
             token.line,
@@ -252,7 +292,11 @@ module Rlint
       # @param [Rlint::Token::VariableToken] token
       #
       def on_class_variable(token)
-        unless scope.lookup(:class_variable, token.name)
+        found = scope.lookup(:class_variable, token.name)
+
+        if found
+          found.used = true
+        else
           error(
             "undefined class variable #{token.name}",
             token.line,
@@ -267,13 +311,16 @@ module Rlint
       # @param [Rlint::Token::VariableToken] token
       #
       def on_global_variable(token)
-        if !Kernel.global_variables.include?(token.name.to_sym) \
-        and !scope.lookup(:global_variable, token.name)
+        found = scope.lookup(:global_variable, token.name)
+
+        if !Kernel.global_variables.include?(token.name.to_sym) and !found
           error(
             "undefined global variable #{token.name}",
             token.line,
             token.column
           )
+        elsif found
+          found.used = true
         end
       end
 
@@ -283,7 +330,7 @@ module Rlint
       # @param [Rlint::Token::VariableToken] token
       #
       def on_constant(token)
-        found = !scope.lookup(:constant, token.name).nil?
+        found = scope.lookup(:constant, token.name)
 
         # Constants defined in a parent constants are inherited when defining
         # Ruby code inside a namespace (e.g. a nested module). For example,
@@ -293,14 +340,20 @@ module Rlint
           @namespace.each do |segment|
             segment_found = scope.lookup(:constant, segment)
 
-            if segment_found and segment_found.lookup(:constant, token.name)
-              found = true
-              break
+            if segment_found
+              segment_found = segment_found.lookup(:constant, token.name)
+
+              if segment_found
+                found = segment_found
+                break
+              end
             end
           end
         end
 
-        unless found
+        if found and found.is_a?(Token::Token)
+          found.used = true
+        elsif !found
           error("undefined constant #{token.name}", token.line, token.column)
         end
       end
@@ -504,6 +557,26 @@ module Rlint
         end
 
         return resolved
+      end
+
+      ##
+      # Adds warnings for all unused variables in the current scope.
+      #
+      def warn_for_unused_variables
+        UNUSED_VARIABLES.each do |type|
+          scope.symbols[type].each do |name, token|
+            if token.is_a?(Token::Token) and !token.used and !token.reported
+              token.reported = true
+              human_readable = type.to_s.gsub('_', ' ')
+
+              warning(
+                "assigned but unused #{human_readable} #{token.name}",
+                token.line,
+                token.column
+              )
+            end
+          end
+        end
       end
     end # Definitions
   end # Analyze

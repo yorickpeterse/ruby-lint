@@ -94,6 +94,22 @@ module Rlint
       attr_reader :event
 
       ##
+      # Boolean that indicates if the token has been used or not, primarily
+      # used for marking variables as used.
+      #
+      # @return [TrueClass|FalseClass]
+      #
+      attr_accessor :used
+
+      ##
+      # Boolean that indicates that a message about this token has been added
+      # to a report.
+      #
+      # @return [TrueClass|FalseClass]
+      #
+      attr_accessor :reported
+
+      ##
       # Creates a new instance of the token and sets various instance variables
       # based on the specified hash.
       #
@@ -103,6 +119,9 @@ module Rlint
       #  corresponding public getter mehtod to be set.
       #
       def initialize(options = {})
+        @used     = false
+        @reported = false
+
         options.each do |key, value|
           if respond_to?(key)
             instance_variable_set("@#{key}", value)
@@ -114,6 +133,7 @@ module Rlint
         end
 
         @event = @type
+        @used  = false
 
         # Remove NilClass instances from the `value` array, these serve no
         # useful purpose.
