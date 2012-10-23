@@ -98,7 +98,7 @@ module Rlint
           type = token.type
         end
 
-        variable_scope.add(type, name, token.value)
+        variable_scope.add(type, name, token)
       end
 
       ##
@@ -394,7 +394,12 @@ module Rlint
           and receiver_type != :constant \
           and receiver_type != :constant_path
             value = receiver_scope.lookup(receiver_type, receiver_name)
-            type  = !value.nil? ? TYPE_CLASSES[value.type] : nil
+            type  = nil
+
+            if !value.nil? and !value.value.nil?
+              value = value.value
+              type  = TYPE_CLASSES[value.type]
+            end
 
             # Extract the class from a method call.
             if value.respond_to?(:receiver)
