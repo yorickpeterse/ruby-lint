@@ -24,7 +24,7 @@ puts $number_2
     iterator = Rlint::Iterator.new(report)
 
     iterator.bind(Rlint::Analyze::Definitions)
-    iterator.iterate(tokens)
+    iterator.run(tokens)
 
     report.messages[:warning].class.should  == Array
     report.messages[:warning].length.should == 4
@@ -79,7 +79,7 @@ end
     iterator = Rlint::Iterator.new(report)
 
     iterator.bind(Rlint::Analyze::Definitions)
-    iterator.iterate(tokens)
+    iterator.run(tokens)
 
     report.messages[:warning].class.should  == Array
     report.messages[:warning].length.should == 4
@@ -134,7 +134,7 @@ end
     iterator = Rlint::Iterator.new(report)
 
     iterator.bind(Rlint::Analyze::Definitions)
-    iterator.iterate(tokens)
+    iterator.run(tokens)
 
     report.messages[:warning].class.should  == Array
     report.messages[:warning].length.should == 4
@@ -189,7 +189,7 @@ end
     iterator = Rlint::Iterator.new(report)
 
     iterator.bind(Rlint::Analyze::Definitions)
-    iterator.iterate(tokens)
+    iterator.run(tokens)
 
     report.messages[:warning].class.should  == Array
     report.messages[:warning].length.should == 4

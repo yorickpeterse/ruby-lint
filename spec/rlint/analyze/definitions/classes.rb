@@ -20,7 +20,7 @@ person.name
     iterator = Rlint::Iterator.new(report)
 
     iterator.bind(Rlint::Analyze::Definitions)
-    iterator.iterate(tokens)
+    iterator.run(tokens)
 
     report.messages[:error].class.should  == Array
     report.messages[:error].length.should == 1
@@ -62,7 +62,7 @@ person.class_method_2
     iterator = Rlint::Iterator.new(report)
 
     iterator.bind(Rlint::Analyze::Definitions)
-    iterator.iterate(tokens)
+    iterator.run(tokens)
 
     report.messages[:error].class.should  == Array
     report.messages[:error].length.should == 2
@@ -97,7 +97,7 @@ String.class_method
     iterator = Rlint::Iterator.new(report)
 
     iterator.bind(Rlint::Analyze::Definitions)
-    iterator.iterate(tokens)
+    iterator.run(tokens)
 
     report.messages[:error].class.should  == Array
     report.messages[:error].length.should == 2
@@ -127,7 +127,7 @@ end
     iterator = Rlint::Iterator.new(report)
 
     iterator.bind(Rlint::Analyze::Definitions)
-    iterator.iterate(tokens)
+    iterator.run(tokens)
 
     report.messages[:error].class.should  == Array
     report.messages[:error].length.should == 1
@@ -173,7 +173,7 @@ p2.another_example
     iterator = Rlint::Iterator.new(report)
 
     iterator.bind(Rlint::Analyze::Definitions)
-    iterator.iterate(tokens)
+    iterator.run(tokens)
 
     report.messages[:error].nil?.should == true
   end

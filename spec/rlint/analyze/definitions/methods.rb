@@ -14,7 +14,7 @@ defined_method
     iterator = Rlint::Iterator.new(report)
 
     iterator.bind(Rlint::Analyze::Definitions)
-    iterator.iterate(tokens)
+    iterator.run(tokens)
 
     report.messages[:error].class.should  == Array
     report.messages[:error].length.should == 1
@@ -40,7 +40,7 @@ Foobar.new
     iterator = Rlint::Iterator.new(report)
 
     iterator.bind(Rlint::Analyze::Definitions)
-    iterator.iterate(tokens)
+    iterator.run(tokens)
 
     report.messages[:error].class.should  == Array
     report.messages[:error].length.should == 2
@@ -73,7 +73,7 @@ foo.upcase
     iterator = Rlint::Iterator.new(report)
 
     iterator.bind(Rlint::Analyze::Definitions)
-    iterator.iterate(tokens)
+    iterator.run(tokens)
 
     report.messages[:error].class.should  == Array
     report.messages[:error].length.should == 3
@@ -108,7 +108,7 @@ end
     iterator = Rlint::Iterator.new(report)
 
     iterator.bind(Rlint::Analyze::Definitions)
-    iterator.iterate(tokens)
+    iterator.run(tokens)
 
     report.messages[:error].class.should  == Array
     report.messages[:error].length.should == 1
@@ -145,7 +145,7 @@ A::B.valid_method
     iterator = Rlint::Iterator.new(report)
 
     iterator.bind(Rlint::Analyze::Definitions)
-    iterator.iterate(tokens)
+    iterator.run(tokens)
 
     report.messages[:error].class.should  == Array
     report.messages[:error].length.should == 3

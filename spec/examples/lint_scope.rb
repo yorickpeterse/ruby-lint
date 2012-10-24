@@ -9,6 +9,6 @@ formatter = Rlint::Formatter::Text.new
 iterator.bind(Rlint::Analyze::CodingStyle)
 iterator.bind(Rlint::Analyze::Definitions)
 
-iterator.iterate(tokens)
+iterator.run(tokens)
 
 puts formatter.format(report)

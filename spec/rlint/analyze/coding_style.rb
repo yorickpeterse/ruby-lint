@@ -15,7 +15,7 @@ end
     iterator = Rlint::Iterator.new(report)
 
     iterator.bind(Rlint::Analyze::CodingStyle)
-    iterator.iterate(tokens)
+    iterator.run(tokens)
 
     messages = report.messages[:info]
     message  = 'the use of camelCase for names is discouraged'
@@ -56,7 +56,7 @@ THIS_CONSTANT_NAME_IS_WAY_TOO_LONG = 10
     iterator = Rlint::Iterator.new(report)
 
     iterator.bind(Rlint::Analyze::CodingStyle)
-    iterator.iterate(tokens)
+    iterator.run(tokens)
 
     messages = report.messages[:info]
     message  = "method and variable names should not be longer than " \
@@ -81,7 +81,7 @@ THIS_CONSTANT_NAME_IS_WAY_TOO_LONG = 10
     iterator = Rlint::Iterator.new(report)
 
     iterator.bind(Rlint::Analyze::CodingStyle)
-    iterator.iterate(tokens)
+    iterator.run(tokens)
 
     info = report.messages[:info][0]
 
@@ -123,7 +123,7 @@ end
     iterator = Rlint::Iterator.new(report)
 
     iterator.bind(Rlint::Analyze::CodingStyle)
-    iterator.iterate(tokens)
+    iterator.run(tokens)
 
     report.messages[:info].class.should  == Array
     report.messages[:info].length.should == 7
@@ -153,7 +153,7 @@ end
     iterator = Rlint::Iterator.new(report)
 
     iterator.bind(Rlint::Analyze::CodingStyle)
-    iterator.iterate(tokens)
+    iterator.run(tokens)
 
     message = 'predicate methods should end with a question mark'
 
@@ -176,7 +176,7 @@ end
     iterator = Rlint::Iterator.new(report)
 
     iterator.bind(Rlint::Analyze::CodingStyle)
-    iterator.iterate(tokens)
+    iterator.run(tokens)
 
     message = 'it is recommended to use the method "map" instead of "collect"'
 
@@ -206,7 +206,7 @@ end
     iterator = Rlint::Iterator.new(report)
 
     iterator.bind(Rlint::Analyze::CodingStyle)
-    iterator.iterate(tokens)
+    iterator.run(tokens)
 
     report.messages[:warning].class.should  == Array
     report.messages[:warning].length.should == 2

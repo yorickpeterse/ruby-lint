@@ -94,7 +94,7 @@ error
           iterator.bind(analyzer)
         end
 
-        iterator.iterate(tokens)
+        iterator.run(tokens)
 
         output = formatter.format(report)
 

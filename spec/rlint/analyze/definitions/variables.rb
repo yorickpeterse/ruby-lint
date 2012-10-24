@@ -30,7 +30,7 @@ puts NUMBER
     iterator = Rlint::Iterator.new(report)
 
     iterator.bind(Rlint::Analyze::Definitions)
-    iterator.iterate(tokens)
+    iterator.run(tokens)
 
     report.messages[:error].class.should  == Array
     report.messages[:error].length.should == 5
@@ -65,7 +65,7 @@ puts NUMBER
     iterator = Rlint::Iterator.new(report)
 
     iterator.bind(Rlint::Analyze::Definitions)
-    iterator.iterate(tokens)
+    iterator.run(tokens)
 
     report.messages[:error].nil?.should == true
   end
@@ -92,7 +92,7 @@ puts b # b was defined inside the method and isn't available outside it
     iterator = Rlint::Iterator.new(report)
 
     iterator.bind(Rlint::Analyze::Definitions)
-    iterator.iterate(tokens)
+    iterator.run(tokens)
 
     report.messages[:error].class.should  == Array
     report.messages[:error].length.should == 3
@@ -126,7 +126,7 @@ puts @number
     iterator = Rlint::Iterator.new(report)
 
     iterator.bind(Rlint::Analyze::Definitions)
-    iterator.iterate(tokens)
+    iterator.run(tokens)
 
     report.messages[:error].nil?.should == true
   end
@@ -150,7 +150,7 @@ end
     iterator = Rlint::Iterator.new(report)
 
     iterator.bind(Rlint::Analyze::Definitions)
-    iterator.iterate(tokens)
+    iterator.run(tokens)
 
     report.messages[:error].class.should  == Array
     report.messages[:error].length.should == 1
@@ -176,7 +176,7 @@ end
     iterator = Rlint::Iterator.new(report)
 
     iterator.bind(Rlint::Analyze::Definitions)
-    iterator.iterate(tokens)
+    iterator.run(tokens)
 
     report.messages[:warning].class.should  == Array
     report.messages[:warning].length.should == 1
@@ -204,7 +204,7 @@ puts A::B
     iterator = Rlint::Iterator.new(report)
 
     iterator.bind(Rlint::Analyze::Definitions)
-    iterator.iterate(tokens)
+    iterator.run(tokens)
 
     report.messages[:error].class.should  == Array
     report.messages[:error].length.should == 2
@@ -235,7 +235,7 @@ end
     iterator = Rlint::Iterator.new(report)
 
     iterator.bind(Rlint::Analyze::Definitions)
-    iterator.iterate(tokens)
+    iterator.run(tokens)
 
     report.messages[:error].class.should  == Array
     report.messages[:error].length.should == 1

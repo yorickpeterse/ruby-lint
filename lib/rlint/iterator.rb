@@ -14,7 +14,7 @@ module Rlint
   #     tokens   = parser.parse
   #     iterator = Rlint::Iterator.new
   #
-  #     iterator.iterate
+  #     iterator.run(tokens)
   #
   # This particular example doesn't do anything but iterating over the nodes
   # due to no callback classes being defined. How to add these classes is
@@ -106,18 +106,32 @@ module Rlint
     end
 
     ##
-    # Iterates over the specified array of token classes and executes defined
-    # callback methods.
+    # Processes the entire AST for each callback class in sequence. For each
+    # callback class the method {Rlint::Iterator#iterate} is called to process
+    # an *entire* AST before moving on to the next callback class.
     #
+    # @param [#each] nodes An array of nodes to process.
+    #
+    def run(nodes)
+      @callbacks.each do |obj|
+        execute_callback(obj, :on_start)
+
+        iterate(obj, nodes)
+
+        execute_callback(obj, :on_finish)
+      end
+    end
+
+    ##
+    # Processes an AST and calls callbacks methods for a specific callback
+    # object.
+    #
+    # @param [Rlint::Callback] callback_obj The callback object on which to
+    #  invoke callback method.
     # @param [#each] nodes An array (or a different object that responds to
     #  `#each()`) that contains a set of tokens to process.
-    # @param [TrueClass|FalseClass] When set to `true` (the default) the
-    #  callbacks `on_start` and `on_finish` will be called before and after
-    #  processing all the tokens.
     #
-    def iterate(nodes, run_start_finish = true)
-      execute_callback(:on_start) if run_start_finish
-
+    def iterate(callback_obj, nodes)
       nodes.each do |node|
         next unless node.is_a?(Rlint::Token::Token)
 
@@ -125,18 +139,16 @@ module Rlint
         callback_name  = 'on_' + event_name
         after_callback = 'after_' + event_name
 
-        execute_callback(callback_name, node)
+        execute_callback(callback_obj, callback_name, node)
 
         node.child_nodes.each do |child_nodes|
           if child_nodes.respond_to?(:each)
-            iterate(child_nodes, false)
+            iterate(callback_obj, child_nodes)
           end
         end
 
-        execute_callback(after_callback, node)
+        execute_callback(callback_obj, after_callback, node)
       end
-
-      execute_callback(:on_finish) if run_start_finish
     end
 
     ##
@@ -161,13 +173,13 @@ module Rlint
     # Loops through all the bound callback classes and executes the specified
     # callback method if it exists.
     #
+    # @param [Rlint::Callback] obj The object on which to invoke the callback
+    #  method.
     # @param [String|Symbol] name The name of the callback method to execute.
     # @param [Array] args Arguments to pass to the callback method.
     #
-    def execute_callback(name, *args)
-      @callbacks.each do |obj|
-        obj.send(name, *args) if obj.respond_to?(name)
-      end
+    def execute_callback(obj, name, *args)
+      obj.send(name, *args) if obj.respond_to?(name)
     end
   end # Iterator
 end # Rlint

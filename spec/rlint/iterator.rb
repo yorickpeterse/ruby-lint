@@ -25,7 +25,7 @@ number
 
     iterator.bind(callback)
 
-    iterator.iterate(tokens)
+    iterator.run(tokens)
 
     iterator.callbacks[0].assigned.should   == true
     iterator.callbacks[0].referenced.should == true
@@ -62,7 +62,7 @@ end
 
     iterator.bind(callback)
 
-    iterator.iterate(tokens)
+    iterator.run(tokens)
 
     iterator.callbacks[0].class_name.should  == 'Foo'
     iterator.callbacks[0].method_name.should == 'initialize'
@@ -92,7 +92,7 @@ end
     end
 
     iterator.bind(callback)
-    iterator.iterate(tokens)
+    iterator.run(tokens)
 
     iterator.callbacks[0].before.should == 'some_method'
     iterator.callbacks[0].after.should  == 'some_method'
@@ -134,7 +134,7 @@ end
     end
 
     iterator.bind(callback)
-    iterator.iterate(tokens)
+    iterator.run(tokens)
 
     obj = iterator.callbacks[0]
 
@@ -181,7 +181,7 @@ end
     end
 
     iterator.bind(callback)
-    iterator.iterate(tokens)
+    iterator.run(tokens)
 
     obj = iterator.callbacks[0]
 
@@ -226,7 +226,7 @@ end
     end
 
     iterator.bind(callback)
-    iterator.iterate(tokens)
+    iterator.run(tokens)
 
     obj = iterator.callbacks[0]
 
@@ -272,7 +272,7 @@ end
     end
 
     iterator.bind(callback)
-    iterator.iterate(tokens)
+    iterator.run(tokens)
 
     obj = iterator.callbacks[0]
 
@@ -315,7 +315,7 @@ end
     end
 
     iterator.bind(callback)
-    iterator.iterate(tokens)
+    iterator.run(tokens)
 
     obj = iterator.callbacks[0]
 
@@ -353,7 +353,7 @@ end
     end
 
     iterator.bind(callback)
-    iterator.iterate(tokens)
+    iterator.run(tokens)
 
     obj = iterator.callbacks[0]
 
@@ -377,7 +377,7 @@ end
     end
 
     iterator.bind(callback)
-    iterator.iterate(tokens)
+    iterator.run(tokens)
 
     obj = iterator.callbacks[0]
 
@@ -424,7 +424,7 @@ end
     end
 
     iterator.bind(callback)
-    iterator.iterate(tokens)
+    iterator.run(tokens)
 
     iterator.callbacks[0].start.should  == 1
     iterator.callbacks[0].finish.should == 1

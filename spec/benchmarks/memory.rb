@@ -32,7 +32,7 @@ amount.times do
     iterator.bind(Rlint::Analyze::CodingStyle)
     iterator.bind(Rlint::Analyze::Definitions)
 
-    iterator.iterate(tokens)
+    iterator.run(tokens)
   end
 end
 
