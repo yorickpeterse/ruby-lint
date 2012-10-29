@@ -384,14 +384,6 @@ end
     obj.params.should == %w{Foo Bar}
   end
 
-  it 'Pass options to a callback class' do
-    iterator = Rlint::Iterator.new
-
-    iterator.bind(Rlint::Callback, :name => 'Ruby')
-
-    iterator.callbacks[0].options[:name].should == 'Ruby'
-  end
-
   it 'Call an event before and after iterating over all nodes' do
     code = <<-CODE
 class Person
@@ -428,5 +420,33 @@ end
 
     iterator.callbacks[0].start.should  == 1
     iterator.callbacks[0].finish.should == 1
+  end
+
+  it 'Share data between callback classes' do
+    code = <<-CODE
+def example_method
+  return 10
+end
+    CODE
+
+    tokens   = Rlint::Parser.new(code).parse
+    iterator = Rlint::Iterator.new
+
+    setter = Class.new(Rlint::Callback) do
+      def on_method_definition(token)
+        @storage[:method_name] = token.name
+      end
+    end
+
+    getter = Class.new(Rlint::Callback) do
+      attr_reader :storage
+    end
+
+    iterator.bind(setter)
+    iterator.bind(getter)
+    iterator.run(tokens)
+
+    iterator.callbacks[1].storage.class.should         == Hash
+    iterator.callbacks[1].storage[:method_name].should == 'example_method'
   end
 end

@@ -35,9 +35,9 @@ module Rlint
     # @param [Hash] options A hash containing custom options to set for the
     #  callback.
     #
-    def initialize(report = nil, options = {})
+    def initialize(report = nil, storage = {})
       @report  = report
-      @options = options
+      @storage = storage
     end
 
     protected
