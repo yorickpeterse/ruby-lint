@@ -1,249 +1,105 @@
 require File.expand_path('../../../../helper', __FILE__)
 
 describe 'Rlint::Analyze::Definitions: variables' do
-  it 'Use of undefined variables' do
+  it 'Build a list of variables defined in the global scope' do
     code = <<-CODE
-number = 10
-
-puts numberx
-puts @number
-puts @@number
-puts $number
-puts NUMBER
-
-# The code below should not add any errors.
-numberx  = 10
+number   = 10
 @number  = 10
 @@number = 10
 $number  = 10
 NUMBER   = 10
-
-puts numberx
-puts @number
-puts @@number
-puts $number
-puts NUMBER
     CODE
 
     tokens   = Rlint::Parser.new(code).parse
-    report   = Rlint::Report.new
-    iterator = Rlint::Iterator.new(report)
+    iterator = Rlint::Iterator.new
 
     iterator.bind(Rlint::Analyze::Definitions)
     iterator.run(tokens)
 
-    report.messages[:error].class.should  == Array
-    report.messages[:error].length.should == 5
+    scope = iterator.storage[:scope]
 
-    errors = report.messages[:error]
+    scope.class.should == Rlint::Scope
 
-    errors[0][:message].should == 'undefined local variable or method numberx'
-    errors[0][:line].should    == 3
-    errors[0][:column].should  == 5
+    lvar  = scope.lookup(:local_variable, 'number')
+    ivar  = scope.lookup(:instance_variable, '@number')
+    cvar  = scope.lookup(:class_variable, '@@number')
+    gvar  = scope.lookup(:global_variable, '$number')
+    const = scope.lookup(:constant, 'NUMBER')
 
-    errors[1][:message].should == 'undefined instance variable @number'
-    errors[1][:line].should    == 4
-    errors[1][:column].should  == 5
+    lvar.class.should             == Rlint::Definition
+    lvar.token.class.should       == Rlint::Token::AssignmentToken
+    lvar.token.name.should        == 'number'
+    lvar.token.type.should        == :local_variable
+    lvar.token.value.class.should == Rlint::Token::Token
+    lvar.token.value.type.should  == :integer
+    lvar.token.value.value.should == '10'
 
-    errors[2][:message].should == 'undefined class variable @@number'
-    errors[2][:line].should    == 5
-    errors[2][:column].should  == 5
+    ivar.class.should             == Rlint::Definition
+    ivar.token.class.should       == Rlint::Token::AssignmentToken
+    ivar.token.name.should        == '@number'
+    ivar.token.type.should        == :instance_variable
+    ivar.token.value.class.should == Rlint::Token::Token
+    ivar.token.value.type.should  == :integer
+    ivar.token.value.value.should == '10'
 
-    errors[3][:message].should == 'undefined global variable $number'
-    errors[3][:line].should    == 6
-    errors[3][:column].should  == 5
+    cvar.class.should             == Rlint::Definition
+    cvar.token.class.should       == Rlint::Token::AssignmentToken
+    cvar.token.name.should        == '@@number'
+    cvar.token.type.should        == :class_variable
+    cvar.token.value.class.should == Rlint::Token::Token
+    cvar.token.value.type.should  == :integer
+    cvar.token.value.value.should == '10'
 
-    errors[4][:message].should == 'undefined constant NUMBER'
-    errors[4][:line].should    == 7
-    errors[4][:column].should  == 5
+    gvar.class.should             == Rlint::Definition
+    gvar.token.class.should       == Rlint::Token::AssignmentToken
+    gvar.token.name.should        == '$number'
+    gvar.token.type.should        == :global_variable
+    gvar.token.value.class.should == Rlint::Token::Token
+    gvar.token.value.type.should  == :integer
+    gvar.token.value.value.should == '10'
+
+    const.class.should             == Rlint::Definition
+    const.token.class.should       == Rlint::Token::AssignmentToken
+    const.token.name.should        == 'NUMBER'
+    const.token.type.should        == :constant
+    const.token.value.class.should == Rlint::Token::Token
+    const.token.value.type.should  == :integer
+    const.token.value.value.should == '10'
   end
 
-  it 'Default global variables should not trigger errors' do
-    code     = Kernel.global_variables.join("\n")
-    tokens   = Rlint::Parser.new(code).parse
-    report   = Rlint::Report.new
-    iterator = Rlint::Iterator.new(report)
-
-    iterator.bind(Rlint::Analyze::Definitions)
-    iterator.run(tokens)
-
-    report.messages[:error].nil?.should == true
-  end
-
-  it 'Use of undefined variables using a method scope' do
+  it 'Build a list of variables defined inside a method' do
     code = <<-CODE
-a  = 10
-@a = 10
-
-def number
-  b = 10
-
-  puts @a # @a should be available as it's an instance method
-  puts a  # a is defined outside of this scope
-  puts c  # c simply doesn't exist
-end
-
-puts a
-puts b # b was defined inside the method and isn't available outside it
-    CODE
-
-    tokens   = Rlint::Parser.new(code).parse
-    report   = Rlint::Report.new
-    iterator = Rlint::Iterator.new(report)
-
-    iterator.bind(Rlint::Analyze::Definitions)
-    iterator.run(tokens)
-
-    report.messages[:error].class.should  == Array
-    report.messages[:error].length.should == 3
-
-    errors = report.messages[:error]
-
-    errors[0][:message].should == 'undefined local variable or method a'
-    errors[0][:line].should    == 8
-    errors[0][:column].should  == 7
-
-    errors[1][:message].should == 'undefined local variable or method c'
-    errors[1][:line].should    == 9
-    errors[1][:column].should  == 7
-
-    errors[2][:message].should == 'undefined local variable or method b'
-    errors[2][:line].should    == 13
-    errors[2][:column].should  == 5
-  end
-
-  it 'Instance variables should be available outside a method' do
-    code = <<-CODE
-def number
-  @number = 10
-end
-
-puts @number
-    CODE
-
-    tokens   = Rlint::Parser.new(code).parse
-    report   = Rlint::Report.new
-    iterator = Rlint::Iterator.new(report)
-
-    iterator.bind(Rlint::Analyze::Definitions)
-    iterator.run(tokens)
-
-    report.messages[:error].nil?.should == true
-  end
-
-  it 'Instance variables should be available across a class\' methods' do
-    code = <<-CODE
-class Person
-  def initialize
-    @name = 'Ruby'
-  end
-
-  def some_method
-    @name.upcase
-    @namex.upcase
-  end
+def example_method
+  number = 10
 end
     CODE
 
     tokens   = Rlint::Parser.new(code).parse
-    report   = Rlint::Report.new
-    iterator = Rlint::Iterator.new(report)
+    iterator = Rlint::Iterator.new
 
     iterator.bind(Rlint::Analyze::Definitions)
     iterator.run(tokens)
 
-    report.messages[:error].class.should  == Array
-    report.messages[:error].length.should == 1
+    scope = iterator.storage[:scope]
 
-    error = report.messages[:error][0]
+    scope.lookup(:local_variable, 'number').nil?.should == true
 
-    error[:message].should == 'undefined instance variable @namex'
-    error[:line].should    == 8
-    error[:column].should  == 4
-  end
+    method = scope.lookup(:instance_method, 'example_method')
 
-  it 'Warn for shadowing outer variables' do
-    code = <<-CODE
-number = 10
+    method.class.should == Rlint::Definition
 
-[10, 20].each do |number|
-  puts number
-end
-    CODE
+    method.token.class.should      == Rlint::Token::MethodDefinitionToken
+    method.token.name.should       == 'example_method'
+    method.token.value.nil?.should == true
 
-    tokens   = Rlint::Parser.new(code).parse
-    report   = Rlint::Report.new
-    iterator = Rlint::Iterator.new(report)
+    method.scope.class.should == Rlint::Scope
 
-    iterator.bind(Rlint::Analyze::Definitions)
-    iterator.run(tokens)
+    variable = method.scope.lookup(:local_variable, 'number')
 
-    report.messages[:warning].class.should  == Array
-    report.messages[:warning].length.should == 1
-
-    warning = report.messages[:warning][0]
-
-    warning[:message].should == 'shadowing outer local variable number'
-    warning[:line].should    == 3
-    warning[:column].should  == 18
-  end
-
-  it 'Add errors for non existing constant paths' do
-    code = <<-CODE
-A::B = 10
-
-module A
-
-end
-
-puts A::B
-    CODE
-
-    tokens   = Rlint::Parser.new(code).parse
-    report   = Rlint::Report.new
-    iterator = Rlint::Iterator.new(report)
-
-    iterator.bind(Rlint::Analyze::Definitions)
-    iterator.run(tokens)
-
-    report.messages[:error].class.should  == Array
-    report.messages[:error].length.should == 2
-
-    errors = report.messages[:error]
-
-    errors[0][:message].should == 'undefined constant A'
-    errors[0][:line].should    == 1
-    errors[0][:column].should  == 0
-
-    errors[1][:message].should == 'undefined constant A::B'
-    errors[1][:line].should    == 7
-    errors[1][:column].should  == 5
-  end
-
-  it 'Look up a constant using an implicit constant path' do
-    code = <<-CODE
-module Rlint
-  module Derp
-    Foobar.name
-    ConstantImporter.name
-  end
-end
-    CODE
-
-    tokens   = Rlint::Parser.new(code).parse
-    report   = Rlint::Report.new
-    iterator = Rlint::Iterator.new(report)
-
-    iterator.bind(Rlint::Analyze::Definitions)
-    iterator.run(tokens)
-
-    report.messages[:error].class.should  == Array
-    report.messages[:error].length.should == 1
-
-    error = report.messages[:error][0]
-
-    error[:message].should == 'undefined constant Foobar'
-    error[:line].should    == 3
-    error[:column].should  == 4
+    variable.class.should             == Rlint::Definition
+    variable.token.name.should        == 'number'
+    variable.token.value.class.should == Rlint::Token::Token
+    variable.token.value.type.should  == :integer
+    variable.token.value.value.should == '10'
   end
 end

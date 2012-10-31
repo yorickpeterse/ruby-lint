@@ -1,180 +1,115 @@
 require File.expand_path('../../../../helper', __FILE__)
 
 describe 'Rlint::Analyze::Definitions: classes' do
-  it 'Invalid method calls on custom classes' do
+  it 'Define a class in the global scope' do
     code = <<-CODE
-class Person
-  def name
+class Example
+  def example_method
 
   end
-end
-
-person = Person.new
-
-person.invalid_instance_method
-person.name
-    CODE
-
-    tokens   = Rlint::Parser.new(code).parse
-    report   = Rlint::Report.new
-    iterator = Rlint::Iterator.new(report)
-
-    iterator.bind(Rlint::Analyze::Definitions)
-    iterator.run(tokens)
-
-    report.messages[:error].class.should  == Array
-    report.messages[:error].length.should == 1
-
-    error = report.messages[:error][0]
-
-    error[:message].should == 'undefined instance method ' \
-      'invalid_instance_method'
-
-    error[:line].should    == 9
-    error[:column].should  == 7
-  end
-
-  it 'Calling class methods as instance methods' do
-    code = <<-CODE
-class Person
-  def self.class_method_1
-
-  end
-
-  class << self
-    def class_method_2
-
-    end
-  end
-end
-
-Person.class_method_1
-Person.class_method_2
-
-person = Person.new
-
-person.class_method_1
-person.class_method_2
-    CODE
-
-    tokens   = Rlint::Parser.new(code).parse
-    report   = Rlint::Report.new
-    iterator = Rlint::Iterator.new(report)
-
-    iterator.bind(Rlint::Analyze::Definitions)
-    iterator.run(tokens)
-
-    report.messages[:error].class.should  == Array
-    report.messages[:error].length.should == 2
-
-    errors = report.messages[:error]
-
-    errors[0][:message].should == 'undefined instance method class_method_1'
-    errors[0][:line].should    == 18
-    errors[0][:column].should  == 7
-
-    errors[1][:message].should == 'undefined instance method class_method_2'
-    errors[1][:line].should    == 19
-    errors[1][:column].should  == 7
-  end
-
-  it 'Calling methods defined using a receiver' do
-    code = <<-CODE
-def String.class_method
-
-end
-
-def Foo.class_method
-
-end
-
-String.class_method
-''.class_method
-    CODE
-
-    tokens   = Rlint::Parser.new(code).parse
-    report   = Rlint::Report.new
-    iterator = Rlint::Iterator.new(report)
-
-    iterator.bind(Rlint::Analyze::Definitions)
-    iterator.run(tokens)
-
-    report.messages[:error].class.should  == Array
-    report.messages[:error].length.should == 2
-
-    errors = report.messages[:error]
-
-    errors[0][:message].should == 'undefined method receiver Foo'
-    errors[0][:line].should    == 5
-    errors[0][:column].should  == 4
-
-    errors[1][:message].should == 'undefined instance method class_method'
-    errors[1][:line].should    == 10
-    errors[1][:column].should  == 3
-  end
-
-  it 'Calling class methods inside a class declaration' do
-    code = <<-CODE
-class Foobar
-  attr_reader :name
-
-  invalid_method :derp
 end
     CODE
 
     tokens   = Rlint::Parser.new(code).parse
-    report   = Rlint::Report.new
-    iterator = Rlint::Iterator.new(report)
+    iterator = Rlint::Iterator.new
 
     iterator.bind(Rlint::Analyze::Definitions)
     iterator.run(tokens)
 
-    report.messages[:error].class.should  == Array
-    report.messages[:error].length.should == 1
+    scope = iterator.storage[:scope]
+    const = scope.lookup(:constant, 'Example')
 
-    error = report.messages[:error][0]
+    const.class.should == Rlint::Definition
 
-    error[:message].should == 'undefined local variable or method ' \
-      'invalid_method'
+    const.token.class.should      == Rlint::Token::ClassToken
+    const.token.name.should       == ['Example']
+    const.token.value.nil?.should == true
+    const.scope.class.should      == Rlint::Scope
 
-    error[:line].should   == 4
-    error[:column].should == 2
+    # Check the method that was defined inside the class.
+    scope.lookup(:instance_method, 'example_method').nil?.should == true
+
+    method = const.lookup(:instance_method, 'example_method')
+
+    method.class.should == Rlint::Definition
+
+    method.token.class.should == Rlint::Token::MethodDefinitionToken
+    method.token.name.should  == 'example_method'
   end
 
-  it 'Redefining classes should not reset scoping related data' do
+  it 'Define a class method inside a class' do
     code = <<-CODE
-class Person
-  def example
+class Example
+  def self.example_method
 
   end
 end
-
-p1 = Person.new
-
-p1.example
-
-class Person
-  def another_example
-
-  end
-end
-
-p2 = Person.new
-
-p1.example
-p1.another_example
-
-p2.example
-p2.another_example
     CODE
 
     tokens   = Rlint::Parser.new(code).parse
-    report   = Rlint::Report.new
-    iterator = Rlint::Iterator.new(report)
+    iterator = Rlint::Iterator.new
 
     iterator.bind(Rlint::Analyze::Definitions)
     iterator.run(tokens)
 
-    report.messages[:error].nil?.should == true
+    scope = iterator.storage[:scope]
+
+    scope.lookup(:method, 'example_method').nil?.should == true
+
+    const = scope.lookup(:constant, 'Example')
+
+    const.class.should == Rlint::Definition
+
+    const.lookup(:instance_method, 'example_method').nil?.should == true
+    const.lookup(:method, 'example_method').class.should == Rlint::Definition
+  end
+
+  it 'Inherit methods from a parent class' do
+    code = <<-CODE
+class A
+  def parent_method
+
+  end
+end
+
+class B < A
+
+end
+    CODE
+
+    tokens   = Rlint::Parser.new(code).parse
+    iterator = Rlint::Iterator.new
+
+    iterator.bind(Rlint::Analyze::Definitions)
+    iterator.run(tokens)
+
+    scope = iterator.storage[:scope]
+
+    a = scope.lookup(:constant, 'A')
+    b = scope.lookup(:constant, 'B')
+
+    # check class A
+    a.class.should == Rlint::Definition
+
+    a.token.class.should  == Rlint::Token::ClassToken
+    a.token.name.should   == ['A']
+    a.token.parent.should == ['Object']
+
+    a.lookup(:method, :methods).class.should          == Rlint::Definition
+    a.lookup(:instance_method, :methods).class.should == Rlint::Definition
+
+    # check class B
+    b.class.should == Rlint::Definition
+
+    b.token.class.should  == Rlint::Token::ClassToken
+    b.token.name.should   == ['B']
+    b.token.parent.should == ['A']
+
+    b.lookup(:instance_method, 'parent_method') \
+      .class \
+      .should == Rlint::Definition
+
+    b.lookup(:method, :methods).class.should          == Rlint::Definition
+    b.lookup(:instance_method, :methods).class.should == Rlint::Definition
   end
 end

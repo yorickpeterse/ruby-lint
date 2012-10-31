@@ -97,6 +97,14 @@ module Rlint
     attr_reader :callbacks
 
     ##
+    # Returns the Hash that is used by callback classes to store arbitrary
+    # data.
+    #
+    # @return [Hash]
+    #
+    attr_reader :storage
+
+    ##
     # Creates a new instance of the iterator class.
     #
     # @param [Rlint::Report|NilClass] report The report to use, set to `nil` by

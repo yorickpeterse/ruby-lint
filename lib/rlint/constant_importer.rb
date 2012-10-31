@@ -89,7 +89,7 @@ module Rlint
               end
             end
 
-            scope.add(target, method.to_s, token)
+            scope.add(target, method.to_s, Definition.new(token))
           end
         end
 

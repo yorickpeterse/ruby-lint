@@ -33,13 +33,15 @@ describe 'Rlint::Scope' do
 
     method = found.lookup(:method, 'warn')
 
-    method.class.should == Rlint::Token::MethodDefinitionToken
-    method.name.should  == 'warn'
+    method.class.should == Rlint::Definition
 
-    method.parameters.value.class.should  == Array
-    method.parameters.value.length.should == 1
+    method.token.class.should == Rlint::Token::MethodDefinitionToken
+    method.token.name.should  == 'warn'
 
-    param = method.parameters.value[0]
+    method.token.parameters.value.class.should  == Array
+    method.token.parameters.value.length.should == 1
+
+    param = method.token.parameters.value[0]
 
     param.class.should == Rlint::Token::VariableToken
     param.name.should  == ''

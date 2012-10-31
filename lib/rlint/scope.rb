@@ -130,7 +130,9 @@ module Rlint
       end
 
       # Lazy import the constant if it exists.
-      if @lazy_load and type == :constant and !symbol \
+      if @lazy_load \
+      and type == :constant \
+      and !symbol \
       and @constant.constants.include?(name.to_sym)
         @symbols[:constant] = @symbols[:constant].merge(
           ConstantImporter.import([name], @constant)
