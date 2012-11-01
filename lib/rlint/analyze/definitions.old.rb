@@ -75,41 +75,6 @@ module Rlint
       end
 
       ##
-      # Called when a module is defined.
-      #
-      # @param [Rlint::Token::Token] token Token class containing details about
-      #  the module.
-      #
-      def on_module(token)
-        name        = token.name.join('::')
-        @namespace  << name
-        @call_types << :method
-
-        # If a module has already been defined the scope should not be
-        # overwritten.
-        return if scope.lookup(:constant, name)
-
-        new_scope = Scope.new(scope)
-
-        scope.add(:constant, name, new_scope)
-
-        @scopes << new_scope
-      end
-
-      ##
-      # Called after a module definition has been processed.
-      #
-      # @see Rlint::Analyze::Definitions#on_module
-      #
-      def after_module(token)
-        warn_for_unused_variables
-
-        @call_types.pop
-        @scopes.pop
-        @namespace.pop
-      end
-
-      ##
       # Called when a local variable is found.
       #
       # @param [Rlint::Token::VariableToken] token

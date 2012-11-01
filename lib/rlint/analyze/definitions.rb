@@ -27,7 +27,6 @@ module Rlint
         @storage[:scope] = Scope.new(nil, true, true)
         @scopes          = []
         @namespace       = []
-        @call_types      = []
       end
 
       ##
@@ -101,8 +100,7 @@ module Rlint
 
         target.add(type, token.name, Definition.new(token, new_scope))
 
-        @call_types << type
-        @scopes     << new_scope
+        @scopes << new_scope
       end
 
       ##
@@ -120,8 +118,6 @@ module Rlint
             last_scope.symbols[key]
           )
         end
-
-        @call_types.pop
       end
 
       ##
@@ -130,9 +126,8 @@ module Rlint
       # @param [Rlint::Token::ClassToken] token
       #
       def on_class(token)
-        name        = token.name.join('::')
-        @namespace  << name
-        @call_types << :method
+        name       = token.name.join('::')
+        @namespace << name
 
         # If a class has already been defined the scoping data should not be
         # overwritten.
@@ -154,7 +149,36 @@ module Rlint
       #
       def after_class(token)
         @scopes.pop
-        @call_types.pop
+        @namespace.pop
+      end
+
+      ##
+      # Called when a module is defined.
+      #
+      # @param [Rlint::Token::Token] token
+      #
+      def on_module(token)
+        name       = token.name.join('::')
+        @namespace << name
+
+        # If a module has already been defined the scope should not be
+        # overwritten.
+        return if scope.lookup(:constant, name)
+
+        new_scope = Scope.new(scope)
+
+        scope.add(:constant, name, Definition.new(token, new_scope))
+
+        @scopes << new_scope
+      end
+
+      ##
+      # Called after a module definition has been processed.
+      #
+      # @see Rlint::Analyze::Definitions#on_module
+      #
+      def after_module(token)
+        @scopes.pop
         @namespace.pop
       end
 
@@ -168,34 +192,6 @@ module Rlint
       #
       def scope
         return !@scopes.empty? ? @scopes[-1] : @storage[:scope]
-      end
-
-      ##
-      # Returns the last method call type to use.
-      #
-      # @return [Symbol]
-      #
-      def call_type
-        return !@call_types.empty? ? @call_types[-1] : :instance_method
-      end
-
-      ##
-      # Given an Array of constant names (e.g. the names of a constant path)
-      # this method will return the scope to use for the last segment.
-      #
-      # @param  [Array] segments The name segments to use for the lookup.
-      # @return [Rlint::Scope|NilClass]
-      #
-      def resolve_scope(segments)
-        resolved = scope
-
-        segments.each do |name|
-          break unless resolved
-
-          resolved = resolved.lookup(:constant, name)
-        end
-
-        return resolved
       end
     end # Definitions
   end # Analyze
