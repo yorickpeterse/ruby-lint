@@ -19,6 +19,23 @@ module Rlint
       EXPORT_VARIABLES = [:instance_variable, :class_variable, :constant]
 
       ##
+      # Hash containing the scoping data to copy over when extending a class
+      # using a module.
+      #
+      # @return [Hash]
+      #
+      INCLUDE_SYMBOLS = {
+        'include' => {
+          :constant        => :constant,
+          :instance_method => :instance_method
+        },
+        'extend' => {
+          :constant        => :constant,
+          :instance_method => :method
+        }
+      }
+
+      ##
       # @see Rlint::Callback#initialize
       #
       def initialize(*args)
@@ -182,7 +199,55 @@ module Rlint
         @namespace.pop
       end
 
+      ##
+      # Called when a method call is found. This callback is used to extend
+      # classes using modules.
+      #
+      # @param [Rlint::Token::MethodToken] token
+      #
+      def on_method(token)
+        if INCLUDE_SYMBOLS.key?(token.name)
+          token.parameters.each do |param|
+            found = nil
+
+            # Extract the definition and scope to include.
+            if param.type == :constant_path
+              found = resolve_definition(param.name)
+            elsif param.type == :constant
+              found = scope.lookup(:constant, param.name)
+            end
+
+            next unless found
+
+            # Copy over all the constants and methods.
+            INCLUDE_SYMBOLS[token.name].each do |source, target|
+              found.scope.symbols[source].each do |name, data|
+                scope.add(target, name, data)
+              end
+            end
+          end
+        end
+      end
+
       private
+
+      ##
+      # Returns the scope/definition for the last segment in the specified
+      # constant path.
+      #
+      # @param  [Array] path The constant path.
+      # @return [Rlint::Definition]
+      #
+      def resolve_definition(path)
+        current = scope
+
+        path.each do |segment|
+          found   = current.lookup(:constant, segment)
+          current = found if found
+        end
+
+        return current
+      end
 
       ##
       # Returns the current scope. This method is primarily used to make the
