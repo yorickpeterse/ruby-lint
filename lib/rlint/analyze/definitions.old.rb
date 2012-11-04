@@ -25,36 +25,6 @@ module Rlint
       }
 
       ##
-      # Hash containing the scoping data to copy over when including or
-      # extending a module.
-      #
-      # @return [Hash]
-      #
-      INCLUDE_SYMBOLS = {
-        'include' => {
-          :constant        => :constant,
-          :instance_method => :instance_method
-        },
-        'extend' => {
-          :constant        => :constant,
-          :instance_method => :method
-        }
-      }
-
-      ##
-      # Array containing the variable types to use for checking for unused
-      # variables.
-      #
-      # @return [Array]
-      #
-      UNUSED_VARIABLES = [
-        :local_variable,
-        :instance_variable,
-        :class_variable,
-        :global_variable
-      ]
-
-      ##
       # @see Rlint::Callback#initialize
       #
       def initialize(*args)
@@ -331,26 +301,6 @@ module Rlint
               param.line,
               param.column
             )
-          end
-        end
-      end
-
-      ##
-      # Adds warnings for all unused variables in the current scope.
-      #
-      def warn_for_unused_variables
-        UNUSED_VARIABLES.each do |type|
-          scope.symbols[type].each do |name, token|
-            if token.is_a?(Token::Token) and !token.used and !token.reported
-              token.reported = true
-              human_readable = type.to_s.gsub('_', ' ')
-
-              warning(
-                "assigned but unused #{human_readable} #{token.name}",
-                token.line,
-                token.column
-              )
-            end
           end
         end
       end

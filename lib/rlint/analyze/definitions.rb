@@ -10,6 +10,8 @@ module Rlint
     # other callback classes to access this data easily.
     #
     class Definitions < Rlint::Callback
+      include Helper::Scoping
+
       ##
       # Array containing the key names of the variables that should be exported
       # out of a method definition.
@@ -34,17 +36,6 @@ module Rlint
           :instance_method => :method
         }
       }
-
-      ##
-      # @see Rlint::Callback#initialize
-      #
-      def initialize(*args)
-        super
-
-        @storage[:scope] = Scope.new(nil, true, true)
-        @scopes          = []
-        @namespace       = []
-      end
 
       ##
       # Called when a value is assigned to a variable.
@@ -227,36 +218,6 @@ module Rlint
             end
           end
         end
-      end
-
-      private
-
-      ##
-      # Returns the scope/definition for the last segment in the specified
-      # constant path.
-      #
-      # @param  [Array] path The constant path.
-      # @return [Rlint::Definition]
-      #
-      def resolve_definition(path)
-        current = scope
-
-        path.each do |segment|
-          found   = current.lookup(:constant, segment)
-          current = found if found
-        end
-
-        return current
-      end
-
-      ##
-      # Returns the current scope. This method is primarily used to make the
-      # code in this class a bit more pleasant to read.
-      #
-      # @return [Rlint::Scope]
-      #
-      def scope
-        return !@scopes.empty? ? @scopes[-1] : @storage[:scope]
       end
     end # Definitions
   end # Analyze

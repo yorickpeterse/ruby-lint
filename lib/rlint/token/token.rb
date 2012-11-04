@@ -94,22 +94,6 @@ module Rlint
       attr_reader :event
 
       ##
-      # Boolean that indicates if the token has been used or not, primarily
-      # used for marking variables as used.
-      #
-      # @return [TrueClass|FalseClass]
-      #
-      attr_accessor :used
-
-      ##
-      # Boolean that indicates that a message about this token has been added
-      # to a report.
-      #
-      # @return [TrueClass|FalseClass]
-      #
-      attr_accessor :reported
-
-      ##
       # Creates a new instance of the token and sets various instance variables
       # based on the specified hash.
       #
