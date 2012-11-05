@@ -47,6 +47,10 @@ module Rlint
       # @param [Rlint::Token::MethodDefinitionToken] token
       #
       def on_method_definition(token)
+        @scopes << scope.lookup(
+          token.receiver ? :method : :instance_method,
+          token.name
+        )
 
         call_method(:on_new_scope)
       end
@@ -57,6 +61,7 @@ module Rlint
       # @see Rlint::Helper::ScopeResolver#on_method_definition
       #
       def after_method_definition(token)
+        @scopes.pop
 
         call_method(:after_new_scope)
       end
@@ -67,6 +72,10 @@ module Rlint
       # @param [Rlint::Token::ClassToken] token
       #
       def on_class(token)
+        name = token.name.join('::')
+
+        @scopes    << scope.lookup(:constant, name)
+        @namespace << name
 
         call_method(:on_new_scope)
       end
@@ -77,6 +86,8 @@ module Rlint
       # @see Rlint::Helper::ScopeResolver#on_class
       #
       def after_class(token)
+        @scopes.pop
+        @namespace.pop
 
         call_method(:after_new_scope)
       end
@@ -87,6 +98,10 @@ module Rlint
       # @param [Rlint::Token::Token] token
       #
       def on_module(token)
+        name = token.name.join('::')
+
+        @scopes    << scope.lookup(:constant, name)
+        @namespace << name
 
         call_method(:on_new_scope)
       end
@@ -97,6 +112,8 @@ module Rlint
       # @see Rlint::Helper::ScopeResolver#on_module
       #
       def after_module(token)
+        @scopes.pop
+        @namespace.pop
 
         call_method(:after_new_scope)
       end

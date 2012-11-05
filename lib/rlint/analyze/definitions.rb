@@ -62,8 +62,6 @@ module Rlint
           if name_scope
             variable_scope = name_scope
           else
-            on_constant_path(token)
-
             return
           end
 
@@ -136,10 +134,15 @@ module Rlint
       def on_class(token)
         name       = token.name.join('::')
         @namespace << name
+        existing   = scope.lookup(:constant, name)
 
-        # If a class has already been defined the scoping data should not be
+        # If a class has already been defined the scope should not be
         # overwritten.
-        return if scope.lookup(:constant, name)
+        if existing
+          @scopes << existing
+
+          return
+        end
 
         parent    = scope.lookup(:constant, token.parent.join('::'))
         parent    = parent.scope if parent.respond_to?(:scope)
@@ -168,10 +171,16 @@ module Rlint
       def on_module(token)
         name       = token.name.join('::')
         @namespace << name
+        existing   = scope.lookup(:constant, name)
 
         # If a module has already been defined the scope should not be
         # overwritten.
-        return if scope.lookup(:constant, name)
+        if existing
+          existing.parent << scope
+          @scopes         << Definition.new(token, existing)
+
+          return
+        end
 
         new_scope = Scope.new(scope)
 

@@ -178,4 +178,36 @@ end
 
     method.scope.class.should == Rlint::Scope
   end
+
+  it 'Define a module in an existing module' do
+    code = <<-CODE
+module Rlint
+  module Derp
+
+  end
+end
+    CODE
+
+    tokens   = Rlint::Parser.new(code).parse
+    iterator = Rlint::Iterator.new
+
+    iterator.bind(Rlint::Analyze::Definitions)
+    iterator.run(tokens)
+
+    scope = iterator.storage[:scope]
+
+    scope.lookup(:constant, 'Derp').nil?.should == true
+
+    scope.lookup(:constant, 'Rlint').class.should == Rlint::Scope
+
+    scope.lookup(:constant, 'Rlint') \
+      .lookup(:constant, 'Derp') \
+      .class \
+      .should == Rlint::Definition
+
+    rlint = scope.lookup(:constant, 'Rlint')
+    derp  = rlint.lookup(:constant, 'Derp')
+
+    derp.scope.parent.length.should == 1
+  end
 end

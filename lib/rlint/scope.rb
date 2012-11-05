@@ -73,7 +73,7 @@ module Rlint
         parent = [parent]
       end
 
-      @parent  = parent.select { |p| p.is_a?(Rlint::Scope) }
+      @parent  = parent.select { |p| p.respond_to?(:lookup) }
       @symbols = {
         :local_variable    => {},
         :instance_variable => {},
@@ -90,6 +90,19 @@ module Rlint
 
       if lazy and kernel
         @symbols[:constant] = ConstantImporter.import(['Kernel'])
+      end
+
+      # Import the default global variables.
+      if kernel
+        Kernel.global_variables.each do |name|
+          name  = name.to_s
+          token = Token::VariableToken.new(
+            :name => name,
+            :type => :global_variable
+          )
+
+          add(:global_variable, name, Definition.new(token))
+        end
       end
     end
 
