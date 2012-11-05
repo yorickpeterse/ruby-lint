@@ -15,10 +15,13 @@ truly become a proper linter.
 
 ## Installation
 
+Currently the gem has *not* been registered at Rubygems. Also note that the gem
+called "rlint" is not the same project.
+
 Once the Gem has been registered and pushed to Rubygems you should be able to
 install it as following:
 
-    $ gem install rlint
+    $ gem install ruby-lint
 
 ## License
 
