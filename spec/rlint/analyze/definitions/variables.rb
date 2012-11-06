@@ -18,7 +18,7 @@ NUMBER   = 10
 
     scope = iterator.storage[:scope]
 
-    scope.class.should == Rlint::Scope
+    scope.class.should == Rlint::Definition
 
     lvar  = scope.lookup(:local_variable, 'number')
     ivar  = scope.lookup(:instance_variable, '@number')
@@ -92,9 +92,7 @@ end
     method.token.name.should       == 'example_method'
     method.token.value.nil?.should == true
 
-    method.scope.class.should == Rlint::Scope
-
-    variable = method.scope.lookup(:local_variable, 'number')
+    variable = method.lookup(:local_variable, 'number')
 
     variable.class.should             == Rlint::Definition
     variable.token.name.should        == 'number'

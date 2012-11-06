@@ -20,7 +20,7 @@ end
 
     scope = iterator.storage[:scope]
 
-    scope.class.should == Rlint::Scope
+    scope.class.should == Rlint::Definition
 
     method_1 = scope.lookup(:instance_method, 'example_method')
     method_2 = scope.lookup(:instance_method, 'another_example_method')
@@ -28,12 +28,10 @@ end
     method_1.class.should       == Rlint::Definition
     method_1.token.class.should == Rlint::Token::MethodDefinitionToken
     method_1.token.name.should  == 'example_method'
-    method_1.scope.class.should == Rlint::Scope
 
     method_2.class.should       == Rlint::Definition
     method_2.token.class.should == Rlint::Token::MethodDefinitionToken
     method_2.token.name.should  == 'another_example_method'
-    method_2.scope.class.should == Rlint::Scope
   end
 
   it 'Build a list of globally defined class methods' do
@@ -51,7 +49,7 @@ end
 
     scope = iterator.storage[:scope]
 
-    scope.class.should == Rlint::Scope
+    scope.class.should == Rlint::Definition
 
     method = scope.lookup(:method, 'example_method')
 
@@ -75,14 +73,14 @@ end
 
     scope = iterator.storage[:scope]
 
-    scope.class.should == Rlint::Scope
+    scope.class.should == Rlint::Definition
 
     scope.lookup(:instance_method, 'example_method').nil?.should == true
     scope.lookup(:method, 'example_method').nil?.should          == true
 
     string = scope.lookup(:constant, 'String')
 
-    string.class.should == Rlint::Scope
+    string.class.should == Rlint::Definition
 
     method = string.lookup(:method, 'example_method')
 

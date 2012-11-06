@@ -41,7 +41,7 @@ module Rlint
 
     ##
     # Imports the methods of a given list of constant names and returns a Hash
-    # containing instances of {Rlint::Scope} for each imported constant.
+    # containing instances of {Rlint::Definition} for each imported constant.
     #
     # @param  [Array] constants An array of constant to import.
     # @param  [Mixed] source_constant The source constant to use for the
@@ -59,7 +59,7 @@ module Rlint
         next unless const
 
         name  = name.to_s
-        scope = Scope.new(nil, true, false, const)
+        scope = Definition.new(nil, :lazy => true, :constant => const)
 
         METHOD_KEYS.each do |source, target|
           next unless const.respond_to?(source)
@@ -89,7 +89,7 @@ module Rlint
               end
             end
 
-            scope.add(target, method.to_s, Definition.new(token))
+            scope.add(target, method.to_s, Definition.new(nil, :token => token))
           end
         end
 

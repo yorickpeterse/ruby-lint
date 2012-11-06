@@ -27,7 +27,7 @@ end
 
     scope.lookup(:instance_method, 'example_method').nil?.should == true
 
-    method = const.scope.lookup(:instance_method, 'example_method')
+    method = const.lookup(:instance_method, 'example_method')
 
     method.class.should == Rlint::Definition
 
@@ -61,7 +61,7 @@ end
 
     scope.lookup(:method, 'example_method').nil?.should == true
 
-    method = const.scope.lookup(:method, 'example_method')
+    method = const.lookup(:method, 'example_method')
 
     method.class.should == Rlint::Definition
 
@@ -101,8 +101,6 @@ end
 
     method.token.class.should == Rlint::Token::MethodDefinitionToken
     method.token.name.should  == 'example_method'
-
-    method.scope.class.should == Rlint::Scope
   end
 
   it 'Extend a class using a module' do
@@ -137,8 +135,6 @@ end
 
     method.token.class.should == Rlint::Token::MethodDefinitionToken
     method.token.name.should  == 'example_method'
-
-    method.scope.class.should == Rlint::Scope
   end
 
   it 'Include a module using a constant path' do
@@ -175,8 +171,6 @@ end
 
     method.token.class.should == Rlint::Token::MethodDefinitionToken
     method.token.name.should  == 'example_method'
-
-    method.scope.class.should == Rlint::Scope
   end
 
   it 'Define a module in an existing module' do
@@ -198,7 +192,7 @@ end
 
     scope.lookup(:constant, 'Derp').nil?.should == true
 
-    scope.lookup(:constant, 'Rlint').class.should == Rlint::Scope
+    scope.lookup(:constant, 'Rlint').class.should == Rlint::Definition
 
     scope.lookup(:constant, 'Rlint') \
       .lookup(:constant, 'Derp') \
@@ -208,6 +202,6 @@ end
     rlint = scope.lookup(:constant, 'Rlint')
     derp  = rlint.lookup(:constant, 'Derp')
 
-    derp.scope.parent.length.should == 1
+    derp.parent.length.should == 1
   end
 end

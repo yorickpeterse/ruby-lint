@@ -1,8 +1,8 @@
 require File.expand_path('../../helper', __FILE__)
 
-describe 'Rlint::Scope' do
+describe 'Rlint::Definition' do
   it 'Look up a symbol in a scope' do
-    scope = Rlint::Scope.new
+    scope = Rlint::Definition.new
 
     scope.lookup(:local_variable, 'number').should == nil
 
@@ -12,8 +12,8 @@ describe 'Rlint::Scope' do
   end
 
   it 'Look up a symbol in a parent scope' do
-    parent = Rlint::Scope.new
-    child  = Rlint::Scope.new(parent)
+    parent = Rlint::Definition.new
+    child  = Rlint::Definition.new(parent)
 
     parent.add(:local_variable, 'number', 10)
     parent.add(:global_variable, '$number', 20)
@@ -26,10 +26,10 @@ describe 'Rlint::Scope' do
   end
 
   it 'Create a scope with default Ruby constants and methods' do
-    scope = Rlint::Scope.new(nil, true, true)
+    scope = Rlint::Definition.new(nil, :lazy => true, :kernel => true)
     found = scope.lookup(:constant, 'Kernel')
 
-    found.class.should == Rlint::Scope
+    found.class.should == Rlint::Definition
 
     method = found.lookup(:method, 'warn')
 
@@ -49,46 +49,46 @@ describe 'Rlint::Scope' do
   end
 
   it 'Lazy import the Time class' do
-    scope = Rlint::Scope.new
+    scope = Rlint::Definition.new
 
     scope.lookup(:constant, 'Time').nil?.should == true
 
-    scope = Rlint::Scope.new(nil, true)
+    scope = Rlint::Definition.new(nil, :lazy => true)
 
-    scope.lookup(:constant, 'Time').class.should == Rlint::Scope
+    scope.lookup(:constant, 'Time').class.should == Rlint::Definition
   end
 
   it 'Lazy import the Encoding class and a child constant' do
-    scope = Rlint::Scope.new(nil, true)
+    scope = Rlint::Definition.new(nil, :lazy => true)
     enc   = scope.lookup(:constant, 'Encoding')
 
-    enc.class.should == Rlint::Scope
+    enc.class.should == Rlint::Definition
 
-    enc.lookup(:constant, 'BINARY').class.should == Rlint::Scope
+    enc.lookup(:constant, 'BINARY').class.should == Rlint::Definition
   end
 
-  it 'Lazy import Rlint::Scope' do
-    scope = Rlint::Scope.new(nil, true)
+  it 'Lazy import Rlint::Definition' do
+    scope = Rlint::Definition.new(nil, :lazy => true)
 
     rlint = scope.lookup(:constant, 'Rlint')
 
-    rlint.class.should == Rlint::Scope
+    rlint.class.should == Rlint::Definition
 
-    rlint_scope = rlint.lookup(:constant, 'Scope')
+    rlint_scope = rlint.lookup(:constant, 'Definition')
 
-    rlint_scope.class.should == Rlint::Scope
+    rlint_scope.class.should == Rlint::Definition
 
-    rlint_scope.lookup(:constant, 'LOOKUP_PARENT').class.should == Rlint::Scope
+    rlint_scope.lookup(:constant, 'LOOKUP_PARENT').class.should == Rlint::Definition
   end
 
   it 'Create a scope with multiple parent scopes' do
-    scope_1 = Rlint::Scope.new
-    scope_2 = Rlint::Scope.new
+    scope_1 = Rlint::Definition.new
+    scope_2 = Rlint::Definition.new
 
     scope_1.add(:method, 'method_1', true)
     scope_2.add(:method, 'method_2', true)
 
-    scope_3 = Rlint::Scope.new([scope_1, scope_2])
+    scope_3 = Rlint::Definition.new([scope_1, scope_2])
 
     scope_3.lookup(:method, 'method_1').should == true
     scope_3.lookup(:method, 'method_2').should == true

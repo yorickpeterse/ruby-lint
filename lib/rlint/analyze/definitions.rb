@@ -5,7 +5,7 @@ module Rlint
     # building a list of all the definitions (variables, methods, etc) of a
     # block of Ruby code.
     #
-    # The resulting instance of {Rlint::Scope} is stored in the `@storage`
+    # The resulting instance of {Rlint::Definition} is stored in the `@storage`
     # instance variable under the key `:scope`. This makes it possible for
     # other callback classes to access this data easily.
     #
@@ -72,7 +72,11 @@ module Rlint
           type = token.type
         end
 
-        variable_scope.add(type, name, Definition.new(token, nil, false))
+        variable_scope.add(
+          type,
+          name,
+          Definition.new(nil, :token => token, :reset => false)
+        )
       end
 
       ##
@@ -82,14 +86,14 @@ module Rlint
       #
       def on_method_definition(token)
         type      = :instance_method
-        new_scope = Scope.new(scope)
+        new_scope = Definition.new(scope, :token => token)
         target    = scope
 
         token.parameters.each do |param|
           new_scope.add(
             param.type,
             param.name,
-            Definition.new(param, nil, false)
+            Definition.new(nil, :token => param, :reset => false)
           )
         end
 
@@ -104,7 +108,7 @@ module Rlint
           end
         end
 
-        target.add(type, token.name, Definition.new(token, new_scope))
+        target.add(type, token.name, new_scope)
 
         @scopes << new_scope
       end
@@ -139,16 +143,18 @@ module Rlint
         # If a class has already been defined the scope should not be
         # overwritten.
         if existing
-          @scopes << existing
+          existing.token = token
+
+          existing.parent << scope
+          @scopes         << existing
 
           return
         end
 
         parent    = scope.lookup(:constant, token.parent.join('::'))
-        parent    = parent.scope if parent.respond_to?(:scope)
-        new_scope = Scope.new([parent, scope])
+        new_scope = Definition.new([parent, scope], :token => token)
 
-        scope.add(:constant, name, Definition.new(token, new_scope))
+        scope.add(:constant, name, new_scope)
 
         @scopes << new_scope
       end
@@ -176,15 +182,17 @@ module Rlint
         # If a module has already been defined the scope should not be
         # overwritten.
         if existing
+          existing.token = token
+
           existing.parent << scope
-          @scopes         << Definition.new(token, existing)
+          @scopes         << existing
 
           return
         end
 
-        new_scope = Scope.new(scope)
+        new_scope = Definition.new(scope, :token => token)
 
-        scope.add(:constant, name, Definition.new(token, new_scope))
+        scope.add(:constant, name, new_scope)
 
         @scopes << new_scope
       end
@@ -221,7 +229,7 @@ module Rlint
 
             # Copy over all the constants and methods.
             INCLUDE_SYMBOLS[token.name].each do |source, target|
-              found.scope.symbols[source].each do |name, data|
+              found.symbols[source].each do |name, data|
                 scope.add(target, name, data)
               end
             end

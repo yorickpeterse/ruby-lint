@@ -24,7 +24,6 @@ end
     const.token.class.should      == Rlint::Token::ClassToken
     const.token.name.should       == ['Example']
     const.token.value.nil?.should == true
-    const.scope.class.should      == Rlint::Scope
 
     # Check the method that was defined inside the class.
     scope.lookup(:instance_method, 'example_method').nil?.should == true

@@ -5,7 +5,7 @@ module Rlint
     # undefined variables.
     #
     class UndefinedVariables < Rlint::Callback
-      include Helper::ScopeResolver
+      include Helper::DefinitionResolver
 
       [
         'instance_variable',
@@ -98,7 +98,9 @@ module Rlint
       #
       def variable_defined?(type, token)
         found    = scope.lookup(type, token.name)
-        has_line = found.respond_to?(:token) && !found.token.line.nil?
+        has_line = found.respond_to?(:token) \
+          && !found.token.nil? \
+          && !found.token.line.nil?
 
         if !found or (has_line and found.token.line > token.line)
           return false

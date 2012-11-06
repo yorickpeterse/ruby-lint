@@ -1,8 +1,8 @@
 module Rlint
   module Helper
     ##
-    # {Rlint::Helper::ScopeResolver} is a helper module that can be used to
-    # work with scoping information similar to {Rlint::Helper::Scoping}.
+    # {Rlint::Helper::DefinitionResolver} is a helper module that can be used
+    # to work with scoping information similar to {Rlint::Helper::Scoping}.
     #
     # This module depends on {Rlint::Helper::Scoping} and will include it
     # automatically.
@@ -24,7 +24,7 @@ module Rlint
     # methods such as `on_class` (unless explicitly needed of course). Both of
     # these methods are called *after* the current scope has been updated.
     #
-    module ScopeResolver
+    module DefinitionResolver
       include Scoping
 
       ##
@@ -58,7 +58,7 @@ module Rlint
       ##
       # Resets the scope back to the one used before the method definition.
       #
-      # @see Rlint::Helper::ScopeResolver#on_method_definition
+      # @see Rlint::Helper::DefinitionResolver#on_method_definition
       #
       def after_method_definition(token)
         @scopes.pop
@@ -83,7 +83,7 @@ module Rlint
       ##
       # Resets the scope back to the one used before the class definition.
       #
-      # @see Rlint::Helper::ScopeResolver#on_class
+      # @see Rlint::Helper::DefinitionResolver#on_class
       #
       def after_class(token)
         @scopes.pop
@@ -109,7 +109,7 @@ module Rlint
       ##
       # Resets the scope back to the one used before the module definition.
       #
-      # @see Rlint::Helper::ScopeResolver#on_module
+      # @see Rlint::Helper::DefinitionResolver#on_module
       #
       def after_module(token)
         @scopes.pop
@@ -131,6 +131,6 @@ module Rlint
       def call_method(method, *args)
         return send(method, *args) if respond_to?(method)
       end
-    end # ScopeResolver
+    end # DefinitionResolver
   end # Helper
 end # Rlint

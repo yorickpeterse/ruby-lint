@@ -5,7 +5,7 @@ module Rlint
     # instance, class and global variables.
     #
     class UnusedVariables < Rlint::Callback
-      include Helper::ScopeResolver
+      include Helper::DefinitionResolver
 
       ##
       # Hash containing the human readable names for various variable types.

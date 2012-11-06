@@ -103,9 +103,6 @@ module Rlint
       #  corresponding public getter mehtod to be set.
       #
       def initialize(options = {})
-        @used     = false
-        @reported = false
-
         options.each do |key, value|
           if respond_to?(key)
             instance_variable_set("@#{key}", value)
@@ -117,7 +114,6 @@ module Rlint
         end
 
         @event = @type
-        @used  = false
 
         # Remove NilClass instances from the `value` array, these serve no
         # useful purpose.
