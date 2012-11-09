@@ -22,13 +22,6 @@ module Rlint
   #
   class Callback
     ##
-    # Hash containing custom options that have been set.
-    #
-    # @return [Hash]
-    #
-    attr_reader :options
-
-    ##
     # Creates a new instance of the class and stores the report.
     #
     # @param [Rlint::Report|NilClass] report The report instance to use.
