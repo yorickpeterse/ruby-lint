@@ -71,6 +71,14 @@ module Rlint
     attr_reader :constant
 
     ##
+    # An array containing all the constant names that belong to the constant
+    # set in {Rlint::Definition#constant}. Each name is saved as a String.
+    #
+    # @return [Array]
+    #
+    attr_reader :constants
+
+    ##
     # Creates a new instance of the scope class and sets the default symbols.
     #
     # @param [Array|Rlint::Definition] parent The parent scope(s). Set this to
@@ -89,9 +97,7 @@ module Rlint
     #  scope.
     #
     def initialize(parent = [], options = {})
-      unless parent.is_a?(Array)
-        parent = [parent]
-      end
+      parent = [parent] unless parent.is_a?(Array)
 
       @options = DEFAULT_OPTIONS.merge(options)
       @parent  = parent.select { |p| p.is_a?(Definition) }
@@ -157,7 +163,7 @@ module Rlint
       if @symbols[type] and @symbols[type][name]
         symbol = @symbols[type][name]
       # Look up the variable in the parent scope(s) (if any are set).
-      elsif LOOKUP_PARENT.include?(type) and !@parent.empty?
+      elsif lookup_parent?(type)
         @parent.each do |parent|
           parent_symbol = parent.lookup(type, name)
 
@@ -169,10 +175,7 @@ module Rlint
       end
 
       # Lazy import the constant if it exists.
-      if @options[:lazy] \
-      and type == :constant \
-      and !symbol \
-      and @options[:constant].constants.include?(name.to_sym)
+      if !symbol and lazy_load?(name, type)
         @symbols[:constant] = @symbols[:constant].merge(
           ConstantImporter.import([name], @options[:constant])
         )
@@ -200,6 +203,33 @@ module Rlint
     def token=(token)
       @options[:token]       = token.dup
       @options[:token].value = nil if @options[:reset]
+    end
+
+    private
+
+    ##
+    # Returns a boolean that indicates if the specified symbol should be lazy
+    # loaded.
+    #
+    # @param  [#to_sym] name The name of the symbol.
+    # @param  [Symbol] type The type of the symbol.
+    # @return [TrueClass|FalseClass]
+    #
+    def lazy_load?(name, type)
+      return @options[:lazy] \
+        && type == :constant \
+        && @options[:constant].constants.include?(name.to_sym)
+    end
+
+    ##
+    # Returns a boolean that indicates if the current symbol type should be
+    # looked up in a parent definition.
+    #
+    # @param  [Symbol] type The type of symbol.
+    # @return [Trueclass|FalseClass]
+    #
+    def lookup_parent?(type)
+      return LOOKUP_PARENT.include?(type) && !@parent.empty?
     end
   end # Definition
 end # Rlint
