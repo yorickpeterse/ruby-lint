@@ -111,13 +111,8 @@ module Rlint
         :instance_method   => {}
       }
 
-      # Create a copy of the token since it can be modified.
       if @options[:token]
-        @options[:token] = @options[:token].dup
-      end
-
-      if @options[:token] and @options[:reset]
-        @options[:token].value = nil
+        self.token = @options[:token]
       end
 
       if options[:lazy] and options[:kernel]
