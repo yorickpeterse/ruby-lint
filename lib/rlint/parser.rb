@@ -123,15 +123,11 @@ module Rlint
     end
 
     RETURN_FIRST_ARG_EVENTS.each do |event|
-      define_method("on_#{event}") do |*args|
-        return args[0]
-      end
+      define_method("on_#{event}") { |*args| return args[0] }
     end
 
     RETURN_NIL_EVENTS.each do |event|
-      define_method("on_#{event}") do |*args|
-        return nil
-      end
+      define_method("on_#{event}") { |*args| return nil }
     end
 
     RETURN_METHOD_EVENTS.each do |event|
@@ -1108,7 +1104,7 @@ module Rlint
     # @return [Rlint::Token::ClassToken]
     #
     def on_class(name, parent, body)
-      name_segments   = name.name.is_a?(Array)   ? name.name   : [name.name]
+      name_segments   = name.name.is_a?(Array) ? name.name : [name.name]
       parent_segments = []
 
       if parent

@@ -153,9 +153,7 @@ module Rlint
         execute_callback(callback_obj, callback_name, node)
 
         node.child_nodes.each do |child_nodes|
-          if child_nodes.respond_to?(:each)
-            iterate(callback_obj, child_nodes)
-          end
+          iterate(callback_obj, child_nodes) if child_nodes.respond_to?(:each)
         end
 
         execute_callback(callback_obj, after_callback, node)
