@@ -9,6 +9,7 @@ Gem::Specification.new do |s|
   s.summary     = 'Static code analysis tool and linter for Ruby'
   s.homepage    = 'https://github.com/yorickpeterse/rlint/'
   s.description = s.summary
+  s.executables = ['rlint']
 
   s.files = File.read(File.expand_path('../MANIFEST', __FILE__)).split("\n")
 
