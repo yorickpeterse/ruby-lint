@@ -41,6 +41,15 @@ get the "ripper" gem to install properly, thus I'm unable to confirm this. Feel
 free to try it out but I won't bother with MRI 1.8.x myself if it requires more
 than a few minutes worth of work.
 
+## TODO
+
+* Allow options to be set and libraries to be loaded using a configuration
+  file (`./.rlint.rb` and `~/.rlint.rb`).
+* Handle named parameters in Ruby 2.0 (and other potential differences).
+* Validate the parameters passed to method calls where possible.
+* Better/more up to date documentation.
+* Testing, testing and more testing.
+
 ## License
 
 All source code in this repository is licensed under the MIT license unless
