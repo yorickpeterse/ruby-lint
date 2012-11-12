@@ -23,6 +23,95 @@ Please note that there already is an existing gem called "rlint". This Gem is
 **not** the same, it just happens to be a similar project (one that seems
 abandoned) that uses the same name.
 
+## Usage
+
+Rlint can be used in two different ways: using the CLI interface and by using
+the Ruby code directly.
+
+The CLI can be used using the command `rlint`, see the output of `rlint --help`
+for more information on how to configure it and how to analyze Ruby files.
+
+The Ruby code itself takes a bit more effort but gives you more flexibility. In
+the future you'll also be able to customize Rlint using a Ruby configuration
+files. In order to analyze Ruby code you'll need a few things:
+
+* An instance of `Rlint::Iterator`
+* An instance of `Rlint::Report`
+* A formatter for the report
+* A block of Ruby code
+* A number of analyzer classes such as `Rlint::Analyze::UndefinedVariables`
+
+A short example is the following:
+
+    require 'rlint'
+
+    code      = 'obviously your Ruby code goes in here'
+    tokens    = Rlint::Parser.new(code).parse
+    report    = Rlint::Report.new
+    formatter = Rlint::Formatter.new
+    iterator  = Rlint::Iterator.new(report)
+
+    iterator.bind(Rlint::Analyze::Definitions)
+    iterator.bind(Rlint::Analyze::MethodValidation)
+
+    iterator.run(tokens)
+
+    puts formatter.format(report)
+
+## Design
+
+Rlint's design is broken up into 5 different parts:
+
+* A parser that turns a block of Ruby code into an AST.
+* A class that iterates over this AST and executes callback methods (aptly
+  named `Rlint::Iterator`).
+* A set of callback classes that are used by an iterator. These callback
+  classes perform the actual data analysis.
+* A report for storing error messages, warnings and informal messages.
+* A formatter that turns a report into something useful such as plain text or
+  JSON.
+
+The process of analyzing code basically looks like the following:
+
+              +------+
+              | Code |
+              +------+
+                 |
+                 v
+          +---------------+
+          | Rlint::Parser |
+          +---------------+
+                 |
+                 v
+         +-----------------+
+         | Rlint::Iterator |
+         +-----------------+
+                 |
+                 v
+     +---------------------------+
+     | Rlint::Callback instances |
+     +---------------------------+
+                 |
+                 v
+         +---------------+
+         | Rlint::Report |
+         +---------------+
+                 |
+                 v
+    +----------------------------+
+    | Rlint::Formatter instances |
+    +----------------------------+
+                 |
+                 v
+        +------------------+
+        | Something useful |
+        +------------------+
+
+The advantage of this setup is that different tasks are decoupled (where
+possible) and that it's fairly trivial to write custom formatters that spit out
+JSON, HTML, XML or something else. It also makes things easier to maintain as
+there's no single giant lump of code that does everything.
+
 ## Compatibility Issues
 
 Currently Rlint can only be executed using MRI 1.9.3, it does not run on MRI
