@@ -1,6 +1,6 @@
 require 'rubygems/package_task'
 
-GEMSPEC = Gem::Specification.load('rlint.gemspec')
+GEMSPEC = Gem::Specification.load('ruby-lint.gemspec')
 
 Dir['./task/*.rake'].each do |task|
   import(task)
