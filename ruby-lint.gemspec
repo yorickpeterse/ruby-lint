@@ -1,12 +1,12 @@
 require File.expand_path('../lib/rlint/version', __FILE__)
 
 Gem::Specification.new do |s|
-  s.name        = 'rlint'
+  s.name        = 'ruby-lint'
   s.version     = Rlint::VERSION
-  s.date        = '2012-12-01'
+  s.date        = '2012-11-12'
   s.authors     = ['Yorick Peterse']
   s.email       = 'yorickpeterse@gmail.com'
-  s.summary     = 'Static code analysis tool for validating Ruby source code.'
+  s.summary     = 'Static code analysis tool and linter for Ruby'
   s.homepage    = 'https://github.com/yorickpeterse/rlint/'
   s.description = s.summary
 
