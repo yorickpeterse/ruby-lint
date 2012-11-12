@@ -52,6 +52,8 @@ module Rlint
           token.name
         )
 
+        @call_types << :instance_method
+
         call_method(:on_new_scope)
       end
 
@@ -62,6 +64,7 @@ module Rlint
       #
       def after_method_definition(token)
         @scopes.pop
+        @call_types.pop
 
         call_method(:after_new_scope)
       end
@@ -74,8 +77,9 @@ module Rlint
       def on_class(token)
         name = token.name.join('::')
 
-        @scopes    << scope.lookup(:constant, name)
-        @namespace << name
+        @scopes     << scope.lookup(:constant, name)
+        @namespace  << name
+        @call_types << :method
 
         call_method(:on_new_scope)
       end
@@ -88,6 +92,7 @@ module Rlint
       def after_class(token)
         @scopes.pop
         @namespace.pop
+        @call_types.pop
 
         call_method(:after_new_scope)
       end
@@ -100,8 +105,9 @@ module Rlint
       def on_module(token)
         name = token.name.join('::')
 
-        @scopes    << scope.lookup(:constant, name)
-        @namespace << name
+        @scopes     << scope.lookup(:constant, name)
+        @namespace  << name
+        @call_types << :method
 
         call_method(:on_new_scope)
       end
@@ -114,6 +120,7 @@ module Rlint
       def after_module(token)
         @scopes.pop
         @namespace.pop
+        @call_types.pop
 
         call_method(:after_new_scope)
       end

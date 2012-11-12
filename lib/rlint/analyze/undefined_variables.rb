@@ -16,7 +16,7 @@ module Rlint
         readable = name.gsub('_', ' ')
 
         define_method('on_' + name) do |token|
-          unless variable_defined?(token.type, token)
+          unless definition_exists?(token.type, token)
             error(
               "undefined #{readable} #{token.name}",
               token.line,
@@ -49,7 +49,7 @@ module Rlint
           segments << segment
           found    = current.lookup(:constant, segment)
 
-          if found and (found.token.line and found.token.line < token.line)
+          if found and found.token.line < token.line
             current = found
           else
             error(
@@ -79,33 +79,12 @@ module Rlint
 
         if !token.receiver \
         and !kernel_method \
-        and !variable_defined?(:instance_method, token)
+        and !definition_exists?(:instance_method, token)
           error(
             "undefined local variable or method #{token.name}",
             token.line,
             token.column
           )
-        end
-      end
-
-      ##
-      # Checks if the given variable exists or not.
-      #
-      # @param [#to_sym] type The type of variable to look up.
-      # @param [Rlint::Token::VariableToken] token The token containing details
-      #  about the variable.
-      # @return [TrueClass|FalseClass]
-      #
-      def variable_defined?(type, token)
-        found    = scope.lookup(type, token.name)
-        has_line = found.respond_to?(:token) \
-          && !found.token.nil? \
-          && !found.token.line.nil?
-
-        if !found or (has_line and found.token.line > token.line)
-          return false
-        else
-          return true
         end
       end
     end # UndefinedVariables

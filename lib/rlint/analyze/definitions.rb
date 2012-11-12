@@ -143,8 +143,6 @@ module Rlint
         # If a class has already been defined the scope should not be
         # overwritten.
         if existing
-          existing.token = token
-
           existing.parent << scope
           @scopes         << existing
 
@@ -182,8 +180,6 @@ module Rlint
         # If a module has already been defined the scope should not be
         # overwritten.
         if existing
-          existing.token = token
-
           existing.parent << scope
           @scopes         << existing
 

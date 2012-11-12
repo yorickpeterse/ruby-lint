@@ -40,8 +40,9 @@ module Rlint
       def initialize(*args)
         super
 
-        @scopes    = []
-        @namespace = []
+        @scopes     = []
+        @namespace  = []
+        @call_types = []
 
         unless @storage[:scope].is_a?(Definition)
           @storage[:scope] = Definition.new(nil, :lazy => true, :kernel => true)
@@ -66,6 +67,61 @@ module Rlint
         end
 
         return current
+      end
+
+      ##
+      # Checks if the specified token's name is a valid constant path.
+      #
+      # @param  [Rlint::Token::VariableToken] token The token to validate.
+      # @return [TrueClass|FalseClass]
+      #
+      def valid_constant_path?(token)
+        current = scope
+
+        token.name.each do |segment|
+          found = current.lookup(:constant, segment)
+
+          if found and token.line > found.token.line
+            current = found
+          else
+            return false
+          end
+        end
+
+        return true
+      end
+
+      ##
+      # Checks if the specified type and token result in a valid
+      # {Rlint::Definition} instance.
+      #
+      # @param [#to_sym] type The type of data to look up.
+      # @param [Rlint::Token::VariableToken] token The token containing details
+      #  about the variable.
+      # @param [Rlint::Definition] scope The scope to use for looking up the
+      #  data.
+      # @return [TrueClass|FalseClass]
+      #
+      def definition_exists?(type, token, scope = scope)
+        found    = scope.lookup(type, token.name)
+        has_line = found.respond_to?(:token) \
+          && !found.token.nil? \
+          && !found.token.line.nil?
+
+        if !found or (has_line and found.token.line > token.line)
+          return false
+        else
+          return true
+        end
+      end
+
+      ##
+      # Returns the call type to use for method calls.
+      #
+      # @return [Symbol]
+      #
+      def call_type
+        return !@call_types.empty? ? @call_types[-1] : :instance_method
       end
 
       ##
