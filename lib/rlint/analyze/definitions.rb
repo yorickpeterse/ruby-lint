@@ -13,6 +13,13 @@ module Rlint
       include Helper::Scoping
 
       ##
+      # A short description of this class.
+      #
+      # @return [String]
+      #
+      DESCRIPTION = 'Builds a list of definitions, always enabled.'
+
+      ##
       # Array containing the key names of the variables that should be exported
       # out of a method definition.
       #

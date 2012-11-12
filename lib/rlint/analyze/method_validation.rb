@@ -9,6 +9,13 @@ module Rlint
       include Helper::DefinitionResolver
 
       ##
+      # A short description of this class.
+      #
+      # @return [String]
+      #
+      DESCRIPTION = 'Validates method calls and the specified parameters.'
+
+      ##
       # Hash containing the various Ruby classes that are used to represent
       # various types.
       #

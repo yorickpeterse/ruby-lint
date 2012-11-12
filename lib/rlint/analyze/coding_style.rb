@@ -34,6 +34,13 @@ module Rlint
     #
     class CodingStyle < Rlint::Callback
       ##
+      # A short description of this class.
+      #
+      # @return [String]
+      #
+      DESCRIPTION = 'Checks the coding style of a block of code.'
+
+      ##
       # The maximum length for method and variable names.
       #
       # @return [Fixnum]

@@ -8,6 +8,13 @@ module Rlint
       include Helper::DefinitionResolver
 
       ##
+      # A short description of this class.
+      #
+      # @return [String]
+      #
+      DESCRIPTION = 'Checks for variables that shadow other variables.'
+
+      ##
       # Called when a block is found. This callback is used to check if the
       # parameters of the block shadow existing local variables defined in the
       # outer scope.

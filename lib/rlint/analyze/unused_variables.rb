@@ -8,6 +8,13 @@ module Rlint
       include Helper::DefinitionResolver
 
       ##
+      # A short description of this class.
+      #
+      # @return [String]
+      #
+      DESCRIPTION = 'Checks for variables that are assigned but unused.'
+
+      ##
       # Hash containing the human readable names for various variable types.
       #
       # @return [Hash]

@@ -1,115 +1,167 @@
+require 'optparse'
+
 module Rlint
   ##
-  # {Rlint::CLI} is a Shebang class that is used for running Rlint from the
-  # commandline.
+  # {Rlint::CLI} is the commandline interface to Rlint.
   #
-  class CLI < Shebang::Command
-    command :default
-
+  class CLI
     ##
-    # List of short names for various formatters and the corresponding classes.
+    # Creates a new instance of the class and configures OptionParser.
     #
-    # @return [Hash]
-    #
-    FORMATTERS = {
-      'text' => Rlint::Formatter::Text
-    }
+    def initialize
+      @formatters = constant_short_names(Rlint::Formatter)
+      @analyzers  = constant_short_names(Rlint::Analyze)
 
-    ##
-    # Hash containing the short names for the various Analyzer classes.
-    #
-    # @return [Hash]
-    #
-    ANALYZERS = {
-      'coding_style' => Rlint::Analyze::CodingStyle,
-      'definitions'  => Rlint::Analyze::Definitions
-    }
+      @option_parser = OptionParser.new do |opts|
+        opts.banner         = 'A static code analysis tool and linter for Ruby'
+        opts.program_name   = 'rlint'
+        opts.version        = Rlint::VERSION
+        opts.summary_indent = '  '
 
-    banner 'A static code analysis tool and linter for Ruby'
-    usage  '$ rlint [FILES] [OPTIONS]'
+        opts.separator ''
+        opts.separator 'Usage:'
+        opts.separator '  $ rlint [FILES] [OPTIONS]'
 
-    help 'Formatters', <<-HELP.strip
-text: formats the results as plain text
-    HELP
+        opts.separator ''
+        opts.separator 'Analyzers:'
+        opts.separator hash_to_list(@analyzers)
 
-    help 'Analyzers', <<-HELP.strip
-coding_style: checks the coding style of a given Ruby file
-  definitions: validates the code of a given Ruby file
-    HELP
+        opts.separator ''
+        opts.separator 'Formatters:'
+        opts.separator hash_to_list(@formatters)
 
-    help 'Reporting Levels', <<-HELP.strip
-error
-  warning
-  info
-    HELP
+        opts.separator ''
+        opts.separator 'Reporting Levels:'
+        opts.separator "  error\n  warning\n  info"
 
-    o :v, :version, 'Shows the version of Rlint', :method => :version
-    o :f, :formatter, 'The formatter to use', :type => String
-    o :l, :levels, 'The reporting levels to enable', :type => Array
-    o :a, :analyzers, 'The analyzers to enable', :type => Array
+        opts.separator ''
+        opts.separator 'Options:'
 
-    ##
-    # Runs the command.
-    #
-    # @param [Array] args Array of additional arguments specified.
-    #
-    def index(args = [])
-      abort 'You have to specify at least one file to analyze' if args.empty?
-
-      # Set the formatter to use.
-      if option(:f) and FORMATTERS.key?(option(:f))
-        Rlint.options.formatter = FORMATTERS[option(:f)]
-      end
-
-      # Set the reporting levels to use.
-      if option(:l)
-        Rlint.options.levels = option(:l).map { |l| l.to_sym }
-      end
-
-      # Set the analyzer classes to use.
-      if option(:a)
-        analyzers = []
-
-        option(:a).each do |analyzer|
-          if ANALYZERS.key?(analyzer)
-            analyzers << ANALYZERS[analyzer]
+        opts.on(
+          '-f',
+          '--formatter=VALUE',
+          'The formatter to use',
+          String
+        ) do |formatter|
+          if @formatters.key?(formatter)
+            Rlint.options.formatter = @formatters[formatter]
           end
         end
 
-        unless analyzers.empty?
+        opts.on(
+          '-l',
+          '--levels=VALUE',
+          'The reporting levels to enable',
+          Array
+        ) do |levels|
+          Rlint.options.levels = levels.map { |level| level.to_sym }
+        end
+
+        opts.on(
+          '-a',
+          '--analyzers=VALUE',
+          'The analyzers to enable',
+          Array
+        ) do |names|
+          analyzers = Options::REQUIRED_ANALYZERS.dup
+
+          names.each do |name|
+            const = @analyzers[name]
+
+            if const and !analyzers.include?(const)
+              analyzers << const
+            end
+          end
+
           Rlint.options.analyzers = analyzers
         end
-      end
 
-      args.each do |file|
-        abort "The file #{file} does not exist" unless File.exist?(file)
-
-        code      = File.read(file, File.size(file))
-        tokens    = Rlint::Parser.new(code, file).parse
-        report    = Rlint::Report.new(file, Rlint.options.levels)
-        iterator  = Rlint::Iterator.new(report)
-        formatter = Rlint.options.formatter.new
-
-        Rlint.options.analyzers.each do |analyzer|
-          iterator.bind(analyzer)
+        opts.on('-h', '--help', 'Shows this help message') do
+          puts @option_parser
+          exit
         end
 
-        iterator.run(tokens)
-
-        output = formatter.format(report)
-
-        unless output.empty?
-          puts output
+        opts.on('-v', '--version', 'Shows the current version') do
+          version
         end
       end
     end
 
     ##
-    # Shows the version of Rlint and exits.
+    # Runs Rlint.
+    #
+    # @param [Array] argv Array of commandline parameters.
+    #
+    def run(argv = ARGV)
+      @option_parser.parse!(argv)
+
+      abort 'You have to specify a file to analyze' if argv.empty?
+
+      argv.each do |file|
+        abort "The file #{file} is not valid" unless File.file?(file)
+
+        code      = File.read(file, File.size(file))
+        tokens    = Parser.new(code, file).parse
+        report    = Report.new(file, Rlint.options.levels)
+        iterator  = Iterator.new(report)
+        formatter = Rlint.options.formatter.new
+
+        Rlint.options.analyzers.each { |const| iterator.bind(const) }
+
+        iterator.run(tokens)
+
+        output = formatter.format(report)
+
+        puts output unless output.empty?
+      end
+    end
+
+    ##
+    # Shows the current version of Rlint.
     #
     def version
       puts "Rlint version #{Rlint::VERSION} running on #{RUBY_DESCRIPTION}"
       exit
+    end
+
+    private
+
+    ##
+    # Returns a hash containing various short names and the constants to use.
+    #
+    # @param  [Class] constant The constant to use.
+    # @return [Hash]
+    #
+    def constant_short_names(constant)
+      hash = {}
+
+      constant.constants.sort.each do |const|
+        name       = const.to_s.gsub(/([a-z]+)([A-Z]+)/, '\\1_\\2').downcase
+        hash[name] = constant.const_get(const)
+      end
+
+      return hash
+    end
+
+    ##
+    # Returns a string containing the names and descriptions of various
+    # constants formatted as a list.
+    #
+    # @param  [Hash] hash
+    # @return [String]
+    #
+    def hash_to_list(hash)
+      longest = hash.keys.sort { |l, r| l.length <=> r.length }[-1].length
+      longest = longest > 32 ? longest : 32
+      list    = []
+
+      hash.each do |name, const|
+        description = const.const_get(:DESCRIPTION)
+
+        list << "  %-#{longest}s %s" % [name, description]
+      end
+
+      return list.join("\n")
     end
   end # CLI
 end # Rlint

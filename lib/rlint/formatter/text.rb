@@ -20,6 +20,13 @@ module Rlint
     #
     class Text
       ##
+      # A short description of the class.
+      #
+      # @return [String]
+      #
+      DESCRIPTION = 'Formats a report in a human readable format.'
+
+      ##
       # Formats the specified report.
       #
       # @param  [Rlint::Report] report The report to format.

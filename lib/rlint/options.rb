@@ -5,6 +5,14 @@ module Rlint
   #
   class Options
     ##
+    # Array containing the analyzer classes that are always enabled. The order
+    # of these classes is preserved.
+    #
+    # @return [Array]
+    #
+    REQUIRED_ANALYZERS = [Analyze::Definitions]
+
+    ##
     # The reporting formatter to use, set to {Rlint::Formatter::Text} by
     # default.
     #
@@ -32,10 +40,14 @@ module Rlint
     # Sets the default values for various options.
     #
     def initialize
-      @formatter = Rlint::Formatter::Text
-      @levels    = Rlint::Report::DEFAULT_LEVELS
-      @analyzers = Rlint::Analyze.constants.map do |c|
-        Rlint::Analyze.const_get(c)
+      @formatter = Formatter::Text
+      @levels    = Report::DEFAULT_LEVELS
+      @analyzers = REQUIRED_ANALYZERS.dup
+
+      Analyze.constants.each do |c|
+        const = Analyze.const_get(c)
+
+        @analyzers << const unless @analyzers.include?(const)
       end
     end
   end # Options

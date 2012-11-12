@@ -7,6 +7,13 @@ module Rlint
     class UndefinedVariables < Rlint::Callback
       include Helper::DefinitionResolver
 
+      ##
+      # A short description of this class.
+      #
+      # @return [String]
+      #
+      DESCRIPTION = 'Checks for the use of undefined variables.'
+
       [
         'instance_variable',
         'class_variable',
