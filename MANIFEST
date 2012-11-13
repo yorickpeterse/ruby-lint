@@ -6,7 +6,7 @@ LICENSE
 MANIFEST
 README.md
 Rakefile
-bin/rlint
+bin/ruby-lint
 doc/.gitkeep
 doc/build/.gitkeep
 doc/css/.gitkeep
@@ -49,10 +49,10 @@ spec/benchmarks/parse_parser.rb
 spec/fixtures/stdlib/un.rb
 spec/helper.rb
 spec/ruby-lint/analyze/coding_style.rb
+spec/ruby-lint/analyze/complex/un.rb
 spec/ruby-lint/analyze/definitions/classes.rb
 spec/ruby-lint/analyze/definitions/methods.rb
 spec/ruby-lint/analyze/definitions/modules.rb
-spec/ruby-lint/analyze/definitions/stdlib.rb
 spec/ruby-lint/analyze/definitions/variables.rb
 spec/ruby-lint/analyze/method_validation.rb
 spec/ruby-lint/analyze/shadowing_variables.rb
