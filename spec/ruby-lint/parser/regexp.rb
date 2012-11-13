@@ -1,10 +1,10 @@
 require File.expand_path('../../../helper', __FILE__)
 
-describe 'Rlint::Parser' do
+describe 'RubyLint::Parser' do
   it 'Parse a regular expression' do
-    token = Rlint::Parser.new('/foo/im').parse[0]
+    token = RubyLint::Parser.new('/foo/im').parse[0]
 
-    token.class.should == Rlint::Token::RegexpToken
+    token.class.should == RubyLint::Token::RegexpToken
     token.type.should  == :regexp
     token.value.should == 'foo'
 
@@ -16,9 +16,9 @@ describe 'Rlint::Parser' do
   end
 
   it 'Parse a regular expression using %r{}' do
-    token = Rlint::Parser.new('%r{foo}im').parse[0]
+    token = RubyLint::Parser.new('%r{foo}im').parse[0]
 
-    token.class.should == Rlint::Token::RegexpToken
+    token.class.should == RubyLint::Token::RegexpToken
     token.type.should  == :regexp
     token.value.should == 'foo'
 

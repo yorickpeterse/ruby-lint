@@ -2,14 +2,14 @@ require File.expand_path('../lib/ruby-lint/version', __FILE__)
 
 Gem::Specification.new do |s|
   s.name        = 'ruby-lint'
-  s.version     = Rlint::VERSION
+  s.version     = RubyLint::VERSION
   s.date        = '2012-11-12'
   s.authors     = ['Yorick Peterse']
   s.email       = 'yorickpeterse@gmail.com'
   s.summary     = 'Static code analysis tool and linter for Ruby'
-  s.homepage    = 'https://github.com/yorickpeterse/rlint/'
+  s.homepage    = 'https://github.com/yorickpeterse/ruby-lint/'
   s.description = s.summary
-  s.executables = ['rlint']
+  s.executables = ['ruby-lint']
 
   s.files = File.read(File.expand_path('../MANIFEST', __FILE__)).split("\n")
 

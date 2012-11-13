@@ -1,21 +1,21 @@
 require 'optparse'
 
-module Rlint
+module RubyLint
   ##
-  # {Rlint::CLI} is the commandline interface to Rlint.
+  # {RubyLint::CLI} is the commandline interface to RubyLint.
   #
   class CLI
     ##
     # Creates a new instance of the class and configures OptionParser.
     #
     def initialize
-      @formatters = constant_short_names(Rlint::Formatter)
-      @analyzers  = constant_short_names(Rlint::Analyze)
+      @formatters = constant_short_names(RubyLint::Formatter)
+      @analyzers  = constant_short_names(RubyLint::Analyze)
 
       @option_parser = OptionParser.new do |opts|
         opts.banner         = 'A static code analysis tool and linter for Ruby'
         opts.program_name   = 'rlint'
-        opts.version        = Rlint::VERSION
+        opts.version        = RubyLint::VERSION
         opts.summary_indent = '  '
 
         opts.separator ''
@@ -44,7 +44,7 @@ module Rlint
           String
         ) do |formatter|
           if @formatters.key?(formatter)
-            Rlint.options.formatter = @formatters[formatter]
+            RubyLint.options.formatter = @formatters[formatter]
           end
         end
 
@@ -54,7 +54,7 @@ module Rlint
           'The reporting levels to enable',
           Array
         ) do |levels|
-          Rlint.options.levels = levels.map { |level| level.to_sym }
+          RubyLint.options.levels = levels.map { |level| level.to_sym }
         end
 
         opts.on(
@@ -73,7 +73,7 @@ module Rlint
             end
           end
 
-          Rlint.options.analyzers = analyzers
+          RubyLint.options.analyzers = analyzers
         end
 
         opts.on('-h', '--help', 'Shows this help message') do
@@ -88,7 +88,7 @@ module Rlint
     end
 
     ##
-    # Runs Rlint.
+    # Runs RubyLint.
     #
     # @param [Array] argv Array of commandline parameters.
     #
@@ -102,11 +102,11 @@ module Rlint
 
         code      = File.read(file, File.size(file))
         tokens    = Parser.new(code, file).parse
-        report    = Report.new(file, Rlint.options.levels)
+        report    = Report.new(file, RubyLint.options.levels)
         iterator  = Iterator.new(report)
-        formatter = Rlint.options.formatter.new
+        formatter = RubyLint.options.formatter.new
 
-        Rlint.options.analyzers.each { |const| iterator.bind(const) }
+        RubyLint.options.analyzers.each { |const| iterator.bind(const) }
 
         iterator.run(tokens)
 
@@ -117,10 +117,10 @@ module Rlint
     end
 
     ##
-    # Shows the current version of Rlint.
+    # Shows the current version of RubyLint.
     #
     def version
-      puts "Rlint version #{Rlint::VERSION} running on #{RUBY_DESCRIPTION}"
+      puts "RubyLint version #{RubyLint::VERSION} running on #{RUBY_DESCRIPTION}"
       exit
     end
 
@@ -164,4 +164,4 @@ module Rlint
       return list.join("\n")
     end
   end # CLI
-end # Rlint
+end # RubyLint

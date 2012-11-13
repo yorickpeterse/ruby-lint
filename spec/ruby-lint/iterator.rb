@@ -1,16 +1,16 @@
 require File.expand_path('../../helper', __FILE__)
 
-describe 'Rlint::Iterator' do
+describe 'RubyLint::Iterator' do
   it 'Iterate over a simple AST' do
     code = <<-CODE
 number = 10
 number
     CODE
 
-    tokens   = Rlint::Parser.new(code).parse
-    iterator = Rlint::Iterator.new
+    tokens   = RubyLint::Parser.new(code).parse
+    iterator = RubyLint::Iterator.new
 
-    callback = Class.new(Rlint::Callback) do
+    callback = Class.new(RubyLint::Callback) do
       attr_reader :assigned
       attr_reader :referenced
 
@@ -40,9 +40,9 @@ class Foo
 end
     CODE
 
-    tokens   = Rlint::Parser.new(code).parse
-    iterator = Rlint::Iterator.new
-    callback = Class.new(Rlint::Callback) do
+    tokens   = RubyLint::Parser.new(code).parse
+    iterator = RubyLint::Iterator.new
+    callback = Class.new(RubyLint::Callback) do
       attr_reader :class_name
       attr_reader :method_name
       attr_reader :assigned
@@ -76,9 +76,9 @@ def some_method
 end
     CODE
 
-    tokens   = Rlint::Parser.new(code).parse
-    iterator = Rlint::Iterator.new
-    callback = Class.new(Rlint::Callback) do
+    tokens   = RubyLint::Parser.new(code).parse
+    iterator = RubyLint::Iterator.new
+    callback = Class.new(RubyLint::Callback) do
       attr_reader :before
       attr_reader :after
 
@@ -107,9 +107,9 @@ rescue RuntimeError => e
 end
     CODE
 
-    tokens   = Rlint::Parser.new(code).parse
-    iterator = Rlint::Iterator.new
-    callback = Class.new(Rlint::Callback) do
+    tokens   = RubyLint::Parser.new(code).parse
+    iterator = RubyLint::Iterator.new
+    callback = Class.new(RubyLint::Callback) do
       attr_reader :method_names
       attr_reader :exception
       attr_reader :exception_var
@@ -158,9 +158,9 @@ else
 end
     CODE
 
-    tokens   = Rlint::Parser.new(code).parse
-    iterator = Rlint::Iterator.new
-    callback = Class.new(Rlint::Callback) do
+    tokens   = RubyLint::Parser.new(code).parse
+    iterator = RubyLint::Iterator.new
+    callback = Class.new(RubyLint::Callback) do
       attr_reader :variables
       attr_reader :methods
 
@@ -203,9 +203,9 @@ else
 end
     CODE
 
-    tokens   = Rlint::Parser.new(code).parse
-    iterator = Rlint::Iterator.new
-    callback = Class.new(Rlint::Callback) do
+    tokens   = RubyLint::Parser.new(code).parse
+    iterator = RubyLint::Iterator.new
+    callback = Class.new(RubyLint::Callback) do
       attr_reader :methods
       attr_reader :numbers
 
@@ -241,9 +241,9 @@ for key, value in {:name => 'Ruby'}
 end
     CODE
 
-    tokens   = Rlint::Parser.new(code).parse
-    iterator = Rlint::Iterator.new
-    callback = Class.new(Rlint::Callback) do
+    tokens   = RubyLint::Parser.new(code).parse
+    iterator = RubyLint::Iterator.new
+    callback = Class.new(RubyLint::Callback) do
       attr_reader :symbol
       attr_reader :string
       attr_reader :names
@@ -288,9 +288,9 @@ while foo == 10
 end
     CODE
 
-    tokens   = Rlint::Parser.new(code).parse
-    iterator = Rlint::Iterator.new
-    callback = Class.new(Rlint::Callback) do
+    tokens   = RubyLint::Parser.new(code).parse
+    iterator = RubyLint::Iterator.new
+    callback = Class.new(RubyLint::Callback) do
       attr_reader :numbers
       attr_reader :methods
 
@@ -330,9 +330,9 @@ def foobar(required, optional = 10, *rest, more, &block)
 end
     CODE
 
-    tokens   = Rlint::Parser.new(code).parse
-    iterator = Rlint::Iterator.new
-    callback = Class.new(Rlint::Callback) do
+    tokens   = RubyLint::Parser.new(code).parse
+    iterator = RubyLint::Iterator.new
+    callback = Class.new(RubyLint::Callback) do
       attr_reader :variables
       attr_reader :numbers
 
@@ -362,9 +362,9 @@ end
   end
 
   it 'Iterate over a method call' do
-    tokens   = Rlint::Parser.new('puts "Foo", "Bar"').parse
-    iterator = Rlint::Iterator.new
-    callback = Class.new(Rlint::Callback) do
+    tokens   = RubyLint::Parser.new('puts "Foo", "Bar"').parse
+    iterator = RubyLint::Iterator.new
+    callback = Class.new(RubyLint::Callback) do
       attr_reader :params
 
       def initialize(*args)
@@ -393,9 +393,9 @@ class Person
 end
     CODE
 
-    tokens   = Rlint::Parser.new(code).parse
-    iterator = Rlint::Iterator.new
-    callback = Class.new(Rlint::Callback) do
+    tokens   = RubyLint::Parser.new(code).parse
+    iterator = RubyLint::Iterator.new
+    callback = Class.new(RubyLint::Callback) do
       attr_reader :start
       attr_reader :finish
 
@@ -429,16 +429,16 @@ def example_method
 end
     CODE
 
-    tokens   = Rlint::Parser.new(code).parse
-    iterator = Rlint::Iterator.new
+    tokens   = RubyLint::Parser.new(code).parse
+    iterator = RubyLint::Iterator.new
 
-    setter = Class.new(Rlint::Callback) do
+    setter = Class.new(RubyLint::Callback) do
       def on_method_definition(token)
         @storage[:method_name] = token.name
       end
     end
 
-    getter = Class.new(Rlint::Callback) do
+    getter = Class.new(RubyLint::Callback) do
       attr_reader :storage
     end
 

@@ -1,6 +1,6 @@
 require File.expand_path('../../../helper', __FILE__)
 
-describe 'Rlint::Analyze::ShadowingVariables' do
+describe 'RubyLint::Analyze::ShadowingVariables' do
   it 'Warn for shadowing outer variables' do
     code = <<-CODE
 number = 10
@@ -10,12 +10,12 @@ number = 10
 end
     CODE
 
-    tokens   = Rlint::Parser.new(code).parse
-    report   = Rlint::Report.new
-    iterator = Rlint::Iterator.new(report)
+    tokens   = RubyLint::Parser.new(code).parse
+    report   = RubyLint::Report.new
+    iterator = RubyLint::Iterator.new(report)
 
-    iterator.bind(Rlint::Analyze::Definitions)
-    iterator.bind(Rlint::Analyze::ShadowingVariables)
+    iterator.bind(RubyLint::Analyze::Definitions)
+    iterator.bind(RubyLint::Analyze::ShadowingVariables)
     iterator.run(tokens)
 
     report.messages[:warning].class.should  == Array

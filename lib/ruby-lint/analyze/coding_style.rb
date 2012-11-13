@@ -1,7 +1,7 @@
-module Rlint
+module RubyLint
   module Analyze
     ##
-    # {Rlint::Analyze::CodingStyle} checks if a block of code matches a given
+    # {RubyLint::Analyze::CodingStyle} checks if a block of code matches a given
     # set of coding standards. While none of the problems found by this class
     # are considered harmful they are usually frowned upon as they do not
     # follow the unofficial but generally accepted Ruby coding standards.
@@ -21,7 +21,7 @@ module Rlint
     # This class checks for the following:
     #
     # * The length of method and variable names, should be less than the value
-    #   set in {Rlint::Analyze::CodingStyle::MAXIMUM\_NAME\_LENGTH}.
+    #   set in {RubyLint::Analyze::CodingStyle::MAXIMUM\_NAME\_LENGTH}.
     # * The use of class variables (it's relatively rare that you actually need
     #   those).
     # * The use of parenthesis around various statements: these are not needed
@@ -32,7 +32,7 @@ module Rlint
     # * If a particular method name should be replaced by a different one (e.g.
     #   "map" instead of "collect").
     #
-    class CodingStyle < Rlint::Callback
+    class CodingStyle < RubyLint::Callback
       ##
       # A short description of this class.
       #
@@ -62,7 +62,7 @@ module Rlint
       }
 
       ##
-      # @see Rlint::Callback#initialize
+      # @see RubyLint::Callback#initialize
       #
       def initialize(*args)
         super
@@ -79,9 +79,9 @@ module Rlint
       # * Whether or not instance variables are `snake_cased` instead of
       #   camelCased.
       # * Whether or not the length of an instance variable is smaller than the
-      #   value defined in {Rlint::Analyze::CodingStyle::MAXIMUM\_NAME\_LENGTH}.
+      #   value defined in {RubyLint::Analyze::CodingStyle::MAXIMUM\_NAME\_LENGTH}.
       #
-      # @param [Rlint::Token::VariableToken] token The token containing details
+      # @param [RubyLint::Token::VariableToken] token The token containing details
       #  about the variable.
       #
       def on_instance_variable(token)
@@ -92,10 +92,10 @@ module Rlint
       # Called when a class variable is found.
       #
       # This method will check for the same things as
-      # {Rlint::Analyze::CodingStyle#on_instance_variable} along with adding an
+      # {RubyLint::Analyze::CodingStyle#on_instance_variable} along with adding an
       # info message about class variables being discouraged.
       #
-      # @see Rlint::Analyze::CodingStyle#on_instance_variable
+      # @see RubyLint::Analyze::CodingStyle#on_instance_variable
       #
       def on_class_variable(token)
         validate_name(token)
@@ -110,7 +110,7 @@ module Rlint
       ##
       # Called when a constant is found.
       #
-      # @see Rlint::Analyze::CodingStyle#on_instance_variable
+      # @see RubyLint::Analyze::CodingStyle#on_instance_variable
       #
       def on_constant(token)
         validate_name_length(token)
@@ -119,7 +119,7 @@ module Rlint
       ##
       # Called when a global variable is found.
       #
-      # @see Rlint::Analyze::CodingStyle#on_instance_variable
+      # @see RubyLint::Analyze::CodingStyle#on_instance_variable
       #
       def on_global_variable(token)
         validate_name(token)
@@ -128,7 +128,7 @@ module Rlint
       ##
       # Called when an instance variable is found.
       #
-      # @see Rlint::Analyze::CodingStyle#on_instance_variable
+      # @see RubyLint::Analyze::CodingStyle#on_instance_variable
       #
       def on_local_variable(token)
         validate_name(token)
@@ -141,8 +141,8 @@ module Rlint
       # instance variables) as well as adding a warning when an instance
       # variable is assigned.
       #
-      # @see Rlint::Analyze::CodingStyle#on_instance_variable
-      # @see Rlint::Analyze::CodingStyle#on_class_variable
+      # @see RubyLint::Analyze::CodingStyle#on_instance_variable
+      # @see RubyLint::Analyze::CodingStyle#on_class_variable
       #
       def on_assignment(token)
         validate_name(token)
@@ -159,7 +159,7 @@ module Rlint
       ##
       # Called when a return statement is found.
       #
-      # @param [Rlint::Token::StatementToken] token The token of the return
+      # @param [RubyLint::Token::StatementToken] token The token of the return
       #  statement.
       #
       def on_return(token)
@@ -184,7 +184,7 @@ module Rlint
       # to instance variables as well as checking if the method definition
       # modifies a core Ruby constant.
       #
-      # @see Rlint::Analyze::CodingStyle#on_instance_variable
+      # @see RubyLint::Analyze::CodingStyle#on_instance_variable
       #
       def on_method_definition(token)
         validate_name(token)
@@ -200,7 +200,7 @@ module Rlint
       # Called when a class is created. This callback adds a warning if a core
       # Ruby constant is modified.
       #
-      # @param [Rlint::Token::ClassToken] token Token class containing details
+      # @param [RubyLint::Token::ClassToken] token Token class containing details
       #  about the newly created class.
       #
       def on_class(token)
@@ -211,7 +211,7 @@ module Rlint
       # Called after a method token has been processed. This callback checks if
       # a method is a predicate method and if so if the name is set correctly.
       #
-      # @param [Rlint::Token::MethodDefinitionToken] token The token containing
+      # @param [RubyLint::Token::MethodDefinitionToken] token The token containing
       #  details about the method definition.
       # @todo This method currently only performs a very limited check for
       #  predicate methods. Once a proper scoping system has been implemented
@@ -236,7 +236,7 @@ module Rlint
       # This method checks if the used method should be named differently
       # instead (e.g. "map" instead of "collect").
       #
-      # @param [Rlint::Token::MethodToken] token Token containing details about
+      # @param [RubyLint::Token::MethodToken] token Token containing details about
       #  the method.
       #
       def on_method(token)
@@ -260,7 +260,7 @@ module Rlint
       # This method checks to see if there are any parenthesis around the
       # statement and adds an info message if this is the case.
       #
-      # @param [Rlint::Token::StatementToken] token The token containing
+      # @param [RubyLint::Token::StatementToken] token The token containing
       #  details about the if statement.
       #
       def on_if(token)
@@ -270,7 +270,7 @@ module Rlint
       ##
       # Called when an elsif statement is found.
       #
-      # @see Rlint::Analyze::CodingStyle#on_if
+      # @see RubyLint::Analyze::CodingStyle#on_if
       #
       def on_elsif(token)
         validate_parenthesis(token)
@@ -279,7 +279,7 @@ module Rlint
       ##
       # Called when a while statement is found.
       #
-      # @see Rlint::Analyze::CodingStyle#on_if
+      # @see RubyLint::Analyze::CodingStyle#on_if
       #
       def on_while(token)
         validate_parenthesis(token)
@@ -288,7 +288,7 @@ module Rlint
       ##
       # Called when a case statement is found.
       #
-      # @see Rlint::Analyze::CodingStyle#on_if
+      # @see RubyLint::Analyze::CodingStyle#on_if
       #
       def on_case(token)
         validate_parenthesis(token)
@@ -297,7 +297,7 @@ module Rlint
       ##
       # Called when a when statement is found.
       #
-      # @see Rlint::Analyze::CodingStyle#on_if
+      # @see RubyLint::Analyze::CodingStyle#on_if
       #
       def on_when(token)
         validate_parenthesis(token)
@@ -306,7 +306,7 @@ module Rlint
       ##
       # Called when an until statement is found.
       #
-      # @see Rlint::Analyze::CodingStyle#on_if
+      # @see RubyLint::Analyze::CodingStyle#on_if
       #
       def on_until(token)
         validate_parenthesis(token)
@@ -315,7 +315,7 @@ module Rlint
       ##
       # Called when an unless statement is found.
       #
-      # @see Rlint::Analyze::CodingStyle#on_if
+      # @see RubyLint::Analyze::CodingStyle#on_if
       #
       def on_unless(token)
         validate_parenthesis(token)
@@ -327,7 +327,7 @@ module Rlint
       # Validates the name of the specified token. This method will check for
       # the use of camelCase as well as checking for the length of the name.
       #
-      # @param [Rlint::Token::Token] token The token to validate.
+      # @param [RubyLint::Token::Token] token The token to validate.
       #
       def validate_name(token)
         if !token.respond_to?(:name) or !token.name
@@ -348,9 +348,9 @@ module Rlint
       ##
       # Checks if the name of the given token is too long or not. The maximum
       # length of names is set in
-      # {Rlint::Analyze::CodingStyle::MAXIMUM\_NAME\_LENGTH}.
+      # {RubyLint::Analyze::CodingStyle::MAXIMUM\_NAME\_LENGTH}.
       #
-      # @param [Rlint::Token::Token] token The token to validate.
+      # @param [RubyLint::Token::Token] token The token to validate.
       #
       def validate_name_length(token)
         if !token.respond_to?(:name) or !token.name
@@ -370,7 +370,7 @@ module Rlint
       ##
       # Checks if there are any parenthesis wrapped around a statement.
       #
-      # @param [Rlint::Token::Token] token The token to validate.
+      # @param [RubyLint::Token::Token] token The token to validate.
       #
       def validate_parenthesis(token)
         if token.code =~ /#{token.type}\s*\(/
@@ -385,7 +385,7 @@ module Rlint
       ##
       # Adds a warning for modifying a core Ruby constant.
       #
-      # @param [Rlint::Token::Token] token The token class to validate.
+      # @param [RubyLint::Token::Token] token The token class to validate.
       #
       def validate_ruby_constant_modification(token)
         if token.name.is_a?(Array)
@@ -404,4 +404,4 @@ module Rlint
       end
     end # CodingStyle
   end # Analyze
-end # Rlint
+end # RubyLint

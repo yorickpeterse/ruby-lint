@@ -1,10 +1,10 @@
 require File.expand_path('../../../helper', __FILE__)
 
-describe 'Rlint::Parser' do
+describe 'RubyLint::Parser' do
   it 'Parse a class declaration' do
-    token = Rlint::Parser.new('class Foo; end').parse[0]
+    token = RubyLint::Parser.new('class Foo; end').parse[0]
 
-    token.class.should  == Rlint::Token::ClassToken
+    token.class.should  == RubyLint::Token::ClassToken
     token.name.should   == ['Foo']
     token.type.should   == :class
     token.line.should   == 1
@@ -16,17 +16,17 @@ describe 'Rlint::Parser' do
   end
 
   it 'Parse a top level class declaration' do
-    token = Rlint::Parser.new('class ::Foo; end').parse[0]
+    token = RubyLint::Parser.new('class ::Foo; end').parse[0]
 
-    token.class.should == Rlint::Token::ClassToken
+    token.class.should == RubyLint::Token::ClassToken
     token.name.should  == ['Foo']
     token.type.should  == :class
   end
 
   it 'Parse a class declaration with a parent class' do
-    token = Rlint::Parser.new('class Foo < Bar; end').parse[0]
+    token = RubyLint::Parser.new('class Foo < Bar; end').parse[0]
 
-    token.class.should  == Rlint::Token::ClassToken
+    token.class.should  == RubyLint::Token::ClassToken
     token.name.should   == ['Foo']
     token.parent.should == ['Bar']
     token.type.should   == :class
@@ -39,9 +39,9 @@ describe 'Rlint::Parser' do
   end
 
   it 'Parse a class declaration with multiple name segments' do
-    token = Rlint::Parser.new('class Foo::Bar < A::B; end').parse[0]
+    token = RubyLint::Parser.new('class Foo::Bar < A::B; end').parse[0]
 
-    token.class.should == Rlint::Token::ClassToken
+    token.class.should == RubyLint::Token::ClassToken
     token.type.should  == :class
     token.name.should  == ['Foo', 'Bar']
 
@@ -52,9 +52,9 @@ describe 'Rlint::Parser' do
   end
 
   it 'Parse a top level class declaration with multiple name segments' do
-    token = Rlint::Parser.new('class ::Foo::Bar; end').parse[0]
+    token = RubyLint::Parser.new('class ::Foo::Bar; end').parse[0]
 
-    token.class.should  == Rlint::Token::ClassToken
+    token.class.should  == RubyLint::Token::ClassToken
     token.type.should   == :class
     token.name.should   == ['Foo', 'Bar']
     token.line.should   == 1
@@ -85,29 +85,29 @@ class Second
 end
     CODE
 
-    first, pub_method, second = Rlint::Parser.new(code).parse
+    first, pub_method, second = RubyLint::Parser.new(code).parse
 
-    first.class.should  == Rlint::Token::ClassToken
+    first.class.should  == RubyLint::Token::ClassToken
     first.name.should   == ['First']
     first.line.should   == 1
     first.column.should == 6
     first.code.should   == 'class First'
 
-    first.value[0].class.should      == Rlint::Token::MethodDefinitionToken
+    first.value[0].class.should      == RubyLint::Token::MethodDefinitionToken
     first.value[0].name.should       == 'private_method'
     first.value[0].visibility.should == :private
     first.value[0].line.should       == 4
     first.value[0].column.should     == 6
     first.value[0].code.should       == '  def private_method'
 
-    pub_method.class.should      == Rlint::Token::MethodDefinitionToken
+    pub_method.class.should      == RubyLint::Token::MethodDefinitionToken
     pub_method.name.should       == 'public_method'
     pub_method.visibility.should == :public
 
-    second.class.should == Rlint::Token::ClassToken
+    second.class.should == RubyLint::Token::ClassToken
     second.name.should  == ['Second']
 
-    second.value[0].class.should      == Rlint::Token::MethodDefinitionToken
+    second.value[0].class.should      == RubyLint::Token::MethodDefinitionToken
     second.value[0].name.should       == 'protected_method'
     second.value[0].visibility.should == :protected
   end
@@ -127,9 +127,9 @@ class Person
 end
     CODE
 
-    token = Rlint::Parser.new(code).parse[0]
+    token = RubyLint::Parser.new(code).parse[0]
 
-    token.class.should == Rlint::Token::ClassToken
+    token.class.should == RubyLint::Token::ClassToken
     token.name.should  == ['Person']
 
     token.value.class.should  == Array
@@ -137,16 +137,16 @@ end
 
     method_1, method_2 = token.value
 
-    method_1.class.should == Rlint::Token::MethodDefinitionToken
+    method_1.class.should == RubyLint::Token::MethodDefinitionToken
     method_1.name.should  == 'class_method_1'
 
-    method_1.receiver.class.should == Rlint::Token::VariableToken
+    method_1.receiver.class.should == RubyLint::Token::VariableToken
     method_1.receiver.name.should  == 'self'
 
-    method_2.class.should == Rlint::Token::MethodDefinitionToken
+    method_2.class.should == RubyLint::Token::MethodDefinitionToken
     method_2.name.should  == 'class_method_2'
 
-    method_2.receiver.class.should == Rlint::Token::VariableToken
+    method_2.receiver.class.should == RubyLint::Token::VariableToken
     method_2.receiver.name.should  == 'self'
   end
 end

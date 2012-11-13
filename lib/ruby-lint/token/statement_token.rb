@@ -1,4 +1,4 @@
-module Rlint
+module RubyLint
   module Token
     ##
     # Token class for storing information about statements such as `return`
@@ -10,14 +10,14 @@ module Rlint
       ##
       # The value of the statement in case of `if` and `elsif` statements.
       #
-      # @return [Rlint::Token::Token|Array]
+      # @return [RubyLint::Token::Token|Array]
       #
       attr_accessor :statement
 
       ##
       # The content of the `else` statement.
       #
-      # @return [Rlint::Token::StatementToken]
+      # @return [RubyLint::Token::StatementToken]
       #
       attr_accessor :else
 
@@ -29,7 +29,7 @@ module Rlint
       attr_accessor :elsif
 
       ##
-      # @see Rlint::Token::Token#initialize
+      # @see RubyLint::Token::Token#initialize
       #
       def initialize(*args)
         @type  = :statement
@@ -39,7 +39,7 @@ module Rlint
       end
 
       ##
-      # @see Rlint::Token::Token#child_nodes
+      # @see RubyLint::Token::Token#child_nodes
       #
       def child_nodes
         nodes = []
@@ -66,4 +66,4 @@ module Rlint
       end
     end # StatementToken
   end # Token
-end # Rlint
+end # RubyLint

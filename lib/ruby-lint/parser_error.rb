@@ -1,6 +1,6 @@
-module Rlint
+module RubyLint
   ##
-  # Exception class that's raised when the parser {Rlint::Parser} detects
+  # Exception class that's raised when the parser {RubyLint::Parser} detects
   # syntax errors.
   #
   class ParserError < SyntaxError
@@ -39,4 +39,4 @@ module Rlint
       super(message)
     end
   end # ParserError
-end # Rlint
+end # RubyLint

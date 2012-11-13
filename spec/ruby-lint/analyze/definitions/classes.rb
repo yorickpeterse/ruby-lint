@@ -1,6 +1,6 @@
 require File.expand_path('../../../../helper', __FILE__)
 
-describe 'Rlint::Analyze::Definitions: classes' do
+describe 'RubyLint::Analyze::Definitions: classes' do
   it 'Define a class in the global scope' do
     code = <<-CODE
 class Example
@@ -10,18 +10,18 @@ class Example
 end
     CODE
 
-    tokens   = Rlint::Parser.new(code).parse
-    iterator = Rlint::Iterator.new
+    tokens   = RubyLint::Parser.new(code).parse
+    iterator = RubyLint::Iterator.new
 
-    iterator.bind(Rlint::Analyze::Definitions)
+    iterator.bind(RubyLint::Analyze::Definitions)
     iterator.run(tokens)
 
     scope = iterator.storage[:scope]
     const = scope.lookup(:constant, 'Example')
 
-    const.class.should == Rlint::Definition
+    const.class.should == RubyLint::Definition
 
-    const.token.class.should      == Rlint::Token::ClassToken
+    const.token.class.should      == RubyLint::Token::ClassToken
     const.token.name.should       == ['Example']
     const.token.value.nil?.should == true
 
@@ -30,9 +30,9 @@ end
 
     method = const.lookup(:instance_method, 'example_method')
 
-    method.class.should == Rlint::Definition
+    method.class.should == RubyLint::Definition
 
-    method.token.class.should == Rlint::Token::MethodDefinitionToken
+    method.token.class.should == RubyLint::Token::MethodDefinitionToken
     method.token.name.should  == 'example_method'
   end
 
@@ -45,10 +45,10 @@ class Example
 end
     CODE
 
-    tokens   = Rlint::Parser.new(code).parse
-    iterator = Rlint::Iterator.new
+    tokens   = RubyLint::Parser.new(code).parse
+    iterator = RubyLint::Iterator.new
 
-    iterator.bind(Rlint::Analyze::Definitions)
+    iterator.bind(RubyLint::Analyze::Definitions)
     iterator.run(tokens)
 
     scope = iterator.storage[:scope]
@@ -57,10 +57,10 @@ end
 
     const = scope.lookup(:constant, 'Example')
 
-    const.class.should == Rlint::Definition
+    const.class.should == RubyLint::Definition
 
     const.lookup(:instance_method, 'example_method').nil?.should == true
-    const.lookup(:method, 'example_method').class.should == Rlint::Definition
+    const.lookup(:method, 'example_method').class.should == RubyLint::Definition
   end
 
   it 'Inherit methods from a parent class' do
@@ -76,10 +76,10 @@ class B < A
 end
     CODE
 
-    tokens   = Rlint::Parser.new(code).parse
-    iterator = Rlint::Iterator.new
+    tokens   = RubyLint::Parser.new(code).parse
+    iterator = RubyLint::Iterator.new
 
-    iterator.bind(Rlint::Analyze::Definitions)
+    iterator.bind(RubyLint::Analyze::Definitions)
     iterator.run(tokens)
 
     scope = iterator.storage[:scope]
@@ -88,27 +88,27 @@ end
     b = scope.lookup(:constant, 'B')
 
     # check class A
-    a.class.should == Rlint::Definition
+    a.class.should == RubyLint::Definition
 
-    a.token.class.should  == Rlint::Token::ClassToken
+    a.token.class.should  == RubyLint::Token::ClassToken
     a.token.name.should   == ['A']
     a.token.parent.should == ['Object']
 
-    a.lookup(:method, :methods).class.should          == Rlint::Definition
-    a.lookup(:instance_method, :methods).class.should == Rlint::Definition
+    a.lookup(:method, :methods).class.should          == RubyLint::Definition
+    a.lookup(:instance_method, :methods).class.should == RubyLint::Definition
 
     # check class B
-    b.class.should == Rlint::Definition
+    b.class.should == RubyLint::Definition
 
-    b.token.class.should  == Rlint::Token::ClassToken
+    b.token.class.should  == RubyLint::Token::ClassToken
     b.token.name.should   == ['B']
     b.token.parent.should == ['A']
 
     b.lookup(:instance_method, 'parent_method') \
       .class \
-      .should == Rlint::Definition
+      .should == RubyLint::Definition
 
-    b.lookup(:method, :methods).class.should          == Rlint::Definition
-    b.lookup(:instance_method, :methods).class.should == Rlint::Definition
+    b.lookup(:method, :methods).class.should          == RubyLint::Definition
+    b.lookup(:instance_method, :methods).class.should == RubyLint::Definition
   end
 end

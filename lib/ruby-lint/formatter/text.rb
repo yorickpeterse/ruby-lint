@@ -1,7 +1,7 @@
-module Rlint
+module RubyLint
   module Formatter
     ##
-    # {Rlint::Formatter::Text} is a formatter class that formats a report in a
+    # {RubyLint::Formatter::Text} is a formatter class that formats a report in a
     # format similar to the one used by Ruby when validating a Ruby file using
     # the `ruby` executable. An example of this format is the following:
     #
@@ -10,8 +10,8 @@ module Rlint
     #
     # Basic usage of this formatter is as following:
     #
-    #     report    = Rlint::Report.new
-    #     formatter = Rlint::Formatter::Text.new
+    #     report    = RubyLint::Report.new
+    #     formatter = RubyLint::Formatter::Text.new
     #
     #     # Add some data to the report.
     #     # ...
@@ -29,7 +29,7 @@ module Rlint
       ##
       # Formats the specified report.
       #
-      # @param  [Rlint::Report] report The report to format.
+      # @param  [RubyLint::Report] report The report to format.
       # @return [String]
       #
       def format(report)
@@ -51,4 +51,4 @@ module Rlint
       end
     end # Text
   end # Formatter
-end # Rlint
+end # RubyLint

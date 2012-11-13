@@ -1,6 +1,6 @@
 require File.expand_path('../../../../helper', __FILE__)
 
-describe 'Rlint::Analyze::Definitions: modules' do
+describe 'RubyLint::Analyze::Definitions: modules' do
   it 'Define a module in the global scope' do
     code = <<-CODE
 module Example
@@ -10,18 +10,18 @@ module Example
 end
     CODE
 
-    tokens   = Rlint::Parser.new(code).parse
-    iterator = Rlint::Iterator.new
+    tokens   = RubyLint::Parser.new(code).parse
+    iterator = RubyLint::Iterator.new
 
-    iterator.bind(Rlint::Analyze::Definitions)
+    iterator.bind(RubyLint::Analyze::Definitions)
     iterator.run(tokens)
 
     scope = iterator.storage[:scope]
     const = scope.lookup(:constant, 'Example')
 
-    const.class.should == Rlint::Definition
+    const.class.should == RubyLint::Definition
 
-    const.token.class.should == Rlint::Token::Token
+    const.token.class.should == RubyLint::Token::Token
     const.token.type.should  == :module
     const.token.name.should  == ['Example']
 
@@ -29,9 +29,9 @@ end
 
     method = const.lookup(:instance_method, 'example_method')
 
-    method.class.should == Rlint::Definition
+    method.class.should == RubyLint::Definition
 
-    method.token.class.should == Rlint::Token::MethodDefinitionToken
+    method.token.class.should == RubyLint::Token::MethodDefinitionToken
     method.token.name.should  == 'example_method'
   end
 
@@ -44,18 +44,18 @@ module Example
 end
     CODE
 
-    tokens   = Rlint::Parser.new(code).parse
-    iterator = Rlint::Iterator.new
+    tokens   = RubyLint::Parser.new(code).parse
+    iterator = RubyLint::Iterator.new
 
-    iterator.bind(Rlint::Analyze::Definitions)
+    iterator.bind(RubyLint::Analyze::Definitions)
     iterator.run(tokens)
 
     scope = iterator.storage[:scope]
     const = scope.lookup(:constant, 'Example')
 
-    const.class.should == Rlint::Definition
+    const.class.should == RubyLint::Definition
 
-    const.token.class.should == Rlint::Token::Token
+    const.token.class.should == RubyLint::Token::Token
     const.token.type.should  == :module
     const.token.name.should  == ['Example']
 
@@ -63,9 +63,9 @@ end
 
     method = const.lookup(:method, 'example_method')
 
-    method.class.should == Rlint::Definition
+    method.class.should == RubyLint::Definition
 
-    method.token.class.should == Rlint::Token::MethodDefinitionToken
+    method.token.class.should == RubyLint::Token::MethodDefinitionToken
     method.token.name.should  == 'example_method'
   end
 
@@ -82,24 +82,24 @@ class B
 end
     CODE
 
-    tokens   = Rlint::Parser.new(code).parse
-    iterator = Rlint::Iterator.new
+    tokens   = RubyLint::Parser.new(code).parse
+    iterator = RubyLint::Iterator.new
 
-    iterator.bind(Rlint::Analyze::Definitions)
+    iterator.bind(RubyLint::Analyze::Definitions)
     iterator.run(tokens)
 
     scope = iterator.storage[:scope]
     const = scope.lookup(:constant, 'B')
 
-    const.class.should == Rlint::Definition
+    const.class.should == RubyLint::Definition
 
     const.lookup(:method, 'example_method').nil?.should == true
 
     method = const.lookup(:instance_method, 'example_method')
 
-    method.class.should == Rlint::Definition
+    method.class.should == RubyLint::Definition
 
-    method.token.class.should == Rlint::Token::MethodDefinitionToken
+    method.token.class.should == RubyLint::Token::MethodDefinitionToken
     method.token.name.should  == 'example_method'
   end
 
@@ -116,24 +116,24 @@ class B
 end
     CODE
 
-    tokens   = Rlint::Parser.new(code).parse
-    iterator = Rlint::Iterator.new
+    tokens   = RubyLint::Parser.new(code).parse
+    iterator = RubyLint::Iterator.new
 
-    iterator.bind(Rlint::Analyze::Definitions)
+    iterator.bind(RubyLint::Analyze::Definitions)
     iterator.run(tokens)
 
     scope = iterator.storage[:scope]
     const = scope.lookup(:constant, 'B')
 
-    const.class.should == Rlint::Definition
+    const.class.should == RubyLint::Definition
 
     const.lookup(:instance_method, 'example_method').nil?.should == true
 
     method = const.lookup(:method, 'example_method')
 
-    method.class.should == Rlint::Definition
+    method.class.should == RubyLint::Definition
 
-    method.token.class.should == Rlint::Token::MethodDefinitionToken
+    method.token.class.should == RubyLint::Token::MethodDefinitionToken
     method.token.name.should  == 'example_method'
   end
 
@@ -152,54 +152,54 @@ class C
 end
     CODE
 
-    tokens   = Rlint::Parser.new(code).parse
-    iterator = Rlint::Iterator.new
+    tokens   = RubyLint::Parser.new(code).parse
+    iterator = RubyLint::Iterator.new
 
-    iterator.bind(Rlint::Analyze::Definitions)
+    iterator.bind(RubyLint::Analyze::Definitions)
     iterator.run(tokens)
 
     scope = iterator.storage[:scope]
     const = scope.lookup(:constant, 'C')
 
-    const.class.should == Rlint::Definition
+    const.class.should == RubyLint::Definition
 
     const.lookup(:method, 'example_method').nil?.should == true
 
     method = const.lookup(:instance_method, 'example_method')
 
-    method.class.should == Rlint::Definition
+    method.class.should == RubyLint::Definition
 
-    method.token.class.should == Rlint::Token::MethodDefinitionToken
+    method.token.class.should == RubyLint::Token::MethodDefinitionToken
     method.token.name.should  == 'example_method'
   end
 
   it 'Define a module in an existing module' do
     code = <<-CODE
-module Rlint
+module RubyLint
   module Derp
 
   end
 end
     CODE
 
-    tokens   = Rlint::Parser.new(code).parse
-    iterator = Rlint::Iterator.new
+    tokens   = RubyLint::Parser.new(code).parse
+    iterator = RubyLint::Iterator.new
 
-    iterator.bind(Rlint::Analyze::Definitions)
+    iterator.bind(RubyLint::Analyze::Definitions)
     iterator.run(tokens)
 
     scope = iterator.storage[:scope]
 
     scope.lookup(:constant, 'Derp').nil?.should == true
 
-    scope.lookup(:constant, 'Rlint').class.should == Rlint::Definition
+    scope.lookup(:constant, 'RubyLint').class.should == RubyLint::Definition
 
-    scope.lookup(:constant, 'Rlint') \
+    scope.lookup(:constant, 'RubyLint') \
       .lookup(:constant, 'Derp') \
       .class \
-      .should == Rlint::Definition
+      .should == RubyLint::Definition
 
-    rlint = scope.lookup(:constant, 'Rlint')
+    rlint = scope.lookup(:constant, 'RubyLint')
     derp  = rlint.lookup(:constant, 'Derp')
 
     derp.parent.length.should == 1

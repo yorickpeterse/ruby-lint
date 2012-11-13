@@ -1,4 +1,4 @@
-module Rlint
+module RubyLint
   module Token
     ##
     # Token class that contains details about the parameters of a method.
@@ -23,7 +23,7 @@ module Rlint
       ##
       # The rest parameter (if any).
       #
-      # @return [Rlint::Token::Token]
+      # @return [RubyLint::Token::Token]
       #
       attr_accessor :rest
 
@@ -37,12 +37,12 @@ module Rlint
       ##
       # The block parameter (if any).
       #
-      # @return [Rlint::Token::Token]
+      # @return [RubyLint::Token::Token]
       #
       attr_accessor :block
 
       ##
-      # @see Rlint::Token::Token#initialize
+      # @see RubyLint::Token::Token#initialize
       #
       def initialize(*args)
         @optional = []
@@ -53,7 +53,7 @@ module Rlint
       end
 
       ##
-      # @see Rlint::Token::Token#child_nodes
+      # @see RubyLint::Token::Token#child_nodes
       #
       def child_nodes
         nodes = super
@@ -96,4 +96,4 @@ module Rlint
       end
     end # ParametersToken
   end # Token
-end # Rlint
+end # RubyLint

@@ -1,11 +1,11 @@
-module Rlint
+module RubyLint
   module Analyze
     ##
-    # {Rlint::Analyze::MethodValidation} is used to validate method calls.
+    # {RubyLint::Analyze::MethodValidation} is used to validate method calls.
     # Errors are added for calling undefined methods, calling methods with
     # invalid parameters and so on.
     #
-    class MethodValidation < Rlint::Callback
+    class MethodValidation < RubyLint::Callback
       include Helper::DefinitionResolver
 
       ##
@@ -37,7 +37,7 @@ module Rlint
       ##
       # Called when a method call is found.
       #
-      # @param [Rlint::Token::MethodToken] token
+      # @param [RubyLint::Token::MethodToken] token
       #
       def on_method(token)
         # Method called on a receiver (e.g. `String.new`).
@@ -101,4 +101,4 @@ module Rlint
       end
     end # MethodValidation
   end # Analyze
-end # Rlint
+end # RubyLint

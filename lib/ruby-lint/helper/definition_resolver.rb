@@ -1,10 +1,10 @@
-module Rlint
+module RubyLint
   module Helper
     ##
-    # {Rlint::Helper::DefinitionResolver} is a helper module that can be used
-    # to work with scoping information similar to {Rlint::Helper::Scoping}.
+    # {RubyLint::Helper::DefinitionResolver} is a helper module that can be used
+    # to work with scoping information similar to {RubyLint::Helper::Scoping}.
     #
-    # This module depends on {Rlint::Helper::Scoping} and will include it
+    # This module depends on {RubyLint::Helper::Scoping} and will include it
     # automatically.
     #
     # ## Methods
@@ -44,7 +44,7 @@ module Rlint
       ##
       # Sets the scope for the current method definition.
       #
-      # @param [Rlint::Token::MethodDefinitionToken] token
+      # @param [RubyLint::Token::MethodDefinitionToken] token
       #
       def on_method_definition(token)
         @scopes << scope.lookup(
@@ -60,7 +60,7 @@ module Rlint
       ##
       # Resets the scope back to the one used before the method definition.
       #
-      # @see Rlint::Helper::DefinitionResolver#on_method_definition
+      # @see RubyLint::Helper::DefinitionResolver#on_method_definition
       #
       def after_method_definition(token)
         @scopes.pop
@@ -72,7 +72,7 @@ module Rlint
       ##
       # Sets the scope for the current class.
       #
-      # @param [Rlint::Token::ClassToken] token
+      # @param [RubyLint::Token::ClassToken] token
       #
       def on_class(token)
         name = token.name.join('::')
@@ -87,7 +87,7 @@ module Rlint
       ##
       # Resets the scope back to the one used before the class definition.
       #
-      # @see Rlint::Helper::DefinitionResolver#on_class
+      # @see RubyLint::Helper::DefinitionResolver#on_class
       #
       def after_class(token)
         @scopes.pop
@@ -100,7 +100,7 @@ module Rlint
       ##
       # Sets the scope for the current module.
       #
-      # @param [Rlint::Token::Token] token
+      # @param [RubyLint::Token::Token] token
       #
       def on_module(token)
         name = token.name.join('::')
@@ -115,7 +115,7 @@ module Rlint
       ##
       # Resets the scope back to the one used before the module definition.
       #
-      # @see Rlint::Helper::DefinitionResolver#on_module
+      # @see RubyLint::Helper::DefinitionResolver#on_module
       #
       def after_module(token)
         @scopes.pop
@@ -140,4 +140,4 @@ module Rlint
       end
     end # DefinitionResolver
   end # Helper
-end # Rlint
+end # RubyLint

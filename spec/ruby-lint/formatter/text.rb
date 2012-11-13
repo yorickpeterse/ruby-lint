@@ -1,10 +1,10 @@
 require File.expand_path('../../../helper', __FILE__)
 
-describe 'Rlint::Formatter::Text' do
+describe 'RubyLint::Formatter::Text' do
   it 'Format a report in plain text' do
-    report_a  = Rlint::Report.new('a.rb')
-    report_b  = Rlint::Report.new('b.rb')
-    formatter = Rlint::Formatter::Text.new
+    report_a  = RubyLint::Report.new('a.rb')
+    report_b  = RubyLint::Report.new('b.rb')
+    formatter = RubyLint::Formatter::Text.new
 
     report_a.add(:info, 'test info', 2, 1)
 

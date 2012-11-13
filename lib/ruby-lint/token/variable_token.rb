@@ -1,11 +1,11 @@
-module Rlint
+module RubyLint
   module Token
     ##
     # Token class used for storing information about variable references.
     #
     class VariableToken < Token
       ##
-      # @see Rlint::Token::Token#initialize
+      # @see RubyLint::Token::Token#initialize
       #
       def initialize(*args)
         super
@@ -15,4 +15,4 @@ module Rlint
       end
     end # VariableToken
   end # Token
-end # Rlint
+end # RubyLint

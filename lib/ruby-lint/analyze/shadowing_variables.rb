@@ -1,10 +1,10 @@
-module Rlint
+module RubyLint
   module Analyze
     ##
-    # {Rlint::Analyze::ShadowingVariables} is used to add warnings when block
+    # {RubyLint::Analyze::ShadowingVariables} is used to add warnings when block
     # parameters shadow outer local variables.
     #
-    class ShadowingVariables < Rlint::Callback
+    class ShadowingVariables < RubyLint::Callback
       include Helper::DefinitionResolver
 
       ##
@@ -19,7 +19,7 @@ module Rlint
       # parameters of the block shadow existing local variables defined in the
       # outer scope.
       #
-      # @param [Rlint::Token::BlockToken] token The token of the block.
+      # @param [RubyLint::Token::BlockToken] token The token of the block.
       #
       def on_block(token)
         token.parameters.each do |param|
@@ -34,4 +34,4 @@ module Rlint
       end
     end # ShadowingVariables
   end # Analyze
-end # Rlint
+end # RubyLint

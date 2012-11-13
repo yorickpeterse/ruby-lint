@@ -1,7 +1,7 @@
-module Rlint
+module RubyLint
   ##
-  # {Rlint::Report} is a class used for storing error messages, warnings and
-  # informational messages about code processed by {Rlint::Iterator} and
+  # {RubyLint::Report} is a class used for storing error messages, warnings and
+  # informational messages about code processed by {RubyLint::Iterator} and
   # individual callback classes.
   #
   # The process of adding data to a report involves two steps:
@@ -11,19 +11,19 @@ module Rlint
   #
   # The first step is done by creating a new instance of this class and
   # defining a list of level names in the constructor's second parameter. The
-  # following levels are used by Rlint itself:
+  # following levels are used by RubyLint itself:
   #
   # * `:error`
   # * `:warning`
   # * `:info`
   #
-  # The second step is done by calling {Rlint::Report#add}. This method is used
+  # The second step is done by calling {RubyLint::Report#add}. This method is used
   # to add data for a specific level. If this level is disabled the data is not
   # added to the report.
   #
   # A basic example of this is the following:
   #
-  #     report = Rlint::Report.new('test_file.rb', [:error])
+  #     report = RubyLint::Report.new('test_file.rb', [:error])
   #
   #     report.add(:error, 'This is an error message', 1, 0)
   #
@@ -95,4 +95,4 @@ module Rlint
       }
     end
   end # Report
-end # Rlint
+end # RubyLint

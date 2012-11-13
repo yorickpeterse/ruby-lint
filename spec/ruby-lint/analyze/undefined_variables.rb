@@ -1,6 +1,6 @@
 require File.expand_path('../../../helper', __FILE__)
 
-describe 'Rlint::Analyze::UndefinedVariables' do
+describe 'RubyLint::Analyze::UndefinedVariables' do
   it 'Use of undefined variables' do
     code = <<-CODE
 number = 10
@@ -25,12 +25,12 @@ puts $number
 puts NUMBER
     CODE
 
-    tokens   = Rlint::Parser.new(code).parse
-    report   = Rlint::Report.new
-    iterator = Rlint::Iterator.new(report)
+    tokens   = RubyLint::Parser.new(code).parse
+    report   = RubyLint::Report.new
+    iterator = RubyLint::Iterator.new(report)
 
-    iterator.bind(Rlint::Analyze::Definitions)
-    iterator.bind(Rlint::Analyze::UndefinedVariables)
+    iterator.bind(RubyLint::Analyze::Definitions)
+    iterator.bind(RubyLint::Analyze::UndefinedVariables)
     iterator.run(tokens)
 
     report.messages[:error].class.should  == Array
@@ -61,12 +61,12 @@ puts NUMBER
 
   it 'Default global variables should not trigger errors' do
     code     = Kernel.global_variables.join("\n")
-    tokens   = Rlint::Parser.new(code).parse
-    report   = Rlint::Report.new
-    iterator = Rlint::Iterator.new(report)
+    tokens   = RubyLint::Parser.new(code).parse
+    report   = RubyLint::Report.new
+    iterator = RubyLint::Iterator.new(report)
 
-    iterator.bind(Rlint::Analyze::Definitions)
-    iterator.bind(Rlint::Analyze::UndefinedVariables)
+    iterator.bind(RubyLint::Analyze::Definitions)
+    iterator.bind(RubyLint::Analyze::UndefinedVariables)
     iterator.run(tokens)
 
     report.messages[:error].nil?.should == true
@@ -89,12 +89,12 @@ puts a
 puts b # b was defined inside the method and isn't available outside it
     CODE
 
-    tokens   = Rlint::Parser.new(code).parse
-    report   = Rlint::Report.new
-    iterator = Rlint::Iterator.new(report)
+    tokens   = RubyLint::Parser.new(code).parse
+    report   = RubyLint::Report.new
+    iterator = RubyLint::Iterator.new(report)
 
-    iterator.bind(Rlint::Analyze::Definitions)
-    iterator.bind(Rlint::Analyze::UndefinedVariables)
+    iterator.bind(RubyLint::Analyze::Definitions)
+    iterator.bind(RubyLint::Analyze::UndefinedVariables)
     iterator.run(tokens)
 
     report.messages[:error].class.should  == Array
@@ -124,12 +124,12 @@ end
 puts @number
     CODE
 
-    tokens   = Rlint::Parser.new(code).parse
-    report   = Rlint::Report.new
-    iterator = Rlint::Iterator.new(report)
+    tokens   = RubyLint::Parser.new(code).parse
+    report   = RubyLint::Report.new
+    iterator = RubyLint::Iterator.new(report)
 
-    iterator.bind(Rlint::Analyze::Definitions)
-    iterator.bind(Rlint::Analyze::UndefinedVariables)
+    iterator.bind(RubyLint::Analyze::Definitions)
+    iterator.bind(RubyLint::Analyze::UndefinedVariables)
     iterator.run(tokens)
 
     report.messages[:error].nil?.should == true
@@ -149,12 +149,12 @@ class Person
 end
     CODE
 
-    tokens   = Rlint::Parser.new(code).parse
-    report   = Rlint::Report.new
-    iterator = Rlint::Iterator.new(report)
+    tokens   = RubyLint::Parser.new(code).parse
+    report   = RubyLint::Report.new
+    iterator = RubyLint::Iterator.new(report)
 
-    iterator.bind(Rlint::Analyze::Definitions)
-    iterator.bind(Rlint::Analyze::UndefinedVariables)
+    iterator.bind(RubyLint::Analyze::Definitions)
+    iterator.bind(RubyLint::Analyze::UndefinedVariables)
     iterator.run(tokens)
 
     report.messages[:error].class.should  == Array
@@ -178,12 +178,12 @@ end
 puts A::B
     CODE
 
-    tokens   = Rlint::Parser.new(code).parse
-    report   = Rlint::Report.new
-    iterator = Rlint::Iterator.new(report)
+    tokens   = RubyLint::Parser.new(code).parse
+    report   = RubyLint::Report.new
+    iterator = RubyLint::Iterator.new(report)
 
-    iterator.bind(Rlint::Analyze::Definitions)
-    iterator.bind(Rlint::Analyze::UndefinedVariables)
+    iterator.bind(RubyLint::Analyze::Definitions)
+    iterator.bind(RubyLint::Analyze::UndefinedVariables)
     iterator.run(tokens)
 
     report.messages[:error].class.should  == Array
@@ -202,7 +202,7 @@ puts A::B
 
   it 'Look up a constant using an implicit constant path' do
     code = <<-CODE
-module Rlint
+module RubyLint
   module Derp
     Foobar.name
     ConstantImporter.name
@@ -210,12 +210,12 @@ module Rlint
 end
     CODE
 
-    tokens   = Rlint::Parser.new(code).parse
-    report   = Rlint::Report.new
-    iterator = Rlint::Iterator.new(report)
+    tokens   = RubyLint::Parser.new(code).parse
+    report   = RubyLint::Report.new
+    iterator = RubyLint::Iterator.new(report)
 
-    iterator.bind(Rlint::Analyze::Definitions)
-    iterator.bind(Rlint::Analyze::UndefinedVariables)
+    iterator.bind(RubyLint::Analyze::Definitions)
+    iterator.bind(RubyLint::Analyze::UndefinedVariables)
     iterator.run(tokens)
 
     report.messages[:error].class.should  == Array

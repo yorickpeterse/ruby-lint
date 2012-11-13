@@ -1,9 +1,9 @@
 require File.expand_path('../../helper', __FILE__)
 
-describe 'Rlint::Callback' do
-  it 'Add an error to a report using Rlint::Callback' do
-    report   = Rlint::Report.new
-    callback = Rlint::Callback.new(report)
+describe 'RubyLint::Callback' do
+  it 'Add an error to a report using RubyLint::Callback' do
+    report   = RubyLint::Report.new
+    callback = RubyLint::Callback.new(report)
 
     report.levels.each do |level|
       report.messages[level].nil?.should == true
@@ -17,9 +17,9 @@ describe 'Rlint::Callback' do
     end
   end
 
-  it 'Ignore errors (when disabled) when adding one using Rlint::Callback' do
-    report   = Rlint::Report.new('(rlint)', [:warning])
-    callback = Rlint::Callback.new(report)
+  it 'Ignore errors (when disabled) when adding one using RubyLint::Callback' do
+    report   = RubyLint::Report.new('(rlint)', [:warning])
+    callback = RubyLint::Callback.new(report)
 
     callback.send(:error, 'test error', 1, 1)
 

@@ -1,4 +1,4 @@
-module Rlint
+module RubyLint
   module Token
     ##
     # Token class for storing information about regular expressions.
@@ -12,4 +12,4 @@ module Rlint
       attr_accessor :modes
     end # RegexpToken
   end # Token
-end # Rlint
+end # RubyLint

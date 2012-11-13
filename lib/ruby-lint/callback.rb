@@ -1,30 +1,30 @@
-module Rlint
+module RubyLint
   ##
-  # {Rlint::Callback} is a class that can be used (but you're not required to)
+  # {RubyLint::Callback} is a class that can be used (but you're not required to)
   # to remove some common boilerplate code from custom callback classes.
   #
   # Using this class can be done by simply extending it:
   #
-  #     class MyCallback < Rlint::Callback
+  #     class MyCallback < RubyLint::Callback
   #
   #     end
   #
   # Once extended the following helper methods are provided:
   #
-  # * {Rlint::Callback#error}
-  # * {Rlint::Callback#warning}
-  # * {Rlint::Callback#info}
+  # * {RubyLint::Callback#error}
+  # * {RubyLint::Callback#warning}
+  # * {RubyLint::Callback#info}
   #
   # These 3 methods can be used to add data to a report. If no report is set
   # the methods will not execute any code. This means your own code does not
-  # have to check for a valid instance of {Rlint::Report} in the `@report`
+  # have to check for a valid instance of {RubyLint::Report} in the `@report`
   # instance variable every time you want to add data to it.
   #
   class Callback
     ##
     # Creates a new instance of the class and stores the report.
     #
-    # @param [Rlint::Report|NilClass] report The report instance to use.
+    # @param [RubyLint::Report|NilClass] report The report instance to use.
     # @param [Hash] options A hash containing custom options to set for the
     #  callback.
     #
@@ -49,7 +49,7 @@ module Rlint
     ##
     # Adds a warning message to the report.
     #
-    # @see Rlint::Callback#error
+    # @see RubyLint::Callback#error
     #
     def warning(message, line, column)
       @report.add(:warning, message, line, column) if @report
@@ -58,10 +58,10 @@ module Rlint
     ##
     # Adds a regular informational message to the report.
     #
-    # @see Rlint::Callback#error
+    # @see RubyLint::Callback#error
     #
     def info(message, line, column)
       @report.add(:info, message, line, column) if @report
     end
   end # Callback
-end # Rlint
+end # RubyLint

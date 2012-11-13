@@ -1,15 +1,15 @@
-module Rlint
+module RubyLint
   module Analyze
     ##
-    # {Rlint::Analyze::Definitions} is a callback class that is used for
+    # {RubyLint::Analyze::Definitions} is a callback class that is used for
     # building a list of all the definitions (variables, methods, etc) of a
     # block of Ruby code.
     #
-    # The resulting instance of {Rlint::Definition} is stored in the `@storage`
+    # The resulting instance of {RubyLint::Definition} is stored in the `@storage`
     # instance variable under the key `:scope`. This makes it possible for
     # other callback classes to access this data easily.
     #
-    class Definitions < Rlint::Callback
+    class Definitions < RubyLint::Callback
       include Helper::Scoping
 
       ##
@@ -47,7 +47,7 @@ module Rlint
       ##
       # Called when a value is assigned to a variable.
       #
-      # @param [Rlint::Token::AssignmentToken] token
+      # @param [RubyLint::Token::AssignmentToken] token
       #
       def on_assignment(token)
         if token.type == :global_variable
@@ -89,7 +89,7 @@ module Rlint
       ##
       # Called when a new method is defined.
       #
-      # @param [Rlint::Token::MethodDefinitionToken] token
+      # @param [RubyLint::Token::MethodDefinitionToken] token
       #
       def on_method_definition(token)
         type      = :instance_method
@@ -123,7 +123,7 @@ module Rlint
       ##
       # Called after a method definition has been processed.
       #
-      # @see Rlint::Analyze::Definitions#on_method_definition
+      # @see RubyLint::Analyze::Definitions#on_method_definition
       #
       def after_method_definition(token)
         # TODO: exporting these variables should only be done if the method is
@@ -140,7 +140,7 @@ module Rlint
       ##
       # Called when a class definition is found.
       #
-      # @param [Rlint::Token::ClassToken] token
+      # @param [RubyLint::Token::ClassToken] token
       #
       def on_class(token)
         name       = token.name.join('::')
@@ -167,7 +167,7 @@ module Rlint
       ##
       # Called after a class definition was found and processed.
       #
-      # @see Rlint::Analyze::Definitions#on_class
+      # @see RubyLint::Analyze::Definitions#on_class
       #
       def after_class(token)
         @scopes.pop
@@ -177,7 +177,7 @@ module Rlint
       ##
       # Called when a module is defined.
       #
-      # @param [Rlint::Token::Token] token
+      # @param [RubyLint::Token::Token] token
       #
       def on_module(token)
         name       = token.name.join('::')
@@ -203,7 +203,7 @@ module Rlint
       ##
       # Called after a module definition has been processed.
       #
-      # @see Rlint::Analyze::Definitions#on_module
+      # @see RubyLint::Analyze::Definitions#on_module
       #
       def after_module(token)
         @scopes.pop
@@ -214,7 +214,7 @@ module Rlint
       # Called when a method call is found. This callback is used to extend
       # classes using modules.
       #
-      # @param [Rlint::Token::MethodToken] token
+      # @param [RubyLint::Token::MethodToken] token
       #
       def on_method(token)
         if INCLUDE_SYMBOLS.key?(token.name)
@@ -241,4 +241,4 @@ module Rlint
       end
     end # Definitions
   end # Analyze
-end # Rlint
+end # RubyLint

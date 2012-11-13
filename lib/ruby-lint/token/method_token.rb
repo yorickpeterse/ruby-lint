@@ -1,4 +1,4 @@
-module Rlint
+module RubyLint
   module Token
     ##
     # Token class used for storing methods, their parameters, body, etc.
@@ -10,7 +10,7 @@ module Rlint
       # The receiver of the method call, if any.
       #
       # @since  2012-08-05
-      # @return [Rlint::Token::Token]
+      # @return [RubyLint::Token::Token]
       #
       attr_accessor :receiver
 
@@ -26,7 +26,7 @@ module Rlint
       # Array of tokens for the method parameters.
       #
       # @since  2012-07-29
-      # @return [Rlint::Token::Parameters]
+      # @return [RubyLint::Token::Parameters]
       #
       attr_accessor :parameters
 
@@ -34,12 +34,12 @@ module Rlint
       # Token containing details about the block passed to the method.
       #
       # @since  2012-08-05
-      # @return [Rlint::Token::BlockToken]
+      # @return [RubyLint::Token::BlockToken]
       #
       attr_accessor :block
 
       ##
-      # @see Rlint::Token::Token#initialize
+      # @see RubyLint::Token::Token#initialize
       #
       def initialize(*args)
         @type = :method
@@ -48,11 +48,11 @@ module Rlint
       end
 
       ##
-      # @see Rlint::Token::Token#child_nodes
+      # @see RubyLint::Token::Token#child_nodes
       #
       def child_nodes
         return super << @parameters << [@receiver] << [@block]
       end
     end # MethodToken
   end # Token
-end # Rlint
+end # RubyLint

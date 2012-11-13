@@ -1,10 +1,10 @@
-module Rlint
+module RubyLint
   module Analyze
     ##
-    # {Rlint::Analyze::UndefinedVariables} is used to add errors for the use of
+    # {RubyLint::Analyze::UndefinedVariables} is used to add errors for the use of
     # undefined variables.
     #
-    class UndefinedVariables < Rlint::Callback
+    class UndefinedVariables < RubyLint::Callback
       include Helper::DefinitionResolver
 
       ##
@@ -37,7 +37,7 @@ module Rlint
       # Called when a variable assignment is found. Used to validate constant
       # paths before assigning data to them.
       #
-      # @param [Rlint::Token::AssignmentToken] token
+      # @param [RubyLint::Token::AssignmentToken] token
       #
       def on_assignment(token)
         on_constant_path(token) if token.name.is_a?(Array)
@@ -46,7 +46,7 @@ module Rlint
       ##
       # Called when a constant path is found.
       #
-      # @param [Rlint::Token::VariableToken] token
+      # @param [RubyLint::Token::VariableToken] token
       #
       def on_constant_path(token)
         current  = scope
@@ -73,7 +73,7 @@ module Rlint
       ##
       # Called when a method call is found.
       #
-      # @param [Rlint::Token::MethodToken] token
+      # @param [RubyLint::Token::MethodToken] token
       #
       def on_method(token)
         kernel_method = false
@@ -96,4 +96,4 @@ module Rlint
       end
     end # UndefinedVariables
   end # Analyze
-end # Rlint
+end # RubyLint

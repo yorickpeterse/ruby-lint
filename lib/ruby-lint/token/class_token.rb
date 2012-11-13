@@ -1,4 +1,4 @@
-module Rlint
+module RubyLint
   module Token
     ##
     # Token class used for storing data about classes.
@@ -12,7 +12,7 @@ module Rlint
       attr_accessor :parent
 
       ##
-      # @see Rlint::Token::Token#initialize
+      # @see RubyLint::Token::Token#initialize
       #
       def initialize(*args)
         super
@@ -21,4 +21,4 @@ module Rlint
       end
     end # ClassToken
   end # Token
-end # Rlint
+end # RubyLint

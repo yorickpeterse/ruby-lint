@@ -1,10 +1,10 @@
-module Rlint
+module RubyLint
   module Analyze
     ##
-    # {Rlint::Analyze::UnusedVariables} is used to check for unused local,
+    # {RubyLint::Analyze::UnusedVariables} is used to check for unused local,
     # instance, class and global variables.
     #
-    class UnusedVariables < Rlint::Callback
+    class UnusedVariables < RubyLint::Callback
       include Helper::DefinitionResolver
 
       ##
@@ -45,7 +45,7 @@ module Rlint
       end
 
       ##
-      # @see Rlint::Callback#initialize
+      # @see RubyLint::Callback#initialize
       #
       def initialize(*args)
         super
@@ -81,7 +81,7 @@ module Rlint
       ##
       # Called when a variable is assigned.
       #
-      # @param [Rlint::Token::AssignmentToken] token
+      # @param [RubyLint::Token::AssignmentToken] token
       #
       def on_assignment(token)
         unused_variables[token.name] = token
@@ -100,4 +100,4 @@ module Rlint
       end
     end # UnusedVariables
   end # Analyze
-end # Rlint
+end # RubyLint

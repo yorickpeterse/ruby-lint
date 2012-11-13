@@ -1,6 +1,6 @@
 require File.expand_path('../../../helper', __FILE__)
 
-describe 'Rlint::Parser' do
+describe 'RubyLint::Parser' do
   it 'Parse a syntax error' do
     code = <<-CODE
 def example
@@ -8,8 +8,8 @@ def example
 end
     CODE
 
-    error = should.raise?(Rlint::ParserError) do
-      Rlint::Parser.new(code).parse
+    error = should.raise?(RubyLint::ParserError) do
+      RubyLint::Parser.new(code).parse
     end
 
     error.file.should   == '(rlint)'

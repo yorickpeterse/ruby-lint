@@ -1,6 +1,6 @@
 require File.expand_path('../../../helper', __FILE__)
 
-describe 'Rlint::Analyze::CodingStyle' do
+describe 'RubyLint::Analyze::CodingStyle' do
   it 'Check the casing of method names and variables' do
     code = <<-CODE
 def getNumber(theNumber = 10)
@@ -10,11 +10,11 @@ def getNumber(theNumber = 10)
 end
     CODE
 
-    tokens   = Rlint::Parser.new(code).parse
-    report   = Rlint::Report.new
-    iterator = Rlint::Iterator.new(report)
+    tokens   = RubyLint::Parser.new(code).parse
+    report   = RubyLint::Report.new
+    iterator = RubyLint::Iterator.new(report)
 
-    iterator.bind(Rlint::Analyze::CodingStyle)
+    iterator.bind(RubyLint::Analyze::CodingStyle)
     iterator.run(tokens)
 
     messages = report.messages[:info]
@@ -51,16 +51,16 @@ this_variable_is_fine = 10
 THIS_CONSTANT_NAME_IS_WAY_TOO_LONG = 10
     CODE
 
-    tokens   = Rlint::Parser.new(code).parse
-    report   = Rlint::Report.new
-    iterator = Rlint::Iterator.new(report)
+    tokens   = RubyLint::Parser.new(code).parse
+    report   = RubyLint::Report.new
+    iterator = RubyLint::Iterator.new(report)
 
-    iterator.bind(Rlint::Analyze::CodingStyle)
+    iterator.bind(RubyLint::Analyze::CodingStyle)
     iterator.run(tokens)
 
     messages = report.messages[:info]
     message  = "method and variable names should not be longer than " \
-      "#{Rlint::Analyze::CodingStyle::MAXIMUM_NAME_LENGTH} characters"
+      "#{RubyLint::Analyze::CodingStyle::MAXIMUM_NAME_LENGTH} characters"
 
     messages[0][:message].should == message
     messages[0][:line].should    == 1
@@ -76,11 +76,11 @@ THIS_CONSTANT_NAME_IS_WAY_TOO_LONG = 10
   end
 
   it 'Check for the use of class variables' do
-    tokens   = Rlint::Parser.new('@@number = 10').parse
-    report   = Rlint::Report.new
-    iterator = Rlint::Iterator.new(report)
+    tokens   = RubyLint::Parser.new('@@number = 10').parse
+    report   = RubyLint::Report.new
+    iterator = RubyLint::Iterator.new(report)
 
-    iterator.bind(Rlint::Analyze::CodingStyle)
+    iterator.bind(RubyLint::Analyze::CodingStyle)
     iterator.run(tokens)
 
     info = report.messages[:info][0]
@@ -118,11 +118,11 @@ unless ( foobar )
 end
     CODE
 
-    tokens   = Rlint::Parser.new(code).parse
-    report   = Rlint::Report.new
-    iterator = Rlint::Iterator.new(report)
+    tokens   = RubyLint::Parser.new(code).parse
+    report   = RubyLint::Report.new
+    iterator = RubyLint::Iterator.new(report)
 
-    iterator.bind(Rlint::Analyze::CodingStyle)
+    iterator.bind(RubyLint::Analyze::CodingStyle)
     iterator.run(tokens)
 
     report.messages[:info].class.should  == Array
@@ -148,11 +148,11 @@ def valid_name?
 end
     CODE
 
-    tokens   = Rlint::Parser.new(code).parse
-    report   = Rlint::Report.new
-    iterator = Rlint::Iterator.new(report)
+    tokens   = RubyLint::Parser.new(code).parse
+    report   = RubyLint::Report.new
+    iterator = RubyLint::Iterator.new(report)
 
-    iterator.bind(Rlint::Analyze::CodingStyle)
+    iterator.bind(RubyLint::Analyze::CodingStyle)
     iterator.run(tokens)
 
     message = 'predicate methods should end with a question mark'
@@ -171,11 +171,11 @@ end
 [].map { |a| }
     CODE
 
-    tokens   = Rlint::Parser.new(code).parse
-    report   = Rlint::Report.new
-    iterator = Rlint::Iterator.new(report)
+    tokens   = RubyLint::Parser.new(code).parse
+    report   = RubyLint::Report.new
+    iterator = RubyLint::Iterator.new(report)
 
-    iterator.bind(Rlint::Analyze::CodingStyle)
+    iterator.bind(RubyLint::Analyze::CodingStyle)
     iterator.run(tokens)
 
     message = 'it is recommended to use the method "map" instead of "collect"'
@@ -201,11 +201,11 @@ def String.class_method
 end
     CODE
 
-    tokens   = Rlint::Parser.new(code).parse
-    report   = Rlint::Report.new
-    iterator = Rlint::Iterator.new(report)
+    tokens   = RubyLint::Parser.new(code).parse
+    report   = RubyLint::Report.new
+    iterator = RubyLint::Iterator.new(report)
 
-    iterator.bind(Rlint::Analyze::CodingStyle)
+    iterator.bind(RubyLint::Analyze::CodingStyle)
     iterator.run(tokens)
 
     report.messages[:warning].class.should  == Array

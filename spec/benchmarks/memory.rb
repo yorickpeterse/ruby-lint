@@ -1,6 +1,6 @@
 require File.expand_path('../../../lib/ruby-lint', __FILE__)
 
-# This file benchmarks the memory increase after parsing a particular Rlint
+# This file benchmarks the memory increase after parsing a particular RubyLint
 # file and performing code analysis on the resulting tokens.
 #
 # For each iteration (the amount is set in the "AMOUNT" environment variable)
@@ -26,11 +26,11 @@ code      = File.read(path, File.size(path))
 
 amount.times do
   memory_kb += benchmark_memory do
-    tokens   = Rlint::Parser.new(code, path).parse
-    iterator = Rlint::Iterator.new
+    tokens   = RubyLint::Parser.new(code, path).parse
+    iterator = RubyLint::Iterator.new
 
-    iterator.bind(Rlint::Analyze::CodingStyle)
-    iterator.bind(Rlint::Analyze::Definitions)
+    iterator.bind(RubyLint::Analyze::CodingStyle)
+    iterator.bind(RubyLint::Analyze::Definitions)
 
     iterator.run(tokens)
   end

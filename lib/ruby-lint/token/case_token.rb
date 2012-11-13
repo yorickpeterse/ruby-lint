@@ -1,4 +1,4 @@
-module Rlint
+module RubyLint
   module Token
     ##
     # Token class containing details about a case statement.
@@ -15,12 +15,12 @@ module Rlint
       ##
       # Token containing details about the `else` statement.
       #
-      # @return [Rlint::Token::StatementToken]
+      # @return [RubyLint::Token::StatementToken]
       #
       attr_accessor :else
 
       ##
-      # @see Rlint::Token#initialize
+      # @see RubyLint::Token#initialize
       #
       def initialize(*args)
         @when = []
@@ -30,7 +30,7 @@ module Rlint
       end
 
       ##
-      # @see Rlint::Token::Token#child_nodes
+      # @see RubyLint::Token::Token#child_nodes
       #
       def child_nodes
         nodes = super
@@ -41,4 +41,4 @@ module Rlint
       end
     end # CaseToken
   end # Token
-end # Rlint
+end # RubyLint

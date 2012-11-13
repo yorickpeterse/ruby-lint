@@ -1,7 +1,7 @@
-module Rlint
+module RubyLint
   ##
-  # {Rlint::ConstantImporter} is a module that can be used to create a list of
-  # method definitions (using {Rlint::Token::MethodDefinitionToken} for a
+  # {RubyLint::ConstantImporter} is a module that can be used to create a list of
+  # method definitions (using {RubyLint::Token::MethodDefinitionToken} for a
   # supplied list of constant names.
   #
   module ConstantImporter
@@ -28,7 +28,7 @@ module Rlint
     ##
     # Hash containing the parameter types as returned by `Method#parameters`
     # and the attributes they should be stored in in an instance of
-    # {Rlint::Token::ParametersToken}.
+    # {RubyLint::Token::ParametersToken}.
     #
     # @return [Hash]
     #
@@ -41,7 +41,7 @@ module Rlint
 
     ##
     # Imports the methods of a given list of constant names and returns a Hash
-    # containing instances of {Rlint::Definition} for each imported constant.
+    # containing instances of {RubyLint::Definition} for each imported constant.
     #
     # @param  [Array] constants An array of constant to import.
     # @param  [Mixed] source_constant The source constant to use for the
@@ -99,4 +99,4 @@ module Rlint
       return imported
     end
   end # ConstantImporter
-end # Rlint
+end # RubyLint

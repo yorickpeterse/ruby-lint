@@ -1,6 +1,6 @@
 require File.expand_path('../../../helper', __FILE__)
 
-describe 'Rlint::Analyze::MethodValidation' do
+describe 'RubyLint::Analyze::MethodValidation' do
   it 'Calling undefined methods' do
     code = <<-CODE
 def defined_method; end
@@ -9,13 +9,13 @@ undefined_method
 defined_method
     CODE
 
-    tokens   = Rlint::Parser.new(code).parse
-    report   = Rlint::Report.new
-    iterator = Rlint::Iterator.new(report)
+    tokens   = RubyLint::Parser.new(code).parse
+    report   = RubyLint::Report.new
+    iterator = RubyLint::Iterator.new(report)
 
-    iterator.bind(Rlint::Analyze::Definitions)
-    iterator.bind(Rlint::Analyze::MethodValidation)
-    iterator.bind(Rlint::Analyze::UndefinedVariables)
+    iterator.bind(RubyLint::Analyze::Definitions)
+    iterator.bind(RubyLint::Analyze::MethodValidation)
+    iterator.bind(RubyLint::Analyze::UndefinedVariables)
     iterator.run(tokens)
 
     report.messages[:error].class.should  == Array
@@ -37,13 +37,13 @@ String.newx
 Foobar.new
     CODE
 
-    tokens   = Rlint::Parser.new(code).parse
-    report   = Rlint::Report.new
-    iterator = Rlint::Iterator.new(report)
+    tokens   = RubyLint::Parser.new(code).parse
+    report   = RubyLint::Report.new
+    iterator = RubyLint::Iterator.new(report)
 
-    iterator.bind(Rlint::Analyze::Definitions)
-    iterator.bind(Rlint::Analyze::MethodValidation)
-    iterator.bind(Rlint::Analyze::UndefinedVariables)
+    iterator.bind(RubyLint::Analyze::Definitions)
+    iterator.bind(RubyLint::Analyze::MethodValidation)
+    iterator.bind(RubyLint::Analyze::UndefinedVariables)
     iterator.run(tokens)
 
     report.messages[:error].class.should  == Array
@@ -72,13 +72,13 @@ foo.upcase
 ''.downcasex
     CODE
 
-    tokens   = Rlint::Parser.new(code).parse
-    report   = Rlint::Report.new
-    iterator = Rlint::Iterator.new(report)
+    tokens   = RubyLint::Parser.new(code).parse
+    report   = RubyLint::Report.new
+    iterator = RubyLint::Iterator.new(report)
 
-    iterator.bind(Rlint::Analyze::Definitions)
-    iterator.bind(Rlint::Analyze::MethodValidation)
-    iterator.bind(Rlint::Analyze::UndefinedVariables)
+    iterator.bind(RubyLint::Analyze::Definitions)
+    iterator.bind(RubyLint::Analyze::MethodValidation)
+    iterator.bind(RubyLint::Analyze::UndefinedVariables)
     iterator.run(tokens)
 
     report.messages[:error].class.should  == Array
@@ -109,13 +109,13 @@ def uppercase(name = 'Ruby', *args, &block)
 end
     CODE
 
-    tokens   = Rlint::Parser.new(code).parse
-    report   = Rlint::Report.new
-    iterator = Rlint::Iterator.new(report)
+    tokens   = RubyLint::Parser.new(code).parse
+    report   = RubyLint::Report.new
+    iterator = RubyLint::Iterator.new(report)
 
-    iterator.bind(Rlint::Analyze::Definitions)
-    iterator.bind(Rlint::Analyze::MethodValidation)
-    iterator.bind(Rlint::Analyze::UndefinedVariables)
+    iterator.bind(RubyLint::Analyze::Definitions)
+    iterator.bind(RubyLint::Analyze::MethodValidation)
+    iterator.bind(RubyLint::Analyze::UndefinedVariables)
     iterator.run(tokens)
 
     report.messages[:error].class.should  == Array
@@ -148,13 +148,13 @@ A::B.invalid_method
 A::B.valid_method
     CODE
 
-    tokens   = Rlint::Parser.new(code).parse
-    report   = Rlint::Report.new
-    iterator = Rlint::Iterator.new(report)
+    tokens   = RubyLint::Parser.new(code).parse
+    report   = RubyLint::Report.new
+    iterator = RubyLint::Iterator.new(report)
 
-    iterator.bind(Rlint::Analyze::Definitions)
-    iterator.bind(Rlint::Analyze::UndefinedVariables)
-    iterator.bind(Rlint::Analyze::MethodValidation)
+    iterator.bind(RubyLint::Analyze::Definitions)
+    iterator.bind(RubyLint::Analyze::UndefinedVariables)
+    iterator.bind(RubyLint::Analyze::MethodValidation)
     iterator.run(tokens)
 
     report.messages[:error].class.should  == Array

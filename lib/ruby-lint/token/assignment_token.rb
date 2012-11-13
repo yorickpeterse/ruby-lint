@@ -1,4 +1,4 @@
-module Rlint
+module RubyLint
   module Token
     ##
     # Token class that is used whenever a value is assigned to a variable,
@@ -9,7 +9,7 @@ module Rlint
       # The object receiver, set when a value is assigned to an object
       # attribute.
       #
-      # @return [Rlint::Token::Token]
+      # @return [RubyLint::Token::Token]
       #
       attr_accessor :receiver
 
@@ -22,7 +22,7 @@ module Rlint
       attr_accessor :operator
 
       ##
-      # @see Rlint::Token::Token#initialize
+      # @see RubyLint::Token::Token#initialize
       #
       def initialize(*args)
         super
@@ -43,4 +43,4 @@ module Rlint
       end
     end # AssignmentToken
   end # Token
-end # Rlint
+end # RubyLint

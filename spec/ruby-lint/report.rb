@@ -1,8 +1,8 @@
 require File.expand_path('../../helper', __FILE__)
 
-describe 'Rlint::Report' do
+describe 'RubyLint::Report' do
   it 'Add an error message to a report' do
-    report = Rlint::Report.new
+    report = RubyLint::Report.new
 
     report.add(:error, 'test error', 1, 1)
 
@@ -20,7 +20,7 @@ describe 'Rlint::Report' do
   end
 
   it 'Ignore disabled reporting levels' do
-    report = Rlint::Report.new('(rlint)', [:error])
+    report = RubyLint::Report.new('(rlint)', [:error])
 
     report.add(:info, 'test info', 1, 1)
 

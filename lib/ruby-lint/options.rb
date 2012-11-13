@@ -1,7 +1,7 @@
-module Rlint
+module RubyLint
   ##
-  # {Rlint::Options} is a class that can be used to configure various parts of
-  # Rlint such as what formatter to use, the reporting levels, etc.
+  # {RubyLint::Options} is a class that can be used to configure various parts of
+  # RubyLint such as what formatter to use, the reporting levels, etc.
   #
   class Options
     ##
@@ -13,16 +13,16 @@ module Rlint
     REQUIRED_ANALYZERS = [Analyze::Definitions]
 
     ##
-    # The reporting formatter to use, set to {Rlint::Formatter::Text} by
+    # The reporting formatter to use, set to {RubyLint::Formatter::Text} by
     # default.
     #
-    # @return [Rlint::Formatter]
+    # @return [RubyLint::Formatter]
     #
     attr_accessor :formatter
 
     ##
-    # The enabled reporting levels. See {Rlint::Report#levels} and
-    # {Rlint::Report#initialize} for more information.
+    # The enabled reporting levels. See {RubyLint::Report#levels} and
+    # {RubyLint::Report#initialize} for more information.
     #
     # @return [Array]
     #
@@ -30,7 +30,7 @@ module Rlint
 
     ##
     # Array of classes to use for analyzing code. By default all the classes
-    # defined under {Rlint::Analyze} are used.
+    # defined under {RubyLint::Analyze} are used.
     #
     # @return [Array]
     #
@@ -55,4 +55,4 @@ module Rlint
   @options = Options.new
 
   class << self; attr_reader :options; end
-end # Rlint
+end # RubyLint

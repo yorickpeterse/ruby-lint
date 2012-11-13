@@ -1,16 +1,16 @@
-module Rlint
+module RubyLint
   ##
-  # {Rlint::Parser} uses Ripper to parse Ruby source code and turn it into an
+  # {RubyLint::Parser} uses Ripper to parse Ruby source code and turn it into an
   # AST. Instead of returning arrays (the Ripper default) this class uses the
-  # various token classes such as {Rlint::Token::Token} and
-  # {Rlint::Token::VariableToken}. It also takes care of a few more things such
+  # various token classes such as {RubyLint::Token::Token} and
+  # {RubyLint::Token::VariableToken}. It also takes care of a few more things such
   # as saving the associated line of code and setting method visibility.
   #
   # Parsing Ruby code requires two steps:
   #
   # 1. Create a new instance of this class and pass a string containing source
   #    code to the constructor method.
-  # 2. Call the method {Rlint::Parser#parse} and do something with the returned
+  # 2. Call the method {RubyLint::Parser#parse} and do something with the returned
   #    AST.
   #
   # For example, to parse a simple "Hello World" example you'd use this parser
@@ -18,20 +18,20 @@ module Rlint
   #
   #     require 'pp'
   #
-  #     parser = Rlint::Parser.new('puts "Hello, world!"')
+  #     parser = RubyLint::Parser.new('puts "Hello, world!"')
   #
   #     pp parser.parse
   #
   # This outputs the following AST:
   #
-  #     [#<Rlint::Token::MethodToken:0x000000012f04d0
+  #     [#<RubyLint::Token::MethodToken:0x000000012f04d0
   #       @code="puts \"Hello, world!\"",
   #       @column=0,
   #       @event=:method,
   #       @line=1,
   #       @name="puts",
   #       @parameters=
-  #        [#<Rlint::Token::Token:0x000000012e9fb8
+  #        [#<RubyLint::Token::Token:0x000000012e9fb8
   #          @code="puts \"Hello, world!\"",
   #          @column=6,
   #          @event=:string,
@@ -73,7 +73,7 @@ module Rlint
 
     ##
     # Array of event names that should return an instance of
-    # {Rlint::Token::MethodToken}.
+    # {RubyLint::Token::MethodToken}.
     #
     # @return [Array]
     #
@@ -107,7 +107,7 @@ module Rlint
     #
     DEFAULT_VISIBILITY = :public
 
-    # Return an Rlint::Token::Token instance for each scanner event instead of
+    # Return an RubyLint::Token::Token instance for each scanner event instead of
     # an array with multiple indexes.
     SCANNER_EVENTS.each do |event|
       define_method("on_#{event}") do |token|
@@ -185,7 +185,7 @@ module Rlint
     # Called when a parser error was encountered.
     #
     # @param [String] message The error message.
-    # @raise [Rlint::ParserError]
+    # @raise [RubyLint::ParserError]
     #
     def on_parse_error(message)
       raise ParserError.new(message, lineno, column, @file)
@@ -195,7 +195,7 @@ module Rlint
     # Called when a string literal was found.
     #
     # @param  [Array] token Array containing details about the string.
-    # @return [Rlint::Token::Token]
+    # @return [RubyLint::Token::Token]
     #
     def on_string_literal(token)
       if token and token[1]
@@ -214,8 +214,8 @@ module Rlint
     ##
     # Called when a symbol is found.
     #
-    # @param  [Rlint::Token::Token] token The symbol token.
-    # @return [Rlint::Token::Token]
+    # @param  [RubyLint::Token::Token] token The symbol token.
+    # @return [RubyLint::Token::Token]
     #
     def on_symbol(token)
       token.type = :symbol
@@ -226,7 +226,7 @@ module Rlint
     ##
     # Called when a symbol using quotes was found.
     #
-    # @see Rlint::Parser#on_symbol
+    # @see RubyLint::Parser#on_symbol
     #
     def on_dyna_symbol(token)
       return on_symbol(token[0])
@@ -236,7 +236,7 @@ module Rlint
     # Called when an array is found.
     #
     # @param  [Array] values The values of the array.
-    # @return [Rlint::Token::Token]
+    # @return [RubyLint::Token::Token]
     #
     def on_array(values)
       values ||= []
@@ -253,9 +253,9 @@ module Rlint
     ##
     # Called when a reference to a particular array index is found.
     #
-    # @param  [Rlint::Token::Token] array The array that was referenced.
-    # @param  [Rlint::Token::Token] index The index that was referenced.
-    # @return [Rlint::Token::Token]
+    # @param  [RubyLint::Token::Token] array The array that was referenced.
+    # @param  [RubyLint::Token::Token] index The index that was referenced.
+    # @return [RubyLint::Token::Token]
     #
     def on_aref(array, index)
       array.key = index
@@ -266,10 +266,10 @@ module Rlint
     ##
     # Called when a value is assigned to an array index.
     #
-    # @param [Rlint::Token::Token] array The array that was referenced.
-    # @param [Rlint::Token::Token] index The index of the array that was
+    # @param [RubyLint::Token::Token] array The array that was referenced.
+    # @param [RubyLint::Token::Token] index The index of the array that was
     #  referenced.
-    # @return [Rlint::Token::Token]
+    # @return [RubyLint::Token::Token]
     #
     def on_aref_field(array, index)
       array.key = index
@@ -287,7 +287,7 @@ module Rlint
     # Called when a Hash is found.
     #
     # @param  [Array] pairs An array of key/value pairs of the hash.
-    # @return [Rlint::Token::Token]
+    # @return [RubyLint::Token::Token]
     #
     def on_hash(pairs)
       # column() is set to the column number of the very end of the hash.
@@ -306,7 +306,7 @@ module Rlint
     # Called when a bare Hash is found. A bare Hash is a hash that's declared
     # without the curly braces.
     #
-    # @see Rlint::Parser#on_hash
+    # @see RubyLint::Parser#on_hash
     #
     def on_bare_assoc_hash(pairs)
       return on_hash(pairs)
@@ -315,9 +315,9 @@ module Rlint
     ##
     # Called when a new key/value pair of a Hash is found.
     #
-    # @param  [Rlint::Token::Token] key The key of the pair.
-    # @param  [Rlint::Token::Token] value The value of the pair.
-    # @return [Rlint::Token::Token]
+    # @param  [RubyLint::Token::Token] key The key of the pair.
+    # @param  [RubyLint::Token::Token] value The value of the pair.
+    # @return [RubyLint::Token::Token]
     #
     def on_assoc_new(key, value)
       key.name  = key.value
@@ -329,10 +329,10 @@ module Rlint
     ##
     # Called when a block is created using curly braces.
     #
-    # @param [Rlint::Token::ParametersToken] params The parameters of the
+    # @param [RubyLint::Token::ParametersToken] params The parameters of the
     #  block.
     # @param  [Array] body Array containing the tokens of the block.
-    # @return [Rlint::Token::BlockToken]
+    # @return [RubyLint::Token::BlockToken]
     #
     def on_brace_block(params, body)
       return Token::BlockToken.new(
@@ -348,7 +348,7 @@ module Rlint
     ##
     # Called when a block is created using the do/end statements.
     #
-    # @see Rlint::Parser#on_brace_block
+    # @see RubyLint::Parser#on_brace_block
     #
     def on_do_block(params, body)
       return on_brace_block(params, body)
@@ -357,7 +357,7 @@ module Rlint
     ##
     # Called when a lambda is found.
     #
-    # @see Rlint::Parser#on_brace_block
+    # @see RubyLint::Parser#on_brace_block
     #
     def on_lambda(params, body)
       token      = on_brace_block(params, body)
@@ -369,9 +369,9 @@ module Rlint
     ##
     # Called when a Range is found.
     #
-    # @param  [Rlint::Token::Token] start The start value of the range.
-    # @param  [Rlint::Token::Token] stop The end value of the range.
-    # @return [Rlint::Token::Token]
+    # @param  [RubyLint::Token::Token] start The start value of the range.
+    # @param  [RubyLint::Token::Token] stop The end value of the range.
+    # @return [RubyLint::Token::Token]
     #
     def on_dot2(start, stop)
       return Token::Token.new(
@@ -387,8 +387,8 @@ module Rlint
     # Called when a regular expression is found.
     #
     # @param [Array] regexp The regular expression's value.
-    # @param [Rlint::Token::Token] modes The modes of the regular expression.
-    # @return [Rlint::Token::RegexpToken]
+    # @param [RubyLint::Token::Token] modes The modes of the regular expression.
+    # @return [RubyLint::Token::RegexpToken]
     #
     def on_regexp_literal(regexp, modes)
       regexp      = regexp[0]
@@ -411,12 +411,12 @@ module Rlint
     ##
     # Called when a value is assigned to a variable.
     #
-    # @param  [Rlint::Token::Token] variable The variable that is assigned.
-    # @param  [Rlint::Token::Token] value The value to assign.
-    # @return [Rlint::Token::VariableToken]
+    # @param  [RubyLint::Token::Token] variable The variable that is assigned.
+    # @param  [RubyLint::Token::Token] value The value to assign.
+    # @return [RubyLint::Token::VariableToken]
     #
     def on_assign(variable, value)
-      if variable.class == Rlint::Token::AssignmentToken
+      if variable.class == RubyLint::Token::AssignmentToken
         variable.value = value
 
         return variable
@@ -449,7 +449,7 @@ module Rlint
     #
     # @param [Array] variables The variables that are being assigned values.
     # @param [Array] values The values to assign.
-    # @return [Rlint::Token::AssignmentToken]
+    # @return [RubyLint::Token::AssignmentToken]
     #
     def on_massign(variables, values)
       return Token::AssignmentToken.new(
@@ -466,13 +466,13 @@ module Rlint
     ##
     # Called when a value is assigned to an object attribute.
     #
-    # @param [Rlint::Token::VariableToken] receiver The receiver of the
+    # @param [RubyLint::Token::VariableToken] receiver The receiver of the
     #  assignment.
     # @param [Symbol] operator The operator that was used to separate the
     #  object and attribute.
-    # @param [Rlint::Token::Token] attribute The attribute to which the value
+    # @param [RubyLint::Token::Token] attribute The attribute to which the value
     #  is assigned.
-    # @return [Rlint::Token::VariableToken]
+    # @return [RubyLint::Token::VariableToken]
     #
     def on_field(receiver, operator, attribute)
       return Token::AssignmentToken.new(
@@ -489,10 +489,10 @@ module Rlint
     ##
     # Called when a (binary) operator operation is performed.
     #
-    # @param  [Rlint::Token::Token] left The left hand side of the operator.
+    # @param  [RubyLint::Token::Token] left The left hand side of the operator.
     # @param  [Symbol] op The operator that was used.
-    # @param  [Rlint::Token::Token] right The right hand side of the operator.
-    # @return [Rlint::Token::Token]
+    # @param  [RubyLint::Token::Token] right The right hand side of the operator.
+    # @return [RubyLint::Token::Token]
     #
     def on_binary(left, op, right)
       return Token::Token.new(
@@ -508,8 +508,8 @@ module Rlint
     # Called when an unary operator/operation is found.
     #
     # @param [Symbol] operator The unary operator.
-    # @param [Rlint::Token::Token] token The token after the unary operator.
-    # @return [Rlint::Token::Token]
+    # @param [RubyLint::Token::Token] token The token after the unary operator.
+    # @return [RubyLint::Token::Token]
     #
     def on_unary(operator, token)
       return Token::Token.new(
@@ -525,7 +525,7 @@ module Rlint
     # Called when a set of parenthesis is found.
     #
     # @param  [Array] value The data inside the parenthesis.
-    # @return [Rlint::Token::Token]
+    # @return [RubyLint::Token::Token]
     #
     def on_paren(value)
       if value.is_a?(Array)
@@ -539,7 +539,7 @@ module Rlint
     # Called when a return statement is found.
     #
     # @param  [Array] values The return values of the statement.
-    # @return [Rlint::Token::StatementToken]
+    # @return [RubyLint::Token::StatementToken]
     #
     def on_return(values)
       source = code(lineno)
@@ -557,9 +557,9 @@ module Rlint
     ##
     # Called when a while loop is found.
     #
-    # @param  [Rlint::Token::Token] statement The statement to evaluate.
-    # @param  [Rlint::Token::Token] value The body of the while loop.
-    # @return [Rlint::Token::StatementToken]
+    # @param  [RubyLint::Token::Token] statement The statement to evaluate.
+    # @param  [RubyLint::Token::Token] value The body of the while loop.
+    # @return [RubyLint::Token::StatementToken]
     #
     def on_while(statement, value)
       source = code(statement.line)
@@ -581,9 +581,9 @@ module Rlint
     # @param  [Array] variables Array of variables to create for each iteration.
     #
     # pry_binding
-    # @param  [Rlint::Token::Token] enumerable The enumerable to iterate.
+    # @param  [RubyLint::Token::Token] enumerable The enumerable to iterate.
     # @param  [Array] value The body of the for loop.
-    # @return [Rlint::Token::StatementToken]
+    # @return [RubyLint::Token::StatementToken]
     #
     def on_for(variables, enumerable, value)
       source = code(variables[0].line)
@@ -602,12 +602,12 @@ module Rlint
     ##
     # Called when an if statement is found.
     #
-    # @param  [Rlint::Token::Token] statement The if statement to evaluate.
+    # @param  [RubyLint::Token::Token] statement The if statement to evaluate.
     # @param  [Array] value Array containing the tokens of the code that will
     #  be executed if the if statement evaluates to true.
     # @param  [Array] rest Array containing the tokens for the elsif and else
     #  statements (if any).
-    # @return [Rlint::Token::StatementToken]
+    # @return [RubyLint::Token::StatementToken]
     #
     def on_if(statement, value, rest)
       source = code(statement.line)
@@ -643,7 +643,7 @@ module Rlint
     ##
     # Called whne a tenary operator is found.
     #
-    # @see Rlint::Parser#on_if
+    # @see RubyLint::Parser#on_if
     #
     def on_ifop(statement, value, else_statement)
       else_statement = Token::StatementToken.new(
@@ -669,7 +669,7 @@ module Rlint
     # Called when an else statement is found.
     #
     # @param  [Array] value The value of the statement.
-    # @return [Rlint::Token::StatementToken]
+    # @return [RubyLint::Token::StatementToken]
     #
     def on_else(value)
       return Token::StatementToken.new(
@@ -684,9 +684,9 @@ module Rlint
     ##
     # Called when an elsif statement is found.
     #
-    # @param [Rlint::Token::Token] statement The statement to evaluate.
+    # @param [RubyLint::Token::Token] statement The statement to evaluate.
     # @param [Array] value The value of the elsif statement.
-    # @param [Array|Rlint::Token::Token] list A list of else and elsif
+    # @param [Array|RubyLint::Token::Token] list A list of else and elsif
     #  statements.
     # @return [Array]
     #
@@ -716,11 +716,11 @@ module Rlint
     #
     # @param [Array] value Array containing the tokens of the body/statement.
     # @param [Array] rescues An array of rescue statements.
-    # @param [Rlint::Token::StatementToken] else_statement The else statement
+    # @param [RubyLint::Token::StatementToken] else_statement The else statement
     #  of the block.
-    # @param [Rlint::Token::StatementToken] ensure_statement The ensure
+    # @param [RubyLint::Token::StatementToken] ensure_statement The ensure
     #  statement of the block.
-    # @return [Rlint::Token::BeginRescueToken]
+    # @return [RubyLint::Token::BeginRescueToken]
     #
     def on_bodystmt(value, rescues, else_statement, ensure_statement)
       if rescues.nil? and else_statement.nil? and ensure_statement.nil?
@@ -743,11 +743,11 @@ module Rlint
     # Called when a rescue statement is found.
     #
     # @param [Array] exceptions An array of exceptions to catch.
-    # @param [Rlint::Token::Token] variable The variable in which to store
+    # @param [RubyLint::Token::Token] variable The variable in which to store
     #  the exception details.
     # @param  [Array] value The value of the rescue statement.
-    # @param  [Array|Rlint::Token::Token] list A set of all the rescue tokens.
-    # @return [Rlint::Token::StatementToken]
+    # @param  [Array|RubyLint::Token::Token] list A set of all the rescue tokens.
+    # @return [RubyLint::Token::StatementToken]
     #
     def on_rescue(exceptions, variable, value, list)
       source = code(lineno)
@@ -773,11 +773,11 @@ module Rlint
     # Called when a single line rescue statement (in the form of `[VALUE]
     # rescue [RESCUE VALUE]`) is found.
     #
-    # @param [Rlint::Token::Token|Array] value The body of the begin/rescue
+    # @param [RubyLint::Token::Token|Array] value The body of the begin/rescue
     #  statement.
-    # @param [Rlint::Token::Token] statement The statement to evaluate when the
+    # @param [RubyLint::Token::Token] statement The statement to evaluate when the
     #  data in `value` raised an exception.
-    # @return [Rlint::Token::BeginRescueToken]
+    # @return [RubyLint::Token::BeginRescueToken]
     #
     def on_rescue_mod(value, statement)
       value     = [value]     unless value.is_a?(Array)
@@ -797,7 +797,7 @@ module Rlint
     # Called when an ensure statement is found.
     #
     # @param  [Array] value The value of the statement.
-    # @return [Rlint::Token::StatementToken]
+    # @return [RubyLint::Token::StatementToken]
     #
     def on_ensure(value)
       return Token::StatementToken.new(
@@ -812,11 +812,11 @@ module Rlint
     ##
     # Called for an entire case/when/else block.
     #
-    # @param [Rlint::Token::Token] statement The statement of the `case`
+    # @param [RubyLint::Token::Token] statement The statement of the `case`
     #  statement itself.
     # @param [Array] list Array containing the various when statements and
     #  optionally an else statement.
-    # @return [Rlint::Token::CaseToken]
+    # @return [RubyLint::Token::CaseToken]
     #
     def on_case(statement, list)
       when_statements = []
@@ -876,11 +876,11 @@ module Rlint
     ##
     # Called when a unless statement is found.
     #
-    # @param [Rlint::Token::Token] statement The statement to evaluate.
+    # @param [RubyLint::Token::Token] statement The statement to evaluate.
     # @param [Array] body The body of the unless statement.
-    # @param [Rlint::Token::StatementToken] else_token An optional else
+    # @param [RubyLint::Token::StatementToken] else_token An optional else
     #  statement.
-    # @return [Rlint::Token::StatementToken]
+    # @return [RubyLint::Token::StatementToken]
     #
     def on_unless(statement, body, else_token)
       source = code(statement.line)
@@ -900,7 +900,7 @@ module Rlint
     ##
     # Called when an until statement is found.
     #
-    # @see Rlint::Parser#on_unless
+    # @see RubyLint::Parser#on_unless
     #
     def on_until(statement, body)
       source = code(statement.line)
@@ -919,8 +919,8 @@ module Rlint
     ##
     # Called when a variable is referenced.
     #
-    # @param  [Rlint::Token::Token] variable The variable that was referenced.
-    # @return [Rlint::Token::VariableToken]
+    # @param  [RubyLint::Token::Token] variable The variable that was referenced.
+    # @return [RubyLint::Token::VariableToken]
     #
     def on_var_ref(variable)
       return Token::VariableToken.new(
@@ -951,7 +951,7 @@ module Rlint
     ##
     # Called when a constant path is assigned.
     #
-    # @see Rlint::Parser#on_const_path_ref
+    # @see RubyLint::Parser#on_const_path_ref
     #
     def on_const_path_field(*segments)
       return on_const_path_ref(*segments)
@@ -960,12 +960,12 @@ module Rlint
     ##
     # Called when a new method is defined.
     #
-    # @param [Rlint::Token::Token] name Token containing details about the
+    # @param [RubyLint::Token::Token] name Token containing details about the
     #  method name.
-    # @param [Rlint::Token::ParametersToken] params Token containing details
+    # @param [RubyLint::Token::ParametersToken] params Token containing details
     #  about the method parameters.
     # @param [Array] body Array containing the tokens of the method's body.
-    # @return [Rlint::Token::MethodDefinitionToken]
+    # @return [RubyLint::Token::MethodDefinitionToken]
     #
     def on_def(name, params, body)
       return Token::MethodDefinitionToken.new(
@@ -983,14 +983,14 @@ module Rlint
     # Called when a method is defined on a specific constant/location
     # (e.g. `self`).
     #
-    # @param [Rlint::Token::Token] receiver The object that the method was
+    # @param [RubyLint::Token::Token] receiver The object that the method was
     #  defined on.
-    # @param [Rlint::Token::Token] operator The operator that was used to
+    # @param [RubyLint::Token::Token] operator The operator that was used to
     #  separate the receiver and method name.
-    # @param [Rlint::Token::Token] name The name of the method.
-    # @param [Rlint::Token::ParametersToken] params The method parameters.
+    # @param [RubyLint::Token::Token] name The name of the method.
+    # @param [RubyLint::Token::ParametersToken] params The method parameters.
     # @param [Array] body The body of the method.
-    # @return [Rlint::Token::MethodDefinitionToken]
+    # @return [RubyLint::Token::MethodDefinitionToken]
     #
     def on_defs(receiver, operator, name, params, body)
       token          = on_def(name, params, body)
@@ -1011,7 +1011,7 @@ module Rlint
     # * 4: the block parameter (if any)
     #
     # @param  [Array] args Array containing all the passed method parameters.
-    # @return [Rlint::Token::ParametersToken]
+    # @return [RubyLint::Token::ParametersToken]
     #
     def on_params(*args)
       # Convert all the arguments from regular Token instances to VariableToken
@@ -1060,12 +1060,12 @@ module Rlint
     ##
     # Called when a method call using parenthesis is found.
     #
-    # @param [Rlint::Token::Token] name The name of the method that was called.
+    # @param [RubyLint::Token::Token] name The name of the method that was called.
     # @param [Array] params The parameters of the method call.
-    # @return [Rlint::Token::MethodToken]
+    # @return [RubyLint::Token::MethodToken]
     #
     def on_method_add_arg(name, params)
-      if name.class == Rlint::Token::MethodToken
+      if name.class == RubyLint::Token::MethodToken
         name.parameters = params
 
         return name
@@ -1083,11 +1083,11 @@ module Rlint
     ##
     # Called when a block is passed to a method call.
     #
-    # @param [Rlint::Token::MethodToken] method Token class for the method that
+    # @param [RubyLint::Token::MethodToken] method Token class for the method that
     #  the block is passed to.
-    # @param [Rlint::Token::BlockToken] block The block that was passed to the
+    # @param [RubyLint::Token::BlockToken] block The block that was passed to the
     #  method.
-    # @return [Rlint::Token::MethodToken]
+    # @return [RubyLint::Token::MethodToken]
     #
     def on_method_add_block(method, block)
       method.block = block
@@ -1098,10 +1098,10 @@ module Rlint
     ##
     # Called when a class declaration is found.
     #
-    # @param  [Array|Rlint::Token::Token] name The name of the class.
+    # @param  [Array|RubyLint::Token::Token] name The name of the class.
     # @param  [Array|NilClass] parent The name of the parent class.
     # @param  [Array] body The body of the class.
-    # @return [Rlint::Token::ClassToken]
+    # @return [RubyLint::Token::ClassToken]
     #
     def on_class(name, parent, body)
       name_segments   = name.name.is_a?(Array) ? name.name : [name.name]
@@ -1130,7 +1130,7 @@ module Rlint
     # Called when a set of class methods are added using a `class << self`
     # block.
     #
-    # @param [Rlint::Token::VariableToken] receiver The receiver for all the
+    # @param [RubyLint::Token::VariableToken] receiver The receiver for all the
     #  methods.
     # @param  [Array] value The body of the block.
     # @return [Array]
@@ -1150,10 +1150,10 @@ module Rlint
     ##
     # Called when a module definition is found.
     #
-    # @param [Rlint::Token::Token|Array] name The name of the module, either a
+    # @param [RubyLint::Token::Token|Array] name The name of the module, either a
     #  single token class or an array of token classes.
     # @param [Array|NilClass] body The body of the module.
-    # @return [Rlint::Token::Token]
+    # @return [RubyLint::Token::Token]
     #
     def on_module(name, body)
       name_segments = name.name.is_a?(Array) ? name.name : [name.name]
@@ -1171,7 +1171,7 @@ module Rlint
     ##
     # Called when a method call without parenthesis was found.
     #
-    # @see Rlint::Parser#on_method_add_arg
+    # @see RubyLint::Parser#on_method_add_arg
     #
     def on_command(name, params)
       return on_method_add_arg(name, params)
@@ -1180,13 +1180,13 @@ module Rlint
     ##
     # Called when a method was invoked on an object.
     #
-    # @param [Rlint::Token::Token] receiver The object that the method was
+    # @param [RubyLint::Token::Token] receiver The object that the method was
     #  invoked on.
     # @param [Symbol] operator The operator that was used to separate the
     #  receiver and method name.
-    # @param [Rlint::Token::Token] name Token containing details about the
+    # @param [RubyLint::Token::Token] name Token containing details about the
     #  method name.
-    # @return [Rlint::Token::MethodToken]
+    # @return [RubyLint::Token::MethodToken]
     #
     def on_call(receiver, operator, name)
       return Token::MethodToken.new(
@@ -1202,9 +1202,9 @@ module Rlint
     ##
     # Called when a method was invoked on an object without using parenthesis.
     #
-    # @see Rlint::Parser#on_call
+    # @see RubyLint::Parser#on_call
     # @param  [Array] params The parameters passed to the method.
-    # @return [Rlint::Token::MethodToken]
+    # @return [RubyLint::Token::MethodToken]
     #
     def on_command_call(receiver, operator, name, params)
       return Token::MethodToken.new(
@@ -1249,4 +1249,4 @@ module Rlint
       return number
     end
   end # Parser
-end # Rlint
+end # RubyLint

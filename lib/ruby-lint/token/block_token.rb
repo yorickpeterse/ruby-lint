@@ -1,4 +1,4 @@
-module Rlint
+module RubyLint
   module Token
     ##
     # Token class used for storing information about blocks/procs.
@@ -9,9 +9,9 @@ module Rlint
       ##
       # The parameters of the block.
       #
-      # @return [Rlint::Token::ParametersToken]
+      # @return [RubyLint::Token::ParametersToken]
       #
       attr_accessor :parameters
     end
   end # Token
-end # Rlint
+end # RubyLint

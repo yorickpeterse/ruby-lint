@@ -1,4 +1,4 @@
-module Rlint
+module RubyLint
   module Token
     ##
     # Generic token class used for data that doesn't require its own specific
@@ -8,7 +8,7 @@ module Rlint
     #
     class Token
       ##
-      # Hash containing various Ripper types and the Rlint types to use
+      # Hash containing various Ripper types and the RubyLint types to use
       # instead.
       #
       # @since  2012-07-29
@@ -41,7 +41,7 @@ module Rlint
       # attribute is set to the token for the variable's value.
       #
       # @since  2012-07-29
-      # @return [Rlint::Token::Token]
+      # @return [RubyLint::Token::Token]
       #
       attr_accessor :value
 
@@ -87,7 +87,7 @@ module Rlint
 
       ##
       # The name of the event to call when iterating over an AST. Set to the
-      # value of {Rlint::Token::Token#type} unless specified otherwise.
+      # value of {RubyLint::Token::Token#type} unless specified otherwise.
       #
       # @return [Symbol]
       #
@@ -136,7 +136,7 @@ module Rlint
 
       ##
       # Returns an array containing all the child nodes that can be iterated by
-      # {Rlint::Iterator}.
+      # {RubyLint::Iterator}.
       #
       # @return [Array]
       #
@@ -159,4 +159,4 @@ module Rlint
       end
     end # Token
   end # Token
-end # Rlint
+end # RubyLint

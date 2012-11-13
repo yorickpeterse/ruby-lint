@@ -1,6 +1,6 @@
 require File.expand_path('../../../helper', __FILE__)
 
-describe 'Rlint::Analyze::UnusedVariables' do
+describe 'RubyLint::Analyze::UnusedVariables' do
   it 'Add warnings for unused variables in the global scope' do
     code = <<-CODE
 number   = 10
@@ -19,12 +19,12 @@ puts @@number_2
 puts $number_2
     CODE
 
-    tokens   = Rlint::Parser.new(code).parse
-    report   = Rlint::Report.new
-    iterator = Rlint::Iterator.new(report)
+    tokens   = RubyLint::Parser.new(code).parse
+    report   = RubyLint::Report.new
+    iterator = RubyLint::Iterator.new(report)
 
-    iterator.bind(Rlint::Analyze::Definitions)
-    iterator.bind(Rlint::Analyze::UnusedVariables)
+    iterator.bind(RubyLint::Analyze::Definitions)
+    iterator.bind(RubyLint::Analyze::UnusedVariables)
     iterator.run(tokens)
 
     report.messages[:warning].class.should  == Array
@@ -75,12 +75,12 @@ def example
 end
     CODE
 
-    tokens   = Rlint::Parser.new(code).parse
-    report   = Rlint::Report.new
-    iterator = Rlint::Iterator.new(report)
+    tokens   = RubyLint::Parser.new(code).parse
+    report   = RubyLint::Report.new
+    iterator = RubyLint::Iterator.new(report)
 
-    iterator.bind(Rlint::Analyze::Definitions)
-    iterator.bind(Rlint::Analyze::UnusedVariables)
+    iterator.bind(RubyLint::Analyze::Definitions)
+    iterator.bind(RubyLint::Analyze::UnusedVariables)
     iterator.run(tokens)
 
     report.messages[:warning].class.should  == Array
@@ -131,12 +131,12 @@ class Example
 end
     CODE
 
-    tokens   = Rlint::Parser.new(code).parse
-    report   = Rlint::Report.new
-    iterator = Rlint::Iterator.new(report)
+    tokens   = RubyLint::Parser.new(code).parse
+    report   = RubyLint::Report.new
+    iterator = RubyLint::Iterator.new(report)
 
-    iterator.bind(Rlint::Analyze::Definitions)
-    iterator.bind(Rlint::Analyze::UnusedVariables)
+    iterator.bind(RubyLint::Analyze::Definitions)
+    iterator.bind(RubyLint::Analyze::UnusedVariables)
     iterator.run(tokens)
 
     report.messages[:warning].class.should  == Array
@@ -187,12 +187,12 @@ module Example
 end
     CODE
 
-    tokens   = Rlint::Parser.new(code).parse
-    report   = Rlint::Report.new
-    iterator = Rlint::Iterator.new(report)
+    tokens   = RubyLint::Parser.new(code).parse
+    report   = RubyLint::Report.new
+    iterator = RubyLint::Iterator.new(report)
 
-    iterator.bind(Rlint::Analyze::Definitions)
-    iterator.bind(Rlint::Analyze::UnusedVariables)
+    iterator.bind(RubyLint::Analyze::Definitions)
+    iterator.bind(RubyLint::Analyze::UnusedVariables)
     iterator.run(tokens)
 
     report.messages[:warning].class.should  == Array

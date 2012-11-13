@@ -1,4 +1,4 @@
-module Rlint
+module RubyLint
   module Token
     ##
     # Token class used for storing information about begin/rescue/ensure
@@ -7,7 +7,7 @@ module Rlint
     class BeginRescueToken < Token
       ##
       # Array of rescue statements. Each item is an instance of
-      # {Rlint::Token::StatementToken}.
+      # {RubyLint::Token::StatementToken}.
       #
       # @return [Array]
       #
@@ -16,19 +16,19 @@ module Rlint
       ##
       # Attribute containing details about the ensure statement.
       #
-      # @return [Rlint::Token::StatementToken]
+      # @return [RubyLint::Token::StatementToken]
       #
       attr_accessor :ensure
 
       ##
       # Attribute containing details about the else statement.
       #
-      # @return [Rlint::Token::StatementToken]
+      # @return [RubyLint::Token::StatementToken]
       #
       attr_accessor :else
 
       ##
-      # @see Rlint::Token#initialize
+      # @see RubyLint::Token#initialize
       #
       def initialize(*args)
         @type = :begin_rescue
@@ -37,7 +37,7 @@ module Rlint
       end
 
       ##
-      # @see Rlint::Token::Token#child_nodes
+      # @see RubyLint::Token::Token#child_nodes
       #
       def child_nodes
         nodes = [@rescue]
@@ -54,4 +54,4 @@ module Rlint
       end
     end # BeginRescueToken
   end # Token
-end # Rlint
+end # RubyLint

@@ -1,12 +1,12 @@
 # README
 
-**Rlint is currently alpha quality, expect things to break and change without
+**RubyLint is currently alpha quality, expect things to break and change without
 notice. Patches and bug reports are more than welcome.**
 
-Rlint (short name for Ruby Lint) is a linter and static code analysis tool for
-Ruby inspired by similar tools such as JSHint. It makes it possible for
-developers to detect errors such as undefined (or unused) variables and the
-use of non existing methods.
+Ruby Lint is a linter and static code analysis tool for Ruby inspired by
+similar tools such as JSHint. It makes it possible for developers to detect
+errors such as undefined (or unused) variables and the use of non existing
+methods.
 
 ## Requirements
 
@@ -15,7 +15,7 @@ use of non existing methods.
 
 ## Installation
 
-Rlint can be installed by running the following command:
+RubyLint can be installed by running the following command:
 
     $ gem install ruby-lint --pre
 
@@ -28,34 +28,34 @@ abandoned) that uses the same name.
 
 ## Usage
 
-Rlint can be used in two different ways: using the CLI interface and by using
+RubyLint can be used in two different ways: using the CLI interface and by using
 the Ruby code directly.
 
 The CLI can be used using the command `rlint`, see the output of `rlint --help`
 for more information on how to configure it and how to analyze Ruby files.
 
 The Ruby code itself takes a bit more effort but gives you more flexibility. In
-the future you'll also be able to customize Rlint using a Ruby configuration
+the future you'll also be able to customize RubyLint using a Ruby configuration
 files. In order to analyze Ruby code you'll need a few things:
 
-* An instance of `Rlint::Iterator`
-* An instance of `Rlint::Report`
+* An instance of `RubyLint::Iterator`
+* An instance of `RubyLint::Report`
 * A formatter for the report
 * A block of Ruby code
-* A number of analyzer classes such as `Rlint::Analyze::UndefinedVariables`
+* A number of analyzer classes such as `RubyLint::Analyze::UndefinedVariables`
 
 A short example is the following:
 
     require 'ruby-lint'
 
     code      = 'obviously your Ruby code goes in here'
-    tokens    = Rlint::Parser.new(code).parse
-    report    = Rlint::Report.new
-    formatter = Rlint::Formatter.new
-    iterator  = Rlint::Iterator.new(report)
+    tokens    = RubyLint::Parser.new(code).parse
+    report    = RubyLint::Report.new
+    formatter = RubyLint::Formatter.new
+    iterator  = RubyLint::Iterator.new(report)
 
-    iterator.bind(Rlint::Analyze::Definitions)
-    iterator.bind(Rlint::Analyze::MethodValidation)
+    iterator.bind(RubyLint::Analyze::Definitions)
+    iterator.bind(RubyLint::Analyze::MethodValidation)
 
     iterator.run(tokens)
 
@@ -63,11 +63,11 @@ A short example is the following:
 
 ## Design
 
-Rlint's design is broken up into 5 different parts:
+RubyLint's design is broken up into 5 different parts:
 
 * A parser that turns a block of Ruby code into an AST.
 * A class that iterates over this AST and executes callback methods (aptly
-  named `Rlint::Iterator`).
+  named `RubyLint::Iterator`).
 * A set of callback classes that are used by an iterator. These callback
   classes perform the actual data analysis.
 * A report for storing error messages, warnings and informal messages.
@@ -82,27 +82,27 @@ The process of analyzing code basically looks like the following:
                  |
                  v
           +---------------+
-          | Rlint::Parser |
+          | RubyLint::Parser |
           +---------------+
                  |
                  v
          +-----------------+
-         | Rlint::Iterator |
+         | RubyLint::Iterator |
          +-----------------+
                  |
                  v
      +---------------------------+
-     | Rlint::Callback instances |
+     | RubyLint::Callback instances |
      +---------------------------+
                  |
                  v
          +---------------+
-         | Rlint::Report |
+         | RubyLint::Report |
          +---------------+
                  |
                  v
     +----------------------------+
-    | Rlint::Formatter instances |
+    | RubyLint::Formatter instances |
     +----------------------------+
                  |
                  v
@@ -117,18 +117,18 @@ there's no single giant lump of code that does everything.
 
 ## Compatibility Issues
 
-Currently Rlint can only be executed using MRI 1.9.3, it does not run on MRI
+Currently RubyLint can only be executed using MRI 1.9.3, it does not run on MRI
 1.8.x due to the lack of Ripper. It also does not yet run without errors on
 MRI 2.0 as the addition of named variables changes the Ripper output, something
-Rlint doesn't properly handle at the moment.
+RubyLint doesn't properly handle at the moment.
 
-For the time being Rlint will stick to using Ripper which means it's also
+For the time being RubyLint will stick to using Ripper which means it's also
 limited to MRI 1.9.x/2.0.x. I've been looking around for alternatives so that
-Rlint can be run on Jruby/Rubinius in the future but so far I haven't really
-found a worthy alternative. For now I'd rather focus on making Rlint work on
+RubyLint can be run on Jruby/Rubinius in the future but so far I haven't really
+found a worthy alternative. For now I'd rather focus on making RubyLint work on
 one implementation instead of a number of different ones.
 
-Also keep in mind that while in theory Rlint should run on MRI 1.8.x I couldn't
+Also keep in mind that while in theory RubyLint should run on MRI 1.8.x I couldn't
 get the "ripper" gem to install properly, thus I'm unable to confirm this. Feel
 free to try it out but I won't bother with MRI 1.8.x myself if it requires more
 than a few minutes worth of work.

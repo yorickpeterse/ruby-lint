@@ -1,4 +1,4 @@
-module Rlint
+module RubyLint
   module Token
     ##
     # Token class used for storing data about a newly defined method.
@@ -10,21 +10,21 @@ module Rlint
       # The object the method is defined on, only set when this is explicitly
       # stated.
       #
-      # @return [Rlint::Token::Token]
+      # @return [RubyLint::Token::Token]
       #
       attr_accessor :receiver
 
       ##
       # The operator that was used to separate the receiver and method name.
       #
-      # @return [Rlint::Token::Token]
+      # @return [RubyLint::Token::Token]
       #
       attr_accessor :operator
 
       ##
       # The parameters of the method.
       #
-      # @return [Rlint::Token::ParametersToken]
+      # @return [RubyLint::Token::ParametersToken]
       #
       attr_accessor :parameters
 
@@ -37,7 +37,7 @@ module Rlint
       attr_accessor :visibility
 
       ##
-      # @see Rlint::Token::Token#initialize
+      # @see RubyLint::Token::Token#initialize
       #
       def initialize(*args)
         @parameters = []
@@ -47,18 +47,18 @@ module Rlint
         super
 
         # Ensure that the parameters attribute always contains an instance of
-        # `Rlint::Token::ParametersToken`.
+        # `RubyLint::Token::ParametersToken`.
         unless @parameters.class == ParametersToken
           @parameters = ParametersToken.new
         end
       end
 
       ##
-      # @see Rlint::Token::Token#child_nodes
+      # @see RubyLint::Token::Token#child_nodes
       #
       def child_nodes
         return @parameters.child_nodes + super
       end
     end # MethodDefinitionToken
   end # Token
-end # Rlint
+end # RubyLint

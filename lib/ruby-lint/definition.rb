@@ -1,6 +1,6 @@
-module Rlint
+module RubyLint
   ##
-  # {Rlint::Definition} is a class used for storing scoping/definition related
+  # {RubyLint::Definition} is a class used for storing scoping/definition related
   # information such as the methods that are available for various constants,
   # variables that have been defined, etc.
   #
@@ -10,7 +10,7 @@ module Rlint
   #
   # Basic example of using this class:
   #
-  #     scope = Rlint::Definition.new
+  #     scope = RubyLint::Definition.new
   #
   #     scope.lookup(:local_variable, 'name') # => nil
   #
@@ -72,7 +72,7 @@ module Rlint
 
     ##
     # An array containing all the constant names that belong to the constant
-    # set in {Rlint::Definition#constant}. Each name is saved as a String.
+    # set in {RubyLint::Definition#constant}. Each name is saved as a String.
     #
     # @return [Array]
     #
@@ -81,8 +81,8 @@ module Rlint
     ##
     # Creates a new instance of the scope class and sets the default symbols.
     #
-    # @param [Array|Rlint::Definition] parent The parent scope(s). Set this to
-    #  an Array of {Rlint::Definition} instances to use multiple parent scopes.
+    # @param [Array|RubyLint::Definition] parent The parent scope(s). Set this to
+    #  an Array of {RubyLint::Definition} instances to use multiple parent scopes.
     # @param [Hash] options A hash containing custom options.
     #
     # @option options [TrueClass|FalseClass] :lazy When set to `true` missing
@@ -93,7 +93,7 @@ module Rlint
     #  constants, set to `Object` by default.
     # @option options [TrueClass|FalseClass] :reset When set to `true` the
     #  `value` attribute of the token will be set to `nil`
-    # @option options [Rlint::Token::Token] :token The token to set for the
+    # @option options [RubyLint::Token::Token] :token The token to set for the
     #  scope.
     #
     def initialize(parent = [], options = {})
@@ -184,7 +184,7 @@ module Rlint
     ##
     # Returns the token associated with the scope.
     #
-    # @return [Rlint::Token::Token|NilClass]
+    # @return [RubyLint::Token::Token|NilClass]
     #
     def token
       return @options[:token]
@@ -193,7 +193,7 @@ module Rlint
     ##
     # Sets the token of the scope.
     #
-    # @param [Rlint::Token::Token] token The token to use.
+    # @param [RubyLint::Token::Token] token The token to use.
     #
     def token=(token)
       @options[:token]       = token.dup
@@ -227,4 +227,4 @@ module Rlint
       return LOOKUP_PARENT.include?(type) && !@parent.empty?
     end
   end # Definition
-end # Rlint
+end # RubyLint
