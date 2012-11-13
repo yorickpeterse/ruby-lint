@@ -70,15 +70,15 @@ describe 'RubyLint::Definition' do
   it 'Lazy import RubyLint::Definition' do
     scope = RubyLint::Definition.new(nil, :lazy => true)
 
-    rlint = scope.lookup(:constant, 'RubyLint')
+    ruby_lint = scope.lookup(:constant, 'RubyLint')
 
-    rlint.class.should == RubyLint::Definition
+    ruby_lint.class.should == RubyLint::Definition
 
-    rlint_scope = rlint.lookup(:constant, 'Definition')
+    ruby_lint_scope = ruby_lint.lookup(:constant, 'Definition')
 
-    rlint_scope.class.should == RubyLint::Definition
+    ruby_lint_scope.class.should == RubyLint::Definition
 
-    rlint_scope.lookup(:constant, 'LOOKUP_PARENT').class.should == RubyLint::Definition
+    ruby_lint_scope.lookup(:constant, 'LOOKUP_PARENT').class.should == RubyLint::Definition
   end
 
   it 'Create a scope with multiple parent scopes' do

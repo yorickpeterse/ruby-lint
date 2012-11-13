@@ -199,8 +199,8 @@ end
       .class \
       .should == RubyLint::Definition
 
-    rlint = scope.lookup(:constant, 'RubyLint')
-    derp  = rlint.lookup(:constant, 'Derp')
+    ruby_lint = scope.lookup(:constant, 'RubyLint')
+    derp  = ruby_lint.lookup(:constant, 'Derp')
 
     derp.parent.length.should == 1
   end

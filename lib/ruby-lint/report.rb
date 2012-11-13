@@ -67,7 +67,7 @@ module RubyLint
     #  to.
     # @param [Array] levels The message levels to use for this report.
     #
-    def initialize(file = '(rlint)', levels = DEFAULT_LEVELS)
+    def initialize(file = '(ruby-lint)', levels = DEFAULT_LEVELS)
       @file     = file
       @levels   = levels
       @messages = {}

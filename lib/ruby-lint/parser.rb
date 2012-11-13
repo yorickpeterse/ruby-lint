@@ -148,12 +148,12 @@ module RubyLint
       end
     end
 
-    MOD_STATEMENT_EVENTS.each do |ripper_event, rlint_event|
+    MOD_STATEMENT_EVENTS.each do |ripper_event, ruby_lint_event|
       define_method("on_#{ripper_event}") do |statement, value|
         value = [value] unless value.is_a?(Array)
 
         return Token::StatementToken.new(
-          :type      => rlint_event,
+          :type      => ruby_lint_event,
           :statement => statement,
           :value     => value,
           :line      => lineno,
@@ -169,7 +169,7 @@ module RubyLint
     #
     # @see Ripper::SexpBuilderPP#initialize
     #
-    def initialize(code, file = '(rlint)', line = 1)
+    def initialize(code, file = '(ruby-lint)', line = 1)
       super
 
       @file       = file

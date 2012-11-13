@@ -12,7 +12,7 @@ end
       RubyLint::Parser.new(code).parse
     end
 
-    error.file.should   == '(rlint)'
+    error.file.should   == '(ruby-lint)'
     error.line.should   == 3
     error.column.should == 3
   end

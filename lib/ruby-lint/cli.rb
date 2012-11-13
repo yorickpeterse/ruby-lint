@@ -14,13 +14,13 @@ module RubyLint
 
       @option_parser = OptionParser.new do |opts|
         opts.banner         = 'A static code analysis tool and linter for Ruby'
-        opts.program_name   = 'rlint'
+        opts.program_name   = 'ruby-lint'
         opts.version        = RubyLint::VERSION
         opts.summary_indent = '  '
 
         opts.separator ''
         opts.separator 'Usage:'
-        opts.separator '  $ rlint [FILES] [OPTIONS]'
+        opts.separator '  $ ruby-ling [FILES] [OPTIONS]'
 
         opts.separator ''
         opts.separator 'Analyzers:'

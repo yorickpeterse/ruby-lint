@@ -18,7 +18,7 @@ describe 'RubyLint::Callback' do
   end
 
   it 'Ignore errors (when disabled) when adding one using RubyLint::Callback' do
-    report   = RubyLint::Report.new('(rlint)', [:warning])
+    report   = RubyLint::Report.new('(ruby-lint)', [:warning])
     callback = RubyLint::Callback.new(report)
 
     callback.send(:error, 'test error', 1, 1)

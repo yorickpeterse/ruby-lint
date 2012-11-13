@@ -16,11 +16,11 @@ describe 'RubyLint::Report' do
     report.messages[:error][0][:line].should    == 1
     report.messages[:error][0][:column].should  == 1
 
-    report.file.should == '(rlint)'
+    report.file.should == '(ruby-lint)'
   end
 
   it 'Ignore disabled reporting levels' do
-    report = RubyLint::Report.new('(rlint)', [:error])
+    report = RubyLint::Report.new('(ruby-lint)', [:error])
 
     report.add(:info, 'test info', 1, 1)
 
