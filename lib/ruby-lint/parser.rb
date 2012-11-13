@@ -233,6 +233,16 @@ module RubyLint
     end
 
     ##
+    # Called when an expression is embedded in a string.
+    #
+    # @param  [Array] exp The embedded expressions.
+    # @return [RubyLint::Token::Token]
+    #
+    def on_string_embexpr(exp)
+      return exp[0]
+    end
+
+    ##
     # Called when an array is found.
     #
     # @param  [Array] values The values of the array.
@@ -578,16 +588,16 @@ module RubyLint
     ##
     # Called when a for loop is found.
     #
-    # @param  [Array] variables Array of variables to create for each iteration.
-    #
-    # pry_binding
+    # @param  [Array|RubyLint::Token::Token] variables A single token or array
+    #  of tokens for the variables to create for each iteration.
     # @param  [RubyLint::Token::Token] enumerable The enumerable to iterate.
     # @param  [Array] value The body of the for loop.
     # @return [RubyLint::Token::StatementToken]
     #
     def on_for(variables, enumerable, value)
-      source = code(variables[0].line)
-      col    = calculate_column(source, 'for')
+      variables = [variables] unless variables.is_a?(Array)
+      source    = code(variables[0].line)
+      col       = calculate_column(source, 'for')
 
       return Token::StatementToken.new(
         :type      => :for,
@@ -917,6 +927,22 @@ module RubyLint
     end
 
     ##
+    # Called when a call to `defined?()` is found.
+    #
+    # @param  [RubyLint::Token::Token] token The token which is being checked.
+    # @return [RubyLint::Token::StatementToken]
+    #
+    def on_defined(token)
+      return Token::StatementToken.new(
+        :type      => :defined,
+        :statement => token,
+        :line      => token.line,
+        :column    => token.column,
+        :code      => token.code
+      )
+    end
+
+    ##
     # Called when a variable is referenced.
     #
     # @param  [RubyLint::Token::Token] variable The variable that was referenced.
@@ -968,6 +994,8 @@ module RubyLint
     # @return [RubyLint::Token::MethodDefinitionToken]
     #
     def on_def(name, params, body)
+      body = [body] unless body.is_a?(Array)
+
       return Token::MethodDefinitionToken.new(
         :name       => name.value,
         :line       => name.line,

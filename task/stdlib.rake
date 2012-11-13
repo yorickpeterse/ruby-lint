@@ -11,14 +11,14 @@ task :stdlib do
 
   puts 'Analysing the Ruby standard library'
 
-  Pry.rescue do
-    Dir.glob(File.join(dir, '/**/*.rb')).each do |f|
-      puts "- #{f}"
+  Dir.glob(File.join(dir, '/**/*.rb')).each do |f|
+    puts "- #{f}"
 
+    Pry.rescue do
       tokens   = RubyLint::Parser.new(File.read(f), f).parse
       iterator = RubyLint::Iterator.new
 
-      Rlint.options.analyzers.each { |const| iterator.bind(const) }
+      RubyLint.options.analyzers.each { |const| iterator.bind(const) }
     end
   end
 end

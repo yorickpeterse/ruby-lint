@@ -168,6 +168,28 @@ end
     token.value.length.should == 1
   end
 
+  it 'Parse a for loop with one parameter' do
+    code = <<-CODE
+for number in [10, 20, 30]
+  puts number
+end
+    CODE
+
+    token = RubyLint::Parser.new(code).parse[0]
+
+    token.class.should == RubyLint::Token::StatementToken
+    token.type.should  == :for
+
+    token.statement[0].class.should  == Array
+    token.statement[0].length.should == 1
+
+    var = token.statement[0][0]
+
+    var.class.should == RubyLint::Token::Token
+    var.type.should  == :identifier
+    var.name.should  == 'number'
+  end
+
   it 'Parse a simple if statement' do
     token = RubyLint::Parser.new('if 10 == 20; return 10; end').parse[0]
 
@@ -546,5 +568,16 @@ end
 
     token.else.value[0].class.should == RubyLint::Token::VariableToken
     token.else.value[0].name.should  == 'false'
+  end
+
+  it 'Parse a defined? statement' do
+    token = RubyLint::Parser.new('defined?(Foobar)').parse[0]
+
+    token.class.should == RubyLint::Token::StatementToken
+    token.type.should  == :defined
+
+    token.statement.class.should == RubyLint::Token::VariableToken
+    token.statement.type.should  == :constant
+    token.statement.name.should  == 'Foobar'
   end
 end
