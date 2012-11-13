@@ -417,6 +417,25 @@ end
     token.else.value[0].parameters.length.should == 1
   end
 
+  it 'Parse a case statement without a statement' do
+    code = <<-CODE
+case
+when 10
+
+when 20
+
+end
+    CODE
+
+    token = RubyLint::Parser.new(code).parse[0]
+
+    token.class.should          == RubyLint::Token::CaseToken
+    token.statement.nil?.should == true
+
+    token.when.class.should  == Array
+    token.when.length.should == 2
+  end
+
   it 'Parse a single line if statement' do
     token = RubyLint::Parser.new('foo if bar').parse[0]
 

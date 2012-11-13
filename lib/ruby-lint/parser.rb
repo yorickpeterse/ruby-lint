@@ -832,8 +832,11 @@ module RubyLint
     def on_case(statement, list)
       when_statements = []
       else_statement  = nil
-      source          = code(statement.line)
-      col             = calculate_column(source, 'case')
+      list            = list.reject(&:nil?)
+
+      line   = statement.respond_to?(:line) ? statement.line : list[0].line
+      source = code(line)
+      col    = calculate_column(source, 'case')
 
       if list and list.respond_to?(:each)
         list.each do |token|
@@ -850,7 +853,7 @@ module RubyLint
         :statement => statement,
         :else      => else_statement,
         :when      => when_statements.reverse,
-        :line      => statement.line,
+        :line      => line,
         :column    => col,
         :code      => source
       )
