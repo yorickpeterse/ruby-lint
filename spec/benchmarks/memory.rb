@@ -1,4 +1,4 @@
-require File.expand_path('../../../lib/rlint', __FILE__)
+require File.expand_path('../../../lib/ruby-lint', __FILE__)
 
 # This file benchmarks the memory increase after parsing a particular Rlint
 # file and performing code analysis on the resulting tokens.
@@ -21,7 +21,7 @@ end
 
 memory_kb = 0.0
 amount    = ENV['AMOUNT'] ? ENV['AMOUNT'].to_i : 100
-path      = File.expand_path('../../../lib/rlint/parser.rb', __FILE__)
+path      = File.expand_path('../../../lib/ruby-lint/parser.rb', __FILE__)
 code      = File.read(path, File.size(path))
 
 amount.times do
