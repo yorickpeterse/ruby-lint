@@ -1,4 +1,4 @@
-./lib/rlint/**/*.rb ./lib/rlint.rb
+./lib/ruby-lint/**/*.rb ./lib/ruby-lint.rb
 -m markdown
 -M redcarpet
 -o ./doc/build
