@@ -103,6 +103,8 @@ module RubyLint
       #  corresponding public getter mehtod to be set.
       #
       def initialize(options = {})
+        @line, @column = 0, 0
+
         options.each do |key, value|
           if respond_to?(key)
             instance_variable_set("@#{key}", value)

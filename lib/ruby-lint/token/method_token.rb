@@ -45,6 +45,8 @@ module RubyLint
         @type = :method
 
         super
+
+        @parameters = ParametersToken.new unless @parameters
       end
 
       ##

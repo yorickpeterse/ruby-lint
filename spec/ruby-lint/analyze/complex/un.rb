@@ -1,12 +1,17 @@
 require File.expand_path('../../../../helper', __FILE__)
 
-describe 'RubyLint::Analyze::Definitions: stdlib' do
-  it 'Build a list of definitions for un.rb' do
+describe 'Complex code analysis' do
+  it 'Analyze fixtures/stdlib/un.rb' do
     code     = File.read(File.join(RubyLint::FIXTURES, 'stdlib/un.rb'))
     tokens   = RubyLint::Parser.new(code).parse
     iterator = RubyLint::Iterator.new
 
     iterator.bind(RubyLint::Analyze::Definitions)
+    iterator.bind(RubyLint::Analyze::CodingStyle)
+    iterator.bind(RubyLint::Analyze::MethodValidation)
+    iterator.bind(RubyLint::Analyze::ShadowingVariables)
+    iterator.bind(RubyLint::Analyze::UndefinedVariables)
+    iterator.bind(RubyLint::Analyze::UnusedVariables)
     iterator.run(tokens)
 
     scope   = iterator.storage[:scope]

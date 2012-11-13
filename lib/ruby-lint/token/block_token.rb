@@ -12,6 +12,15 @@ module RubyLint
       # @return [RubyLint::Token::ParametersToken]
       #
       attr_accessor :parameters
+
+      ##
+      # @see RubyLint::Token::Token#initialize
+      #
+      def initialize(*args)
+        super
+
+        @parameters = ParametersToken.new unless @parameters
+      end
     end
   end # Token
 end # RubyLint

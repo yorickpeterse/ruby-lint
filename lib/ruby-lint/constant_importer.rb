@@ -58,8 +58,18 @@ module RubyLint
 
         next unless const
 
-        name  = name.to_s
-        scope = Definition.new(nil, :lazy => true, :constant => const)
+        name        = name.to_s
+        const_token = Token::VariableToken.new(
+          :type => :constant,
+          :name => name
+        )
+
+        scope = Definition.new(
+          nil,
+          :lazy     => true,
+          :constant => const,
+          :token    => const_token
+        )
 
         METHOD_KEYS.each do |source, target|
           next unless const.respond_to?(source)
