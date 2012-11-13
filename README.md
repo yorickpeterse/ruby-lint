@@ -31,8 +31,9 @@ abandoned) that uses the same name.
 RubyLint can be used in two different ways: using the CLI interface and by using
 the Ruby code directly.
 
-The CLI can be used using the command `rlint`, see the output of `rlint --help`
-for more information on how to configure it and how to analyze Ruby files.
+The CLI can be used using the command `ruby-lint`, see the output of `ruby-lint
+--help` for more information on how to configure it and how to analyze Ruby
+files.
 
 The Ruby code itself takes a bit more effort but gives you more flexibility. In
 the future you'll also be able to customize RubyLint using a Ruby configuration
@@ -81,29 +82,29 @@ The process of analyzing code basically looks like the following:
               +------+
                  |
                  v
-          +---------------+
+          +------------------+
           | RubyLint::Parser |
-          +---------------+
+          +------------------+
                  |
                  v
-         +-----------------+
+         +--------------------+
          | RubyLint::Iterator |
-         +-----------------+
+         +--------------------+
                  |
                  v
-     +---------------------------+
+     +------------------------------+
      | RubyLint::Callback instances |
-     +---------------------------+
+     +------------------------------+
                  |
                  v
-         +---------------+
+         +------------------+
          | RubyLint::Report |
-         +---------------+
+         +------------------+
                  |
                  v
-    +----------------------------+
+    +-------------------------------+
     | RubyLint::Formatter instances |
-    +----------------------------+
+    +-------------------------------+
                  |
                  v
         +------------------+
