@@ -178,4 +178,20 @@ describe 'RubyLint::Parser' do
     token.value.type.should  == :integer
     token.value.value.should == '10'
   end
+
+  it 'Parse the assignment of a value to a local and * variable' do
+    ast = RubyLint::Parser.new('a, * = 10').parse
+
+    ast.length.should == 1
+
+    token = ast[0]
+
+    token.class.should == RubyLint::Token::AssignmentToken
+    token.type.should  == :mass_assignment
+
+    token.name.class.should == Array
+
+    token.name[0].class.should == RubyLint::Token::Token
+    token.name[0].name.should  == 'a'
+  end
 end

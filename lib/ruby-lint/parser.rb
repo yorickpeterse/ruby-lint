@@ -61,7 +61,8 @@ module RubyLint
       :arg_paren,
       :block_var,
       :const_ref,
-      :top_const_ref
+      :top_const_ref,
+      :mlhs_add_star
     ]
 
     ##
