@@ -43,7 +43,7 @@ files. In order to analyze Ruby code you'll need a few things:
 
 A short example is the following:
 
-    require 'rlint'
+    require 'ruby-lint'
 
     code      = 'obviously your Ruby code goes in here'
     tokens    = Rlint::Parser.new(code).parse
