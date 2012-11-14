@@ -94,14 +94,15 @@ module RubyLint
       attr_reader :event
 
       ##
-      # Set to `true` when the token was created using a splat (`*`) operator.
-      # Example of such a case:
+      # Set to `true` when a token's values should be expanded. Example:
       #
-      #   *numbers = 10
+      #   def foo(*args)
+      #     return *args
+      #   end
       #
       # @return [TrueClass|FalseClass]
       #
-      attr_accessor :splat
+      attr_accessor :expand
 
       ##
       # Creates a new instance of the token and sets various instance variables
@@ -114,7 +115,7 @@ module RubyLint
       #
       def initialize(options = {})
         @line, @column = 0, 0
-        @splat         = false
+        @expand        = false
 
         options.each do |key, value|
           if respond_to?(key)

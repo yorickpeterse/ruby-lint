@@ -93,12 +93,12 @@ end
     first.column.should == 6
     first.code.should   == 'class First'
 
-    first.value[0].class.should      == RubyLint::Token::MethodDefinitionToken
-    first.value[0].name.should       == 'private_method'
-    first.value[0].visibility.should == :private
-    first.value[0].line.should       == 4
-    first.value[0].column.should     == 6
-    first.value[0].code.should       == '  def private_method'
+    first.value[1].class.should      == RubyLint::Token::MethodDefinitionToken
+    first.value[1].name.should       == 'private_method'
+    first.value[1].visibility.should == :private
+    first.value[1].line.should       == 4
+    first.value[1].column.should     == 6
+    first.value[1].code.should       == '  def private_method'
 
     pub_method.class.should      == RubyLint::Token::MethodDefinitionToken
     pub_method.name.should       == 'public_method'
@@ -107,9 +107,9 @@ end
     second.class.should == RubyLint::Token::ClassToken
     second.name.should  == ['Second']
 
-    second.value[0].class.should      == RubyLint::Token::MethodDefinitionToken
-    second.value[0].name.should       == 'protected_method'
-    second.value[0].visibility.should == :protected
+    second.value[1].class.should      == RubyLint::Token::MethodDefinitionToken
+    second.value[1].name.should       == 'protected_method'
+    second.value[1].visibility.should == :protected
   end
 
   it 'Parse the creation of methods using class << self' do

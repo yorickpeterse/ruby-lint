@@ -245,7 +245,7 @@ describe 'RubyLint::Parser' do
     token.value.value.should == '10'
   end
 
-  it 'Parse a left hand splat assignment' do
+  it 'Parse a left hand expand assignment' do
     tokens = RubyLint::Parser.new('*numbers = 10').parse[0]
 
     tokens.class.should  == Array
@@ -255,7 +255,7 @@ describe 'RubyLint::Parser' do
 
     token.class.should == RubyLint::Token::AssignmentToken
     token.type.should  == :local_variable
-    token.splat.should == true
+    token.expand.should == true
     token.name.should  == 'numbers'
 
     token.value.class.should == RubyLint::Token::Token
@@ -271,7 +271,7 @@ describe 'RubyLint::Parser' do
     val.value.should == '10'
   end
 
-  it 'Parse a left hand splat and local variable assignment' do
+  it 'Parse a left hand expand and local variable assignment' do
     tokens = RubyLint::Parser.new('number, *numbers = 10').parse[0]
 
     tokens.class.should  == Array
@@ -283,7 +283,7 @@ describe 'RubyLint::Parser' do
     number.class.should == RubyLint::Token::AssignmentToken
     number.name.should  == 'number'
     number.type.should  == :local_variable
-    number.splat.should == false
+    number.expand.should == false
 
     number.value.class.should == RubyLint::Token::Token
     number.value.type.should  == :integer
@@ -292,7 +292,7 @@ describe 'RubyLint::Parser' do
     numbers.class.should == RubyLint::Token::AssignmentToken
     numbers.name.should  == 'numbers'
     numbers.type.should  == :local_variable
-    numbers.splat.should == true
+    numbers.expand.should == true
 
     numbers.value.nil?.should == true
   end

@@ -135,8 +135,6 @@ module RubyLint
       define_method("on_#{event}") do |token|
         if METHOD_VISIBILITY.include?(token.name)
           @visibility = token.name.to_sym
-
-          return nil
         end
 
         return Token::MethodToken.new(
@@ -487,8 +485,8 @@ module RubyLint
           end
         end
 
-        # Values set using splat assignments are always arrays.
-        if variable.splat and value
+        # Values set using expand assignments are always arrays.
+        if variable.expand and value
           value = Token::Token.new(
             :type   => :array,
             :line   => value.line,
@@ -504,7 +502,7 @@ module RubyLint
           :column => variable.column,
           :code   => variable.code,
           :type   => variable.type,
-          :splat  => variable.splat,
+          :expand  => variable.expand,
           :value  => value,
         )
       end
@@ -513,10 +511,10 @@ module RubyLint
     end
 
     ##
-    # Called when a splat assignment is found.
+    # Called when a expand assignment is found.
     #
     # @param [Array] left The variables assigned on the left hand side of the
-    #  splat operator.
+    #  expand operator.
     # @param [RubyLint::Token::Token|NilClass] right The variable assigned on
     #  the right hand side of the operator.
     #
@@ -524,7 +522,34 @@ module RubyLint
       variables = left || []
 
       if right and right.name != '*'
-        right.splat = true
+        right.expand = true
+
+        variables << right
+      end
+
+      return variables
+    end
+
+    ##
+    # @see RubyLint::Parser#on_mlhs_add_star
+    #
+    def on_mrhs_add_star(left, right)
+      return on_mlhs_add_star(left, right)
+    end
+
+    ##
+    # Called when a method call was prefixed with a `*` to indicate that the
+    # values it returns should be expanded.
+    #
+    # @param  [Array] left The variables to the left.
+    # @param  [RubyLint::Token::Token] right The variable to expand.
+    # @return [Array]
+    #
+    def on_args_add_star(left, right)
+      variables = left || []
+
+      if right
+        right.expand = true
 
         variables << right
       end
@@ -1027,13 +1052,36 @@ module RubyLint
     # @return [RubyLint::Token::KeywordToken]
     #
     def on_super(params)
+      token            = on_zsuper
+      token.parameters = params
+
+      return token
+    end
+
+    ##
+    # Called when a `yield` keyword without parameters is found.
+    #
+    # @return [RubyLint::Token::KeywordToken]
+    #
+    def on_yield0
       return Token::KeywordToken.new(
-        :name       => 'super',
-        :parameters => params,
-        :line       => lineno,
-        :column     => column,
-        :code       => code(lineno)
+        :name   => 'yield',
+        :line   => lineno,
+        :column => column,
+        :code   => code(lineno)
       )
+    end
+
+    ##
+    # Called when a `yield` keyword *with* parameters is found.
+    #
+    # @param [Array] params The parameters of the keyword.
+    #
+    def on_yield(params)
+      token            = on_yield0
+      token.parameters = params
+
+      return token
     end
 
     ##

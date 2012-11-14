@@ -7,15 +7,21 @@ task :stdlib do
   require File.expand_path('../../lib/ruby-lint', __FILE__)
   require 'pry/rescue'
 
-  dir = RbConfig::CONFIG['rubylibdir']
+  dir     = RbConfig::CONFIG['rubylibdir']
+  files   = Dir.glob(File.join(dir, '/**/*.rb'))
+  amount  = files.length
+  spacing = "#{amount}/#{amount}:".length
 
-  puts 'Analysing the Ruby standard library'
+  puts "Analysing the Ruby standard library"
 
-  Dir.glob(File.join(dir, '/**/*.rb')).each do |f|
-    puts "- #{f}"
+  files.each_with_index do |file, index|
+    prefix = "#{index + 1}/#{amount}:"
+    path   = file.gsub(dir, '').gsub(%r{^/|/$}, '')
+
+    puts "%-#{spacing}s %s" % [prefix, path]
 
     Pry.rescue do
-      tokens   = RubyLint::Parser.new(File.read(f), f).parse
+      tokens   = RubyLint::Parser.new(File.read(file), file).parse
       iterator = RubyLint::Iterator.new
 
       RubyLint.options.analyzers.each { |const| iterator.bind(const) }

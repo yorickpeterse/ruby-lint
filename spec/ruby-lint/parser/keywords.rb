@@ -58,4 +58,32 @@ describe 'Rlint::Parser' do
 
     token.block.class.should == RubyLint::Token::BlockToken
   end
+
+  it 'Parse a yield keyword without parameters' do
+    token = RubyLint::Parser.new('yield').parse[0]
+
+    token.class.should == RubyLint::Token::KeywordToken
+    token.type.should  == :keyword
+    token.name.should  == 'yield'
+
+    token.parameters.class.should  == Array
+    token.parameters.empty?.should == true
+  end
+
+  it 'Parse a yield keyword with parameters' do
+    token = RubyLint::Parser.new('yield foo').parse[0]
+
+    token.class.should == RubyLint::Token::KeywordToken
+    token.type.should  == :keyword
+    token.name.should  == 'yield'
+
+    token.parameters.class.should  == Array
+    token.parameters.length.should == 1
+
+    param = token.parameters[0]
+
+    param.class.should == RubyLint::Token::MethodToken
+    param.name.should  == 'foo'
+    param.type.should  == :method
+  end
 end
