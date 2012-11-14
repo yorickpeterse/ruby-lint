@@ -62,7 +62,7 @@ module RubyLint
       :block_var,
       :const_ref,
       :top_const_ref,
-      :mlhs_add_star
+      :mlhs_paren
     ]
 
     ##
@@ -393,6 +393,17 @@ module RubyLint
     end
 
     ##
+    # Called when a range using 3 dots is found.
+    #
+    # @see  RubyLint::Parser#on_dot2
+    # @todo There's a difference between ranges created using two and three
+    #  dots, this method should return a different token in the future.
+    #
+    def on_dot3(start, stop)
+      return on_dot2(start, stop)
+    end
+
+    ##
     # Called when a regular expression is found.
     #
     # @param [Array] regexp The regular expression's value.
@@ -403,17 +414,21 @@ module RubyLint
       regexp      = regexp[0]
       modes_array = []
 
+      value = regexp.respond_to?(:value)  ? regexp.value  : nil
+      line  = regexp.respond_to?(:line)   ? regexp.line   : lineno
+      col   = regexp.respond_to?(:column) ? regexp.column : column
+
       if modes
         modes_array = modes.value.split('').select { |c| c =~ /\w/ }
       end
 
       return Token::RegexpToken.new(
         :type   => :regexp,
-        :value  => regexp.value,
-        :line   => regexp.line,
-        :column => regexp.column,
+        :value  => value,
+        :line   => line,
+        :column => col,
         :modes  => modes_array,
-        :code   => code(lineno)
+        :code   => code(line)
       )
     end
 
@@ -462,38 +477,23 @@ module RubyLint
     #
     def on_massign(variables, values)
       assignments = []
-      assigned    = false
+      variables   = variables.flatten
+      assigned    = []
+      expander    = nil
+      value_index = 0
 
-      variables.each_with_index do |variable, index|
-        value = nil
-
-        # Determine what value to use for the current variable.
-        if values.is_a?(Array) and values[index]
-          value = values[index]
-
-        # A single value (e.g. an array or number) is assigned to multiple
-        # variables.
-        elsif values.is_a?(Token::Token)
-          # A token with a list of values is being assigned (e.g. an array).
-          if values.value.is_a?(Array) and values.value[index]
-            value = values.value[index]
-
-          # A single value is being assigned such as `foo, bar = 10`.
-          elsif !assigned
-            value    = values
-            assigned = true
-          end
-        end
-
-        # Values set using expand assignments are always arrays.
-        if variable.expand and value
-          value = Token::Token.new(
+      variables.each_with_index do |variable, var_index|
+        if variable.expand
+          expander = var_index
+          value    = Token::Token.new(
             :type   => :array,
-            :line   => value.line,
-            :column => value.column,
-            :code   => value.code,
-            :value  => [value]
+            :line   => variable.line,
+            :column => variable.column,
+            :code   => variable.code,
+            :value  => []
           )
+        else
+          value = nil
         end
 
         assignments << Token::AssignmentToken.new(
@@ -502,9 +502,40 @@ module RubyLint
           :column => variable.column,
           :code   => variable.code,
           :type   => variable.type,
-          :expand  => variable.expand,
-          :value  => value,
+          :expand => variable.expand,
+          :value  => value
         )
+      end
+
+      # Unpack array based values and ensure that `values` is always an array.
+      if values.is_a?(Token::Token) and values.type == :array
+        values = values.value
+      elsif values.is_a?(Token::Token)
+        values = [values]
+      end
+
+      equal_length = assignments.length == values.length
+
+      # Assign the values to each variable. The remaining values will be
+      # assigned to the expanding variable.
+      assignments.each do |assignment|
+        if !assignment.expand and values[value_index]
+          assignment.value = values[value_index]
+
+          assigned    << values[value_index]
+          value_index += 1
+        end
+
+        # THINK: I really wonder if this is the way to make sure the expander
+        # value is assigned correctly.
+        if assignment.expand and equal_length
+          value_index += 1
+        end
+      end
+
+      # Assign the remaining values to the expander variable.
+      if expander
+        assignments[expander].value.value = values - assigned
       end
 
       return assignments
