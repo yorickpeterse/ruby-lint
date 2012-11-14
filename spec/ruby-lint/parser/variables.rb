@@ -127,32 +127,81 @@ describe 'RubyLint::Parser' do
   end
 
   it 'Parse the mass assignment of multiple variables' do
-    token = RubyLint::Parser.new('foo, bar = 10, 20').parse[0]
+    tokens = RubyLint::Parser.new('foo, bar = 10, 20').parse[0]
 
-    token.class.should == RubyLint::Token::AssignmentToken
+    tokens.class.should  == Array
+    tokens.length.should == 2
 
-    token.name.class.should  == Array
-    token.name.length.should == 2
-    token.type.should        == :mass_assignment
+    foo = tokens[0]
+    bar = tokens[1]
 
-    token.name[0].class.should == RubyLint::Token::Token
-    token.name[0].name.should  == 'foo'
-    token.name[0].type.should  == :local_variable
+    foo.class.should == RubyLint::Token::AssignmentToken
+    foo.name.should  == 'foo'
+    foo.type.should  == :local_variable
+    foo.event.should == :assignment
 
-    token.name[1].class.should == RubyLint::Token::Token
-    token.name[1].name.should  == 'bar'
-    token.name[1].type.should  == :local_variable
+    foo.value.class.should == RubyLint::Token::Token
+    foo.value.type.should  == :integer
+    foo.value.value.should == '10'
 
-    token.value.class.should  == Array
-    token.value.length.should == 2
+    bar.class.should == RubyLint::Token::AssignmentToken
+    bar.name.should  == 'bar'
+    bar.type.should  == :local_variable
+    bar.event.should == :assignment
 
-    token.value[0].class.should == RubyLint::Token::Token
-    token.value[0].value.should == '10'
-    token.value[0].type.should  == :integer
+    bar.value.class.should == RubyLint::Token::Token
+    bar.value.type.should  == :integer
+    bar.value.value.should == '20'
+  end
 
-    token.value[1].class.should == RubyLint::Token::Token
-    token.value[1].value.should == '20'
-    token.value[1].type.should  == :integer
+  it 'Parse the mass assignment of multiple variables using an array' do
+    tokens = RubyLint::Parser.new('foo, bar = [10, 20]').parse[0]
+
+    tokens.class.should  == Array
+    tokens.length.should == 2
+
+    foo = tokens[0]
+    bar = tokens[1]
+
+    foo.class.should == RubyLint::Token::AssignmentToken
+    foo.name.should  == 'foo'
+    foo.type.should  == :local_variable
+
+    foo.value.class.should == RubyLint::Token::Token
+    foo.value.type.should  == :integer
+    foo.value.value.should == '10'
+
+    bar.class.should == RubyLint::Token::AssignmentToken
+    bar.name.should  == 'bar'
+    bar.type.should  == :local_variable
+
+    bar.value.class.should == RubyLint::Token::Token
+    bar.value.type.should  == :integer
+    bar.value.value.should == '20'
+  end
+
+  it 'Parse the mass assignment of multiple variables using a single value' do
+    tokens = RubyLint::Parser.new('foo, bar = 10').parse[0]
+
+    tokens.class.should  == Array
+    tokens.length.should == 2
+
+    foo = tokens[0]
+    bar = tokens[1]
+
+    foo.class.should == RubyLint::Token::AssignmentToken
+    foo.name.should  == 'foo'
+    foo.type.should  == :local_variable
+
+    foo.value.class.should == RubyLint::Token::Token
+    foo.value.type.should  == :integer
+    foo.value.value.should == '10'
+
+    bar.class.should == RubyLint::Token::AssignmentToken
+    bar.name.should  == 'bar'
+    bar.type.should  == :local_variable
+
+    bar.value.nil?.should == true
   end
 
   it 'Parse the reference of a constant path' do
@@ -180,18 +229,71 @@ describe 'RubyLint::Parser' do
   end
 
   it 'Parse the assignment of a value to a local and * variable' do
-    ast = RubyLint::Parser.new('a, * = 10').parse
+    ast = RubyLint::Parser.new('a, * = 10').parse[0]
 
+    ast.class.should  == Array
     ast.length.should == 1
 
     token = ast[0]
 
     token.class.should == RubyLint::Token::AssignmentToken
-    token.type.should  == :mass_assignment
+    token.type.should  == :local_variable
+    token.name.should  == 'a'
 
-    token.name.class.should == Array
+    token.value.class.should == RubyLint::Token::Token
+    token.value.type.should  == :integer
+    token.value.value.should == '10'
+  end
 
-    token.name[0].class.should == RubyLint::Token::Token
-    token.name[0].name.should  == 'a'
+  it 'Parse a left hand splat assignment' do
+    tokens = RubyLint::Parser.new('*numbers = 10').parse[0]
+
+    tokens.class.should  == Array
+    tokens.length.should == 1
+
+    token = tokens[0]
+
+    token.class.should == RubyLint::Token::AssignmentToken
+    token.type.should  == :local_variable
+    token.splat.should == true
+    token.name.should  == 'numbers'
+
+    token.value.class.should == RubyLint::Token::Token
+    token.value.type.should  == :array
+
+    token.value.value.class.should  == Array
+    token.value.value.length.should == 1
+
+    val = token.value.value[0]
+
+    val.class.should == RubyLint::Token::Token
+    val.type.should  == :integer
+    val.value.should == '10'
+  end
+
+  it 'Parse a left hand splat and local variable assignment' do
+    tokens = RubyLint::Parser.new('number, *numbers = 10').parse[0]
+
+    tokens.class.should  == Array
+    tokens.length.should == 2
+
+    number  = tokens[0]
+    numbers = tokens[1]
+
+    number.class.should == RubyLint::Token::AssignmentToken
+    number.name.should  == 'number'
+    number.type.should  == :local_variable
+    number.splat.should == false
+
+    number.value.class.should == RubyLint::Token::Token
+    number.value.type.should  == :integer
+    number.value.value.should == '10'
+
+    numbers.class.should == RubyLint::Token::AssignmentToken
+    numbers.name.should  == 'numbers'
+    numbers.type.should  == :local_variable
+    numbers.splat.should == true
+
+    numbers.value.nil?.should == true
   end
 end

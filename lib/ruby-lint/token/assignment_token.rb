@@ -28,18 +28,7 @@ module RubyLint
         super
 
         @type  = :local_variable if @type == :identifier
-        @event = :assignment unless @event == :mass_assignment
-
-        # Correct the types for local variable tokens in the name (only used
-        # for mass assignments).
-        if @name and @name.is_a?(Array)
-          @name.each_with_index do |value, index|
-            if @name[index].respond_to?(:type) \
-            and @name[index].type == :identifier
-              @name[index].type = :local_variable
-            end
-          end
-        end
+        @event = :assignment
       end
     end # AssignmentToken
   end # Token

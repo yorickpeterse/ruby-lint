@@ -459,19 +459,77 @@ module RubyLint
     # Called when a set of values is assigned to multiple variables.
     #
     # @param [Array] variables The variables that are being assigned values.
-    # @param [Array] values The values to assign.
+    # @param [Array|RubyLint::Token::Token] values The values to assign.
     # @return [RubyLint::Token::AssignmentToken]
     #
     def on_massign(variables, values)
-      return Token::AssignmentToken.new(
-        :line   => variables[0].line,
-        :column => variables[0].column,
-        :code   => code(variables[0].line),
-        :type   => :mass_assignment,
-        :event  => :mass_assignment,
-        :name   => variables,
-        :value  => values
-      )
+      assignments = []
+      assigned    = false
+
+      variables.each_with_index do |variable, index|
+        value = nil
+
+        # Determine what value to use for the current variable.
+        if values.is_a?(Array) and values[index]
+          value = values[index]
+
+        # A single value (e.g. an array or number) is assigned to multiple
+        # variables.
+        elsif values.is_a?(Token::Token)
+          # A token with a list of values is being assigned (e.g. an array).
+          if values.value.is_a?(Array) and values.value[index]
+            value = values.value[index]
+
+          # A single value is being assigned such as `foo, bar = 10`.
+          elsif !assigned
+            value    = values
+            assigned = true
+          end
+        end
+
+        # Values set using splat assignments are always arrays.
+        if variable.splat and value
+          value = Token::Token.new(
+            :type   => :array,
+            :line   => value.line,
+            :column => value.column,
+            :code   => value.code,
+            :value  => [value]
+          )
+        end
+
+        assignments << Token::AssignmentToken.new(
+          :name   => variable.name,
+          :line   => variable.line,
+          :column => variable.column,
+          :code   => variable.code,
+          :type   => variable.type,
+          :splat  => variable.splat,
+          :value  => value,
+        )
+      end
+
+      return assignments
+    end
+
+    ##
+    # Called when a splat assignment is found.
+    #
+    # @param [Array] left The variables assigned on the left hand side of the
+    #  splat operator.
+    # @param [RubyLint::Token::Token|NilClass] right The variable assigned on
+    #  the right hand side of the operator.
+    #
+    def on_mlhs_add_star(left, right)
+      variables = left || []
+
+      if right and right.name != '*'
+        right.splat = true
+
+        variables << right
+      end
+
+      return variables
     end
 
     ##
@@ -568,19 +626,21 @@ module RubyLint
     ##
     # Called when a while loop is found.
     #
-    # @param  [RubyLint::Token::Token] statement The statement to evaluate.
+    # @param  [RubyLint::Token::Token|Array] statement The statement to
+    #  evaluate.
     # @param  [RubyLint::Token::Token] value The body of the while loop.
     # @return [RubyLint::Token::StatementToken]
     #
     def on_while(statement, value)
-      source = code(statement.line)
+      line   = statement.is_a?(Array) ? statement[0].line : statement.line
+      source = code(line)
       col    = calculate_column(source, 'while')
 
       return Token::StatementToken.new(
         :type      => :while,
         :statement => statement,
         :value     => value,
-        :line      => statement.line,
+        :line      => line,
         :column    => col,
         :code      => source
       )

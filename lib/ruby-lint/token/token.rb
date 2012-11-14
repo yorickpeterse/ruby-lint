@@ -94,6 +94,16 @@ module RubyLint
       attr_reader :event
 
       ##
+      # Set to `true` when the token was created using a splat (`*`) operator.
+      # Example of such a case:
+      #
+      #   *numbers = 10
+      #
+      # @return [TrueClass|FalseClass]
+      #
+      attr_accessor :splat
+
+      ##
       # Creates a new instance of the token and sets various instance variables
       # based on the specified hash.
       #
@@ -104,6 +114,7 @@ module RubyLint
       #
       def initialize(options = {})
         @line, @column = 0, 0
+        @splat         = false
 
         options.each do |key, value|
           if respond_to?(key)
