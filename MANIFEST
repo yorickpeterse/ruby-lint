@@ -35,6 +35,7 @@ lib/ruby-lint/token/begin_rescue_token.rb
 lib/ruby-lint/token/block_token.rb
 lib/ruby-lint/token/case_token.rb
 lib/ruby-lint/token/class_token.rb
+lib/ruby-lint/token/keyword_token.rb
 lib/ruby-lint/token/method_definition_token.rb
 lib/ruby-lint/token/method_token.rb
 lib/ruby-lint/token/parameters_token.rb
@@ -66,7 +67,9 @@ spec/ruby-lint/iterator.rb
 spec/ruby-lint/parser/arrays.rb
 spec/ruby-lint/parser/classes.rb
 spec/ruby-lint/parser/errors.rb
+spec/ruby-lint/parser/expander_assignments.rb
 spec/ruby-lint/parser/hashes.rb
+spec/ruby-lint/parser/keywords.rb
 spec/ruby-lint/parser/methods.rb
 spec/ruby-lint/parser/modules.rb
 spec/ruby-lint/parser/objects.rb
@@ -79,4 +82,5 @@ spec/ruby-lint/parser/statements.rb
 spec/ruby-lint/parser/variables.rb
 spec/ruby-lint/report.rb
 task/manifest.rake
+task/stdlib.rake
 task/test.rake

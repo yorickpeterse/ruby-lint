@@ -3,7 +3,7 @@ require File.expand_path('../lib/ruby-lint/version', __FILE__)
 Gem::Specification.new do |s|
   s.name        = 'ruby-lint'
   s.version     = RubyLint::VERSION
-  s.date        = '2012-11-13'
+  s.date        = '2012-11-15'
   s.authors     = ['Yorick Peterse']
   s.email       = 'yorickpeterse@gmail.com'
   s.summary     = 'Static code analysis tool and linter for Ruby'
