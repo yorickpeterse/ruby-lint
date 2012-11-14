@@ -17,10 +17,7 @@ methods.
 
 RubyLint can be installed by running the following command:
 
-    $ gem install ruby-lint --pre
-
-Once a stable version has been released the `--pre` switch is no longer
-required.
+    $ gem install ruby-lint
 
 Please note that there already is an existing gem called "rlint". This Gem is
 **not** the same, it just happens to be a similar project (one that seems
