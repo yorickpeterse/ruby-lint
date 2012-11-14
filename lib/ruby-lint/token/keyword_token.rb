@@ -1,25 +1,12 @@
 module RubyLint
   module Token
     ##
-    # Token class used for storing methods, their parameters, body, etc.
+    # {RubyLint::Token::KeywordToken} is a token class similar to
+    # {RubyLint::Token::MethodToken} but instead of being used for regular
+    # method calls it's soley used for keywords such as `super` and
+    # `defined?()`.
     #
-    # @since 2012-07-29
-    #
-    class MethodToken < Token
-      ##
-      # The receiver of the method call, if any.
-      #
-      # @return [RubyLint::Token::Token]
-      #
-      attr_accessor :receiver
-
-      ##
-      # Symbol containing the method separator, if any.
-      #
-      # @return [Symbol]
-      #
-      attr_accessor :operator
-
+    class KeywordToken < Token
       ##
       # Array of tokens for the method parameters.
       #
@@ -38,7 +25,7 @@ module RubyLint
       # @see RubyLint::Token::Token#initialize
       #
       def initialize(*args)
-        @type = :method
+        @type = :keyword
 
         super
 
@@ -49,8 +36,8 @@ module RubyLint
       # @see RubyLint::Token::Token#child_nodes
       #
       def child_nodes
-        return super << @parameters << [@receiver] << [@block]
+        return super << @parameters << [@block]
       end
-    end # MethodToken
+    end # KeywordToken
   end # Token
 end # RubyLint

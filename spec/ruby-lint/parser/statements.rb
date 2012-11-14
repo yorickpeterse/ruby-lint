@@ -588,15 +588,4 @@ end
     token.else.value[0].class.should == RubyLint::Token::VariableToken
     token.else.value[0].name.should  == 'false'
   end
-
-  it 'Parse a defined? statement' do
-    token = RubyLint::Parser.new('defined?(Foobar)').parse[0]
-
-    token.class.should == RubyLint::Token::StatementToken
-    token.type.should  == :defined
-
-    token.statement.class.should == RubyLint::Token::VariableToken
-    token.statement.type.should  == :constant
-    token.statement.name.should  == 'Foobar'
-  end
 end

@@ -937,12 +937,12 @@ module RubyLint
     # @return [RubyLint::Token::StatementToken]
     #
     def on_defined(token)
-      return Token::StatementToken.new(
-        :type      => :defined,
-        :statement => token,
-        :line      => token.line,
-        :column    => token.column,
-        :code      => token.code
+      return Token::KeywordToken.new(
+        :name       => 'defined?',
+        :parameters => [token],
+        :line       => token.line,
+        :column     => token.column,
+        :code       => token.code
       )
     end
 
@@ -952,11 +952,27 @@ module RubyLint
     # @return [RubyLint::Token::MethodToken]
     #
     def on_zsuper
-      return Token::MethodToken.new(
+      return Token::KeywordToken.new(
         :name   => 'super',
         :line   => lineno,
         :column => column,
         :code   => code(lineno)
+      )
+    end
+
+    ##
+    # Called when a call to `super` with parameters is found.
+    #
+    # @param  [Array] params An array of parameters passed to the keyword.
+    # @return [RubyLint::Token::KeywordToken]
+    #
+    def on_super(params)
+      return Token::KeywordToken.new(
+        :name       => 'super',
+        :parameters => params,
+        :line       => lineno,
+        :column     => column,
+        :code       => code(lineno)
       )
     end
 
