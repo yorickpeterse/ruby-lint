@@ -947,6 +947,20 @@ module RubyLint
     end
 
     ##
+    # Called when a call to `super` without parameters is found.
+    #
+    # @return [RubyLint::Token::MethodToken]
+    #
+    def on_zsuper
+      return Token::MethodToken.new(
+        :name   => 'super',
+        :line   => lineno,
+        :column => column,
+        :code   => code(lineno)
+      )
+    end
+
+    ##
     # Called when a variable is referenced.
     #
     # @param  [RubyLint::Token::Token] variable The variable that was referenced.
