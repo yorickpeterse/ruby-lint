@@ -66,7 +66,7 @@ module RubyLint
 
             # Extract the class from a method call.
             if value.respond_to?(:receiver)
-              while value.respond_to?(:receiver)
+              while value.respond_to?(:receiver) and !value.receiver.nil?
                 value = value.receiver
               end
 
