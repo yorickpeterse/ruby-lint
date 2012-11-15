@@ -1,17 +1,17 @@
 module RubyLint
   ##
-  # {RubyLint::Parser} uses Ripper to parse Ruby source code and turn it into an
-  # AST. Instead of returning arrays (the Ripper default) this class uses the
-  # various token classes such as {RubyLint::Token::Token} and
-  # {RubyLint::Token::VariableToken}. It also takes care of a few more things such
-  # as saving the associated line of code and setting method visibility.
+  # {RubyLint::Parser} uses Ripper to parse Ruby source code and turn it into
+  # an AST. Instead of returning arrays (the Ripper default) this class uses
+  # the various token classes such as {RubyLint::Token::Token} and
+  # {RubyLint::Token::VariableToken}. It also takes care of a few more things
+  # such as saving the associated line of code and setting method visibility.
   #
   # Parsing Ruby code requires two steps:
   #
   # 1. Create a new instance of this class and pass a string containing source
   #    code to the constructor method.
-  # 2. Call the method {RubyLint::Parser#parse} and do something with the returned
-  #    AST.
+  # 2. Call the method {RubyLint::Parser#parse} and do something with the
+  #    returned AST.
   #
   # For example, to parse a simple "Hello World" example you'd use this parser
   # as following:
@@ -539,6 +539,25 @@ module RubyLint
       end
 
       return assignments
+    end
+
+    ##
+    # Called when a variable is assigned but only if it doesn't already exist.
+    # Example:
+    #
+    #     number ||= 10
+    #
+    # @param [RubyLint::Token::Token] variable The variable that is being
+    #  assigned.
+    # @param [RubyLint::Token::Token] operator The operator being used.
+    # @param [RubyLint::Token::Token] value The value to assign to the
+    #  variable.
+    #
+    def on_opassign(variable, operator, value)
+      token       = on_assign(variable, value)
+      token.event = :op_assignment
+
+      return token
     end
 
     ##

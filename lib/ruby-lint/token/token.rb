@@ -52,7 +52,7 @@ module RubyLint
       # @since  2012-07-29
       # @return [Symbol]
       #
-      attr_reader :type
+      attr_accessor :type
 
       ##
       # The line number on which the token was defined.
@@ -91,7 +91,7 @@ module RubyLint
       #
       # @return [Symbol]
       #
-      attr_reader :event
+      attr_accessor :event
 
       ##
       # Set to `true` when a token's values should be expanded. Example:

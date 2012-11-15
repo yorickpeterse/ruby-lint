@@ -27,8 +27,8 @@ module RubyLint
       def initialize(*args)
         super
 
-        @type  = :local_variable if @type == :identifier
         @event = :assignment
+        @type  = :local_variable if @type == :identifier
       end
     end # AssignmentToken
   end # Token

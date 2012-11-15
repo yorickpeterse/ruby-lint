@@ -227,4 +227,17 @@ describe 'RubyLint::Parser' do
     token.value.type.should  == :integer
     token.value.value.should == '10'
   end
+
+  it 'Parse the conditional assignment of a variable' do
+    token = RubyLint::Parser.new('number ||= 10').parse[0]
+
+    token.class.should == RubyLint::Token::AssignmentToken
+    token.name.should  == 'number'
+    token.type.should  == :local_variable
+    token.event.should == :op_assignment
+
+    token.value.class.should == RubyLint::Token::Token
+    token.value.type.should  == :integer
+    token.value.value.should == '10'
+  end
 end
