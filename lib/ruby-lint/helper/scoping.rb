@@ -5,8 +5,8 @@ module RubyLint
     # easily access scoping related information in subclasses of
     # {RubyLint::Callback}.
     #
-    # Note that unlike {RubyLint::Helper::DefinitionResolver} this method does not
-    # automatically update the `@scopes` array mentioned below, it merely
+    # Note that unlike {RubyLint::Helper::DefinitionResolver} this method does
+    # not automatically update the `@scopes` array mentioned below, it merely
     # creates the required variables and provides a few helper methods.
     #
     # ## Methods
@@ -34,6 +34,25 @@ module RubyLint
     #   definition list of the current block of code that's being analyzed.
     #
     module Scoping
+      ##
+      # Hash containing the various Ruby classes that are used to represent
+      # various types.
+      #
+      # @return [Hash]
+      #
+      TYPE_CLASSES = {
+        :string      => 'String',
+        :integer     => 'Fixnum', # Fixnum and Bignum share the same methods.
+        :float       => 'Float',
+        :symbol      => 'Symbol',
+        :array       => 'Array',
+        :hash        => 'Hash',
+        :brace_block => 'Proc',
+        :lambda      => 'Proc',
+        :regexp      => 'Regexp',
+        :range       => 'Range'
+      }
+
       ##
       # @see RubyLint::Callback#initialize
       #
@@ -113,6 +132,62 @@ module RubyLint
         else
           return true
         end
+      end
+
+      ##
+      # Retrieves the class for the method receiver along with the method call
+      # type. The method type is set in the first index, the definition in the
+      # second one.
+      #
+      # @param  [RubyLint::Token::Token] token
+      # @return [Array|NilClass]
+      #
+      def resolve_method_receiver(token)
+        receiver_name  = token.name
+        receiver_scope = scope
+        receiver_type  = token.type
+        method_type    = :instance_method
+
+        if receiver_name.is_a?(Array)
+          return unless valid_constant_path?(token)
+
+          receiver_scope = resolve_definition(receiver_name)
+        end
+
+        if receiver_name == 'self' and @namespace
+          receiver_type = @namespace[-1]
+
+        # Method calls on variables such as `name.upcase`.
+        elsif token.is_a?(Token::VariableToken) \
+        and receiver_type != :constant \
+        and receiver_type != :constant_path
+          value = receiver_scope.lookup(receiver_type, receiver_name)
+
+          if !value.nil? and !value.token.value.nil?
+            value         = value.token.value
+            receiver_type = TYPE_CLASSES[value.type]
+          end
+
+          if value.respond_to?(:receiver)
+            while value.respond_to?(:receiver) and value.receiver
+              value = value.receiver
+            end
+
+            receiver_type = value.name
+          end
+
+        # Methods called directly on a type such as `'name'.upcase`.
+        elsif TYPE_CLASSES[receiver_type]
+          receiver_type = TYPE_CLASSES[receiver_type]
+
+        else
+          method_type   = :method
+          receiver_type = receiver_name.is_a?(Array) \
+            ? receiver_name[-1] \
+            : receiver_name
+        end
+
+        return [method_type, receiver_scope.lookup(:constant, receiver_type)]
       end
 
       ##

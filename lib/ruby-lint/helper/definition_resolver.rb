@@ -47,12 +47,15 @@ module RubyLint
       # @param [RubyLint::Token::MethodDefinitionToken] token
       #
       def on_method_definition(token)
-        @scopes << scope.lookup(
-          token.receiver ? :method : :instance_method,
-          token.name
-        )
+        definition  = scope
+        method_type = :instance_method
 
-        @call_types << :instance_method
+        if token.receiver
+          method_type, definition = resolve_method_receiver(token.receiver)
+        end
+
+        @scopes     << definition.lookup(method_type, token.name)
+        @call_types << method_type
 
         call_method(:on_new_scope)
       end

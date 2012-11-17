@@ -1,17 +1,12 @@
 require File.expand_path('../../../../helper', __FILE__)
 
-describe 'Complex code analysis' do
-  it 'Analyze fixtures/stdlib/un.rb' do
-    code     = File.read(File.join(RubyLint::FIXTURES, 'stdlib/un.rb'))
-    tokens   = RubyLint::Parser.new(code).parse
-    iterator = RubyLint::Iterator.new
+describe 'Analyze a list of global methods defined in un.rb' do
+  extend RubyLint::Spec::Helper
 
-    iterator.bind(RubyLint::Analyze::Definitions)
-    iterator.bind(RubyLint::Analyze::CodingStyle)
-    iterator.bind(RubyLint::Analyze::MethodValidation)
-    iterator.bind(RubyLint::Analyze::ShadowingVariables)
-    iterator.bind(RubyLint::Analyze::UndefinedVariables)
-    iterator.bind(RubyLint::Analyze::UnusedVariables)
+  it 'All the methods should be defined as instance methods' do
+    tokens   = parse_file(File.join(RubyLint::FIXTURES, 'stdlib/un.rb'))
+    iterator = create_iterator
+
     iterator.run(tokens)
 
     scope   = iterator.storage[:scope]

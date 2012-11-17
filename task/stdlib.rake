@@ -25,6 +25,8 @@ task :stdlib do
       iterator = RubyLint::Iterator.new
 
       RubyLint.options.analyzers.each { |const| iterator.bind(const) }
+
+      iterator.run(tokens)
     end
   end
 end
