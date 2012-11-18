@@ -1,136 +1,168 @@
 require File.expand_path('../../../helper', __FILE__)
 
-describe 'RubyLint::Parser' do
-  it 'Parse a Hash' do
-    input = '{"name" => "Ruby", "Foo" => "Bar"}'
-    token = RubyLint::Parser.new(input).parse[0]
+describe 'Parsing Hashes' do
+  it 'Hash with the keys as Strings' do
+    node = RubyLint::Parser.new('{"name" => "Ruby", "foo" => "Bar"}') \
+      .parse.children[0]
 
-    token.class.should  == RubyLint::Token::Token
-    token.line.should   == 1
-    token.column.should == 2
-    token.code.should   == input
+    node.type.should            == :hash
+    node.children.class.should  == Array
+    node.children.length.should == 2
 
-    token.value.class.should  == Array
-    token.value.length.should == 2
+    name, foo = node.children
 
-    first = token.value[0]
-    last  = token.value[1]
+    name.class.should           == RubyLint::Node
+    name.type.should            == :key_value
+    name.children.class.should  == Array
+    name.children.length.should == 2
 
-    first.class.should == RubyLint::Token::Token
-    first.name.should  == 'name'
-    first.type.should  == :string
+    key, value = name.children
 
-    first.value.class.should == RubyLint::Token::Token
-    first.value.type.should  == :string
-    first.value.value.should == 'Ruby'
+    key.class.should    == RubyLint::Node
+    key.type.should     == :string
+    key.children.should == ['name']
 
-    last.class.should == RubyLint::Token::Token
-    last.name.should  == 'Foo'
-    last.type.should  == :string
+    value.class.should    == RubyLint::Node
+    value.type.should     == :string
+    value.children.should == ['Ruby']
 
-    last.value.class.should == RubyLint::Token::Token
-    last.value.type.should  == :string
-    last.value.value.should == 'Bar'
+    foo.class.should           == RubyLint::Node
+    foo.type.should            == :key_value
+    foo.children.class.should  == Array
+    foo.children.length.should == 2
+
+    key, value = foo.children
+
+    key.class.should    == RubyLint::Node
+    key.type.should     == :string
+    key.children.should == ['foo']
+
+    value.class.should    == RubyLint::Node
+    value.type.should     == :string
+    value.children.should == ['Bar']
   end
 
-  it 'Parse a Hash using symbols' do
-    input = '{:name => "Ruby", :Foo => "Bar"}'
-    token = RubyLint::Parser.new(input).parse[0]
+  it 'Hash with the keys as Symbols' do
+    node = RubyLint::Parser.new('{:name => "Ruby", :foo => "Bar"}') \
+      .parse.children[0]
 
-    token.class.should  == RubyLint::Token::Token
-    token.line.should   == 1
-    token.column.should == 2
-    token.code.should   == input
+    node.type.should            == :hash
+    node.children.class.should  == Array
+    node.children.length.should == 2
 
-    token.value.class.should  == Array
-    token.value.length.should == 2
+    name, foo = node.children
 
-    first = token.value[0]
-    last  = token.value[1]
+    name.class.should           == RubyLint::Node
+    name.type.should            == :key_value
+    name.children.class.should  == Array
+    name.children.length.should == 2
 
-    first.class.should == RubyLint::Token::Token
-    first.name.should  == 'name'
-    first.type.should  == :symbol
+    key, value = name.children
 
-    first.value.class.should == RubyLint::Token::Token
-    first.value.type.should  == :string
-    first.value.value.should == 'Ruby'
+    key.class.should    == RubyLint::Node
+    key.type.should     == :symbol
+    key.children.should == ['name']
 
-    last.class.should == RubyLint::Token::Token
-    last.name.should  == 'Foo'
-    last.type.should  == :symbol
+    value.class.should    == RubyLint::Node
+    value.type.should     == :string
+    value.children.should == ['Ruby']
 
-    last.value.class.should == RubyLint::Token::Token
-    last.value.type.should  == :string
-    last.value.value.should == 'Bar'
+    foo.class.should           == RubyLint::Node
+    foo.type.should            == :key_value
+    foo.children.class.should  == Array
+    foo.children.length.should == 2
+
+    key, value = foo.children
+
+    key.class.should    == RubyLint::Node
+    key.type.should     == :symbol
+    key.children.should == ['foo']
+
+    value.class.should    == RubyLint::Node
+    value.type.should     == :string
+    value.children.should == ['Bar']
   end
 
-  it 'Parse a Hash using symbols and the JSON syntax' do
-    input = '{name: "Ruby"}'
-    token = RubyLint::Parser.new(input).parse[0]
+  it 'Hash with the keys as Symbols using the 1.9 syntax' do
+    node = RubyLint::Parser.new('{name: "Ruby", foo: "Bar"}') \
+      .parse.children[0]
 
-    token.class.should  == RubyLint::Token::Token
-    token.line.should   == 1
-    token.column.should == 1
-    token.code.should   == input
+    node.type.should            == :hash
+    node.children.class.should  == Array
+    node.children.length.should == 2
 
-    token.value.class.should  == Array
-    token.value.length.should == 1
+    name, foo = node.children
 
-    pair = token.value[0]
+    name.class.should           == RubyLint::Node
+    name.type.should            == :key_value
+    name.children.class.should  == Array
+    name.children.length.should == 2
 
-    pair.name.should == 'name:'
-    pair.type.should == :symbol
+    key, value = name.children
 
-    pair.value.class.should == RubyLint::Token::Token
-    pair.value.type.should  == :string
-    pair.value.value.should == 'Ruby'
+    key.class.should    == RubyLint::Node
+    key.type.should     == :symbol
+    key.children.should == ['name:']
+
+    value.class.should    == RubyLint::Node
+    value.type.should     == :string
+    value.children.should == ['Ruby']
+
+    foo.class.should           == RubyLint::Node
+    foo.type.should            == :key_value
+    foo.children.class.should  == Array
+    foo.children.length.should == 2
+
+    key, value = foo.children
+
+    key.class.should    == RubyLint::Node
+    key.type.should     == :symbol
+    key.children.should == ['foo:']
+
+    value.class.should    == RubyLint::Node
+    value.type.should     == :string
+    value.children.should == ['Bar']
   end
 
-  it 'Parse a Hash key reference' do
-    input = '{:name => "Ruby"}[:name]'
-    token = RubyLint::Parser.new(input).parse[0]
+  it 'Reference a key in a Hash using a String' do
+    node = RubyLint::Parser.new('{"name" => "Ruby"}["name"]') \
+      .parse.children[0]
 
-    token.class.should  == RubyLint::Token::Token
-    token.type.should   == :hash
-    token.line.should   == 1
-    token.column.should == 2
-    token.code.should   == input
+    node.class.should == RubyLint::Node
+    node.type.should  == :aref
 
-    token.key.class.should  == Array
-    token.key.length.should == 1
+    node.children.class.should  == Array
+    node.children.length.should == 2
 
-    token.key[0].class.should == RubyLint::Token::Token
-    token.key[0].type.should  == :symbol
-    token.key[0].value.should == 'name'
+    hash, key = node.children
+    key       = key[0]
 
-    token.value.class.should  == Array
-    token.value.length.should == 1
+    hash.class.should == RubyLint::Node
+    hash.type.should  == :hash
 
-    pair = token.value[0]
-
-    pair.class.should == RubyLint::Token::Token
-    pair.type.should  == :symbol
-    pair.name.should  == 'name'
-
-    pair.value.class.should == RubyLint::Token::Token
-    pair.value.value.should == 'Ruby'
-    pair.value.type.should  == :string
+    key.class.should    == RubyLint::Node
+    key.type.should     == :string
+    key.children.should == ['name']
   end
 
-  it 'Parse a Hash key reference using a variable' do
-    token = RubyLint::Parser.new("hash = {:name => 'Ruby'}\nhash[:name]").parse[1]
+  it 'Reference a key in a Hash using a Symbol' do
+    node = RubyLint::Parser.new('{"name" => "Ruby"}[:name]') \
+      .parse.children[0]
 
-    token.class.should  == RubyLint::Token::VariableToken
-    token.line.should   == 2
-    token.column.should == 0
-    token.code.should   == 'hash[:name]'
+    node.class.should == RubyLint::Node
+    node.type.should  == :aref
 
-    token.key.class.should  == Array
-    token.key.length.should == 1
+    node.children.class.should  == Array
+    node.children.length.should == 2
 
-    token.key[0].class.should == RubyLint::Token::Token
-    token.key[0].value.should == 'name'
-    token.key[0].type.should  == :symbol
+    hash, key = node.children
+    key       = key[0]
+
+    hash.class.should == RubyLint::Node
+    hash.type.should  == :hash
+
+    key.class.should    == RubyLint::Node
+    key.type.should     == :symbol
+    key.children.should == ['name']
   end
 end

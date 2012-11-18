@@ -5,20 +5,9 @@ unless $:.include?(File.expand_path('../', __FILE__))
 end
 
 require 'ruby-lint/version'
+require 'ruby-lint/node'
 require 'ruby-lint/parser'
-require 'ruby-lint/token/token'
-require 'ruby-lint/token/variable_token'
-require 'ruby-lint/token/statement_token'
-require 'ruby-lint/token/begin_rescue_token'
-require 'ruby-lint/token/method_definition_token'
-require 'ruby-lint/token/parameters_token'
-require 'ruby-lint/token/method_token'
-require 'ruby-lint/token/block_token'
-require 'ruby-lint/token/assignment_token'
-require 'ruby-lint/token/case_token'
-require 'ruby-lint/token/regexp_token'
-require 'ruby-lint/token/class_token'
-require 'ruby-lint/token/keyword_token'
+
 require 'ruby-lint/parser_error'
 require 'ruby-lint/iterator'
 require 'ruby-lint/callback'

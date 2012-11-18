@@ -22,26 +22,26 @@ module RubyLint
   #
   #     pp parser.parse
   #
-  # This outputs the following AST:
-  #
-  #     [#<RubyLint::Token::MethodToken:0x000000012f04d0
-  #       @code="puts \"Hello, world!\"",
-  #       @column=0,
-  #       @event=:method,
-  #       @line=1,
-  #       @name="puts",
-  #       @parameters=
-  #        [#<RubyLint::Token::Token:0x000000012e9fb8
-  #          @code="puts \"Hello, world!\"",
-  #          @column=6,
-  #          @event=:string,
-  #          @line=1,
-  #          @name="Hello, world!",
-  #          @type=:string,
-  #          @value="Hello, world!">],
-  #       @type=:method>]
-  #
   class Parser < Ripper::SexpBuilderPP
+    ##
+    # Hash containing various Ripper types and the RubyLint types to use
+    # instead.
+    #
+    # @return [Hash]
+    #
+    TYPE_MAPPING = {
+      :ident           => :identifier,
+      :gvar            => :global_variable,
+      :ivar            => :instance_variable,
+      :cvar            => :class_variable,
+      :const           => :constant,
+      :int             => :integer,
+      :float           => :float,
+      :tstring_content => :string,
+      :label           => :symbol,
+      :kw              => :keyword
+    }
+
     ##
     # Array containing all the event names of which the methods should simply
     # returned the passed argument.
@@ -49,7 +49,6 @@ module RubyLint
     # @return [Array]
     #
     RETURN_FIRST_ARG_EVENTS = [
-      :program,
       :var_field,
       :args_add_block,
       :assoclist_from_args,
@@ -108,17 +107,13 @@ module RubyLint
     #
     DEFAULT_VISIBILITY = :public
 
-    # Return an RubyLint::Token::Token instance for each scanner event instead of
-    # an array with multiple indexes.
-    SCANNER_EVENTS.each do |event|
-      define_method("on_#{event}") do |token|
-        return Token::Token.new(
-          :name   => token,
-          :type   => event,
-          :value  => token,
+    SCANNER_EVENTS.each do |type|
+      define_method("on_#{type}") do |value|
+        return Node.new(
+          readable_type_name(type),
+          [value],
           :line   => lineno,
-          :column => column,
-          :code   => code(lineno)
+          :column => column
         )
       end
     end
@@ -173,11 +168,16 @@ module RubyLint
 
       @file       = file
       @visibility = DEFAULT_VISIBILITY
-      @lines      = []
+    end
 
-      code.each_line do |code_line|
-        @lines << code_line.chomp
-      end
+    ##
+    # Called at the start of a Ruby program.
+    #
+    # @param  [Array] nodes The various nodes of the program.
+    # @return [RubyLint::Node]
+    #
+    def on_program(nodes)
+      return Node.new(:root, nodes, :line => 1, :column => 0)
     end
 
     ##
@@ -213,13 +213,16 @@ module RubyLint
     ##
     # Called when a symbol is found.
     #
-    # @param  [RubyLint::Token::Token] token The symbol token.
-    # @return [RubyLint::Token::Token]
+    # @param  [RubyLint::Node] token The value of the symbol.
+    # @return [RubyLint::Node]
     #
-    def on_symbol(token)
-      token.type = :symbol
-
-      return token
+    def on_symbol(node)
+      return Node.new(
+        :symbol,
+        node.children,
+        :line   => node.line,
+        :column => node.column
+      )
     end
 
     ##
@@ -227,8 +230,8 @@ module RubyLint
     #
     # @see RubyLint::Parser#on_symbol
     #
-    def on_dyna_symbol(token)
-      return on_symbol(token[0])
+    def on_dyna_symbol(node)
+      return on_symbol(node)
     end
 
     ##
@@ -245,70 +248,49 @@ module RubyLint
     # Called when an array is found.
     #
     # @param  [Array] values The values of the array.
-    # @return [RubyLint::Token::Token]
+    # @return [RubyLint::Node]
     #
     def on_array(values)
       values ||= []
+      children = values.flatten
 
-      return Token::Token.new(
-        :type   => :array,
-        :value  => values.map { |v| v.is_a?(Array) ? v[0] : v },
-        :line   => lineno,
-        :column => column,
-        :code   => code(lineno)
-      )
+      return Node.new(:array, children, :line => lineno, :column => column)
     end
 
     ##
-    # Called when a reference to a particular array index is found.
+    # Called when a reference to a particular Array index or Hash key is
+    # found.
     #
-    # @param  [RubyLint::Token::Token] array The array that was referenced.
-    # @param  [RubyLint::Token::Token] index The index that was referenced.
-    # @return [RubyLint::Token::Token]
+    # @param  [RubyLint::Node] object The object that was accessed.
+    # @param  [Array] indexes The indexes/keys that were accessed.
+    # @return [RubyLint::Node]
     #
-    def on_aref(array, index)
-      array.key = index
-
-      return array
+    def on_aref(object, indexes)
+      return Node.new(
+        :aref,
+        [object, indexes],
+        :line   => object.line,
+        :column => object.column
+      )
     end
 
     ##
     # Called when a value is assigned to an array index.
     #
-    # @param [RubyLint::Token::Token] array The array that was referenced.
-    # @param [RubyLint::Token::Token] index The index of the array that was
-    #  referenced.
-    # @return [RubyLint::Token::Token]
+    # @see RubyLint::Parser#on_aref
     #
-    def on_aref_field(array, index)
-      array.key = index
-
-      return Token::AssignmentToken.new(
-        :receiver => array,
-        :line     => lineno,
-        :column   => column,
-        :type     => array.type,
-        :code     => code(lineno)
-      )
+    def on_aref_field(array, indexes)
+      return on_aref(array, indexes)
     end
 
     ##
     # Called when a Hash is found.
     #
     # @param  [Array] pairs An array of key/value pairs of the hash.
-    # @return [RubyLint::Token::Token]
+    # @return [RubyLint::Node]
     #
     def on_hash(pairs)
-      # column() is set to the column number of the very end of the hash.
-      col = pairs[0].column rescue column
-
-      return Token::Token.new(
-        :type   => :hash,
-        :value  => pairs,
-        :line   => lineno,
-        :column => col,
-        :code   => code(lineno)
-      )
+      return Node.new(:hash, pairs, :line => lineno, :column => column)
     end
 
     ##
@@ -324,15 +306,17 @@ module RubyLint
     ##
     # Called when a new key/value pair of a Hash is found.
     #
-    # @param  [RubyLint::Token::Token] key The key of the pair.
-    # @param  [RubyLint::Token::Token] value The value of the pair.
-    # @return [RubyLint::Token::Token]
+    # @param  [RubyLint::Node] key The key of the pair.
+    # @param  [RubyLint::Node] value The value of the pair.
+    # @return [RubyLint::Node]
     #
     def on_assoc_new(key, value)
-      key.name  = key.value
-      key.value = value
-
-      return key
+      return Node.new(
+        :key_value,
+        [key, value],
+        :line   => lineno,
+        :column => column
+      )
     end
 
     ##
@@ -433,38 +417,19 @@ module RubyLint
     end
 
     ##
-    # Called when a value is assigned to a variable.
+    # Called when a value is assigned to a variable, array index, hash key or
+    # object member.
     #
-    # @param  [RubyLint::Token::Token] variable The variable that is assigned.
-    # @param  [RubyLint::Token::Token] value The value to assign.
-    # @return [RubyLint::Token::VariableToken]
+    # @param  [RubyLint::Node] assigned The data to assign the value to.
+    # @param  [RubyLint::Node] value The value to assign.
+    # @return [RubyLint::Node]
     #
     def on_assign(variable, value)
-      if variable.class == RubyLint::Token::AssignmentToken
-        variable.value = value
-
-        return variable
-      end
-
-      if variable.is_a?(Array)
-        line = variable[-1].line
-        col  = variable[-1].column
-        type = variable[-1].type
-        name = variable
-      else
-        line = variable.line
-        col  = variable.column
-        type = variable.type
-        name = variable.name
-      end
-
-      return Token::AssignmentToken.new(
-        :line   => line,
-        :column => col,
-        :name   => name,
-        :type   => type,
-        :value  => value,
-        :code   => code(line)
+      return Node.new(
+        :assign,
+        [variable, value],
+        :line   => variable.line,
+        :column => variable.column
       )
     end
 
@@ -1441,32 +1406,17 @@ module RubyLint
     private
 
     ##
-    # Returns a string containing the code for the specified line number.
+    # Returns a more readable version of a Ripper type name.
     #
-    # @param  [Fixnum|Bignum] line The line number.
-    # @return [String]
+    # @param  [Symbol] type The type to convert.
+    # @return [Symbol]
     #
-    def code(line)
-      return @lines[line - 1]
-    end
-
-    ##
-    # Calculates the column position based on a given line and a stop string.
-    #
-    # @param [String] line The line of code to use for calculating the column
-    #  number.
-    # @param [String] stop The string that indicates the start of the token.
-    # @return [Fixnum]
-    #
-    def calculate_column(line, stop)
-      matches = line.match(/^(.+)#{stop}/)
-      number  = 0
-
-      if matches and matches[1]
-        number = matches[1].to_i
+    def readable_type_name(type)
+      if TYPE_MAPPING[type]
+        return TYPE_MAPPING[type]
+      else
+        return type
       end
-
-      return number
     end
   end # Parser
 end # RubyLint

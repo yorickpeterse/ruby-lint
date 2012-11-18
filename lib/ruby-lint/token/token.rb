@@ -7,25 +7,7 @@ module RubyLint
     # @since 2012-07-29
     #
     class Token
-      ##
-      # Hash containing various Ripper types and the RubyLint types to use
-      # instead.
-      #
-      # @since  2012-07-29
-      # @return [Hash]
-      #
-      TYPE_MAPPING = {
-        :ident           => :identifier,
-        :gvar            => :global_variable,
-        :ivar            => :instance_variable,
-        :cvar            => :class_variable,
-        :const           => :constant,
-        :int             => :integer,
-        :float           => :float,
-        :tstring_content => :string,
-        :label           => :symbol,
-        :kw              => :keyword
-      }
+
 
       ##
       # The name of the token. For example, when the token is an identifier
