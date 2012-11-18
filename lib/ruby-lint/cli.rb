@@ -20,7 +20,7 @@ module RubyLint
 
         opts.separator ''
         opts.separator 'Usage:'
-        opts.separator '  $ ruby-ling [FILES] [OPTIONS]'
+        opts.separator '  $ ruby-lint [FILES] [OPTIONS]'
 
         opts.separator ''
         opts.separator 'Analyzers:'
@@ -31,7 +31,7 @@ module RubyLint
         opts.separator hash_to_list(@formatters)
 
         opts.separator ''
-        opts.separator 'Reporting Levels:'
+        opts.separator 'Reporting levels:'
         opts.separator "  error\n  warning\n  info"
 
         opts.separator ''
