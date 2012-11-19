@@ -38,6 +38,25 @@ module RubyLint
         opts.separator 'Options:'
 
         opts.on(
+          '-a',
+          '--analyzers=VALUE',
+          'The analyzers to enable. Comma separated if more than one.',
+          Array
+        ) do |names|
+          analyzers = Options::REQUIRED_ANALYZERS.dup
+
+          names.each do |name|
+            const = @analyzers[name]
+
+            if const and !analyzers.include?(const)
+              analyzers << const
+            end
+          end
+
+          RubyLint.options.analyzers = analyzers
+        end
+
+        opts.on(
           '-f',
           '--formatter=VALUE',
           'The formatter to use',
@@ -57,25 +76,6 @@ module RubyLint
           RubyLint.options.levels = levels.map { |level| level.to_sym }
         end
 
-        opts.on(
-          '-a',
-          '--analyzers=VALUE',
-          'The analyzers to enable',
-          Array
-        ) do |names|
-          analyzers = Options::REQUIRED_ANALYZERS.dup
-
-          names.each do |name|
-            const = @analyzers[name]
-
-            if const and !analyzers.include?(const)
-              analyzers << const
-            end
-          end
-
-          RubyLint.options.analyzers = analyzers
-        end
-
         opts.on('-h', '--help', 'Shows this help message') do
           puts @option_parser
           exit
@@ -84,6 +84,19 @@ module RubyLint
         opts.on('-v', '--version', 'Shows the current version') do
           version
         end
+
+        opts.separator ''
+        opts.separator 'Examples:'
+        opts.separator ''
+        opts.separator '  Using one analyzer:'
+        opts.separator '    $ ruby-lint some_ruby_file.rb -a undefined_variables'
+        opts.separator ''
+        opts.separator '  Using many analyzers:'
+        opts.separator '    $ ruby-lint some_ruby_file.rb -a undefined_variables,method_validation'
+        opts.separator ''
+        opts.separator '  Using many analyzers and the reportin level warning:'
+        opts.separator '    $ ruby-lint some_ruby_file.rb -a undefined_variables,method_validation -l warning'
+        opts.separator ''
       end
     end
 
