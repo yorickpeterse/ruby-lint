@@ -10,14 +10,14 @@ module RubyLint
     ##
     # Returns the line number of the node.
     #
-    # @return [Fixnum|Bignum]
+    # @return [Fixnum]
     #
     attr_reader :line
 
     ##
     # Returns the column number of the node.
     #
-    # @return [Fixnum|Bignum]
+    # @return [Fixnum]
     #
     attr_reader :column
   end # Node

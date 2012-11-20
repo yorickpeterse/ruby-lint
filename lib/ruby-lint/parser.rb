@@ -49,19 +49,20 @@ module RubyLint
     # @return [Array]
     #
     RETURN_FIRST_ARG_EVENTS = [
-      :var_field,
+      :arg_paren,
       :args_add_block,
       :assoclist_from_args,
-      :symbol_literal,
       :begin,
-      :mrhs_new_from_args,
-      :blockarg,
-      :rest_param,
-      :arg_paren,
       :block_var,
+      :blockarg,
       :const_ref,
+      :mlhs_paren,
+      :mrhs_new_from_args,
+      :rest_param,
+      :symbol_literal,
       :top_const_ref,
-      :mlhs_paren
+      :var_field,
+      :params
     ]
 
     ##
@@ -127,35 +128,23 @@ module RubyLint
     end
 
     RETURN_METHOD_EVENTS.each do |event|
-      define_method("on_#{event}") do |token|
-        if METHOD_VISIBILITY.include?(token.name)
-          @visibility = token.name.to_sym
-        end
-
-        return Token::MethodToken.new(
-          :name   => token.name,
-          :line   => token.line,
-          :column => token.column,
-          :value  => token.name,
-          :code   => code(token.line)
+      define_method("on_#{event}") do |node|
+        return Node.new(
+          :method,
+          [node],
+          :line   => node.line,
+          :column => node.column
         )
       end
     end
 
+=begin
     MOD_STATEMENT_EVENTS.each do |ripper_event, ruby_lint_event|
       define_method("on_#{ripper_event}") do |statement, value|
-        value = [value] unless value.is_a?(Array)
 
-        return Token::StatementToken.new(
-          :type      => ruby_lint_event,
-          :statement => statement,
-          :value     => value,
-          :line      => lineno,
-          :column    => column,
-          :code      => code(lineno)
-        )
       end
     end
+=end
 
     ##
     # Creates a new instance of the parser and pre-defines various instance
@@ -181,42 +170,15 @@ module RubyLint
     end
 
     ##
-    # Called when a parser error was encountered.
-    #
-    # @param [String] message The error message.
-    # @raise [RubyLint::ParserError]
-    #
-    def on_parse_error(message)
-      raise ParserError.new(message, lineno, column, @file)
-    end
-
-    ##
-    # Called when a string literal was found.
-    #
-    # @param  [Array] token Array containing details about the string.
-    # @return [RubyLint::Token::Token]
-    #
-    def on_string_literal(token)
-      if token and token[1]
-        return token[1]
-      else
-        return Token::Token.new(
-          :name   => '',
-          :value  => '',
-          :line   => lineno,
-          :column => column,
-          :type   => :string
-        )
-      end
-    end
-
-    ##
     # Called when a symbol is found.
     #
-    # @param  [RubyLint::Node] token The value of the symbol.
+    # @param  [RubyLint::Node|Array] token The value of the symbol. This
+    #  parameter is set to an Array when parsing code such as `:"hello"`.
     # @return [RubyLint::Node]
     #
     def on_symbol(node)
+      node = node[0] if node.is_a?(Array)
+
       return Node.new(
         :symbol,
         node.children,
@@ -235,13 +197,38 @@ module RubyLint
     end
 
     ##
+    # Called when a String is found.
+    #
+    # @param  [Array] content The contents of the string.
+    # @return [RubyLint::Node]
+    #
+    def on_string_literal(content)
+      return content[1]
+    end
+
+    ##
+    # Called when a string is concatenated using a backslash.
+    #
+    # @param  [Array] strings The strings being concatenated.
+    # @return [RubyLint::Node]
+    #
+    def on_string_concat(*strings)
+      return Node.new(
+        :string_concat,
+        strings,
+        :line   => lineno,
+        :column => column
+      )
+    end
+
+    ##
     # Called when an expression is embedded in a string.
     #
     # @param  [Array] exp The embedded expressions.
-    # @return [RubyLint::Token::Token]
+    # @return [RubyLint::Node]
     #
     def on_string_embexpr(exp)
-      return exp[0]
+      return Node.new(:embed, exp, :line => lineno, :column => column)
     end
 
     ##
@@ -320,100 +307,92 @@ module RubyLint
     end
 
     ##
-    # Called when a block is created using curly braces.
-    #
-    # @param [RubyLint::Token::ParametersToken] params The parameters of the
-    #  block.
-    # @param  [Array] body Array containing the tokens of the block.
-    # @return [RubyLint::Token::BlockToken]
-    #
-    def on_brace_block(params, body)
-      return Token::BlockToken.new(
-        :parameters => params,
-        :value      => body,
-        :line       => lineno,
-        :column     => column,
-        :type       => :block,
-        :code       => code(lineno)
-      )
-    end
-
-    ##
-    # Called when a block is created using the do/end statements.
-    #
-    # @see RubyLint::Parser#on_brace_block
-    #
-    def on_do_block(params, body)
-      return on_brace_block(params, body)
-    end
-
-    ##
-    # Called when a lambda is found.
-    #
-    # @see RubyLint::Parser#on_brace_block
-    #
-    def on_lambda(params, body)
-      token      = on_brace_block(params, body)
-      token.type = :lambda
-
-      return token
-    end
-
-    ##
     # Called when a Range is found.
     #
-    # @param  [RubyLint::Token::Token] start The start value of the range.
-    # @param  [RubyLint::Token::Token] stop The end value of the range.
-    # @return [RubyLint::Token::Token]
+    # @param  [RubyLint::Node] start The start value of the range.
+    # @param  [RubyLint::Node] stop The end value of the range.
+    # @return [RubyLint::Node]
     #
     def on_dot2(start, stop)
-      return Token::Token.new(
-        :type   => :range,
+      return Node.new(
+        :dot2,
+        [start, stop],
         :line   => start.line,
-        :column => start.line,
-        :value  => [start, stop],
-        :code   => code(start.line)
+        :column => start.column
       )
     end
 
     ##
     # Called when a range using 3 dots is found.
     #
-    # @see  RubyLint::Parser#on_dot2
-    # @todo There's a difference between ranges created using two and three
-    #  dots, this method should return a different token in the future.
+    # @see RubyLint::Parser#on_dot2
     #
     def on_dot3(start, stop)
-      return on_dot2(start, stop)
+      return Node.new(
+        :dot3,
+        [start, stop],
+        :line   => start.line,
+        :column => start.column
+      )
     end
 
     ##
     # Called when a regular expression is found.
     #
-    # @param [Array] regexp The regular expression's value.
-    # @param [RubyLint::Token::Token] modes The modes of the regular expression.
-    # @return [RubyLint::Token::RegexpToken]
+    # @param  [Array] regexp Array containing the regular expression's body.
+    # @return [RubyLint::Node] mode The mode for the regular expression.
+    # @return [RubyLint::Node]
     #
-    def on_regexp_literal(regexp, modes)
-      regexp      = regexp[0]
-      modes_array = []
+    def on_regexp_literal(regexp, mode)
+      regexp = regexp[0]
 
-      value = regexp.respond_to?(:value)  ? regexp.value  : nil
-      line  = regexp.respond_to?(:line)   ? regexp.line   : lineno
-      col   = regexp.respond_to?(:column) ? regexp.column : column
-
-      if modes
-        modes_array = modes.value.split('').select { |c| c =~ /\w/ }
-      end
-
-      return Token::RegexpToken.new(
-        :type   => :regexp,
-        :value  => value,
-        :line   => line,
-        :column => col,
-        :modes  => modes_array,
-        :code   => code(line)
+      return Node.new(
+        :regexp,
+        [regexp, mode],
+        :line   => regexp.line,
+        :column => regexp.column
       )
+    end
+
+    ##
+    # Called when a lambda is found.
+    #
+    # @param  [Array] params The parameters of the lamda.
+    # @param  [Array] body The body of the lambda.
+    # @return [RubyLint::Node]
+    #
+    def on_lambda(params, body)
+      return Node.new(
+        :lambda,
+        [params, body],
+        :line   => lineno,
+        :column => column
+      )
+    end
+
+    ##
+    # Called when a block was created using curly braces.
+    #
+    # @param  [Array] params The parameters of the block.
+    # @param  [Array] body The body of the block.
+    # @return [RubyLint::Node]
+    #
+    def on_brace_block(params, body)
+      return Node.new(
+        :block,
+        [params, body.reject(&:nil?)],
+        :line   => lineno,
+        :column => column
+      )
+    end
+
+    ##
+    # Called when a block was created using `do/end`.
+    #
+    # @see RubyLint::Parser#on_brace_block
+    #
+    def on_do_block(params, body)
+      return on_brace_block(params, body)
     end
 
     ##
@@ -434,973 +413,53 @@ module RubyLint
     end
 
     ##
-    # Called when a set of values is assigned to multiple variables.
-    #
-    # @param [Array] variables The variables that are being assigned values.
-    # @param [Array|RubyLint::Token::Token] values The values to assign.
-    # @return [RubyLint::Token::AssignmentToken]
-    #
-    def on_massign(variables, values)
-      assignments = []
-      variables   = variables.flatten
-      assigned    = []
-      expander    = nil
-      value_index = 0
-
-      variables.each_with_index do |variable, var_index|
-        if variable.expand
-          expander = var_index
-          value    = Token::Token.new(
-            :type   => :array,
-            :line   => variable.line,
-            :column => variable.column,
-            :code   => variable.code,
-            :value  => []
-          )
-        else
-          value = nil
-        end
-
-        assignments << Token::AssignmentToken.new(
-          :name   => variable.name,
-          :line   => variable.line,
-          :column => variable.column,
-          :code   => variable.code,
-          :type   => variable.type,
-          :expand => variable.expand,
-          :value  => value
-        )
-      end
-
-      # Unpack array based values and ensure that `values` is always an array.
-      if values.is_a?(Token::Token) and values.type == :array
-        values = values.value
-      elsif values.is_a?(Token::Token)
-        values = [values]
-      end
-
-      equal_length = assignments.length == values.length
-
-      # Assign the values to each variable. The remaining values will be
-      # assigned to the expanding variable.
-      assignments.each do |assignment|
-        if !assignment.expand and values[value_index]
-          assignment.value = values[value_index]
-
-          assigned    << values[value_index]
-          value_index += 1
-        end
-
-        # THINK: I really wonder if this is the way to make sure the expander
-        # value is assigned correctly.
-        if assignment.expand and equal_length
-          value_index += 1
-        end
-      end
-
-      # Assign the remaining values to the expander variable.
-      if expander
-        assignments[expander].value.value = values - assigned
-      end
-
-      return assignments
-    end
-
-    ##
-    # Called when a variable is assigned but only if it doesn't already exist.
-    # Example:
-    #
-    #     number ||= 10
-    #
-    # @param [RubyLint::Token::Token] variable The variable that is being
-    #  assigned.
-    # @param [RubyLint::Token::Token] operator The operator being used.
-    # @param [RubyLint::Token::Token] value The value to assign to the
-    #  variable.
-    #
-    def on_opassign(variable, operator, value)
-      token       = on_assign(variable, value)
-      token.event = :op_assignment
-
-      return token
-    end
-
-    ##
-    # Called when a expand assignment is found.
-    #
-    # @param [Array] left The variables assigned on the left hand side of the
-    #  expand operator.
-    # @param [RubyLint::Token::Token|NilClass] right The variable assigned on
-    #  the right hand side of the operator.
-    #
-    def on_mlhs_add_star(left, right)
-      variables = left || []
-
-      if right and right.name != '*'
-        right.expand = true
-
-        variables << right
-      end
-
-      return variables
-    end
-
-    ##
-    # @see RubyLint::Parser#on_mlhs_add_star
-    #
-    def on_mrhs_add_star(left, right)
-      return on_mlhs_add_star(left, right)
-    end
-
-    ##
-    # Called when a method call was prefixed with a `*` to indicate that the
-    # values it returns should be expanded.
-    #
-    # @param  [Array] left The variables to the left.
-    # @param  [RubyLint::Token::Token] right The variable to expand.
-    # @return [Array]
-    #
-    def on_args_add_star(left, right)
-      variables = left || []
-
-      if right
-        right.expand = true
-
-        variables << right
-      end
-
-      return variables
-    end
-
-    ##
-    # Called when a value is assigned to an object attribute.
-    #
-    # @param [RubyLint::Token::VariableToken] receiver The receiver of the
-    #  assignment.
-    # @param [Symbol] operator The operator that was used to separate the
-    #  object and attribute.
-    # @param [RubyLint::Token::Token] attribute The attribute to which the value
-    #  is assigned.
-    # @return [RubyLint::Token::VariableToken]
-    #
-    def on_field(receiver, operator, attribute)
-      return Token::AssignmentToken.new(
-        :name     => attribute.value,
-        :line     => attribute.line,
-        :column   => attribute.column,
-        :type     => attribute.type,
-        :receiver => receiver,
-        :operator => operator,
-        :code     => code(attribute.line)
-      )
-    end
-
-    ##
-    # Called when a (binary) operator operation is performed.
-    #
-    # @param  [RubyLint::Token::Token] left The left hand side of the operator.
-    # @param  [Symbol] op The operator that was used.
-    # @param  [RubyLint::Token::Token] right The right hand side of the operator.
-    # @return [RubyLint::Token::Token]
-    #
-    def on_binary(left, op, right)
-      return Token::Token.new(
-        :type   => :binary,
-        :value  => [left, op, right],
-        :line   => lineno,
-        :column => column,
-        :code   => code(lineno)
-      )
-    end
-
-    ##
-    # Called when an unary operator/operation is found.
-    #
-    # @param [Symbol] operator The unary operator.
-    # @param [RubyLint::Token::Token] token The token after the unary operator.
-    # @return [RubyLint::Token::Token]
-    #
-    def on_unary(operator, token)
-      return Token::Token.new(
-        :type   => :unary,
-        :value  => [operator, token],
-        :line   => lineno,
-        :column => column,
-        :code   => code(lineno)
-      )
-    end
-
-    ##
-    # Called when a set of parenthesis is found.
-    #
-    # @param  [Array] value The data inside the parenthesis.
-    # @return [RubyLint::Token::Token]
-    #
-    def on_paren(value)
-      if value.is_a?(Array)
-        return value[0]
-      else
-        return value
-      end
-    end
-
-    ##
-    # Called when a return statement is found.
-    #
-    # @param  [Array] values The return values of the statement.
-    # @return [RubyLint::Token::StatementToken]
-    #
-    def on_return(values)
-      source = code(lineno)
-      col    = calculate_column(source, 'return')
-
-      return Token::StatementToken.new(
-        :type   => :return,
-        :line   => lineno,
-        :column => col,
-        :value  => values,
-        :code   => source
-      )
-    end
-
-    ##
-    # Called when a while loop is found.
-    #
-    # @param  [RubyLint::Token::Token|Array] statement The statement to
-    #  evaluate.
-    # @param  [RubyLint::Token::Token] value The body of the while loop.
-    # @return [RubyLint::Token::StatementToken]
-    #
-    def on_while(statement, value)
-      line   = statement.is_a?(Array) ? statement[0].line : statement.line
-      source = code(line)
-      col    = calculate_column(source, 'while')
-
-      return Token::StatementToken.new(
-        :type      => :while,
-        :statement => statement,
-        :value     => value,
-        :line      => line,
-        :column    => col,
-        :code      => source
-      )
-    end
-
-    ##
-    # Called when a for loop is found.
-    #
-    # @param  [Array|RubyLint::Token::Token] variables A single token or array
-    #  of tokens for the variables to create for each iteration.
-    # @param  [RubyLint::Token::Token] enumerable The enumerable to iterate.
-    # @param  [Array] value The body of the for loop.
-    # @return [RubyLint::Token::StatementToken]
-    #
-    def on_for(variables, enumerable, value)
-      variables = [variables] unless variables.is_a?(Array)
-      source    = code(variables[0].line)
-      col       = calculate_column(source, 'for')
-
-      return Token::StatementToken.new(
-        :type      => :for,
-        :statement => [variables, enumerable],
-        :value     => value,
-        :column    => col,
-        :line      => variables[0].line,
-        :code      => source
-      )
-    end
-
-    ##
-    # Called when an if statement is found.
-    #
-    # @param  [RubyLint::Token::Token] statement The if statement to evaluate.
-    # @param  [Array] value Array containing the tokens of the code that will
-    #  be executed if the if statement evaluates to true.
-    # @param  [Array] rest Array containing the tokens for the elsif and else
-    #  statements (if any).
-    # @return [RubyLint::Token::StatementToken]
-    #
-    def on_if(statement, value, rest)
-      source = code(statement.line)
-      col    = calculate_column(source, 'if')
-
-      else_statement   = nil
-      elsif_statements = []
-
-      if rest and rest.respond_to?(:each)
-        rest.each do |token|
-          next if token.nil?
-
-          if token.type == :elsif
-            elsif_statements << token
-          else
-            else_statement = token
-          end
-        end
-      end
-
-      return Token::StatementToken.new(
-        :type      => :if,
-        :statement => statement,
-        :value     => value,
-        :line      => statement.line,
-        :column    => col,
-        :else      => else_statement,
-        :elsif     => elsif_statements.reverse,
-        :code      => source
-      )
-    end
-
-    ##
-    # Called whne a tenary operator is found.
-    #
-    # @see RubyLint::Parser#on_if
-    #
-    def on_ifop(statement, value, else_statement)
-      else_statement = Token::StatementToken.new(
-        :type   => :else,
-        :value  => [else_statement],
-        :line   => else_statement.line,
-        :column => else_statement.column,
-        :code   => code(else_statement.line)
-      )
-
-      return Token::StatementToken.new(
-        :type      => :if,
-        :statement => statement,
-        :value     => [value],
-        :line      => statement.line,
-        :column    => statement.column,
-        :code      => code(statement.line),
-        :else      => else_statement
-      )
-    end
-
-    ##
-    # Called when an else statement is found.
-    #
-    # @param  [Array] value The value of the statement.
-    # @return [RubyLint::Token::StatementToken]
-    #
-    def on_else(value)
-      return Token::StatementToken.new(
-        :type   => :else,
-        :value  => value,
-        :column => column,
-        :line   => lineno,
-        :code   => code(lineno)
-      )
-    end
-
-    ##
-    # Called when an elsif statement is found.
-    #
-    # @param [RubyLint::Token::Token] statement The statement to evaluate.
-    # @param [Array] value The value of the elsif statement.
-    # @param [Array|RubyLint::Token::Token] list A list of else and elsif
-    #  statements.
-    # @return [Array]
-    #
-    def on_elsif(statement, value, list)
-      source = code(statement.line)
-      col    = calculate_column(source, 'elsif')
-
-      token = Token::StatementToken.new(
-        :type      => :elsif,
-        :statement => statement,
-        :value     => value,
-        :line      => statement.line,
-        :column    => col,
-        :code      => source
-      )
-
-      unless list.is_a?(Array)
-        list = [list]
-      end
-
-      list << token
-    end
-
-    ##
-    # Called when the body of a block of Ruby code is found (e.g. a method
-    # definition or a begin/rescue block).
-    #
-    # @param [Array] value Array containing the tokens of the body/statement.
-    # @param [Array] rescues An array of rescue statements.
-    # @param [RubyLint::Token::StatementToken] else_statement The else statement
-    #  of the block.
-    # @param [RubyLint::Token::StatementToken] ensure_statement The ensure
-    #  statement of the block.
-    # @return [RubyLint::Token::BeginRescueToken]
-    #
-    def on_bodystmt(value, rescues, else_statement, ensure_statement)
-      if rescues.nil? and else_statement.nil? and ensure_statement.nil?
-        return value
-      end
-
-      return Token::BeginRescueToken.new(
-        :type   => :begin,
-        :value  => value,
-        :rescue => (rescues || []).reverse.select { |t| !t.nil? },
-        :ensure => ensure_statement,
-        :else   => else_statement,
-        :line   => lineno,
-        :column => column,
-        :code   => code(lineno)
-      )
-    end
-
-    ##
-    # Called when a rescue statement is found.
-    #
-    # @param [Array] exceptions An array of exceptions to catch.
-    # @param [RubyLint::Token::Token] variable The variable in which to store
-    #  the exception details.
-    # @param  [Array] value The value of the rescue statement.
-    # @param  [Array|RubyLint::Token::Token] list A set of all the rescue tokens.
-    # @return [RubyLint::Token::StatementToken]
-    #
-    def on_rescue(exceptions, variable, value, list)
-      source = code(lineno)
-      col    = calculate_column(source, 'rescue')
-
-      token = Token::StatementToken.new(
-        :type      => :rescue,
-        :statement => [exceptions, variable],
-        :line      => lineno,
-        :column    => col,
-        :value     => value,
-        :code      => source
-      )
-
-      unless list.is_a?(Array)
-        list = [list]
-      end
-
-      list << token
-    end
-
-    ##
-    # Called when a single line rescue statement (in the form of `[VALUE]
-    # rescue [RESCUE VALUE]`) is found.
-    #
-    # @param [RubyLint::Token::Token|Array] value The body of the begin/rescue
-    #  statement.
-    # @param [RubyLint::Token::Token] statement The statement to evaluate when the
-    #  data in `value` raised an exception.
-    # @return [RubyLint::Token::BeginRescueToken]
-    #
-    def on_rescue_mod(value, statement)
-      value     = [value]     unless value.is_a?(Array)
-      statement = [statement] unless statement.is_a?(Array)
-
-      return Token::BeginRescueToken.new(
-        :type   => :rescue,
-        :rescue => statement,
-        :value  => value,
-        :line   => lineno,
-        :column => column,
-        :code   => code(lineno)
-      )
-    end
-
-    ##
-    # Called when an ensure statement is found.
-    #
-    # @param  [Array] value The value of the statement.
-    # @return [RubyLint::Token::StatementToken]
-    #
-    def on_ensure(value)
-      return Token::StatementToken.new(
-        :type   => :ensure,
-        :value  => value,
-        :line   => lineno,
-        :column => column,
-        :code   => code(lineno)
-      )
-    end
-
-    ##
-    # Called for an entire case/when/else block.
-    #
-    # @param [RubyLint::Token::Token] statement The statement of the `case`
-    #  statement itself.
-    # @param [Array] list Array containing the various when statements and
-    #  optionally an else statement.
-    # @return [RubyLint::Token::CaseToken]
-    #
-    def on_case(statement, list)
-      when_statements = []
-      else_statement  = nil
-      list            = list.reject(&:nil?)
-
-      line   = statement.respond_to?(:line) ? statement.line : list[0].line
-      source = code(line)
-      col    = calculate_column(source, 'case')
-
-      if list and list.respond_to?(:each)
-        list.each do |token|
-          if token.type == :when
-            when_statements << token
-          else
-            else_statement = token
-          end
-        end
-      end
-
-      return Token::CaseToken.new(
-        :type      => :case,
-        :statement => statement,
-        :else      => else_statement,
-        :when      => when_statements.reverse,
-        :line      => line,
-        :column    => col,
-        :code      => source
-      )
-    end
-
-    ##
-    # Called when a `when` statement is found.
-    #
-    # @param  [Array] statement Array of statements to evaluate.
-    # @param  [Array] body Array containing the tokens of the statement's body.
-    # @param  [Array] list The list of `when` tokens.
-    # @return [Array]
-    #
-    def on_when(statement, body, list)
-      source = code(statement[0].line)
-      col    = calculate_column(source, 'when')
-
-      token = Token::StatementToken.new(
-        :type      => :when,
-        :statement => statement,
-        :value     => body,
-        :line      => statement[0].line,
-        :column    => col,
-        :code      => source
-      )
-
-      unless list.is_a?(Array)
-        list = [list]
-      end
-
-      list << token
-    end
-
-    ##
-    # Called when a unless statement is found.
-    #
-    # @param [RubyLint::Token::Token] statement The statement to evaluate.
-    # @param [Array] body The body of the unless statement.
-    # @param [RubyLint::Token::StatementToken] else_token An optional else
-    #  statement.
-    # @return [RubyLint::Token::StatementToken]
-    #
-    def on_unless(statement, body, else_token)
-      source = code(statement.line)
-      col    = calculate_column(source, 'unless')
-
-      return Token::StatementToken.new(
-        :type      => :unless,
-        :statement => statement,
-        :else      => else_token,
-        :value     => body,
-        :line      => statement.line,
-        :column    => col,
-        :code      => source
-      )
-    end
-
-    ##
-    # Called when an until statement is found.
-    #
-    # @see RubyLint::Parser#on_unless
-    #
-    def on_until(statement, body)
-      source = code(statement.line)
-      col    = calculate_column(source, 'until')
-
-      return Token::StatementToken.new(
-        :type      => :until,
-        :statement => statement,
-        :value     => body,
-        :line      => statement.line,
-        :column    => col,
-        :code      => source
-      )
-    end
-
-    ##
-    # Called when a call to `defined?()` is found.
-    #
-    # @param  [RubyLint::Token::Token] token The token which is being checked.
-    # @return [RubyLint::Token::StatementToken]
-    #
-    def on_defined(token)
-      return Token::KeywordToken.new(
-        :name       => 'defined?',
-        :parameters => [token],
-        :line       => token.line,
-        :column     => token.column,
-        :code       => token.code
-      )
-    end
-
-    ##
-    # Called when a call to `super` without parameters is found.
-    #
-    # @return [RubyLint::Token::MethodToken]
-    #
-    def on_zsuper
-      return Token::KeywordToken.new(
-        :name   => 'super',
-        :line   => lineno,
-        :column => column,
-        :code   => code(lineno)
-      )
-    end
-
-    ##
-    # Called when a call to `super` with parameters is found.
-    #
-    # @param  [Array] params An array of parameters passed to the keyword.
-    # @return [RubyLint::Token::KeywordToken]
-    #
-    def on_super(params)
-      token            = on_zsuper
-      token.parameters = params
-
-      return token
-    end
-
-    ##
-    # Called when a `yield` keyword without parameters is found.
-    #
-    # @return [RubyLint::Token::KeywordToken]
-    #
-    def on_yield0
-      return Token::KeywordToken.new(
-        :name   => 'yield',
-        :line   => lineno,
-        :column => column,
-        :code   => code(lineno)
-      )
-    end
-
-    ##
-    # Called when a `yield` keyword *with* parameters is found.
-    #
-    # @param [Array] params The parameters of the keyword.
-    #
-    def on_yield(params)
-      token            = on_yield0
-      token.parameters = params
-
-      return token
-    end
-
-    ##
     # Called when a variable is referenced.
     #
-    # @param  [RubyLint::Token::Token] variable The variable that was referenced.
-    # @return [RubyLint::Token::VariableToken]
+    # @param  [RubyLint::Node] variable The variable that was referenced.
+    # @return [RubyLint::Node]
     #
     def on_var_ref(variable)
-      return Token::VariableToken.new(
-        :line   => variable.line,
-        :column => variable.column,
-        :name   => variable.value,
-        :type   => variable.type,
-        :code   => code(variable.line)
-      )
-    end
-
-    ##
-    # Called when a constant path reference is found.
-    #
-    # @param  [Array] segments The path segments.
-    # @return [Array]
-    #
-    def on_const_path_ref(*segments)
-      return Token::VariableToken.new(
-        :name   => segments.map { |t| t.name }.flatten,
-        :type   => :constant_path,
-        :line   => segments[0].line,
-        :column => segments[0].column,
-        :code   => code(segments[-1].line)
-      )
-    end
-
-    ##
-    # Called when a constant path is assigned.
-    #
-    # @see RubyLint::Parser#on_const_path_ref
-    #
-    def on_const_path_field(*segments)
-      return on_const_path_ref(*segments)
-    end
-
-    ##
-    # Called when a new method is defined.
-    #
-    # @param [RubyLint::Token::Token] name Token containing details about the
-    #  method name.
-    # @param [RubyLint::Token::ParametersToken] params Token containing details
-    #  about the method parameters.
-    # @param [Array] body Array containing the tokens of the method's body.
-    # @return [RubyLint::Token::MethodDefinitionToken]
-    #
-    def on_def(name, params, body)
-      body = [body] unless body.is_a?(Array)
-
-      return Token::MethodDefinitionToken.new(
-        :name       => name.value,
-        :line       => name.line,
-        :column     => name.column,
-        :parameters => params,
-        :visibility => @visibility,
-        :value      => body.select { |t| !t.nil? },
-        :code       => code(name.line)
-      )
-    end
-
-    ##
-    # Called when a method is defined on a specific constant/location
-    # (e.g. `self`).
-    #
-    # @param [RubyLint::Token::Token] receiver The object that the method was
-    #  defined on.
-    # @param [RubyLint::Token::Token] operator The operator that was used to
-    #  separate the receiver and method name.
-    # @param [RubyLint::Token::Token] name The name of the method.
-    # @param [RubyLint::Token::ParametersToken] params The method parameters.
-    # @param [Array] body The body of the method.
-    # @return [RubyLint::Token::MethodDefinitionToken]
-    #
-    def on_defs(receiver, operator, name, params, body)
-      token          = on_def(name, params, body)
-      token.receiver = receiver
-      token.operator = operator
-
-      return token
-    end
-
-    ##
-    # Called when a set of method parameters is found. The order of the `args`
-    # parameter is the following:
-    #
-    # * 0: array of required parameters
-    # * 1: array of optional parameters
-    # * 2: the rest parameter (if any)
-    # * 3: array of "more" parameters (parameters set after the rest parameter)
-    # * 4: the block parameter (if any)
-    #
-    # @param  [Array] args Array containing all the passed method parameters.
-    # @return [RubyLint::Token::ParametersToken]
-    #
-    def on_params(*args)
-      # Convert all the arguments from regular Token instances to VariableToken
-      # instances.
-      args.each_with_index do |arg, index|
-        # Required, optional and more parameters.
-        if arg.is_a?(Array)
-          args[index] = arg.map do |token|
-            value = nil
-
-            if token.is_a?(Array)
-              value = token[1]
-              token = token[0]
-            end
-
-            Token::VariableToken.new(
-              :name   => token.value,
-              :value  => value,
-              :line   => token.line,
-              :column => token.column,
-              :type   => token.type,
-              :code   => code(token.line)
-            )
-          end
-        # Rest and block parameters.
-        elsif !arg.nil?
-          args[index] = Token::VariableToken.new(
-            :name   => arg.value,
-            :line   => arg.line,
-            :column => arg.column,
-            :type   => arg.type,
-            :code   => code(arg.line)
-          )
-        end
+      if variable.type == :identifier
+        variable = variable.updated(:local_variable, variable.children)
       end
 
-      return Token::ParametersToken.new(
-        :value    => args[0],
-        :optional => args[1],
-        :rest     => args[2],
-        :more     => args[3],
-        :block    => args[4]
-      )
+      return variable
     end
 
     ##
-    # Called when a method call using parenthesis is found.
-    #
-    # @param [RubyLint::Token::Token] name The name of the method that was called.
-    # @param [Array] params The parameters of the method call.
-    # @return [RubyLint::Token::MethodToken]
-    #
-    def on_method_add_arg(name, params)
-      if name.class == RubyLint::Token::MethodToken
-        name.parameters = params
-
-        return name
-      end
-
-      return Token::MethodToken.new(
-        :name       => name.value,
-        :parameters => params,
-        :line       => name.line,
-        :column     => name.column,
-        :code       => code(name.line)
-      )
-    end
-
-    ##
-    # Called when a block is passed to a method call.
-    #
-    # @param [RubyLint::Token::MethodToken] method Token class for the method that
-    #  the block is passed to.
-    # @param [RubyLint::Token::BlockToken] block The block that was passed to the
-    #  method.
-    # @return [RubyLint::Token::MethodToken]
-    #
-    def on_method_add_block(method, block)
-      method.block = block
-
-      return method
-    end
-
-    ##
-    # Called when a class declaration is found.
-    #
-    # @param  [Array|RubyLint::Token::Token] name The name of the class.
-    # @param  [Array|NilClass] parent The name of the parent class.
-    # @param  [Array] body The body of the class.
-    # @return [RubyLint::Token::ClassToken]
-    #
-    def on_class(name, parent, body)
-      name_segments   = name.name.is_a?(Array) ? name.name : [name.name]
-      parent_segments = []
-
-      if parent
-        parent_segments = parent.name.is_a?(Array) ? parent.name : [parent.name]
-      end
-
-      body = body.is_a?(Array) ? body.flatten.select { |t| !t.nil? } : []
-
-      @visibility = DEFAULT_VISIBILITY
-
-      return Token::ClassToken.new(
-        :name   => name_segments,
-        :parent => parent_segments,
-        :type   => :class,
-        :value  => body,
-        :line   => name.line,
-        :column => name.column,
-        :code   => name.code
-      )
-    end
-
-    ##
-    # Called when a set of class methods are added using a `class << self`
-    # block.
-    #
-    # @param [RubyLint::Token::VariableToken] receiver The receiver for all the
-    #  methods.
-    # @param  [Array] value The body of the block.
-    # @return [Array]
-    #
-    def on_sclass(receiver, value)
-      value.each_with_index do |token, index|
-        if token.respond_to?(:receiver)
-          token.receiver = receiver
-        end
-
-        value[index] = token
-      end
-
-      return value
-    end
-
-    ##
-    # Called when a module definition is found.
-    #
-    # @param [RubyLint::Token::Token|Array] name The name of the module, either a
-    #  single token class or an array of token classes.
-    # @param [Array|NilClass] body The body of the module.
-    # @return [RubyLint::Token::Token]
-    #
-    def on_module(name, body)
-      name_segments = name.name.is_a?(Array) ? name.name : [name.name]
-
-      return Token::Token.new(
-        :type   => :module,
-        :name   => name_segments,
-        :value  => body,
-        :line   => name.line,
-        :column => name.column,
-        :code   => name.code
-      )
-    end
-
-    ##
-    # Called when a method call without parenthesis was found.
+    # Called when a method without parenthesis is called.
     #
     # @see RubyLint::Parser#on_method_add_arg
     #
     def on_command(name, params)
-      return on_method_add_arg(name, params)
-    end
-
-    ##
-    # Called when a method was invoked on an object.
-    #
-    # @param [RubyLint::Token::Token] receiver The object that the method was
-    #  invoked on.
-    # @param [Symbol] operator The operator that was used to separate the
-    #  receiver and method name.
-    # @param [RubyLint::Token::Token] name Token containing details about the
-    #  method name.
-    # @return [RubyLint::Token::MethodToken]
-    #
-    def on_call(receiver, operator, name)
-      return Token::MethodToken.new(
-        :name     => name.value,
-        :line     => name.line,
-        :column   => name.column,
-        :receiver => receiver,
-        :operator => operator,
-        :code     => code(name.line)
+      return Node.new(
+        :method,
+        [name, params],
+        :line   => name.line,
+        :column => name.column
       )
     end
 
     ##
-    # Called when a method was invoked on an object without using parenthesis.
+    # Called when a method is called with a set of parameters.
     #
-    # @see RubyLint::Parser#on_call
-    # @param  [Array] params The parameters passed to the method.
-    # @return [RubyLint::Token::MethodToken]
+    # @param  [RubyLint::Node] name The name of the method.
+    # @param  [Array] params Array of parameters passed to the method.
+    # @return [RubyLint::Node]
     #
-    def on_command_call(receiver, operator, name, params)
-      return Token::MethodToken.new(
-        :name       => name.value,
-        :line       => name.line,
-        :column     => name.column,
-        :receiver   => receiver,
-        :operator   => operator,
-        :parameters => params,
-        :code       => code(name.line)
-      )
+    def on_method_add_arg(name, params)
+      return name.updated(nil, [*name.children, params])
+    end
+
+    ##
+    # Called when a method is called with a block.
+    #
+    # @param  [RubyLint::Node] method The method node.
+    # @param  [RubyLint::Node] block The block passed to the method.
+    # @return [RubyLint::Node]
+    #
+    def on_method_add_block(method, block)
+      return method.updated(nil, [*method.children, block])
     end
 
     private
@@ -1412,11 +471,7 @@ module RubyLint
     # @return [Symbol]
     #
     def readable_type_name(type)
-      if TYPE_MAPPING[type]
-        return TYPE_MAPPING[type]
-      else
-        return type
-      end
+      return TYPE_MAPPING.fetch(type, type)
     end
   end # Parser
 end # RubyLint
