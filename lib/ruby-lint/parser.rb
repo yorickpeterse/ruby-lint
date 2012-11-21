@@ -62,7 +62,7 @@ module RubyLint
       :symbol_literal,
       :top_const_ref,
       :var_field,
-      :params
+      :paren
     ]
 
     ##
@@ -131,7 +131,7 @@ module RubyLint
       define_method("on_#{event}") do |node|
         return Node.new(
           :method,
-          [node],
+          [node.children[0]],
           :line   => node.line,
           :column => node.column
         )
@@ -364,7 +364,7 @@ module RubyLint
     def on_lambda(params, body)
       return Node.new(
         :lambda,
-        [params, body],
+        [params[0], body],
         :line   => lineno,
         :column => column
       )
@@ -380,7 +380,7 @@ module RubyLint
     def on_brace_block(params, body)
       return Node.new(
         :block,
-        [params, body.reject(&:nil?)],
+        [params[0], body.reject(&:nil?)],
         :line   => lineno,
         :column => column
       )
@@ -434,7 +434,24 @@ module RubyLint
     def on_command(name, params)
       return Node.new(
         :method,
-        [name, params],
+        [name.children[0], params],
+        :line   => name.line,
+        :column => name.column
+      )
+    end
+
+    ##
+    # Called when a method is invoked on an object.
+    #
+    # @param  [RubyLint::Node] object The object the method was invoked on.
+    # @param  [Symbol] operator The operator used for the method call.
+    # @param  [RubyLint::Node] name The name of the method.
+    # @return [RubyLint::Node]
+    #
+    def on_call(object, operator, name)
+      return Node.new(
+        :method,
+        [name.children[0], [], nil, object],
         :line   => name.line,
         :column => name.column
       )
@@ -443,12 +460,15 @@ module RubyLint
     ##
     # Called when a method is called with a set of parameters.
     #
-    # @param  [RubyLint::Node] name The name of the method.
+    # @param  [RubyLint::Node] method The method that is called.
     # @param  [Array] params Array of parameters passed to the method.
     # @return [RubyLint::Node]
     #
-    def on_method_add_arg(name, params)
-      return name.updated(nil, [*name.children, params])
+    def on_method_add_arg(method, params)
+      children    = method.children.dup
+      children[1] = params
+
+      return method.updated(nil, children)
     end
 
     ##
@@ -459,7 +479,87 @@ module RubyLint
     # @return [RubyLint::Node]
     #
     def on_method_add_block(method, block)
-      return method.updated(nil, [*method.children, block])
+      children    = method.children.dup
+      children[2] = block
+
+      return method.updated(nil, children)
+    end
+
+    ##
+    # Called when a method definition is found.
+    #
+    # @param  [RubyLint::Node] name The name of the method.
+    # @param  [Array] params The parameters of the method.
+    # @param  [Array] body The body of the method.
+    # @return [RubyLint::Node]
+    #
+    def on_def(name, params, body)
+      return Node.new(
+        :method_definition,
+        [name.children[0], params || [], body],
+        :line   => name.line,
+        :column => name.column
+      )
+    end
+
+    ##
+    # Called when a body statement (e.g. the body of a method definition) is
+    # found.
+    #
+    # @param  [Array] value The body of the statement.
+    # @param  [Array] resc_stmt Array of `rescue` statement.
+    # @param  [RubyLint::Node] else_stmt An optional `else` statement.
+    # @param  [RubyLint::Node] ensure_stmt An optional `ensure` statement.
+    # @return [RubyLint::Node]
+    #
+    def on_bodystmt(value, resc_stmt, else_stmt, ensure_stmt)
+      return Node.new(
+        :body,
+        [value.reject(&:nil?), resc_stmt, else_stmt, ensure_stmt] \
+          .reject(&:nil?),
+        :line   => lineno,
+        :column => column
+      )
+    end
+
+    ##
+    # Called when a method of method parameters is found.
+    #
+    # The order of parameters is the following:
+    #
+    # 1. required
+    # 2. optional
+    # 3. rest
+    # 4. more
+    # 5. block
+    #
+    # @param  [Array] params The specified parameters.
+    # @return [Array]
+    #
+    def on_params(*params)
+      params.map! do |group|
+        if group.is_a?(Node)
+          group.updated(:local_variable)
+
+        # Parameter types of which multiple ones can be specified (e.g.
+        # required parameters).
+        elsif group.is_a?(Array)
+          group.map do |param|
+            if param.is_a?(Node)
+              param.updated(:local_variable)
+
+            # Optional parameters are in the format of [parameter, value].
+            elsif param.is_a?(Array)
+              param[0].updated(
+                :local_variable,
+                [param[0].children[0], param[1]]
+              )
+            end
+          end
+        end
+      end
+
+      return params.reject(&:nil?)
     end
 
     private

@@ -4,7 +4,7 @@ describe 'Parsing Lambdas' do
   it 'Lambda created using the dash rocket syntax' do
     parse('-> example { example }').should == s(
       :lambda,
-      [s(:identifier, 'example')],
+      [s(:local_variable, 'example')],
       [s(:local_variable, 'example')]
     )
   end
