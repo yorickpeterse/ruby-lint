@@ -34,7 +34,7 @@ end
       s(:constant, 'Foo'),
       s(
         :body,
-        [s(:method_definition, 'example_method', [], s(:body, []))]
+        [s(:method_definition, 'example_method', [], nil, s(:body, []))]
       )
     )
   end

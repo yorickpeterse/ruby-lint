@@ -6,6 +6,7 @@ describe 'Parsing method definitions' do
       :method_definition,
       'example_method',
       [],
+      nil,
       s(:body, [s(:integer, '10')])
     )
   end
@@ -15,6 +16,7 @@ describe 'Parsing method definitions' do
       :method_definition,
       'example_method',
       [[s(:local_variable, 'name')]],
+      nil,
       s(:body, [s(:local_variable, 'name')])
     )
   end
@@ -27,6 +29,7 @@ describe 'Parsing method definitions' do
         [s(:local_variable, 'name')],
         [s(:local_variable, 'number', s(:integer, '10'))]
       ],
+      nil,
       s(:body, [s(:local_variable, 'name')])
     )
   end
@@ -46,6 +49,7 @@ end
         [s(:local_variable, 'number', s(:integer, '10'))],
         s(:local_variable, 'rest')
       ],
+      nil,
       s(:body, [s(:local_variable, 'name')])
     )
   end
@@ -67,7 +71,18 @@ end
         [s(:local_variable, 'more')],
         s(:local_variable, 'block')
       ],
+      nil,
       s(:body, [s(:local_variable, 'name')])
+    )
+  end
+
+  it 'Define a class method on a receiver' do
+    parse('def String.example_method; end').should == s(
+      :method_definition,
+      'example_method',
+      [],
+      s(:constant, 'String'),
+      s(:body, [])
     )
   end
 end

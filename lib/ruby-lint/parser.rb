@@ -511,7 +511,21 @@ module RubyLint
     def on_def(name, params, body)
       return Node.new(
         :method_definition,
-        [name.children[0], params || [], body],
+        [name.children[0], params || [], nil, body],
+        :line   => name.line,
+        :column => name.column
+      )
+    end
+
+    ##
+    # Called when a method definition using a receiver is found.
+    #
+    # @see RubyLint::Parser#on_def
+    #
+    def on_defs(receiver, operator, name, params, body)
+      return Node.new(
+        :method_definition,
+        [name.children[0], params || [], receiver, body],
         :line   => name.line,
         :column => name.column
       )

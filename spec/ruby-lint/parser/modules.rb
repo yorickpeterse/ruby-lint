@@ -21,7 +21,7 @@ end
     parse(code).should == s(
       :module,
       s(:constant, 'Example'),
-      s(:body, [s(:method_definition, 'example_method', [], s(:body, []))])
+      s(:body, [s(:method_definition, 'example_method', [], nil, s(:body, []))])
     )
   end
 
