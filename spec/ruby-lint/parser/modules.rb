@@ -48,4 +48,12 @@ end
       s(:body, [])
     )
   end
+
+  it 'Module with the name as a top level constant' do
+    parse('module ::Foo; end').should == s(
+      :module,
+      s(:constant, 'Foo'),
+      s(:body, [])
+    )
+  end
 end

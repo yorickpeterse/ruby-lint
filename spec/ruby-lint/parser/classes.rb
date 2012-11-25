@@ -64,4 +64,13 @@ end
       s(:body, [])
     )
   end
+
+  it 'Class with the name as a top level constant' do
+    parse('class ::A; end').should == s(
+      :class,
+      s(:constant, 'A'),
+      nil,
+      s(:body, [])
+    )
+  end
 end
