@@ -594,6 +594,22 @@ module RubyLint
       )
     end
 
+    ##
+    # Called when a module definition is found.
+    #
+    # @param  [RubyLint::Node] name The name of the module.
+    # @param  [RubyLint::Node] body The body of the module.
+    # @return [RubyLint::Node]
+    #
+    def on_module(name, body)
+      return Node.new(
+        :module,
+        [name, body],
+        :line   => name.line,
+        :column => name.column
+      )
+    end
+
     private
 
     ##
