@@ -427,6 +427,21 @@ module RubyLint
     end
 
     ##
+    # Called when a constant path (e.g. `Foo::Bar`) is found.
+    #
+    # @param  [Array] segments The segments of the constant path.
+    # @return [RubyLint::Node]
+    #
+    def on_const_path_ref(*segments)
+      return Node.new(
+        :constant_path,
+        segments,
+        :line   => lineno,
+        :column => column
+      )
+    end
+
+    ##
     # Called when a method without parenthesis is called.
     #
     # @see RubyLint::Parser#on_method_add_arg
@@ -560,6 +575,23 @@ module RubyLint
       end
 
       return params.reject(&:nil?)
+    end
+
+    ##
+    # Called when a class definition is found.
+    #
+    # @param  [RubyLint::Node] name The name of the class.
+    # @param  [RubyLint::Node] parent The name of the parent class.
+    # @param  [RubyLint::Node] body The body of the class.
+    # @return [RubyLint::Node]
+    #
+    def on_class(name, parent, body)
+      return Node.new(
+        :class,
+        [name, parent, body],
+        :line   => name.line,
+        :column => name.column
+      )
     end
 
     private
