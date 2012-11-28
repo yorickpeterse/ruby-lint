@@ -110,4 +110,12 @@ describe 'Parsing method calls' do
       s(:constant, 'String')
     )
   end
+
+  it 'Call a method with a Hash as the parameter' do
+    parse('foo(:name => "Ruby")').should == s(
+      :method,
+      'foo',
+      [s(:hash, s(:key_value, s(:symbol, 'name'), s(:string, 'Ruby')))]
+    )
+  end
 end
