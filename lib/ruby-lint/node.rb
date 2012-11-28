@@ -20,5 +20,14 @@ module RubyLint
     # @return [Fixnum]
     #
     attr_reader :column
+
+    ##
+    # Checks if the type of the node is an identifier.
+    #
+    # @return [TrueClass|FalseClass]
+    #
+    def identifier?
+      return @type == :identifier
+    end
   end # Node
 end # RubyLint

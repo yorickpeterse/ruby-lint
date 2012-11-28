@@ -380,7 +380,7 @@ module RubyLint
     def on_brace_block(params, body)
       return Node.new(
         :block,
-        [params[0], body.reject(&:nil?)],
+        [params[0], body.compact],
         :line   => lineno,
         :column => column
       )
@@ -396,6 +396,26 @@ module RubyLint
     end
 
     ##
+    # Called when a variable is assigned to a start (`*`).
+    #
+    # @param [Array|RubyLint::Node] left The variable(s) to the left of the
+    #  star.
+    # @param [Array|RubyLint::Node] right The variable(s) to the right of the
+    #  star.
+    # @return [RubyLint::Node]
+    #
+    def on_mlhs_add_star(left, right)
+      if right
+        left << right.updated(nil, [*right.children, true])
+      # Add a placeholder for the expander token.
+      else
+        left << nil
+      end
+
+      return left
+    end
+
+    ##
     # Called when a value is assigned to a variable, array index, hash key or
     # object member.
     #
@@ -404,6 +424,8 @@ module RubyLint
     # @return [RubyLint::Node]
     #
     def on_assign(variable, value)
+      variable = variable.updated(:local_variable) if variable.identifier?
+
       return Node.new(
         :assign,
         [variable, value],
@@ -413,15 +435,90 @@ module RubyLint
     end
 
     ##
+    # Called when a conditional assignment is found.
+    #
+    # @see RubyLint::Parser#on_assign
+    #
+    def on_opassign(variable, operator, value)
+      return on_assign(variable, value).updated(:op_assign)
+    end
+
+    ##
+    # Called when multiple variables are assigned at the same time.
+    #
+    # @param  [Array] variables The variables that are being assigned.
+    # @param  [Array|RubyLint::Node] values The values to assign.
+    # @return [RubyLint::Node]
+    #
+    def on_massign(variables, values)
+      nodes     = []
+      variables = variables.flatten
+      before    = 0
+
+      if values.is_a?(Node) and values.type == :array
+        values = values.children.dup
+      elsif !values.is_a?(Array)
+        values = [values]
+      end
+
+      var_length = variables.length
+      val_length = values.length
+
+      variables.each_with_index do |variable, index|
+        if !variable
+          values.shift
+          next
+        end
+
+        variable = variable.updated(:local_variable) if variable.identifier?
+
+        # If an expander is found the index for the value to assign to the
+        # *next* variable should be determined. The value for expander will be
+        # assigned later on.
+        if variable.children[1]
+          slice_length = val_length - (var_length - 1)
+
+          value = Node.new(
+            :array,
+            values.slice!(index - before, slice_length),
+            :line   => variable.line,
+            :column => variable.column
+          )
+
+          variable = variable.updated(nil, [variable.children[0]])
+        else
+          before += 1
+          value   = values.shift
+        end
+
+        unless value
+          value = Node.new(
+            :keyword,
+            ['nil'],
+            :line   => variable.line,
+            :column => variable.column
+          )
+        end
+
+        nodes << Node.new(
+          :assign,
+          [variable, value],
+          :line   => variable.line,
+          :column => variable.column
+        )
+      end
+
+      return Node.new(:mass_assign, nodes, :line => lineno, :column => column)
+    end
+
+    ##
     # Called when a variable is referenced.
     #
     # @param  [RubyLint::Node] variable The variable that was referenced.
     # @return [RubyLint::Node]
     #
     def on_var_ref(variable)
-      if variable.type == :identifier
-        variable = variable.updated(:local_variable, variable.children)
-      end
+      variable = variable.updated(:local_variable) if variable.identifier?
 
       return variable
     end
@@ -544,8 +641,7 @@ module RubyLint
     def on_bodystmt(value, resc_stmt, else_stmt, ensure_stmt)
       return Node.new(
         :body,
-        [value.reject(&:nil?), resc_stmt, else_stmt, ensure_stmt] \
-          .reject(&:nil?),
+        [value.compact, resc_stmt, else_stmt, ensure_stmt].compact,
         :line   => lineno,
         :column => column
       )
@@ -588,7 +684,7 @@ module RubyLint
         end
       end
 
-      return params.reject(&:nil?)
+      return params.compact
     end
 
     ##
