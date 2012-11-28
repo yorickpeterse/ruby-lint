@@ -472,9 +472,9 @@ module RubyLint
 
         variable = variable.updated(:local_variable) if variable.identifier?
 
-        # If an expander is found the index for the value to assign to the
-        # *next* variable should be determined. The value for expander will be
-        # assigned later on.
+        # Extract the values for the expander variable based on the amount of
+        # variables, values and the amount of variables that were assigned
+        # before the expander.
         if variable.children[1]
           slice_length = val_length - (var_length - 1)
 
@@ -717,6 +717,39 @@ module RubyLint
         [name, body],
         :line   => name.line,
         :column => name.column
+      )
+    end
+
+    ##
+    # Called when a binary operation is found.
+    #
+    # @param  [RubyLint::Node] left The node to the left of the operator.
+    # @param  [Symbol] operator The operator that is used.
+    # @param  [RubyLint::Node] right The node to the right of the operator.
+    # @return [RubyLint::Node]
+    #
+    def on_binary(left, operator, right)
+      return Node.new(
+        :binary,
+        [left, operator, right],
+        :line   => left.line,
+        :column => left.column
+      )
+    end
+
+    ##
+    # Called when an unary operation is found.
+    #
+    # @param  [Symbol] operator The operator that is being used.
+    # @param  [RubyLint::Node] right The node to the right of the operator.
+    # @return [RubyLint::Node]
+    #
+    def on_unary(operator, right)
+      return Node.new(
+        :unary,
+        [operator, right],
+        :line   => right.line,
+        :column => right.column
       )
     end
 
