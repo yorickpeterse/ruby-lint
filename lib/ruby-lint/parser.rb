@@ -753,6 +753,88 @@ module RubyLint
       )
     end
 
+    ##
+    # Called when an if statement is found.
+    #
+    # @param [RubyLint::Node] statement The statement to evaluate.
+    # @param [Array] body The body of the if statement.
+    # @param [Array|NilClass] rest The rest of the statement, includes the
+    #  elsif and else statements.
+    # @return [RubyLint::Node]
+    #
+    def on_if(statement, body, rest = [])
+      elsif_stmts = []
+      else_stmt   = nil
+
+      rest.each do |node|
+        if node.type == :else
+          else_stmt = node
+        else
+          elsif_stmts << node
+        end
+      end
+
+      return Node.new(
+        :if,
+        [statement, body, elsif_stmts.reverse, else_stmt],
+        :line   => statement.line,
+        :column => statement.column
+      )
+    end
+
+    ##
+    # Called when an if modifier statement (a single line if statement) is
+    # found.
+    #
+    # @see RubyLint::Parser#on_if
+    #
+    def on_if_mod(statement, body)
+      body = [body] unless body.is_a?(Array)
+
+      return on_if(statement, body)
+    end
+
+    ##
+    # Called when a return statement is found.
+    #
+    # @param [Array] values The values to return.
+    # @return [RubyLint::Node]
+    #
+    def on_return(values)
+      return Node.new(:return, values, :line => lineno, :column => column)
+    end
+
+    ##
+    # Called when an else statement is found.
+    #
+    # @param  [Array] body The body of the else statement.
+    # @return [RubyLint::Node]
+    #
+    def on_else(body)
+      return Node.new(:else, body, :line => lineno, :column => column)
+    end
+
+    ##
+    # Called when an elsif statement is found.
+    #
+    # @param  [RubyLint::Node] statement The statement to evaluate.
+    # @param  [Array] body The body of the statement.
+    # @param  [Array] list Array containing the rest of the if statement.
+    # @return [RubyLint::Node]
+    #
+    def on_elsif(statement, body, list)
+      node = Node.new(
+        :elsif,
+        [statement, body],
+        :line   => statement.line,
+        :column => statement.column
+      )
+
+      list = [list] unless list.is_a?(Array)
+
+      list << node
+    end
+
     private
 
     ##
