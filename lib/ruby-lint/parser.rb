@@ -147,9 +147,6 @@ module RubyLint
 =end
 
     ##
-    # Creates a new instance of the parser and pre-defines various instance
-    # variables.
-    #
     # @see Ripper::SexpBuilderPP#initialize
     #
     def initialize(code, file = '(ruby-lint)', line = 1)
@@ -197,8 +194,6 @@ module RubyLint
     end
 
     ##
-    # Called when a String is found.
-    #
     # @param  [Array] content The contents of the string.
     # @return [RubyLint::Node]
     #
@@ -222,8 +217,6 @@ module RubyLint
     end
 
     ##
-    # Called when an expression is embedded in a string.
-    #
     # @param  [Array] exp The embedded expressions.
     # @return [RubyLint::Node]
     #
@@ -232,8 +225,6 @@ module RubyLint
     end
 
     ##
-    # Called when an array is found.
-    #
     # @param  [Array] values The values of the array.
     # @return [RubyLint::Node]
     #
@@ -271,9 +262,7 @@ module RubyLint
     end
 
     ##
-    # Called when a Hash is found.
-    #
-    # @param  [Array] pairs An array of key/value pairs of the hash.
+    # @param [Array] pairs An array of key/value pairs of the hash.
     # @return [RubyLint::Node]
     #
     def on_hash(pairs)
@@ -293,8 +282,8 @@ module RubyLint
     ##
     # Called when a new key/value pair of a Hash is found.
     #
-    # @param  [RubyLint::Node] key The key of the pair.
-    # @param  [RubyLint::Node] value The value of the pair.
+    # @param [RubyLint::Node] key The key of the pair.
+    # @param [RubyLint::Node] value The value of the pair.
     # @return [RubyLint::Node]
     #
     def on_assoc_new(key, value)
@@ -307,8 +296,6 @@ module RubyLint
     end
 
     ##
-    # Called when a Range is found.
-    #
     # @param  [RubyLint::Node] start The start value of the range.
     # @param  [RubyLint::Node] stop The end value of the range.
     # @return [RubyLint::Node]
@@ -323,8 +310,6 @@ module RubyLint
     end
 
     ##
-    # Called when a range using 3 dots is found.
-    #
     # @see RubyLint::Parser#on_dot2
     #
     def on_dot3(start, stop)
@@ -337,8 +322,6 @@ module RubyLint
     end
 
     ##
-    # Called when a regular expression is found.
-    #
     # @param  [Array] regexp Array containing the regular expression's body.
     # @return [RubyLint::Node] mode The mode for the regular expression.
     # @return [RubyLint::Node]
@@ -355,8 +338,6 @@ module RubyLint
     end
 
     ##
-    # Called when a lambda is found.
-    #
     # @param  [Array] params The parameters of the lamda.
     # @param  [Array] body The body of the lambda.
     # @return [RubyLint::Node]
@@ -371,8 +352,6 @@ module RubyLint
     end
 
     ##
-    # Called when a block was created using curly braces.
-    #
     # @param  [Array] params The parameters of the block.
     # @param  [Array] body The body of the block.
     # @return [RubyLint::Node]
@@ -387,8 +366,6 @@ module RubyLint
     end
 
     ##
-    # Called when a block was created using `do/end`.
-    #
     # @see RubyLint::Parser#on_brace_block
     #
     def on_do_block(params, body)
@@ -416,11 +393,8 @@ module RubyLint
     end
 
     ##
-    # Called when a value is assigned to a variable, array index, hash key or
-    # object member.
-    #
-    # @param  [RubyLint::Node] assigned The data to assign the value to.
-    # @param  [RubyLint::Node] value The value to assign.
+    # @param [RubyLint::Node] assigned The data to assign the value to.
+    # @param [RubyLint::Node] value The value to assign.
     # @return [RubyLint::Node]
     #
     def on_assign(variable, value)
@@ -444,10 +418,8 @@ module RubyLint
     end
 
     ##
-    # Called when multiple variables are assigned at the same time.
-    #
-    # @param  [Array] variables The variables that are being assigned.
-    # @param  [Array|RubyLint::Node] values The values to assign.
+    # @param [Array] variables The variables that are being assigned.
+    # @param [Array|RubyLint::Node] values The values to assign.
     # @return [RubyLint::Node]
     #
     def on_massign(variables, values)
@@ -512,8 +484,6 @@ module RubyLint
     end
 
     ##
-    # Called when a variable is referenced.
-    #
     # @param  [RubyLint::Node] variable The variable that was referenced.
     # @return [RubyLint::Node]
     #
@@ -524,8 +494,6 @@ module RubyLint
     end
 
     ##
-    # Called when a constant path (e.g. `Foo::Bar`) is found.
-    #
     # @param  [Array] segments The segments of the constant path.
     # @return [RubyLint::Node]
     #
@@ -570,8 +538,6 @@ module RubyLint
     end
 
     ##
-    # Called when a method is called with a set of parameters.
-    #
     # @param  [RubyLint::Node] method The method that is called.
     # @param  [Array] params Array of parameters passed to the method.
     # @return [RubyLint::Node]
@@ -584,8 +550,6 @@ module RubyLint
     end
 
     ##
-    # Called when a method is called with a block.
-    #
     # @param  [RubyLint::Node] method The method node.
     # @param  [RubyLint::Node] block The block passed to the method.
     # @return [RubyLint::Node]
@@ -598,8 +562,6 @@ module RubyLint
     end
 
     ##
-    # Called when a method definition is found.
-    #
     # @param  [RubyLint::Node] name The name of the method.
     # @param  [Array] params The parameters of the method.
     # @param  [Array] body The body of the method.
@@ -629,13 +591,10 @@ module RubyLint
     end
 
     ##
-    # Called when a body statement (e.g. the body of a method definition) is
-    # found.
-    #
-    # @param  [Array] value The body of the statement.
-    # @param  [Array] resc_stmt Array of `rescue` statement.
-    # @param  [RubyLint::Node] else_stmt An optional `else` statement.
-    # @param  [RubyLint::Node] ensure_stmt An optional `ensure` statement.
+    # @param [Array] value The body of the statement.
+    # @param [Array] resc_stmt Array of `rescue` statement.
+    # @param [RubyLint::Node] else_stmt An optional `else` statement.
+    # @param [RubyLint::Node] ensure_stmt An optional `ensure` statement.
     # @return [RubyLint::Node]
     #
     def on_bodystmt(value, resc_stmt, else_stmt, ensure_stmt)
@@ -648,7 +607,7 @@ module RubyLint
     end
 
     ##
-    # Called when a method of method parameters is found.
+    # Called when a set of method parameters if found.
     #
     # The order of parameters is the following:
     #
@@ -688,11 +647,9 @@ module RubyLint
     end
 
     ##
-    # Called when a class definition is found.
-    #
-    # @param  [RubyLint::Node] name The name of the class.
-    # @param  [RubyLint::Node] parent The name of the parent class.
-    # @param  [RubyLint::Node] body The body of the class.
+    # @param [RubyLint::Node] name The name of the class.
+    # @param [RubyLint::Node] parent The name of the parent class.
+    # @param [RubyLint::Node] body The body of the class.
     # @return [RubyLint::Node]
     #
     def on_class(name, parent, body)
@@ -705,10 +662,8 @@ module RubyLint
     end
 
     ##
-    # Called when a module definition is found.
-    #
-    # @param  [RubyLint::Node] name The name of the module.
-    # @param  [RubyLint::Node] body The body of the module.
+    # @param [RubyLint::Node] name The name of the module.
+    # @param [RubyLint::Node] body The body of the module.
     # @return [RubyLint::Node]
     #
     def on_module(name, body)
@@ -721,11 +676,9 @@ module RubyLint
     end
 
     ##
-    # Called when a binary operation is found.
-    #
-    # @param  [RubyLint::Node] left The node to the left of the operator.
-    # @param  [Symbol] operator The operator that is used.
-    # @param  [RubyLint::Node] right The node to the right of the operator.
+    # @param [RubyLint::Node] left The node to the left of the operator.
+    # @param [Symbol] operator The operator that is used.
+    # @param [RubyLint::Node] right The node to the right of the operator.
     # @return [RubyLint::Node]
     #
     def on_binary(left, operator, right)
@@ -738,10 +691,8 @@ module RubyLint
     end
 
     ##
-    # Called when an unary operation is found.
-    #
-    # @param  [Symbol] operator The operator that is being used.
-    # @param  [RubyLint::Node] right The node to the right of the operator.
+    # @param [Symbol] operator The operator that is being used.
+    # @param [RubyLint::Node] right The node to the right of the operator.
     # @return [RubyLint::Node]
     #
     def on_unary(operator, right)
@@ -754,8 +705,6 @@ module RubyLint
     end
 
     ##
-    # Called when an if statement is found.
-    #
     # @param [RubyLint::Node] statement The statement to evaluate.
     # @param [Array] body The body of the if statement.
     # @param [Array|NilClass] rest The rest of the statement, includes the
@@ -783,9 +732,6 @@ module RubyLint
     end
 
     ##
-    # Called when an if modifier statement (a single line if statement) is
-    # found.
-    #
     # @see RubyLint::Parser#on_if
     #
     def on_if_mod(statement, body)
@@ -795,8 +741,6 @@ module RubyLint
     end
 
     ##
-    # Called when a return statement is found.
-    #
     # @param [Array] values The values to return.
     # @return [RubyLint::Node]
     #
@@ -805,8 +749,6 @@ module RubyLint
     end
 
     ##
-    # Called when an else statement is found.
-    #
     # @param  [Array] body The body of the else statement.
     # @return [RubyLint::Node]
     #
@@ -815,11 +757,9 @@ module RubyLint
     end
 
     ##
-    # Called when an elsif statement is found.
-    #
-    # @param  [RubyLint::Node] statement The statement to evaluate.
-    # @param  [Array] body The body of the statement.
-    # @param  [Array] list Array containing the rest of the if statement.
+    # @param [RubyLint::Node] statement The statement to evaluate.
+    # @param [Array] body The body of the statement.
+    # @param [Array] list Array containing the rest of the if statement.
     # @return [RubyLint::Node]
     #
     def on_elsif(statement, body, list)
@@ -833,6 +773,87 @@ module RubyLint
       list = [list] unless list.is_a?(Array)
 
       list << node
+    end
+
+    ##
+    # @param [RubyLint::Node] statement The statement to evaluate.
+    # @param [Array] body The body of the statement.
+    # @param [RubyLint::Node|NilClass] else_stmt An optional else statement.
+    # @return [RubyLint::Node]
+    #
+    def on_unless(statement, body, else_stmt = nil)
+      return Node.new(
+        :unless,
+        [statement, body, else_stmt],
+        :line   => statement.line,
+        :column => statement.column
+      )
+    end
+
+    ##
+    # @see RubyLint::Parser#on_unless
+    #
+    def on_unless_mod(statement, body)
+      body = [body] unless body.is_a?(Array)
+
+      return on_unless(statement, body)
+    end
+
+    ##
+    # @param [RubyLint::Node] statement The statement to evaluate.
+    # @param [Array] body The body of the statement
+    # @return [RubyLint::Node]
+    #
+    def on_until(statement, body)
+      return Node.new(
+        :until,
+        [statement, body],
+        :line   => statement.line,
+        :column => statement.column
+      )
+    end
+
+    ##
+    # @see RubyLint::Parser#on_until
+    #
+    def on_until_mod(statement, body)
+      body = [body] unless body.is_a?(Array)
+
+      return on_until(statement, body)
+    end
+
+    def on_while(statement, body)
+      return Node.new(
+        :while,
+        [statement, body],
+        :line   => statement.line,
+        :column => statement.column
+      )
+    end
+
+    def on_while_mod(statement, body)
+      body = [body] unless body.is_a?(Array)
+
+      return on_while(statement, body)
+    end
+
+    ##
+    # @param [Array|RubyLint::Node] variables The variables to create for each
+    #  iteration.
+    # @param [RubyLint::Node] enumerator The value to iterate over.
+    # @param [Array] body The body of the statement.
+    # @return [RubyLint::Node]
+    #
+    def on_for(variables, enumerator, body)
+      variables = [variables] unless variables.is_a?(Array)
+      variables.map! { |n| n.updated(:local_variable) if n.identifier? }
+
+      return Node.new(
+        :for,
+        [variables, enumerator, body],
+        :line   => variables[0].line,
+        :column => variables[0].column
+      )
     end
 
     private
