@@ -1,26 +1,13 @@
 module RubyLint
   ##
-  # {RubyLint::Parser} uses Ripper to parse Ruby source code and turn it into
-  # an AST. Instead of returning arrays (the Ripper default) this class uses
-  # the various token classes such as {RubyLint::Token::Token} and
-  # {RubyLint::Token::VariableToken}. It also takes care of a few more things
-  # such as saving the associated line of code and setting method visibility.
+  # {RubyLint::Parser} parses Ruby code and returns a clean and usable AST
+  # instead of the rather raw AST returned by Ripper itself. Each node in the
+  # AST is an instance of {RubyLint::Node}.
   #
-  # Parsing Ruby code requires two steps:
+  # ## Example
   #
-  # 1. Create a new instance of this class and pass a string containing source
-  #    code to the constructor method.
-  # 2. Call the method {RubyLint::Parser#parse} and do something with the
-  #    returned AST.
-  #
-  # For example, to parse a simple "Hello World" example you'd use this parser
-  # as following:
-  #
-  #     require 'pp'
-  #
-  #     parser = RubyLint::Parser.new('puts "Hello, world!"')
-  #
-  #     pp parser.parse
+  #     RubyLint::Parser.new('[10, 20]').parse
+  #       # => (root (array (integer "10") (integer "20")))
   #
   class Parser < Ripper::SexpBuilderPP
     ##
@@ -66,13 +53,6 @@ module RubyLint
     ]
 
     ##
-    # Array of events of which the callback method should simply return nil.
-    #
-    # @return [Array]
-    #
-    RETURN_NIL_EVENTS = [:void_stmt]
-
-    ##
     # Array of event names that should return an instance of
     # {RubyLint::Token::MethodToken}.
     #
@@ -81,8 +61,8 @@ module RubyLint
     RETURN_METHOD_EVENTS = [:fcall, :vcall]
 
     ##
-    # Hash containing the names of various event callbacks that should return
-    # a token class containing details about a single line statement.
+    # List of modified statements, used to dynamically define the callback
+    # methods.
     #
     # @return [Hash]
     #
@@ -94,19 +74,60 @@ module RubyLint
     }
 
     ##
-    # Array containing the three method calls that set the visibility of a
-    # method.
+    # Collection of Ripper events of which the callbacks all share similar
+    # code. The corresponding methods are defined on the fly.
+    #
+    # @return [Hash]
+    #
+    BASIC_EVENTS = {
+      :bodystmt       => :body,
+      :class          => :class,
+      :module         => :module,
+      :binary         => :binary,
+      :unary          => :unary,
+      :return         => :return,
+      :else           => :else,
+      :unless         => :unless,
+      :until          => :until,
+      :while          => :while,
+      :const_path_ref => :constant_path,
+      :dot2           => :dot2,
+      :dot3           => :dot3,
+      :assoc_new      => :key_value,
+      :hash           => :hash,
+      :aref           => :aref,
+      :string_concat  => :string_concat,
+      :string_embexpr => :embed
+    }
+
+    ##
+    # Hash containing various Ripper event names and the methods these events
+    # should execute.
+    #
+    # @return [Hash]
+    #
+    EVENT_ALIASES = {
+      :dyna_symbol     => :on_symbol,
+      :aref_field      => :on_aref,
+      :bare_assoc_hash => :on_hash,
+      :do_block        => :on_brace_block
+    }
+
+    ##
+    # Array of events (the ones used by ruby-lint) of which the child nodes
+    # should be stripped of `nil` values.
     #
     # @return [Array]
     #
-    METHOD_VISIBILITY = ['public', 'protected', 'private']
+    COMPACT_EVENT_ARGS = [:body, :unless]
 
     ##
-    # Symbol containing the default method visibility.
+    # Array of events of which the first callback parameter should be used for
+    # the child nodes of a callback.
     #
-    # @return [Symbol]
+    # @return [Array]
     #
-    DEFAULT_VISIBILITY = :public
+    UNPACK_EVENT_ARGS = [:return, :else, :hash, :embed]
 
     SCANNER_EVENTS.each do |type|
       define_method("on_#{type}") do |value|
@@ -123,10 +144,6 @@ module RubyLint
       define_method("on_#{event}") { |*args| return args[0] }
     end
 
-    RETURN_NIL_EVENTS.each do |event|
-      define_method("on_#{event}") { |*args| return nil }
-    end
-
     RETURN_METHOD_EVENTS.each do |event|
       define_method("on_#{event}") do |node|
         return Node.new(
@@ -138,22 +155,37 @@ module RubyLint
       end
     end
 
-=begin
-    MOD_STATEMENT_EVENTS.each do |ripper_event, ruby_lint_event|
-      define_method("on_#{ripper_event}") do |statement, value|
+    BASIC_EVENTS.each do |original, new|
+      define_method("on_#{original}") do |*args|
+        if COMPACT_EVENT_ARGS.include?(new)
+          args = args.map { |arg| arg.compact rescue arg }.compact
+        end
 
+        args = args[0] if UNPACK_EVENT_ARGS.include?(new)
+
+        return Node.new(new, args, :line => lineno, :column => column)
       end
     end
-=end
+
+    MOD_STATEMENT_EVENTS.each do |mod, normal|
+      define_method("on_#{mod}") do |statement, value|
+        value = [value] unless value.is_a?(Array)
+
+        return send("on_#{normal}", statement, value)
+      end
+    end
+
+    EVENT_ALIASES.each do |event, method|
+      define_method("on_#{event}") do |*args|
+        return send(method, *args)
+      end
+    end
 
     ##
-    # @see Ripper::SexpBuilderPP#initialize
+    # @return [NilClass]
     #
-    def initialize(code, file = '(ruby-lint)', line = 1)
-      super
-
-      @file       = file
-      @visibility = DEFAULT_VISIBILITY
+    def on_void_stmt
+      return nil
     end
 
     ##
@@ -185,43 +217,11 @@ module RubyLint
     end
 
     ##
-    # Called when a symbol using quotes was found.
-    #
-    # @see RubyLint::Parser#on_symbol
-    #
-    def on_dyna_symbol(node)
-      return on_symbol(node)
-    end
-
-    ##
     # @param  [Array] content The contents of the string.
     # @return [RubyLint::Node]
     #
     def on_string_literal(content)
       return content[1]
-    end
-
-    ##
-    # Called when a string is concatenated using a backslash.
-    #
-    # @param  [Array] strings The strings being concatenated.
-    # @return [RubyLint::Node]
-    #
-    def on_string_concat(*strings)
-      return Node.new(
-        :string_concat,
-        strings,
-        :line   => lineno,
-        :column => column
-      )
-    end
-
-    ##
-    # @param  [Array] exp The embedded expressions.
-    # @return [RubyLint::Node]
-    #
-    def on_string_embexpr(exp)
-      return Node.new(:embed, exp, :line => lineno, :column => column)
     end
 
     ##
@@ -236,104 +236,16 @@ module RubyLint
     end
 
     ##
-    # Called when a reference to a particular Array index or Hash key is
-    # found.
-    #
-    # @param  [RubyLint::Node] object The object that was accessed.
-    # @param  [Array] indexes The indexes/keys that were accessed.
-    # @return [RubyLint::Node]
-    #
-    def on_aref(object, indexes)
-      return Node.new(
-        :aref,
-        [object, indexes],
-        :line   => object.line,
-        :column => object.column
-      )
-    end
-
-    ##
-    # Called when a value is assigned to an array index.
-    #
-    # @see RubyLint::Parser#on_aref
-    #
-    def on_aref_field(array, indexes)
-      return on_aref(array, indexes)
-    end
-
-    ##
-    # @param [Array] pairs An array of key/value pairs of the hash.
-    # @return [RubyLint::Node]
-    #
-    def on_hash(pairs)
-      return Node.new(:hash, pairs, :line => lineno, :column => column)
-    end
-
-    ##
-    # Called when a bare Hash is found. A bare Hash is a hash that's declared
-    # without the curly braces.
-    #
-    # @see RubyLint::Parser#on_hash
-    #
-    def on_bare_assoc_hash(pairs)
-      return on_hash(pairs)
-    end
-
-    ##
-    # Called when a new key/value pair of a Hash is found.
-    #
-    # @param [RubyLint::Node] key The key of the pair.
-    # @param [RubyLint::Node] value The value of the pair.
-    # @return [RubyLint::Node]
-    #
-    def on_assoc_new(key, value)
-      return Node.new(
-        :key_value,
-        [key, value],
-        :line   => lineno,
-        :column => column
-      )
-    end
-
-    ##
-    # @param  [RubyLint::Node] start The start value of the range.
-    # @param  [RubyLint::Node] stop The end value of the range.
-    # @return [RubyLint::Node]
-    #
-    def on_dot2(start, stop)
-      return Node.new(
-        :dot2,
-        [start, stop],
-        :line   => start.line,
-        :column => start.column
-      )
-    end
-
-    ##
-    # @see RubyLint::Parser#on_dot2
-    #
-    def on_dot3(start, stop)
-      return Node.new(
-        :dot3,
-        [start, stop],
-        :line   => start.line,
-        :column => start.column
-      )
-    end
-
-    ##
     # @param  [Array] regexp Array containing the regular expression's body.
     # @return [RubyLint::Node] mode The mode for the regular expression.
     # @return [RubyLint::Node]
     #
     def on_regexp_literal(regexp, mode)
-      regexp = regexp[0]
-
       return Node.new(
         :regexp,
-        [regexp, mode],
-        :line   => regexp.line,
-        :column => regexp.column
+        [regexp[0], mode],
+        :line   => lineno,
+        :column => column
       )
     end
 
@@ -363,13 +275,6 @@ module RubyLint
         :line   => lineno,
         :column => column
       )
-    end
-
-    ##
-    # @see RubyLint::Parser#on_brace_block
-    #
-    def on_do_block(params, body)
-      return on_brace_block(params, body)
     end
 
     ##
@@ -494,19 +399,6 @@ module RubyLint
     end
 
     ##
-    # @param  [Array] segments The segments of the constant path.
-    # @return [RubyLint::Node]
-    #
-    def on_const_path_ref(*segments)
-      return Node.new(
-        :constant_path,
-        segments,
-        :line   => lineno,
-        :column => column
-      )
-    end
-
-    ##
     # Called when a method without parenthesis is called.
     #
     # @see RubyLint::Parser#on_method_add_arg
@@ -591,22 +483,6 @@ module RubyLint
     end
 
     ##
-    # @param [Array] value The body of the statement.
-    # @param [Array] resc_stmt Array of `rescue` statement.
-    # @param [RubyLint::Node] else_stmt An optional `else` statement.
-    # @param [RubyLint::Node] ensure_stmt An optional `ensure` statement.
-    # @return [RubyLint::Node]
-    #
-    def on_bodystmt(value, resc_stmt, else_stmt, ensure_stmt)
-      return Node.new(
-        :body,
-        [value.compact, resc_stmt, else_stmt, ensure_stmt].compact,
-        :line   => lineno,
-        :column => column
-      )
-    end
-
-    ##
     # Called when a set of method parameters if found.
     #
     # The order of parameters is the following:
@@ -647,64 +523,6 @@ module RubyLint
     end
 
     ##
-    # @param [RubyLint::Node] name The name of the class.
-    # @param [RubyLint::Node] parent The name of the parent class.
-    # @param [RubyLint::Node] body The body of the class.
-    # @return [RubyLint::Node]
-    #
-    def on_class(name, parent, body)
-      return Node.new(
-        :class,
-        [name, parent, body],
-        :line   => name.line,
-        :column => name.column
-      )
-    end
-
-    ##
-    # @param [RubyLint::Node] name The name of the module.
-    # @param [RubyLint::Node] body The body of the module.
-    # @return [RubyLint::Node]
-    #
-    def on_module(name, body)
-      return Node.new(
-        :module,
-        [name, body],
-        :line   => name.line,
-        :column => name.column
-      )
-    end
-
-    ##
-    # @param [RubyLint::Node] left The node to the left of the operator.
-    # @param [Symbol] operator The operator that is used.
-    # @param [RubyLint::Node] right The node to the right of the operator.
-    # @return [RubyLint::Node]
-    #
-    def on_binary(left, operator, right)
-      return Node.new(
-        :binary,
-        [left, operator, right],
-        :line   => left.line,
-        :column => left.column
-      )
-    end
-
-    ##
-    # @param [Symbol] operator The operator that is being used.
-    # @param [RubyLint::Node] right The node to the right of the operator.
-    # @return [RubyLint::Node]
-    #
-    def on_unary(operator, right)
-      return Node.new(
-        :unary,
-        [operator, right],
-        :line   => right.line,
-        :column => right.column
-      )
-    end
-
-    ##
     # @param [RubyLint::Node] statement The statement to evaluate.
     # @param [Array] body The body of the if statement.
     # @param [Array|NilClass] rest The rest of the statement, includes the
@@ -732,31 +550,6 @@ module RubyLint
     end
 
     ##
-    # @see RubyLint::Parser#on_if
-    #
-    def on_if_mod(statement, body)
-      body = [body] unless body.is_a?(Array)
-
-      return on_if(statement, body)
-    end
-
-    ##
-    # @param [Array] values The values to return.
-    # @return [RubyLint::Node]
-    #
-    def on_return(values)
-      return Node.new(:return, values, :line => lineno, :column => column)
-    end
-
-    ##
-    # @param  [Array] body The body of the else statement.
-    # @return [RubyLint::Node]
-    #
-    def on_else(body)
-      return Node.new(:else, body, :line => lineno, :column => column)
-    end
-
-    ##
     # @param [RubyLint::Node] statement The statement to evaluate.
     # @param [Array] body The body of the statement.
     # @param [Array] list Array containing the rest of the if statement.
@@ -773,68 +566,6 @@ module RubyLint
       list = [list] unless list.is_a?(Array)
 
       list << node
-    end
-
-    ##
-    # @param [RubyLint::Node] statement The statement to evaluate.
-    # @param [Array] body The body of the statement.
-    # @param [RubyLint::Node|NilClass] else_stmt An optional else statement.
-    # @return [RubyLint::Node]
-    #
-    def on_unless(statement, body, else_stmt = nil)
-      return Node.new(
-        :unless,
-        [statement, body, else_stmt],
-        :line   => statement.line,
-        :column => statement.column
-      )
-    end
-
-    ##
-    # @see RubyLint::Parser#on_unless
-    #
-    def on_unless_mod(statement, body)
-      body = [body] unless body.is_a?(Array)
-
-      return on_unless(statement, body)
-    end
-
-    ##
-    # @param [RubyLint::Node] statement The statement to evaluate.
-    # @param [Array] body The body of the statement
-    # @return [RubyLint::Node]
-    #
-    def on_until(statement, body)
-      return Node.new(
-        :until,
-        [statement, body],
-        :line   => statement.line,
-        :column => statement.column
-      )
-    end
-
-    ##
-    # @see RubyLint::Parser#on_until
-    #
-    def on_until_mod(statement, body)
-      body = [body] unless body.is_a?(Array)
-
-      return on_until(statement, body)
-    end
-
-    def on_while(statement, body)
-      return Node.new(
-        :while,
-        [statement, body],
-        :line   => statement.line,
-        :column => statement.column
-      )
-    end
-
-    def on_while_mod(statement, body)
-      body = [body] unless body.is_a?(Array)
-
-      return on_while(statement, body)
     end
 
     ##

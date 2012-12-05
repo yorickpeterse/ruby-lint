@@ -11,8 +11,7 @@ end
     parse(code).should == s(
       :unless,
       s(:method, 'bar'),
-      [s(:method, 'foo')],
-      nil
+      [s(:method, 'foo')]
     )
   end
 
@@ -37,8 +36,7 @@ end
     parse('foo unless bar').should == s(
       :unless,
       s(:method, 'bar'),
-      [s(:method, 'foo')],
-      nil
+      [s(:method, 'foo')]
     )
   end
 end
