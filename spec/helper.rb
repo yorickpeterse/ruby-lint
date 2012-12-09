@@ -55,3 +55,18 @@ end
 def s(type, *children)
   return RubyLint::Node.new(type, children)
 end
+
+# Bacon's output is a bit annoying for the sexp output of RubyLint::Node. This
+# patch changes it to make it a lot easier to read.
+class Should
+  def method_missing(name, *args, &block)
+    name    = "#{name}?"  if name.to_s =~ /\w[^?]\z/
+    negated = @negated ? " not " : " "
+    desc    = ''
+
+    desc << "\n\nGot (using#{negated}#{name}):\n\n" << @object.inspect
+    desc << "\n\nExpected:\n\n" << args.map{|x|x.inspect}.join(", ") << "\n"
+
+    satisfy(desc) { |x| x.__send__(name, *args, &block) }
+  end
+end

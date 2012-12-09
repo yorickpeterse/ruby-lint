@@ -97,7 +97,9 @@ module RubyLint
       :hash           => :hash,
       :aref           => :aref,
       :string_concat  => :string_concat,
-      :string_embexpr => :embed
+      :string_embexpr => :embed,
+      :begin          => :begin,
+      :ensure         => :ensure
     }
 
     ##
@@ -127,7 +129,7 @@ module RubyLint
     #
     # @return [Array]
     #
-    UNPACK_EVENT_ARGS = [:return, :else, :hash, :embed]
+    UNPACK_EVENT_ARGS = [:return, :else, :hash, :embed, :ensure]
 
     SCANNER_EVENTS.each do |type|
       define_method("on_#{type}") do |value|
@@ -584,6 +586,48 @@ module RubyLint
         [variables, enumerator, body],
         :line   => variables[0].line,
         :column => variables[0].column
+      )
+    end
+
+    ##
+    # @param [Array] exceptions A list of exceptions to catch.
+    # @param [RubyLint::Variable|NilClass] variable The variable to store
+    #  information in about the exception.
+    # @param [Array] body The body of the statement.
+    # @param [Array] list Array containing all the rescue, else and ensure
+    #  statements.
+    # @return [RubyLint::Node]
+    #
+    def on_rescue(exceptions, variable, body, list)
+      list = list.is_a?(Array) ? list : [list].compact
+
+      if variable and variable.identifier?
+        variable = variable.updated(:local_variable)
+      end
+
+      list.unshift(
+        Node.new(
+          :rescue,
+          [nil, exceptions, variable, body],
+          :line   => lineno,
+          :column => column
+        )
+      )
+    end
+
+    ##
+    # @param [RubyLint::Node] statement The statement for which to catch
+    #  errors.
+    # @param [RubyLint::Node] body The code to execute when an error was
+    #  raised.
+    # @return [RubyLint::Node]
+    #
+    def on_rescue_mod(statement, body)
+      return Node.new(
+        :rescue,
+        [statement, nil, nil, body],
+        :line   => lineno,
+        :column => column
       )
     end
 
