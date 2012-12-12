@@ -7,4 +7,5 @@
 --protected
 --asset ./doc/css/common.css:css/common.css
 -
+./doc/*.md
 LICENSE
