@@ -1,7 +1,7 @@
 require File.expand_path('../../../../helper', __FILE__)
 
 describe 'Parsing until statements' do
-  it 'Parse a multi line until statement' do
+  should 'parse a multi line statement' do
     code = <<-CODE
 until foo
   bar
@@ -15,7 +15,7 @@ end
     )
   end
 
-  it 'Parse a single line until statement' do
+  should 'parse a single line statement' do
     parse('bar until foo').should == s(
       :until,
       s(:method, 'foo'),

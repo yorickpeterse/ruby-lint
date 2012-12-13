@@ -1,7 +1,7 @@
 require File.expand_path('../../../helper', __FILE__)
 
 describe 'Parsing class definitions' do
-  it 'Empty class without an explicitly defined parent class' do
+  should 'parse an empty class' do
     parse('class Example; end').should == s(
       :class,
       s(:constant, 'Example'),
@@ -10,7 +10,7 @@ describe 'Parsing class definitions' do
     )
   end
 
-  it 'Empty class with an explicitly defined parent class' do
+  should 'parse a class with a parent class' do
     parse('class Example < Foo; end').should == s(
       :class,
       s(:constant, 'Example'),
@@ -19,7 +19,7 @@ describe 'Parsing class definitions' do
     )
   end
 
-  it 'Class with a single, public method' do
+  should 'parse a class with a method' do
     code = <<-CODE
 class Example < Foo
   def example_method
@@ -39,7 +39,7 @@ end
     )
   end
 
-  it 'Class inside another class' do
+  should 'parse a class nested in another class' do
     code = <<-CODE
 class First
   class Second
@@ -56,7 +56,7 @@ end
     )
   end
 
-  it 'Class with a constant path as the name' do
+  should 'parse a class with the name as a constant path' do
     parse('class A::B < D::E; end').should == s(
       :class,
       s(:constant_path, s(:constant, 'A'), s(:constant, 'B')),
@@ -65,7 +65,7 @@ end
     )
   end
 
-  it 'Class with the name as a top level constant' do
+  should 'parse a class with a top level name' do
     parse('class ::A; end').should == s(
       :class,
       s(:constant, 'A'),

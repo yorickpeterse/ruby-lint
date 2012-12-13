@@ -1,7 +1,7 @@
 require File.expand_path('../../../../helper', __FILE__)
 
-describe 'Parsing of begin and rescue statements' do
-  it 'Parse a multi line begin/rescue statement' do
+describe 'Parsing begin/rescue statements' do
+  should 'parse a multi line statement' do
     code = <<-CODE
 begin
   rescue_body
@@ -37,7 +37,7 @@ end
     )
   end
 
-  it 'Parse a single line rescue statement' do
+  should 'parse a single line statement' do
     parse('foo rescue bar').should == s(
       :rescue,
       s(:method, 'foo'),

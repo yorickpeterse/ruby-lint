@@ -1,7 +1,7 @@
 require File.expand_path('../../../helper', __FILE__)
 
 describe 'Parsing module definitions' do
-  it 'Empty module' do
+  should 'parse an empty module' do
     parse('module Example; end').should == s(
       :module,
       s(:constant, 'Example'),
@@ -9,7 +9,7 @@ describe 'Parsing module definitions' do
     )
   end
 
-  it 'Module with a single, public method' do
+  should 'parse a module with a method' do
     code = <<-CODE
 module Example
   def example_method
@@ -25,7 +25,7 @@ end
     )
   end
 
-  it 'Module inside a module' do
+  should 'parse a nested module' do
     code = <<-CODE
 module A
   module B
@@ -41,7 +41,7 @@ end
     )
   end
 
-  it 'Module with a constant path as the name' do
+  should 'parse a module with a constant path as the name' do
     parse('module Foo::Bar; end').should == s(
       :module,
       s(:constant_path, s(:constant, 'Foo'), s(:constant, 'Bar')),
@@ -49,7 +49,7 @@ end
     )
   end
 
-  it 'Module with the name as a top level constant' do
+  should 'parse a module with a top level name' do
     parse('module ::Foo; end').should == s(
       :module,
       s(:constant, 'Foo'),

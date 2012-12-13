@@ -1,7 +1,7 @@
 require File.expand_path('../../../../helper', __FILE__)
 
 describe 'Parsing unless statements' do
-  it 'Parse a multi line unless statement' do
+  should 'parse a multi line statement' do
     code = <<-CODE
 unless bar
   foo
@@ -15,7 +15,7 @@ end
     )
   end
 
-  it 'Parse a multi line unless statement with an else statement' do
+  should 'parse a multi line statement with an else statement' do
     code = <<-CODE
 unless bar
   foo
@@ -32,7 +32,7 @@ end
     )
   end
 
-  it 'Parse a single line unless statement' do
+  should 'parse a single line statement' do
     parse('foo unless bar').should == s(
       :unless,
       s(:method, 'bar'),

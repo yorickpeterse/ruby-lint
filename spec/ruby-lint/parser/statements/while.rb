@@ -1,7 +1,7 @@
 require File.expand_path('../../../../helper', __FILE__)
 
 describe 'Parsing while statements' do
-  it 'Parse a multi line while statement' do
+  should 'parse a multi line statement' do
     code = <<-CODE
 while foo
   bar
@@ -15,7 +15,7 @@ end
     )
   end
 
-  it 'Parse a single line while statement' do
+  should 'parse a single line statement' do
     parse('bar while foo').should == s(
       :while,
       s(:method, 'foo'),

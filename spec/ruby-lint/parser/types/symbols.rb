@@ -1,15 +1,15 @@
 require File.expand_path('../../../../helper', __FILE__)
 
 describe 'Parsing Symbols' do
-  it 'Symbol without quotes' do
+  should 'parse a symbol without quotes' do
     parse(':hello').should == s(:symbol, 'hello')
   end
 
-  it 'Symbol with quotes' do
+  should 'parse a symbol with quotes' do
     parse(':"hello"').should == s(:symbol, 'hello')
   end
 
-  it 'Symbol with the name in the format of an instance variable' do
+  should 'parse an instance variable as the symbol name' do
     parse(':@name').should == s(:symbol, '@name')
   end
 end

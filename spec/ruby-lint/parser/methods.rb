@@ -1,11 +1,11 @@
 require File.expand_path('../../../helper', __FILE__)
 
 describe 'Parsing method calls' do
-  it 'Call a method without parameters' do
+  should 'parse a method without parameters' do
     parse('example').should == s(:method, 'example')
   end
 
-  it 'Call a method with two parameters' do
+  should 'parse a method with two parameters' do
     parse('example "foo", 10').should == s(
       :method,
       'example',
@@ -13,7 +13,7 @@ describe 'Parsing method calls' do
     )
   end
 
-  it 'Call a method with parenthesis and two parameters' do
+  should 'parse a method with parenthesis and two parameters' do
     parse('example("foo", 10)').should == s(
       :method,
       'example',
@@ -21,7 +21,7 @@ describe 'Parsing method calls' do
     )
   end
 
-  it 'Call proc with a block using curly braces' do
+  should 'parse a proc with a block using curly braces' do
     parse('proc { |example| example }').should == s(
       :method,
       'proc',
@@ -34,7 +34,7 @@ describe 'Parsing method calls' do
     )
   end
 
-  it 'Call proc with a block using do/end' do
+  should 'parse a proc with a block using do/end' do
     parse('proc do |example|; example; end').should == s(
       :method,
       'proc',
@@ -47,7 +47,7 @@ describe 'Parsing method calls' do
     )
   end
 
-  it 'Call lambda with a block using curly braces' do
+  should 'parse a lambda with a block using curly braces' do
     parse('lambda { |example| example }').should == s(
       :method,
       'lambda',
@@ -60,7 +60,7 @@ describe 'Parsing method calls' do
     )
   end
 
-  it 'Call a method with a parameter and a block' do
+  should 'parse a method with a parameter and a block' do
     parse('foo(10) { |name| name }').should == s(
       :method,
       'foo',
@@ -73,15 +73,15 @@ describe 'Parsing method calls' do
     )
   end
 
-  it 'Call a bang! method' do
+  should 'parse a bang! method' do
     parse('foo!').should == s(:method, 'foo!', [])
   end
 
-  it 'Call a predicate method' do
+  should 'parse a predicate method' do
     parse('foo?').should == s(:method, 'foo?', [])
   end
 
-  it 'Call a method on an object' do
+  should 'parse a method call on an object' do
     parse('String.new').should == s(
       :method,
       'new',
@@ -91,7 +91,7 @@ describe 'Parsing method calls' do
     )
   end
 
-  it 'Call a method on an object with a parameter' do
+  should 'parse a method call on an object with a parameter' do
     parse('String.new(10)').should == s(
       :method,
       'new',
@@ -101,7 +101,7 @@ describe 'Parsing method calls' do
     )
   end
 
-  it 'Call a method on an object with a parameter and without parenthesis' do
+  should 'parse a method call on an object without parenthesis' do
     parse('String.new 10').should == s(
       :method,
       'new',
@@ -111,7 +111,7 @@ describe 'Parsing method calls' do
     )
   end
 
-  it 'Call a method on an object with a parameter and a block' do
+  should 'parse a method call on an object with a parameter and a block' do
     parse('String.new(10) { |name| name }').should == s(
       :method,
       'new',
@@ -121,7 +121,7 @@ describe 'Parsing method calls' do
     )
   end
 
-  it 'Call a method with a Hash as the parameter' do
+  should 'parse a method call with a Hash as the parameter' do
     parse('foo(:name => "Ruby")').should == s(
       :method,
       'foo',

@@ -1,7 +1,7 @@
 require File.expand_path('../../../../helper', __FILE__)
 
 describe 'Parsing Hashes' do
-  it 'Hash with the keys as Strings' do
+  should 'parse a hash with the keys as strings' do
     parse('{"name" => "Ruby", "foo" => "Bar"}').should == s(
       :hash,
       s(:key_value, s(:string, 'name'), s(:string, 'Ruby')),
@@ -9,7 +9,7 @@ describe 'Parsing Hashes' do
     )
   end
 
-  it 'Hash with the keys as Symbols' do
+  should 'parse a hash with the keys as symbols' do
     parse('{:name => "Ruby", :foo => "Bar"}').should == s(
       :hash,
       s(:key_value, s(:symbol, 'name'), s(:string, 'Ruby')),
@@ -17,7 +17,7 @@ describe 'Parsing Hashes' do
     )
   end
 
-  it 'Hash with the keys as Symbols using the 1.9 syntax' do
+  should 'parse Ruby 1.9 key syntax' do
     parse('{name: "Ruby", foo: "Bar"}').should == s(
       :hash,
       s(:key_value, s(:symbol, 'name:'), s(:string, 'Ruby')),
@@ -25,7 +25,7 @@ describe 'Parsing Hashes' do
     )
   end
 
-  it 'Reference a key in a Hash using a String' do
+  should 'parse a hash key reference using a string' do
     parse('{"name" => "Ruby"}["name"]').should == s(
       :aref,
       s(:hash, s(:key_value, s(:string, 'name'), s(:string, 'Ruby'))),
@@ -33,7 +33,7 @@ describe 'Parsing Hashes' do
     )
   end
 
-  it 'Reference a key in a Hash using a Symbol' do
+  should 'parse a hash key reference using a symbol' do
     parse('{"name" => "Ruby"}[:name]').should == s(
       :aref,
       s(:hash, s(:key_value, s(:string, 'name'), s(:string, 'Ruby'))),

@@ -1,11 +1,11 @@
 require File.expand_path('../../../../helper', __FILE__)
 
 describe 'Parsing constants' do
-  it 'Constant referring to a Ruby class' do
+  should 'parse a constant' do
     parse('String').should == s(:constant, 'String')
   end
 
-  it 'Constant path with two segments' do
+  should 'parse a constant path' do
     parse('Foo::Bar').should == s(
       :constant_path,
       s(:constant, 'Foo'),
@@ -13,7 +13,7 @@ describe 'Parsing constants' do
     )
   end
 
-  it 'Constant path referred to as a top level constant' do
+  should 'parse a top level constant path' do
     parse('::Foo::Bar').should == s(
       :constant_path,
       s(:constant, 'Foo'),

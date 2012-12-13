@@ -1,7 +1,7 @@
 require File.expand_path('../../../helper', __FILE__)
 
 describe 'Parsing operators' do
-  it 'Use various basic operators' do
+  it 'should parse various basic operators' do
     [:*, :-, :+, :/, :%, :^, :and, :'&&', :or, :'||'].each do |op|
       parse("10 #{op} 2").should == s(
         :binary,
@@ -12,7 +12,7 @@ describe 'Parsing operators' do
     end
   end
 
-  it 'Use multiple operators' do
+  should 'parse the use of multiple operators at once' do
     parse('10 and 20 and 30').should == s(
       :binary,
       s(:binary, s(:integer, '10'), :and, s(:integer, '20')),
@@ -21,7 +21,7 @@ describe 'Parsing operators' do
     )
   end
 
-  it 'Use a unary operator' do
+  should 'parse a unary operator' do
     parse('!foobar').should == s(
       :unary,
       :!,
@@ -29,12 +29,12 @@ describe 'Parsing operators' do
     )
   end
 
-  it 'Use a tenary operator' do
-   parse('statement ? true : false').should == s(
-     :tenary,
-     s(:method, 'statement'),
-     s(:keyword, 'true'),
-     s(:keyword, 'false')
-   )
+  should 'parse a tenary operator' do
+    parse('statement ? true : false').should == s(
+      :tenary,
+      s(:method, 'statement'),
+      s(:keyword, 'true'),
+      s(:keyword, 'false')
+    )
   end
 end

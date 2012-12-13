@@ -1,27 +1,27 @@
 require File.expand_path('../../../../helper', __FILE__)
 
 describe 'Parsing Strings' do
-  it 'String using single quotes' do
+  should 'parse a string using single quotes' do
     parse("'hello'").should == s(:string, 'hello')
   end
 
-  it 'String using double quotes' do
+  should 'parse a string using double quotes' do
     parse('"hello"').should == s(:string, 'hello')
   end
 
-  it 'String created using %q{}' do
+  should 'parse a string created using %q{}' do
     parse('%q{hello world}').should == s(:string, 'hello world')
   end
 
-  it 'String created using %Q{}' do
+  should 'parse a string created using %Q{}' do
     parse('%Q{hello world}').should == s(:string, 'hello world')
   end
 
-  it 'String containing an embedded expression' do
+  should 'parse a string containing an embedded expression' do
     parse('"#{10}"').should == s(:embed, s(:integer, '10'))
   end
 
-  it 'String spread out over two lines using backslashes' do
+  should 'parse a string spread out over two lines using backslashes' do
     code = <<-CODE
 'hello' \
   'world'

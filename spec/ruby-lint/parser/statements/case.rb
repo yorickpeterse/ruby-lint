@@ -1,7 +1,7 @@
 require File.expand_path('../../../../helper', __FILE__)
 
 describe 'Parsing case statements' do
-  it 'Parse a case statement' do
+  should 'parse a case statement' do
     code = <<-CODE
 case number
 when 10, 20

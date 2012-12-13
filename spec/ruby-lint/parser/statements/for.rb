@@ -1,7 +1,7 @@
 require File.expand_path('../../../../helper', __FILE__)
 
-describe 'Parsing of for statements' do
-  it 'Parse a multi line for statement with a single variable' do
+describe 'Parsing for loops' do
+  should 'parse a loop with a single variable' do
     code = <<-CODE
 for foo in bar
   foo
@@ -16,7 +16,7 @@ end
     )
   end
 
-  it 'Parse a multi line for statement with two variables' do
+  should 'parse a loop with two variables' do
     code = <<-CODE
 for key, value in bar
   key

@@ -1,7 +1,7 @@
 require File.expand_path('../../../helper', __FILE__)
 
 describe 'Parsing variable assignments' do
-  it 'Assign a local variable' do
+  should 'parse a local variable' do
     parse('number = 10').should == s(
       :assign,
       s(:local_variable, 'number'),
@@ -9,7 +9,7 @@ describe 'Parsing variable assignments' do
     )
   end
 
-  it 'Assign an instance variable' do
+  should 'parse an instance variable' do
     parse('@number = 10').should == s(
       :assign,
       s(:instance_variable, '@number'),
@@ -17,7 +17,7 @@ describe 'Parsing variable assignments' do
     )
   end
 
-  it 'Assign a class variable' do
+  should 'parse a class variable' do
     parse('@@number = 10').should == s(
       :assign,
       s(:class_variable, '@@number'),
@@ -25,7 +25,7 @@ describe 'Parsing variable assignments' do
     )
   end
 
-  it 'Assign a global variable' do
+  should 'parse a global variable' do
     parse('$number = 10').should == s(
       :assign,
       s(:global_variable, '$number'),
@@ -33,7 +33,7 @@ describe 'Parsing variable assignments' do
     )
   end
 
-  it 'Assign a constant' do
+  should 'parse a constant' do
     parse('NUMBER = 10').should == s(
       :assign,
       s(:constant, 'NUMBER'),
@@ -41,7 +41,7 @@ describe 'Parsing variable assignments' do
     )
   end
 
-  it 'Assign a variable if it does not already have a value' do
+  should 'parse a variable if it does not already have a value' do
     parse('number ||= 10').should == s(
       :op_assign,
       s(:local_variable, 'number'),
@@ -49,7 +49,7 @@ describe 'Parsing variable assignments' do
     )
   end
 
-  it 'Assign two values to two variables' do
+  should 'parse assigning two values to two variables' do
     parse('first, second = 10, 20').should == s(
       :mass_assign,
       s(:assign, s(:local_variable, 'first'), s(:integer, '10')),
@@ -57,7 +57,7 @@ describe 'Parsing variable assignments' do
     )
   end
 
-  it 'Assign one value to two variables' do
+  should 'parse assigning one value to two variables' do
     parse('first, second = 10').should == s(
       :mass_assign,
       s(:assign, s(:local_variable, 'first'), s(:integer, '10')),
@@ -65,7 +65,7 @@ describe 'Parsing variable assignments' do
     )
   end
 
-  it 'Assign an array with two values to two variables' do
+  should 'parse assigning an array with two values to two variables' do
     parse('first, second = [10, 20]').should == s(
       :mass_assign,
       s(:assign, s(:local_variable, 'first'), s(:integer, '10')),
@@ -73,7 +73,7 @@ describe 'Parsing variable assignments' do
     )
   end
 
-  it 'Assign an array with one value to two variables' do
+  should 'parse assigning an array with one value to two variables' do
     parse('first, second = [10]').should == s(
       :mass_assign,
       s(:assign, s(:local_variable, 'first'), s(:integer, '10')),
@@ -81,21 +81,21 @@ describe 'Parsing variable assignments' do
     )
   end
 
-  it 'Assign a value to a variable and expander token' do
+  should 'parse assigning a value to a variable and expander token' do
     parse('first, * = 10').should == s(
       :mass_assign,
       s(:assign, s(:local_variable, 'first'), s(:integer, '10'))
     )
   end
 
-  it 'Assign two values to a variable and expander token' do
+  should 'parse assigning two values to a variable and expander token' do
     parse('first, * = 10, 20').should == s(
       :mass_assign,
       s(:assign, s(:local_variable, 'first'), s(:integer, '10'))
     )
   end
 
-  it 'Assign three values to two variables and an expander token' do
+  should 'parse assigning three values to two variables and an expander token' do
     parse('first, *, second = 10, 20, 30').should == s(
       :mass_assign,
       s(:assign, s(:local_variable, 'first'), s(:integer, '10')),
@@ -103,14 +103,14 @@ describe 'Parsing variable assignments' do
     )
   end
 
-  it 'Assign a single value to an expander variable' do
+  should 'parse assigning a single value to an expander variable' do
     parse('*numbers = 10').should == s(
       :mass_assign,
       s(:assign, s(:local_variable, 'numbers'), s(:array, s(:integer, '10')))
     )
   end
 
-  it 'Assign two values to an expander variable' do
+  should 'parse assigning two values to an expander variable' do
     parse('*numbers = 10, 20').should == s(
       :mass_assign,
       s(
@@ -121,7 +121,7 @@ describe 'Parsing variable assignments' do
     )
   end
 
-  it 'Assign a value to a local and expander variable' do
+  should 'parse assigning a value to a local and expander variable' do
     parse('number, *numbers = 10').should == s(
       :mass_assign,
       s(:assign, s(:local_variable, 'number'), s(:integer, '10')),
@@ -129,7 +129,7 @@ describe 'Parsing variable assignments' do
     )
   end
 
-  it 'Assign one value to an expander and two local variables' do
+  should 'parse assigning one value to an expander and two local variables' do
     $derp = true
 
     parse('*numbers, number, numberx = 10').should == s(
@@ -154,7 +154,7 @@ describe 'Parsing variable assignments' do
     )
   end
 
-  it 'Assign two values to an expander and local variable' do
+  should 'parse assigning two values to an expander and local variable' do
     parse('*numbers, number = 10, 20').should == s(
       :mass_assign,
       s(:assign, s(:local_variable, 'numbers'), s(:array, s(:integer, '10'))),
@@ -162,7 +162,7 @@ describe 'Parsing variable assignments' do
     )
   end
 
-  it 'Assign an uneven number of (expander) variables and values' do
+  should 'parse an uneven number of (expander) variables and values' do
     parse('*numbers, number = 10, 20, 30').should == s(
       :mass_assign,
       s(

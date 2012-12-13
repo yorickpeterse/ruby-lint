@@ -1,7 +1,7 @@
 require File.expand_path('../../../../helper', __FILE__)
 
 describe 'Parsing if statements' do
-  it 'Multi line if statement' do
+  should 'parse a multi line statement' do
     code = <<-CODE
 if foo
   bar
@@ -26,7 +26,7 @@ end
     )
   end
 
-  it 'Single line if statement' do
+  should 'parse a single line statement' do
     parse('bar if foo').should == s(
       :if,
       s(:method, 'foo'),
