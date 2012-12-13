@@ -552,6 +552,25 @@ module RubyLint
     end
 
     ##
+    # Called when a tenary operator is found.
+    #
+    # @param [RubyLint::Node] statement The statement to evaluate.
+    # @param [RubyLint::Node] true_val The value to use when the statement
+    #  evaluates to true.
+    # @param [RubyLint::Node] false_val The value to use when the statement
+    #  evaluates to false.
+    # @return [RubyLint::Node]
+    #
+    def on_ifop(statement, true_val, false_val)
+      return Node.new(
+        :tenary,
+        [statement, true_val, false_val],
+        :line   => lineno,
+        :column => column
+      )
+    end
+
+    ##
     # @param [RubyLint::Node] statement The statement to evaluate.
     # @param [Array] body The body of the statement.
     # @param [Array] list Array containing the rest of the if statement.
@@ -629,6 +648,52 @@ module RubyLint
         :line   => lineno,
         :column => column
       )
+    end
+
+    ##
+    # @param [RubyLint::Node] statement The statement to evaluate.
+    # @param [Array] body The body of the case block such as all the when
+    #  statements.
+    # @return [RubyLint::Node]
+    #
+    def on_case(statement, body)
+      when_statements = []
+      else_statement  = nil
+
+      body.each do |node|
+        if node.type == :when
+          when_statements << node
+        else
+          else_statement = node
+        end
+      end
+
+      return Node.new(
+        :case,
+        [statement, when_statements, else_statement],
+        :line   => lineno,
+        :column => column
+      )
+    end
+
+    ##
+    # @param [RubyLint::Node|Array] values The values to match on.
+    # @param [RubyLint::Node] body The body of the statement.
+    # @param [RubyLint::Node|Array] list The list of other when and else nodes.
+    # @return [RubyLint::Node]
+    #
+    def on_when(values, body, list)
+      list   = [list].compact unless list.is_a?(Array)
+      values = [values] unless values.is_a?(Array)
+
+      node = Node.new(
+        :when,
+        [values, body],
+        :line   => lineno,
+        :column => column
+      )
+
+      list.unshift(node)
     end
 
     private

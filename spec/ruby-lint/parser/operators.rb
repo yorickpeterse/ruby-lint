@@ -28,4 +28,13 @@ describe 'Parsing operators' do
       s(:method, 'foobar')
     )
   end
+
+  it 'Use a tenary operator' do
+   parse('statement ? true : false').should == s(
+     :tenary,
+     s(:method, 'statement'),
+     s(:keyword, 'true'),
+     s(:keyword, 'false')
+   )
+  end
 end
