@@ -101,6 +101,16 @@ describe 'Parsing method calls' do
     )
   end
 
+  it 'Call a method on an object with a parameter and without parenthesis' do
+    parse('String.new 10').should == s(
+      :method,
+      'new',
+      [s(:integer, '10')],
+      nil,
+      s(:constant, 'String')
+    )
+  end
+
   it 'Call a method on an object with a parameter and a block' do
     parse('String.new(10) { |name| name }').should == s(
       :method,

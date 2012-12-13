@@ -271,6 +271,8 @@ module RubyLint
     # @return [RubyLint::Node]
     #
     def on_brace_block(params, body)
+      params ||= []
+
       return Node.new(
         :block,
         [params[0], body.compact],
@@ -432,6 +434,20 @@ module RubyLint
     end
 
     ##
+    # Called when a method is invoked on an object without the use of
+    # parenthesis.
+    #
+    # @see RubyLint::Parser#on_call
+    #
+    def on_command_call(object, operator, name, params)
+      node        = on_call(object, operator, name)
+      children    = node.children.dup
+      children[1] = params || []
+
+      return node.updated(nil, children)
+    end
+
+    ##
     # @param  [RubyLint::Node] method The method that is called.
     # @param  [Array] params Array of parameters passed to the method.
     # @return [RubyLint::Node]
@@ -531,9 +547,12 @@ module RubyLint
     #  elsif and else statements.
     # @return [RubyLint::Node]
     #
-    def on_if(statement, body, rest = [])
+    def on_if(statement, body, rest = nil)
       elsif_stmts = []
       else_stmt   = nil
+
+      rest ||= []
+      rest   = [rest].compact unless rest.is_a?(Array)
 
       rest.each do |node|
         if node.type == :else
