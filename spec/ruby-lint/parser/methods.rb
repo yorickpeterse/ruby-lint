@@ -86,7 +86,6 @@ describe 'Parsing method calls' do
       :method,
       'new',
       [],
-      nil,
       s(:constant, 'String')
     )
   end
@@ -96,7 +95,6 @@ describe 'Parsing method calls' do
       :method,
       'new',
       [s(:integer, '10')],
-      nil,
       s(:constant, 'String')
     )
   end
@@ -106,7 +104,6 @@ describe 'Parsing method calls' do
       :method,
       'new',
       [s(:integer, '10')],
-      nil,
       s(:constant, 'String')
     )
   end
@@ -116,8 +113,8 @@ describe 'Parsing method calls' do
       :method,
       'new',
       [s(:integer, '10')],
-      s(:block, [s(:local_variable, 'name')], [s(:local_variable, 'name')]),
-      s(:constant, 'String')
+      s(:constant, 'String'),
+      s(:block, [s(:local_variable, 'name')], [s(:local_variable, 'name')])
     )
   end
 

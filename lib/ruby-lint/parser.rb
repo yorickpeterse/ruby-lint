@@ -99,7 +99,9 @@ module RubyLint
       :string_concat  => :string_concat,
       :string_embexpr => :embed,
       :begin          => :begin,
-      :ensure         => :ensure
+      :ensure         => :ensure,
+      :defined        => :defined,
+      :super          => :super
     }
 
     ##
@@ -427,7 +429,7 @@ module RubyLint
     def on_call(object, operator, name)
       return Node.new(
         :method,
-        [name.children[0], [], nil, object],
+        [name.children[0], [], object],
         :line   => name.line,
         :column => name.column
       )
@@ -465,8 +467,8 @@ module RubyLint
     # @return [RubyLint::Node]
     #
     def on_method_add_block(method, block)
-      children    = method.children.dup
-      children[2] = block
+      children = method.children.dup
+      children << block
 
       return method.updated(nil, children)
     end
@@ -713,6 +715,13 @@ module RubyLint
       )
 
       list.unshift(node)
+    end
+
+    ##
+    # @return [RubyLint::Node]
+    #
+    def on_zsuper
+      return on_super(nil)
     end
 
     private
