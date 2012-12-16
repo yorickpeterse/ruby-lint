@@ -101,7 +101,9 @@ module RubyLint
       :begin          => :begin,
       :ensure         => :ensure,
       :defined        => :defined,
-      :super          => :super
+      :super          => :super,
+      :yield0         => :yield,
+      :yield          => :yield
     }
 
     ##
@@ -131,7 +133,7 @@ module RubyLint
     #
     # @return [Array]
     #
-    UNPACK_EVENT_ARGS = [:return, :else, :hash, :embed, :ensure]
+    UNPACK_EVENT_ARGS = [:return, :else, :hash, :embed, :ensure, :yield]
 
     SCANNER_EVENTS.each do |type|
       define_method("on_#{type}") do |value|
