@@ -216,4 +216,12 @@ describe 'Parsing variable assignments' do
       s(:integer, '10')
     )
   end
+
+  should 'parse the assignment of a constant path' do
+    parse('Foo::Bar = 10').should == s(
+      :assign,
+      s(:constant_path, s(:constant, 'Foo'), s(:constant, 'Bar')),
+      s(:integer, '10')
+    )
+  end
 end

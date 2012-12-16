@@ -80,30 +80,31 @@ module RubyLint
     # @return [Hash]
     #
     BASIC_EVENTS = {
-      :bodystmt       => :body,
-      :class          => :class,
-      :module         => :module,
-      :binary         => :binary,
-      :unary          => :unary,
-      :return         => :return,
-      :else           => :else,
-      :unless         => :unless,
-      :until          => :until,
-      :while          => :while,
-      :const_path_ref => :constant_path,
-      :dot2           => :dot2,
-      :dot3           => :dot3,
-      :assoc_new      => :key_value,
-      :hash           => :hash,
-      :aref           => :aref,
-      :string_concat  => :string_concat,
-      :string_embexpr => :embed,
-      :begin          => :begin,
-      :ensure         => :ensure,
-      :defined        => :defined,
-      :super          => :super,
-      :yield0         => :yield,
-      :yield          => :yield
+      :bodystmt         => :body,
+      :class            => :class,
+      :module           => :module,
+      :binary           => :binary,
+      :unary            => :unary,
+      :return           => :return,
+      :else             => :else,
+      :unless           => :unless,
+      :until            => :until,
+      :while            => :while,
+      :const_path_ref   => :constant_path,
+      :dot2             => :dot2,
+      :dot3             => :dot3,
+      :assoc_new        => :key_value,
+      :hash             => :hash,
+      :aref             => :aref,
+      :string_concat    => :string_concat,
+      :string_embexpr   => :embed,
+      :begin            => :begin,
+      :ensure           => :ensure,
+      :defined          => :defined,
+      :super            => :super,
+      :yield0           => :yield,
+      :yield            => :yield,
+      :const_path_field => :constant_path
     }
 
     ##
@@ -585,8 +586,8 @@ module RubyLint
       return Node.new(
         :if,
         [statement, body, elsif_stmts.reverse, else_stmt],
-        :line   => statement.line,
-        :column => statement.column
+        :line   => lineno,
+        :column => column
       )
     end
 
@@ -619,8 +620,8 @@ module RubyLint
       node = Node.new(
         :elsif,
         [statement, body],
-        :line   => statement.line,
-        :column => statement.column
+        :line   => lineno,
+        :column => column
       )
 
       list = [list] unless list.is_a?(Array)
