@@ -21,12 +21,7 @@ task :stdlib do
     puts "%-#{spacing}s %s" % [prefix, path]
 
     Pry.rescue do
-      tokens   = RubyLint::Parser.new(File.read(file), file).parse
-      iterator = RubyLint::Iterator.new
-
-      RubyLint.options.analyzers.each { |const| iterator.bind(const) }
-
-      iterator.run(tokens)
+      RubyLint::Parser.new(File.read(file), file).parse
     end
   end
 end
