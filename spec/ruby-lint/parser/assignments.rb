@@ -204,4 +204,16 @@ describe 'Parsing variable assignments' do
       s(:assign, s(:local_variable, 'numberx'), s(:integer, '40'))
     )
   end
+
+  should 'parse the assignment of a attribute in a constant path' do
+    parse('Foo::Bar.example = 10').should == s(
+      :assign,
+      s(
+        :field,
+        s(:constant_path, s(:constant, 'Foo'), s(:constant, 'Bar')),
+        s(:identifier, 'example')
+      ),
+      s(:integer, '10')
+    )
+  end
 end

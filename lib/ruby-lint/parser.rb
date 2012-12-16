@@ -407,6 +407,22 @@ module RubyLint
     end
 
     ##
+    # @param [RubyLint::Node] object The object of the field.
+    # @param [Symbol] operator The operator used to separate the object and
+    #  field.
+    # @param [RubyLint::Node] field The field that was referenced.
+    # @return [RubyLint::Node]
+    #
+    def on_field(object, operator, field)
+      return Node.new(
+        :field,
+        [object, field],
+        :line   => lineno,
+        :column => column
+      )
+    end
+
+    ##
     # Called when a method without parenthesis is called.
     #
     # @see RubyLint::Parser#on_method_add_arg
@@ -556,9 +572,9 @@ module RubyLint
       else_stmt   = nil
 
       rest ||= []
-      rest   = [rest].compact unless rest.is_a?(Array)
+      rest   = [rest] unless rest.is_a?(Array)
 
-      rest.each do |node|
+      rest.compact.each do |node|
         if node.type == :else
           else_stmt = node
         else
