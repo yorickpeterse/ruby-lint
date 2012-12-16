@@ -7,23 +7,16 @@ module RubyLint
     ##
     # The line number on which the error occured.
     #
-    # @return [Fixnum|Bignum]
+    # @return [Fixnum]
     #
     attr_reader :line
 
     ##
     # The column on which the error occured.
     #
-    # @return [Fixnum|Bignum]
+    # @return [Fixnum]
     #
     attr_reader :column
-
-    ##
-    # The name of the file in which the error occured.
-    #
-    # @return [String]
-    #
-    attr_reader :file
 
     ##
     # Creates a new instance of the error class.
@@ -31,10 +24,9 @@ module RubyLint
     # @param [String] message The error message.
     # @param [Fixnum|Bignum] line The line of the error.
     # @param [Fixnum|Bignum] column The column of the error.
-    # @param [String] file The file in which the error occured.
     #
-    def initialize(message, line, column, file)
-      @line, @column, @file = line, column, file
+    def initialize(message, line, column)
+      @line, @column = line, column
 
       super(message)
     end

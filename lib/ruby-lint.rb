@@ -7,8 +7,8 @@ end
 require 'ruby-lint/version'
 require 'ruby-lint/node'
 require 'ruby-lint/parser'
-
 require 'ruby-lint/parser_error'
+
 require 'ruby-lint/iterator'
 require 'ruby-lint/callback'
 require 'ruby-lint/report'

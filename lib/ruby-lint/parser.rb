@@ -202,7 +202,17 @@ module RubyLint
     # @return [RubyLint::Node]
     #
     def on_program(nodes)
+      nodes = [nodes] unless nodes.is_a?(Array)
+
       return Node.new(:root, nodes, :line => 1, :column => 0)
+    end
+
+    ##
+    # @param [String] message The error message.
+    # @raise [RubyLint::ParserError]
+    #
+    def on_parse_error(message)
+      raise ParserError.new(message, lineno, column)
     end
 
     ##
