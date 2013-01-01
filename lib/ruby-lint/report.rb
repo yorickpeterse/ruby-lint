@@ -17,9 +17,9 @@ module RubyLint
   # * `:warning`
   # * `:info`
   #
-  # The second step is done by calling {RubyLint::Report#add}. This method is used
-  # to add data for a specific level. If this level is disabled the data is not
-  # added to the report.
+  # The second step is done by calling {RubyLint::Report#add}. This method is
+  # used to add data for a specific level. If this level is disabled the data
+  # is not added to the report.
   #
   # A basic example of this is the following:
   #
@@ -54,45 +54,47 @@ module RubyLint
     attr_reader :levels
 
     ##
-    # String containing the name/path of the file this report belongs to.
-    #
-    # @return [String]
-    #
-    attr_reader :file
-
-    ##
     # Creates a new instance of the class.
     #
-    # @param [String] file The name/path of the file that this report belongs
-    #  to.
     # @param [Array] levels The message levels to use for this report.
     #
-    def initialize(file = '(ruby-lint)', levels = DEFAULT_LEVELS)
-      @file     = file
-      @levels   = levels
+    def initialize(levels = DEFAULT_LEVELS)
+      @levels   = levels.map { |level| level.to_sym }.freeze
       @messages = {}
+
+      @levels.each { |level| @messages[level] = [] }
     end
 
     ##
     # Adds a message to the report.
     #
-    # @param [#to_sym] level The level of the message.
+    # @param [Symbol] level The level of the message.
     # @param [String] message The message to add.
-    # @param [Fixnum] line The line number of the message.
-    # @param [Fixnum] column The column number of the message.
+    # @param [Fixnum] line
+    # @param [Fixnum] column
+    # @param [String] file
     #
-    def add(level, message, line, column)
-      level = level.to_sym
-
-      return unless @levels.include?(level)
-
-      @messages[level] ||= []
+    def add(level, message, line, column, file)
+      return unless valid_level?(level)
 
       @messages[level] << {
         :message => message,
         :line    => line,
-        :column  => column
+        :column  => column,
+        :file    => file
       }
+    end
+
+    private
+
+    ##
+    # Checks if the specified level is valid.
+    #
+    # @param [Symbol] level
+    # @return [TrueClass|FalseClass]
+    #
+    def valid_level?(level)
+      return @levels.include?(level)
     end
   end # Report
 end # RubyLint

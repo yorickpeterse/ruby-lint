@@ -20,19 +20,25 @@ end
       :begin,
       s(
         :body,
-        [s(:method, 'rescue_body')],
+        [s(:method, 'rescue_body', [], nil, nil)],
         [
-          s(:rescue, nil, [s(:constant, 'Foo')], nil, [s(:method, 'foo_body')]),
+          s(
+            :rescue,
+            nil,
+            [s(:constant, 'Foo')],
+            nil,
+            [s(:method, 'foo_body', [], nil, nil)]
+          ),
           s(
             :rescue,
             nil,
             [s(:constant, 'Bar'), s(:constant, 'Baz')],
             s(:local_variable, 'e'),
-            [s(:method, 'bar_baz_body')]
+            [s(:method, 'bar_baz_body', [], nil, nil)]
           )
         ],
-        s(:else, s(:method, 'else_body')),
-        s(:ensure, s(:method, 'ensure_body'))
+        s(:else, s(:method, 'else_body', [], nil, nil)),
+        s(:ensure, s(:method, 'ensure_body', [], nil, nil))
       )
     )
   end
@@ -40,10 +46,10 @@ end
   should 'parse a single line statement' do
     parse('foo rescue bar').should == s(
       :rescue,
-      s(:method, 'foo'),
+      s(:method, 'foo', [], nil, nil),
       nil,
       nil,
-      s(:method, 'bar')
+      s(:method, 'bar', [], nil, nil)
     )
   end
 end

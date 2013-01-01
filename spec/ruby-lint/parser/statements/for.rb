@@ -11,7 +11,7 @@ end
     parse(code).should == s(
       :for,
       [s(:local_variable, 'foo')],
-      s(:method, 'bar'),
+      s(:method, 'bar', [], nil, nil),
       [s(:local_variable, 'foo')]
     )
   end
@@ -27,7 +27,7 @@ end
     parse(code).should == s(
       :for,
       [s(:local_variable, 'key'), s(:local_variable, 'value')],
-      s(:method, 'bar'),
+      s(:method, 'bar', [], nil, nil),
       [s(:local_variable, 'key'), s(:local_variable, 'value')]
     )
   end

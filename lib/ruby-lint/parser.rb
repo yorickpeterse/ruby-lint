@@ -138,12 +138,7 @@ module RubyLint
 
     SCANNER_EVENTS.each do |type|
       define_method("on_#{type}") do |value|
-        return Node.new(
-          readable_type_name(type),
-          [value],
-          :line   => lineno,
-          :column => column
-        )
+        return Node.new( readable_type_name(type), [value], metadata)
       end
     end
 
@@ -155,9 +150,7 @@ module RubyLint
       define_method("on_#{event}") do |node|
         return Node.new(
           :method,
-          [node.children[0]],
-          :line   => node.line,
-          :column => node.column
+          [node.children[0], [], nil, nil], metadata(node)
         )
       end
     end
@@ -170,7 +163,7 @@ module RubyLint
 
         args = args[0] if UNPACK_EVENT_ARGS.include?(new)
 
-        return Node.new(new, args, :line => lineno, :column => column)
+        return Node.new(new, args, metadata)
       end
     end
 
@@ -189,6 +182,15 @@ module RubyLint
     end
 
     ##
+    # @see Ripper::SexpBuilderPP#initialize
+    #
+    def initialize(code, file = '(ruby-lint)', line = 1)
+      super
+
+      @file = file
+    end
+
+    ##
     # @return [NilClass]
     #
     def on_void_stmt
@@ -204,7 +206,7 @@ module RubyLint
     def on_program(nodes)
       nodes = [nodes] unless nodes.is_a?(Array)
 
-      return Node.new(:root, nodes, :line => 1, :column => 0)
+      return Node.new(:root, nodes, :line => 1, :column => 0, :file => @file)
     end
 
     ##
@@ -218,19 +220,14 @@ module RubyLint
     ##
     # Called when a symbol is found.
     #
-    # @param  [RubyLint::Node|Array] token The value of the symbol. This
+    # @param  [RubyLint::Node|Array] node The value of the symbol. This
     #  parameter is set to an Array when parsing code such as `:"hello"`.
     # @return [RubyLint::Node]
     #
     def on_symbol(node)
       node = node[0] if node.is_a?(Array)
 
-      return Node.new(
-        :symbol,
-        node.children,
-        :line   => node.line,
-        :column => node.column
-      )
+      return Node.new(:symbol, node.children, metadata(node))
     end
 
     ##
@@ -249,7 +246,7 @@ module RubyLint
       values ||= []
       children = values.flatten
 
-      return Node.new(:array, children, :line => lineno, :column => column)
+      return Node.new(:array, children, metadata)
     end
 
     ##
@@ -258,12 +255,7 @@ module RubyLint
     # @return [RubyLint::Node]
     #
     def on_regexp_literal(regexp, mode)
-      return Node.new(
-        :regexp,
-        [regexp[0], mode],
-        :line   => lineno,
-        :column => column
-      )
+      return Node.new(:regexp, [regexp[0], mode], metadata)
     end
 
     ##
@@ -272,12 +264,7 @@ module RubyLint
     # @return [RubyLint::Node]
     #
     def on_lambda(params, body)
-      return Node.new(
-        :lambda,
-        [params[0], body],
-        :line   => lineno,
-        :column => column
-      )
+      return Node.new(:lambda, [params[0], body], metadata)
     end
 
     ##
@@ -288,12 +275,7 @@ module RubyLint
     def on_brace_block(params, body)
       params ||= []
 
-      return Node.new(
-        :block,
-        [params[0], body.compact],
-        :line   => lineno,
-        :column => column
-      )
+      return Node.new(:block, [params[0], body.compact], metadata)
     end
 
     ##
@@ -317,19 +299,14 @@ module RubyLint
     end
 
     ##
-    # @param [RubyLint::Node] assigned The data to assign the value to.
+    # @param [RubyLint::Node] variable The data to assign the value to.
     # @param [RubyLint::Node] value The value to assign.
     # @return [RubyLint::Node]
     #
     def on_assign(variable, value)
       variable = variable.updated(:local_variable) if variable.identifier?
 
-      return Node.new(
-        :assign,
-        [variable, value],
-        :line   => variable.line,
-        :column => variable.column
-      )
+      return Node.new(:assign, [variable, value], metadata(variable))
     end
 
     ##
@@ -377,8 +354,7 @@ module RubyLint
           value = Node.new(
             :array,
             values.slice!(index - before, slice_length),
-            :line   => variable.line,
-            :column => variable.column
+            metadata(variable)
           )
 
           variable = variable.updated(nil, [variable.children[0]])
@@ -391,20 +367,14 @@ module RubyLint
           value = Node.new(
             :keyword,
             ['nil'],
-            :line   => variable.line,
-            :column => variable.column
+            metadata(variable)
           )
         end
 
-        nodes << Node.new(
-          :assign,
-          [variable, value],
-          :line   => variable.line,
-          :column => variable.column
-        )
+        nodes << Node.new(:assign, [variable, value], metadata(variable))
       end
 
-      return Node.new(:mass_assign, nodes, :line => lineno, :column => column)
+      return Node.new(:mass_assign, nodes, metadata)
     end
 
     ##
@@ -425,12 +395,7 @@ module RubyLint
     # @return [RubyLint::Node]
     #
     def on_field(object, operator, field)
-      return Node.new(
-        :field,
-        [object, field],
-        :line   => lineno,
-        :column => column
-      )
+      return Node.new(:field, [object, field], metadata)
     end
 
     ##
@@ -441,9 +406,8 @@ module RubyLint
     def on_command(name, params)
       return Node.new(
         :method,
-        [name.children[0], params],
-        :line   => name.line,
-        :column => name.column
+        [name.children[0], params, nil, nil],
+        metadata(name)
       )
     end
 
@@ -458,9 +422,8 @@ module RubyLint
     def on_call(object, operator, name)
       return Node.new(
         :method,
-        [name.children[0], [], object],
-        :line   => name.line,
-        :column => name.column
+        [name.children[0], [], nil, object],
+        metadata(name)
       )
     end
 
@@ -496,8 +459,9 @@ module RubyLint
     # @return [RubyLint::Node]
     #
     def on_method_add_block(method, block)
-      children = method.children.dup
-      children << block
+      children        = method.children.dup
+      index           = method.type == :super ? 1 : -2
+      children[index] = block
 
       return method.updated(nil, children)
     end
@@ -512,8 +476,7 @@ module RubyLint
       return Node.new(
         :method_definition,
         [name.children[0], params || [], nil, body],
-        :line   => name.line,
-        :column => name.column
+        metadata(name)
       )
     end
 
@@ -526,8 +489,7 @@ module RubyLint
       return Node.new(
         :method_definition,
         [name.children[0], params || [], receiver, body],
-        :line   => name.line,
-        :column => name.column
+        metadata(name)
       )
     end
 
@@ -596,13 +558,12 @@ module RubyLint
       return Node.new(
         :if,
         [statement, body, elsif_stmts.reverse, else_stmt],
-        :line   => lineno,
-        :column => column
+        metadata
       )
     end
 
     ##
-    # Called when a tenary operator is found.
+    # Called when a ternary operator is found.
     #
     # @param [RubyLint::Node] statement The statement to evaluate.
     # @param [RubyLint::Node] true_val The value to use when the statement
@@ -613,10 +574,9 @@ module RubyLint
     #
     def on_ifop(statement, true_val, false_val)
       return Node.new(
-        :tenary,
+        :ternary,
         [statement, true_val, false_val],
-        :line   => lineno,
-        :column => column
+        metadata
       )
     end
 
@@ -627,13 +587,7 @@ module RubyLint
     # @return [RubyLint::Node]
     #
     def on_elsif(statement, body, list)
-      node = Node.new(
-        :elsif,
-        [statement, body],
-        :line   => lineno,
-        :column => column
-      )
-
+      node = Node.new(:elsif, [statement, body], metadata)
       list = [list] unless list.is_a?(Array)
 
       list << node
@@ -653,8 +607,7 @@ module RubyLint
       return Node.new(
         :for,
         [variables, enumerator, body],
-        :line   => variables[0].line,
-        :column => variables[0].column
+        metadata(variables[0])
       )
     end
 
@@ -675,12 +628,7 @@ module RubyLint
       end
 
       list.unshift(
-        Node.new(
-          :rescue,
-          [nil, exceptions, variable, body],
-          :line   => lineno,
-          :column => column
-        )
+        Node.new(:rescue, [nil, exceptions, variable, body], metadata)
       )
     end
 
@@ -692,12 +640,7 @@ module RubyLint
     # @return [RubyLint::Node]
     #
     def on_rescue_mod(statement, body)
-      return Node.new(
-        :rescue,
-        [statement, nil, nil, body],
-        :line   => lineno,
-        :column => column
-      )
+      return Node.new(:rescue, [statement, nil, nil, body], metadata)
     end
 
     ##
@@ -721,8 +664,7 @@ module RubyLint
       return Node.new(
         :case,
         [statement, when_statements, else_statement],
-        :line   => lineno,
-        :column => column
+        metadata
       )
     end
 
@@ -736,12 +678,7 @@ module RubyLint
       list   = [list].compact unless list.is_a?(Array)
       values = [values] unless values.is_a?(Array)
 
-      node = Node.new(
-        :when,
-        [values, body],
-        :line   => lineno,
-        :column => column
-      )
+      node = Node.new(:when, [values, body], metadata)
 
       list.unshift(node)
     end
@@ -763,6 +700,20 @@ module RubyLint
     #
     def readable_type_name(type)
       return TYPE_MAPPING.fetch(type, type)
+    end
+
+    ##
+    # Returns a Hash containing metadata such as the line number and the file.
+    #
+    # @param [RubyLint::Node] node When set the line and column number will be
+    #  extracted from this node.
+    # @return [Hash]
+    #
+    def metadata(node = nil)
+      line = node ? node.line   : lineno
+      col  = node ? node.column : column
+
+      return {:line => line, :column => col, :file => @file}
     end
   end # Parser
 end # RubyLint

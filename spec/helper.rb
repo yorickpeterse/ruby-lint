@@ -3,48 +3,19 @@ require 'bacon'
 
 Bacon.summary_on_exit
 
-RubyLint::FIXTURES = File.expand_path('../fixtures', __FILE__)
-
-##
-# Parses the given file path and returns an array of tokens.
-#
-# @param  [String] file The file to parse.
-# @return [Array]
-#
-def parse_file(file)
-  return RubyLint::Parser.new(File.read(file), file).parse
-end
-
 ##
 # Parses the specified Ruby code and returns the first instance of
 # {RubyLint::Node} (excluding the root node).
 #
 # @param  [String] code The code to parse.
+# @param [TrueClass|FalseClass] first When set to `true` only the first node
+#  is returned.
 # @return [RubyLint::Node]
 #
-def parse(code)
-  return RubyLint::Parser.new(code).parse.children[0]
-end
+def parse(code, first = true)
+  ast = RubyLint::Parser.new(code).parse
 
-##
-# Creates a new instance of {RubyLint::Iterator} and binds all the
-# available analysis classes to it.
-#
-# @param  [RubyLint::Report] report An optional report to assign to the
-#  iterator.
-# @return [RubyLint::Iterator]
-#
-def create_iterator(report = nil)
-  iterator = RubyLint::Iterator.new(report)
-
-  iterator.bind(RubyLint::Analyze::Definitions)
-  iterator.bind(RubyLint::Analyze::CodingStyle)
-  iterator.bind(RubyLint::Analyze::MethodValidation)
-  iterator.bind(RubyLint::Analyze::ShadowingVariables)
-  iterator.bind(RubyLint::Analyze::UndefinedVariables)
-  iterator.bind(RubyLint::Analyze::UnusedVariables)
-
-  return iterator
+  return first ? ast.children[0] : ast
 end
 
 ##
@@ -54,6 +25,20 @@ end
 #
 def s(type, *children)
   return RubyLint::Node.new(type, children)
+end
+
+##
+# Builds a list of definitions for the specified block of Ruby code.
+#
+# @param [String] code The code to analyze.
+# @return [RubyLint::Definition::RubyObject]
+#
+def build_definitions(code)
+  iterator = RubyLint::Analyze::Definitions.new
+
+  iterator.iterate(parse(code, false))
+
+  return iterator.options[:definitions]
 end
 
 # Bacon's output is a bit annoying for the sexp output of RubyLint::Node. This

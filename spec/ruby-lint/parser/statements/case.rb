@@ -15,20 +15,20 @@ end
 
     parse(code).should == s(
       :case,
-      s(:method, 'number'),
+      s(:method, 'number', [], nil, nil),
       [
         s(
           :when,
           [s(:integer, '10'), s(:integer, '20')],
-          [s(:method, 'puts', [s(:string, '10 or 20')])]
+          [s(:method, 'puts', [s(:string, '10 or 20')], nil, nil)]
         ),
         s(
           :when,
           [s(:integer, '30')],
-          [s(:method, 'puts', [s(:string, '30')])]
+          [s(:method, 'puts', [s(:string, '30')], nil, nil)]
         )
       ],
-      s(:else, s(:method, 'puts', [s(:string, 'something else')]))
+      s(:else, s(:method, 'puts', [s(:string, 'something else')], nil, nil))
     )
   end
 end
