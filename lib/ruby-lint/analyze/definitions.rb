@@ -164,7 +164,15 @@ module RubyLint
             source = target.lookup(param.type, param.name)
           end
 
-          next unless source
+          next unless source.is_a?(Definition::RubyVariable)
+
+          # Resolve variables to their constants.
+          # TODO: this could potentially result in an infinite loop. If
+          # possible some kind of limit should be set similar to when using
+          # Timeout.timeout.
+          until source.type == :module
+            source = target.lookup(source.value.type, source.value.name)
+          end
 
           copy_types.each do |from, to|
             source.definitions[from].each do |name, definition|

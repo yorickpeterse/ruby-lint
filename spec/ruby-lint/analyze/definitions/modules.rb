@@ -150,5 +150,26 @@ end
         .is_a?(RubyLint::Definition::RubyMethod) \
         .should == true
     end
+
+    should 'include a module using a variable' do
+      code = <<-CODE
+module First
+  def example
+  end
+end
+
+module Second
+  first = First
+  include first
+end
+      CODE
+
+      defs = build_definitions(code)
+
+      defs.lookup(:constant, 'Second') \
+        .lookup(:instance_method, 'example') \
+        .is_a?(RubyLint::Definition::RubyMethod) \
+        .should == true
+    end
   end
 end
