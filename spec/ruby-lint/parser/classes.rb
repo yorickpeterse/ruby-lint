@@ -73,4 +73,30 @@ end
       s(:body, [])
     )
   end
+
+  should 'parse class << self blocks' do
+    code = <<-CODE
+class A
+  class << self
+    puts
+  end
+end
+    CODE
+
+    parse(code).should == s(
+      :class,
+      s(:constant, 'A'),
+      nil,
+      s(
+        :body,
+        [
+          s(
+            :sclass,
+            s(:keyword, 'self'),
+            s(:body, [s(:method, 'puts', [], nil, nil)])
+          )
+        ]
+      )
+    )
+  end
 end

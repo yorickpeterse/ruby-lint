@@ -104,7 +104,8 @@ module RubyLint
       :super            => :super,
       :yield0           => :yield,
       :yield            => :yield,
-      :const_path_field => :constant_path
+      :const_path_field => :constant_path,
+      :sclass           => :sclass
     }
 
     ##
