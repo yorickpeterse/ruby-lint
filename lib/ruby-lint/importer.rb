@@ -46,13 +46,17 @@ module RubyLint
     # @param [#to_sym] name The name of the constant to import.
     # @param [Mixed] source The source constant to use for the
     #  `const_get` call. Set to `Object` by default.
+    # @param [Hash] options Hash containing extra options.
+    # @option options [TrueClass|FalseClass] :ancestors When set to `true`
+    #  ancestor methods of an object will be imported as well.
     # @return [Hash]
     #
-    def self.import(name, source = Object)
+    def self.import(name, source = Object, options = {})
       name = name.to_sym
 
       return if ignore?(source, name)
 
+      options    = {:ancestors => false}.merge(options)
       constant   = source.const_get(name)
       name_s     = name.to_s
       definition = Definition::RubyVariable.new(
@@ -63,7 +67,8 @@ module RubyLint
       )
 
       METHOD_KEYS.each do |collection, getter|
-        method_definitions(constant, collection, getter).each do |method|
+        method_definitions(constant, collection, getter, options[:ancestors]) \
+        .each do |method|
           definition.add(getter, method.name, method)
         end
       end
@@ -94,12 +99,14 @@ module RubyLint
     #  list of method names to import.
     # @param [Symbol] getter The name of the getter method to use for
     #  retrieving a single method.
+    # @param [TrueClass|FalseClass] ancestors When set to `true` ancestor
+    #  methods will be imported as well.
     # @return [Array]
     #
-    def self.method_definitions(source, collection, getter)
+    def self.method_definitions(source, collection, getter, ancestors = false)
       definitions = []
 
-      source.send(collection, false).each do |name|
+      source.send(collection, ancestors).each do |name|
         method     = source.send(getter, name)
         visibility = source =~ /^private/ ? :private : :public
         parameters = [[], [], nil, nil, nil]

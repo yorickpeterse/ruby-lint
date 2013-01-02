@@ -206,8 +206,10 @@ module RubyLint
       #
       # @param [#to_sym] type The type of definition to look up.
       # @param [String] name The name of the definition to look up.
+      # @param [Hash] import_options Hash containing options to pass to
+      #  {RubyLint::Importer.import}.
       #
-      def lookup(type, name)
+      def lookup(type, name, import_options = {})
         name       = name.to_s unless name.is_a?(String)
         definition = nil
         type       = type.to_sym
@@ -229,7 +231,11 @@ module RubyLint
 
         # Lazy import the constant if it exists.
         if !definition and lazy_load?(name, type)
-          @definitions[:constant][name] = Importer.import(name, @constant)
+          @definitions[:constant][name] = Importer.import(
+            name,
+            @constant,
+            import_options
+          )
 
           definition = lookup(type, name)
         end

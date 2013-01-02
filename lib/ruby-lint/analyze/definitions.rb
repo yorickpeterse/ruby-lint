@@ -49,19 +49,19 @@ module RubyLint
       # @param [RubyLint::Node] node
       #
       def on_module(node)
-        target   = definitions
-        mod_def  = Definition::RubyVariable.new(node, nil, :parents => [target])
-        existing = target.lookup(:constant, mod_def.name)
+        scope    = definitions
+        mod_def  = Definition::RubyVariable.new(node, nil, :parents => [scope])
+        existing = scope.lookup(:constant, mod_def.name)
 
         # Use the existing definition list.
         if existing
-          existing.parents << target
+          existing.parents << scope unless existing.parents.include?(scope)
           @definitions     << existing
 
           return
         end
 
-        target.add(:constant, mod_def.name, mod_def)
+        scope.add(:constant, mod_def.name, mod_def)
 
         @definitions << mod_def
       end
@@ -76,6 +76,57 @@ module RubyLint
       end
 
       ##
+      # Creates a new class definition and updates the scope accordingly.
+      #
+      # @see RubyLint::Analyze::Definitions#on_module
+      #
+      def on_class(node)
+        scope  = definitions
+        object = definitions.lookup(
+          :constant,
+          'Object',
+          :ancestors => true
+        )
+
+        parents = [object, scope]
+
+        # Resolve the definition of the parent class.
+        if node.children[1]
+          if node.children[1].type == :constant_path
+            parent = resolve_definitions(node.children[1].children)
+          else
+            parent = resolve_definitions([node.children[1]])
+          end
+
+          parents.unshift(parent) if parent
+        end
+
+        class_def = Definition::RubyVariable.new(node, nil, :parents => parents)
+        existing  = scope.lookup(:constant, class_def.name)
+
+        # Use the existing definition list.
+        if existing
+          existing.parents << scope unless existing.parents.include?(scope)
+          @definitions     << existing
+
+          return
+        end
+
+        scope.add(:constant, class_def.name, class_def)
+
+        @definitions << class_def
+      end
+
+      ##
+      # Changes the scope back to the outer scope of the class definition.
+      #
+      # @param [RubyLint::Node] node
+      #
+      def after_class(node)
+        @definitions.pop
+      end
+
+      ##
       # Creates a new method definition. This definition is either added in the
       # current scope or in the scope of the receiver in case one is specified.
       # Any method parameters are automatically added as definitions to the
@@ -84,21 +135,18 @@ module RubyLint
       # @param [RubyLint::Node] node
       #
       def on_method_definition(node)
-        target     = definitions
-        method_def = Definition::RubyMethod.new(node, :parents => [target])
+        scope  = definitions
+        method = Definition::RubyMethod.new(node, :parents => [scope])
 
-        if method_def.receiver
-          existing = target.lookup(
-            method_def.receiver.type,
-            method_def.receiver.name
-          )
+        if method.receiver
+          existing = scope.lookup(method.receiver.type, method.receiver.name)
 
-          existing ? target = method_def.receiver = existing : return
+          existing ? scope = method.receiver = existing : return
         end
 
-        target.add(method_def.definition_type, method_def.name, method_def)
+        scope.add(method.definition_type, method.name, method)
 
-        @definitions << method_def
+        @definitions << method
       end
 
       ##
@@ -108,12 +156,12 @@ module RubyLint
       # @param [RubyLint::Node] node
       #
       def after_method_definition(node)
-        method_def = @definitions.pop
+        method = @definitions.pop
 
         # TODO: variables should only be exported when the method is actually
         # called.
         EXPORT_VARIABLES.each do |type|
-          method_def.definitions[type].each do |name, defs|
+          method.definitions[type].each do |name, defs|
             definitions.add(type, name, defs)
           end
         end
@@ -128,20 +176,20 @@ module RubyLint
       #
       def on_assign(node)
         var, val = *node
-        target   = definitions
+        scope    = definitions
 
         if var.type == :constant_path
           found = resolve_definitions(var.children[0..-2])
-          found ? target = found : return
+          found ? scope = found : return
 
           var_def = Definition::RubyVariable.new(var.children[-1], val)
         else
           var_def = Definition::RubyVariable.new(var, val)
         end
 
-        target = @options[:definitions] if var_def.global_variable?
+        scope = @options[:definitions] if var_def.global_variable?
 
-        target.add(var_def.type, var_def.name, var_def)
+        scope.add(var_def.type, var_def.name, var_def)
       end
 
       ##
@@ -155,13 +203,13 @@ module RubyLint
 
         method_call = Definition::RubyMethod.new(node)
         copy_types  = INCLUDE_CALLS[method_call.name]
-        target      = definitions
+        scope       = definitions
 
         method_call.parameters.each do |param|
           if param.receiver
             source = resolve_definitions(param.receiver_path)
           else
-            source = target.lookup(param.type, param.name)
+            source = scope.lookup(param.type, param.name)
           end
 
           next unless source.is_a?(Definition::RubyVariable)
@@ -171,12 +219,12 @@ module RubyLint
           # possible some kind of limit should be set similar to when using
           # Timeout.timeout.
           until source.type == :module
-            source = target.lookup(source.value.type, source.value.name)
+            source = scope.lookup(source.value.type, source.value.name)
           end
 
           copy_types.each do |from, to|
             source.definitions[from].each do |name, definition|
-              target.add(to, name, definition)
+              scope.add(to, name, definition)
             end
           end
         end

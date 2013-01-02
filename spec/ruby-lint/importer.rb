@@ -25,7 +25,7 @@ describe RubyLint::Importer do
     method = defs.lookup(:method, 'import')
 
     method.parameters.length.should          == 1
-    method.optional_parameters.length.should == 1
+    method.optional_parameters.length.should == 2
 
     method.parameters[0].name.should          == 'name'
     method.optional_parameters[0].name.should == 'source'
