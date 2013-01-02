@@ -1,5 +1,6 @@
 require File.expand_path('../../lib/ruby-lint', __FILE__)
 require 'bacon'
+require 'bacon/colored_output'
 
 Bacon.summary_on_exit
 

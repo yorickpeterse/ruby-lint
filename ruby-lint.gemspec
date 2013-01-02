@@ -18,9 +18,10 @@ Gem::Specification.new do |s|
 
   s.add_dependency('furnace', ['~> 0.3.0.beta3'])
 
-  s.add_development_dependency('rake', ['>= 0.9.2.2'])
+  s.add_development_dependency('rake')
   s.add_development_dependency('redcarpet', ['>= 2.1.1'])
   s.add_development_dependency('bacon', ['>= 1.2.0'])
-  s.add_development_dependency('yard', ['>= 0.8.2.1'])
-  s.add_development_dependency('pry-rescue', ['>= 0.8'])
+  s.add_development_dependency('yard')
+  s.add_development_dependency('pry-rescue')
+  s.add_development_dependency('bacon-colored_output')
 end
