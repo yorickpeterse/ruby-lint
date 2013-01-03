@@ -142,4 +142,22 @@ end
         .should == true
     end
   end
+
+  should 'define class methods using `class << self` blocks' do
+    code = <<-CODE
+class First
+  class << self
+    def example
+    end
+  end
+end
+    CODE
+
+    defs = build_definitions(code)
+
+    defs.lookup(:constant, 'First') \
+      .lookup(:method, 'example') \
+      .is_a?(RubyLint::Definition::RubyMethod) \
+      .should == true
+  end
 end

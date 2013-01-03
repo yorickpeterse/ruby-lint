@@ -74,7 +74,7 @@ end
     )
   end
 
-  should 'parse class << self blocks' do
+  should 'parse `class << self` blocks' do
     code = <<-CODE
 class A
   class << self
