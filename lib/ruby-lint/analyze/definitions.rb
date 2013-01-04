@@ -98,7 +98,7 @@ module RubyLint
             parent = resolve_definitions([node.children[1]])
           end
 
-          parents.unshift(parent) if parent
+          parents[0] = parent
         end
 
         class_def = Definition::RubyVariable.new(node, nil, :parents => parents)
@@ -127,6 +127,39 @@ module RubyLint
       end
 
       ##
+      # Called when an sclass block is found. These blocks look like the
+      # following:
+      #
+      #     class << self
+      #       # ...
+      #     end
+      #
+      # @param [RubyLint::Node] node
+      #
+      def on_sclass(node)
+        use   = Definition::RubyVariable.new(node.children[0])
+        found = definitions.lookup(use.type, use.name)
+
+        if found
+          @definitions << found
+        else
+          @definitions << definitions
+        end
+
+        @eval_types << :class
+      end
+
+      ##
+      # Called after an sclass block has been processed.
+      #
+      # @param [RubyLint::Node] node
+      #
+      def after_sclass(node)
+        @definitions.pop
+        @eval_types.pop
+      end
+
+      ##
       # Creates a new method definition. This definition is either added in the
       # current scope or in the scope of the receiver in case one is specified.
       # Any method parameters are automatically added as definitions to the
@@ -135,16 +168,16 @@ module RubyLint
       # @param [RubyLint::Node] node
       #
       def on_method_definition(node)
-        scope  = definitions
-        method = Definition::RubyMethod.new(node, :parents => [scope])
+        scope       = definitions
+        method      = Definition::RubyMethod.new(node, :parents => [scope])
+        method_type = eval_type == :class ? :method : method.definition_type
 
         if method.receiver
           existing = scope.lookup(method.receiver.type, method.receiver.name)
-
           existing ? scope = method.receiver = existing : return
         end
 
-        scope.add(method.definition_type, method.name, method)
+        scope.add(method_type, method.name, method)
 
         @definitions << method
       end

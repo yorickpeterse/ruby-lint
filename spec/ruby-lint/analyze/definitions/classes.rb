@@ -111,7 +111,7 @@ end
 
       defs = build_definitions(code)
 
-      defs.lookup(:constant, 'Second').parents.length.should == 3
+      defs.lookup(:constant, 'Second').parents.length.should == 2
 
       defs.lookup(:constant, 'Second') \
         .lookup(:instance_method, 'example') \
@@ -134,7 +134,7 @@ end
 
       defs = build_definitions(code)
 
-      defs.lookup(:constant, 'Third').parents.length.should == 3
+      defs.lookup(:constant, 'Third').parents.length.should == 2
 
       defs.lookup(:constant, 'Third') \
         .lookup(:instance_method, 'example') \
@@ -143,21 +143,62 @@ end
     end
   end
 
-  should 'define class methods using `class << self` blocks' do
-    code = <<-CODE
+  describe 'using sclass blocks' do
+    should 'define a class method using `class << self`' do
+      code = <<-CODE
+  class First
+    class << self
+      def example
+      end
+    end
+  end
+      CODE
+
+      defs = build_definitions(code)
+
+      defs.lookup(:constant, 'First') \
+        .lookup(:method, 'example') \
+        .is_a?(RubyLint::Definition::RubyMethod) \
+        .should == true
+    end
+
+    should 'define a class method usin `class << String`' do
+      code = <<-CODE
+class << String
+  def example
+  end
+end
+      CODE
+
+      defs = build_definitions(code)
+
+      defs.lookup(:constant, 'String') \
+        .lookup(:method, 'example') \
+        .is_a?(RubyLint::Definition::RubyMethod) \
+        .should == true
+    end
+
+    should 'define a class method usin `class << String` nested in a class' do
+      code = <<-CODE
 class First
-  class << self
+  class << String
     def example
     end
   end
 end
-    CODE
+      CODE
 
-    defs = build_definitions(code)
+      defs = build_definitions(code)
 
-    defs.lookup(:constant, 'First') \
-      .lookup(:method, 'example') \
-      .is_a?(RubyLint::Definition::RubyMethod) \
-      .should == true
+      defs.lookup(:constant, 'First') \
+        .lookup(:method, 'example') \
+        .is_a?(RubyLint::Definition::RubyMethod) \
+        .should == false
+
+      defs.lookup(:constant, 'String') \
+        .lookup(:method, 'example') \
+        .is_a?(RubyLint::Definition::RubyMethod) \
+        .should == true
+    end
   end
 end
