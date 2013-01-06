@@ -42,9 +42,9 @@ module RubyLint
         # individually.
         @options[:definitions] = Definition::RubyObject.new(
           node.updated(nil, []),
-          :kernel  => true,
-          :lazy    => true,
-          :parents => [object]
+          :default_constants => ['Kernel'],
+          :lazy              => true,
+          :parents           => [object]
         )
       end
 
