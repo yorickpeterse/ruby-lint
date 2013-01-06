@@ -90,8 +90,6 @@ end
     should 'set the default parent class' do
       defs = build_definitions('class First; end')
 
-      defs.lookup(:constant, 'First').parents.length.should == 2
-
       defs.lookup(:constant, 'First') \
         .lookup(:method, 'new') \
         .is_a?(RubyLint::Definition::RubyMethod) \
@@ -110,8 +108,6 @@ end
       CODE
 
       defs = build_definitions(code)
-
-      defs.lookup(:constant, 'Second').parents.length.should == 2
 
       defs.lookup(:constant, 'Second') \
         .lookup(:instance_method, 'example') \

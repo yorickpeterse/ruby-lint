@@ -80,13 +80,23 @@ module RubyLint
     # Returns a list of {RubyLint::Node} instances for the glboal variables in
     #  the specified constant.
     #
-    # @param [Class] constant
+    # @param [#to_sym] name The name of the constant to import.
+    # @param [Class] constant The source constant
     # @return [Array]
     #
-    def self.import_global_variables(constant = Kernel)
-      return constant.global_variables.map do |name|
-        Definition::RubyVariable.new(Node.new(:global_variable, [name.to_s]))
+    def self.import_global_variables(name, constant = Object)
+      variables = []
+      found     = constant.const_get(name)
+
+      return variables unless found
+
+      found.global_variables.map do |var|
+        variables << Definition::RubyVariable.new(
+          Node.new(:global_variable, [var.to_s])
+        )
       end
+
+      return variables
     end
 
     private

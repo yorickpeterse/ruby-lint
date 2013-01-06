@@ -32,7 +32,7 @@ describe RubyLint::Importer do
   end
 
   should 'import a list of global variables' do
-    vars = RubyLint::Importer.import_global_variables
+    vars = RubyLint::Importer.import_global_variables('Kernel')
 
     vars.length.should == Kernel.global_variables.length
 

@@ -40,4 +40,12 @@ describe 'Parsing Hashes' do
       [s(:symbol, 'name')]
     )
   end
+
+  should 'parse the assignment to multiple hash keys' do
+    parse('{}[:name] = "Ruby"').should == s(
+      :assign,
+      s(:aref, s(:hash), [s(:symbol, 'name')]),
+      [s(:string, 'Ruby')]
+    )
+  end
 end

@@ -144,8 +144,8 @@ module RubyLint
       # @option options [Array] :parents The parent definitions.
       # @option options [TrueClass|FalseClass] :lazy When set to `true`
       #  missing constants will be lazy loaded.
-      # @option options [TrueClass|FalseClass] :kernel When set to `true` the
-      #  Kernel constant will be loaded by default.
+      # @option options [TrueClass|FalseClass] :default_constants An array of
+      #  constant names to load by default.
       # @option options [Class] :constant The constant to use for importing
       #  other constants, set to `Object` by default.
       #
@@ -160,13 +160,15 @@ module RubyLint
         @value       = @node.children
 
         options = {
-          :lazy     => false,
-          :kernel   => false,
-          :constant => Object,
-          :parents  => []
+          :lazy              => false,
+          :default_constants => [],
+          :constant          => Object,
+          :parents           => []
         }.merge(options)
 
         options[:parents].select! { |value| value.is_a?(RubyObject) }
+
+        options[:default_constants].map!(&:to_s)
 
         options.each do |key, value|
           instance_variable_set("@#{key}", value)
@@ -174,15 +176,11 @@ module RubyLint
 
         clear!
 
-        if options[:lazy] and options[:kernel]
-          @definitions[:constant]['Kernel'] = Importer.import('Kernel')
+        if @lazy
+          @default_constants.each { |name| import_constant(name) }
         end
 
-        if options[:kernel]
-          Importer.import_global_variables.each do |var|
-            add(var.type, var.name, var)
-          end
-        end
+        @default_constants.each { |name| import_global_variables(name) }
       end
 
       ##
@@ -194,11 +192,17 @@ module RubyLint
       #  under the specified name.
       #
       def add(type, name, value)
+        type = type.to_sym
+
         unless value.is_a?(RubyObject)
           raise TypeError, "Expected RubyObject but got #{value.class}"
         end
 
-        @definitions[type.to_sym][name] = value
+        unless @definitions.key?(type)
+          raise ArgumentError, ":#{type} is not a valid type of data to add"
+        end
+
+        @definitions[type][name] = value
       end
 
       ##
@@ -231,11 +235,7 @@ module RubyLint
 
         # Lazy import the constant if it exists.
         if !definition and lazy_load?(name, type)
-          @definitions[:constant][name] = Importer.import(
-            name,
-            @constant,
-            import_options
-          )
+          import_constant(name, import_options)
 
           definition = lookup(type, name)
         end
@@ -254,7 +254,8 @@ module RubyLint
           :global_variable   => {},
           :constant          => {},
           :method            => {},
-          :instance_method   => {}
+          :instance_method   => {},
+          :member            => {}
         }
       end
 
@@ -285,6 +286,36 @@ module RubyLint
         return @lazy \
           && type == :constant \
           && @constant.constants.include?(name.to_sym)
+      end
+
+      ##
+      # Imports the specified constant name.
+      #
+      # @param [#to_s] name The name of the constant to import.
+      # @param [Hash] options The options to pass to the importer.
+      #
+      def import_constant(name, options = {})
+        name = name.to_s
+
+        @definitions[:constant][name] = Importer.import(
+          name,
+          @constant,
+          options
+        )
+      end
+
+      ##
+      # Imports the global variables of the specified constant.
+      #
+      # @param [#to_s] name The name of the constant.
+      #
+      def import_global_variables(name)
+        name       = name.to_s
+        definition = lookup(:constant, name)
+
+        Importer.import_global_variables(name, @constant).each do |var|
+          definition.add(var.type, var.name, var)
+        end
       end
 
       ##

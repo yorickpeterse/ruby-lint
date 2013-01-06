@@ -37,4 +37,93 @@ describe 'Building variable definitions' do
     foo.name.should        == 'FOO'
     foo.value.value.should == ['10']
   end
+
+  describe 'array index assignments' do
+    should 'process single index assignments' do
+      code = <<-CODE
+  numbers    = []
+  numbers[0] = 10
+      CODE
+
+      defs    = build_definitions(code)
+      numbers = defs.lookup(:local_variable, 'numbers')
+
+      numbers.is_a?(RubyLint::Definition::RubyVariable).should == true
+
+      numbers.value.is_a?(RubyLint::Definition::RubyObject).should == true
+      numbers.value.type.should == :array
+
+      first = numbers.lookup(:member, 0)
+
+      first.is_a?(RubyLint::Definition::RubyObject).should == true
+      first.type.should  == :integer
+
+      first.value.is_a?(RubyLint::Definition::RubyObject).should == true
+      first.value.type.should  == :integer
+      first.value.value.should == ['10']
+    end
+
+    should 'process multiple index assignments' do
+      code = <<-CODE
+numbers        = []
+numbers[0,1]   = 10
+numbers[2,3]   = 20, 30
+numbers[4,5,6] = 40, 50
+      CODE
+
+      defs    = build_definitions(code)
+      numbers = defs.lookup(:local_variable, 'numbers')
+
+      numbers.lookup(:member, '0').value.value.should == ['10']
+      numbers.lookup(:member, '1').value.should       == nil
+      numbers.lookup(:member, '2').value.value.should == ['20']
+      numbers.lookup(:member, '3').value.value.should == ['30']
+      numbers.lookup(:member, '4').value.value.should == ['40']
+      numbers.lookup(:member, '5').value.value.should == ['50']
+      numbers.lookup(:member, '6').value.should       == nil
+    end
+  end
+
+  describe 'hash key assignments' do
+    should 'process a single key assignment' do
+      code = <<-CODE
+numbers        = {}
+numbers['one'] = 1
+      CODE
+
+      defs = build_definitions(code)
+
+      numbers = defs.lookup(:local_variable, 'numbers')
+      one     = numbers.lookup(:member, 'one')
+
+      one.is_a?(RubyLint::Definition::RubyObject).should == true
+
+      one.name.should == 'one'
+      one.type.should == :string
+
+      one.value.type.should  == :integer
+      one.value.value.should == ['1']
+    end
+  end
+
+  describe 'object member assignments' do
+    should 'process a single member assignment' do
+      code = <<-CODE
+  person      = OpenStruct.new
+  person.name = 'Matz'
+      CODE
+
+      defs   = build_definitions(code)
+      person = defs.lookup(:local_variable, 'person')
+      name   = person.lookup(:member, 'name')
+
+      name.is_a?(RubyLint::Definition::RubyObject).should == true
+
+      name.name.should == 'name'
+      name.type.should == :identifier
+
+      name.value.type.should  == :string
+      name.value.value.should == ['Matz']
+    end
+  end
 end

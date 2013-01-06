@@ -307,6 +307,13 @@ module RubyLint
     def on_assign(variable, value)
       variable = variable.updated(:local_variable) if variable.identifier?
 
+      # When assigning values to array indexes or hash keys the value should
+      # always be an array. This makes it easier to assign values without
+      # having to check the type of data we're dealing with.
+      if variable.type == :aref and !value.is_a?(Array)
+        value = [value]
+      end
+
       return Node.new(:assign, [variable, value], metadata(variable))
     end
 

@@ -116,9 +116,11 @@ describe RubyLint::Definition::RubyObject do
 
       definition = RubyLint::Definition::RubyObject.new(
         @node,
-        :lazy   => true,
-        :kernel => true
+        :lazy              => true,
+        :default_constants => ['Kernel']
       )
+
+      definition.definitions[:constant].key?('Kernel').should == true
 
       definition.lookup(:constant, 'Kernel') \
         .lookup(:method, 'puts') \
@@ -130,6 +132,21 @@ describe RubyLint::Definition::RubyObject do
       defs = RubyLint::Definition::RubyObject.new(@node, :lazy => true)
 
       defs.lookup(:constant, 'Time') \
+        .is_a?(RubyLint::Definition::RubyVariable) \
+        .should == true
+    end
+  end
+
+  describe 'importing global variables' do
+    should 'import the global variables of Kernel' do
+      definition = RubyLint::Definition::RubyObject.new(
+        s(:root),
+        :lazy              => true,
+        :default_constants => ['Kernel']
+      )
+
+      definition.lookup(:constant, 'Kernel') \
+        .lookup(:global_variable, '$:') \
         .is_a?(RubyLint::Definition::RubyVariable) \
         .should == true
     end

@@ -33,7 +33,7 @@ describe 'Parsing Arrays' do
     parse('[][0] = 10').should == s(
       :assign,
       s(:aref, s(:array), [s(:integer, '0')]),
-      s(:integer, '10')
+      [s(:integer, '10')]
     )
   end
 end

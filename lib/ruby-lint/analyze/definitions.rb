@@ -32,12 +32,19 @@ module RubyLint
       # @param [RubyLint::Node] node
       #
       def on_root(node)
+        object = RubyLint::Importer.import(
+          'Object',
+          Object,
+          :ancestors => true
+        )
+
         # No need to store all the child nodes as those are processed
         # individually.
         @options[:definitions] = Definition::RubyObject.new(
           node.updated(nil, []),
-          :kernel => true,
-          :lazy   => true
+          :kernel  => true,
+          :lazy    => true,
+          :parents => [object]
         )
       end
 
@@ -81,14 +88,8 @@ module RubyLint
       # @see RubyLint::Analyze::Definitions#on_module
       #
       def on_class(node)
-        scope  = definitions
-        object = definitions.lookup(
-          :constant,
-          'Object',
-          :ancestors => true
-        )
-
-        parents = [object, scope]
+        scope   = definitions
+        parents = [scope]
 
         # Resolve the definition of the parent class.
         if node.children[1]
@@ -98,7 +99,7 @@ module RubyLint
             parent = resolve_definitions([node.children[1]])
           end
 
-          parents[0] = parent
+          parents.unshift(parent)
         end
 
         class_def = Definition::RubyVariable.new(node, nil, :parents => parents)
@@ -211,16 +212,40 @@ module RubyLint
         var, val = *node
         scope    = definitions
 
+        if var.type == :global_variable
+          scope = @options[:definitions]
+        else
+          scope = definitions
+        end
+
         if var.type == :constant_path
           found = resolve_definitions(var.children[0..-2])
           found ? scope = found : return
 
           var_def = Definition::RubyVariable.new(var.children[-1], val)
+
+        # Array index, hash key and object member assignments.
+        elsif var.type == :aref or var.type == :field
+          type  = var.children[0].type
+          name  = var.children[0].children[0]
+          found = scope.lookup(type, name)
+
+          if found
+            members = var.children[1]
+            members = [members] unless members.is_a?(Array)
+            val     = [val] unless val.is_a?(Array)
+
+            members.each_with_index do |member, index|
+              member = Definition::RubyVariable.new(member, val[index])
+
+              found.add(:member, member.name, member)
+            end
+          end
+
+          return
         else
           var_def = Definition::RubyVariable.new(var, val)
         end
-
-        scope = @options[:definitions] if var_def.global_variable?
 
         scope.add(var_def.type, var_def.name, var_def)
       end
