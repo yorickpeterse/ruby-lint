@@ -209,8 +209,11 @@ module RubyLint
       # @param [RubyLint::Node] node
       #
       def on_assign(node)
-        var, val = *node
-        scope    = definitions
+        var, val  = *node
+        scope     = definitions
+        variables = [var]
+        values    = [val]
+        type      = var.type
 
         if var.type == :global_variable
           scope = @options[:definitions]
@@ -220,34 +223,33 @@ module RubyLint
 
         if var.type == :constant_path
           found = resolve_definitions(var.children[0..-2])
-          found ? scope = found : return
-
-          var_def = Definition::RubyVariable.new(var.children[-1], val)
-
-        # Array index, hash key and object member assignments.
-        elsif var.type == :aref or var.type == :field
-          type  = var.children[0].type
-          name  = var.children[0].children[0]
-          found = scope.lookup(type, name)
 
           if found
-            members = var.children[1]
-            members = [members] unless members.is_a?(Array)
-            val     = [val] unless val.is_a?(Array)
-
-            members.each_with_index do |member, index|
-              member = Definition::RubyVariable.new(member, val[index])
-
-              found.add(:member, member.name, member)
-            end
+            scope     = found
+            variables = [var.children[-1]]
+            type      = var.children[-1].type
           end
 
-          return
-        else
-          var_def = Definition::RubyVariable.new(var, val)
+        # Array index, hash key and object member assignments.
+        elsif is_object_member?(var)
+          found = scope.lookup(
+            var.children[0].type,
+            var.children[0].children[0]
+          )
+
+          if found
+            scope     = found
+            variables = [var.children[1]].flatten
+            type      = :member
+            values    = values.flatten
+          end
         end
 
-        scope.add(var_def.type, var_def.name, var_def)
+        return unless scope
+
+        variables.each_with_index do |variable, index|
+          assign_variable(scope, variable, values[index], type)
+        end
       end
 
       ##
@@ -286,6 +288,35 @@ module RubyLint
             end
           end
         end
+      end
+
+      private
+
+      ##
+      # Assigns a value to the specified variable.
+      #
+      # @param [RubyLint::Definition::RubyObject] definition The definition
+      #  list to add the variable to.
+      # @param [RubyLint::Node] variable The variable to create.
+      # @param [RubyLint::NOde] value The value of the variable.
+      # @param [NilClass|Symbol] type The type of variable to add, set to the
+      #  type of `variable` by default.
+      #
+      def assign_variable(definition, variable, value, type = variable.type)
+        var_def = Definition::RubyVariable.new(variable, value)
+
+        definition.add(type, var_def.name, var_def)
+      end
+
+      ##
+      # Returns `true` if the specified node indicates an object member (array
+      # index, hash key, etc) is being referenced.
+      #
+      # @param [RubyLint::Node] node
+      # @return [TrueClass|FalseClass]
+      #
+      def is_object_member?(node)
+        return node.type == :aref || node.type == :field
       end
     end # Definitions
   end # Analyze
