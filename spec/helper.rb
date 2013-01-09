@@ -1,6 +1,11 @@
-require File.expand_path('../../lib/ruby-lint', __FILE__)
 require 'bacon'
 require 'bacon/colored_output'
+
+if ENV['COVERAGE']
+  require File.expand_path('../simplecov_helper', __FILE__)
+end
+
+require File.expand_path('../../lib/ruby-lint', __FILE__)
 
 Bacon.summary_on_exit
 

@@ -1,5 +1,6 @@
 doc/build/*
 !doc/build/.gitkeep
+coverage
 
 pkg
 Gemfile.lock
