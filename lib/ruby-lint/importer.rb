@@ -59,9 +59,8 @@ module RubyLint
       options    = {:ancestors => false}.merge(options)
       constant   = source.const_get(name)
       name_s     = name.to_s
-      definition = Definition::RubyVariable.new(
+      definition = Definition::RubyObject.new(
         Node.new(:constant, [name_s]),
-        nil,
         :lazy     => true,
         :constant => source
       )
@@ -91,7 +90,7 @@ module RubyLint
       return variables unless found
 
       found.global_variables.map do |var|
-        variables << Definition::RubyVariable.new(
+        variables << Definition::RubyObject.new(
           Node.new(:global_variable, [var.to_s])
         )
       end

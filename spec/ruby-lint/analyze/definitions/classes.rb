@@ -6,7 +6,7 @@ describe 'Building class definitions' do
       defs    = build_definitions('class Example; end')
       example = defs.lookup(:constant, 'Example')
 
-      example.is_a?(RubyLint::Definition::RubyVariable).should == true
+      example.is_a?(RubyLint::Definition::RubyObject).should == true
 
       example.type.should == :class
       example.name.should == 'Example'
@@ -23,12 +23,12 @@ end
       defs  = build_definitions(code)
       first = defs.lookup(:constant, 'First')
 
-      first.is_a?(RubyLint::Definition::RubyVariable).should == true
+      first.is_a?(RubyLint::Definition::RubyObject).should == true
 
       defs.lookup(:constant, 'Second').nil?.should == true
 
       first.lookup(:constant, 'Second') \
-        .is_a?(RubyLint::Definition::RubyVariable) \
+        .is_a?(RubyLint::Definition::RubyObject) \
         .should == true
     end
 
@@ -47,20 +47,20 @@ end
       first = defs.lookup(:constant, 'First')
 
       first.lookup(:constant, 'Second') \
-        .is_a?(RubyLint::Definition::RubyVariable) \
+        .is_a?(RubyLint::Definition::RubyObject) \
         .should == true
 
       first.lookup(:constant, 'Third') \
-        .is_a?(RubyLint::Definition::RubyVariable) \
+        .is_a?(RubyLint::Definition::RubyObject) \
         .should == true
 
       first.lookup(:constant, 'Second') \
         .lookup(:constant, 'Third') \
-        .is_a?(RubyLint::Definition::RubyVariable) \
+        .is_a?(RubyLint::Definition::RubyObject) \
         .should == true
 
       defs.lookup(:constant, 'Third') \
-        .is_a?(RubyLint::Definition::RubyVariable) \
+        .is_a?(RubyLint::Definition::RubyObject) \
         .should == true
     end
   end

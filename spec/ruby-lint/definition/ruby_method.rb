@@ -42,7 +42,7 @@ describe RubyLint::Definition::RubyMethod do
 
   should 'return the method definition receiver' do
     @method_def.receiver \
-      .is_a?(RubyLint::Definition::RubyVariable) \
+      .is_a?(RubyLint::Definition::RubyObject) \
       .should == true
 
     @method_def.receiver.name.should == 'String'
@@ -50,7 +50,7 @@ describe RubyLint::Definition::RubyMethod do
 
   should 'return the method call receiver' do
     @method_call.receiver \
-      .is_a?(RubyLint::Definition::RubyVariable) \
+      .is_a?(RubyLint::Definition::RubyObject) \
       .should == true
 
     @method_call.receiver.name.should == 'String'
@@ -66,10 +66,9 @@ describe RubyLint::Definition::RubyMethod do
 
       required = @method_def.parameters[0]
 
-      required.is_a?(RubyLint::Definition::RubyVariable).should == true
+      required.is_a?(RubyLint::Definition::RubyObject).should == true
 
-      required.name.should       == 'required'
-      required.value.nil?.should == true
+      required.name.should == 'required'
     end
 
     should 'return the optional parameters' do
@@ -77,7 +76,7 @@ describe RubyLint::Definition::RubyMethod do
 
       number = @method_def.optional_parameters[0]
 
-      number.is_a?(RubyLint::Definition::RubyVariable).should == true
+      number.is_a?(RubyLint::Definition::RubyObject).should == true
 
       number.name.should == 'number'
 
@@ -87,9 +86,8 @@ describe RubyLint::Definition::RubyMethod do
     end
 
     should 'return the rest parameter' do
-      @method_def.rest_parameter.nil?.should       == false
-      @method_def.rest_parameter.name.should       == 'rest'
-      @method_def.rest_parameter.value.nil?.should == true
+      @method_def.rest_parameter.nil?.should == false
+      @method_def.rest_parameter.name.should == 'rest'
     end
 
     should 'return the more parameters' do
@@ -102,18 +100,17 @@ describe RubyLint::Definition::RubyMethod do
     end
 
     should 'return the block parameter' do
-      @method_def.block_parameter.nil?.should       == false
-      @method_def.block_parameter.name.should       == 'block'
-      @method_def.block_parameter.value.nil?.should == true
+      @method_def.block_parameter.nil?.should == false
+      @method_def.block_parameter.name.should == 'block'
     end
 
     should 'add method parameters to the definitions list' do
       @method_def.lookup(:local_variable, 'required') \
-        .is_a?(RubyLint::Definition::RubyVariable) \
+        .is_a?(RubyLint::Definition::RubyObject) \
         .should == true
 
       @method_def.lookup(:local_variable, 'block') \
-        .is_a?(RubyLint::Definition::RubyVariable) \
+        .is_a?(RubyLint::Definition::RubyObject) \
         .should == true
     end
   end
@@ -142,11 +139,11 @@ describe RubyLint::Definition::RubyMethod do
 
       param = method.parameters[0]
 
-      param.is_a?(RubyLint::Definition::RubyVariable).should == true
+      param.is_a?(RubyLint::Definition::RubyObject).should == true
       param.type.should == :constant
       param.name.should == 'Second'
 
-      param.receiver.is_a?(RubyLint::Definition::RubyVariable).should == true
+      param.receiver.is_a?(RubyLint::Definition::RubyObject).should == true
       param.receiver.type.should == :constant
       param.receiver.name.should == 'First'
     end

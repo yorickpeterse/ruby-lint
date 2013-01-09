@@ -22,6 +22,25 @@ module RubyLint
     ]
 
     ##
+    # Array containing various predicate methods to create.
+    #
+    # @return [Array]
+    #
+    PREDICATE_METHODS = [:identifier, :module, :class, :hash, :array]
+
+    VARIABLE_TYPES.each do |type|
+      define_method("#{type}?") do
+        return @type == type
+      end
+    end
+
+    PREDICATE_METHODS.each do |type|
+      define_method("#{type}?") do
+        return @type == type
+      end
+    end
+
+    ##
     # Returns the line number of the node.
     #
     # @return [Fixnum]
@@ -43,21 +62,19 @@ module RubyLint
     attr_reader :file
 
     ##
-    # Checks if the type of the node is an identifier.
-    #
-    # @return [TrueClass|FalseClass]
-    #
-    def identifier?
-      return @type == :identifier
-    end
-
-    ##
     # Returns `true` if the current node is a variable node.
     #
     # @return [TrueClass|FalseClass]
     #
     def variable?
       return VARIABLE_TYPES.include?(@type)
+    end
+
+    ##
+    # @return [TrueClass|FalseClass]
+    #
+    def constant?
+      return @type == :constant || @type == :module || @type == :class
     end
 
     ##

@@ -38,10 +38,9 @@ module RubyLint
           :ancestors => true
         )
 
-        # No need to store all the child nodes as those are processed
-        # individually.
         @options[:definitions] = Definition::RubyObject.new(
-          node.updated(nil, []),
+          node,
+          :value             => nil,
           :default_constants => ['Kernel'],
           :lazy              => true,
           :parents           => [object]
@@ -56,8 +55,13 @@ module RubyLint
       # @param [RubyLint::Node] node
       #
       def on_module(node)
-        scope    = definitions
-        mod_def  = Definition::RubyVariable.new(node, nil, :parents => [scope])
+        scope   = definitions
+        mod_def = Definition::RubyObject.new(
+          node,
+          :value   => nil,
+          :parents => [scope]
+        )
+
         existing = scope.lookup(:constant, mod_def.name)
 
         # Use the existing definition list.
@@ -102,8 +106,13 @@ module RubyLint
           parents.unshift(parent)
         end
 
-        class_def = Definition::RubyVariable.new(node, nil, :parents => parents)
-        existing  = scope.lookup(:constant, class_def.name)
+        class_def = Definition::RubyObject.new(
+          node,
+          :value   => nil,
+          :parents => parents
+        )
+
+        existing = scope.lookup(:constant, class_def.name)
 
         # Use the existing definition list.
         if existing
@@ -138,7 +147,7 @@ module RubyLint
       # @param [RubyLint::Node] node
       #
       def on_sclass(node)
-        use   = Definition::RubyVariable.new(node.children[0])
+        use   = Definition::RubyObject.new(node.children[0])
         found = definitions.lookup(use.type, use.name)
 
         if found
@@ -206,14 +215,15 @@ module RubyLint
       # a constant path and a particular segment does not exist the entire
       # assignment is skipped.
       #
-      # @param [RubyLint::Node] node
+      # @param [RubyLint::Node|Array] node
       #
       def on_assign(node)
-        var, val  = *node
-        scope     = definitions
-        variables = [var]
-        values    = [val]
-        type      = var.type
+        var, val      = *node
+        current_scope = definitions
+        scope         = current_scope
+        variables     = [var]
+        values        = [val].flatten
+        type          = var.type
 
         if var.type == :global_variable
           scope = @options[:definitions]
@@ -232,6 +242,10 @@ module RubyLint
 
         # Array index, hash key and object member assignments.
         elsif is_object_member?(var)
+          # TODO: implement assignments to return values of methods if
+          # possible.
+          return unless var.children[0].variable?
+
           found = scope.lookup(
             var.children[0].type,
             var.children[0].children[0]
@@ -249,6 +263,35 @@ module RubyLint
 
         variables.each_with_index do |variable, index|
           assign_variable(scope, variable, values[index], type)
+        end
+      end
+
+      ##
+      # Processes conditional variable assignments.
+      #
+      # @see RubyLint::Analyze::Definitions#on_assign
+      #
+      def on_op_assign(node)
+        type = node.children[0].type
+        name = node.children[0].children[0]
+
+        unless definitions.lookup(type, name)
+          on_assign(node.children)
+        end
+      end
+
+      ##
+      # Processes the local variables created by `for` loops.
+      #
+      # @param [RubyLint::Node] node
+      #
+      def on_for(node)
+        scope = definitions
+
+        # The values are set to `nil` as the only reliable way of retrieving
+        # these is actual code evaluation.
+        node.children[0].each do |variable|
+          assign_variable(scope, variable, nil)
         end
       end
 
@@ -272,15 +315,11 @@ module RubyLint
             source = scope.lookup(param.type, param.name)
           end
 
-          next unless source.is_a?(Definition::RubyVariable)
-
-          # Resolve variables to their constants.
-          # TODO: this could potentially result in an infinite loop. If
-          # possible some kind of limit should be set similar to when using
-          # Timeout.timeout.
-          until source.type == :module
-            source = scope.lookup(source.value.type, source.value.name)
+          if source.variable?
+            source = source.value
           end
+
+          next unless source.is_a?(Definition::RubyObject)
 
           copy_types.each do |from, to|
             source.definitions[from].each do |name, definition|
@@ -303,7 +342,56 @@ module RubyLint
       #  type of `variable` by default.
       #
       def assign_variable(definition, variable, value, type = variable.type)
-        var_def = Definition::RubyVariable.new(variable, value)
+        current_scope = definitions
+
+        # Resolve the value of a variable used for assigning a object member.
+        if variable.variable? and type == :member
+          found = current_scope.lookup(variable.type, variable.children[0])
+
+          if found
+            variable = found.value.node
+          else
+            return
+          end
+        end
+
+        # Resolve variable values.
+        if value and value.variable?
+          found_value = current_scope.lookup(value.type, value.children[0])
+
+          if found_value and found_value.constant?
+            value = found_value
+          elsif found_value
+            value = found_value.value
+          end
+        end
+
+        var_def = Definition::RubyObject.new(variable, :value => value)
+
+        if value.is_a?(Node)
+          # Add the members for each value in the Array.
+          if value.array?
+            var_def.value.value.each_with_index do |segment, index|
+              assign_variable(
+                var_def,
+                Node.new(:integer, [index.to_s]),
+                segment,
+                :member
+              )
+            end
+          end
+
+          if value.hash?
+            var_def.value.value.each do |pair|
+              assign_variable(
+                var_def,
+                pair.children[0],
+                pair.children[1],
+                :member
+              )
+            end
+          end
+        end
 
         definition.add(type, var_def.name, var_def)
       end

@@ -5,7 +5,7 @@ describe 'Building variable definitions' do
     defs   = build_definitions('number = 10')
     number = defs.lookup(:local_variable, 'number')
 
-    number.is_a?(RubyLint::Definition::RubyVariable).should == true
+    number.is_a?(RubyLint::Definition::RubyObject).should == true
     number.name.should == 'number'
 
     number.value.is_a?(RubyLint::Definition::RubyObject).should == true
@@ -17,12 +17,12 @@ describe 'Building variable definitions' do
     number  = defs.lookup(:local_variable, 'number')
     numberx = defs.lookup(:local_variable, 'numberx')
 
-    number.is_a?(RubyLint::Definition::RubyVariable).should == true
+    number.is_a?(RubyLint::Definition::RubyObject).should == true
 
     number.name.should        == 'number'
     number.value.value.should == ['10']
 
-    numberx.is_a?(RubyLint::Definition::RubyVariable).should == true
+    numberx.is_a?(RubyLint::Definition::RubyObject).should == true
 
     numberx.name.should        == 'numberx'
     numberx.value.value.should == ['20']
@@ -32,10 +32,23 @@ describe 'Building variable definitions' do
     defs = build_definitions('Kernel::FOO = 10')
     foo  = defs.lookup(:constant, 'Kernel').lookup(:constant, 'FOO')
 
-    foo.is_a?(RubyLint::Definition::RubyVariable).should == true
+    foo.is_a?(RubyLint::Definition::RubyObject).should == true
 
     foo.name.should        == 'FOO'
     foo.value.value.should == ['10']
+  end
+
+  should 'process recursive variable assignments' do
+    code = <<-CODE
+a = 1
+b = a
+c = b
+d = c
+    CODE
+
+    defs = build_definitions(code)
+
+    defs.lookup(:local_variable, 'd').value.value.should == ['1']
   end
 
   describe 'array index assignments' do
@@ -48,7 +61,7 @@ describe 'Building variable definitions' do
       defs    = build_definitions(code)
       numbers = defs.lookup(:local_variable, 'numbers')
 
-      numbers.is_a?(RubyLint::Definition::RubyVariable).should == true
+      numbers.is_a?(RubyLint::Definition::RubyObject).should == true
 
       numbers.value.is_a?(RubyLint::Definition::RubyObject).should == true
       numbers.value.type.should == :array
@@ -82,6 +95,20 @@ numbers[4,5,6] = 40, 50
       numbers.lookup(:member, '5').value.value.should == ['50']
       numbers.lookup(:member, '6').value.should       == nil
     end
+
+    should 'process index assignments using variables' do
+      code = <<-CODE
+index          = 1
+numbers        = [10]
+numbers[index] = 20
+      CODE
+
+      defs    = build_definitions(code)
+      numbers = defs.lookup(:local_variable, 'numbers')
+
+      numbers.lookup(:member, '0').value.value.should == ['10']
+      numbers.lookup(:member, '1').value.value.should == ['20']
+    end
   end
 
   describe 'hash key assignments' do
@@ -104,6 +131,20 @@ numbers['one'] = 1
       one.value.type.should  == :integer
       one.value.value.should == ['1']
     end
+
+    should 'process a single key assignment using variables' do
+      code = <<-CODE
+key          = 'one'
+numbers      = {'two' => 2}
+numbers[key] = 1
+      CODE
+
+      defs    = build_definitions(code)
+      numbers = defs.lookup(:local_variable, 'numbers')
+
+      numbers.lookup(:member, 'one').value.value.should == ['1']
+      numbers.lookup(:member, 'two').value.value.should == ['2']
+    end
   end
 
   describe 'object member assignments' do
@@ -124,6 +165,25 @@ numbers['one'] = 1
 
       name.value.type.should  == :string
       name.value.value.should == ['Matz']
+    end
+  end
+
+  describe 'optional assignments' do
+    should 'process an assignment for an existing variable' do
+      code = <<-CODE
+number   = 10
+number ||= 20
+      CODE
+
+      defs = build_definitions(code)
+
+      defs.lookup(:local_variable, 'number').value.value.should == ['10']
+    end
+
+    should 'process an assignment for a non existing variable' do
+      defs = build_definitions('number ||= 10')
+
+      defs.lookup(:local_variable, 'number').value.value.should == ['10']
     end
   end
 end

@@ -10,8 +10,6 @@ module RubyLint
     #
     # * {RubyLint::Definition::RubyObject}: the base class for all definition
     #   classes, also used for generic data such as integers and strings.
-    # * {RubyLint::Definition::RubyVariable}: definition class used
-    #   specifically for variables (including constants).
     # * {RubyLint::Definition::RubyMethod}: definition class used for method
     #   definitions and method calls.
     #
@@ -38,12 +36,11 @@ module RubyLint
     #     root_defs.add(:constant, 'Example', example)
     #
     class RubyObject
-      ##
-      # The default class for each ruby object.
-      #
-      # @return [String]
-      #
-      DEFAULT_CLASS = 'Object'
+      (Node::VARIABLE_TYPES + Node::PREDICATE_METHODS).each do |type|
+        define_method("#{type}?") do
+          return @node.send("#{type}?")
+        end
+      end
 
       ##
       # Array containing items that should be looked up in the parent
@@ -102,13 +99,6 @@ module RubyLint
       attr_reader :type
 
       ##
-      # Returns the Ruby class of the object.
-      #
-      # @return [String]
-      #
-      attr_reader :ruby_class
-
-      ##
       # The constant to lazy load data from.
       #
       # @return [Class]
@@ -133,7 +123,7 @@ module RubyLint
       # The receiver of the method definition, method call or constant (in case
       # of constant paths).
       #
-      # @return [RubyLint::Definition::RubyVariable|NilClass]
+      # @return [RubyLint::Definition::RubyObject|NilClass]
       #
       attr_accessor :receiver
 
@@ -148,25 +138,47 @@ module RubyLint
       #  constant names to load by default.
       # @option options [Class] :constant The constant to use for importing
       #  other constants, set to `Object` by default.
+      # @option options [RubyLint::Node|RubyLint::Definition::RubyObject]
+      #  :value The custom value to use for the object, set to the output of
+      #  {RubyLint::Node#children} by default.
       #
       def initialize(node, options = {})
-        @node        = node
-        @name        = extract_name(@node)
-        @file        = @node.file
-        @line        = @node.line || 1
-        @column      = @node.column || 0
-        @type        = @node.type
-        @ruby_class  = TYPE_CONSTANTS.fetch(@node.type, DEFAULT_CLASS)
-        @value       = @node.children
+        # Set the receiver for constant paths.
+        if node.type == :constant_path
+          segments = node.children[0..-2]
+          node     = node.children[-1]
+          target   = self
+
+          segments.reverse.each do |segment|
+            target.receiver = RubyObject.new(segment)
+            target          = target.receiver
+          end
+        end
+
+        @node   = node
+        @name   = extract_name(node)
+        @file   = node.file
+        @line   = node.line || 1
+        @column = node.column || 0
+        @type   = node.type
 
         options = {
           :lazy              => false,
           :default_constants => [],
           :constant          => Object,
-          :parents           => []
+          :parents           => [],
+          :value             => node.children
         }.merge(options)
 
-        options[:parents].select! { |value| value.is_a?(RubyObject) }
+        if options[:value].is_a?(Node)
+          options[:value] = RubyObject.new(options[:value])
+        end
+
+        options[:parents].each do |parent|
+          unless parent.is_a?(RubyObject)
+            raise TypeError, 'parents can only be RubyObject instances'
+          end
+        end
 
         options[:default_constants].map!(&:to_s)
 
@@ -176,10 +188,7 @@ module RubyLint
 
         clear!
 
-        if @lazy
-          @default_constants.each { |name| import_constant(name) }
-        end
-
+        @default_constants.each { |name| import_constant(name) } if @lazy
         @default_constants.each { |name| import_global_variables(name) }
       end
 
@@ -257,6 +266,31 @@ module RubyLint
           :instance_method   => {},
           :member            => {}
         }
+      end
+
+      ##
+      # @see RubyLint::Node#variable?
+      #
+      def variable?
+        return @node.variable?
+      end
+
+      ##
+      # Returns an array containing the "path" of all receivers from left to
+      # right.
+      #
+      # @return [Array]
+      #
+      def receiver_path
+        receivers = []
+        source    = self
+
+        while receiver = source.receiver
+          receivers << receiver
+          source     = receiver
+        end
+
+        return receivers << self
       end
 
       private

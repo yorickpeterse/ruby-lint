@@ -45,7 +45,7 @@ module RubyLint
       ##
       # The rest parameter.
       #
-      # @return [RubyLint::Definition::RubyVariable|NilClass]
+      # @return [RubyLint::Definition::RubyObject|NilClass]
       #
       attr_reader :rest_parameter
 
@@ -59,7 +59,7 @@ module RubyLint
       ##
       # The block parameter.
       #
-      # @return [RubyLint::Definition::RubyVariable|NilClass]
+      # @return [RubyLint::Definition::RubyObject|NilClass]
       #
       attr_reader :block_parameter
 
@@ -80,10 +80,10 @@ module RubyLint
 
         if method_call? and @value[1]
           @parameters = @value[1].map do |node|
-            node.variable? ? RubyVariable.new(node) : RubyObject.new(node)
+            RubyObject.new(node)
           end
         elsif @value[1][0]
-          @parameters = @value[1][0].map { |node| RubyVariable.new(node) }
+          @parameters = @value[1][0].map { |node| RubyObject.new(node) }
         end
 
         @optional_parameters = []
@@ -98,9 +98,9 @@ module RubyLint
         end
 
         if method_call?
-          @receiver = RubyVariable.new(@value[-1]) if @value[-1]
+          @receiver = RubyObject.new(@value[-1]) if @value[-1]
         else
-          @receiver = RubyVariable.new(@value[-2]) if @value[-2]
+          @receiver = RubyObject.new(@value[-2]) if @value[-2]
         end
 
         # TODO: this is rather naive as methods defined on variables will be
@@ -128,12 +128,12 @@ module RubyLint
           # Parameters such as the optional ones.
           if @value[1][index].is_a?(Array)
             params = @value[1][index].map do |node|
-              RubyVariable.new(node, node.children[1])
+              RubyObject.new(node, :value => node.children[1])
             end
 
           # Rest and block parameters.
           elsif @value[1][index]
-            params = RubyVariable.new(@value[1][index])
+            params = RubyObject.new(@value[1][index])
           end
 
           instance_variable_set(variable, params)

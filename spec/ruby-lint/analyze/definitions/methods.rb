@@ -73,7 +73,7 @@ end
 
     defs.lookup(:instance_method, 'example') \
       .lookup(:local_variable, 'number') \
-      .is_a?(RubyLint::Definition::RubyVariable) \
+      .is_a?(RubyLint::Definition::RubyObject) \
       .should == true
 
     defs.lookup(:local_variable, 'number').nil?.should == true
@@ -97,6 +97,38 @@ end
     defs.lookup(:instance_method, 'example').nil?.should == true
   end
 
+  describe 'creating variables for method parameters' do
+    should 'create local variables' do
+      code = <<-CODE
+def example(number)
+  return number
+end
+      CODE
+
+      defs = build_definitions(code)
+
+      defs.lookup(:instance_method, 'example') \
+        .lookup(:local_variable, 'number') \
+        .is_a?(RubyLint::Definition::RubyObject) \
+        .should == true
+    end
+
+    should 'allow the assignment using parameters' do
+      code = <<-CODE
+def example(number)
+  other_number = number
+end
+      CODE
+
+      defs = build_definitions(code)
+
+      defs.lookup(:instance_method, 'example') \
+        .lookup(:local_variable, 'other_number') \
+        .is_a?(RubyLint::Definition::RubyObject) \
+        .should == true
+    end
+  end
+
   describe 'exporting variables' do
     should 'export variables to the outer scope' do
       code = <<-CODE
@@ -108,7 +140,7 @@ end
       defs = build_definitions(code)
 
       defs.lookup(:instance_variable, '@number') \
-        .is_a?(RubyLint::Definition::RubyVariable) \
+        .is_a?(RubyLint::Definition::RubyObject) \
         .should == true
     end
   end

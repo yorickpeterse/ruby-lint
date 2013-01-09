@@ -4,13 +4,13 @@ describe RubyLint::Importer do
   should 'return a hash with the results' do
     defs = RubyLint::Importer.import('Kernel')
 
-    defs.is_a?(RubyLint::Definition::RubyVariable).should == true
+    defs.is_a?(RubyLint::Definition::RubyObject).should == true
   end
 
   should 'import a method' do
     defs = RubyLint::Importer.import('Kernel')
 
-    defs.is_a?(RubyLint::Definition::RubyVariable).should == true
+    defs.is_a?(RubyLint::Definition::RubyObject).should == true
 
     method = defs.lookup(:method, 'puts')
 
@@ -38,7 +38,6 @@ describe RubyLint::Importer do
 
     var = vars.select { |v| v.name == '$LOAD_PATH' }[0]
 
-    var.is_a?(RubyLint::Definition::RubyVariable).should == true
-    var.value.nil?.should                                == true
+    var.is_a?(RubyLint::Definition::RubyObject).should == true
   end
 end
