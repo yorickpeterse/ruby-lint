@@ -78,13 +78,13 @@ module RubyLint
 
         @parameters = []
 
-        if method_call? and @value[1]
-          @parameters = @value[1].map do |node|
-            RubyObject.new(node)
-          end
-        elsif @value[1][0]
-          @parameters = @value[1][0].map { |node| RubyObject.new(node) }
+        if method? and children[1]
+          @parameters = children[1]
+        elsif children[1][0]
+          @parameters = children[1][0]
         end
+
+        @parameters.map! { |node| RubyObject.new(node) }
 
         @optional_parameters = []
         @rest_parameter      = nil
@@ -92,30 +92,21 @@ module RubyLint
         @block_parameter     = nil
         @receiver            = nil
 
-        unless method_call?
+        unless method?
           set_parameters
           define_parameters
         end
 
-        if method_call?
-          @receiver = RubyObject.new(@value[-1]) if @value[-1]
+        if method?
+          @receiver = RubyObject.new(children[-1]) if children[-1]
         else
-          @receiver = RubyObject.new(@value[-2]) if @value[-2]
+          @receiver = RubyObject.new(children[-2]) if children[-2]
         end
 
         # TODO: this is rather naive as methods defined on variables will be
         # considered class methods by this line (while they are instance
         # methods instead).
         @definition_type = @receiver ? :method : :instance_method
-      end
-
-      ##
-      # Returns `true` if the current object belongs to a method call.
-      #
-      # @return [TrueClass|FalseClass]
-      #
-      def method_call?
-        return @type == :method
       end
 
       private
@@ -126,14 +117,14 @@ module RubyLint
       def set_parameters
         PARAMETER_VARIABLES.each do |index, variable|
           # Parameters such as the optional ones.
-          if @value[1][index].is_a?(Array)
-            params = @value[1][index].map do |node|
+          if children[1][index].is_a?(Array)
+            params = children[1][index].map do |node|
               RubyObject.new(node, :value => node.children[1])
             end
 
           # Rest and block parameters.
-          elsif @value[1][index]
-            params = RubyObject.new(@value[1][index])
+          elsif children[1][index]
+            params = RubyObject.new(children[1][index])
           end
 
           instance_variable_set(variable, params)

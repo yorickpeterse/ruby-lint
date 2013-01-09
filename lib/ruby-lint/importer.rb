@@ -56,13 +56,19 @@ module RubyLint
 
       return if ignore?(source, name)
 
-      options    = {:ancestors => false}.merge(options)
-      constant   = source.const_get(name)
-      name_s     = name.to_s
+      options  = {:ancestors => false}.merge(options)
+      constant = source.const_get(name)
+      name_s   = name.to_s
+
+      # Resolve the constants of an instance.
+      unless constant.respond_to?(:instance_methods)
+        constant = constant.class
+      end
+
       definition = Definition::RubyObject.new(
         Node.new(:constant, [name_s]),
         :lazy     => true,
-        :constant => source
+        :constant => constant
       )
 
       METHOD_KEYS.each do |collection, getter|

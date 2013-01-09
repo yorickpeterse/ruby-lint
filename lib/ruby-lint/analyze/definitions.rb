@@ -218,20 +218,14 @@ module RubyLint
       # @param [RubyLint::Node|Array] node
       #
       def on_assign(node)
-        var, val      = *node
-        current_scope = definitions
-        scope         = current_scope
-        variables     = [var]
-        values        = [val].flatten
-        type          = var.type
+        var, val  = *node
+        variables = [var]
+        values    = [val].flatten
+        type      = var.type
 
-        if var.type == :global_variable
-          scope = @options[:definitions]
-        else
-          scope = definitions
-        end
+        scope = var.global_variable? ? @options[:definitions] : definitions
 
-        if var.type == :constant_path
+        if var.constant_path?
           found = resolve_definitions(var.children[0..-2])
 
           if found
@@ -258,8 +252,6 @@ module RubyLint
             values    = values.flatten
           end
         end
-
-        return unless scope
 
         variables.each_with_index do |variable, index|
           assign_variable(scope, variable, values[index], type)
@@ -348,11 +340,7 @@ module RubyLint
         if variable.variable? and type == :member
           found = current_scope.lookup(variable.type, variable.children[0])
 
-          if found
-            variable = found.value.node
-          else
-            return
-          end
+          found ? variable = found.value.node : return
         end
 
         # Resolve variable values.
@@ -369,31 +357,50 @@ module RubyLint
         var_def = Definition::RubyObject.new(variable, :value => value)
 
         if value.is_a?(Node)
-          # Add the members for each value in the Array.
           if value.array?
-            var_def.value.value.each_with_index do |segment, index|
-              assign_variable(
-                var_def,
-                Node.new(:integer, [index.to_s]),
-                segment,
-                :member
-              )
-            end
+            assign_array_indexes(var_def, var_def.value.value)
           end
 
           if value.hash?
-            var_def.value.value.each do |pair|
-              assign_variable(
-                var_def,
-                pair.children[0],
-                pair.children[1],
-                :member
-              )
-            end
+            assign_hash_pairs(var_def, var_def.value.value)
           end
         end
 
         definition.add(type, var_def.name, var_def)
+      end
+
+      ##
+      # Assigns the indexes of the array to a definitions list.
+      #
+      # @param [RubyLint::Definition::RubyObject] definitions
+      # @param [Array] values
+      #
+      def assign_array_indexes(definitions, values)
+        values.each_with_index do |value, index|
+          assign_variable(
+            definitions,
+            Node.new(:integer, [index.to_s]),
+            value,
+            :member
+          )
+        end
+      end
+
+      ##
+      # Assigns the key/value pairs of a hash to a definition list.
+      #
+      # @param [RubyLint::Definition::RubyObject] definitions
+      # @param [Array] values
+      #
+      def assign_hash_pairs(definitions, values)
+        values.each do |pair|
+          assign_variable(
+            definitions,
+            pair.children[0],
+            pair.children[1],
+            :member
+          )
+        end
       end
 
       ##

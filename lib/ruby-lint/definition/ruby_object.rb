@@ -36,12 +36,6 @@ module RubyLint
     #     root_defs.add(:constant, 'Example', example)
     #
     class RubyObject
-      (Node::VARIABLE_TYPES + Node::PREDICATE_METHODS).each do |type|
-        define_method("#{type}?") do
-          return @node.send("#{type}?")
-        end
-      end
-
       ##
       # Array containing items that should be looked up in the parent
       # definition if they're not found in the current one.
@@ -65,16 +59,14 @@ module RubyLint
       attr_reader :node
 
       ##
-      # Returns the value of the object.
-      #
-      # @return [Mixed]
-      #
-      attr_reader :value
-
-      ##
       # @return [String]
       #
       attr_reader :name
+
+      ##
+      # @return [Mixed]
+      #
+      attr_reader :value
 
       ##
       # @return [String]
@@ -90,6 +82,11 @@ module RubyLint
       # @return [String]
       #
       attr_reader :column
+
+      ##
+      # @return [TrueClass|FalseClass]
+      #
+      attr_reader :lazy
 
       ##
       # Returns the type of the object.
@@ -143,16 +140,10 @@ module RubyLint
       #  {RubyLint::Node#children} by default.
       #
       def initialize(node, options = {})
-        # Set the receiver for constant paths.
-        if node.type == :constant_path
-          segments = node.children[0..-2]
-          node     = node.children[-1]
-          target   = self
+        if node.constant_path?
+          set_receiver(node.children[0..-2])
 
-          segments.reverse.each do |segment|
-            target.receiver = RubyObject.new(segment)
-            target          = target.receiver
-          end
+          node = node.children[-1]
         end
 
         @node   = node
@@ -167,7 +158,7 @@ module RubyLint
           :default_constants => [],
           :constant          => Object,
           :parents           => [],
-          :value             => node.children
+          :value             => variable? ? nil : children
         }.merge(options)
 
         if options[:value].is_a?(Node)
@@ -269,13 +260,6 @@ module RubyLint
       end
 
       ##
-      # @see RubyLint::Node#variable?
-      #
-      def variable?
-        return @node.variable?
-      end
-
-      ##
       # Returns an array containing the "path" of all receivers from left to
       # right.
       #
@@ -291,6 +275,20 @@ module RubyLint
         end
 
         return receivers << self
+      end
+
+      ##
+      # Delegate missing methods to the node instance.
+      #
+      # @param [Symbol] name The name of the method that was called.
+      # @param [Array] args The arguments passed to the method.
+      #
+      def method_missing(name, *args)
+        if @node.respond_to?(name)
+          return @node.send(name, *args)
+        else
+          raise NoMethodError, "undefined method '#{name}' for #{self}"
+        end
       end
 
       private
@@ -361,6 +359,20 @@ module RubyLint
       #
       def lookup_parent?(type)
         return LOOKUP_PARENT.include?(type) && !@parents.empty?
+      end
+
+      ##
+      # Sets the receiver for the current object.
+      #
+      # @param [Array] segmens
+      #
+      def set_receiver(segments)
+        target = self
+
+        segments.reverse.each do |segment|
+          target.receiver = RubyObject.new(segment)
+          target          = target.receiver
+        end
       end
     end # RubyObject
   end # Ruby

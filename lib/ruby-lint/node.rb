@@ -26,7 +26,15 @@ module RubyLint
     #
     # @return [Array]
     #
-    PREDICATE_METHODS = [:identifier, :module, :class, :hash, :array]
+    PREDICATE_METHODS = [
+      :identifier,
+      :module,
+      :class,
+      :hash,
+      :array,
+      :method,
+      :method_definition
+    ]
 
     VARIABLE_TYPES.each do |type|
       define_method("#{type}?") do

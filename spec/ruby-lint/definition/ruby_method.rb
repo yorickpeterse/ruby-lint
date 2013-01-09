@@ -36,8 +36,8 @@ describe RubyLint::Definition::RubyMethod do
     @method_def.type.should  == :method_definition
     @method_call.type.should == :method
 
-    @method_def.method_call?.should  == false
-    @method_call.method_call?.should == true
+    @method_def.method?.should  == false
+    @method_call.method?.should == true
   end
 
   should 'return the method definition receiver' do

@@ -3,18 +3,20 @@ require File.expand_path('../../../helper', __FILE__)
 describe RubyLint::Definition::RubyObject do
   before do
     node = RubyLint::Node.new(
-      :string,
-      ['Hello'],
+      :local_variable,
+      ['hello'],
       :line   => 5,
       :column => 2,
       :file   => '(test)'
     )
 
-    @object = RubyLint::Definition::RubyObject.new(node)
+    value = s(:integer, '10')
+
+    @object = RubyLint::Definition::RubyObject.new(node, :value => value)
   end
 
   should 'return the name of the object' do
-    @object.name.should == 'Hello'
+    @object.name.should == 'hello'
   end
 
   should 'return the file path' do
@@ -30,16 +32,16 @@ describe RubyLint::Definition::RubyObject do
   end
 
   should 'return the object type' do
-    @object.type.should == :string
+    @object.type.should == :local_variable
   end
 
   should 'return the value of the node' do
-    @object.value.should == ['Hello']
+    @object.value.value.should == ['10']
   end
 
   should 'only store RubyObject objects' do
     obj = RubyLint::Definition::RubyObject.new(
-      s(:local_variable, 'foo', '10')
+      s(:local_variable, 'foo')
     )
 
     should.raise?(TypeError) do
@@ -51,9 +53,16 @@ describe RubyLint::Definition::RubyObject do
     end
   end
 
+  should 'not return a value for an empty variable' do
+    object = RubyLint::Definition::RubyObject.new(s(:local_variable, 'foo'))
+
+    object.name.should       == 'foo'
+    object.value.nil?.should == true
+  end
+
   should 'store a variable' do
     var = RubyLint::Definition::RubyObject.new(
-      s(:local_variable, 'number', '10')
+      s(:local_variable, 'number')
     )
 
     @object.add(:local_variable, var.name, var)
@@ -68,7 +77,7 @@ describe RubyLint::Definition::RubyObject do
 
   should 'clear all the definitions' do
     var = RubyLint::Definition::RubyObject.new(
-      s(:local_variable, 'number', '10')
+      s(:local_variable, 'number')
     )
 
     @object.add(:local_variable, var.name, var)
@@ -82,7 +91,7 @@ describe RubyLint::Definition::RubyObject do
 
   should 'retrieve parent definitions' do
     method = RubyLint::Definition::RubyObject.new(
-      s(:method_definition, 'example')
+      s(:local_variable, 'example')
     )
 
     @object.add(:method, 'example', method)
@@ -132,77 +141,5 @@ describe RubyLint::Definition::RubyObject do
 
     var.receiver.receiver.name.should == 'First'
     var.receiver.receiver.type.should == :constant
-  end
-
-  describe 'lazy loading constants' do
-    before do
-      @node = s(:method_definition, 'example')
-    end
-
-    should 'lazy load the Kernel constant by default' do
-      RubyLint::Definition::RubyObject.new(@node) \
-        .lookup(:constant, 'Kernel') \
-        .nil? \
-        .should == true
-
-      definition = RubyLint::Definition::RubyObject.new(
-        @node,
-        :lazy              => true,
-        :default_constants => ['Kernel']
-      )
-
-      definition.definitions[:constant].key?('Kernel').should == true
-
-      definition.lookup(:constant, 'Kernel') \
-        .lookup(:method, 'puts') \
-        .is_a?(RubyLint::Definition::RubyMethod) \
-        .should == true
-    end
-
-    should 'lazy load the Time constant' do
-      defs = RubyLint::Definition::RubyObject.new(@node, :lazy => true)
-
-      defs.lookup(:constant, 'Time') \
-        .is_a?(RubyLint::Definition::RubyObject) \
-        .should == true
-    end
-  end
-
-  describe 'importing global variables' do
-    should 'import the global variables of Kernel' do
-      definition = RubyLint::Definition::RubyObject.new(
-        s(:root),
-        :lazy              => true,
-        :default_constants => ['Kernel']
-      )
-
-      definition.lookup(:constant, 'Kernel') \
-        .lookup(:global_variable, '$:') \
-        .is_a?(RubyLint::Definition::RubyObject) \
-        .should == true
-    end
-  end
-
-  describe 'custom values' do
-    before do
-      @variable = RubyLint::Definition::RubyObject.new(
-        s(:local_variable, 'number'),
-        :value => s(:integer, '10')
-      )
-    end
-
-    should 'return the correct variable name' do
-      @variable.name.should == 'number'
-    end
-
-    should 'return the variable type' do
-      @variable.type.should            == :local_variable
-      @variable.local_variable?.should == true
-    end
-
-    should 'return the variable value' do
-      @variable.value.type.should  == :integer
-      @variable.value.value.should == ['10']
-    end
   end
 end
