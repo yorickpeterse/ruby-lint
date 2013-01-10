@@ -61,3 +61,22 @@ class Should
     satisfy(desc) { |x| x.__send__(name, *args, &block) }
   end
 end
+
+# Show performance related information after running the tests.
+module Bacon
+  class << self
+    alias old_handle_summary handle_summary
+  end
+
+  def self.handle_summary
+    old_handle_summary
+
+    memory    = `ps -o rss= #{Process.pid}`.strip.to_f
+    memory_mb = (memory / 1024)
+    time_secs = (Time.now - @timer)
+    time_ms   = time_secs * 1000
+
+    puts '%i KB (%.2f MB) used in %.2f miliseconds (%.2f seconds)' \
+      % [memory, memory_mb, time_ms, time_secs]
+  end
+end
