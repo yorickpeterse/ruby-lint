@@ -32,18 +32,13 @@ module RubyLint
       # @param [RubyLint::Node] node
       #
       def on_root(node)
-        object = RubyLint::Importer.import(
-          'Object',
-          Object,
-          :ancestors => true
-        )
+        obj = RubyLint::Importer.import('Object', Object, :ancestors => true)
 
         @options[:definitions] = Definition::RubyObject.new(
-          node,
-          :value             => nil,
+          :name              => :root,
           :default_constants => ['Kernel'],
           :lazy              => true,
-          :parents           => [object]
+          :parents           => [obj]
         )
       end
 
@@ -56,7 +51,7 @@ module RubyLint
       #
       def on_module(node)
         scope   = definitions
-        mod_def = Definition::RubyObject.new(
+        mod_def = Definition::RubyObject.new_from_node(
           node,
           :value   => nil,
           :parents => [scope]
@@ -106,7 +101,7 @@ module RubyLint
           parents.unshift(parent)
         end
 
-        class_def = Definition::RubyObject.new(
+        class_def = Definition::RubyObject.new_from_node(
           node,
           :value   => nil,
           :parents => parents
@@ -147,7 +142,7 @@ module RubyLint
       # @param [RubyLint::Node] node
       #
       def on_sclass(node)
-        use   = Definition::RubyObject.new(node.children[0])
+        use   = Definition::RubyObject.new_from_node(node.children[0])
         found = definitions.lookup(use.type, use.name)
 
         if found
@@ -178,8 +173,9 @@ module RubyLint
       # @param [RubyLint::Node] node
       #
       def on_method_definition(node)
-        scope       = definitions
-        method      = Definition::RubyMethod.new(node, :parents => [scope])
+        scope  = definitions
+        method = Definition::RubyMethod.new_from_node(node, :parents => [scope])
+
         method_type = eval_type == :class ? :method : method.definition_type
 
         if method.receiver
@@ -296,7 +292,7 @@ module RubyLint
       def on_method(node)
         return unless INCLUDE_CALLS.key?(node.children[0])
 
-        method_call = Definition::RubyMethod.new(node)
+        method_call = Definition::RubyMethod.new_from_node(node)
         copy_types  = INCLUDE_CALLS[method_call.name]
         scope       = definitions
 
@@ -354,7 +350,10 @@ module RubyLint
           end
         end
 
-        var_def = Definition::RubyObject.new(variable, :value => value)
+        var_def = Definition::RubyObject.new_from_node(
+          variable,
+          :value => value
+        )
 
         if value.is_a?(Node)
           if value.array?

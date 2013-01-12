@@ -9,7 +9,7 @@ describe 'Building variable definitions' do
     number.name.should == 'number'
 
     number.value.is_a?(RubyLint::Definition::RubyObject).should == true
-    number.value.value.should == ['10']
+    number.value.value.should == '10'
   end
 
   should 'process multiple variable assignments' do
@@ -20,12 +20,12 @@ describe 'Building variable definitions' do
     number.is_a?(RubyLint::Definition::RubyObject).should == true
 
     number.name.should        == 'number'
-    number.value.value.should == ['10']
+    number.value.value.should == '10'
 
     numberx.is_a?(RubyLint::Definition::RubyObject).should == true
 
     numberx.name.should        == 'numberx'
-    numberx.value.value.should == ['20']
+    numberx.value.value.should == '20'
   end
 
   should 'process constant path assignments' do
@@ -35,7 +35,7 @@ describe 'Building variable definitions' do
     foo.is_a?(RubyLint::Definition::RubyObject).should == true
 
     foo.name.should        == 'FOO'
-    foo.value.value.should == ['10']
+    foo.value.value.should == '10'
   end
 
   should 'process recursive variable assignments' do
@@ -48,7 +48,7 @@ d = c
 
     defs = build_definitions(code)
 
-    defs.lookup(:local_variable, 'd').value.value.should == ['1']
+    defs.lookup(:local_variable, 'd').value.value.should == '1'
   end
 
   describe 'array index assignments' do
@@ -73,7 +73,7 @@ d = c
 
       first.value.is_a?(RubyLint::Definition::RubyObject).should == true
       first.value.type.should  == :integer
-      first.value.value.should == ['10']
+      first.value.value.should == '10'
     end
 
     should 'process multiple index assignments' do
@@ -87,12 +87,12 @@ numbers[4,5,6] = 40, 50
       defs    = build_definitions(code)
       numbers = defs.lookup(:local_variable, 'numbers')
 
-      numbers.lookup(:member, '0').value.value.should == ['10']
+      numbers.lookup(:member, '0').value.value.should == '10'
       numbers.lookup(:member, '1').value.should       == nil
-      numbers.lookup(:member, '2').value.value.should == ['20']
-      numbers.lookup(:member, '3').value.value.should == ['30']
-      numbers.lookup(:member, '4').value.value.should == ['40']
-      numbers.lookup(:member, '5').value.value.should == ['50']
+      numbers.lookup(:member, '2').value.value.should == '20'
+      numbers.lookup(:member, '3').value.value.should == '30'
+      numbers.lookup(:member, '4').value.value.should == '40'
+      numbers.lookup(:member, '5').value.value.should == '50'
       numbers.lookup(:member, '6').value.should       == nil
     end
 
@@ -106,8 +106,8 @@ numbers[index] = 20
       defs    = build_definitions(code)
       numbers = defs.lookup(:local_variable, 'numbers')
 
-      numbers.lookup(:member, '0').value.value.should == ['10']
-      numbers.lookup(:member, '1').value.value.should == ['20']
+      numbers.lookup(:member, '0').value.value.should == '10'
+      numbers.lookup(:member, '1').value.value.should == '20'
     end
   end
 
@@ -129,7 +129,7 @@ numbers['one'] = 1
       one.type.should == :string
 
       one.value.type.should  == :integer
-      one.value.value.should == ['1']
+      one.value.value.should == '1'
     end
 
     should 'process a single key assignment using variables' do
@@ -142,8 +142,8 @@ numbers[key] = 1
       defs    = build_definitions(code)
       numbers = defs.lookup(:local_variable, 'numbers')
 
-      numbers.lookup(:member, 'one').value.value.should == ['1']
-      numbers.lookup(:member, 'two').value.value.should == ['2']
+      numbers.lookup(:member, 'one').value.value.should == '1'
+      numbers.lookup(:member, 'two').value.value.should == '2'
     end
   end
 
@@ -164,7 +164,7 @@ numbers[key] = 1
       name.type.should == :identifier
 
       name.value.type.should  == :string
-      name.value.value.should == ['Matz']
+      name.value.value.should == 'Matz'
     end
   end
 
@@ -177,13 +177,13 @@ number ||= 20
 
       defs = build_definitions(code)
 
-      defs.lookup(:local_variable, 'number').value.value.should == ['10']
+      defs.lookup(:local_variable, 'number').value.value.should == '10'
     end
 
     should 'process an assignment for a non existing variable' do
       defs = build_definitions('number ||= 10')
 
-      defs.lookup(:local_variable, 'number').value.value.should == ['10']
+      defs.lookup(:local_variable, 'number').value.value.should == '10'
     end
   end
 end

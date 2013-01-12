@@ -5,7 +5,7 @@ describe RubyLint::Definition::RubyMethod do
     # def String.example(required)
     #   return required
     # end
-    @method_def = RubyLint::Definition::RubyMethod.new(
+    @method_def = RubyLint::Definition::RubyMethod.new_from_node(
       s(
         :method_definition,
         'example',
@@ -22,7 +22,7 @@ describe RubyLint::Definition::RubyMethod do
     )
 
     # example(10)
-    @method_call = RubyLint::Definition::RubyMethod.new(
+    @method_call = RubyLint::Definition::RubyMethod.new_from_node(
       s(:method, 'example', [s(:integer, '10')], s(:constant, 'String'))
     )
   end
@@ -82,7 +82,7 @@ describe RubyLint::Definition::RubyMethod do
 
       number.value.is_a?(RubyLint::Definition::RubyObject).should == true
 
-      number.value.value.should == ['10']
+      number.value.value.should == '10'
     end
 
     should 'return the rest parameter' do
@@ -123,11 +123,11 @@ describe RubyLint::Definition::RubyMethod do
 
       param.is_a?(RubyLint::Definition::RubyObject).should == true
       param.type.should                                    == :integer
-      param.value.should                                   == ['10']
+      param.value.should                                   == '10'
     end
 
     should 'process a constant path' do
-      method = RubyLint::Definition::RubyMethod.new(
+      method = RubyLint::Definition::RubyMethod.new_from_node(
         s(
           :method,
           'example',

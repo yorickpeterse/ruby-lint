@@ -66,7 +66,8 @@ module RubyLint
       end
 
       definition = Definition::RubyObject.new(
-        Node.new(:constant, [name_s]),
+        :name     => name_s,
+        :type     => :constant,
         :lazy     => true,
         :constant => constant
       )
@@ -97,7 +98,8 @@ module RubyLint
 
       found.global_variables.map do |var|
         variables << Definition::RubyObject.new(
-          Node.new(:global_variable, [var.to_s])
+          :type => :global_variable,
+          :name => var.to_s
         )
       end
 
@@ -141,7 +143,7 @@ module RubyLint
           end
         end
 
-        definitions << Definition::RubyMethod.new(
+        definitions << Definition::RubyMethod.new_from_node(
           Node.new(
             :method_definition,
             [name.to_s, parameters, nil, Node.new(:body)]

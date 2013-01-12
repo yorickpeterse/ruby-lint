@@ -2,17 +2,19 @@ require File.expand_path('../../../helper', __FILE__)
 
 describe RubyLint::Definition::RubyObject do
   before do
-    node = RubyLint::Node.new(
-      :local_variable,
-      ['hello'],
-      :line   => 5,
-      :column => 2,
-      :file   => '(test)'
+    value = RubyLint::Definition::RubyObject.new(
+      :type  => :integer,
+      :value => '10'
     )
 
-    value = s(:integer, '10')
-
-    @object = RubyLint::Definition::RubyObject.new(node, :value => value)
+    @object = RubyLint::Definition::RubyObject.new(
+      :type   => :local_variable,
+      :name   => 'hello',
+      :line   => 5,
+      :column => 2,
+      :file   => '(test)',
+      :value  => value
+    )
   end
 
   should 'return the name of the object' do
@@ -36,12 +38,13 @@ describe RubyLint::Definition::RubyObject do
   end
 
   should 'return the value of the node' do
-    @object.value.value.should == ['10']
+    @object.value.value.should == '10'
   end
 
   should 'only store RubyObject objects' do
     obj = RubyLint::Definition::RubyObject.new(
-      s(:local_variable, 'foo')
+      :type => :local_variable,
+      :name => 'foo'
     )
 
     should.raise?(TypeError) do
@@ -53,16 +56,10 @@ describe RubyLint::Definition::RubyObject do
     end
   end
 
-  should 'not return a value for an empty variable' do
-    object = RubyLint::Definition::RubyObject.new(s(:local_variable, 'foo'))
-
-    object.name.should       == 'foo'
-    object.value.nil?.should == true
-  end
-
   should 'store a variable' do
     var = RubyLint::Definition::RubyObject.new(
-      s(:local_variable, 'number')
+      :type => :local_variable,
+      :name => 'number'
     )
 
     @object.add(:local_variable, var.name, var)
@@ -77,7 +74,8 @@ describe RubyLint::Definition::RubyObject do
 
   should 'clear all the definitions' do
     var = RubyLint::Definition::RubyObject.new(
-      s(:local_variable, 'number')
+      :type => :local_variable,
+      :name => 'number'
     )
 
     @object.add(:local_variable, var.name, var)
@@ -89,15 +87,34 @@ describe RubyLint::Definition::RubyObject do
     @object.lookup(:local_variable, var.name).nil?.should == true
   end
 
+  should 'set the parent definitions' do
+    var1 = RubyLint::Definition::RubyObject.new(
+      :type  => :local_variable,
+      :name  => 'numberx',
+      :value => '10'
+    )
+
+    var2 = RubyLint::Definition::RubyObject.new(
+      :type    => :local_variable,
+      :name    => 'number',
+      :value   => '10',
+      :parents => [var1]
+    )
+
+    var2.parents.length.should == 1
+  end
+
   should 'retrieve parent definitions' do
     method = RubyLint::Definition::RubyObject.new(
-      s(:local_variable, 'example')
+      :type => :local_variable,
+      :name => 'example'
     )
 
     @object.add(:method, 'example', method)
 
     child = RubyLint::Definition::RubyObject.new(
-      s(:class, ['Example']),
+      :type    => :class,
+      :name    => 'Example',
       :parents => [@object]
     )
 
@@ -108,38 +125,47 @@ describe RubyLint::Definition::RubyObject do
     found.name.should == 'example'
   end
 
-  should 'set the parent definitions' do
-    variable_node = RubyLint::Definition::RubyObject.new(
-      s(:local_variable, 'number'),
-      :value => s(:integer, '10')
-    )
-
-    var = RubyLint::Definition::RubyObject.new(
-      s(:local_variable, 'number'),
-      :value   => s(:integer, '10'),
-      :parents => [variable_node]
-    )
-
-    var.parents.length.should == 1
-  end
-
-  should 'process constant paths' do
-    var = RubyLint::Definition::RubyObject.new(
-      s(
-        :constant_path,
-        s(:constant, 'First'),
-        s(:constant, 'Second'),
-        s(:constant, 'Third')
+  describe 'creating definitions from RubyLint::Node instances' do
+    should 'create a definition for a string' do
+      object = RubyLint::Definition::RubyObject.new_from_node(
+        s(:string, 'hello')
       )
-    )
 
-    var.type.should == :constant
-    var.name.should == 'Third'
+      object.type.should  == :string
+      object.value.should == 'hello'
+    end
 
-    var.receiver.name.should == 'Second'
-    var.receiver.type.should == :constant
+    should 'create a definition for a variable with a value' do
+      object = RubyLint::Definition::RubyObject.new_from_node(
+        s(:local_variable, 'number'),
+        :value => s(:integer, '10')
+      )
 
-    var.receiver.receiver.name.should == 'First'
-    var.receiver.receiver.type.should == :constant
+      object.type.should == :local_variable
+      object.name.should == 'number'
+
+      object.value.type.should  == :integer
+      object.value.value.should == '10'
+    end
+
+    should 'create a definition for a constant path' do
+      var = RubyLint::Definition::RubyObject.new_from_node(
+        s(
+          :constant_path,
+          s(:constant, 'First'),
+          s(:constant, 'Second'),
+          s(:constant, 'Third')
+        )
+      )
+
+      var.type.should == :constant
+      var.name.should == 'Third'
+
+      var.receiver.name.should == 'Second'
+      var.receiver.type.should == :constant
+
+      var.receiver.receiver.name.should == 'First'
+      var.receiver.receiver.type.should == :constant
+    end
   end
 end

@@ -7,46 +7,7 @@ module RubyLint
   # number and column number.
   #
   class Node < Furnace::AST::Node
-    ##
-    # Array containing the various variable types that are available in Ruby.
-    #
-    # @return [Array]
-    #
-    VARIABLE_TYPES = [
-      :local_variable,
-      :instance_variable,
-      :class_variable,
-      :global_variable,
-      :constant,
-      :constant_path
-    ]
-
-    ##
-    # Array containing various predicate methods to create.
-    #
-    # @return [Array]
-    #
-    PREDICATE_METHODS = [
-      :identifier,
-      :module,
-      :class,
-      :hash,
-      :array,
-      :method,
-      :method_definition
-    ]
-
-    VARIABLE_TYPES.each do |type|
-      define_method("#{type}?") do
-        return @type == type
-      end
-    end
-
-    PREDICATE_METHODS.each do |type|
-      define_method("#{type}?") do
-        return @type == type
-      end
-    end
+    include VariablePredicates
 
     ##
     # Returns the line number of the node.
@@ -68,22 +29,6 @@ module RubyLint
     # @return [String]
     #
     attr_reader :file
-
-    ##
-    # Returns `true` if the current node is a variable node.
-    #
-    # @return [TrueClass|FalseClass]
-    #
-    def variable?
-      return VARIABLE_TYPES.include?(@type)
-    end
-
-    ##
-    # @return [TrueClass|FalseClass]
-    #
-    def constant?
-      return @type == :constant || @type == :module || @type == :class
-    end
 
     ##
     # @return [Array]

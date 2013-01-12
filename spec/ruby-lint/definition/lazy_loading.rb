@@ -2,18 +2,16 @@ require File.expand_path('../../../helper', __FILE__)
 
 describe RubyLint::Definition::RubyObject do
   describe 'lazy loading constants' do
-    before do
-      @node = s(:method_definition, 'example')
-    end
-
     should 'lazy load the Kernel constant by default' do
-      RubyLint::Definition::RubyObject.new(@node) \
+      RubyLint::Definition::RubyObject \
+        .new(:type => :method_definition, :name => 'example') \
         .lookup(:constant, 'Kernel') \
         .nil? \
         .should == true
 
       definition = RubyLint::Definition::RubyObject.new(
-        @node,
+        :type              => :method_definition,
+        :name              => 'example',
         :lazy              => true,
         :default_constants => ['Kernel']
       )
@@ -27,7 +25,11 @@ describe RubyLint::Definition::RubyObject do
     end
 
     should 'lazy load the Time constant' do
-      defs = RubyLint::Definition::RubyObject.new(@node, :lazy => true)
+      defs = RubyLint::Definition::RubyObject.new(
+        :type => :method_definition,
+        :name => 'example',
+        :lazy => true
+      )
 
       defs.definitions[:constant].key?('Time').should == false
 
@@ -39,7 +41,11 @@ describe RubyLint::Definition::RubyObject do
     end
 
     should 'lazy load a sub constant' do
-      defs = RubyLint::Definition::RubyObject.new(@node, :lazy => true)
+      defs = RubyLint::Definition::RubyObject.new(
+        :type => :method_definition,
+        :name => 'example',
+        :lazy => true
+      )
 
       defs.lookup(:constant, 'Encoding').lookup(:constant, 'BINARY')
 
@@ -53,7 +59,7 @@ describe RubyLint::Definition::RubyObject do
   describe 'importing global variables' do
     should 'import the global variables of Kernel' do
       definition = RubyLint::Definition::RubyObject.new(
-        s(:root),
+        :type              => :root,
         :lazy              => true,
         :default_constants => ['Kernel']
       )

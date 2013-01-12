@@ -36,6 +36,8 @@ module RubyLint
     #     root_defs.add(:constant, 'Example', example)
     #
     class RubyObject
+      include VariablePredicates
+
       ##
       # Array containing items that should be looked up in the parent
       # definition if they're not found in the current one.
@@ -126,6 +128,64 @@ module RubyLint
 
       ##
       # @param [RubyLint::Node] node The node that this instance belongs to.
+      #
+      def self.new_from_node(node, options = {})
+        path_segments = []
+
+        if node.constant_path?
+          path_segments = node.children[0..-2].reverse
+          node          = node.children[-1]
+        end
+
+        options[:node]   = node
+        options[:name]   = extract_name(node)
+        options[:file]   = node.file
+        options[:line]   = node.line || 1
+        options[:column] = node.column || 0
+        options[:type]   = node.type
+
+        unless options.key?(:value)
+          if node.scalar?
+            options[:value] = node.children[0]
+          elsif !node.variable?
+            options[:value] = node.children
+          end
+        end
+
+        if options[:value].is_a?(Node)
+          options[:value] = new_from_node(options[:value])
+        end
+
+        object = new(options)
+
+        # Assign the receivers of this object.
+        #
+        # TODO: this approach doesn't take existing definitions into account,
+        # instead it will always create a new one for each segment.
+        if !path_segments.empty? and !options[:receiver]
+          path_segments.inject(object) do |source, segment|
+            source.receiver = new_from_node(segment)
+            source.receiver
+          end
+        end
+
+        return object
+      end
+
+      ##
+      # Extracts the name for the specified node.
+      #
+      # @param [RubyLint::Node] node The node for which to extract the name.
+      # @return [String]
+      #
+      def self.extract_name(node)
+        name = node.children[0] || node.type
+        name = name.is_a?(Node) ? name.children[0] : name
+
+        return name.to_s
+      end
+
+      ##
       # @param [Hash] options Hash containing additional options such as the
       #  parent definitions.
       # @option options [Array] :parents The parent definitions.
@@ -139,31 +199,19 @@ module RubyLint
       #  :value The custom value to use for the object, set to the output of
       #  {RubyLint::Node#children} by default.
       #
-      def initialize(node, options = {})
-        if node.constant_path?
-          set_receiver(node.children[0..-2])
-
-          node = node.children[-1]
-        end
-
-        @node   = node
-        @name   = extract_name(node)
-        @file   = node.file
-        @line   = node.line || 1
-        @column = node.column || 0
-        @type   = node.type
-
+      def initialize(options = {})
         options = {
-          :lazy              => false,
-          :default_constants => [],
+          :column            => 0,
           :constant          => Object,
+          :default_constants => [],
+          :file              => '',
+          :lazy              => false,
+          :line              => 1,
+          :node              => nil,
           :parents           => [],
-          :value             => variable? ? nil : children
+          :receiver          => nil,
+          :value             => nil
         }.merge(options)
-
-        if options[:value].is_a?(Node)
-          options[:value] = RubyObject.new(options[:value])
-        end
 
         options[:parents].each do |parent|
           unless parent.is_a?(RubyObject)
@@ -278,33 +326,15 @@ module RubyLint
       end
 
       ##
-      # Delegate missing methods to the node instance.
+      # Returns an array of child nodes.
       #
-      # @param [Symbol] name The name of the method that was called.
-      # @param [Array] args The arguments passed to the method.
+      # @return [Array]
       #
-      def method_missing(name, *args)
-        if @node.respond_to?(name)
-          return @node.send(name, *args)
-        else
-          raise NoMethodError, "undefined method '#{name}' for #{self}"
-        end
+      def children
+        return @node ? @node.children : []
       end
 
       private
-
-      ##
-      # Extracts the name for the specified node.
-      #
-      # @param [RubyLint::Node] node The node for which to extract the name.
-      # @return [String]
-      #
-      def extract_name(node)
-        name = node.children[0] || node.type
-        name = name.is_a?(Node) ? name.children[0] : name
-
-        return name.to_s
-      end
 
       ##
       # Returns a boolean that indicates if the specified definition should be
@@ -359,20 +389,6 @@ module RubyLint
       #
       def lookup_parent?(type)
         return LOOKUP_PARENT.include?(type) && !@parents.empty?
-      end
-
-      ##
-      # Sets the receiver for the current object.
-      #
-      # @param [Array] segmens
-      #
-      def set_receiver(segments)
-        target = self
-
-        segments.reverse.each do |segment|
-          target.receiver = RubyObject.new(segment)
-          target          = target.receiver
-        end
       end
     end # RubyObject
   end # Ruby

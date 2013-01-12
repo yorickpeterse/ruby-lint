@@ -14,10 +14,10 @@ module RubyLint
       # @return [Hash]
       #
       PARAMETER_VARIABLES = {
-        1 => :@optional_parameters,
-        2 => :@rest_parameter,
-        3 => :@more_parameters,
-        4 => :@block_parameter
+        1 => :optional_parameters,
+        2 => :rest_parameter,
+        3 => :more_parameters,
+        4 => :block_parameter
       }
 
       ##
@@ -71,65 +71,85 @@ module RubyLint
       attr_reader :definition_type
 
       ##
+      # @see RubyLint::Definition::RubyObject#new_from_node
+      #
+      def self.new_from_node(node, options = {})
+        children = node.children
+        receiver = nil
+        options  = {
+          :parameters          => [],
+          :optional_parameters => [],
+          :rest_parameter      => nil,
+          :more_parameters     => [],
+          :block_parameter     => nil,
+          :receiver            => nil,
+          :definition_type     => :instance_method
+        }.merge(options)
+
+        options[:parameters] = node.method? ? children[1] : children[1][0]
+
+        if options[:parameters]
+          options[:parameters].map! { |n| RubyObject.new_from_node(n) }
+        end
+
+        set_parameters(options, children) unless node.method?
+
+        if node.method? and children[-1]
+          receiver = -1
+        elsif !node.method? and children[-2]
+          receiver = -2
+        end
+
+        if receiver
+          options[:receiver] = RubyObject.new_from_node(children[receiver])
+
+          # TODO: this is rather naive as methods defined on variables will be
+          # considered class methods by this line (while they are instance
+          # methods instead).
+          options[:definition_type] = :method
+        end
+
+        return super(node, options)
+      end
+
+      ##
+      # Sets the various parameters of the method definition.
+      #
+      # @param [Hash] options Hash used for storing the various variables.
+      # @param [Array] children The child nodes of the method definition node.
+      # @return [Hash]
+      #
+      def self.set_parameters(options, children)
+        PARAMETER_VARIABLES.each do |index, variable|
+          # Parameters such as the optional ones.
+          if children[1][index].is_a?(Array)
+            params = children[1][index].map do |node|
+              RubyObject.new_from_node(node, :value => node.children[1])
+            end
+
+          # Rest and block parameters.
+          elsif children[1][index]
+            params = RubyObject.new_from_node(children[1][index])
+          end
+
+          options[variable] = params
+        end
+
+        return options
+      end
+
+      ##
       # @see RubyLint::Definition::RubyObject#initialize
       #
       def initialize(*args)
         super
 
-        @parameters = []
-
-        if method? and children[1]
-          @parameters = children[1]
-        elsif children[1][0]
-          @parameters = children[1][0]
-        end
-
-        @parameters.map! { |node| RubyObject.new(node) }
-
-        @optional_parameters = []
-        @rest_parameter      = nil
-        @more_parameters     = []
-        @block_parameter     = nil
-        @receiver            = nil
-
         unless method?
-          set_parameters
           define_parameters
         end
-
-        if method?
-          @receiver = RubyObject.new(children[-1]) if children[-1]
-        else
-          @receiver = RubyObject.new(children[-2]) if children[-2]
-        end
-
-        # TODO: this is rather naive as methods defined on variables will be
-        # considered class methods by this line (while they are instance
-        # methods instead).
-        @definition_type = @receiver ? :method : :instance_method
       end
 
       private
-
-      ##
-      # Sets the various parameters of the method definition.
-      #
-      def set_parameters
-        PARAMETER_VARIABLES.each do |index, variable|
-          # Parameters such as the optional ones.
-          if children[1][index].is_a?(Array)
-            params = children[1][index].map do |node|
-              RubyObject.new(node, :value => node.children[1])
-            end
-
-          # Rest and block parameters.
-          elsif children[1][index]
-            params = RubyObject.new(children[1][index])
-          end
-
-          instance_variable_set(variable, params)
-        end
-      end
 
       ##
       # Adds all the parameters of this method to the definitions list.
