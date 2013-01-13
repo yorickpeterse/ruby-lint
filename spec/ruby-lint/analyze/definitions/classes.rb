@@ -84,6 +84,17 @@ end
         .is_a?(RubyLint::Definition::RubyMethod) \
         .should == true
     end
+
+    should 'not lazy load classes that are manually defined' do
+      code = <<-CODE
+class Struct
+end
+      CODE
+
+      defs = build_definitions(code)
+
+      defs.lookup(:constant, 'Struct').imported?.should == false
+    end
   end
 
   describe 'extending classes' do

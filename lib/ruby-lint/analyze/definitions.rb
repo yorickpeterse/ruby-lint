@@ -57,14 +57,15 @@ module RubyLint
           :parents => [scope]
         )
 
-        existing = scope.lookup(:constant, mod_def.name)
+        if scope.has_definition?(:constant, mod_def.name)
+          existing = scope.lookup(:constant, mod_def.name)
 
-        # Use the existing definition list.
-        if existing
-          existing.parents << scope unless existing.parents.include?(scope)
-          @definitions     << existing
+          if existing
+            existing.parents << scope unless existing.parents.include?(scope)
+            @definitions     << existing
 
-          return
+            return
+          end
         end
 
         scope.add(:constant, mod_def.name, mod_def)
@@ -107,14 +108,16 @@ module RubyLint
           :parents => parents
         )
 
-        existing = scope.lookup(:constant, class_def.name)
+        # Use an existing definition list if it exists.
+        if scope.has_definition?(:constant, class_def.name)
+          existing = scope.lookup(:constant, class_def.name)
 
-        # Use the existing definition list.
-        if existing
-          existing.parents << scope unless existing.parents.include?(scope)
-          @definitions     << existing
+          if existing
+            existing.parents << scope unless existing.parents.include?(scope)
+            @definitions     << existing
 
-          return
+            return
+          end
         end
 
         scope.add(:constant, class_def.name, class_def)

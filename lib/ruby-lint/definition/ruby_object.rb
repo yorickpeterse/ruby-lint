@@ -292,6 +292,34 @@ module RubyLint
       end
 
       ##
+      # Returns `true` if the current definition list or one of the parents has
+      # the specified definition.
+      #
+      # @param [#to_sym] type The type of data to look up.
+      # @param [String] name The name of the definition.
+      # @return [TrueClass|FalseClass]
+      #
+      def has_definition?(type, name)
+        type   = type.to_sym unless type.is_a?(Symbol)
+        name   = name.to_s unless name.is_a?(String)
+        exists = false
+
+        if @definitions[type] and @definitions[type][name]
+          exists = true
+
+        elsif lookup_parent?(type)
+          @parents.each do |parent|
+            if parent.has_definition?(type, name)
+              exists = true
+              break
+            end
+          end
+        end
+
+        return exists
+      end
+
+      ##
       # Removes all the stored child definitions.
       #
       def clear!
@@ -332,6 +360,15 @@ module RubyLint
       #
       def children
         return @node ? @node.children : []
+      end
+
+      ##
+      # Returns `true` if the object was imported using {RubyLint::Importer}.
+      #
+      # @return [TrueClass|FalseClass]
+      #
+      def imported?
+        return @imported == true
       end
 
       private

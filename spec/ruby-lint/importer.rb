@@ -5,6 +5,7 @@ describe RubyLint::Importer do
     defs = RubyLint::Importer.import('Kernel')
 
     defs.is_a?(RubyLint::Definition::RubyObject).should == true
+    defs.imported?.should == true
   end
 
   should 'import a method' do

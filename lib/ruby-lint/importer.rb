@@ -69,7 +69,8 @@ module RubyLint
         :name     => name_s,
         :type     => :constant,
         :lazy     => true,
-        :constant => constant
+        :constant => constant,
+        :imported => true
       )
 
       METHOD_KEYS.each do |collection, getter|
@@ -98,8 +99,9 @@ module RubyLint
 
       found.global_variables.map do |var|
         variables << Definition::RubyObject.new(
-          :type => :global_variable,
-          :name => var.to_s
+          :type     => :global_variable,
+          :name     => var.to_s,
+          :imported => true
         )
       end
 
@@ -148,7 +150,8 @@ module RubyLint
             :method_definition,
             [name.to_s, parameters, nil, Node.new(:body)]
           ),
-          :visibility => visibility
+          :visibility => visibility,
+          :imported   => true
         )
       end
 
