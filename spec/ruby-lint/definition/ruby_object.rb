@@ -168,4 +168,20 @@ describe RubyLint::Definition::RubyObject do
       var.receiver.receiver.type.should == :constant
     end
   end
+
+  should 'list all the methods of a class' do
+    code = <<-CODE
+class Example
+  def self.class_method
+  end
+end
+    CODE
+
+    defs = build_definitions(code)
+
+    methods = defs.lookup(:constant, 'Example').list(:method)
+
+    methods.length.should  == 1
+    methods[0].name.should == 'class_method'
+  end
 end

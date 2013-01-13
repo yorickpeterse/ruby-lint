@@ -45,12 +45,13 @@ module RubyLint
       # @return [Array]
       #
       LOOKUP_PARENT = [
-        :instance_variable,
         :class_variable,
+        :constant,
         :global_variable,
-        :method,
         :instance_method,
-        :constant
+        :instance_variable,
+        :keyword,
+        :method
       ]
 
       ##
@@ -320,6 +321,19 @@ module RubyLint
       end
 
       ##
+      # Returns a list of all the definitions for the specific type.  This list
+      # excludes anything defined in parent definitions.
+      #
+      # @param [#to_sym] type The type of definitions to retrieve.
+      # @return [Array]
+      #
+      def list(type)
+        type = type.to_sym unless type.is_a?(Symbol)
+
+        return @definitions[type].values
+      end
+
+      ##
       # Removes all the stored child definitions.
       #
       def clear!
@@ -331,7 +345,8 @@ module RubyLint
           :constant          => {},
           :method            => {},
           :instance_method   => {},
-          :member            => {}
+          :member            => {},
+          :keyword           => {}
         }
       end
 

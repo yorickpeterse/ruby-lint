@@ -68,6 +68,8 @@ module RubyLint
           end
         end
 
+        add_self(mod_def)
+
         scope.add(:constant, mod_def.name, mod_def)
 
         @definitions << mod_def
@@ -119,6 +121,8 @@ module RubyLint
             return
           end
         end
+
+        add_self(class_def)
 
         scope.add(:constant, class_def.name, class_def)
 
@@ -414,6 +418,16 @@ module RubyLint
       #
       def is_object_member?(node)
         return node.type == :aref || node.type == :field
+      end
+
+      ##
+      # Adds a definition for the `self` keyword.
+      #
+      # @param [RubyLint::Definition::RubyObject] definition The definition
+      #  list to add the keyword to.
+      #
+      def add_self(definition)
+        definition.add(:keyword, 'self', definition)
       end
     end # Definitions
   end # Analyze

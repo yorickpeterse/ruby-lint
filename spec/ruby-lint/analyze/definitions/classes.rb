@@ -150,6 +150,24 @@ end
     end
   end
 
+  describe 'defining class methods' do
+    should 'define a single class method using `self`' do
+      code = <<-CODE
+class Example
+  def self.class_method
+  end
+end
+      CODE
+
+      defs = build_definitions(code)
+
+      defs.lookup(:constant, 'Example') \
+        .lookup(:method, 'class_method') \
+        .is_a?(RubyLint::Definition::RubyMethod) \
+        .should == true
+    end
+  end
+
   describe 'using sclass blocks' do
     should 'define a class method using `class << self`' do
       code = <<-CODE
