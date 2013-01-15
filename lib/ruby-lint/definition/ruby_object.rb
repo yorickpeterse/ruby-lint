@@ -35,6 +35,46 @@ module RubyLint
     #
     #     root_defs.add(:constant, 'Example', example)
     #
+    # @!attribute [r] node
+    #  @return [RubyLint::Node] The node used for creating the object.
+    #
+    # @!attribute [r] name
+    #  @return [String] The name of the object.
+    #
+    # @!attribute [r] value
+    #  @return [Mixed] The value of the object.
+    #
+    # @!attribute [r] file
+    #  @return [String] The path to the file in which the objects source is
+    #   located.
+    #
+    # @!attribute [r] line
+    #  @return [Numeric]
+    #
+    # @!attribute [r] column
+    #  @return [Numeric]
+    #
+    # @!attribute [r] lazy
+    #  @return [TrueClass|FalseClass] lazy Boolean that indicates if missing
+    #   definitions should be lazy loaded.
+    #
+    # @!attribute [r] type
+    #  @return [Symbol] The type of object, e.g. `:constant`.
+    #
+    # @!attribute [r] constant
+    #  @return [Class] The constant to use for lazy loading
+    #   missing definitions.
+    #
+    # @!attribute [r] definitions
+    #  @return [Hash] Hash containing all child the definitions.
+    #
+    # @!attribute [rw] parents
+    #  @return [Array] Array containing the parent definitions.
+    #
+    # @!attribute [rw] receiver
+    #  @return [RubyLint::Definition::RubyObject] The receiver on which the
+    #   object was defined/called.
+    #
     class RubyObject
       include VariablePredicates
 
@@ -54,78 +94,18 @@ module RubyLint
         :method
       ]
 
-      ##
-      # Instance of {RubyLint::Node} that belongs to this object.
-      #
-      # @return [RubyLint::Node]
-      #
-      attr_reader :node
+      attr_reader :column,
+        :constant,
+        :definitions,
+        :file,
+        :lazy,
+        :line,
+        :name,
+        :node,
+        :type,
+        :value
 
-      ##
-      # @return [String]
-      #
-      attr_reader :name
-
-      ##
-      # @return [Mixed]
-      #
-      attr_reader :value
-
-      ##
-      # @return [String]
-      #
-      attr_reader :file
-
-      ##
-      # @return [String]
-      #
-      attr_reader :line
-
-      ##
-      # @return [String]
-      #
-      attr_reader :column
-
-      ##
-      # @return [TrueClass|FalseClass]
-      #
-      attr_reader :lazy
-
-      ##
-      # Returns the type of the object.
-      #
-      # @return [Symbol]
-      #
-      attr_reader :type
-
-      ##
-      # The constant to lazy load data from.
-      #
-      # @return [Class]
-      #
-      attr_reader :constant
-
-      ##
-      # Array containing all the parent definitions.
-      #
-      # @return [Array]
-      #
-      attr_accessor :parents
-
-      ##
-      # Hash containing all the child definitions.
-      #
-      # @return [Hash]
-      #
-      attr_reader :definitions
-
-      ##
-      # The receiver of the method definition, method call or constant (in case
-      # of constant paths).
-      #
-      # @return [RubyLint::Definition::RubyObject|NilClass]
-      #
-      attr_accessor :receiver
+      attr_accessor :parents, :receiver
 
       ##
       # @param [RubyLint::Node] node The node that this instance belongs to.

@@ -5,6 +5,31 @@ module RubyLint
     # definitions.
     #
     # @see RubyLint::Definition::RubyObject
+    # @!attribute [r] visibility
+    #  @return [Symbol] The method visibility such as `:public`.
+    #
+    # @!attribute [r] parameters
+    #  @return [Array] The required/specified parameters of a method definition
+    #   or method call.
+    #
+    # @!attribute [r] optional_parameters
+    #  @return [Array] Array containing the optional parameters of a method
+    #   definition.
+    #
+    # @!attribute [r] rest_parameter
+    #  @return [RubyLint::Definition::RubyObject] The rest parameter of a
+    #   method definition.
+    #
+    # @!attribute [r] more_parameters
+    #  @return [Array] A set of "more" parameters of the method definition.
+    #
+    # @!attribute [r] block_parameter
+    #  @return [RubyLint::Definition::RubyObject] The block parameter of a
+    #   method definition.
+    #
+    # @!attribute [r] definition_type [Symbol]
+    #  @return The type of method definition, set to `:method` for class
+    #   methods and `:instance_method` for instance methods.
     #
     class RubyMethod < RubyObject
       ##
@@ -20,55 +45,13 @@ module RubyLint
         4 => :block_parameter
       }
 
-      ##
-      # The visibility of the method.
-      #
-      # @return [Symbol]
-      #
-      attr_reader :visibility
-
-      ##
-      # Array containing the required or specified (in case of method calls)
-      # parameters.
-      #
-      # @return [Array]
-      #
-      attr_reader :parameters
-
-      ##
-      # Array containing the option parameters.
-      #
-      # @return [Array]
-      #
-      attr_reader :optional_parameters
-
-      ##
-      # The rest parameter.
-      #
-      # @return [RubyLint::Definition::RubyObject|NilClass]
-      #
-      attr_reader :rest_parameter
-
-      ##
-      # Array containing all the "more" parameters.
-      #
-      # @return [Array]
-      #
-      attr_reader :more_parameters
-
-      ##
-      # The block parameter.
-      #
-      # @return [RubyLint::Definition::RubyObject|NilClass]
-      #
-      attr_reader :block_parameter
-
-      ##
-      # The type of method definition, either `:method` or `:instance_method`.
-      #
-      # @return [Symbol]
-      #
-      attr_reader :definition_type
+      attr_reader :block_parameter,
+        :definition_type,
+        :more_parameters,
+        :optional_parameters,
+        :parameters,
+        :rest_parameter,
+        :visibility
 
       ##
       # @see RubyLint::Definition::RubyObject#new_from_node
