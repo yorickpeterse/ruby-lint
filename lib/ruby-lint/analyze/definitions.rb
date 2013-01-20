@@ -1,5 +1,11 @@
 module RubyLint
   module Analyze
+    ##
+    # {RubyLint::Analyze::Definitions} is a iterator class responsible for
+    # building a list of definitions. This approach means that individual
+    # iterator classes don't have to bother with this process and can instead
+    # focus on analyzing code.
+    #
     class Definitions < Iterator
       ##
       # Array of variable types that should be exported to the outer scope of a
