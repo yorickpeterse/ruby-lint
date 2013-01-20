@@ -215,7 +215,7 @@ module RubyLint
     # @raise [RubyLint::ParserError]
     #
     def on_parse_error(message)
-      raise ParserError.new(message, lineno, column)
+      raise ParserError.new(message, lineno, column, @file)
     end
 
     ##

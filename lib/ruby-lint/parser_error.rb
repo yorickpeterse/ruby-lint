@@ -3,30 +3,26 @@ module RubyLint
   # Exception class that's raised when the parser {RubyLint::Parser} detects
   # syntax errors.
   #
+  # @!attribute [r] line
+  #  @return [Numeric]
+  # @!attribute [r] column
+  #  @return [Numeric]
+  # @!attribute [r] file
+  #  @return [String]
+  #
   class ParserError < SyntaxError
-    ##
-    # The line number on which the error occured.
-    #
-    # @return [Fixnum]
-    #
-    attr_reader :line
+    attr_reader :line, :column, :file
 
     ##
-    # The column on which the error occured.
+    # @param [String] message
+    # @param [Numeric] line
+    # @param [Numeric] column
+    # @param [String] file
     #
-    # @return [Fixnum]
-    #
-    attr_reader :column
-
-    ##
-    # Creates a new instance of the error class.
-    #
-    # @param [String] message The error message.
-    # @param [Fixnum|Bignum] line The line of the error.
-    # @param [Fixnum|Bignum] column The column of the error.
-    #
-    def initialize(message, line, column)
-      @line, @column = line, column
+    def initialize(message, line, column, file)
+      @line   = line
+      @column = column
+      @file   = file
 
       super(message)
     end
