@@ -90,10 +90,7 @@ module RubyLint
     #
     def initialize(levels = self.class.levels)
       @levels  = levels.map(&:to_sym)
-      @entries = @levels.inject({}) do |target, level|
-        target[level] = []
-        target
-      end
+      @entries = []
     end
 
     ##
@@ -109,7 +106,7 @@ module RubyLint
       level = level.to_sym
 
       if valid_level?(level)
-        @entries[level] << Entry.new(message, line, column, file)
+        @entries << Entry.new(level, message, line, column, file)
       end
     end
 

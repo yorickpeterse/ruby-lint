@@ -11,23 +11,16 @@ describe 'RubyLint::Report' do
     RubyLint::Report.levels.include?(:test).should == false
   end
 
-  should 'prepare the list of entries for the enabled levels' do
-    report = RubyLint::Report.new
-
-    RubyLint::Report::DEFAULT_LEVELS.each do |level|
-      report.entries.key?(level).should == true
-    end
-  end
-
   should 'add a message using #add' do
     report = RubyLint::Report.new
 
     report.add(:info, 'info message', 1, 1, 'file.rb')
 
-    report.entries[:info].length.should == 1
+    report.entries.length.should == 1
 
-    entry = report.entries[:info][0]
+    entry = report.entries[0]
 
+    entry.level.should   == :info
     entry.message.should == 'info message'
     entry.line.should    == 1
     entry.column.should  == 1
@@ -39,10 +32,11 @@ describe 'RubyLint::Report' do
 
     report.info('info message', 1, 1, 'file.rb')
 
-    report.entries[:info].length.should == 1
+    report.entries.length.should == 1
 
-    entry = report.entries[:info][0]
+    entry = report.entries[0]
 
+    entry.level.should   == :info
     entry.message.should == 'info message'
     entry.line.should    == 1
     entry.column.should  == 1
@@ -61,6 +55,6 @@ describe 'RubyLint::Report' do
 
     report.add(:test, 'invalid message', 1, 1, 'file.rb')
 
-    report.entries.key?(:test).should == false
+    report.entries.empty?.should == true
   end
 end
