@@ -1,33 +1,66 @@
 require File.expand_path('../../helper', __FILE__)
 
 describe 'RubyLint::Report' do
-  before do
-    @file = '(ruby-lint)'
+  should 'register a custom level' do
+    RubyLint::Report.add_level(:test)
+
+    RubyLint::Report.levels.include?(:test).should == true
+
+    RubyLint::Report.delete_level(:test)
+
+    RubyLint::Report.levels.include?(:test).should == false
   end
 
-  it 'Add an error message to a report' do
+  should 'prepare the list of entries for the enabled levels' do
     report = RubyLint::Report.new
 
-    report.add(:error, 'test error', 1, 1, @file)
-
-    report.messages.class.should  == Hash
-
-    report.messages[:error].class.should  == Array
-    report.messages[:error].length.should == 1
-
-    report.messages[:error][0][:message].should == 'test error'
-    report.messages[:error][0][:line].should    == 1
-    report.messages[:error][0][:column].should  == 1
-    report.messages[:error][0][:file].should    == @file
-
+    RubyLint::Report::DEFAULT_LEVELS.each do |level|
+      report.entries.key?(level).should == true
+    end
   end
 
-  it 'Ignore disabled reporting levels' do
-    report = RubyLint::Report.new([:error])
+  should 'add a message using #add' do
+    report = RubyLint::Report.new
 
-    report.add(:info, 'test info', 1, 1, @file)
+    report.add(:info, 'info message', 1, 1, 'file.rb')
 
-    report.messages.class.should       == Hash
-    report.messages[:info].nil?.should == true
+    report.entries[:info].length.should == 1
+
+    entry = report.entries[:info][0]
+
+    entry.message.should == 'info message'
+    entry.line.should    == 1
+    entry.column.should  == 1
+    entry.file.should    == 'file.rb'
+  end
+
+  should 'add a message using method_missing' do
+    report = RubyLint::Report.new
+
+    report.info('info message', 1, 1, 'file.rb')
+
+    report.entries[:info].length.should == 1
+
+    entry = report.entries[:info][0]
+
+    entry.message.should == 'info message'
+    entry.line.should    == 1
+    entry.column.should  == 1
+    entry.file.should    == 'file.rb'
+  end
+
+  should 'raise for invalid method calls' do
+    report = RubyLint::Report.new
+    error  = should.raise?(NoMethodError) { report.test }
+
+    error.message.should =~ /undefined method "test" for/
+  end
+
+  should 'ignore invalid reporting levels' do
+    report = RubyLint::Report.new
+
+    report.add(:test, 'invalid message', 1, 1, 'file.rb')
+
+    report.entries.key?(:test).should == false
   end
 end

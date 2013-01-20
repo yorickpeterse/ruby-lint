@@ -1,95 +1,138 @@
 module RubyLint
   ##
-  # {RubyLint::Report} is a class used for storing error messages, warnings and
-  # informational messages about code processed by {RubyLint::Iterator} and
-  # individual callback classes.
+  # {RubyLint::Report} is a data container for error messages, warnings,
+  # informational messages and other custom defined types of messages. It
+  # should be used by the various analysis classes to store information such as
+  # errors for undefined variables and warnings for potentially confusing code.
   #
-  # The process of adding data to a report involves two steps:
+  # ## Levels
   #
-  # 1. setting which levels to enable
-  # 2. adding the data
+  # Each instance can add entries for a set of predefined reporting levels. By
+  # default the following levels are defined:
   #
-  # The first step is done by creating a new instance of this class and
-  # defining a list of level names in the constructor's second parameter. The
-  # following levels are used by RubyLint itself:
+  # * error
+  # * warning
+  # * info
   #
-  # * `:error`
-  # * `:warning`
-  # * `:info`
+  # Unless other levels are specified when creating an instance these levels
+  # are used for each new instance.
   #
-  # The second step is done by calling {RubyLint::Report#add}. This method is
-  # used to add data for a specific level. If this level is disabled the data
-  # is not added to the report.
+  # Adding available levels can be done as following:
   #
-  # A basic example of this is the following:
+  #     RubyLint::Report.add_level(:pedantic)
   #
-  #     report = RubyLint::Report.new('test_file.rb', [:error])
+  # Retrieving a list of available levels in turn is done as following:
   #
-  #     report.add(:error, 'This is an error message', 1, 0)
+  #     RubyLint::Report.levels # => [:error, :warning, :info, :pedantic]
   #
-  #     # This message will not be added since it's not an error.
-  #     report.add(:info, 'This is an info message', 2, 0)
+  # Each level is a Symbol and will be cased to one automatically.
+  #
+  # ## Adding Entries
+  #
+  # Adding entries can be done by either calling {RubyLint::Report#add} or a
+  # method for the corresponding reporting level:
+  #
+  #     report = RubyLint::Report.new
+  #
+  #     # Both these calls do the same.
+  #     report.add(:info, 'informational message', 1, 2, 'file.rb')
+  #     report.info('informational message', 1, 2, 'file.rb')
+  #
+  # When using {RubyLint::Report#add} any invalid/disabled reporting levels
+  # will be silently ignored. This makes it easier for code to add entries of a
+  # particular level without having to manually check if said level is enabled.
+  #
+  # @!attribute [r] entries
+  #  @return [Array] The entries of the report.
+  # @!attribute [r] levels
+  #  @return [Array] The enabled levels of the report.
   #
   class Report
+    attr_reader :entries, :levels
+
     ##
-    # Array containing the levels that are enabled by default.
+    # Reporting levels that are always available.
     #
     # @return [Array]
     #
     DEFAULT_LEVELS = [:error, :warning, :info]
 
     ##
-    # A hash containing the various messages stored per level.
+    # Adds a new reporting level to the list of available levels.
     #
-    # @return [Hash]
+    # @param [#to_sym] level The reporting level to add.
     #
-    attr_reader :messages
-
-    ##
-    # An array of levels to use. For example, if `:info` is not included any
-    # message using this level is ignored.
-    #
-    # @return [Array]
-    #
-    attr_reader :levels
-
-    ##
-    # Creates a new instance of the class.
-    #
-    # @param [Array] levels The message levels to use for this report.
-    #
-    def initialize(levels = DEFAULT_LEVELS)
-      @levels   = levels.map { |level| level.to_sym }.freeze
-      @messages = {}
-
-      @levels.each { |level| @messages[level] = [] }
+    def self.add_level(level)
+      levels << level.to_sym
     end
 
     ##
-    # Adds a message to the report.
+    # Deletes a reporting level from the list of available levels. This does
+    # not affect existing instances of this class.
     #
-    # @param [Symbol] level The level of the message.
-    # @param [String] message The message to add.
-    # @param [Fixnum] line
-    # @param [Fixnum] column
+    # @param [#to_sym] level The level to delete.
+    #
+    def self.delete_level(level)
+      levels.delete(level.to_sym)
+    end
+
+    ##
+    # Returns a list of the available reporting levels.
+    #
+    # @return [Array]
+    #
+    def self.levels
+      return @levels ||= DEFAULT_LEVELS.dup
+    end
+
+    ##
+    # @param [Array] levels The reporting levels to enable for this instance.
+    #
+    def initialize(levels = self.class.levels)
+      @levels  = levels.map(&:to_sym)
+      @entries = @levels.inject({}) do |target, level|
+        target[level] = []
+        target
+      end
+    end
+
+    ##
+    # Adds a new entry to the report.
+    #
+    # @param [#to_sym] level
+    # @param [String] message
+    # @param [Numeric] line
+    # @param [Numeric] column
     # @param [String] file
     #
     def add(level, message, line, column, file)
-      return unless valid_level?(level)
+      level = level.to_sym
 
-      @messages[level] << {
-        :message => message,
-        :line    => line,
-        :column  => column,
-        :file    => file
-      }
+      if valid_level?(level)
+        @entries[level] << Entry.new(message, line, column, file)
+      end
+    end
+
+    ##
+    # Makes it easier to add entries to a report by calling methods such as
+    # `#info` instead of `add(:info, ...)`.
+    #
+    # @param [Symbol] name
+    # @param [Array] args
+    # @param [Proc] block
+    # @raise NoMethodError Raised when an invalid method was called.
+    #
+    def method_missing(name, *args, &block)
+      if valid_level?(name)
+        return add(name, *args, &block)
+      else
+        raise NoMethodError, 'undefined method "%s" for %s' % [name, inspect]
+      end
     end
 
     private
 
     ##
-    # Checks if the specified level is valid.
-    #
     # @param [Symbol] level
     # @return [TrueClass|FalseClass]
     #
