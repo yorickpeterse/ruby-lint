@@ -1,4 +1,4 @@
-require File.expand_path('../../../../helper', __FILE__)
+require File.expand_path('../../../helper', __FILE__)
 
 describe 'Marking variables as used/unused' do
   should 'mark variables as unused by default' do

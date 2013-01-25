@@ -1,4 +1,4 @@
-require File.expand_path('../../../../helper', __FILE__)
+require File.expand_path('../../../helper', __FILE__)
 
 describe 'Building method definitions' do
   describe 'scoping method definitions' do

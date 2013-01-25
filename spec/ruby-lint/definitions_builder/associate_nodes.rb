@@ -1,9 +1,9 @@
-require File.expand_path('../../../../helper', __FILE__)
+require File.expand_path('../../../helper', __FILE__)
 
 describe 'Associating AST nodes with definitions' do
   should 'associate AST nodes and their definitions' do
     tokens   = parse('def foobar; end', false)
-    iterator = RubyLint::Analyze::Definitions.new
+    iterator = RubyLint::DefinitionsBuilder.new
 
     iterator.iterate(tokens)
 

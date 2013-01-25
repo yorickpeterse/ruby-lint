@@ -40,7 +40,7 @@ end
 # @return [RubyLint::Definition::RubyObject]
 #
 def build_definitions(code)
-  iterator = RubyLint::Analyze::Definitions.new
+  iterator = RubyLint::DefinitionsBuilder.new
 
   iterator.iterate(parse(code, false))
 
@@ -56,7 +56,7 @@ end
 #
 def build_report(code, iterator)
   tokens       = parse(code, false)
-  defs_builder = RubyLint::Analyze::Definitions.new
+  defs_builder = RubyLint::DefinitionsBuilder.new
 
   defs_builder.iterate(tokens)
 

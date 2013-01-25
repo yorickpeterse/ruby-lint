@@ -1,4 +1,4 @@
-require File.expand_path('../../../../helper', __FILE__)
+require File.expand_path('../../../helper', __FILE__)
 
 describe 'Building variable definitions using for loops' do
   should 'create local variables' do

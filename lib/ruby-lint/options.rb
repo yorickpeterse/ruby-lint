@@ -10,7 +10,7 @@ module RubyLint
     #
     # @return [Array]
     #
-    REQUIRED_ANALYZERS = [Analyze::Definitions]
+    REQUIRED_ANALYZERS = [DefinitionsBuilder]
 
     ##
     # The reporting formatter to use, set to {RubyLint::Formatter::Text} by
