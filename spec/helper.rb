@@ -47,6 +47,31 @@ def build_definitions(code)
   return iterator.options[:definitions]
 end
 
+##
+# Builds a report for the given code and iterator class.
+#
+# @param [String] code
+# @param [Class] iterator
+# @return [RubyLint::Report]
+#
+def build_report(code, iterator)
+  tokens       = parse(code, false)
+  defs_builder = RubyLint::Analyze::Definitions.new
+
+  defs_builder.iterate(tokens)
+
+  report   = RubyLint::Report.new
+  iterator = iterator.new(
+    :report           => report,
+    :definitions      => defs_builder.options[:definitions],
+    :node_definitions => defs_builder.options[:node_definitions]
+  )
+
+  iterator.iterate(tokens)
+
+  return report
+end
+
 # Bacon's output is a bit annoying for the sexp output of RubyLint::Node. This
 # patch changes it to make it a lot easier to read.
 class Should

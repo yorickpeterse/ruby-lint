@@ -75,6 +75,10 @@ module RubyLint
     #  @return [RubyLint::Definition::RubyObject] The receiver on which the
     #   object was defined/called.
     #
+    # @!attribute [rw] reference_amount
+    #  @return [Numeric] The amount of times an object was referenced.
+    #  Currently this is only used for variables.
+    #
     class RubyObject
       include VariablePredicates
 
@@ -105,7 +109,7 @@ module RubyLint
         :type,
         :value
 
-      attr_accessor :parents, :receiver
+      attr_accessor :parents, :receiver, :reference_amount
 
       ##
       # @param [RubyLint::Node] node The node that this instance belongs to.
@@ -191,6 +195,7 @@ module RubyLint
           :node              => nil,
           :parents           => [],
           :receiver          => nil,
+          :reference_amount  => 0,
           :value             => nil
         }.merge(options)
 
@@ -364,6 +369,15 @@ module RubyLint
       #
       def imported?
         return @imported == true
+      end
+
+      ##
+      # Returns `true` if the object was referenced more than once.
+      #
+      # @return [TrueClass|FalseClass]
+      #
+      def used?
+        return @reference_amount >= 1
       end
 
       private

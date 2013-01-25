@@ -67,7 +67,7 @@ module RubyLint
     #  iterator.
     #
     def initialize(options = {})
-      @options     = options
+      @options     = default_options.merge(options)
       @definitions = []
       @call_types  = []
       @eval_types  = []
@@ -207,7 +207,7 @@ module RubyLint
       return @definitions.empty? ? @options[:definitions] : @definitions[-1]
     end
 
-    private
+    protected
 
     ##
     # Executes the specified callback method if it exists.
@@ -227,6 +227,35 @@ module RubyLint
     #
     def callback_names(node)
       return [:"on_#{node.type}", :"after_#{node.type}"]
+    end
+
+    ##
+    # Associates a definitions object with a node of the AST.
+    #
+    # @param [RubyLint::Node] node
+    # @param [RubyLint::Definition::RubyObject] definitions
+    #
+    def associate_node_definition(node, definitions)
+      @options[:node_definitions][node] = definitions
+    end
+
+    ##
+    # Retrieves the definitions list associated to an AST node.
+    #
+    # @param [RubyLint::Node] node
+    # @return [RubyLint::Definition::RubyObject|NilClass]
+    #
+    def associated_definition(node)
+      return @options[:node_definitions][node]
+    end
+
+    ##
+    # Returns a Hash containing the default configuration options.
+    #
+    # @return [Hash]
+    #
+    def default_options
+      return {:node_definitions => {}}
     end
   end # Iterator
 end # RubyLint

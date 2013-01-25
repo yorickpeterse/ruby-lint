@@ -32,20 +32,46 @@ module RubyLint
         }
       }
 
+      # Define the methods used for incrementing the amount of references to a
+      # variable.
+      [
+        :local_variable,
+        :global_variable,
+        :instance_variable,
+        :class_variable,
+        :constant,
+        :constant_path
+      ].each do |type|
+        define_method("on_#{type}") do |node|
+          if node.constant_path?
+            variable = resolve_definitions(node.children)
+          else
+            variable = definitions.lookup(type, node.children[0])
+          end
+
+          increment_reference_amount(variable) if variable
+        end
+      end
+
       ##
       # Called at the root node of a Ruby script.
       #
       # @param [RubyLint::Node] node
       #
       def on_root(node)
-        obj = RubyLint::Importer.import('Object', Object, :ancestors => true)
+        parent = RubyLint::Importer.import('Object', Object, :ancestors => true)
 
-        @options[:definitions] = Definition::RubyObject.new(
+        definitions = Definition::RubyObject.new(
           :name              => :root,
           :default_constants => ['Kernel'],
           :lazy              => true,
-          :parents           => [obj]
+          :parents           => [parent]
         )
+
+        @options[:node_definitions] = {}
+        @options[:definitions]      = definitions
+
+        associate_node_definition(node, definitions)
       end
 
       ##
@@ -77,6 +103,8 @@ module RubyLint
         add_self(mod_def)
 
         scope.add(:constant, mod_def.name, mod_def)
+
+        associate_node_definition(node, mod_def)
 
         @definitions << mod_def
       end
@@ -132,6 +160,8 @@ module RubyLint
 
         scope.add(:constant, class_def.name, class_def)
 
+        associate_node_definition(node, class_def)
+
         @definitions << class_def
       end
 
@@ -158,13 +188,14 @@ module RubyLint
         use   = Definition::RubyObject.new_from_node(node.children[0])
         found = definitions.lookup(use.type, use.name)
 
-        if found
-          @definitions << found
-        else
-          @definitions << definitions
+        if !found
+          found = definitions
         end
 
-        @eval_types << :class
+        associate_node_definition(node, found)
+
+        @definitions << found
+        @eval_types  << :class
       end
 
       ##
@@ -197,6 +228,8 @@ module RubyLint
         end
 
         scope.add(method_type, method.name, method)
+
+        associate_node_definition(node, method)
 
         @definitions << method
       end
@@ -265,6 +298,15 @@ module RubyLint
         variables.each_with_index do |variable, index|
           assign_variable(scope, variable, values[index], type)
         end
+
+        @skip_increment_reference = true
+      end
+
+      ##
+      # @see RubyLint::Analyze::Definitions#on_assign
+      #
+      def after_assign(node)
+        @skip_increment_reference = false
       end
 
       ##
@@ -378,6 +420,8 @@ module RubyLint
           end
         end
 
+        associate_node_definition(variable, var_def)
+
         definition.add(type, var_def.name, var_def)
       end
 
@@ -434,6 +478,15 @@ module RubyLint
       #
       def add_self(definition)
         definition.add(:keyword, 'self', definition)
+      end
+
+      ##
+      # Increments the reference amount of the specified definition.
+      #
+      # @param [RubyLint::Definition::RubyObject] definition
+      #
+      def increment_reference_amount(definition)
+        definition.reference_amount += 1 unless @skip_increment_reference
       end
     end # Definitions
   end # Analyze
