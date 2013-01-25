@@ -185,19 +185,7 @@ module RubyLint
       #  {RubyLint::Node#children} by default.
       #
       def initialize(options = {})
-        options = {
-          :column            => 0,
-          :constant          => Object,
-          :default_constants => [],
-          :file              => '',
-          :lazy              => false,
-          :line              => 1,
-          :node              => nil,
-          :parents           => [],
-          :receiver          => nil,
-          :reference_amount  => 0,
-          :value             => nil
-        }.merge(options)
+        options = default_options.merge(options)
 
         options[:parents].each do |parent|
           unless parent.is_a?(RubyObject)
@@ -354,15 +342,6 @@ module RubyLint
       end
 
       ##
-      # Returns an array of child nodes.
-      #
-      # @return [Array]
-      #
-      def children
-        return @node ? @node.children : []
-      end
-
-      ##
       # Returns `true` if the object was imported using {RubyLint::Importer}.
       #
       # @return [TrueClass|FalseClass]
@@ -435,6 +414,27 @@ module RubyLint
       #
       def lookup_parent?(type)
         return LOOKUP_PARENT.include?(type) && !@parents.empty?
+      end
+
+      ##
+      # Returns a Hash containing the default options.
+      #
+      # @return [Hash]
+      #
+      def default_options
+        return {
+          :column            => 0,
+          :constant          => Object,
+          :default_constants => [],
+          :file              => '',
+          :lazy              => false,
+          :line              => 1,
+          :node              => nil,
+          :parents           => [],
+          :receiver          => nil,
+          :reference_amount  => 0,
+          :value             => nil
+        }
       end
     end # RubyObject
   end # Ruby
