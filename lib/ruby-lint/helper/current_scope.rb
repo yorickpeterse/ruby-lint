@@ -6,16 +6,6 @@ module RubyLint
     # manually retrieve the scope to use based on the current node all you have
     # to do is include this module and call `current_scope`.
     #
-    # ## Available Methods
-    #
-    # The following methods can be used in classes that include this helper:
-    #
-    # * `current_scope`: returns the definition object to use for the current
-    #   scope.
-    # * `set_current_scope`: sets the scope to the definition object for the
-    #   given node.
-    # * `set_previous_scope`: sets the scope back to the previous one.
-    #
     # ## Inheritance
     #
     # Due to this module defining a few common callback methods such as

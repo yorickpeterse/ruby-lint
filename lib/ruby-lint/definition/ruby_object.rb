@@ -271,9 +271,11 @@ module RubyLint
       #
       # @param [#to_sym] type The type of data to look up.
       # @param [String] name The name of the definition.
+      # @param [TrueClass|FalseClass] search_parents When set to `false` this
+      #  method will not look in parent definitions.
       # @return [TrueClass|FalseClass]
       #
-      def has_definition?(type, name)
+      def has_definition?(type, name, search_parents = true)
         type   = type.to_sym unless type.is_a?(Symbol)
         name   = name.to_s unless name.is_a?(String)
         exists = false
@@ -281,7 +283,7 @@ module RubyLint
         if @definitions[type] and @definitions[type][name]
           exists = true
 
-        elsif lookup_parent?(type)
+        elsif search_parents and lookup_parent?(type)
           @parents.each do |parent|
             if parent.has_definition?(type, name)
               exists = true

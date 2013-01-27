@@ -17,7 +17,11 @@ require 'ruby-lint/report/entry'
 require 'ruby-lint/iterator'
 require 'ruby-lint/definitions_builder'
 require 'ruby-lint/helper/current_scope'
+require 'ruby-lint/helper/constant_paths'
+
 require 'ruby-lint/analyze/unused_variables'
 require 'ruby-lint/analyze/shadowing_variables'
+require 'ruby-lint/analyze/undefined_variables'
+
 require 'ruby-lint/presenter/text'
 require 'ruby-lint/presenter/json'

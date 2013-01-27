@@ -6,6 +6,7 @@ module RubyLint
     #
     class UnusedVariables < Iterator
       include Helper::CurrentScope
+      include Helper::ConstantPaths
 
       ##
       # Hash containing the various variable types for which to add warnings
@@ -35,17 +36,10 @@ module RubyLint
       # @param [RubyLint::Node] node
       #
       def on_constant_path(node)
-        defs = current_scope
-
-        node.children.each do |segment|
-          name  = segment.children[0]
-          found = defs.lookup(:constant, name)
-
-          if found and !found.used? and !found.imported?
+        iterate_constant_path(node) do |name, segment, definition|
+          if definition and !definition.used? and !definition.imported?
             warning("unused constant #{name}", segment)
           end
-
-          defs = found
         end
       end
     end # UnusedVariables
