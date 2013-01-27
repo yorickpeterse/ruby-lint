@@ -437,5 +437,5 @@ module RubyLint
         }
       end
     end # RubyObject
-  end # Ruby
+  end # Definition
 end # RubyLint

@@ -155,5 +155,5 @@ module RubyLint
         end
       end
     end # RubyMethod
-  end # Ruby
+  end # Definition
 end # RubyLint

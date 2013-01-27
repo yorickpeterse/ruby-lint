@@ -5,6 +5,8 @@ module RubyLint
     # unused variables.
     #
     class UnusedVariables < Iterator
+      include Helper::CurrentScope
+
       ##
       # Hash containing the various variable types for which to add warnings
       # and human readable names for these types.
@@ -21,7 +23,7 @@ module RubyLint
 
       VARIABLE_TYPES.each do |type, label|
         define_method("on_#{type}") do |node|
-          variable = associated_definition(node)
+          variable = current_scope.lookup(node.type, node.children[0])
 
           if variable and !variable.used? and !variable.imported?
             warning("unused #{label} #{variable.name}", variable)
