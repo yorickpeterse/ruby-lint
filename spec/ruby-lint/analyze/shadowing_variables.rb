@@ -17,7 +17,7 @@ end
 
     entry.line.should    == 3
     entry.column.should  == 18
-    entry.message.should == 'shadowing outer local variable "number"'
+    entry.message.should == 'shadowing outer local variable number'
   end
 
   should 'not warn for shadowed variables in a new scope' do
@@ -54,6 +54,6 @@ end
 
     entry.line.should    == 5
     entry.column.should  == 18
-    entry.message.should == 'shadowing outer local variable "number"'
+    entry.message.should == 'shadowing outer local variable number'
   end
 end

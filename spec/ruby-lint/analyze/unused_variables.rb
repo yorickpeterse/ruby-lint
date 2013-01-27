@@ -34,6 +34,27 @@ describe RubyLint::Analyze::UnusedVariables do
       entry.column.should  == 0
       entry.message.should == 'unused constant NUMBER'
     end
+
+    should 'warn for unused constant paths' do
+      code = <<-CODE
+module A
+end
+
+A::B = 10
+      CODE
+
+      report = build_report(code, RubyLint::Analyze::UnusedVariables)
+
+      report.entries.length.should == 1
+
+      entry = report.entries[0]
+
+      entry.is_a?(RubyLint::Report::Entry).should == true
+
+      entry.line.should    == 4
+      entry.column.should  == 3
+      entry.message.should == 'unused constant B'
+    end
   end
 
   describe 'method scopes' do

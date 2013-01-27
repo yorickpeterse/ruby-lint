@@ -15,7 +15,7 @@ module RubyLint
           name = param.children[0]
 
           if current_scope.has_definition?(param.type, name)
-            warning("shadowing outer local variable \"#{name}\"", param)
+            warning("shadowing outer local variable #{name}", param)
           end
         end
       end

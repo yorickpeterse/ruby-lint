@@ -30,6 +30,24 @@ module RubyLint
           end
         end
       end
+
+      ##
+      # @param [RubyLint::Node] node
+      #
+      def on_constant_path(node)
+        defs = current_scope
+
+        node.children.each do |segment|
+          name  = segment.children[0]
+          found = defs.lookup(:constant, name)
+
+          if found and !found.used? and !found.imported?
+            warning("unused constant #{name}", segment)
+          end
+
+          defs = found
+        end
+      end
     end # UnusedVariables
   end # Analyze
 end # RubyLint
