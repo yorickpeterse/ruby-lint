@@ -58,16 +58,8 @@ module RubyLint
       #
       def self.new_from_node(node, options = {})
         children = node.children
-        receiver = nil
-        options  = {
-          :parameters          => [],
-          :optional_parameters => [],
-          :rest_parameter      => nil,
-          :more_parameters     => [],
-          :block_parameter     => nil,
-          :receiver            => nil,
-          :definition_type     => :instance_method
-        }.merge(options)
+        receiver = receiver_index(node)
+        options  = default_method_options.merge(options)
 
         options[:parameters] = node.method? ? children[1] : children[1][0]
 
@@ -76,12 +68,6 @@ module RubyLint
         end
 
         set_parameters(options, children) unless node.method?
-
-        if node.method? and children[-1]
-          receiver = -1
-        elsif !node.method? and children[-2]
-          receiver = -2
-        end
 
         if receiver
           options[:receiver] = RubyObject.new_from_node(children[receiver])
@@ -93,6 +79,24 @@ module RubyLint
         end
 
         return super(node, options)
+      end
+
+      ##
+      # Determines the index of the receiver object.
+      #
+      # @param [RubyLint::Node] node
+      # @return [Numeric]
+      #
+      def self.receiver_index(node)
+        receiver = nil
+
+        if node.method? and node.children[-1]
+          receiver = -1
+        elsif !node.method? and node.children[-2]
+          receiver = -2
+        end
+
+        return receiver
       end
 
       ##
@@ -127,9 +131,7 @@ module RubyLint
       def initialize(*args)
         super
 
-        unless method?
-          define_parameters
-        end
+        define_parameters unless method?
       end
 
       private
@@ -153,6 +155,25 @@ module RubyLint
             add(params.type, params.name, params)
           end
         end
+      end
+
+      ##
+      # Returns a Hash containing the default options for this class. The name
+      # is different than {RubyLint::Definition::RubyObject#default_options} to
+      # prevent any naming issues.
+      #
+      # @return [Hash]
+      #
+      def self.default_method_options
+        return {
+          :parameters          => [],
+          :optional_parameters => [],
+          :rest_parameter      => nil,
+          :more_parameters     => [],
+          :block_parameter     => nil,
+          :receiver            => nil,
+          :definition_type     => :instance_method
+        }
       end
     end # RubyMethod
   end # Definition
