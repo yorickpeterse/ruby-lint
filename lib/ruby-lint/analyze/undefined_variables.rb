@@ -61,7 +61,7 @@ module RubyLint
         node.children.each do |segment|
           name = segment.children[0]
 
-          unless definitions.has_definition?(:constant, name, false)
+          unless definitions.defines?(:constant, name)
             error("undefined constant #{name}", segment)
           end
 

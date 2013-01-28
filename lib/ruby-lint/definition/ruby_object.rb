@@ -214,7 +214,7 @@ module RubyLint
       #  under the specified name.
       #
       def add(type, name, value)
-        type = type.to_sym
+        type = prepare_type(type)
 
         unless value.is_a?(RubyObject)
           raise TypeError, "Expected RubyObject but got #{value.class}"
@@ -236,33 +236,24 @@ module RubyLint
       #  {RubyLint::Importer.import}.
       #
       def lookup(type, name, import_options = {})
-        name       = name.to_s unless name.is_a?(String)
-        definition = nil
-        type       = type.to_sym
+        type, name = prepare_lookup(type, name)
 
         if @definitions[type] and @definitions[type][name]
-          definition = @definitions[type][name]
+          return @definitions[type][name]
 
         # Look up the definition in the parent scope(s) (if any are set).
         elsif lookup_parent?(type)
           @parents.each do |parent|
             parent_definition = parent.lookup(type, name)
 
-            if parent_definition
-              definition = parent_definition
-              break
-            end
+            return parent_definition if parent_definition
           end
         end
 
         # Lazy import the constant if it exists.
-        if !definition and lazy_load?(name, type)
-          import_constant(name, import_options)
-
-          definition = lookup(type, name)
+        if lazy_load?(name, type)
+          return import_constant(name, import_options)
         end
-
-        return definition
       end
 
       ##
@@ -271,28 +262,33 @@ module RubyLint
       #
       # @param [#to_sym] type The type of data to look up.
       # @param [String] name The name of the definition.
-      # @param [TrueClass|FalseClass] search_parents When set to `false` this
-      #  method will not look in parent definitions.
       # @return [TrueClass|FalseClass]
       #
-      def has_definition?(type, name, search_parents = true)
-        type   = type.to_sym unless type.is_a?(Symbol)
-        name   = name.to_s unless name.is_a?(String)
-        exists = false
+      def has_definition?(type, name)
+        type, name = prepare_lookup(type, name)
 
         if @definitions[type] and @definitions[type][name]
-          exists = true
+          return true
 
-        elsif search_parents and lookup_parent?(type)
+        elsif lookup_parent?(type)
           @parents.each do |parent|
-            if parent.has_definition?(type, name)
-              exists = true
-              break
-            end
+            return true if parent.has_definition?(type, name)
           end
         end
 
-        return exists
+        return false
+      end
+
+      ##
+      # Checks if the specified definition is defined in the current object,
+      # ignoring the definitions of any parent objects.
+      #
+      # @see RubyLint::Definition::RubyObject#has_definition?
+      #
+      def defines?(type, name)
+        type, name = prepare_lookup(type, name)
+
+        return @definitions[type] && @definitions[type][name]
       end
 
       ##
@@ -303,9 +299,7 @@ module RubyLint
       # @return [Array]
       #
       def list(type)
-        type = type.to_sym unless type.is_a?(Symbol)
-
-        return @definitions[type].values
+        return @definitions[prepare_type(type)].values
       end
 
       ##
@@ -358,7 +352,7 @@ module RubyLint
       # @return [TrueClass|FalseClass]
       #
       def used?
-        return @reference_amount >= 1
+        return @reference_amount > 0
       end
 
       private
@@ -382,15 +376,15 @@ module RubyLint
       #
       # @param [#to_s] name The name of the constant to import.
       # @param [Hash] options The options to pass to the importer.
+      # @return [RubyLint::Definition::RubyObject]
       #
       def import_constant(name, options = {})
-        name = name.to_s
+        name     = prepare_name(name)
+        imported = Importer.import(name, @constant, options)
 
-        @definitions[:constant][name] = Importer.import(
-          name,
-          @constant,
-          options
-        )
+        @definitions[:constant][name] = imported
+
+        return imported
       end
 
       ##
@@ -399,7 +393,7 @@ module RubyLint
       # @param [#to_s] name The name of the constant.
       #
       def import_global_variables(name)
-        name       = name.to_s
+        name       = prepare_name(name)
         definition = lookup(:constant, name)
 
         Importer.import_global_variables(name, @constant).each do |var|
@@ -437,6 +431,41 @@ module RubyLint
           :reference_amount  => 0,
           :value             => nil
         }
+      end
+
+      ##
+      # Casts the type and name of data to look up to the correct values.
+      #
+      # @param [#to_sym] type
+      # @param [#to_s] name
+      # @return [Array]
+      #
+      def prepare_lookup(type, name)
+        return prepare_type(type), prepare_name(name)
+      end
+
+      ##
+      # Prepares the name of a definition.
+      #
+      # @param [#to_s] name
+      # @return [String]
+      #
+      def prepare_name(name)
+        name = name.to_s unless name.is_a?(String)
+
+        return name
+      end
+
+      ##
+      # Prepares the data type name.
+      #
+      # @param [#to_sym] type
+      # @return [Symbol]
+      #
+      def prepare_type(type)
+        type = type.to_sym unless type.is_a?(Symbol)
+
+        return type
       end
     end # RubyObject
   end # Definition
