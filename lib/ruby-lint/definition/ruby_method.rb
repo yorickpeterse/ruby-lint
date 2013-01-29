@@ -71,10 +71,6 @@ module RubyLint
 
         if receiver
           options[:receiver] = RubyObject.new_from_node(children[receiver])
-
-          # TODO: this is rather naive as methods defined on variables will be
-          # considered class methods by this line (while they are instance
-          # methods instead).
           options[:definition_type] = :method
         end
 

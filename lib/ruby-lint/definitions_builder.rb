@@ -194,7 +194,7 @@ module RubyLint
       associate_node_definition(node, found)
 
       @definitions << found
-      @eval_types  << :class
+      @call_types  << :method
     end
 
     ##
@@ -204,7 +204,7 @@ module RubyLint
     #
     def after_sclass(node)
       @definitions.pop
-      @eval_types.pop
+      @call_types.pop
     end
 
     ##
@@ -217,16 +217,18 @@ module RubyLint
     #
     def on_method_definition(node)
       scope  = definitions
-      method = Definition::RubyMethod.new_from_node(node, :parents => [scope])
-
-      method_type = eval_type == :class ? :method : method.definition_type
+      method = Definition::RubyMethod.new_from_node(
+        node,
+        :parents         => [scope],
+        :definition_type => call_type
+      )
 
       if method.receiver
         existing = scope.lookup(method.receiver.type, method.receiver.name)
         existing ? scope = method.receiver = existing : return
       end
 
-      scope.add(method_type, method.name, method)
+      scope.add(method.definition_type, method.name, method)
 
       associate_node_definition(node, method)
 

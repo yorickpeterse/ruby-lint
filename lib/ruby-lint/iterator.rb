@@ -70,7 +70,6 @@ module RubyLint
       @options     = default_options.merge(options)
       @definitions = []
       @call_types  = []
-      @eval_types  = []
     end
 
     ##
@@ -187,15 +186,6 @@ module RubyLint
     #
     def call_type
       return @call_types.empty? ? :instance_method : @call_types[-1]
-    end
-
-    ##
-    # Returns the evaluation type to use for defining methods and such.
-    #
-    # @return [Symbol]
-    #
-    def eval_type
-      return @eval_types.empty? ? :instance : @eval_types[-1]
     end
 
     ##

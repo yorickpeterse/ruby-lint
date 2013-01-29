@@ -22,6 +22,7 @@ require 'ruby-lint/helper/constant_paths'
 require 'ruby-lint/analyze/unused_variables'
 require 'ruby-lint/analyze/shadowing_variables'
 require 'ruby-lint/analyze/undefined_variables'
+require 'ruby-lint/analyze/method_validation'
 
 require 'ruby-lint/presenter/text'
 require 'ruby-lint/presenter/json'
