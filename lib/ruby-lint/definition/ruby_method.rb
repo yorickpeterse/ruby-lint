@@ -64,7 +64,9 @@ module RubyLint
         options[:parameters] = node.method? ? children[1] : children[1][0]
 
         if options[:parameters]
-          options[:parameters].map! { |n| RubyObject.new_from_node(n) }
+          options[:parameters] = options[:parameters].map do |n|
+            RubyObject.new_from_node(n)
+          end
         end
 
         set_parameters(options, children) unless node.method?

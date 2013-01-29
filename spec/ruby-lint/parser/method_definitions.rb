@@ -5,7 +5,7 @@ describe 'Parsing method definitions' do
     parse('def example_method; 10; end').should == s(
       :method_definition,
       'example_method',
-      [],
+      [nil, nil, nil, nil, nil],
       nil,
       s(:body, [s(:integer, '10')])
     )
@@ -15,7 +15,7 @@ describe 'Parsing method definitions' do
     parse('def example_method(name); name; end').should == s(
       :method_definition,
       'example_method',
-      [[s(:local_variable, 'name')]],
+      [[s(:local_variable, 'name')], nil, nil, nil, nil],
       nil,
       s(:body, [s(:local_variable, 'name')])
     )
@@ -27,7 +27,32 @@ describe 'Parsing method definitions' do
       'example_method',
       [
         [s(:local_variable, 'name')],
-        [s(:local_variable, 'number', s(:integer, '10'))]
+        [s(:local_variable, 'number', s(:integer, '10'))],
+        nil,
+        nil,
+        nil
+      ],
+      nil,
+      s(:body, [s(:local_variable, 'name')])
+    )
+  end
+
+  should 'parse a method with one required and a rest parameter' do
+    code = <<-CODE
+def example_method(name, *rest)
+  name
+end
+    CODE
+
+    parse(code).should == s(
+      :method_definition,
+      'example_method',
+      [
+        [s(:local_variable, 'name')],
+        nil,
+        s(:local_variable, 'rest'),
+        nil,
+        nil
       ],
       nil,
       s(:body, [s(:local_variable, 'name')])
@@ -47,7 +72,9 @@ end
       [
         [s(:local_variable, 'name')],
         [s(:local_variable, 'number', s(:integer, '10'))],
-        s(:local_variable, 'rest')
+        s(:local_variable, 'rest'),
+        nil,
+        nil
       ],
       nil,
       s(:body, [s(:local_variable, 'name')])
@@ -80,7 +107,7 @@ end
     parse('def String.example_method; end').should == s(
       :method_definition,
       'example_method',
-      [],
+      [nil, nil, nil, nil, nil],
       s(:constant, 'String'),
       s(:body, [])
     )

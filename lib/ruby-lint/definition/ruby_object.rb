@@ -303,6 +303,18 @@ module RubyLint
       end
 
       ##
+      # Returns the length of an attribute.
+      #
+      # @param [#to_sym] attribute
+      # @return [Numeric]
+      #
+      def length_of(attribute)
+        value = send(attribute)
+
+        return value ? value.length : 0
+      end
+
+      ##
       # Removes all the stored child definitions.
       #
       def clear!

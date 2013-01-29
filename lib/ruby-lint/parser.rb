@@ -538,7 +538,7 @@ module RubyLint
         end
       end
 
-      return params.compact
+      return params
     end
 
     ##
