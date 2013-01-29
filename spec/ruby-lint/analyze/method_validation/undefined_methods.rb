@@ -31,4 +31,32 @@ String.example_method
     entry.column.should  == 7
     entry.message.should == 'undefined method example_method'
   end
+
+  should 'add an error when calling a method defined in a different scope' do
+    code = <<-CODE
+class Person
+  def name
+    return 'name'
+  end
+
+  def greet
+    name
+  end
+end
+
+name
+    CODE
+
+    report = build_report(code, RubyLint::Analyze::MethodValidation)
+
+    report.entries.length.should == 1
+
+    entry = report.entries[0]
+
+    entry.is_a?(RubyLint::Report::Entry).should == true
+
+    entry.line.should    == 11
+    entry.column.should  == 0
+    entry.message.should == 'undefined instance method name'
+  end
 end
