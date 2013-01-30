@@ -5,7 +5,14 @@ describe 'Parsing method definitions' do
     parse('def example_method; 10; end').should == s(
       :method_definition,
       'example_method',
-      [nil, nil, nil, nil, nil],
+      s(
+        :arguments,
+        s(:required_arguments, nil),
+        s(:optional_arguments, nil),
+        s(:rest_argument, nil),
+        s(:more_arguments, nil),
+        s(:block_argument, nil)
+      ),
       nil,
       s(:body, [s(:integer, '10')])
     )
@@ -15,7 +22,14 @@ describe 'Parsing method definitions' do
     parse('def example_method(name); name; end').should == s(
       :method_definition,
       'example_method',
-      [[s(:local_variable, 'name')], nil, nil, nil, nil],
+      s(
+        :arguments,
+        s(:required_arguments, s(:local_variable, 'name')),
+        s(:optional_arguments, nil),
+        s(:rest_argument, nil),
+        s(:more_arguments, nil),
+        s(:block_argument, nil)
+      ),
       nil,
       s(:body, [s(:local_variable, 'name')])
     )
@@ -25,13 +39,17 @@ describe 'Parsing method definitions' do
     parse('def example_method(name, number = 10); name; end').should == s(
       :method_definition,
       'example_method',
-      [
-        [s(:local_variable, 'name')],
-        [s(:local_variable, 'number', s(:integer, '10'))],
-        nil,
-        nil,
-        nil
-      ],
+      s(
+        :arguments,
+        s(:required_arguments, s(:local_variable, 'name')),
+        s(
+          :optional_arguments,
+          s(:local_variable, 'number', s(:integer, '10'))
+        ),
+        s(:rest_argument, nil),
+        s(:more_arguments, nil),
+        s(:block_argument, nil)
+      ),
       nil,
       s(:body, [s(:local_variable, 'name')])
     )
@@ -44,16 +62,19 @@ def example_method(name, *rest)
 end
     CODE
 
+    $pry = true
+
     parse(code).should == s(
       :method_definition,
       'example_method',
-      [
-        [s(:local_variable, 'name')],
-        nil,
-        s(:local_variable, 'rest'),
-        nil,
-        nil
-      ],
+      s(
+        :arguments,
+        s(:required_arguments, s(:local_variable, 'name')),
+        s(:optional_arguments, nil),
+        s(:rest_argument, s(:local_variable, 'rest')),
+        s(:more_arguments, nil),
+        s(:block_argument, nil)
+      ),
       nil,
       s(:body, [s(:local_variable, 'name')])
     )
@@ -69,13 +90,14 @@ end
     parse(code).should == s(
       :method_definition,
       'example_method',
-      [
-        [s(:local_variable, 'name')],
-        [s(:local_variable, 'number', s(:integer, '10'))],
-        s(:local_variable, 'rest'),
-        nil,
-        nil
-      ],
+      s(
+        :arguments,
+        s(:required_arguments, s(:local_variable, 'name')),
+        s(:optional_arguments, s(:local_variable, 'number', s(:integer, '10'))),
+        s(:rest_argument, s(:local_variable, 'rest')),
+        s(:more_arguments, nil),
+        s(:block_argument, nil)
+      ),
       nil,
       s(:body, [s(:local_variable, 'name')])
     )
@@ -91,13 +113,14 @@ end
     parse(code).should == s(
       :method_definition,
       'example_method',
-      [
-        [s(:local_variable, 'name')],
-        [s(:local_variable, 'number', s(:integer, '10'))],
-        s(:local_variable, 'rest'),
-        [s(:local_variable, 'more')],
-        s(:local_variable, 'block')
-      ],
+      s(
+        :arguments,
+        s(:required_arguments, s(:local_variable, 'name')),
+        s(:optional_arguments, s(:local_variable, 'number', s(:integer, '10'))),
+        s(:rest_argument, s(:local_variable, 'rest')),
+        s(:more_arguments, s(:local_variable, 'more')),
+        s(:block_argument, s(:local_variable, 'block'))
+      ),
       nil,
       s(:body, [s(:local_variable, 'name')])
     )
@@ -107,7 +130,14 @@ end
     parse('def String.example_method; end').should == s(
       :method_definition,
       'example_method',
-      [nil, nil, nil, nil, nil],
+      s(
+        :arguments,
+        s(:required_arguments, nil),
+        s(:optional_arguments, nil),
+        s(:rest_argument, nil),
+        s(:more_arguments, nil),
+        s(:block_argument, nil)
+      ),
       s(:constant, 'String'),
       s(:body, [])
     )

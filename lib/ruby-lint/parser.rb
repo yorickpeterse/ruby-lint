@@ -137,6 +137,19 @@ module RubyLint
     #
     UNPACK_EVENT_ARGS = [:return, :else, :hash, :embed, :ensure, :yield]
 
+    ##
+    # Hash containing parameter indexes and the node types.
+    #
+    # @return [Hash]
+    #
+    PARAMETER_INDEX_TYPES = {
+      0 => :required_arguments,
+      1 => :optional_arguments,
+      2 => :rest_argument,
+      3 => :more_arguments,
+      4 => :block_argument
+    }
+
     SCANNER_EVENTS.each do |type|
       define_method("on_#{type}") do |value|
         return Node.new( readable_type_name(type), [value], metadata)
@@ -506,17 +519,17 @@ module RubyLint
     #
     # The order of parameters is the following:
     #
-    # 1. required
-    # 2. optional
-    # 3. rest
-    # 4. more
-    # 5. block
+    # 0. required
+    # 1. optional
+    # 2. rest
+    # 3. more
+    # 4. block
     #
     # @param  [Array] params The specified parameters.
     # @return [Array]
     #
     def on_params(*params)
-      params.map! do |group|
+      params = params.map do |group|
         if group.is_a?(Node)
           group.updated(:local_variable)
 
@@ -538,7 +551,14 @@ module RubyLint
         end
       end
 
-      return params
+      PARAMETER_INDEX_TYPES.each do |index, type|
+        value = params[index]
+        value = [value] unless value.is_a?(Array)
+
+        params[index] = Node.new(type, value)
+      end
+
+      return Node.new(:arguments, params, metadata)
     end
 
     ##
