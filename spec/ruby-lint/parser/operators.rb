@@ -25,14 +25,14 @@ describe 'Parsing operators' do
     parse('!foobar').should == s(
       :unary,
       :!,
-      s(:method, 'foobar', [], nil, nil)
+      s(:method, 'foobar', s(:arguments), nil, nil)
     )
   end
 
   should 'parse a ternary operator' do
     parse('statement ? true : false').should == s(
       :ternary,
-      s(:method, 'statement', [], nil, nil),
+      s(:method, 'statement', s(:arguments), nil, nil),
       s(:keyword, 'true'),
       s(:keyword, 'false')
     )

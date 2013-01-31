@@ -8,8 +8,7 @@ describe 'Parsing yield statements' do
   should 'parse a statement with parameters' do
     parse('yield 10, 20').should == s(
       :yield,
-      s(:integer, '10'),
-      s(:integer, '20')
+      s(:arguments, s(:required_arguments, s(:integer, '10'), s(:integer, '20')))
     )
   end
 end

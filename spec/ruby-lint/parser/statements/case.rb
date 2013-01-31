@@ -5,30 +5,30 @@ describe 'Parsing case statements' do
     code = <<-CODE
 case number
 when 10, 20
-  puts '10 or 20'
+  '10 or 20'
 when 30
-  puts '30'
+  '30'
 else
-  puts 'something else'
+  'something else'
 end
     CODE
 
     parse(code).should == s(
       :case,
-      s(:method, 'number', [], nil, nil),
+      s(:method, 'number', s(:arguments), nil, nil),
       [
         s(
           :when,
           [s(:integer, '10'), s(:integer, '20')],
-          [s(:method, 'puts', [s(:string, '10 or 20')], nil, nil)]
+          [s(:string, '10 or 20')]
         ),
         s(
           :when,
           [s(:integer, '30')],
-          [s(:method, 'puts', [s(:string, '30')], nil, nil)]
+          [s(:string, '30')]
         )
       ],
-      s(:else, s(:method, 'puts', [s(:string, 'something else')], nil, nil))
+      s(:else, s(:string, 'something else'))
     )
   end
 end

@@ -37,7 +37,6 @@ module RubyLint
     #
     RETURN_FIRST_ARG_EVENTS = [
       :arg_paren,
-      :args_add_block,
       :assoclist_from_args,
       :begin,
       :block_var,
@@ -135,7 +134,7 @@ module RubyLint
     #
     # @return [Array]
     #
-    UNPACK_EVENT_ARGS = [:return, :else, :hash, :embed, :ensure, :yield]
+    UNPACK_EVENT_ARGS = [:else, :hash, :embed, :ensure]
 
     ##
     # Hash containing parameter indexes and the node types.
@@ -152,7 +151,7 @@ module RubyLint
 
     SCANNER_EVENTS.each do |type|
       define_method("on_#{type}") do |value|
-        return Node.new( readable_type_name(type), [value], metadata)
+        return Node.new(readable_type_name(type), [value], metadata)
       end
     end
 
@@ -164,7 +163,7 @@ module RubyLint
       define_method("on_#{event}") do |node|
         return Node.new(
           :method,
-          [node.children[0], [], nil, nil], metadata(node)
+          [node.children[0], on_params, nil, nil], metadata(node)
         )
       end
     end
@@ -273,23 +272,21 @@ module RubyLint
     end
 
     ##
-    # @param  [Array] params The parameters of the lamda.
+    # @param  [RubyLint::Node] params The parameters of the lamda.
     # @param  [Array] body The body of the lambda.
     # @return [RubyLint::Node]
     #
     def on_lambda(params, body)
-      return Node.new(:lambda, [params[0], body], metadata)
+      return on_brace_block(params, body).updated(:lambda)
     end
 
     ##
-    # @param  [Array] params The parameters of the block.
+    # @param  [RubyLint::Node] params The parameters of the block.
     # @param  [Array] body The body of the block.
     # @return [RubyLint::Node]
     #
     def on_brace_block(params, body)
-      params ||= []
-
-      return Node.new(:block, [params[0], body.compact], metadata)
+      return Node.new(:block, [params || on_params, on_bodystmt(body)], metadata)
     end
 
     ##
@@ -427,7 +424,7 @@ module RubyLint
     def on_command(name, params)
       return Node.new(
         :method,
-        [name.children[0], params, nil, nil],
+        [name.children[0], on_params(params), nil, nil],
         metadata(name)
       )
     end
@@ -443,7 +440,7 @@ module RubyLint
     def on_call(object, operator, name)
       return Node.new(
         :method,
-        [name.children[0], [], nil, object],
+        [name.children[0], on_params, nil, object],
         metadata(name)
       )
     end
@@ -457,21 +454,33 @@ module RubyLint
     def on_command_call(object, operator, name, params)
       node        = on_call(object, operator, name)
       children    = node.children.dup
-      children[1] = params || []
+      children[1] = on_params(params)
 
       return node.updated(nil, children)
     end
 
     ##
     # @param  [RubyLint::Node] method The method that is called.
-    # @param  [Array] params Array of parameters passed to the method.
+    # @param  [RubyLint::Node|Array] params Array of parameters passed to the
+    #  method.
     # @return [RubyLint::Node]
     #
     def on_method_add_arg(method, params)
-      children    = method.children.dup
-      children[1] = params
+      children = method.children.dup
+
+      if !params.is_a?(Array)
+        children[1] = params
+      end
 
       return method.updated(nil, children)
+    end
+
+    ##
+    # @param [Mixed] left
+    # @param [Mixed] right
+    #
+    def on_args_add_block(left, right)
+      return on_params(left, nil, nil, nil, right)
     end
 
     ##
@@ -496,7 +505,7 @@ module RubyLint
     def on_def(name, params, body)
       return Node.new(
         :method_definition,
-        [name.children[0], params || [], nil, body],
+        [name.children[0], params, nil, body],
         metadata(name)
       )
     end
@@ -509,7 +518,7 @@ module RubyLint
     def on_defs(receiver, operator, name, params, body)
       return Node.new(
         :method_definition,
-        [name.children[0], params || [], receiver, body],
+        [name.children[0], params, receiver, body],
         metadata(name)
       )
     end
@@ -517,46 +526,21 @@ module RubyLint
     ##
     # Called when a set of method parameters if found.
     #
-    # The order of parameters is the following:
-    #
-    # 0. required
-    # 1. optional
-    # 2. rest
-    # 3. more
-    # 4. block
-    #
     # @param  [Array] params The specified parameters.
     # @return [Array]
     #
     def on_params(*params)
-      params = params.map do |group|
-        if group.is_a?(Node)
-          group.updated(:local_variable)
-
-        # Parameter types of which multiple ones can be specified (e.g.
-        # required parameters).
-        elsif group.is_a?(Array)
-          group.map do |param|
-            if param.is_a?(Node)
-              param.updated(:local_variable)
-
-            # Optional parameters are in the format of [parameter, value].
-            elsif param.is_a?(Array)
-              param[0].updated(
-                :local_variable,
-                [param[0].children[0], param[1]]
-              )
-            end
-          end
-        end
+      if params[0].is_a?(Node) and params[0].type == :arguments
+        return params[0]
       end
 
-      PARAMETER_INDEX_TYPES.each do |index, type|
-        value = params[index]
-        value = [value] unless value.is_a?(Array)
+      params = convert_to_local_variables(params)
 
-        params[index] = Node.new(type, value)
+      if params[1]
+        params[1] = remap_optional_arguments(params[1])
       end
+
+      params = group_arguments(params)
 
       return Node.new(:arguments, params, metadata)
     end
@@ -742,6 +726,58 @@ module RubyLint
       col  = node ? node.column : column
 
       return {:line => line, :column => col, :file => @file}
+    end
+
+    ##
+    # Changes a set of nodes to nodes for local variables.
+    #
+    # @param [Array] nodes
+    # @return [Array]
+    #
+    def convert_to_local_variables(nodes)
+      return nodes.map do |node|
+        if node.is_a?(Node) and node.identifier?
+          node = node.updated(:local_variable)
+        elsif node.is_a?(Array)
+          node = convert_to_local_variables(node)
+        end
+
+        node
+      end
+    end
+
+    ##
+    # Groups a set of parameters into nodes based on the indexes.
+    #
+    # @param [Array] nodes
+    # @return [Array]
+    #
+    def group_arguments(nodes)
+      new_nodes = []
+
+      nodes.each_with_index do |node, index|
+        if !node or (node.is_a?(Array) and node.empty?)
+          next
+        end
+
+        value = node.is_a?(Array) ? node : [node]
+
+        new_nodes << Node.new(PARAMETER_INDEX_TYPES[index], value.compact)
+      end
+
+      return new_nodes
+    end
+
+    ##
+    # Remaps variable/value pairs of optional arguments into single nodes.
+    #
+    # @param [Array] nodes
+    # @return [Array]
+    #
+    def remap_optional_arguments(nodes)
+      return nodes.map do |node|
+        node[0].updated(nil, [node[0].children[0], node[1]])
+      end
     end
   end # Parser
 end # RubyLint

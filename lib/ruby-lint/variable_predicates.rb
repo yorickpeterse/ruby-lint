@@ -39,7 +39,9 @@ module RubyLint
       :keyword,
       :method,
       :method_definition,
-      :module
+      :module,
+      :required_arguments,
+      :aref
     ]
 
     (VARIABLE_TYPES + PREDICATE_METHODS).each do |type|

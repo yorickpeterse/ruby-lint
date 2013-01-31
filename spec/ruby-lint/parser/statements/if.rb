@@ -16,29 +16,29 @@ end
 
     parse(code).should == s(
       :if,
-      s(:method, 'foo', [], nil, nil),
-      [s(:method, 'bar', [], nil, nil)],
+      s(:method, 'foo', s(:arguments), nil, nil),
+      [s(:method, 'bar', s(:arguments), nil, nil)],
       [
         s(
           :elsif,
-          s(:method, 'first', [], nil, nil),
-          [s(:method, 'first', [], nil, nil)]
+          s(:method, 'first', s(:arguments), nil, nil),
+          [s(:method, 'first', s(:arguments), nil, nil)]
         ),
         s(
           :elsif,
-          s(:method, 'second', [], nil, nil),
-          [s(:method, 'second', [], nil, nil)]
+          s(:method, 'second', s(:arguments), nil, nil),
+          [s(:method, 'second', s(:arguments), nil, nil)]
         ),
       ],
-      s(:else, s(:method, 'baz', [], nil, nil))
+      s(:else, s(:method, 'baz', s(:arguments), nil, nil))
     )
   end
 
   should 'parse a single line statement' do
     parse('bar if foo').should == s(
       :if,
-      s(:method, 'foo', [], nil, nil),
-      [s(:method, 'bar', [], nil, nil)],
+      s(:method, 'foo', s(:arguments), nil, nil),
+      [s(:method, 'bar', s(:arguments), nil, nil)],
       [],
       nil
     )

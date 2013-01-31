@@ -17,7 +17,7 @@ describe 'Parsing Arrays' do
     parse('[10][0]').should == s(
       :aref,
       s(:array, s(:integer, '10')),
-      [s(:integer, '0')]
+      s(:arguments, s(:required_arguments, s(:integer, '0')))
     )
   end
 
@@ -25,14 +25,18 @@ describe 'Parsing Arrays' do
     parse('[10][0,1]').should == s(
       :aref,
       s(:array, s(:integer, '10')),
-      [s(:integer, '0'), s(:integer, '1')]
+      s(:arguments, s(:required_arguments, s(:integer, '0'), s(:integer, '1')))
     )
   end
 
   should 'parse assigning a value to an array index' do
     parse('[][0] = 10').should == s(
       :assign,
-      s(:aref, s(:array), [s(:integer, '0')]),
+      s(
+        :aref,
+        s(:array),
+        s(:arguments, s(:required_arguments, s(:integer, '0')))
+      ),
       [s(:integer, '10')]
     )
   end

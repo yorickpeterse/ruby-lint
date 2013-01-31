@@ -9,13 +9,17 @@ describe RubyLint::Definition::RubyMethod do
       s(
         :method_definition,
         'example',
-        [
-          [s(:local_variable, 'required')],
-          [s(:local_variable, 'number', s(:integer, '10'))],
-          s(:local_variable, 'rest'),
-          [s(:local_variable, 'more')],
-          s(:local_variable, 'block')
-        ],
+        s(
+          :arguments,
+          s(:required_arguments, s(:local_variable, 'required')),
+          s(
+            :optional_arguments,
+            s(:local_variable, 'number', s(:integer, '10'))
+          ),
+          s(:rest_argument, s(:local_variable, 'rest')),
+          s(:more_arguments, s(:local_variable, 'more')),
+          s(:block_argument, s(:local_variable, 'block'))
+        ),
         s(:constant, 'String'),
         s(:body, [s(:return, s(:local_variable, 'required'))])
       )
@@ -131,7 +135,13 @@ describe RubyLint::Definition::RubyMethod do
         s(
           :method,
           'example',
-          [s(:constant_path, s(:constant, 'First'), s(:constant, 'Second'))],
+          s(
+            :arguments,
+            s(
+              :required_arguments,
+              s(:constant_path, s(:constant, 'First'), s(:constant, 'Second'))
+            )
+          ),
           nil,
           nil
         )

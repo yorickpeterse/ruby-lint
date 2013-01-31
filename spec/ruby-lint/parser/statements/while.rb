@@ -10,16 +10,16 @@ end
 
     parse(code).should == s(
       :while,
-      s(:method, 'foo', [], nil, nil),
-      [s(:method, 'bar', [], nil, nil)]
+      s(:method, 'foo', s(:arguments), nil, nil),
+      [s(:method, 'bar', s(:arguments), nil, nil)]
     )
   end
 
   should 'parse a single line statement' do
     parse('bar while foo').should == s(
       :while,
-      s(:method, 'foo', [], nil, nil),
-      [s(:method, 'bar', [], nil, nil)]
+      s(:method, 'foo', s(:arguments), nil, nil),
+      [s(:method, 'bar', s(:arguments), nil, nil)]
     )
   end
 end

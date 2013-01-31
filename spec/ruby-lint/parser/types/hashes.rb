@@ -29,7 +29,7 @@ describe 'Parsing Hashes' do
     parse('{"name" => "Ruby"}["name"]').should == s(
       :aref,
       s(:hash, s(:key_value, s(:string, 'name'), s(:string, 'Ruby'))),
-      [s(:string, 'name')]
+      s(:arguments, s(:required_arguments, s(:string, 'name')))
     )
   end
 
@@ -37,14 +37,18 @@ describe 'Parsing Hashes' do
     parse('{"name" => "Ruby"}[:name]').should == s(
       :aref,
       s(:hash, s(:key_value, s(:string, 'name'), s(:string, 'Ruby'))),
-      [s(:symbol, 'name')]
+      s(:arguments, s(:required_arguments, s(:symbol, 'name')))
     )
   end
 
   should 'parse the assignment to multiple hash keys' do
     parse('{}[:name] = "Ruby"').should == s(
       :assign,
-      s(:aref, s(:hash), [s(:symbol, 'name')]),
+      s(
+        :aref,
+        s(:hash),
+        s(:arguments, s(:required_arguments, s(:symbol, 'name')))
+      ),
       [s(:string, 'Ruby')]
     )
   end

@@ -10,8 +10,8 @@ end
 
     parse(code).should == s(
       :unless,
-      s(:method, 'bar', [], nil, nil),
-      [s(:method, 'foo', [], nil, nil)]
+      s(:method, 'bar', s(:arguments), nil, nil),
+      [s(:method, 'foo', s(:arguments), nil, nil)]
     )
   end
 
@@ -26,17 +26,17 @@ end
 
     parse(code).should == s(
       :unless,
-      s(:method, 'bar', [], nil, nil),
-      [s(:method, 'foo', [], nil, nil)],
-      s(:else, s(:method, 'baz', [], nil, nil))
+      s(:method, 'bar', s(:arguments), nil, nil),
+      [s(:method, 'foo', s(:arguments), nil, nil)],
+      s(:else, s(:method, 'baz', s(:arguments), nil, nil))
     )
   end
 
   should 'parse a single line statement' do
     parse('foo unless bar').should == s(
       :unless,
-      s(:method, 'bar', [], nil, nil),
-      [s(:method, 'foo', [], nil, nil)]
+      s(:method, 'bar', s(:arguments), nil, nil),
+      [s(:method, 'foo', s(:arguments), nil, nil)]
     )
   end
 end

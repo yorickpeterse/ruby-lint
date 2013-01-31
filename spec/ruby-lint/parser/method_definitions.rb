@@ -5,14 +5,7 @@ describe 'Parsing method definitions' do
     parse('def example_method; 10; end').should == s(
       :method_definition,
       'example_method',
-      s(
-        :arguments,
-        s(:required_arguments, nil),
-        s(:optional_arguments, nil),
-        s(:rest_argument, nil),
-        s(:more_arguments, nil),
-        s(:block_argument, nil)
-      ),
+      s(:arguments),
       nil,
       s(:body, [s(:integer, '10')])
     )
@@ -22,14 +15,7 @@ describe 'Parsing method definitions' do
     parse('def example_method(name); name; end').should == s(
       :method_definition,
       'example_method',
-      s(
-        :arguments,
-        s(:required_arguments, s(:local_variable, 'name')),
-        s(:optional_arguments, nil),
-        s(:rest_argument, nil),
-        s(:more_arguments, nil),
-        s(:block_argument, nil)
-      ),
+      s(:arguments, s(:required_arguments, s(:local_variable, 'name'))),
       nil,
       s(:body, [s(:local_variable, 'name')])
     )
@@ -45,10 +31,7 @@ describe 'Parsing method definitions' do
         s(
           :optional_arguments,
           s(:local_variable, 'number', s(:integer, '10'))
-        ),
-        s(:rest_argument, nil),
-        s(:more_arguments, nil),
-        s(:block_argument, nil)
+        )
       ),
       nil,
       s(:body, [s(:local_variable, 'name')])
@@ -62,18 +45,13 @@ def example_method(name, *rest)
 end
     CODE
 
-    $pry = true
-
     parse(code).should == s(
       :method_definition,
       'example_method',
       s(
         :arguments,
         s(:required_arguments, s(:local_variable, 'name')),
-        s(:optional_arguments, nil),
-        s(:rest_argument, s(:local_variable, 'rest')),
-        s(:more_arguments, nil),
-        s(:block_argument, nil)
+        s(:rest_argument, s(:local_variable, 'rest'))
       ),
       nil,
       s(:body, [s(:local_variable, 'name')])
@@ -94,9 +72,7 @@ end
         :arguments,
         s(:required_arguments, s(:local_variable, 'name')),
         s(:optional_arguments, s(:local_variable, 'number', s(:integer, '10'))),
-        s(:rest_argument, s(:local_variable, 'rest')),
-        s(:more_arguments, nil),
-        s(:block_argument, nil)
+        s(:rest_argument, s(:local_variable, 'rest'))
       ),
       nil,
       s(:body, [s(:local_variable, 'name')])
@@ -130,14 +106,7 @@ end
     parse('def String.example_method; end').should == s(
       :method_definition,
       'example_method',
-      s(
-        :arguments,
-        s(:required_arguments, nil),
-        s(:optional_arguments, nil),
-        s(:rest_argument, nil),
-        s(:more_arguments, nil),
-        s(:block_argument, nil)
-      ),
+      s(:arguments),
       s(:constant, 'String'),
       s(:body, [])
     )

@@ -289,10 +289,15 @@ module RubyLint
         )
 
         if found
-          scope     = found
-          variables = [var.children[1]].flatten
-          type      = :member
-          values    = values.flatten
+          if var.aref?
+            variables = referenced_array_indexes(var)
+          else
+            variables = referenced_object_field(var)
+          end
+
+          scope  = found
+          type   = :member
+          values = values.flatten
         end
       end
 
@@ -488,6 +493,30 @@ module RubyLint
     #
     def increment_reference_amount(definition)
       definition.reference_amount += 1 unless @skip_increment_reference
+    end
+
+    ##
+    # Returns an Array containing the referenced indexes of an Array.
+    #
+    # @param [RubyLint::Node] node
+    # @return [Array]
+    #
+    def referenced_array_indexes(node)
+      node.children[1].children.each do |arguments|
+        return arguments.children if arguments.required_arguments?
+      end
+
+      return []
+    end
+
+    ##
+    # Returns the referenced field of an object.
+    #
+    # @param [RubyLint::Node] node
+    # @return [Array]
+    #
+    def referenced_object_field(node)
+      return [node.children[1]]
     end
   end # DefinitionsBuilder
 end # RubyLint

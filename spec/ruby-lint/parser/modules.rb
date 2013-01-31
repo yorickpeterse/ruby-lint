@@ -27,7 +27,7 @@ end
           s(
             :method_definition,
             'example_method',
-            [nil, nil, nil, nil, nil],
+            s(:arguments),
             nil,
             s(:body, [])
           )

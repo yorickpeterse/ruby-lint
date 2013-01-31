@@ -38,7 +38,7 @@ end
           s(
             :method_definition,
             'example_method',
-            [nil, nil, nil, nil, nil],
+            s(:arguments),
             nil,
             s(:body, [])
           )
@@ -101,7 +101,7 @@ end
           s(
             :sclass,
             s(:keyword, 'self'),
-            s(:body, [s(:method, 'puts', [], nil, nil)])
+            s(:body, [s(:method, 'puts', s(:arguments), nil, nil)])
           )
         ]
       )
