@@ -142,10 +142,10 @@ module RubyLint
     # @return [Hash]
     #
     PARAMETER_INDEX_TYPES = {
-      0 => :required_arguments,
-      1 => :optional_arguments,
+      0 => :argument,
+      1 => :optional_argument,
       2 => :rest_argument,
-      3 => :more_arguments,
+      3 => :more_argument,
       4 => :block_argument
     }
 
@@ -534,8 +534,6 @@ module RubyLint
         return params[0]
       end
 
-      params = convert_to_local_variables(params)
-
       if params[1]
         params[1] = remap_optional_arguments(params[1])
       end
@@ -729,24 +727,6 @@ module RubyLint
     end
 
     ##
-    # Changes a set of nodes to nodes for local variables.
-    #
-    # @param [Array] nodes
-    # @return [Array]
-    #
-    def convert_to_local_variables(nodes)
-      return nodes.map do |node|
-        if node.is_a?(Node) and node.identifier?
-          node = node.updated(:local_variable)
-        elsif node.is_a?(Array)
-          node = convert_to_local_variables(node)
-        end
-
-        node
-      end
-    end
-
-    ##
     # Groups a set of parameters into nodes based on the indexes.
     #
     # @param [Array] nodes
@@ -760,12 +740,10 @@ module RubyLint
           next
         end
 
-        value = node.is_a?(Array) ? node : [node]
-
-        new_nodes << Node.new(PARAMETER_INDEX_TYPES[index], value.compact)
+        new_nodes << convert_argument_node(node, index)
       end
 
-      return new_nodes
+      return new_nodes.flatten
     end
 
     ##
@@ -778,6 +756,27 @@ module RubyLint
       return nodes.map do |node|
         node[0].updated(nil, [node[0].children[0], node[1]])
       end
+    end
+
+    ##
+    # Converts a parameter node to a type based on its index.
+    #
+    # @param [RubyLint::Node|Array] node
+    # @param [Numeric] index
+    # @return [Mixed]
+    #
+    def convert_argument_node(node, index)
+      if node.is_a?(Array)
+        node = node.map { |n| convert_argument_node(n, index) }
+      else
+        if node.identifier?
+          node = node.updated(:local_variable)
+        end
+
+        node = Node.new(PARAMETER_INDEX_TYPES[index], [node])
+      end
+
+      return node
     end
   end # Parser
 end # RubyLint

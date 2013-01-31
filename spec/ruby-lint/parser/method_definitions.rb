@@ -15,7 +15,7 @@ describe 'Parsing method definitions' do
     parse('def example_method(name); name; end').should == s(
       :method_definition,
       'example_method',
-      s(:arguments, s(:required_arguments, s(:local_variable, 'name'))),
+      s(:arguments, s(:argument, s(:local_variable, 'name'))),
       nil,
       s(:body, [s(:local_variable, 'name')])
     )
@@ -27,11 +27,8 @@ describe 'Parsing method definitions' do
       'example_method',
       s(
         :arguments,
-        s(:required_arguments, s(:local_variable, 'name')),
-        s(
-          :optional_arguments,
-          s(:local_variable, 'number', s(:integer, '10'))
-        )
+        s(:argument, s(:local_variable, 'name')),
+        s(:optional_argument, s(:local_variable, 'number', s(:integer, '10')))
       ),
       nil,
       s(:body, [s(:local_variable, 'name')])
@@ -50,7 +47,7 @@ end
       'example_method',
       s(
         :arguments,
-        s(:required_arguments, s(:local_variable, 'name')),
+        s(:argument, s(:local_variable, 'name')),
         s(:rest_argument, s(:local_variable, 'rest'))
       ),
       nil,
@@ -70,8 +67,8 @@ end
       'example_method',
       s(
         :arguments,
-        s(:required_arguments, s(:local_variable, 'name')),
-        s(:optional_arguments, s(:local_variable, 'number', s(:integer, '10'))),
+        s(:argument, s(:local_variable, 'name')),
+        s(:optional_argument, s(:local_variable, 'number', s(:integer, '10'))),
         s(:rest_argument, s(:local_variable, 'rest'))
       ),
       nil,
@@ -91,10 +88,10 @@ end
       'example_method',
       s(
         :arguments,
-        s(:required_arguments, s(:local_variable, 'name')),
-        s(:optional_arguments, s(:local_variable, 'number', s(:integer, '10'))),
+        s(:argument, s(:local_variable, 'name')),
+        s(:optional_argument, s(:local_variable, 'number', s(:integer, '10'))),
         s(:rest_argument, s(:local_variable, 'rest')),
-        s(:more_arguments, s(:local_variable, 'more')),
+        s(:more_argument, s(:local_variable, 'more')),
         s(:block_argument, s(:local_variable, 'block'))
       ),
       nil,

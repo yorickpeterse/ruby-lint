@@ -17,7 +17,8 @@ describe 'Parsing method calls' do
       'example',
       s(
         :arguments,
-        s(:required_arguments, s(:string, 'foo'), s(:integer, '10'))
+        s(:argument, s(:string, 'foo')),
+        s(:argument, s(:integer, '10'))
       ),
       nil,
       nil
@@ -30,7 +31,8 @@ describe 'Parsing method calls' do
       'example',
       s(
         :arguments,
-        s(:required_arguments, s(:string, 'foo'), s(:integer, '10')),
+        s(:argument, s(:string, 'foo')),
+        s(:argument, s(:integer, '10'))
       ),
       nil,
       nil
@@ -54,7 +56,7 @@ describe 'Parsing method calls' do
       s(:arguments),
       s(
         :block,
-        s(:arguments, s(:required_arguments, s(:local_variable, 'example'))),
+        s(:arguments, s(:argument, s(:local_variable, 'example'))),
         s(:body, [s(:local_variable, 'example')])
       ),
       nil
@@ -68,7 +70,7 @@ describe 'Parsing method calls' do
       s(:arguments),
       s(
         :block,
-        s(:arguments, s(:required_arguments, s(:local_variable, 'example'))),
+        s(:arguments, s(:argument, s(:local_variable, 'example'))),
         s(:body, [s(:local_variable, 'example')])
       ),
       nil
@@ -82,7 +84,7 @@ describe 'Parsing method calls' do
       s(:arguments),
       s(
         :block,
-        s(:arguments, s(:required_arguments, s(:local_variable, 'example'))),
+        s(:arguments, s(:argument, s(:local_variable, 'example'))),
         s(:body, [s(:local_variable, 'example')])
       ),
       nil
@@ -93,10 +95,10 @@ describe 'Parsing method calls' do
     parse('foo(10) { |name| name }').should == s(
       :method,
       'foo',
-      s(:arguments, s(:required_arguments,  s(:integer, '10'))),
+      s(:arguments, s(:argument,  s(:integer, '10'))),
       s(
         :block,
-        s(:arguments, s(:required_arguments, s(:local_variable, 'name'))),
+        s(:arguments, s(:argument, s(:local_variable, 'name'))),
         s(:body, [s(:local_variable, 'name')])
       ),
       nil
@@ -125,7 +127,7 @@ describe 'Parsing method calls' do
     parse('String.new(10)').should == s(
       :method,
       'new',
-      s(:arguments, s(:required_arguments,  s(:integer, '10'))),
+      s(:arguments, s(:argument,  s(:integer, '10'))),
       nil,
       s(:constant, 'String')
     )
@@ -135,7 +137,7 @@ describe 'Parsing method calls' do
     parse('String.new 10').should == s(
       :method,
       'new',
-      s(:arguments, s(:required_arguments,  s(:integer, '10'))),
+      s(:arguments, s(:argument,  s(:integer, '10'))),
       nil,
       s(:constant, 'String')
     )
@@ -145,10 +147,10 @@ describe 'Parsing method calls' do
     parse('String.new(10) { |name| name }').should == s(
       :method,
       'new',
-      s(:arguments, s(:required_arguments,  s(:integer, '10'))),
+      s(:arguments, s(:argument,  s(:integer, '10'))),
       s(
         :block,
-        s(:arguments, s(:required_arguments, s(:local_variable, 'name'))),
+        s(:arguments, s(:argument, s(:local_variable, 'name'))),
         s(:body, [s(:local_variable, 'name')])
       ),
       s(:constant, 'String')
@@ -162,7 +164,7 @@ describe 'Parsing method calls' do
       s(
         :arguments,
         s(
-          :required_arguments,
+          :argument,
           s(:hash, s(:key_value, s(:symbol, 'name'), s(:string, 'Ruby')))
         )
       ),

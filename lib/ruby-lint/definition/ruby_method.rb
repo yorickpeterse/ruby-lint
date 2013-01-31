@@ -8,23 +8,23 @@ module RubyLint
     # @!attribute [r] visibility
     #  @return [Symbol] The method visibility such as `:public`.
     #
-    # @!attribute [r] parameters
-    #  @return [Array] The required/specified parameters of a method definition
+    # @!attribute [r] arguments
+    #  @return [Array] The required/specified arguments of a method definition
     #   or method call.
     #
-    # @!attribute [r] optional_parameters
-    #  @return [Array] Array containing the optional parameters of a method
+    # @!attribute [r] optional_arguments
+    #  @return [Array] Array containing the optional arguments of a method
     #   definition.
     #
-    # @!attribute [r] rest_parameter
-    #  @return [RubyLint::Definition::RubyObject] The rest parameter of a
+    # @!attribute [r] rest_argument
+    #  @return [RubyLint::Definition::RubyObject] The rest argument of a
     #   method definition.
     #
-    # @!attribute [r] more_parameters
-    #  @return [Array] A set of "more" parameters of the method definition.
+    # @!attribute [r] more_arguments
+    #  @return [Array] A set of "more" arguments of the method definition.
     #
-    # @!attribute [r] block_parameter
-    #  @return [RubyLint::Definition::RubyObject] The block parameter of a
+    # @!attribute [r] block_argument
+    #  @return [RubyLint::Definition::RubyObject] The block argument of a
     #   method definition.
     #
     # @!attribute [r] definition_type [Symbol]
@@ -33,24 +33,24 @@ module RubyLint
     #
     class RubyMethod < RubyObject
       ##
-      # Hash containing the parameter indexes and the instance variable names
+      # Hash containing the argument indexes and the instance variable names
       # to store them in.
       #
       # @return [Hash]
       #
       PARAMETER_VARIABLES = {
-        1 => :optional_parameters,
-        2 => :rest_parameter,
-        3 => :more_parameters,
-        4 => :block_parameter
+        1 => :optional_arguments,
+        2 => :rest_argument,
+        3 => :more_arguments,
+        4 => :block_argument
       }
 
-      attr_reader :block_parameter,
+      attr_reader :block_argument,
         :definition_type,
-        :more_parameters,
-        :optional_parameters,
-        :parameters,
-        :rest_parameter,
+        :more_arguments,
+        :optional_arguments,
+        :arguments,
+        :rest_argument,
         :visibility
 
       ##
@@ -61,20 +61,22 @@ module RubyLint
         receiver = receiver_index(node)
         options  = default_method_options.merge(options)
 
-        options[:parameters] = node.method? ? children[1] : children[1][0]
+        options[:arguments] = children[1]
 
-        if options[:parameters]
-          options[:parameters] = options[:parameters].map do |n|
+=begin
+        if options[:arguments]
+          options[:arguments] = options[:arguments].map do |n|
             RubyObject.new_from_node(n)
           end
         end
 
-        set_parameters(options, children) unless node.method?
+        set_arguments(options, children) unless node.method?
 
         if receiver
           options[:receiver] = RubyObject.new_from_node(children[receiver])
           options[:definition_type] = :method
         end
+=end
 
         return super(node, options)
       end
@@ -98,13 +100,13 @@ module RubyLint
       end
 
       ##
-      # Sets the various parameters of the method definition.
+      # Sets the various arguments of the method definition.
       #
       # @param [Hash] options Hash used for storing the various variables.
       # @param [Array] children The child nodes of the method definition node.
       # @return [Hash]
       #
-      def self.set_parameters(options, children)
+      def self.set_arguments(options, children)
         PARAMETER_VARIABLES.each do |index, variable|
           # Parameters such as the optional ones.
           if children[1][index].is_a?(Array)
@@ -112,7 +114,7 @@ module RubyLint
               RubyObject.new_from_node(node, :value => node.children[1])
             end
 
-          # Rest and block parameters.
+          # Rest and block arguments.
           elsif children[1][index]
             params = RubyObject.new_from_node(children[1][index])
           end
@@ -129,21 +131,21 @@ module RubyLint
       def initialize(*args)
         super
 
-        define_parameters unless method?
+        define_arguments unless method?
       end
 
       private
 
       ##
-      # Adds all the parameters of this method to the definitions list.
+      # Adds all the arguments of this method to the definitions list.
       #
-      def define_parameters
+      def define_arguments
         [
-          @parameters,
-          @optional_parameters,
-          @rest_parameter,
-          @more_parameters,
-          @block_parameter
+          @arguments,
+          @optional_arguments,
+          @rest_argument,
+          @more_arguments,
+          @block_argument
         ].each do |params|
           next unless params
 
@@ -164,11 +166,11 @@ module RubyLint
       #
       def self.default_method_options
         return {
-          :parameters          => [],
-          :optional_parameters => [],
-          :rest_parameter      => nil,
-          :more_parameters     => [],
-          :block_parameter     => nil,
+          :arguments          => [],
+          :optional_arguments => [],
+          :rest_argument      => nil,
+          :more_arguments     => [],
+          :block_argument     => nil,
           :receiver            => nil,
           :definition_type     => :instance_method
         }

@@ -2,22 +2,19 @@ require File.expand_path('../../../helper', __FILE__)
 
 describe RubyLint::Definition::RubyMethod do
   before do
-    # def String.example(required)
-    #   return required
-    # end
     @method_def = RubyLint::Definition::RubyMethod.new_from_node(
       s(
         :method_definition,
         'example',
         s(
           :arguments,
-          s(:required_arguments, s(:local_variable, 'required')),
+          s(:argument, s(:local_variable, 'required')),
           s(
-            :optional_arguments,
+            :optional_argument,
             s(:local_variable, 'number', s(:integer, '10'))
           ),
           s(:rest_argument, s(:local_variable, 'rest')),
-          s(:more_arguments, s(:local_variable, 'more')),
+          s(:more_argument, s(:local_variable, 'more')),
           s(:block_argument, s(:local_variable, 'block'))
         ),
         s(:constant, 'String'),
@@ -25,7 +22,6 @@ describe RubyLint::Definition::RubyMethod do
       )
     )
 
-    # example(10)
     @method_call = RubyLint::Definition::RubyMethod.new_from_node(
       s(:method, 'example', [s(:integer, '10')], s(:constant, 'String'))
     )

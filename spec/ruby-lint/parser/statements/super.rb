@@ -10,7 +10,8 @@ describe 'Parsing super statements' do
       :super,
       s(
         :arguments,
-        s(:required_arguments, s(:integer, '10'), s(:integer, '20'))
+        s(:argument, s(:integer, '10')),
+        s(:argument, s(:integer, '20'))
       )
     )
   end
@@ -24,7 +25,8 @@ describe 'Parsing super statements' do
       :super,
       s(
         :arguments,
-        s(:required_arguments, s(:integer, '10'), s(:integer, '20'))
+        s(:argument, s(:integer, '10')),
+        s(:argument, s(:integer, '20'))
       )
     )
   end
@@ -40,7 +42,7 @@ describe 'Parsing super statements' do
   should 'parse a statement with a block and parameters' do
     parse('super 10 do; end').should == s(
       :super,
-      s(:arguments, s(:required_arguments, s(:integer, '10'))),
+      s(:arguments, s(:argument, s(:integer, '10'))),
       s(:block, s(:arguments), s(:body, []))
     )
   end

@@ -17,7 +17,7 @@ describe 'Parsing Arrays' do
     parse('[10][0]').should == s(
       :aref,
       s(:array, s(:integer, '10')),
-      s(:arguments, s(:required_arguments, s(:integer, '0')))
+      s(:arguments, s(:argument, s(:integer, '0')))
     )
   end
 
@@ -25,7 +25,11 @@ describe 'Parsing Arrays' do
     parse('[10][0,1]').should == s(
       :aref,
       s(:array, s(:integer, '10')),
-      s(:arguments, s(:required_arguments, s(:integer, '0'), s(:integer, '1')))
+      s(
+        :arguments,
+        s(:argument, s(:integer, '0')),
+        s(:argument, s(:integer, '1'))
+      )
     )
   end
 
@@ -35,7 +39,7 @@ describe 'Parsing Arrays' do
       s(
         :aref,
         s(:array),
-        s(:arguments, s(:required_arguments, s(:integer, '0')))
+        s(:arguments, s(:argument, s(:integer, '0')))
       ),
       [s(:integer, '10')]
     )
