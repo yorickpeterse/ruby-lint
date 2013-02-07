@@ -28,15 +28,15 @@ module RubyLint
 
     ##
     # Hash containing the parameter types as returned by `Method#parameters`
-    # and the indexes of the parameters list in which they should be stored.
+    # and the RubyMethod attributes to store them in.
     #
     # @return [Hash]
     #
-    PARAMETER_INDEXES = {
-      :req   => 0,
-      :opt   => 1,
-      :rest  => 2,
-      :block => 4
+    PARAMETER_MAPPING = {
+      :req   => :arguments,
+      :opt   => :optional_arguments,
+      :rest  => :rest_argument,
+      :block => :block_argument
     }
 
     ##
@@ -60,7 +60,6 @@ module RubyLint
       constant = source.const_get(name)
       name_s   = name.to_s
 
-      # Resolve the constants of an instance.
       unless constant.respond_to?(:instance_methods)
         constant = constant.class
       end
@@ -127,32 +126,25 @@ module RubyLint
 
       source.send(collection, ancestors).each do |name|
         method     = source.send(getter, name)
-        visibility = source =~ /^private/ ? :private : :public
-        parameters = [[], [], nil, nil, nil]
+        visibility = method_visibility(collection)
+        options    = method_options(name, visibility)
 
         method.parameters.each_with_index do |param, index|
-          # Extract the parameter index and generate the name. If no name is
-          # found one will be generated based on the parameter type and the
-          # current index.
-          index      = PARAMETER_INDEXES[param[0]]
+          key        = PARAMETER_MAPPING[param[0]]
           param_name = (param[1] || param[0].to_s + "_#{index}").to_s
-          param      = Node.new(:local_variable, [param_name])
+          param      = Definition::RubyObject.new(
+            :type => :local_variable,
+            :name => param_name
+          )
 
-          if parameters[index].is_a?(Array)
-            parameters[index] << param
+          if options[key].is_a?(Array)
+            options[key] << param
           else
-            parameters[index] = param
+            options[key] = param
           end
         end
 
-        definitions << Definition::RubyMethod.new_from_node(
-          Node.new(
-            :method_definition,
-            [name.to_s, parameters, nil, Node.new(:body)]
-          ),
-          :visibility => visibility,
-          :imported   => true
-        )
+        definitions << Definition::RubyMethod.new(options)
       end
 
       return definitions
@@ -171,6 +163,40 @@ module RubyLint
       end
 
       return false
+    end
+
+    ##
+    # Returns a Hash containing the various options to set for an imported
+    # method.
+    #
+    # @param [#to_s] name
+    # @param [Symbol] visibility
+    # @return [Hash]
+    #
+    def self.method_options(name, visibility)
+      options = {
+        :name       => name.to_s,
+        :type       => :method_definition,
+        :visibility => visibility,
+        :imported   => true
+      }
+
+      return options.merge(Definition::RubyMethod.default_arguments)
+    end
+
+    ##
+    # Returns the method visibility of a method based on the method getter.
+    #
+    # @param [Symbol] method The name of the method that was used to access
+    #  a method collection.
+    # @return [Symbol]
+    #
+    def self.method_visibility(method)
+      [:protected, :private].each do |key|
+        return key if method =~ /^#{key}/
+      end
+
+      return :public
     end
   end # Importer
 end # RubyLint

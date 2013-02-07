@@ -27,9 +27,9 @@ module RubyLint
     #  @return [RubyLint::Definition::RubyObject] The block argument of a
     #   method definition.
     #
-    # @!attribute [r] definition_type [Symbol]
-    #  @return The type of method definition, set to `:method` for class
-    #   methods and `:instance_method` for instance methods.
+    # @!attribute [r] definition_type
+    #  @return [Symbol] The type of method definition, set to `:method` for
+    #   class methods and `:instance_method` for instance methods.
     #
     class RubyMethod < RubyObject
       ##
@@ -61,8 +61,7 @@ module RubyLint
         children = node.children
         receiver = receiver_index(node)
         options  = default_method_options.merge(options)
-
-        options = options.merge(gather_arguments(children[1]))
+        options  = options.merge(gather_arguments(children[1]))
 
         if receiver
           options[:receiver] = RubyObject.new_from_node(children[receiver])
@@ -83,6 +82,8 @@ module RubyLint
         arguments = default_arguments
 
         node.children.each do |child|
+          next unless child.is_a?(Node)
+
           key    = ARGUMENT_TYPE_MAPPING[child.type]
           node   = child.children[0]
           object = RubyObject.new_from_node(node, :value => node.value)
@@ -138,10 +139,7 @@ module RubyLint
       # @return [Hash]
       #
       def self.default_method_options
-        return {
-          :receiver        => nil,
-          :definition_type => :instance_method
-        }
+        return {:definition_type => :instance_method}
       end
 
       ##

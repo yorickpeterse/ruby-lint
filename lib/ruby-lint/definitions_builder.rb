@@ -210,7 +210,7 @@ module RubyLint
     ##
     # Creates a new method definition. This definition is either added in the
     # current scope or in the scope of the receiver in case one is specified.
-    # Any method parameters are automatically added as definitions to the inner
+    # Any method arguments are automatically added as definitions to the inner
     # scope.
     #
     # @param [RubyLint::Node] node
@@ -357,7 +357,7 @@ module RubyLint
       copy_types  = INCLUDE_CALLS[method_call.name]
       scope       = definitions
 
-      method_call.parameters.each do |param|
+      method_call.arguments.each do |param|
         if param.receiver
           source = resolve_definitions(param.receiver_path)
         else
@@ -392,6 +392,7 @@ module RubyLint
     #
     def assign_variable(definition, variable, value, type = variable.type)
       current_scope = definitions
+      child_values  = !value.children.empty?
 
       # Resolve the value of a variable used for assigning a object member.
       if variable.variable? and type == :member
@@ -411,19 +412,11 @@ module RubyLint
         end
       end
 
-      var_def = Definition::RubyObject.new_from_node(
-        variable,
-        :value => value
-      )
+      var_def = Definition::RubyObject.new_from_node(variable, :value => value)
 
-      if value.is_a?(Node)
-        if value.array?
-          assign_array_indexes(var_def, var_def.value.value)
-        end
-
-        if value.hash?
-          assign_hash_pairs(var_def, var_def.value.value)
-        end
+      if value.is_a?(Node) and child_values
+        assign_array_indexes(var_def, var_def.value.value) if value.array?
+        assign_hash_pairs(var_def, var_def.value.value) if value.hash?
       end
 
       associate_node_definition(variable, var_def)
@@ -502,11 +495,9 @@ module RubyLint
     # @return [Array]
     #
     def referenced_array_indexes(node)
-      node.children[1].children.each do |arguments|
-        return arguments.children if arguments.required_arguments?
+      return node.children[1].children.map do |argument|
+        argument.children[0]
       end
-
-      return []
     end
 
     ##

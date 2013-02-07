@@ -21,15 +21,15 @@ describe RubyLint::Importer do
     method.visibility.should == :public
   end
 
-  should 'retrieve the method parameters' do
+  should 'retrieve the method arguments' do
     defs   = RubyLint::Importer.import('Importer', RubyLint)
     method = defs.lookup(:method, 'import')
 
-    method.parameters.length.should          == 1
-    method.optional_parameters.length.should == 2
+    method.arguments.length.should          == 1
+    method.optional_arguments.length.should == 2
 
-    method.parameters[0].name.should          == 'name'
-    method.optional_parameters[0].name.should == 'source'
+    method.arguments[0].name.should          == 'name'
+    method.optional_arguments[0].name.should == 'source'
   end
 
   should 'import a list of global variables' do
