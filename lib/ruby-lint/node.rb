@@ -36,5 +36,20 @@ module RubyLint
     def to_a
       return children
     end
+
+    ##
+    # @return [Mixed]
+    #
+    def value
+      value = nil
+
+      if variable?
+        value = children[1]
+      elsif scalar?
+        value = children[0]
+      end
+
+      return value
+    end
   end # Node
 end # RubyLint

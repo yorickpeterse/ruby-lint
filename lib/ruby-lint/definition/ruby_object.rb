@@ -129,12 +129,10 @@ module RubyLint
         options[:column] = node.column || 0
         options[:type]   = node.type
 
+        # Checking to see if :value evaluates to `true` would mean you could
+        # never manually assign a nil value.
         unless options.key?(:value)
-          if node.scalar?
-            options[:value] = node.children[0]
-          elsif !node.variable?
-            options[:value] = node.children
-          end
+          options[:value] = extract_node_value(node)
         end
 
         if options[:value].is_a?(Node)
@@ -171,6 +169,24 @@ module RubyLint
       end
 
       ##
+      # Extracts the value of the node based on its type.
+      #
+      # @param [RubyLint::Node] node
+      # @return [Mixed]
+      #
+      def self.extract_node_value(node)
+        value = nil
+
+        if node.scalar?
+          value = node.children[0]
+        elsif !node.variable?
+          value = node.children[0]
+        end
+
+        return value
+      end
+
+      ##
       # @param [Hash] options Hash containing additional options such as the
       #  parent definitions.
       # @option options [Array] :parents The parent definitions.
@@ -186,12 +202,6 @@ module RubyLint
       #
       def initialize(options = {})
         options = default_options.merge(options)
-
-        options[:parents].each do |parent|
-          unless parent.is_a?(RubyObject)
-            raise TypeError, 'parents can only be RubyObject instances'
-          end
-        end
 
         options[:default_constants].map!(&:to_s)
 

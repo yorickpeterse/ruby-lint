@@ -33,16 +33,17 @@ module RubyLint
     #
     class RubyMethod < RubyObject
       ##
-      # Hash containing the argument indexes and the instance variable names
-      # to store them in.
+      # Hash that contains the node types and attribute names to store the
+      # arguments in.
       #
       # @return [Hash]
       #
-      PARAMETER_VARIABLES = {
-        1 => :optional_arguments,
-        2 => :rest_argument,
-        3 => :more_arguments,
-        4 => :block_argument
+      ARGUMENT_TYPE_MAPPING = {
+        :argument          => :arguments,
+        :optional_argument => :optional_arguments,
+        :rest_argument     => :rest_argument,
+        :more_argument     => :more_arguments,
+        :block_argument    => :block_argument
       }
 
       attr_reader :block_argument,
@@ -61,24 +62,39 @@ module RubyLint
         receiver = receiver_index(node)
         options  = default_method_options.merge(options)
 
-        options[:arguments] = children[1]
-
-=begin
-        if options[:arguments]
-          options[:arguments] = options[:arguments].map do |n|
-            RubyObject.new_from_node(n)
-          end
-        end
-
-        set_arguments(options, children) unless node.method?
+        options = options.merge(gather_arguments(children[1]))
 
         if receiver
           options[:receiver] = RubyObject.new_from_node(children[receiver])
           options[:definition_type] = :method
         end
-=end
 
         return super(node, options)
+      end
+
+      ##
+      # Returns a Hash containing all the arguments grouped together based on
+      # their types.
+      #
+      # @param [RubyLint::Node] node
+      # @return [Hash]
+      #
+      def self.gather_arguments(node)
+        arguments = default_arguments
+
+        node.children.each do |child|
+          key    = ARGUMENT_TYPE_MAPPING[child.type]
+          node   = child.children[0]
+          object = RubyObject.new_from_node(node, :value => node.value)
+
+          if arguments[key].is_a?(Array)
+            arguments[key] << object
+          else
+            arguments[key] = object
+          end
+        end
+
+        return arguments
       end
 
       ##
@@ -100,29 +116,32 @@ module RubyLint
       end
 
       ##
-      # Sets the various arguments of the method definition.
+      # Returns the default Hash for a set of method arguments.
       #
-      # @param [Hash] options Hash used for storing the various variables.
-      # @param [Array] children The child nodes of the method definition node.
       # @return [Hash]
       #
-      def self.set_arguments(options, children)
-        PARAMETER_VARIABLES.each do |index, variable|
-          # Parameters such as the optional ones.
-          if children[1][index].is_a?(Array)
-            params = children[1][index].map do |node|
-              RubyObject.new_from_node(node, :value => node.children[1])
-            end
+      def self.default_arguments
+        return {
+          :arguments          => [],
+          :optional_arguments => [],
+          :rest_argument      => nil,
+          :more_arguments     => [],
+          :block_argument     => nil
+        }
+      end
 
-          # Rest and block arguments.
-          elsif children[1][index]
-            params = RubyObject.new_from_node(children[1][index])
-          end
-
-          options[variable] = params
-        end
-
-        return options
+      ##
+      # Returns a Hash containing the default options for this class. The name
+      # is different than {RubyLint::Definition::RubyObject#default_options} to
+      # prevent any naming issues.
+      #
+      # @return [Hash]
+      #
+      def self.default_method_options
+        return {
+          :receiver        => nil,
+          :definition_type => :instance_method
+        }
       end
 
       ##
@@ -140,40 +159,30 @@ module RubyLint
       # Adds all the arguments of this method to the definitions list.
       #
       def define_arguments
-        [
-          @arguments,
-          @optional_arguments,
-          @rest_argument,
-          @more_arguments,
-          @block_argument
-        ].each do |params|
+        all_arguments.each do |params|
           next unless params
 
-          if params.is_a?(Array)
-            params.each { |param| add(param.type, param.name, param) }
-          else
-            add(params.type, params.name, params)
+          params.each do |param|
+            add(param.type, param.name, param) if param
           end
         end
       end
 
       ##
-      # Returns a Hash containing the default options for this class. The name
-      # is different than {RubyLint::Definition::RubyObject#default_options} to
-      # prevent any naming issues.
+      # Returns an Array containing all the method arguments. Each arguments
+      # set (even single ones such as the more argument) is returned as an
+      # Array making it easier to iterate over the collection.
       #
-      # @return [Hash]
+      # @return [Array]
       #
-      def self.default_method_options
-        return {
-          :arguments          => [],
-          :optional_arguments => [],
-          :rest_argument      => nil,
-          :more_arguments     => [],
-          :block_argument     => nil,
-          :receiver            => nil,
-          :definition_type     => :instance_method
-        }
+      def all_arguments
+        return [
+          arguments,
+          optional_arguments,
+          [rest_argument],
+          more_arguments,
+          [block_argument]
+        ]
       end
     end # RubyMethod
   end # Definition

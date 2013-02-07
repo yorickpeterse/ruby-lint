@@ -23,7 +23,12 @@ describe RubyLint::Definition::RubyMethod do
     )
 
     @method_call = RubyLint::Definition::RubyMethod.new_from_node(
-      s(:method, 'example', [s(:integer, '10')], s(:constant, 'String'))
+      s(
+        :method,
+        'example',
+        s(:arguments, s(:argument, s(:integer, '10'))),
+        s(:constant, 'String')
+      )
     )
   end
 
@@ -60,21 +65,21 @@ describe RubyLint::Definition::RubyMethod do
     @method_def.definition_type.should == :method
   end
 
-  describe 'method definition parameters' do
-    should 'return the required parameters' do
-      @method_def.parameters.length.should == 1
+  describe 'method definition arguments' do
+    should 'return the required arguments' do
+      @method_def.arguments.length.should == 1
 
-      required = @method_def.parameters[0]
+      required = @method_def.arguments[0]
 
       required.is_a?(RubyLint::Definition::RubyObject).should == true
 
       required.name.should == 'required'
     end
 
-    should 'return the optional parameters' do
-      @method_def.optional_parameters.length.should == 1
+    should 'return the optional arguments' do
+      @method_def.optional_arguments.length.should == 1
 
-      number = @method_def.optional_parameters[0]
+      number = @method_def.optional_arguments[0]
 
       number.is_a?(RubyLint::Definition::RubyObject).should == true
 
@@ -85,26 +90,26 @@ describe RubyLint::Definition::RubyMethod do
       number.value.value.should == '10'
     end
 
-    should 'return the rest parameter' do
-      @method_def.rest_parameter.nil?.should == false
-      @method_def.rest_parameter.name.should == 'rest'
+    should 'return the rest argument' do
+      @method_def.rest_argument.nil?.should == false
+      @method_def.rest_argument.name.should == 'rest'
     end
 
-    should 'return the more parameters' do
-      @method_def.more_parameters.length.should == 1
+    should 'return the more arguments' do
+      @method_def.more_arguments.length.should == 1
 
-      param = @method_def.more_parameters[0]
+      param = @method_def.more_arguments[0]
 
       param.name.should       == 'more'
       param.value.nil?.should == true
     end
 
-    should 'return the block parameter' do
-      @method_def.block_parameter.nil?.should == false
-      @method_def.block_parameter.name.should == 'block'
+    should 'return the block argument' do
+      @method_def.block_argument.nil?.should == false
+      @method_def.block_argument.name.should == 'block'
     end
 
-    should 'add method parameters to the definitions list' do
+    should 'add method arguments to the definitions list' do
       @method_def.lookup(:local_variable, 'required') \
         .is_a?(RubyLint::Definition::RubyObject) \
         .should == true
@@ -115,11 +120,11 @@ describe RubyLint::Definition::RubyMethod do
     end
   end
 
-  describe 'method call parameters' do
-    should 'return the specified parameters' do
-      @method_call.parameters.length.should == 1
+  describe 'method call arguments' do
+    should 'return the specified arguments' do
+      @method_call.arguments.length.should == 1
 
-      param = @method_call.parameters[0]
+      param = @method_call.arguments[0]
 
       param.is_a?(RubyLint::Definition::RubyObject).should == true
       param.type.should                                    == :integer
@@ -134,7 +139,7 @@ describe RubyLint::Definition::RubyMethod do
           s(
             :arguments,
             s(
-              :required_arguments,
+              :argument,
               s(:constant_path, s(:constant, 'First'), s(:constant, 'Second'))
             )
           ),
@@ -143,7 +148,7 @@ describe RubyLint::Definition::RubyMethod do
         )
       )
 
-      param = method.parameters[0]
+      param = method.arguments[0]
 
       param.is_a?(RubyLint::Definition::RubyObject).should == true
       param.type.should == :constant
@@ -153,5 +158,24 @@ describe RubyLint::Definition::RubyMethod do
       param.receiver.type.should == :constant
       param.receiver.name.should == 'First'
     end
+  end
+
+  should 'list all the methods of a class' do
+    klass = RubyLint::Definition::RubyObject.new(
+      :type => :class,
+      :name => 'Example'
+    )
+
+    method = RubyLint::Definition::RubyMethod.new(
+      :name     => 'class_method',
+      :receiver => klass.lookup(:keyword, 'self')
+    )
+
+    klass.add(:method, method.name, method)
+
+    methods = klass.list(:method)
+
+    methods.length.should  == 1
+    methods[0].name.should == 'class_method'
   end
 end
