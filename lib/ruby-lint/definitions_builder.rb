@@ -392,7 +392,7 @@ module RubyLint
     #
     def assign_variable(definition, variable, value, type = variable.type)
       current_scope = definitions
-      child_values  = !value.children.empty?
+      child_values  = value && !value.children.empty?
 
       # Resolve the value of a variable used for assigning a object member.
       if variable.variable? and type == :member

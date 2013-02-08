@@ -38,18 +38,32 @@ module RubyLint
     end
 
     ##
+    # @return [String]
+    #
+    def name
+      name = children[0] || type
+      name = name.is_a?(Node) ? name.children[0] : name
+
+      return name.to_s
+    end
+
+    ##
     # @return [Mixed]
     #
     def value
-      value = nil
-
-      if variable?
-        value = children[1]
-      elsif scalar?
-        value = children[0]
-      end
+      value = collection? ? children : children[-1]
+      value = children[1] if variable?
 
       return value
+    end
+
+    ##
+    # Indicates if the node is a collection of values.
+    #
+    # @return [TrueClass|FalseClass]
+    #
+    def collection?
+      return array? || hash?
     end
   end # Node
 end # RubyLint

@@ -123,7 +123,7 @@ module RubyLint
         end
 
         options[:node]   = node
-        options[:name]   = extract_name(node)
+        options[:name]   = node.name
         options[:file]   = node.file
         options[:line]   = node.line || 1
         options[:column] = node.column || 0
@@ -132,11 +132,11 @@ module RubyLint
         # Checking to see if :value evaluates to `true` would mean you could
         # never manually assign a nil value.
         unless options.key?(:value)
-          options[:value] = extract_node_value(node)
+          options[:value] = node.value
         end
 
-        if options[:value].is_a?(Node)
-          options[:value] = new_from_node(options[:value])
+        if options[:value]
+          options[:value] = create_value_definitions(options[:value])
         end
 
         object = new(options)
@@ -156,31 +156,17 @@ module RubyLint
       end
 
       ##
-      # Extracts the name for the specified node.
+      # Convert each value of the current definition into a definition
+      # instance.
       #
-      # @param [RubyLint::Node] node The node for which to extract the name.
-      # @return [String]
-      #
-      def self.extract_name(node)
-        name = node.children[0] || node.type
-        name = name.is_a?(Node) ? name.children[0] : name
-
-        return name.to_s
-      end
-
-      ##
-      # Extracts the value of the node based on its type.
-      #
-      # @param [RubyLint::Node] node
+      # @param [RubyLint::Node|Array] value
       # @return [Mixed]
       #
-      def self.extract_node_value(node)
-        value = nil
-
-        if node.scalar?
-          value = node.children[0]
-        elsif !node.variable?
-          value = node.children[0]
+      def self.create_value_definitions(value)
+        if value.is_a?(Array)
+          value = value.map { |v| create_value_definitions(v) }
+        elsif value.is_a?(Node)
+          value = RubyObject.new_from_node(value)
         end
 
         return value

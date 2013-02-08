@@ -168,4 +168,26 @@ describe RubyLint::Definition::RubyObject do
       var.receiver.receiver.type.should == :constant
     end
   end
+
+  should 'return multiple values for a collection' do
+    variable = s(:local_variable, 'numbers')
+    numbers  = s(:array, s(:integer, '10'), s(:integer, '20'))
+    object   = RubyLint::Definition::RubyObject.new_from_node(
+      variable,
+      :value => numbers
+    )
+
+    object.value.type.should == :array
+
+    object.value.value.is_a?(Array).should == true
+    object.value.value.length.should       == 2
+
+    values = object.value.value
+
+    values[0].is_a?(RubyLint::Definition::RubyObject).should == true
+    values[1].is_a?(RubyLint::Definition::RubyObject).should == true
+
+    values[0].value.should == '10'
+    values[1].value.should == '20'
+  end
 end
