@@ -392,7 +392,7 @@ module RubyLint
     #
     def assign_variable(definition, variable, value, type = variable.type)
       current_scope = definitions
-      child_values  = value && !value.children.empty?
+      child_values  = value.is_a?(Node) && value && !value.children.empty?
 
       # Resolve the value of a variable used for assigning a object member.
       if variable.variable? and type == :member
@@ -414,9 +414,14 @@ module RubyLint
 
       var_def = Definition::RubyObject.new_from_node(variable, :value => value)
 
-      if value.is_a?(Node) and child_values
-        assign_array_indexes(var_def, var_def.value.value) if value.array?
-        assign_hash_pairs(var_def, var_def.value.value) if value.hash?
+      if child_values
+        if value.array?
+          assign_array_indexes(var_def, var_def.value.value)
+        end
+
+        if value.hash?
+          assign_hash_pairs(var_def, var_def.value.value)
+        end
       end
 
       associate_node_definition(variable, var_def)
