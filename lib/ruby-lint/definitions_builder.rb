@@ -261,22 +261,12 @@ module RubyLint
     # @param [RubyLint::Node|Array] node
     #
     def on_assign(node)
-      var, val  = *node
-      variables = [var]
-      values    = [val].flatten
-      type      = var.type
+      variable, value = *node
+      scope           = definitions_for(variable)
+      assign_method   = "on_#{variable.type}_assign"
 
-      scope = var.global_variable? ? @options[:definitions] : definitions
-
+=begin
       if var.constant_path?
-        found = resolve_definitions(var.children[0..-2])
-
-        if found
-          scope     = found
-          variables = [var.children[-1]]
-          type      = var.children[-1].type
-        end
-
       # Array index, hash key and object member assignments.
       elsif is_object_member?(var)
         # TODO: implement assignments to return values of methods if
@@ -300,10 +290,17 @@ module RubyLint
           values = values.flatten
         end
       end
+=end
 
-      variables.each_with_index do |variable, index|
-        assign_variable(scope, variable, values[index], type)
+      if respond_to?(assign_method)
+        send(assign_method, variable, value)
+      else
+        assign_variable(scope, variable, value)
       end
+
+      #variables.each_with_index do |variable, index|
+      #  assign_variable(scope, variable, values[index], var.type)
+      #end
 
       @skip_increment_reference = true
     end
@@ -324,8 +321,37 @@ module RubyLint
       type = node.children[0].type
       name = node.children[0].children[0]
 
-      unless definitions.lookup(type, name)
-        on_assign(node.children)
+      on_assign(node.children) unless definitions.lookup(type, name)
+    end
+
+    ##
+    # Handles the assignments of constant paths.
+    #
+    # @param [RubyLint::Node] variable
+    # @param [RubyLint::Node] value
+    #
+    def on_constant_path_assign(variable, value)
+      scope = resolve_definitions(variable.children[0..-2])
+      last  = variable.children[-1]
+
+      assign_variable(scope, last, value, last.type) if scope
+    end
+
+    ##
+    # Handles the assignments of Array indexes, Hash keys and object members.
+    #
+    # @param [RubyLint::Node] variable
+    # @param [RubyLint::Node] values
+    #
+    def on_aref_assign(variable, values)
+      target  = variable.children[0]
+      members = variable.gather_arguments(:argument)
+      scope   = definitions.lookup(target.type, target.name)
+
+      if scope
+        members.each_with_index do |member, index|
+          assign_variable(scope, member, values[index], :member)
+        end
       end
     end
 
@@ -391,30 +417,30 @@ module RubyLint
     #  type of `variable` by default.
     #
     def assign_variable(definition, variable, value, type = variable.type)
-      current_scope = definitions
-      child_values  = value.is_a?(Node) && value && !value.children.empty?
+      child_values = value.is_a?(Node) && value && !value.children.empty?
 
       # Resolve the value of a variable used for assigning a object member.
-      if variable.variable? and type == :member
-        found = current_scope.lookup(variable.type, variable.children[0])
-
-        found ? variable = found.value.node : return
+      if type == :member and variable.variable?
+        return unless variable = resolve_variable(variable)
       end
 
       # Resolve variable values.
       if value and value.variable?
-        found_value = current_scope.lookup(value.type, value.children[0])
-
-        if found_value and found_value.constant?
-          value = found_value
-        elsif found_value
-          value = found_value.value
-        end
+        found_value = resolve_variable(value)
+        value       = found_value if found_value
       end
 
-      var_def = Definition::RubyObject.new_from_node(variable, :value => value)
+      if variable.is_a?(Node)
+        var_def = Definition::RubyObject.new_from_node(
+          variable,
+          :value => value
+        )
+      else
+        var_def = variable
+      end
 
-      if child_values
+=begin
+      if value and child_values
         if value.array?
           assign_array_indexes(var_def, var_def.value.value)
         end
@@ -423,6 +449,7 @@ module RubyLint
           assign_hash_pairs(var_def, var_def.value.value)
         end
       end
+=end
 
       associate_node_definition(variable, var_def)
 
@@ -454,12 +481,7 @@ module RubyLint
     #
     def assign_hash_pairs(definitions, values)
       values.each do |pair|
-        assign_variable(
-          definitions,
-          pair.children[0],
-          pair.children[1],
-          :member
-        )
+        assign_variable(definitions, pair, pair.value, :member)
       end
     end
 
@@ -513,6 +535,32 @@ module RubyLint
     #
     def referenced_object_field(node)
       return [node.children[1]]
+    end
+
+    ##
+    # Resolves variables that point to other variables down to the original
+    # one.
+    #
+    # @param [RubyLint::Definition::RubyOject] variable
+    # @return [RubyLint::Definition::RubyObject|NilClass]
+    #
+    def resolve_variable(variable)
+      resolved = variable
+
+      if variable.variable?
+        resolved = definitions.lookup(variable.type, variable.name)
+        resolved = resolved ? resolved.value : nil
+      end
+
+      return resolved
+    end
+
+    ##
+    # @param [RubyLint::Node] node
+    # @return [RubyLint::Definition::RubyObject]
+    #
+    def definitions_for(node)
+      return node.global_variable? ? @options[:definitions] : definitions
     end
   end # DefinitionsBuilder
 end # RubyLint

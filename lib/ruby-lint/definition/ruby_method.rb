@@ -58,13 +58,12 @@ module RubyLint
       # @see RubyLint::Definition::RubyObject#new_from_node
       #
       def self.new_from_node(node, options = {})
-        children = node.children
-        receiver = receiver_index(node)
         options  = default_method_options.merge(options)
-        options  = options.merge(gather_arguments(children[1]))
+        options  = options.merge(gather_arguments(node))
+        receiver = node.receiver
 
         if receiver
-          options[:receiver] = RubyObject.new_from_node(children[receiver])
+          options[:receiver]        = RubyObject.new_from_node(receiver)
           options[:definition_type] = :method
         end
 
@@ -81,39 +80,14 @@ module RubyLint
       def self.gather_arguments(node)
         arguments = default_arguments
 
-        node.children.each do |child|
-          next unless child.is_a?(Node)
+        ARGUMENT_TYPE_MAPPING.each do |from, to|
+          args = node.gather_arguments(from)
+          args = args.map { |n| RubyObject.new_from_node(n, :value => n.value) }
 
-          key    = ARGUMENT_TYPE_MAPPING[child.type]
-          node   = child.children[0]
-          object = RubyObject.new_from_node(node, :value => node.value)
-
-          if arguments[key].is_a?(Array)
-            arguments[key] << object
-          else
-            arguments[key] = object
-          end
+          arguments[to] = arguments[to].is_a?(Array) ? args : args[0]
         end
 
         return arguments
-      end
-
-      ##
-      # Determines the index of the receiver object.
-      #
-      # @param [RubyLint::Node] node
-      # @return [Numeric]
-      #
-      def self.receiver_index(node)
-        receiver = nil
-
-        if node.method? and node.children[-1]
-          receiver = -1
-        elsif !node.method? and node.children[-2]
-          receiver = -2
-        end
-
-        return receiver
       end
 
       ##

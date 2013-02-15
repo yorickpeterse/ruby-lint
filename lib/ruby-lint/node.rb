@@ -65,5 +65,39 @@ module RubyLint
     def collection?
       return array? || hash?
     end
+
+    ##
+    # Returns the receiver of the method call/definition.
+    #
+    # @return [RubyLint::Node]
+    #
+    def receiver
+      return method? ? children[-1] : children[-2]
+    end
+
+    ##
+    # Gathers a set of arguments and returns them as an Array.
+    #
+    # @param [#to_sym] type The type of arguments to gather.
+    # @return [Array]
+    #
+    def gather_arguments(type)
+      args = []
+      type = type.to_sym
+
+      children.each do |child|
+        if !child.is_a?(Node) or child.type != :arguments
+          next
+        end
+
+        child.children.each do |child_arg|
+          next unless child_arg.type == type
+
+          args << child_arg.children[0]
+        end
+      end
+
+      return args
+    end
   end # Node
 end # RubyLint

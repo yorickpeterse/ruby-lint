@@ -22,4 +22,13 @@ describe RubyLint::Node do
 
     pairs[0].children[1].value.should == '10'
   end
+
+  it 'should return the arguments of a method' do
+    method = s(:method, 'puts', s(:arguments, s(:argument, s(:string, 'foo'))))
+
+    method.gather_arguments(:argument).length.should == 1
+
+    method.gather_arguments(:argument)[0].type.should  == :string
+    method.gather_arguments(:argument)[0].value.should == 'foo'
+  end
 end
