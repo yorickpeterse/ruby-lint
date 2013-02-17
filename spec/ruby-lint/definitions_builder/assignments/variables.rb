@@ -48,8 +48,10 @@ describe 'Building variable definitions' do
       CODE
 
       defs = build_definitions(code)
+      var  = defs.lookup(:local_variable, 'd')
 
-      defs.lookup(:local_variable, 'd').value.value.should == '1'
+      var.value.type.should  == :integer
+      var.value.value.should == '1'
     end
   end
 end
