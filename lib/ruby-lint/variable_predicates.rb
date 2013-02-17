@@ -73,5 +73,14 @@ module RubyLint
     def scalar?
       return SCALAR_TYPES.include?(@type)
     end
+
+    ##
+    # Indicates if the node is a collection of values.
+    #
+    # @return [TrueClass|FalseClass]
+    #
+    def collection?
+      return array? || hash?
+    end
   end # VariablePredicates
 end # RubyLint

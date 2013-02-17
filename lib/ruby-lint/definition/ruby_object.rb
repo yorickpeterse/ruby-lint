@@ -41,7 +41,7 @@ module RubyLint
     # @!attribute [r] name
     #  @return [String] The name of the object.
     #
-    # @!attribute [r] value
+    # @!attribute [rw] value
     #  @return [Mixed] The value of the object.
     #
     # @!attribute [r] file
@@ -106,10 +106,9 @@ module RubyLint
         :line,
         :name,
         :node,
-        :type,
-        :value
+        :type
 
-      attr_accessor :parents, :receiver, :reference_amount
+      attr_accessor :parents, :receiver, :reference_amount, :value
 
       ##
       # @param [RubyLint::Node] node The node that this instance belongs to.

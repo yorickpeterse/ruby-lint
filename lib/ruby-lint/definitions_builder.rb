@@ -262,45 +262,13 @@ module RubyLint
     #
     def on_assign(node)
       variable, value = *node
-      scope           = definitions_for(variable)
       assign_method   = "on_#{variable.type}_assign"
-
-=begin
-      if var.constant_path?
-      # Array index, hash key and object member assignments.
-      elsif is_object_member?(var)
-        # TODO: implement assignments to return values of methods if
-        # possible.
-        return unless var.children[0].variable?
-
-        found = scope.lookup(
-          var.children[0].type,
-          var.children[0].children[0]
-        )
-
-        if found
-          if var.aref?
-            variables = referenced_array_indexes(var)
-          else
-            variables = referenced_object_field(var)
-          end
-
-          scope  = found
-          type   = :member
-          values = values.flatten
-        end
-      end
-=end
 
       if respond_to?(assign_method)
         send(assign_method, variable, value)
       else
-        assign_variable(scope, variable, value)
+        assign_variable(definitions_for(variable), variable, value)
       end
-
-      #variables.each_with_index do |variable, index|
-      #  assign_variable(scope, variable, values[index], var.type)
-      #end
 
       @skip_increment_reference = true
     end
@@ -348,10 +316,29 @@ module RubyLint
       members = variable.gather_arguments(:argument)
       scope   = definitions.lookup(target.type, target.name)
 
-      if scope
-        members.each_with_index do |member, index|
-          assign_variable(scope, member, values[index], :member)
-        end
+      return unless scope
+
+      members.each_with_index do |member, index|
+        member = resolve_variable(member) if member.variable?
+
+        next unless member
+
+        assign_variable(scope, member, values[index], :member)
+      end
+    end
+
+    ##
+    # Called when a value is assigned to an object member.
+    #
+    # @param [RubyLint::Node] variable
+    # @param [RubyLint::Node] values
+    #
+    def on_field_assign(variable, value)
+      object, member = *variable
+      object_def     = definitions.lookup(object.type, object.name)
+
+      if object_def
+        assign_variable(object_def, member, value, :member)
       end
     end
 
@@ -417,13 +404,6 @@ module RubyLint
     #  type of `variable` by default.
     #
     def assign_variable(definition, variable, value, type = variable.type)
-      child_values = value.is_a?(Node) && value && !value.children.empty?
-
-      # Resolve the value of a variable used for assigning a object member.
-      if type == :member and variable.variable?
-        return unless variable = resolve_variable(variable)
-      end
-
       # Resolve variable values.
       if value and value.variable?
         found_value = resolve_variable(value)
@@ -436,22 +416,13 @@ module RubyLint
           :value => value
         )
       else
-        var_def = variable
+        var_def       = variable
+        var_def.value = value
       end
 
-=begin
-      if value and child_values
-        if value.array?
-          assign_array_indexes(var_def, var_def.value.value)
-        end
-
-        if value.hash?
-          assign_hash_pairs(var_def, var_def.value.value)
-        end
+      if value and value.collection?
+        assign_collection_members(var_def, value)
       end
-=end
-
-      associate_node_definition(variable, var_def)
 
       definition.add(type, var_def.name, var_def)
     end
@@ -486,14 +457,18 @@ module RubyLint
     end
 
     ##
-    # Returns `true` if the specified node indicates an object member (array
-    # index, hash key, etc) is being referenced.
+    # Determines what method should be used for processing a collection's
+    # member values.
     #
-    # @param [RubyLint::Node] node
-    # @return [TrueClass|FalseClass]
+    # @param [RubyLint::Definition::RubyObject] variable
+    # @param [RubyLint::Node] value
     #
-    def is_object_member?(node)
-      return node.type == :aref || node.type == :field
+    def assign_collection_members(variable, value)
+      if value.array?
+        assign_array_indexes(variable, value.value)
+      elsif value.hash?
+        assign_hash_pairs(variable, value.value)
+      end
     end
 
     ##
@@ -513,28 +488,6 @@ module RubyLint
     #
     def increment_reference_amount(definition)
       definition.reference_amount += 1 unless @skip_increment_reference
-    end
-
-    ##
-    # Returns an Array containing the referenced indexes of an Array.
-    #
-    # @param [RubyLint::Node] node
-    # @return [Array]
-    #
-    def referenced_array_indexes(node)
-      return node.children[1].children.map do |argument|
-        argument.children[0]
-      end
-    end
-
-    ##
-    # Returns the referenced field of an object.
-    #
-    # @param [RubyLint::Node] node
-    # @return [Array]
-    #
-    def referenced_object_field(node)
-      return [node.children[1]]
     end
 
     ##

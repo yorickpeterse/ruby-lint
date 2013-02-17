@@ -58,15 +58,6 @@ module RubyLint
     end
 
     ##
-    # Indicates if the node is a collection of values.
-    #
-    # @return [TrueClass|FalseClass]
-    #
-    def collection?
-      return array? || hash?
-    end
-
-    ##
     # Returns the receiver of the method call/definition.
     #
     # @return [RubyLint::Node]
