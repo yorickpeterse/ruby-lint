@@ -406,7 +406,7 @@ module RubyLint
     def assign_variable(definition, variable, value, type = variable.type)
       # Resolve variable values.
       if value and value.variable?
-        found_value = resolve_variable(value)
+        found_value = definitions.lookup(value.type, value.name)
         value       = found_value if found_value
       end
 
