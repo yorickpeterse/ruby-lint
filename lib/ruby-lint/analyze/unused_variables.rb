@@ -24,7 +24,7 @@ module RubyLint
 
       VARIABLE_TYPES.each do |type, label|
         define_method("on_#{type}") do |node|
-          variable = current_scope.lookup(node.type, node.children[0])
+          variable = current_scope.lookup(node.type, node.name)
 
           if variable and !variable.used? and !variable.imported?
             warning("unused #{label} #{variable.name}", variable)
