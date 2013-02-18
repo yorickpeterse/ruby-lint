@@ -62,7 +62,7 @@ describe RubyLint::Definition::RubyMethod do
   end
 
   should 'set the correct method definition type' do
-    @method_def.definition_type.should == :method
+    @method_def.method_type.should == :method
   end
 
   describe 'method definition arguments' do

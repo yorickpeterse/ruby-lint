@@ -170,9 +170,8 @@ module RubyLint
     # @param [RubyLint::Node] node
     #
     def on_sclass(node)
-      use   = Definition::RubyObject.new_from_node(node.children[0])
-      found = definitions.lookup(use.type, use.name)
-      found = definitions unless found
+      use   = node.children[0]
+      found = definitions.lookup(use.type, use.name) || definitions
 
       associate_node_definition(node, found)
 
@@ -202,8 +201,8 @@ module RubyLint
       scope  = definitions
       method = Definition::RubyMethod.new_from_node(
         node,
-        :parents         => [scope],
-        :definition_type => call_type
+        :parents     => [scope],
+        :method_type => call_type
       )
 
       if method.receiver
@@ -216,7 +215,7 @@ module RubyLint
         end
       end
 
-      scope.add(method.definition_type, method.name, method)
+      scope.add(method.method_type, method.name, method)
 
       associate_node_definition(node, method)
 

@@ -9,7 +9,7 @@ describe 'Building method definitions' do
       example.is_a?(RubyLint::Definition::RubyMethod).should == true
 
       example.type.should            == :method_definition
-      example.definition_type.should == :instance_method
+      example.method_type.should == :instance_method
       example.name.should            == 'example'
     end
 

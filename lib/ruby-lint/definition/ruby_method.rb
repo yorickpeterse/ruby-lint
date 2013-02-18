@@ -27,7 +27,7 @@ module RubyLint
     #  @return [RubyLint::Definition::RubyObject] The block argument of a
     #   method definition.
     #
-    # @!attribute [r] definition_type
+    # @!attribute [r] method_type
     #  @return [Symbol] The type of method definition, set to `:method` for
     #   class methods and `:instance_method` for instance methods.
     #
@@ -47,7 +47,7 @@ module RubyLint
       }
 
       attr_reader :block_argument,
-        :definition_type,
+        :method_type,
         :more_arguments,
         :optional_arguments,
         :arguments,
@@ -62,9 +62,11 @@ module RubyLint
         options  = options.merge(gather_arguments(node))
         receiver = node.receiver
 
+        options[:method_type] ||= node.method_type
+
         if receiver
-          options[:receiver]        = RubyObject.new_from_node(receiver)
-          options[:definition_type] = :method
+          options[:receiver]    = RubyObject.new_from_node(receiver)
+          options[:method_type] = :method
         end
 
         return super(node, options)
@@ -113,7 +115,7 @@ module RubyLint
       # @return [Hash]
       #
       def self.default_method_options
-        return {:definition_type => :instance_method}
+        return {:method_type => :instance_method}
       end
 
       ##

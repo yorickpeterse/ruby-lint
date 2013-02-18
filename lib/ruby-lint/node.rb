@@ -67,6 +67,16 @@ module RubyLint
     end
 
     ##
+    # Returns a symbol that indicates if a node is either a method or instance
+    # method.
+    #
+    # @return [Symbol]
+    #
+    def method_type
+      return receiver ? :method : :instance_method
+    end
+
+    ##
     # Gathers a set of arguments and returns them as an Array.
     #
     # @param [#to_sym] type The type of arguments to gather.

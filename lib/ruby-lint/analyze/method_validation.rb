@@ -2,7 +2,7 @@ module RubyLint
   module Analyze
     ##
     # The MethodValidation class is an analysis class used for checking if
-    # method calls are valid. It checks if a method exists, if the parameters
+    # method calls are valid. It checks if a method exists, if the arguments
     # specified are valid, etc.
     #
     class MethodValidation < Iterator
@@ -23,29 +23,28 @@ module RubyLint
       # @param [RubyLint::Node] node
       #
       def on_method(node)
-        current = Definition::RubyMethod.new_from_node(node)
-        type    = current.definition_type
-        name    = current.name
-        scope   = current_scope
+        type  = node.method_type
+        name  = node.name
+        scope = current_scope
 
-        if current.receiver
-          scope = scope.lookup(current.receiver.type, current.receiver.name)
+        if node.receiver
+          scope = scope.lookup(node.receiver.type, node.receiver.name)
         end
 
         unless scope.has_definition?(type, name)
-          return error("undefined #{METHOD_TYPES[type]} #{name}", current)
+          return error("undefined #{METHOD_TYPES[type]} #{name}", node)
         end
 
         # Validate the amount of specified arguments.
         # TODO: this should go in its own class.
         existing      = scope.lookup(type, name)
-        specified     = current.length_of(:parameters)
-        minimum       = existing.length_of(:parameters)
+        specified     = node.gather_arguments(:argument).length
+        minimum       = existing.length_of(:arguments)
         maximum       = minimum
         expected_text = minimum.to_s
 
-        if existing.optional_parameters
-          maximum       += existing.length_of(:optional_parameters)
+        if existing.optional_arguments and !existing.optional_arguments.empty?
+          maximum       += existing.length_of(:optional_arguments)
           expected_text += "..#{maximum}"
         end
 
@@ -53,7 +52,7 @@ module RubyLint
           error(
             "wrong number of arguments (expected #{expected_text} but " \
               "got #{specified})",
-            current
+            node
           )
         end
       end
