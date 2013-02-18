@@ -45,7 +45,7 @@ module RubyLint
         if node.constant_path?
           variable = resolve_definitions(node.children)
         else
-          variable = definitions.lookup(type, node.children[0])
+          variable = definitions.lookup(node.type, node.name)
         end
 
         increment_reference_amount(variable) if variable
@@ -92,20 +92,13 @@ module RubyLint
         existing = scope.lookup(:constant, mod_def.name)
 
         if existing
-          existing.parents << scope unless existing.parents.include?(scope)
-          @definitions     << existing
+          @definitions << update_parent_definitions(existing, scope)
 
           return
         end
       end
 
-      add_self(mod_def)
-
-      scope.add(:constant, mod_def.name, mod_def)
-
-      associate_node_definition(node, mod_def)
-
-      @definitions << mod_def
+      define_module(node, mod_def)
     end
 
     ##
@@ -128,7 +121,7 @@ module RubyLint
 
       # Resolve the definition of the parent class.
       if node.children[1]
-        if node.children[1].type == :constant_path
+        if node.children[1].constant_path?
           parent = resolve_definitions(node.children[1].children)
         else
           parent = resolve_definitions([node.children[1]])
@@ -148,20 +141,13 @@ module RubyLint
         existing = scope.lookup(:constant, class_def.name)
 
         if existing
-          existing.parents << scope unless existing.parents.include?(scope)
-          @definitions     << existing
+          @definitions << update_parent_definitions(existing, scope)
 
           return
         end
       end
 
-      add_self(class_def)
-
-      scope.add(:constant, class_def.name, class_def)
-
-      associate_node_definition(node, class_def)
-
-      @definitions << class_def
+      define_module(node, class_def)
     end
 
     ##
@@ -186,10 +172,7 @@ module RubyLint
     def on_sclass(node)
       use   = Definition::RubyObject.new_from_node(node.children[0])
       found = definitions.lookup(use.type, use.name)
-
-      if !found
-        found = definitions
-      end
+      found = definitions unless found
 
       associate_node_definition(node, found)
 
@@ -225,7 +208,12 @@ module RubyLint
 
       if method.receiver
         existing = scope.lookup(method.receiver.type, method.receiver.name)
-        existing ? scope = method.receiver = existing : return
+
+        if existing
+          scope = method.receiver = existing
+        else
+          return
+        end
       end
 
       scope.add(method.definition_type, method.name, method)
@@ -519,6 +507,35 @@ module RubyLint
     #
     def definitions_for(node)
       return node.global_variable? ? @options[:definitions] : definitions
+    end
+
+    ##
+    # Updates the parent definitions of a given definition object.
+    #
+    # @param [RubyLint::Definition::RubyObject] existing
+    # @param [RubyLint::Definition::RubyObject] parent
+    # @return [RubyLint::Definition::RubyObject]
+    #
+    def update_parent_definitions(existing, parent)
+      existing.parents << parent unless existing.parents.include?(parent)
+
+      return existing
+    end
+
+    ##
+    # Creates the required definitions for a new class or module.
+    #
+    # @param [RubyLint::Node] node
+    # @param [RubyLint::Definition::RubyObject] constant
+    #
+    def define_module(node, constant)
+      add_self(constant)
+
+      definitions.add(:constant, constant.name, constant)
+
+      associate_node_definition(node, constant)
+
+      @definitions << constant
     end
   end # DefinitionsBuilder
 end # RubyLint
