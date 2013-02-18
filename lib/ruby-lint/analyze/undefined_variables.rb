@@ -23,10 +23,8 @@ module RubyLint
 
       VARIABLE_TYPES.each do |type, label|
         define_method("on_#{type}") do |node|
-          name = node.children[0]
-
-          unless current_scope.has_definition?(type, name)
-            error("undefined #{label} #{name}", node)
+          unless current_scope.has_definition?(type, node.name)
+            error("undefined #{label} #{node.name}", node)
           end
         end
       end
@@ -41,7 +39,7 @@ module RubyLint
       # @param [RubyLint::Node] node
       #
       def on_method(node)
-        name            = node.children[0]
+        name            = node.name
         method_exists   = current_scope.has_definition?(call_type, name)
         variable_exists = current_scope.has_definition?(:local_variable, name)
 
@@ -59,7 +57,7 @@ module RubyLint
         definitions = current_scope
 
         node.children.each do |segment|
-          name = segment.children[0]
+          name = segment.name
 
           unless definitions.defines?(:constant, name)
             error("undefined constant #{name}", segment)
