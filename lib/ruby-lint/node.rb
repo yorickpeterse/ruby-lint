@@ -90,5 +90,17 @@ module RubyLint
 
       return args
     end
+
+    ##
+    # Iterates over each argument of the given type.
+    #
+    # @param [Symbol] type The argument type.
+    # @yieldparam [RubyLint::Node] argument
+    #
+    def each_argument(type = :argument)
+      gather_arguments(type).each do |arg|
+        yield arg
+      end
+    end
   end # Node
 end # RubyLint

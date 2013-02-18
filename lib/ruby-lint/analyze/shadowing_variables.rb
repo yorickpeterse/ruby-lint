@@ -11,11 +11,9 @@ module RubyLint
       # @param [RubyLint::Node] node
       #
       def on_block(node)
-        node.children[0].each do |param|
-          name = param.children[0]
-
-          if current_scope.has_definition?(param.type, name)
-            warning("shadowing outer local variable #{name}", param)
+        node.each_argument do |param|
+          if current_scope.has_definition?(param.type, param.name)
+            warning("shadowing outer local variable #{param.name}", param)
           end
         end
       end
