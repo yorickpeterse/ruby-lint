@@ -1,6 +1,6 @@
-require File.expand_path('../../../../helper', __FILE__)
+require File.expand_path('../../../helper', __FILE__)
 
-describe RubyLint::Analyze::MethodValidation do
+describe RubyLint::Analyze::ArgumentAmount do
   should 'validate the amount of required arguments' do
     code = <<-CODE
 def example(first, second)
@@ -9,7 +9,7 @@ end
 example
     CODE
 
-    report = build_report(code, RubyLint::Analyze::MethodValidation)
+    report = build_report(code, RubyLint::Analyze::ArgumentAmount)
     entry  = report.entries[0]
 
     entry.is_a?(RubyLint::Report::Entry).should == true
@@ -27,7 +27,7 @@ end
 example
     CODE
 
-    report = build_report(code, RubyLint::Analyze::MethodValidation)
+    report = build_report(code, RubyLint::Analyze::ArgumentAmount)
     entry  = report.entries[0]
 
     entry.is_a?(RubyLint::Report::Entry).should == true
@@ -46,7 +46,7 @@ end
 example
     CODE
 
-    report = build_report(code, RubyLint::Analyze::MethodValidation)
+    report = build_report(code, RubyLint::Analyze::ArgumentAmount)
     entry  = report.entries[0]
 
     entry.is_a?(RubyLint::Report::Entry).should == true
