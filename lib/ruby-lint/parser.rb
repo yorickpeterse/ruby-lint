@@ -252,11 +252,23 @@ module RubyLint
     end
 
     ##
+    # Called when a piece of code is embedded using `#expressions` (e.g.
+    # `#$foo`).
+    #
+    # @param [RubyLint::Node] node
+    # @return [RubyLint::Node]
+    #
+    def on_string_dvar(node)
+      return Node.new(:embed, [node], metadata(node))
+    end
+
+    ##
     # @param  [Array] values The values of the array.
     # @return [RubyLint::Node]
     #
     def on_array(values)
       values ||= []
+      values   = [values] unless values.is_a?(Array)
       children = values.flatten
 
       return Node.new(:array, children, metadata)
@@ -488,6 +500,11 @@ module RubyLint
     # @param [Mixed] splat
     #
     def on_args_add_star(arguments, splat)
+      # Ripper isn't exactly consistent with its output. In certain cases, such
+      # `*(foo = something_else)` splat will be set to an Array instead of the
+      # assignment node.
+      splat = splat[0] if splat.is_a?(Array)
+
       arguments = on_params(arguments, nil, nil, nil, nil)
       splat     = Node.new(:splat_argument, [splat], metadata(splat))
 

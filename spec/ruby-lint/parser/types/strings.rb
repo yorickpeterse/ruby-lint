@@ -25,6 +25,10 @@ describe 'Parsing Strings' do
     parse('"#{10}"').should == s(:embed, s(:integer, '10'))
   end
 
+  should 'parse a string containing an embedded expression using a shorthand' do
+    parse('"#$foo"').should == s(:embed, s(:global_variable, '$foo'))
+  end
+
   should 'parse a string spread out over two lines using backslashes' do
     code = <<-CODE
 'hello' \
