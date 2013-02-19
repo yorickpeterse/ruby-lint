@@ -82,7 +82,7 @@ module RubyLint
     # @param [#to_sym] type The type of arguments to gather.
     # @return [Array]
     #
-    def gather_arguments(type)
+    def gather_arguments(type = :argument)
       args = []
       type = type.to_sym
 
