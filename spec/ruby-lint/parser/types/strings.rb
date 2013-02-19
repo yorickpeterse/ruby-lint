@@ -1,6 +1,10 @@
 require File.expand_path('../../../../helper', __FILE__)
 
 describe 'Parsing Strings' do
+  should 'parse an empty string' do
+    parse('""').should == s(:string)
+  end
+
   should 'parse a string using single quotes' do
     parse("'hello'").should == s(:string, 'hello')
   end

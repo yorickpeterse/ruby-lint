@@ -248,7 +248,7 @@ module RubyLint
     # @return [RubyLint::Node]
     #
     def on_string_literal(content)
-      return content[1]
+      return content[1] || Node.new(:string, [], metadata)
     end
 
     ##
