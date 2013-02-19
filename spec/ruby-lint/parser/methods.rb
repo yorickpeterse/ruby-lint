@@ -177,7 +177,24 @@ describe 'Parsing method calls' do
     parse('foo(&bar)').should == s(
       :method,
       'foo',
-      s(:arguments, s(:block_argument, s(:method, 'bar', s(:arguments), nil, nil))),
+      s(
+        :arguments,
+        s(:block_argument, s(:method, 'bar', s(:arguments), nil, nil))
+      ),
+      nil,
+      nil
+    )
+  end
+
+  should 'parse a method call with a splat argument' do
+    parse('foo(example, *numbers)').should == s(
+      :method,
+      'foo',
+      s(
+        :arguments,
+        s(:argument, s(:method, 'example', s(:arguments), nil, nil)),
+        s(:splat_argument, s(:method, 'numbers', s(:arguments), nil, nil))
+      ),
       nil,
       nil
     )

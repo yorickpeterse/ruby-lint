@@ -476,11 +476,22 @@ module RubyLint
     end
 
     ##
-    # @param [Mixed] left
-    # @param [Mixed] right
+    # @param [Mixed] arguments
+    # @param [Mixed] block
     #
-    def on_args_add_block(left, right)
-      return on_params(left, nil, nil, nil, right)
+    def on_args_add_block(arguments, block)
+      return on_params(arguments, nil, nil, nil, block)
+    end
+
+    ##
+    # @param [Mixed] arguments
+    # @param [Mixed] splat
+    #
+    def on_args_add_star(arguments, splat)
+      arguments = on_params(arguments, nil, nil, nil, nil)
+      splat     = Node.new(:splat_argument, [splat], metadata(splat))
+
+      return arguments.updated(nil, arguments.children.dup << splat)
     end
 
     ##

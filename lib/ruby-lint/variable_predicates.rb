@@ -40,7 +40,6 @@ module RubyLint
       :method,
       :method_definition,
       :module,
-      :required_arguments,
       :aref
     ]
 
