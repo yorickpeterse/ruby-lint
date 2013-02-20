@@ -498,6 +498,7 @@ module RubyLint
     ##
     # @param [Mixed] arguments
     # @param [Mixed] splat
+    # @return [Array]
     #
     def on_args_add_star(arguments, splat)
       # Ripper isn't exactly consistent with its output. In certain cases, such
@@ -505,10 +506,7 @@ module RubyLint
       # assignment node.
       splat = splat[0] if splat.is_a?(Array)
 
-      arguments = on_params(arguments, nil, nil, nil, nil)
-      splat     = Node.new(:splat_argument, [splat], metadata(splat))
-
-      return arguments.updated(nil, arguments.children.dup << splat)
+      return arguments << Node.new(:splat_argument, [splat], metadata(splat))
     end
 
     ##
@@ -801,7 +799,9 @@ module RubyLint
           node = node.updated(:local_variable)
         end
 
-        node = Node.new(PARAMETER_INDEX_TYPES[index], [node])
+        if node.type != :splat_argument
+          node = Node.new(PARAMETER_INDEX_TYPES[index], [node])
+        end
       end
 
       return node

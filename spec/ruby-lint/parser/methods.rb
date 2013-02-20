@@ -199,4 +199,19 @@ describe 'Parsing method calls' do
       nil
     )
   end
+
+  should 'parse a method call with multiple splat arguments' do
+    parse('foo(*a, b, *c)').should == s(
+      :method,
+      'foo',
+      s(
+        :arguments,
+        s(:splat_argument, s(:method, 'a', s(:arguments), nil, nil)),
+        s(:argument, s(:method, 'b', s(:arguments), nil, nil)),
+        s(:splat_argument, s(:method, 'c', s(:arguments), nil, nil)),
+      ),
+      nil,
+      nil
+    )
+  end
 end
