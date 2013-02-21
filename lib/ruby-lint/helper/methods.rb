@@ -14,7 +14,13 @@ module RubyLint
       # @return [TrueClass|FalseClass]
       #
       def method_defined?(node)
-        return method_scope(node).has_definition?(node.method_type, node.name)
+        scope = method_scope(node)
+
+        if scope
+          return scope.has_definition?(node.method_type, node.name)
+        else
+          return false
+        end
       end
 
       ##
