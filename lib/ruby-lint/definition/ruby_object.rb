@@ -79,6 +79,10 @@ module RubyLint
     #  @return [Numeric] The amount of times an object was referenced.
     #  Currently this is only used for variables.
     #
+    # @!attribute [r] default_constants
+    #  @return [Array] Array containing the constant names to import by
+    #  default.
+    #
     class RubyObject
       include VariablePredicates
 
@@ -100,6 +104,7 @@ module RubyLint
 
       attr_reader :column,
         :constant,
+        :default_constants,
         :definitions,
         :file,
         :lazy,
@@ -196,8 +201,8 @@ module RubyLint
 
         clear!
 
-        @default_constants.each { |name| import_constant(name) } if @lazy
-        @default_constants.each { |name| import_global_variables(name) }
+        default_constants.each { |name| import_constant(name) } if @lazy
+        default_constants.each { |name| import_global_variables(name) }
       end
 
       ##
@@ -215,11 +220,11 @@ module RubyLint
           raise TypeError, "Expected RubyObject but got #{value.class}"
         end
 
-        unless @definitions.key?(type)
+        unless definitions.key?(type)
           raise ArgumentError, ":#{type} is not a valid type of data to add"
         end
 
-        @definitions[type][name] = value
+        definitions[type][name] = value
       end
 
       ##
@@ -233,12 +238,12 @@ module RubyLint
       def lookup(type, name, import_options = {})
         type, name = prepare_lookup(type, name)
 
-        if @definitions[type] and @definitions[type][name]
-          return @definitions[type][name]
+        if definitions[type] and definitions[type][name]
+          return definitions[type][name]
 
         # Look up the definition in the parent scope(s) (if any are set).
         elsif lookup_parent?(type)
-          @parents.each do |parent|
+          parents.each do |parent|
             parent_definition = parent.lookup(type, name)
 
             return parent_definition if parent_definition
@@ -262,11 +267,11 @@ module RubyLint
       def has_definition?(type, name)
         type, name = prepare_lookup(type, name)
 
-        if @definitions[type] and @definitions[type][name]
+        if definitions[type] and definitions[type][name]
           return true
 
         elsif lookup_parent?(type)
-          @parents.each do |parent|
+          parents.each do |parent|
             return true if parent.has_definition?(type, name)
           end
         end
@@ -283,7 +288,7 @@ module RubyLint
       def defines?(type, name)
         type, name = prepare_lookup(type, name)
 
-        return @definitions[type] && @definitions[type][name]
+        return definitions[type] && definitions[type][name]
       end
 
       ##
@@ -294,7 +299,7 @@ module RubyLint
       # @return [Array]
       #
       def list(type)
-        return @definitions[prepare_type(type)].values
+        return definitions[prepare_type(type)].values
       end
 
       ##
@@ -373,9 +378,9 @@ module RubyLint
       # @return [TrueClass|FalseClass]
       #
       def lazy_load?(name, type)
-        return @lazy \
+        return lazy \
           && type == :constant \
-          && @constant.constants.include?(name.to_sym)
+          && constant.constants.include?(name.to_sym)
       end
 
       ##
@@ -387,11 +392,11 @@ module RubyLint
       #
       def import_constant(name, options = {})
         name     = prepare_name(name)
-        imported = Importer.import(name, @constant, options)
+        imported = Importer.import(name, constant, options)
 
         imported.parents << self
 
-        @definitions[:constant][name] = imported
+        definitions[:constant][name] = imported
 
         return imported
       end
@@ -405,7 +410,7 @@ module RubyLint
         name       = prepare_name(name)
         definition = lookup(:constant, name)
 
-        Importer.import_global_variables(name, @constant).each do |var|
+        Importer.import_global_variables(name, constant).each do |var|
           definition.add(var.type, var.name, var)
         end
       end
@@ -418,7 +423,7 @@ module RubyLint
       # @return [Trueclass|FalseClass]
       #
       def lookup_parent?(type)
-        return LOOKUP_PARENT.include?(type) && !@parents.empty?
+        return LOOKUP_PARENT.include?(type) && !parents.empty?
       end
 
       ##
