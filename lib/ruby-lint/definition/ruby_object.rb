@@ -389,6 +389,8 @@ module RubyLint
         name     = prepare_name(name)
         imported = Importer.import(name, @constant, options)
 
+        imported.parents << self
+
         @definitions[:constant][name] = imported
 
         return imported

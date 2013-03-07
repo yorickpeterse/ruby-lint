@@ -226,4 +226,15 @@ end
         .should == true
     end
   end
+
+  describe 'inheriting definitions' do
+    should 'inherit from Object when importing String' do
+      defs = build_definitions('String')
+
+      defs.lookup(:constant, 'String') \
+        .lookup(:method, 'new') \
+        .is_a?(RubyLint::Definition::RubyMethod) \
+        .should == true
+    end
+  end
 end
