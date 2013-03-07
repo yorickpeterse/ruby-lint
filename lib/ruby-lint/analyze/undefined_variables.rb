@@ -2,8 +2,11 @@ module RubyLint
   module Analyze
     ##
     # {RubyLint::Analyze::UndefinedVariables} checks for the use of undefined
-    # variables (such as local variables and constants) and adds errors
+    # variables (such as instance variables and constants) and adds errors
     # whenever one of these variables is used.
+    #
+    # This analysis class does *not* check for undefined local variables
+    # since those are already handled by {RubyLint::Analyze::UndefinedMethods}.
     #
     class UndefinedVariables < Iterator
       include Helper::CurrentScope
@@ -26,25 +29,6 @@ module RubyLint
           unless current_scope.has_definition?(type, node.name)
             error("undefined #{label} #{node.name}", node)
           end
-        end
-      end
-
-      ##
-      # Checks if a method/local variable that is referenced is actually
-      # defined.
-      #
-      # Due to Ruby treating undefined local variables as methods the callback
-      # `on_local_variable` can not be used for checking local variables.
-      #
-      # @param [RubyLint::Node] node
-      #
-      def on_method(node)
-        name            = node.name
-        method_exists   = current_scope.has_definition?(call_type, name)
-        variable_exists = current_scope.has_definition?(:local_variable, name)
-
-        if !method_exists and !variable_exists
-          error("undefined local variable or method #{name}", node)
         end
       end
 

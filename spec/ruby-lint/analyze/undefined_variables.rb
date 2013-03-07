@@ -1,17 +1,6 @@
 require File.expand_path('../../../helper', __FILE__)
 
 describe RubyLint::Analyze::UndefinedVariables do
-  should 'add an error for using an undefined local variable' do
-    report = build_report('puts number', RubyLint::Analyze::UndefinedVariables)
-    entry  = report.entries[0]
-
-    entry.is_a?(RubyLint::Report::Entry).should == true
-
-    entry.line.should    == 1
-    entry.column.should  == 5
-    entry.message.should == 'undefined local variable or method number'
-  end
-
   should 'add an error for using an undefined instance variable' do
     report = build_report('@number', RubyLint::Analyze::UndefinedVariables)
     entry  = report.entries[0]
