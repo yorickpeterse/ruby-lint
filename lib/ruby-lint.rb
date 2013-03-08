@@ -1,10 +1,13 @@
 require 'ripper'
+require 'set'
 
 unless $:.include?(File.expand_path('../', __FILE__))
   $:.unshift(File.expand_path('../', __FILE__))
 end
 
 require 'ruby-lint/version'
+require 'ruby-lint/base'
+require 'ruby-lint/configuration'
 require 'ruby-lint/variable_predicates'
 require 'ruby-lint/node'
 require 'ruby-lint/parser'

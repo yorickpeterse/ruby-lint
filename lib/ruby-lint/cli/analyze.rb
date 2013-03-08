@@ -8,29 +8,20 @@ RubyLint::CLI.options.command :analyze do
   run do |opts, args|
     abort 'You must specify at least one file to analyze' if args.empty?
 
-    files = []
+    files = RubyLint::CLI.existing_files(args)
 
-    args.each do |path|
-      path = File.expand_path(path)
-
-      if File.file?(path)
-        files << path
-      else
-        abort "The file #{path} does not exist"
-      end
-    end
+    RubyLint.load_configuration
 
     files.each do |file|
       ast          = RubyLint::Parser.new(File.read(file), file).parse
       defs_builder = RubyLint::DefinitionsBuilder.new
-      report       = RubyLint::Report.new
-      presenter    = RubyLint::Presenter::Text.new
+      report       = RubyLint.configuration.report
+      presenter    = RubyLint.configuration.presenter.new
 
       defs_builder.iterate(ast)
 
-      RubyLint::Analyze.constants.each do |name|
-        const    = RubyLint::Analyze.const_get(name)
-        instance = const.new(
+      RubyLint.configuration.analysis.each do |constant|
+        instance = constant.new(
           :report           => report,
           :definitions      => defs_builder.options[:definitions],
           :node_definitions => defs_builder.options[:node_definitions]
@@ -39,7 +30,9 @@ RubyLint::CLI.options.command :analyze do
         instance.iterate(ast)
       end
 
-      puts presenter.present(report)
+      output = presenter.present(report)
+
+      puts output unless output.empty?
     end
-  end
-end
+  end # run do |opts, args|
+end # RubyLint::CLI.options.command
