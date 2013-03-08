@@ -1,7 +1,27 @@
 RubyLint::CLI.options.command :analyze do
   banner      'Usage: ruby-lint analyze [FILES] [OPTIONS]'
   description 'Analyzes the source code of Ruby files'
-  separator   RubyLint::CLI::OPTIONS_HEADER
+
+  separator <<-EOF.chomp
+
+About:
+
+  This command analyses the source code of a Ruby file and presents a report
+  containing information such as errors about invalid code, warnings and
+  informational messages.
+
+Examples:
+
+  To analyze a single file you can run the following command:
+
+      $ ruby-lint analyze ./test_file.rb
+
+  You can also specify multiple files:
+
+      $ ruby-lint analyze first_file.rb second_file.rb
+  EOF
+
+  separator RubyLint::CLI::OPTIONS_HEADER
 
   RubyLint::CLI.help_option(self)
 
