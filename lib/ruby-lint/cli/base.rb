@@ -42,6 +42,18 @@ module RubyLint
     end
 
     ##
+    # Returns a String containing a list of names as registered in
+    # {RubyLint::Configuration.names}.
+    #
+    # @param [String] scope
+    # @see RubyLint::Configuration.names
+    # @return [String]
+    #
+    def self.format_names(scope)
+      return "* #{Configuration.names[scope].keys.sort.join("\n  * ")}"
+    end
+
+    ##
     # Starts the CLI.
     #
     def self.run

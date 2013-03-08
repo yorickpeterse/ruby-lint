@@ -10,6 +10,8 @@ module RubyLint
       # @return [String]
       #
       def present(report)
+        require 'json'
+
         return report.entries.sort.map(&:attributes).to_json
       end
     end # Text
