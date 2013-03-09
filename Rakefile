@@ -1,4 +1,5 @@
 require 'rubygems/package_task'
+require 'digest/sha2'
 
 GEMSPEC = Gem::Specification.load('ruby-lint.gemspec')
 
