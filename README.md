@@ -5,7 +5,7 @@ similar tools such as jshint and flake8.
 
 ## Requirements
 
-* Ruby 1.9.2 or newer
+* Ruby (MRI) 1.9.3 or newer
 * a Unix based Operating System
 
 ## Installation
