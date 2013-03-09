@@ -26,4 +26,5 @@ Gem::Specification.new do |s|
   s.add_development_dependency 'pry-rescue'
   s.add_development_dependency 'bacon-colored_output'
   s.add_development_dependency 'simplecov'
+  s.add_development_dependency 'rubygems-openpgp'
 end
