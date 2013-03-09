@@ -1,14 +1,13 @@
-desc 'Creates SHA512 checksums for all built Gems'
+desc 'Creates a SHA512 checksum of the current version'
 task :checksum do
   checksums = File.expand_path('../../checksum', __FILE__)
-  pattern   = File.expand_path('../../pkg/*.gem', __FILE__)
+  name      = "#{GEMSPEC.name}-#{GEMSPEC.version}.gem"
+  path      = File.join(File.expand_path('../../pkg', __FILE__), name)
 
-  Dir.glob(pattern).each do |path|
-    name     = File.basename(path) + '.sha512'
-    checksum = Digest::SHA512.new.hexdigest(File.read(path))
+  checksum_name = File.basename(path) + '.sha512'
+  checksum      = Digest::SHA512.new.hexdigest(File.read(path))
 
-    File.open(File.join(checksums, name), 'w') do |handle|
-      handle.write(checksum)
-    end
+  File.open(File.join(checksums, checksum_name), 'w') do |handle|
+    handle.write(checksum)
   end
 end
