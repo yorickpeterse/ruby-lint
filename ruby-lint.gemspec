@@ -6,7 +6,7 @@ Gem::Specification.new do |s|
   s.date        = '2012-11-15'
   s.authors     = ['Yorick Peterse']
   s.email       = 'yorickpeterse@gmail.com'
-  s.summary     = 'Static code analysis tool and linter for Ruby'
+  s.summary     = 'A linter and static code analysis tool for Ruby.'
   s.homepage    = 'https://github.com/yorickpeterse/ruby-lint/'
   s.description = s.summary
   s.executables = ['ruby-lint']
