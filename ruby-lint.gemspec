@@ -14,17 +14,22 @@ Gem::Specification.new do |s|
   s.files = File.read(File.expand_path('../MANIFEST', __FILE__)).split("\n")
 
   s.has_rdoc              = 'yard'
-  s.required_ruby_version = '>= 1.9.2'
+  s.required_ruby_version = '>= 1.9.3'
 
   s.add_dependency 'furnace', ['~> 0.4.0.beta.1']
   s.add_dependency 'slop'
 
   s.add_development_dependency 'rake'
-  s.add_development_dependency 'redcarpet', ['>= 2.1.1']
   s.add_development_dependency 'bacon', ['>= 1.2.0']
   s.add_development_dependency 'yard'
   s.add_development_dependency 'pry-rescue'
   s.add_development_dependency 'bacon-colored_output'
   s.add_development_dependency 'simplecov'
   s.add_development_dependency 'rubygems-openpgp'
+
+  # NOTE: This is to prevent Travis CI from soiling its pants. It's not a
+  # really nice solution but it seems to be the only way (at least for now).
+  if RUBY_PLATFORM != 'java'
+    s.add_development_dependency 'redcarpet', ['>= 2.1.1']
+  end
 end
