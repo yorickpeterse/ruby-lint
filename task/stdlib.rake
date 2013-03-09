@@ -1,8 +1,4 @@
-desc 'Analyses the Ruby standard library
-
-This task parses and analyses all the files in the Ruby standard library.
-Errors that might occur during this process are catched using pry-rescue.'
-
+desc 'Analyses the Ruby standard library'
 task :stdlib do
   require File.expand_path('../../lib/ruby-lint', __FILE__)
   require 'pry/rescue'
