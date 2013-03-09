@@ -4,4 +4,6 @@ task :build => [:gem] do
   path = File.join(File.expand_path('../../pkg', __FILE__), name)
 
   sh("gem sign #{path}")
+
+  Rake::Task['checksum'].invoke
 end
