@@ -7,9 +7,9 @@ README.md
 Rakefile
 bin/ruby-lint
 doc/.gitkeep
-doc/Contributing.md
 doc/DCO.md
 doc/build/.gitkeep
+doc/contributing.md
 doc/css/.gitkeep
 doc/css/common.css
 lib/ruby-lint.rb
@@ -102,6 +102,7 @@ spec/ruby-lint/presenter/text.rb
 spec/ruby-lint/report.rb
 spec/ruby-lint/report/entry.rb
 spec/simplecov_helper.rb
+task/doc.rake
 task/manifest.rake
 task/stdlib.rake
 task/test.rake
