@@ -12,13 +12,16 @@ require 'ruby-lint/variable_predicates'
 require 'ruby-lint/node'
 require 'ruby-lint/parser'
 require 'ruby-lint/parser_error'
+
 require 'ruby-lint/definition/ruby_object'
 require 'ruby-lint/definition/ruby_method'
+
 require 'ruby-lint/importer'
 require 'ruby-lint/report'
 require 'ruby-lint/report/entry'
 require 'ruby-lint/iterator'
 require 'ruby-lint/definitions_builder'
+
 require 'ruby-lint/helper/current_scope'
 require 'ruby-lint/helper/constant_paths'
 require 'ruby-lint/helper/methods'

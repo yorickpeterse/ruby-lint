@@ -179,6 +179,9 @@ module RubyLint
       ##
       # @param [Hash] options Hash containing additional options such as the
       #  parent definitions.
+      #
+      # @yieldparam [RubyLint::Definition::RubyObject]
+      #
       # @option options [Array] :parents The parent definitions.
       # @option options [TrueClass|FalseClass] :lazy When set to `true`
       #  missing constants will be lazy loaded.
@@ -203,6 +206,8 @@ module RubyLint
 
         default_constants.each { |name| import_constant(name) } if @lazy
         default_constants.each { |name| import_global_variables(name) }
+
+        yield self if block_given?
       end
 
       ##
@@ -367,7 +372,78 @@ module RubyLint
         return @reference_amount > 0
       end
 
+      ##
+      # Defines a new child constant.
+      #
+      # @param [String] name
+      # @return [RubyLint::Definition::RubyObject]
+      #
+      def define_constant(name, &block)
+        return add_child_definition(name, :constant, &block)
+      end
+
+      ##
+      # Defines a new child method.
+      #
+      # @param [String] name
+      # @return [RubyLint::Definition::RubyMethod]
+      #
+      def define_method(name, &block)
+        return add_child_method(name, :method, &block)
+      end
+
+      ##
+      # Defines a new child instance method.
+      #
+      # @see RubyLint::Definition::RubyObject#define_method
+      #
+      def define_instance_method(name, &block)
+        return add_child_method(name, :instance_method, &block)
+      end
+
+      ##
+      # Adds the object to the list of parent definitions.
+      #
+      # @param [RubyLint::Definition::RubyObject] parent
+      #
+      def inherits(parent)
+        parents << parent
+      end
+
       private
+
+      ##
+      # Adds a new child definition to the current definition.
+      #
+      # @param [String] name The name of the definition.
+      # @param [Symbol] type The definition type.
+      # @return [RubyLint::Definition::RubyObject]
+      #
+      def add_child_definition(name, type, &block)
+        definition = self.class.new(:name => name, :type => type, &block)
+
+        add(definition.type, definition.name, definition)
+
+        return definition
+      end
+
+      ##
+      # Adds a new child method to the current definition.
+      #
+      # @see RubyLint::Definition::RubyObject#add_child_definition
+      #
+      def add_child_method(name, type, &block)
+        definition = RubyMethod.new(
+          :name        => name,
+          :type        => :method,
+          :method_type => type,
+          &block
+        )
+
+        add(definition.method_type, definition.name, definition)
+
+        return definition
+      end
 
       ##
       # Returns a boolean that indicates if the specified definition should be
