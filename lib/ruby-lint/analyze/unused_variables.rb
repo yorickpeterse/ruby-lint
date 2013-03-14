@@ -26,7 +26,7 @@ module RubyLint
         define_method("on_#{type}") do |node|
           variable = current_scope.lookup(node.type, node.name)
 
-          if variable and !variable.used? and !variable.imported?
+          if variable and !variable.used?
             warning("unused #{label} #{variable.name}", variable)
           end
         end
@@ -37,7 +37,7 @@ module RubyLint
       #
       def on_constant_path(node)
         iterate_constant_path(node) do |name, segment, definition|
-          if definition and !definition.used? and !definition.imported?
+          if definition and !definition.used?
             warning("unused constant #{name}", segment)
           end
         end

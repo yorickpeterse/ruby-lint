@@ -1,5 +1,12 @@
 module RubyLint
   ##
+  # @return [RubyLint::GlobalScope]
+  #
+  def self.global_scope
+    return @global_scope ||= Definition::RubyObject.new(:name => :global)
+  end
+
+  ##
   # Provides a simple DSL for configuring ruby-lint.
   #
   def self.configure

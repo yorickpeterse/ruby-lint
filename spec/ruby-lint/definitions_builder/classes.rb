@@ -84,17 +84,6 @@ end
         .is_a?(RubyLint::Definition::RubyMethod) \
         .should == true
     end
-
-    should 'not lazy load classes that are manually defined' do
-      code = <<-CODE
-class Struct
-end
-      CODE
-
-      defs = build_definitions(code)
-
-      defs.lookup(:constant, 'Struct').imported?.should == false
-    end
   end
 
   describe 'extending classes' do
@@ -121,6 +110,11 @@ end
       defs = build_definitions(code)
 
       defs.lookup(:constant, 'Second') \
+        .parents \
+        .map(&:name) \
+        .should == ['First', 'root']
+
+      defs.lookup(:constant, 'Second') \
         .lookup(:instance_method, 'example') \
         .is_a?(RubyLint::Definition::RubyMethod) \
         .should == true
@@ -141,7 +135,10 @@ end
 
       defs = build_definitions(code)
 
-      defs.lookup(:constant, 'Third').parents.length.should == 2
+      defs.lookup(:constant, 'Third') \
+        .parents \
+        .map(&:name) \
+        .should == ['Second', 'root']
 
       defs.lookup(:constant, 'Third') \
         .lookup(:instance_method, 'example') \

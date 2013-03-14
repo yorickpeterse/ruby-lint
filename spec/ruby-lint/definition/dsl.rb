@@ -115,5 +115,18 @@ describe RubyLint::Definition::RubyObject do
       arg.is_a?(@ruby_object).should == true
       arg.name.should                == 'number'
     end
+
+    should 'easily define constructor methods' do
+      @first.define_constructors do |method|
+        method.define_argument('name')
+      end
+
+      @first.lookup(:method, 'new').arguments[0].name.should == 'name'
+
+      @first.lookup(:instance_method, 'initialize') \
+        .arguments[0] \
+        .name \
+        .should == 'name'
+    end
   end
 end

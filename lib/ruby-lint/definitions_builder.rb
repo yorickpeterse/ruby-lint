@@ -58,17 +58,8 @@ module RubyLint
     # @param [RubyLint::Node] node
     #
     def on_root(node)
-      parent = RubyLint::Importer.import('Object', Object, :ancestors => true)
-
-      definitions = Definition::RubyObject.new(
-        :name              => :root,
-        :default_constants => ['Kernel'],
-        :lazy              => true,
-        :parents           => [parent]
-      )
-
       @options[:node_definitions] = {}
-      @options[:definitions]      = definitions
+      @options[:definitions]      = initial_definitions
 
       associate_node_definition(node, definitions)
     end
@@ -535,6 +526,22 @@ module RubyLint
       associate_node_definition(node, constant)
 
       @definitions << constant
+    end
+
+    ##
+    # @return [RubyLint::Definition::RubyObject]
+    #
+    def initial_definitions
+      object = RubyLint.global_scope.lookup(:constant, 'Object')
+
+      definitions = Definition::RubyObject.new(
+        :name    => 'root',
+        :parents => [object]
+      )
+
+      definitions.merge(RubyLint.global_scope)
+
+      return definitions
     end
   end # DefinitionsBuilder
 end # RubyLint

@@ -86,17 +86,6 @@ end
         .is_a?(RubyLint::Definition::RubyMethod) \
         .should == true
     end
-
-    should 'not lazy load modules that are manually defined' do
-      code = <<-CODE
-module Enumerable
-end
-      CODE
-
-      defs = build_definitions(code)
-
-      defs.lookup(:constant, 'Enumerable').imported?.should == false
-    end
   end
 
   describe 'including modules' do

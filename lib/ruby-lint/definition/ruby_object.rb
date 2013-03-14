@@ -2,8 +2,7 @@ module RubyLint
   module Definition
     ##
     # RubyObject is the base definition class used for storing information
-    # about Ruby definitions such as variables and methods. It provides the
-    # means to store and look up data as well as lazy loading data when needed.
+    # about Ruby definitions such as variables and methods.
     #
     # ruby-lint comes with various definition classes, each serving a specific
     # purpose:
@@ -18,22 +17,7 @@ module RubyLint
     # using {RubyLint::Definition::RubyObject#lookup}. Note that some classes
     # might have slightly different constructor methods.
     #
-    # Each definition instance is based on an AST node created using
-    # {RubyLint::Node}. While these nodes are accessible in a read-only form
-    # it's generally not recommended to access them as the AST may change. In
-    # most cases you will be able to get far enough using the various getters
-    # provided by instance of {RubyLint::Definition::RubyObjet}.
-    #
-    # A simple example of creating two definitions and adding data to the first
-    # one:
-    #
-    #     root_node = RubyLint::Node.new(:root)
-    #     root_defs = RubyLint::Definition::RubyObject.new(root_node)
-    #
-    #     node    = RubyLint::Node.new(:constant, ['Example'])
-    #     example = RubyLint::Definition::RubyObject.new(node)
-    #
-    #     root_defs.add(:constant, 'Example', example)
+    # @todo Update documentation
     #
     # @!attribute [r] node
     #  @return [RubyLint::Node] The node used for creating the object.
@@ -204,9 +188,6 @@ module RubyLint
 
         clear!
 
-        default_constants.each { |name| import_constant(name) } if @lazy
-        default_constants.each { |name| import_global_variables(name) }
-
         yield self if block_given?
       end
 
@@ -237,28 +218,27 @@ module RubyLint
       #
       # @param [#to_sym] type The type of definition to look up.
       # @param [String] name The name of the definition to look up.
-      # @param [Hash] import_options Hash containing options to pass to
-      #  {RubyLint::Importer.import}.
       #
-      def lookup(type, name, import_options = {})
+      def lookup(type, name)
         type, name = prepare_lookup(type, name)
+        found      = nil
 
-        if definitions[type] and definitions[type][name]
-          return definitions[type][name]
+        if defines?(type, name)
+          found = definitions[type][name]
 
         # Look up the definition in the parent scope(s) (if any are set).
         elsif lookup_parent?(type)
           parents.each do |parent|
             parent_definition = parent.lookup(type, name)
 
-            return parent_definition if parent_definition
+            if parent_definition
+              found = parent_definition
+              break
+            end
           end
         end
 
-        # Lazy import the constant if it exists.
-        if lazy_load?(name, type)
-          return import_constant(name, import_options)
-        end
+        return found
       end
 
       ##
@@ -337,6 +317,19 @@ module RubyLint
       end
 
       ##
+      # Merges the definitions object `other` into the current one.
+      #
+      # @param [RubyLint::Definition::RubyObject] other
+      #
+      def merge(other)
+        other.definitions.each do |type, values|
+          values.each do |name, definition|
+            definitions[type][name] = definition
+          end
+        end
+      end
+
+      ##
       # Returns an array containing the "path" of all receivers from left to
       # right.
       #
@@ -352,15 +345,6 @@ module RubyLint
         end
 
         return receivers << self
-      end
-
-      ##
-      # Returns `true` if the object was imported using {RubyLint::Importer}.
-      #
-      # @return [TrueClass|FalseClass]
-      #
-      def imported?
-        return @imported == true
       end
 
       ##
@@ -402,6 +386,21 @@ module RubyLint
       end
 
       ##
+      # Helper method that makes it easier to provide the two constructor
+      # methods `new` and `initialize`. The supplied block is yielded on both
+      # method definitions.
+      #
+      # @example
+      #  some_object.define_constructors do |method|
+      #    method.argument('name')
+      #  end
+      #
+      def define_constructors(&block)
+        define_method('new', &block)
+        define_instance_method('initialize', &block)
+      end
+
+      ##
       # Adds the object to the list of parent definitions.
       #
       # @param [RubyLint::Definition::RubyObject] parent
@@ -420,7 +419,12 @@ module RubyLint
       # @return [RubyLint::Definition::RubyObject]
       #
       def add_child_definition(name, type, &block)
-        definition = self.class.new(:name => name, :type => type, &block)
+        definition = self.class.new(
+          :name    => name,
+          :type    => type,
+          :parents => [self],
+          &block
+        )
 
         add(definition.type, definition.name, definition)
 
@@ -437,58 +441,13 @@ module RubyLint
           :name        => name,
           :type        => :method,
           :method_type => type,
+          :parents     => [self],
           &block
         )
 
         add(definition.method_type, definition.name, definition)
 
         return definition
-      end
-
-      ##
-      # Returns a boolean that indicates if the specified definition should be
-      # lazy loaded.
-      #
-      # @param  [#to_sym] name The name of the definition.
-      # @param  [Symbol] type The type of the definition.
-      # @return [TrueClass|FalseClass]
-      #
-      def lazy_load?(name, type)
-        return lazy \
-          && type == :constant \
-          && constant.constants.include?(name.to_sym)
-      end
-
-      ##
-      # Imports the specified constant name.
-      #
-      # @param [#to_s] name The name of the constant to import.
-      # @param [Hash] options The options to pass to the importer.
-      # @return [RubyLint::Definition::RubyObject]
-      #
-      def import_constant(name, options = {})
-        name     = prepare_name(name)
-        imported = Importer.import(name, constant, options)
-
-        imported.parents << self
-
-        definitions[:constant][name] = imported
-
-        return imported
-      end
-
-      ##
-      # Imports the global variables of the specified constant.
-      #
-      # @param [#to_s] name The name of the constant.
-      #
-      def import_global_variables(name)
-        name       = prepare_name(name)
-        definition = lookup(:constant, name)
-
-        Importer.import_global_variables(name, constant).each do |var|
-          definition.add(var.type, var.name, var)
-        end
       end
 
       ##
