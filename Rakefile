@@ -1,3 +1,5 @@
+require File.expand_path('../lib/ruby-lint/inspector', __FILE__)
+require 'yaml'
 require 'rubygems/package_task'
 require 'digest/sha2'
 
