@@ -107,8 +107,8 @@ module RubyLint
     # @see RubyLint::DefinitionsBuilder#on_module
     #
     def on_class(node)
-      scope   = definitions
-      parents = [scope]
+      scope  = definitions
+      parent = RubyLint.global_constant('Object')
 
       # Resolve the definition of the parent class.
       if node.children[1]
@@ -117,14 +117,12 @@ module RubyLint
         else
           parent = resolve_definitions([node.children[1]])
         end
-
-        parents.unshift(parent)
       end
 
       class_def = Definition::RubyObject.new_from_node(
         node,
         :value   => nil,
-        :parents => parents
+        :parents => [parent, scope]
       )
 
       # Use an existing definition list if it exists.
@@ -532,12 +530,7 @@ module RubyLint
     # @return [RubyLint::Definition::RubyObject]
     #
     def initial_definitions
-      object = RubyLint.global_scope.lookup(:constant, 'Object')
-
-      definitions = Definition::RubyObject.new(
-        :name    => 'root',
-        :parents => [object]
-      )
+      definitions = Definition::RubyObject.new(:name => 'root')
 
       definitions.merge(RubyLint.global_scope)
 

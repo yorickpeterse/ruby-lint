@@ -1,6 +1,4 @@
 RubyLint.global_scope.define_constant('Module') do |klass|
-  klass.inherits(RubyLint.global_scope.lookup(:constant, 'Object'))
-
   klass.define_method('constants') do |method|
     method.define_optional_argument('include_super')
   end
@@ -150,8 +148,3 @@ RubyLint.global_scope.define_constant('Module') do |klass|
     method.define_argument('url')
   end
 end
-
-# Class is defined earlier on but inherits from Module. Due to Object also
-# inheriting from Class this line can not be placed in the definition of Class
-# itself.
-RubyLint.global_constant('Class').inherits(RubyLint.global_constant('Module'))

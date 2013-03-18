@@ -15,10 +15,10 @@ require 'ruby-lint/parser_error'
 require 'ruby-lint/definition/ruby_object'
 require 'ruby-lint/definition/ruby_method'
 
+require 'ruby-lint/definitions/core/module'
 require 'ruby-lint/definitions/core/class'
 require 'ruby-lint/definitions/core/basic_object'
 require 'ruby-lint/definitions/core/object'
-require 'ruby-lint/definitions/core/module'
 
 require 'ruby-lint/definitions/core/string'
 require 'ruby-lint/definitions/core/kernel'
