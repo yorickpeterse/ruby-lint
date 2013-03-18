@@ -7,6 +7,13 @@ module RubyLint
   end
 
   ##
+  # @return [RubyLint::Definition::RubyObject]
+  #
+  def self.global_constant(name)
+    return global_scope.lookup(:constant, name)
+  end
+
+  ##
   # Provides a simple DSL for configuring ruby-lint.
   #
   def self.configure

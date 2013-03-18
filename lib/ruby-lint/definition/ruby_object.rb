@@ -242,6 +242,34 @@ module RubyLint
       end
 
       ##
+      # Looks up the return value of a given method type and name. If the
+      # return value is set to `:self` the current definition instance will be
+      # returned instead.
+      #
+      # @example
+      #   RubyLint.global_constant('Class') \
+      #     .return_value_of(:method, 'new') \
+      #     .name # => "Class"
+      #
+      #   # Object extends class
+      #   RubyLint.global_constant('Object') \
+      #     .return_value_of(:method, 'new') \
+      #     .name # => "Object"
+      #
+      # @see RubyLint::Definition::RubyObject#lookup
+      #
+      def return_value_of(type, name)
+        found = lookup(type, name)
+        value = nil
+
+        if found and found.return_value
+          value = found.return_value
+        end
+
+        return value == :self ? self : value
+      end
+
+      ##
       # Returns `true` if the current definition list or one of the parents has
       # the specified definition.
       #

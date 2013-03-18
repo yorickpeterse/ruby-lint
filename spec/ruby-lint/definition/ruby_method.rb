@@ -178,4 +178,21 @@ describe RubyLint::Definition::RubyMethod do
     methods.length.should  == 1
     methods[0].name.should == 'class_method'
   end
+
+  should 'return the current instance when using :self as a return value' do
+    container = RubyLint::Definition::RubyObject.new(
+      :name => 'A',
+      :type => :constant
+    )
+
+    method = RubyLint::Definition::RubyMethod.new(
+      :name         => 'test',
+      :type         => :method,
+      :return_value => :self
+    )
+
+    container.add(method.type, method.name, method)
+
+    container.return_value_of(:method, 'test').should == container
+  end
 end
