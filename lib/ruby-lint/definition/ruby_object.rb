@@ -437,6 +437,21 @@ module RubyLint
         parents << parent
       end
 
+      ##
+      # Returns a pretty formatted String that shows some info about the
+      # current definition.
+      #
+      # @return [String]
+      #
+      def inspect
+        attributes = [%Q(@name="#{name}"), %Q(@type="#{type}")]
+
+        # See <http://stackoverflow.com/a/2818916> for more info.
+        address = (object_id << 1).to_s(16)
+
+        return %Q(#<#{self.class}:0x#{address} #{attributes.join(' ')}>)
+      end
+
       private
 
       ##
