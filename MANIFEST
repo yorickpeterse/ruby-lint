@@ -1,4 +1,5 @@
 .gitignore
+.travis.yml
 .yardopts
 Gemfile
 LICENSE
@@ -6,6 +7,7 @@ MANIFEST
 README.md
 Rakefile
 bin/ruby-lint
+checksum/.gitkeep
 doc/.gitkeep
 doc/DCO.md
 doc/build/.gitkeep
@@ -26,11 +28,17 @@ lib/ruby-lint/cli/base.rb
 lib/ruby-lint/configuration.rb
 lib/ruby-lint/definition/ruby_method.rb
 lib/ruby-lint/definition/ruby_object.rb
+lib/ruby-lint/definitions/core/basic_object.rb
+lib/ruby-lint/definitions/core/class.rb
+lib/ruby-lint/definitions/core/kernel.rb
+lib/ruby-lint/definitions/core/module.rb
+lib/ruby-lint/definitions/core/object.rb
+lib/ruby-lint/definitions/core/string.rb
 lib/ruby-lint/definitions_builder.rb
 lib/ruby-lint/helper/constant_paths.rb
 lib/ruby-lint/helper/current_scope.rb
 lib/ruby-lint/helper/methods.rb
-lib/ruby-lint/importer.rb
+lib/ruby-lint/inspector.rb
 lib/ruby-lint/iterator.rb
 lib/ruby-lint/node.rb
 lib/ruby-lint/parser.rb
@@ -49,7 +57,7 @@ spec/ruby-lint/analyze/undefined_methods.rb
 spec/ruby-lint/analyze/undefined_variables.rb
 spec/ruby-lint/analyze/unused_variables.rb
 spec/ruby-lint/configuration.rb
-spec/ruby-lint/definition/lazy_loading.rb
+spec/ruby-lint/definition/dsl.rb
 spec/ruby-lint/definition/ruby_method.rb
 spec/ruby-lint/definition/ruby_object.rb
 spec/ruby-lint/definitions_builder/assignments/arrays.rb
@@ -64,7 +72,6 @@ spec/ruby-lint/definitions_builder/methods.rb
 spec/ruby-lint/definitions_builder/modules.rb
 spec/ruby-lint/definitions_builder/reference_amount.rb
 spec/ruby-lint/definitions_builder/unused.rb
-spec/ruby-lint/importer.rb
 spec/ruby-lint/iterator.rb
 spec/ruby-lint/node.rb
 spec/ruby-lint/parser/assignments.rb
@@ -102,7 +109,11 @@ spec/ruby-lint/presenter/text.rb
 spec/ruby-lint/report.rb
 spec/ruby-lint/report/entry.rb
 spec/simplecov_helper.rb
+task/build.rake
+task/checksum.rake
 task/doc.rake
+task/inspect.rake
 task/manifest.rake
 task/stdlib.rake
+task/tag.rake
 task/test.rake
