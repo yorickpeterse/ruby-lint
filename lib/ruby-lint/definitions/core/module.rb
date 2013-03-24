@@ -144,6 +144,8 @@ RubyLint.global_scope.define_constant('Module') do |klass|
     method.define_argument('variable')
   end
 
+  klass.define_instance_method('to_s')
+
   klass.define_instance_method('yaml_as') do |method|
     method.define_argument('url')
   end

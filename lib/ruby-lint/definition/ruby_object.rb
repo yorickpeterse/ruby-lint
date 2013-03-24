@@ -358,6 +358,22 @@ module RubyLint
       end
 
       ##
+      # Copies all the definitions in `source` of type `type` into the current
+      # definitions object.
+      #
+      # @param [RubyLint::Definition::RubyObject] source
+      # @param [Symbol] source_type The type of definitions to copy from the
+      #  source.
+      # @param [Symbol] target_type The type to store the definitions under,
+      #  set to the `source_type` value by default.
+      #
+      def copy(source, source_type, target_type = source_type)
+        source.list(source_type).each do |definition|
+          add(target_type, definition.name, definition)
+        end
+      end
+
+      ##
       # Returns an array containing the "path" of all receivers from left to
       # right.
       #
@@ -395,6 +411,16 @@ module RubyLint
       end
 
       ##
+      # Defines a new global variable in the current definition.
+      #
+      # @param [String] name
+      # @param [Mixed] value
+      #
+      def define_global_variable(name, value = nil)
+        return add_child_definition(name, :global_variable, value)
+      end
+
+      ##
       # Defines a new child method.
       #
       # @param [String] name
@@ -429,12 +455,12 @@ module RubyLint
       end
 
       ##
-      # Adds the object to the list of parent definitions.
+      # Adds the object(s) to the list of parent definitions.
       #
-      # @param [RubyLint::Definition::RubyObject] parent
+      # @param [Array] definitions
       #
-      def inherits(parent)
-        parents << parent
+      def inherits(*definitions)
+        self.parents += definitions
       end
 
       ##
@@ -459,12 +485,14 @@ module RubyLint
       #
       # @param [String] name The name of the definition.
       # @param [Symbol] type The definition type.
+      # @param [Mixed] value
       # @return [RubyLint::Definition::RubyObject]
       #
-      def add_child_definition(name, type, &block)
+      def add_child_definition(name, type, value = nil, &block)
         definition = self.class.new(
           :name    => name,
           :type    => type,
+          :value   => nil,
           :parents => [self],
           &block
         )

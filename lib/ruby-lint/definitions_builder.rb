@@ -530,7 +530,10 @@ module RubyLint
     # @return [RubyLint::Definition::RubyObject]
     #
     def initial_definitions
-      definitions = Definition::RubyObject.new(:name => 'root')
+      definitions = Definition::RubyObject.new(
+        :name    => 'root',
+        :parents => [RubyLint.global_constant('Kernel')]
+      )
 
       definitions.merge(RubyLint.global_scope)
 

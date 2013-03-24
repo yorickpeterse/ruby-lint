@@ -1,5 +1,8 @@
 RubyLint.global_scope.define_constant('BasicObject') do |klass|
-  klass.inherits(RubyLint.global_constant('Class'))
+  klass.inherits(
+    RubyLint.global_constant('Class'),
+    RubyLint.global_constant('Kernel')
+  )
 
   klass.define_instance_method('!')
 

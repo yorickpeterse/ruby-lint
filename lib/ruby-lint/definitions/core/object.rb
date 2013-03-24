@@ -1,5 +1,5 @@
 RubyLint.global_scope.define_constant('Object') do |klass|
-  klass.inherits(RubyLint.global_scope.lookup(:constant, 'BasicObject'))
+  klass.inherits(RubyLint.global_constant('BasicObject'))
 
   klass.define_method('yaml_tag') do |method|
     method.define_argument('url')

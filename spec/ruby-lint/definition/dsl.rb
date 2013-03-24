@@ -129,4 +129,16 @@ describe RubyLint::Definition::RubyObject do
         .should == 'name'
     end
   end
+
+  describe 'defining global variables using a DSL' do
+    should 'define a global variable' do
+      @first.define_global_variable('$number', '10')
+
+      found = @first.lookup(:global_variable, '$number')
+
+      found.is_a?(@ruby_object).should == true
+      found.type.should                == :global_variable
+      found.name.should                == '$number'
+    end
+  end
 end
