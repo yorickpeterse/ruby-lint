@@ -2,8 +2,14 @@ require File.expand_path('../lib/ruby-lint/inspector', __FILE__)
 require 'yaml'
 require 'rubygems/package_task'
 require 'digest/sha2'
+require 'erb'
 
 GEMSPEC = Gem::Specification.load('ruby-lint.gemspec')
+
+DEFINITION_TEMPLATE = File.expand_path(
+  '../lib/ruby-lint/template/definition.erb',
+  __FILE__
+)
 
 Dir['./task/*.rake'].each do |task|
   import(task)

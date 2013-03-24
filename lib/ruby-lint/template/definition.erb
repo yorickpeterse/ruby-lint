@@ -1,0 +1,24 @@
+##
+# Constant: <%= @constant %>
+# Created:  <%= Time.new %>
+# Platform: <%= RUBY_DESCRIPTION %>
+#
+RubyLint.global_scope.define_constant('<%= @constant %>') do |klass|
+  <%- if @superclass -%>
+  klass.inherits(RubyLint.global_constant('<%= @superclass %>'))
+  <%- end -%>
+  <%- @methods.each do |type, collection| -%>
+  <%- collection.each do |name, args| -%>
+
+  <%- if args.empty? -%>
+  klass.define_<%= type %>('<%= name %>')
+  <%- else -%>
+  klass.define_<%= type %>('<%= name %>') do |method|
+    <%- args.each do |arg| -%>
+    method.<%= arg[:method] %>('<%= arg[:name] %>')
+    <%- end -%>
+  end
+  <%- end -%>
+  <%- end -%>
+  <%- end -%>
+end

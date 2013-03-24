@@ -74,7 +74,10 @@ module RubyLint
       end
 
       methods.each do |method|
-        output << "%-#{longest}s: %s" % [method.name, method.parameters]
+        output << "%-#{longest}s: %s" % [
+          method.name,
+          method.parameters.inspect
+        ]
       end
 
       return output.join("\n")
