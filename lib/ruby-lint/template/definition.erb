@@ -15,7 +15,7 @@ RubyLint.global_scope.define_constant('<%= @constant %>') do |klass|
   <%- else -%>
   klass.define_<%= type %>('<%= name %>') do |method|
     <%- args.each do |arg| -%>
-    method.<%= arg[:method] %>('<%= arg[:name] %>')
+    method.define_<%= arg[:method] %>('<%= arg[:name] %>')
     <%- end -%>
   end
   <%- end -%>
