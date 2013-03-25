@@ -13,7 +13,11 @@ matrix:
 
 notifications:
   email:
-    - yorickpeterse@gmail.com
+    recipients:
+      - yorickpeterse@gmail.com
+    email:
+      on_success: change
+      on_failure: always
 
 branches:
   only:
