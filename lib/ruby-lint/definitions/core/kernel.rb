@@ -1,6 +1,4 @@
 RubyLint.global_scope.define_constant('Kernel') do |klass|
-  klass.inherits(RubyLint.global_constant('Module'))
-
   Kernel.global_variables.each do |name|
     klass.define_global_variable(name.to_s)
   end
