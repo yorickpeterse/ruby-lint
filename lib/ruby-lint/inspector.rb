@@ -39,6 +39,8 @@ module RubyLint
     # @return [Array]
     #
     def inspect_methods
+      return [] unless constant.respond_to?(:methods)
+
       methods = constant.methods(false).map do |name|
         method_information(:method, name)
       end
@@ -52,6 +54,8 @@ module RubyLint
     # @return [Array]
     #
     def inspect_instance_methods
+      return [] unless constant.respond_to?(:instance_methods)
+
       methods = constant.instance_methods(false).map do |name|
         method_information(:instance_method, name)
       end

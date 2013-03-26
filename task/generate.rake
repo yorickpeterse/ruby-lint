@@ -3,38 +3,36 @@ namespace :generate do
   task :methods, :constant do |task, args|
     abort 'You have to specify a constant' unless args[:constant]
 
-    inspector   = RubyLint::Inspector.new(args[:constant])
-    @methods    = {:method => {}, :instance_method => {}}
-    arg_mapping = {
-      :req   => :argument,
-      :opt   => :optional_argument,
-      :rest  => :rest_argument,
-      :block => :block_argument
-    }
+    template  = File.read(DEFINITION_TEMPLATE)
+    generator = RubyLint::DefinitionGenerator.new(args[:constant], template)
 
-    @constant   = inspector.constant
-    @superclass = inspector.constant.superclass rescue nil
-    inspected   = {
-      :method          => inspector.inspect_methods,
-      :instance_method => inspector.inspect_instance_methods
-    }
+    puts generator.generate
+  end
 
-    inspected.each do |type, methods|
-      methods.each do |method|
-        args = []
+  desc 'Generates definitions for all available constants'
+  task :everything do
+    template  = File.read(DEFINITION_TEMPLATE)
+    directory = '/tmp/ruby-lint'
 
-        method.parameters.each do |arg|
-          args << {:method => arg_mapping[arg[0]], :name => arg[1]}
-        end
+    Dir.mkdir(directory) unless File.directory?(directory)
 
-        @methods[type][method.name] = args
-      end
+    largest = Object.constants.map(&:to_s).sort do |current, right|
+      right.length <=> current.length
     end
 
-    template          = File.read(DEFINITION_TEMPLATE)
-    template          = ERB.new(template, nil, '-')
-    template.filename = File.basename(DEFINITION_TEMPLATE)
+    largest = largest[0].length
 
-    puts template.result
+    Object.constants.sort.each do |constant|
+      constant  = constant.to_s
+      generator = RubyLint::DefinitionGenerator.new(constant, template)
+      filename  = constant.gsub(/([a-z])([A-Z])/, '\\1_\\2').downcase + '.rb'
+      path      = File.join(directory, filename)
+
+      File.open(path, 'w') do |handle|
+        handle.write(generator.generate)
+      end
+
+      puts "%-#{largest}s: %s" % [constant, path]
+    end
   end
 end
