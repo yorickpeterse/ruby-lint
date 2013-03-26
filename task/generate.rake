@@ -10,7 +10,9 @@ namespace :generate do
   end
 
   desc 'Generates definitions for all available constants'
-  task :everything do
+  task :everything, :overwrite do |task, args|
+    args.with_defaults(:overwrite => false)
+
     template  = File.read(DEFINITION_TEMPLATE)
     constants = []
 
@@ -26,8 +28,13 @@ namespace :generate do
       right.length <=> current.length
     end
 
-    largest       = largest[0].length
-    existing      = {}
+    largest  = largest[0].length
+    existing = {
+      # These constants require some extra work so they're ignored.
+      'basic_object.rb' => true,
+      'class.rb'        => true
+    }
+
     existing_path = File.expand_path(
       '../../lib/ruby-lint/definitions/core/',
       __FILE__
@@ -42,7 +49,9 @@ namespace :generate do
       filename  = constant.gsub(/([a-z])([A-Z])/, '\\1_\\2')
       filename  = filename.gsub('::', '_').downcase + '.rb'
 
-      next if existing[filename]
+      if existing[filename] and !args[:overwrite]
+        next
+      end
 
       generator = RubyLint::DefinitionGenerator.new(constant, template)
       path      = File.join(existing_path, filename)
