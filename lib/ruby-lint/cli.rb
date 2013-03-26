@@ -18,6 +18,6 @@ RubyLint::Configuration.register_names 'levels' do |names|
 end
 
 require 'slop'
-require 'ruby-lint/cli/base'
-require 'ruby-lint/cli/analyze'
-require 'ruby-lint/cli/ast'
+require_relative 'cli/base'
+require_relative 'cli/analyze'
+require_relative 'cli/ast'
