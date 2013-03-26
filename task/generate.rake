@@ -12,27 +12,46 @@ namespace :generate do
   desc 'Generates definitions for all available constants'
   task :everything do
     template  = File.read(DEFINITION_TEMPLATE)
-    directory = '/tmp/ruby-lint'
+    constants = []
 
-    Dir.mkdir(directory) unless File.directory?(directory)
+    Object.constants.each do |name|
+      const = Object.const_get(name)
 
-    largest = Object.constants.map(&:to_s).sort do |current, right|
+      if const.is_a?(Class) or const.is_a?(Module)
+        constants << const.to_s
+      end
+    end
+
+    largest = constants.sort do |current, right|
       right.length <=> current.length
     end
 
-    largest = largest[0].length
+    largest       = largest[0].length
+    existing      = {}
+    existing_path = File.expand_path(
+      '../../lib/ruby-lint/definitions/core/',
+      __FILE__
+    )
 
-    Object.constants.sort.each do |constant|
+    Dir.glob(File.join(existing_path, '*.rb')) do |path|
+      existing[File.basename(path)] = true
+    end
+
+    constants.sort.each do |constant|
       constant  = constant.to_s
+      filename  = constant.gsub(/([a-z])([A-Z])/, '\\1_\\2')
+      filename  = filename.gsub('::', '_').downcase + '.rb'
+
+      next if existing[filename]
+
       generator = RubyLint::DefinitionGenerator.new(constant, template)
-      filename  = constant.gsub(/([a-z])([A-Z])/, '\\1_\\2').downcase + '.rb'
-      path      = File.join(directory, filename)
+      path      = File.join(existing_path, filename)
 
       File.open(path, 'w') do |handle|
         handle.write(generator.generate)
       end
 
-      puts "%-#{largest}s: %s" % [constant, path]
+      puts "%-#{largest}s: %s" % [constant, filename]
     end
   end
 end

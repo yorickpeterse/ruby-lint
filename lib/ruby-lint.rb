@@ -10,14 +10,7 @@ require_relative 'ruby-lint/parser_error'
 
 require_relative 'ruby-lint/definition/ruby_object'
 require_relative 'ruby-lint/definition/ruby_method'
-
-require_relative 'ruby-lint/definitions/core/module'
-require_relative 'ruby-lint/definitions/core/class'
-require_relative 'ruby-lint/definitions/core/kernel'
-require_relative 'ruby-lint/definitions/core/basic_object'
-require_relative 'ruby-lint/definitions/core/object'
-
-require_relative 'ruby-lint/definitions/core/string'
+require_relative 'ruby-lint/definitions/core'
 
 require_relative 'ruby-lint/report'
 require_relative 'ruby-lint/report/entry'
