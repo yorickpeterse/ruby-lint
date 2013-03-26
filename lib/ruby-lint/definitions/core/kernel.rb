@@ -1,31 +1,47 @@
+##
+# Constant: Kernel
+# Created:  2013-03-26 21:43:09 +0100
+# Platform: rubinius 2.0.0.rc1 (1.9.3 cbee9a2d yyyy-mm-dd JI) [x86_64-unknown-linux-gnu]
+#
 RubyLint.global_scope.define_constant('Kernel') do |klass|
-  Kernel.global_variables.each do |name|
-    klass.define_global_variable(name.to_s)
+  klass.define_method('Array') do |method|
+    method.define_argument('obj')
   end
 
-  %w{Array Float String}.each do |name|
-    klass.define_method(name) do |method|
-      method.define_argument('arg')
-    end
+  klass.define_method('Complex') do |method|
+    method.define_rest_argument('args')
   end
 
-  %w{Complex Rational}.each do |name|
-    klass.define_method(name) do |method|
-      method.define_argument('x')
-      method.define_optional_argument('y')
-    end
+  klass.define_method('Float') do |method|
+    method.define_argument('obj')
   end
 
   klass.define_method('Integer') do |method|
-    method.define_argument('arg')
+    method.define_argument('obj')
     method.define_optional_argument('base')
   end
 
+  klass.define_method('Rational') do |method|
+    method.define_argument('a')
+    method.define_optional_argument('b')
+  end
+
+  klass.define_method('String') do |method|
+    method.define_argument('obj')
+  end
+
+  klass.define_method('StringValue') do |method|
+    method.define_argument('obj')
+  end
+
   klass.define_method('__callee__')
+
   klass.define_method('__method__')
 
+  klass.define_method('__module_init__')
+
   klass.define_method('`') do |method|
-    method.define_argument('cmd')
+    method.define_argument('str')
   end
 
   klass.define_method('abort') do |method|
@@ -33,36 +49,40 @@ RubyLint.global_scope.define_constant('Kernel') do |klass|
   end
 
   klass.define_method('at_exit') do |method|
+    method.define_optional_argument('prc')
     method.define_block_argument('block')
-  end
-
-  klass.define_method('autoload') do |method|
-    method.define_argument('constant')
-    method.define_argument('path')
-  end
-
-  klass.define_method('autoload?') do |method|
-    method.define_argument('constant')
   end
 
   klass.define_method('binding')
 
-  %w{block_given? iterator?}.each do |name|
-    klass.define_method(name)
-  end
+  klass.define_method('block_given?')
+
+  klass.define_method('callcc')
 
   klass.define_method('caller') do |method|
     method.define_optional_argument('start')
+    method.define_optional_argument('exclude_kernel')
   end
 
   klass.define_method('catch') do |method|
-    method.define_optional_argument('arg')
+    method.define_optional_argument('obj')
     method.define_block_argument('block')
   end
 
+  klass.define_method('chomp') do |method|
+    method.define_optional_argument('string')
+  end
+
+  klass.define_method('chomp!') do |method|
+    method.define_optional_argument('string')
+  end
+
+  klass.define_method('chop')
+
+  klass.define_method('chop!')
+
   klass.define_method('eval') do |method|
     method.define_argument('string')
-
     method.define_optional_argument('binding')
     method.define_optional_argument('filename')
     method.define_optional_argument('lineno')
@@ -72,78 +92,83 @@ RubyLint.global_scope.define_constant('Kernel') do |klass|
     method.define_rest_argument('args')
   end
 
-  %w{exit exit!}.each do |name|
-    klass.define_method(name) do |method|
-      method.define_optional_argument('status')
-    end
+  klass.define_method('exit') do |method|
+    method.define_optional_argument('code')
   end
 
-  %w{fail raise}.each do |name|
-    klass.define_method(name) do |method|
-      method.define_optional_argument('exception')
-      method.define_optional_argument('string')
-      method.define_optional_argument('array')
-    end
+  klass.define_method('exit!') do |method|
+    method.define_optional_argument('code')
+  end
+
+  klass.define_method('fail') do |method|
+    method.define_optional_argument('exc')
+    method.define_optional_argument('msg')
+    method.define_optional_argument('ctx')
   end
 
   klass.define_method('fork') do |method|
     method.define_block_argument('block')
   end
 
-  %w{format sprintf}.each do |name|
-    klass.define_method(name) do |method|
-      method.define_argument('format_string')
-      method.define_rest_argument('arguments')
-    end
+  klass.define_method('format') do |method|
+    method.define_argument('str')
+    method.define_rest_argument('args')
   end
+
+  klass.define_method('getc')
 
   klass.define_method('gets') do |method|
     method.define_optional_argument('sep')
-    method.define_optional_argument('limit')
   end
 
-  klass.define_method('lambda') do |method|
+  klass.define_method('global_variables')
+
+  klass.define_method('gsub') do |method|
+    method.define_argument('pattern')
+    method.define_optional_argument('rep')
     method.define_block_argument('block')
   end
 
+  klass.define_method('gsub!') do |method|
+    method.define_argument('pattern')
+    method.define_optional_argument('rep')
+    method.define_block_argument('block')
+  end
+
+  klass.define_method('iterator?')
+
+  klass.define_method('lambda')
+
   klass.define_method('load') do |method|
-    method.define_argument('filename')
+    method.define_argument('name')
     method.define_optional_argument('wrap')
   end
 
-  %w{global_variables local_variables}.each do |name|
-    klass.define_method(name)
-  end
+  klass.define_method('local_variables')
 
-  klass.define_method('loop') do |method|
-    method.define_block_argument('block')
-  end
+  klass.define_method('loop')
 
   klass.define_method('open') do |method|
-    method.define_argument('path')
-
-    method.define_optional_argument('mode_enc')
-    method.define_optional_argument('perm')
-    method.define_optional_argument('opt')
+    method.define_argument('obj')
+    method.define_rest_argument('rest')
     method.define_block_argument('block')
   end
 
   klass.define_method('p') do |method|
-    method.define_rest_argument('obj')
+    method.define_rest_argument('a')
   end
 
   klass.define_method('print') do |method|
-    method.define_rest_argument('obj')
+    method.define_rest_argument('args')
   end
 
   klass.define_method('printf') do |method|
-    method.define_optional_argument('io')
-    method.define_optional_argument('string')
-    method.define_rest_argument('obj')
+    method.define_argument('target')
+    method.define_rest_argument('args')
   end
 
   klass.define_method('proc') do |method|
-    method.define_block_argument('block')
+    method.define_block_argument('prc')
   end
 
   klass.define_method('putc') do |method|
@@ -151,20 +176,25 @@ RubyLint.global_scope.define_constant('Kernel') do |klass|
   end
 
   klass.define_method('puts') do |method|
-    method.define_optional_argument('obj')
+    method.define_rest_argument('a')
   end
 
-  %w{rand srand}.each do |name|
-    klass.define_method(name) do |method|
-      method.define_optional_argument('max')
-    end
+  klass.define_method('raise') do |method|
+    method.define_optional_argument('exc')
+    method.define_optional_argument('msg')
+    method.define_optional_argument('ctx')
   end
 
-  %w{readline readlines}.each do |name|
-    klass.define_method(name) do |method|
-      method.define_optional_argument('sep')
-      method.define_optional_argument('limit')
-    end
+  klass.define_method('rand') do |method|
+    method.define_optional_argument('limit')
+  end
+
+  klass.define_method('readline') do |method|
+    method.define_optional_argument('sep')
+  end
+
+  klass.define_method('readlines') do |method|
+    method.define_optional_argument('sep')
   end
 
   klass.define_method('require') do |method|
@@ -172,15 +202,20 @@ RubyLint.global_scope.define_constant('Kernel') do |klass|
   end
 
   klass.define_method('require_relative') do |method|
-    method.define_argument('string')
+    method.define_argument('name')
+  end
+
+  klass.define_method('scan') do |method|
+    method.define_argument('pattern')
+    method.define_block_argument('block')
   end
 
   klass.define_method('select') do |method|
-    method.define_optional_argument('rest')
+    method.define_rest_argument('args')
   end
 
   klass.define_method('set_trace_func') do |method|
-    method.define_argument('proc')
+    method.define_rest_argument('args')
   end
 
   klass.define_method('sleep') do |method|
@@ -188,54 +223,270 @@ RubyLint.global_scope.define_constant('Kernel') do |klass|
   end
 
   klass.define_method('spawn') do |method|
-    method.define_rest_argument('rest')
+    method.define_rest_argument('args')
+  end
+
+  klass.define_method('split') do |method|
+    method.define_rest_argument('args')
+  end
+
+  klass.define_method('sprintf') do |method|
+    method.define_argument('str')
+    method.define_rest_argument('args')
+  end
+
+  klass.define_method('srand') do |method|
+    method.define_optional_argument('seed')
+  end
+
+  klass.define_method('sub') do |method|
+    method.define_argument('pattern')
+    method.define_optional_argument('rep')
+    method.define_block_argument('block')
+  end
+
+  klass.define_method('sub!') do |method|
+    method.define_argument('pattern')
+    method.define_optional_argument('rep')
+    method.define_block_argument('block')
   end
 
   klass.define_method('syscall') do |method|
-    method.define_argument('num')
     method.define_rest_argument('args')
   end
 
   klass.define_method('system') do |method|
-    method.define_rest_argument('rest')
+    method.define_rest_argument('args')
   end
 
   klass.define_method('test') do |method|
-    method.define_argument('int_cmd')
+    method.define_argument('cmd')
     method.define_argument('file1')
-    method.define_rest_argument('file2')
+    method.define_optional_argument('file2')
   end
 
   klass.define_method('throw') do |method|
-    method.define_argument('tag')
-    method.define_optional_argument('obj')
+    method.define_argument('obj')
+    method.define_optional_argument('value')
   end
 
   klass.define_method('trace_var') do |method|
-    method.define_argument('symbol')
-    method.define_optional_argument('cmd')
-    method.define_block_argument('block')
+    method.define_rest_argument('args')
   end
 
   klass.define_method('trap') do |method|
-    method.define_argument('signal')
+    method.define_argument('sig')
+    method.define_optional_argument('prc')
     method.define_block_argument('block')
   end
 
   klass.define_method('untrace_var') do |method|
-    method.define_argument('symbol')
-    method.define_optional_argument('cmd')
+    method.define_rest_argument('args')
   end
 
   klass.define_method('warn') do |method|
-    method.define_argument('msg')
+    method.define_argument('warning')
   end
 
-  %w{!~ <=> === =~}.each do |name|
-    klass.define_instance_method(name) do |method|
-      method.define_argument('other')
-    end
+  klass.define_method('warning') do |method|
+    method.define_argument('message')
   end
+
+  klass.define_instance_method('!~') do |method|
+    method.define_argument('other')
+  end
+
+  klass.define_instance_method('<=>') do |method|
+    method.define_argument('other')
+  end
+
+  klass.define_instance_method('==') do |method|
+    method.define_argument('other')
+  end
+
+  klass.define_instance_method('===') do |method|
+    method.define_argument('other')
+  end
+
+  klass.define_instance_method('=~') do |method|
+    method.define_argument('other')
+  end
+
+  klass.define_instance_method('__class__')
+
+  klass.define_instance_method('__extend__') do |method|
+    method.define_rest_argument('modules')
+  end
+
+  klass.define_instance_method('__instance_variable_defined_p__') do |method|
+    method.define_argument('name')
+  end
+
+  klass.define_instance_method('__instance_variable_get__') do |method|
+    method.define_argument('sym')
+  end
+
+  klass.define_instance_method('__instance_variable_set__') do |method|
+    method.define_argument('sym')
+    method.define_argument('value')
+  end
+
+  klass.define_instance_method('__instance_variables__')
+
+  klass.define_instance_method('__respond_to_p__') do |method|
+    method.define_argument('meth')
+    method.define_optional_argument('include_private')
+  end
+
+  klass.define_instance_method('class')
+
+  klass.define_instance_method('clone')
+
+  klass.define_instance_method('define_singleton_method') do |method|
+    method.define_rest_argument('args')
+    method.define_block_argument('block')
+  end
+
+  klass.define_instance_method('display') do |method|
+    method.define_optional_argument('port')
+  end
+
+  klass.define_instance_method('dup')
+
+  klass.define_instance_method('enum_for') do |method|
+    method.define_optional_argument('method')
+    method.define_rest_argument('args')
+  end
+
+  klass.define_instance_method('eql?') do |method|
+    method.define_argument('other')
+  end
+
+  klass.define_instance_method('equal?') do |method|
+    method.define_argument('other')
+  end
+
+  klass.define_instance_method('extend') do |method|
+    method.define_rest_argument('modules')
+  end
+
+  klass.define_instance_method('freeze')
+
+  klass.define_instance_method('frozen?')
+
+  klass.define_instance_method('hash')
+
+  klass.define_instance_method('initialize_clone') do |method|
+    method.define_argument('other')
+  end
+
+  klass.define_instance_method('initialize_dup') do |method|
+    method.define_argument('other')
+  end
+
+  klass.define_instance_method('inspect')
+
+  klass.define_instance_method('instance_of?') do |method|
+    method.define_argument('cls')
+  end
+
+  klass.define_instance_method('instance_variable_defined?') do |method|
+    method.define_argument('name')
+  end
+
+  klass.define_instance_method('instance_variable_get') do |method|
+    method.define_argument('sym')
+  end
+
+  klass.define_instance_method('instance_variable_set') do |method|
+    method.define_argument('sym')
+    method.define_argument('value')
+  end
+
+  klass.define_instance_method('instance_variables')
+
+  klass.define_instance_method('is_a?') do |method|
+    method.define_argument('cls')
+  end
+
+  klass.define_instance_method('kind_of?') do |method|
+    method.define_argument('cls')
+  end
+
+  klass.define_instance_method('method') do |method|
+    method.define_argument('name')
+  end
+
+  klass.define_instance_method('methods') do |method|
+    method.define_optional_argument('all')
+  end
+
+  klass.define_instance_method('nil?')
+
+  klass.define_instance_method('object_id')
+
+  klass.define_instance_method('private_methods') do |method|
+    method.define_optional_argument('all')
+  end
+
+  klass.define_instance_method('protected_methods') do |method|
+    method.define_optional_argument('all')
+  end
+
+  klass.define_instance_method('public_method') do |method|
+    method.define_argument('name')
+  end
+
+  klass.define_instance_method('public_methods') do |method|
+    method.define_optional_argument('all')
+  end
+
+  klass.define_instance_method('public_send') do |method|
+    method.define_argument('message')
+    method.define_rest_argument('args')
+  end
+
+  klass.define_instance_method('respond_to?') do |method|
+    method.define_argument('meth')
+    method.define_optional_argument('include_private')
+  end
+
+  klass.define_instance_method('respond_to_missing?') do |method|
+    method.define_argument('meth')
+    method.define_argument('include')
+  end
+
+  klass.define_instance_method('send') do |method|
+    method.define_argument('message')
+    method.define_rest_argument('args')
+  end
+
+  klass.define_instance_method('singleton_class')
+
+  klass.define_instance_method('singleton_methods') do |method|
+    method.define_optional_argument('all')
+  end
+
+  klass.define_instance_method('taint')
+
+  klass.define_instance_method('tainted?')
+
+  klass.define_instance_method('tap')
+
+  klass.define_instance_method('to_enum') do |method|
+    method.define_optional_argument('method')
+    method.define_rest_argument('args')
+  end
+
+  klass.define_instance_method('to_s')
+
+  klass.define_instance_method('trust')
+
+  klass.define_instance_method('untaint')
+
+  klass.define_instance_method('untrust')
+
+  klass.define_instance_method('untrusted?')
 end
 
 # Methods defined in Kernel (both class and instance methods) are globally
