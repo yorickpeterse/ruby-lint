@@ -386,6 +386,10 @@ module RubyLint
         value       = found_value if found_value
       end
 
+      if value and value.method?
+        value = resolve_return_value(value)
+      end
+
       if variable.is_a?(Node)
         var_def = Definition::RubyObject.new_from_node(
           variable,
@@ -487,6 +491,26 @@ module RubyLint
       end
 
       return resolved
+    end
+
+    ##
+    # Resolves the return value of a method call.
+    #
+    # @param [RubyLint::Node] node
+    # @return [RubyLint::Definition::RubyObject]
+    #
+    def resolve_return_value(node)
+      source = definitions
+
+      if node.receiver
+        if node.receiver.method?
+          source = resolve_return_value(node.receiver)
+        else
+          source = source.lookup(node.receiver.type, node.receiver.name)
+        end
+      end
+
+      return source.call(node.name)
     end
 
     ##

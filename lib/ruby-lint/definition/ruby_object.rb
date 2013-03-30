@@ -38,16 +38,8 @@ module RubyLint
     # @!attribute [r] column
     #  @return [Numeric]
     #
-    # @!attribute [r] lazy
-    #  @return [TrueClass|FalseClass] lazy Boolean that indicates if missing
-    #   definitions should be lazy loaded.
-    #
     # @!attribute [r] type
     #  @return [Symbol] The type of object, e.g. `:constant`.
-    #
-    # @!attribute [r] constant
-    #  @return [Class] The constant to use for lazy loading
-    #   missing definitions.
     #
     # @!attribute [r] definitions
     #  @return [Hash] Hash containing all child the definitions.
@@ -61,11 +53,11 @@ module RubyLint
     #
     # @!attribute [rw] reference_amount
     #  @return [Numeric] The amount of times an object was referenced.
-    #  Currently this is only used for variables.
+    #   Currently this is only used for variables.
     #
-    # @!attribute [r] default_constants
-    #  @return [Array] Array containing the constant names to import by
-    #  default.
+    # @!attribute [r] instance_type
+    #  @return [Symbol] Indicates if the object represents a class or an
+    #   instance.
     #
     class RubyObject
       include VariablePredicates
@@ -87,11 +79,9 @@ module RubyLint
       ]
 
       attr_reader :column,
-        :constant,
-        :default_constants,
         :definitions,
         :file,
-        :lazy,
+        :instance_type,
         :line,
         :name,
         :node,
@@ -167,20 +157,12 @@ module RubyLint
       # @yieldparam [RubyLint::Definition::RubyObject]
       #
       # @option options [Array] :parents The parent definitions.
-      # @option options [TrueClass|FalseClass] :lazy When set to `true`
-      #  missing constants will be lazy loaded.
-      # @option options [TrueClass|FalseClass] :default_constants An array of
-      #  constant names to load by default.
-      # @option options [Class] :constant The constant to use for importing
-      #  other constants, set to `Object` by default.
       # @option options [RubyLint::Node|RubyLint::Definition::RubyObject]
       #  :value The custom value to use for the object, set to the output of
       #  {RubyLint::Node#children} by default.
       #
       def initialize(options = {})
         options = default_options.merge(options)
-
-        options[:default_constants].map!(&:to_s)
 
         options.each do |key, value|
           instance_variable_set("@#{key}", value)
@@ -242,31 +224,30 @@ module RubyLint
       end
 
       ##
-      # Looks up the return value of a given method type and name. If the
-      # return value is set to `:self` the current definition instance will be
-      # returned instead.
+      # Mimics a method call based on the given method name and the instance
+      # type of the current definition.
       #
-      # @example
-      #   RubyLint.global_constant('Class') \
-      #     .return_value_of(:method, 'new') \
-      #     .name # => "Class"
+      # If the return value of a method definition is set to a Proc (or any
+      # other object that responds to `:call`) it will be called and passed the
+      # current instance as an argument.
       #
-      #   # Object extends class
-      #   RubyLint.global_constant('Object') \
-      #     .return_value_of(:method, 'new') \
-      #     .name # => "Object"
+      # @todo Support for method arguments, if needed.
+      # @param [String] name The name of the method to call.
+      # @return [Mixed]
       #
-      # @see RubyLint::Definition::RubyObject#lookup
-      #
-      def return_value_of(type, name)
-        found = lookup(type, name)
-        value = nil
+      def call(name)
+        method       = lookup(method_call_type, name)
+        return_value = nil
 
-        if found and found.return_value
-          value = found.return_value
+        if method
+          return_value = method.return_value
+
+          if return_value.respond_to?(:call)
+            return_value = return_value.call(self)
+          end
         end
 
-        return value == :self ? self : value
+        return return_value
       end
 
       ##
@@ -290,6 +271,29 @@ module RubyLint
         end
 
         return false
+      end
+
+      ##
+      # Determines the call types for methods called on the current definition.
+      #
+      # @return [Symbol]
+      #
+      def method_call_type
+        return class? ? :method : :instance_method
+      end
+
+      ##
+      # @return [TrueClass|FalseClass]
+      #
+      def class?
+        return instance_type == :class
+      end
+
+      ##
+      # @return [TrueClass|FalseClass]
+      #
+      def instance?
+        return instance_type == :instance
       end
 
       ##
@@ -392,6 +396,24 @@ module RubyLint
       end
 
       ##
+      # Creates a new definition object based on the current one that
+      # represents an instance of a Ruby value (instead of a class).
+      #
+      # @return [RubyLint::Definition::RubyObject]
+      #
+      def instance
+        return self.class.new(
+          :name          => name,
+          :type          => type,
+          :instance_type => :instance,
+          :line          => line,
+          :column        => column,
+          :value         => value,
+          :parents       => [self]
+        )
+      end
+
+      ##
       # Returns `true` if the object was referenced more than once.
       #
       # @return [TrueClass|FalseClass]
@@ -470,7 +492,11 @@ module RubyLint
       # @return [String]
       #
       def inspect
-        attributes = [%Q(@name="#{name}"), %Q(@type="#{type}")]
+        attributes = [
+          %Q(@name="#{name}"),
+          %Q(@type="#{type}"),
+          %Q(@instance_type="#{instance_type}")
+        ]
 
         # See <http://stackoverflow.com/a/2818916> for more info.
         address = (object_id << 1).to_s(16)
@@ -540,10 +566,8 @@ module RubyLint
       def default_options
         return {
           :column            => 0,
-          :constant          => Object,
-          :default_constants => [],
           :file              => '',
-          :lazy              => false,
+          :instance_type     => :class,
           :line              => 1,
           :node              => nil,
           :parents           => [],

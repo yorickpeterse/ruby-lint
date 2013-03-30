@@ -190,4 +190,19 @@ describe RubyLint::Definition::RubyObject do
     values[0].value.should == '10'
     values[1].value.should == '20'
   end
+
+  should 'create a RubyObject that represents an instance' do
+    object = RubyLint::Definition::RubyObject.new(
+      :type => :constant,
+      :name => 'String'
+    )
+
+    object.instance_type.should == :class
+
+    instance = object.instance
+
+    instance.type.should          == object.type
+    instance.name.should          == object.name
+    instance.instance_type.should == :instance
+  end
 end

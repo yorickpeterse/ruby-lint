@@ -4,14 +4,20 @@ RubyLint.global_scope.define_constant('Class') do |klass|
   klass.define_constructors do |method|
     method.define_optional_argument('klass')
 
-    method.returns(:self)
+    method.returns do |object|
+      object.instance
+    end
   end
 
   klass.define_method('allocate') do |method|
-    method.returns(:self)
+    method.returns do |object|
+      object.instance
+    end
   end
 
   klass.define_method('superclass') do |method|
-    method.returns(:self)
+    method.returns do |object|
+      object.instance
+    end
   end
 end

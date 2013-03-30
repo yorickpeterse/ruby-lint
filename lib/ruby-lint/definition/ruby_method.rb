@@ -33,8 +33,7 @@ module RubyLint
     #   class methods and `:instance_method` for instance methods.
     #
     # @!attribute [r] return_value
-    #  @return [RubyLint::Definition::RubyObject] The value that is returned
-    #   by the method.
+    #  @return [Mixed] The value that is returned by the method.
     #
     class RubyMethod < RubyObject
       ##
@@ -138,12 +137,14 @@ module RubyLint
       end
 
       ##
-      # Sets the return value of this method.
+      # Sets the return value of this method. If a block is given it will be
+      # used as the return value. The block is *not* evaluated until it's
+      # called.
       #
       # @param [Mixed] value
       #
-      def returns(value)
-        @return_value = value
+      def returns(value = nil, &block)
+        @return_value = block_given? ? block : value
       end
 
       ##
