@@ -1,3 +1,4 @@
+require File.expand_path('../lib/ruby-lint/extensions/string', __FILE__)
 require File.expand_path('../lib/ruby-lint/inspector', __FILE__)
 require File.expand_path('../lib/ruby-lint/definition_generator', __FILE__)
 
