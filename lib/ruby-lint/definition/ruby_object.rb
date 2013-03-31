@@ -55,7 +55,7 @@ module RubyLint
     #  @return [Numeric] The amount of times an object was referenced.
     #   Currently this is only used for variables.
     #
-    # @!attribute [r] instance_type
+    # @!attribute [rw] instance_type
     #  @return [Symbol] Indicates if the object represents a class or an
     #   instance.
     #
@@ -81,13 +81,16 @@ module RubyLint
       attr_reader :column,
         :definitions,
         :file,
-        :instance_type,
         :line,
         :name,
         :node,
-        :type
+        :type,
+        :value
 
-      attr_accessor :parents, :receiver, :reference_amount, :value
+      attr_accessor :instance_type,
+        :parents,
+        :receiver,
+        :reference_amount
 
       ##
       # @param [RubyLint::Node] node The node that this instance belongs to.
@@ -171,6 +174,16 @@ module RubyLint
         clear!
 
         yield self if block_given?
+      end
+
+      ##
+      # Sets the value of the definition. If a {RubyLint::Node} instance is
+      # specified it will be converted to a definition instance.
+      #
+      # @param [RubyLint::Definition::RubyObject|RubyLint::Node] value
+      #
+      def value=(value)
+        @value = value.is_a?(Node) ? RubyObject.new_from_node(value) : value
       end
 
       ##
@@ -294,6 +307,14 @@ module RubyLint
       #
       def instance?
         return instance_type == :instance
+      end
+
+      ##
+      # Updates the definition object so that it represents an instance of a
+      # Ruby value.
+      #
+      def instance!
+        @instance_type = :instance
       end
 
       ##

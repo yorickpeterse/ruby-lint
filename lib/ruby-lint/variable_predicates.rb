@@ -24,7 +24,7 @@ module RubyLint
     #
     # @return [Array]
     #
-    SCALAR_TYPES = [:integer, :float, :string]
+    SCALAR_TYPES = [:integer, :float, :string, :symbol]
 
     ##
     # Array containing various predicate methods to create.

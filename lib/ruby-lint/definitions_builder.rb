@@ -390,14 +390,10 @@ module RubyLint
         value = resolve_return_value(value)
       end
 
-      if variable.is_a?(Node)
-        var_def = Definition::RubyObject.new_from_node(
-          variable,
-          :value => value
-        )
-      else
-        var_def       = variable
-        var_def.value = value
+      var_def = create_variable_definition(variable, value)
+
+      if create_instance?(var_def)
+        var_def.value.instance!
       end
 
       if value and value.collection?
@@ -468,6 +464,41 @@ module RubyLint
     #
     def increment_reference_amount(definition)
       definition.reference_amount += 1 unless @skip_increment_reference
+    end
+
+    ##
+    # Creates a new {RubyLint::Definition::RubyObject} instance for a variable
+    # with an optional value.
+    #
+    # @param [RubyLint::Definition::RubyObject|RubyLint::Node] variable
+    # @param [RubyLint::Definition::RubyObject|RubyLint::Node] value
+    # @return [RubyLint::Definition::RubyObject]
+    #
+    def create_variable_definition(variable, value = nil)
+      if variable.is_a?(Node)
+        definition = Definition::RubyObject.new_from_node(
+          variable,
+          :value => value
+        )
+      else
+        definition       = variable
+        definition.value = value
+      end
+
+      return definition
+    end
+
+    ##
+    # Returns a boolean that indicates if the definition should be an instance
+    # of a Ruby value.
+    #
+    # @param [RubyLint::Definition::RubyObject] definition
+    # @return [TrueClass|FalseClass]
+    #
+    def create_instance?(definition)
+      val = definition.value
+
+      return val && (val.collection? || val.scalar?)
     end
 
     ##
