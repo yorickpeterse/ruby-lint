@@ -78,6 +78,13 @@ module RubyLint
         :method
       ]
 
+      ##
+      # String used to separate segments in a constant path.
+      #
+      # @return [String]
+      #
+      PATH_SEPARATOR = '::'
+
       attr_reader :column,
         :definitions,
         :file,
@@ -234,6 +241,33 @@ module RubyLint
         end
 
         return found
+      end
+
+      ##
+      # Returns the definition for the given constant path. If one of the
+      # segments does not exist an error is raised instead.
+      #
+      # @param [String|Array] path
+      # @return [RubyLint::Definition::RubyObject]
+      # @raise ArgumentError Raised when an invalid constant path is specified.
+      #
+      def lookup_constant_path(path)
+        constant = self
+        path     = path.split(PATH_SEPARATOR) if path.is_a?(String)
+
+        path.each do |segment|
+          found = constant.lookup(:constant, segment)
+
+          if found
+            constant = found
+          else
+            name = path.join(PATH_SEPARATOR)
+
+            raise ArgumentError, "Invalid constant path: #{name}"
+          end
+        end
+
+        return constant
       end
 
       ##
@@ -450,7 +484,15 @@ module RubyLint
       # @return [RubyLint::Definition::RubyObject]
       #
       def define_constant(name, &block)
-        return add_child_definition(name, :constant, &block)
+        if name.include?(PATH_SEPARATOR)
+          path       = name.split(PATH_SEPARATOR)
+          target     = lookup_constant_path(path[0..-2])
+          definition = target.define_constant(path[-1], &block)
+        else
+          definition = add_child_definition(name, :constant, &block)
+        end
+
+        return definition
       end
 
       ##

@@ -49,6 +49,16 @@ describe RubyLint::Definition::RubyObject do
         .is_a?(@ruby_object) \
         .should == true
     end
+
+    should 'define a constant using a constant path' do
+      @first.define_constant('A')
+      @first.define_constant('A::B')
+
+      @first.lookup(:constant, 'A') \
+        .lookup(:constant, 'B') \
+        .is_a?(@ruby_object) \
+        .should == true
+    end
   end
 
   describe 'defining methods using a DSL' do
