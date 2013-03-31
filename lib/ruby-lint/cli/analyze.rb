@@ -73,9 +73,11 @@ Examples:
     files.each do |file|
       ast          = RubyLint::Parser.new(File.read(file), file).parse
       defs_builder = RubyLint::DefinitionsBuilder.new
+      loader       = RubyLint::ConstantLoader.new
       report       = RubyLint.configuration.report
       presenter    = RubyLint.configuration.presenter.new
 
+      loader.iterate(ast)
       defs_builder.iterate(ast)
 
       RubyLint.configuration.analysis.each do |constant|

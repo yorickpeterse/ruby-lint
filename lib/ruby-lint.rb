@@ -1,5 +1,7 @@
 require 'ripper'
 
+require_relative 'ruby-lint/extensions/string'
+
 require_relative 'ruby-lint/version'
 require_relative 'ruby-lint/base'
 require_relative 'ruby-lint/configuration'
@@ -16,6 +18,7 @@ require_relative 'ruby-lint/report'
 require_relative 'ruby-lint/report/entry'
 require_relative 'ruby-lint/iterator'
 require_relative 'ruby-lint/definitions_builder'
+require_relative 'ruby-lint/constant_loader'
 
 require_relative 'ruby-lint/helper/current_scope'
 require_relative 'ruby-lint/helper/constant_paths'

@@ -45,9 +45,8 @@ namespace :generate do
     end
 
     constants.sort.each do |constant|
-      constant  = constant.to_s
-      filename  = constant.gsub(/([a-z])([A-Z])/, '\\1_\\2')
-      filename  = filename.gsub('::', '_').downcase + '.rb'
+      constant = constant.to_s
+      filename = constant.snake_case + '.rb'
 
       if existing[filename] and !args[:overwrite]
         next
