@@ -172,12 +172,14 @@ spec/ruby-lint/analyze/undefined_variables.rb
 spec/ruby-lint/analyze/unused_variables.rb
 spec/ruby-lint/configuration.rb
 spec/ruby-lint/definition/dsl.rb
+spec/ruby-lint/definition/method_calls.rb
 spec/ruby-lint/definition/ruby_method.rb
 spec/ruby-lint/definition/ruby_object.rb
 spec/ruby-lint/definitions_builder/assignments/arrays.rb
 spec/ruby-lint/definitions_builder/assignments/hashes.rb
 spec/ruby-lint/definitions_builder/assignments/objects.rb
 spec/ruby-lint/definitions_builder/assignments/optional.rb
+spec/ruby-lint/definitions_builder/assignments/return_values.rb
 spec/ruby-lint/definitions_builder/assignments/variables.rb
 spec/ruby-lint/definitions_builder/associate_nodes.rb
 spec/ruby-lint/definitions_builder/classes.rb
