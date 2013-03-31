@@ -14,15 +14,8 @@ namespace :generate do
     args.with_defaults(:overwrite => false)
 
     template  = File.read(DEFINITION_TEMPLATE)
-    constants = []
-
-    Object.constants.each do |name|
-      const = Object.const_get(name)
-
-      if const.is_a?(Class) or const.is_a?(Module)
-        constants << const.to_s
-      end
-    end
+    inspector = RubyLint::Inspector.new(Object)
+    constants = inspector.inspect_constants
 
     largest = constants.sort do |current, right|
       right.length <=> current.length

@@ -8,14 +8,18 @@ module RubyLint
   #
   # @!attribute [r] constant
   #  @return [Class]
+  # @!attribute [r] constant_name
+  #  @return [String]
   #
   class Inspector
-    attr_reader :constant
+    attr_reader :constant, :constant_name
 
     ##
     # @param [String|Class] constant
     #
     def initialize(constant)
+      @constant_name = constant
+
       if constant.is_a?(String)
         constant = resolve_constant(constant)
       end
@@ -24,13 +28,26 @@ module RubyLint
     end
 
     ##
-    # Returns an Array containing all the child constants sorted by their
-    # names.
+    # Returns an Array containing all child constants and their childrne
+    # (recursively).
     #
     # @return [Array]
     #
     def inspect_constants
-      return constant.constants.sort
+      constants = []
+
+      constant.constants.each do |name|
+        const = constant.const_get(name)
+
+        # Sometimes sub constants are included into the global scope (e.g.
+        # Enumerable::Enumerator). These will be processed anyway so they
+        # should be skipped for now.
+        next if const.to_s.include?('::')
+
+        constants << name.to_s
+      end
+
+      return constants
     end
 
     ##
@@ -39,6 +56,8 @@ module RubyLint
     # @return [Array]
     #
     def inspect_methods
+      return [] unless constant.respond_to?(:methods)
+
       methods = constant.methods(false).map do |name|
         method_information(:method, name)
       end
@@ -52,6 +71,8 @@ module RubyLint
     # @return [Array]
     #
     def inspect_instance_methods
+      return [] unless constant.respond_to?(:instance_methods)
+
       methods = constant.instance_methods(false).map do |name|
         method_information(:instance_method, name)
       end

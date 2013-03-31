@@ -30,7 +30,7 @@ module RubyLint
       methods      = {:method => {}, :instance_method => {}}
       arg_mapping  = argument_mapping
 
-      constant   = inspector.constant
+      constant   = inspector.constant_name
       superclass = inspector.constant.superclass rescue nil
       inspected  = inspected_methods
 
