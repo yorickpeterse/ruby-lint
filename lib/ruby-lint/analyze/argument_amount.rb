@@ -18,9 +18,10 @@ module RubyLint
         minimum       = definition.length_of(:arguments)
         optional      = definition.length_of(:optional_arguments)
         maximum       = minimum + optional
+        rest          = !definition.rest_argument.nil?
         expected_text = expected_text(minimum, maximum, optional)
 
-        unless correct_argument_amount(minimum, maximum, specified)
+        unless correct_argument_amount(minimum, maximum, specified, rest)
           error(
             "wrong number of arguments (expected #{expected_text} but " \
               "got #{specified})",
@@ -35,10 +36,19 @@ module RubyLint
       # @param [Numeric] minimum
       # @param [Numeric] maximum
       # @param [Numeric] specified
+      # @param [TrueClass|FalseClass] rest
       # @return [TrueClass|FalseClass]
       #
-      def correct_argument_amount(minimum, maximum, specified)
-        return specified >= minimum && specified <= maximum
+      def correct_argument_amount(minimum, maximum, specified, rest = false)
+        valid = false
+
+        if rest
+          valid = specified >= minimum
+        else
+          valid = specified >= minimum && specified <= maximum
+        end
+
+        return valid
       end
 
       ##

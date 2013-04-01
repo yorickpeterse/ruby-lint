@@ -38,7 +38,7 @@ example
       '(expected 2..3 but got 0)'
   end
 
-  should 'validate argument amounts when using splat arguments' do
+  should 'validate argument amounts when using rest arguments' do
     code = <<-CODE
 def example(first, second, *args)
 end
@@ -55,5 +55,18 @@ example
     entry.column.should  == 0
     entry.message.should == 'wrong number of arguments ' \
       '(expected 2 but got 0)'
+  end
+
+  should 'validate argument amounts when using a required and rest argument' do
+    code = <<-CODE
+def example(required, *numbers)
+end
+
+example(10, 20, 30)
+    CODE
+
+    report = build_report(code, RubyLint::Analyze::ArgumentAmount)
+
+    report.entries.length.should == 0
   end
 end
