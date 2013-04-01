@@ -1,7 +1,7 @@
 ##
 # Constant: DateTime
-# Created:  2013-03-26 22:45:01 +0100
-# Platform: rubinius 2.0.0.rc1 (1.9.3 cbee9a2d yyyy-mm-dd JI) [x86_64-unknown-linux-gnu]
+# Created:  2013-04-01 18:33:53 +0200
+# Platform: rbx 2.0.0.rc1
 #
 RubyLint.global_scope.define_constant('DateTime') do |klass|
   klass.inherits(RubyLint.global_constant('Date'))
@@ -165,4 +165,217 @@ RubyLint.global_scope.define_constant('DateTime') do |klass|
   end
 
   klass.define_instance_method('zone')
+end
+
+##
+# Constant: DateTime::ABBR_DAYNAMES
+# Created:  2013-04-01 18:33:53 +0200
+# Platform: rbx 2.0.0.rc1
+#
+RubyLint.global_scope.define_constant('DateTime::ABBR_DAYNAMES') do |klass|
+end
+
+##
+# Constant: DateTime::ABBR_MONTHNAMES
+# Created:  2013-04-01 18:33:53 +0200
+# Platform: rbx 2.0.0.rc1
+#
+RubyLint.global_scope.define_constant('DateTime::ABBR_MONTHNAMES') do |klass|
+end
+
+##
+# Constant: DateTime::DAYNAMES
+# Created:  2013-04-01 18:33:53 +0200
+# Platform: rbx 2.0.0.rc1
+#
+RubyLint.global_scope.define_constant('DateTime::DAYNAMES') do |klass|
+end
+
+##
+# Constant: DateTime::ENGLAND
+# Created:  2013-04-01 18:33:53 +0200
+# Platform: rbx 2.0.0.rc1
+#
+RubyLint.global_scope.define_constant('DateTime::ENGLAND') do |klass|
+end
+
+##
+# Constant: DateTime::Format
+# Created:  2013-04-01 18:33:53 +0200
+# Platform: rbx 2.0.0.rc1
+#
+RubyLint.global_scope.define_constant('DateTime::Format') do |klass|
+
+  klass.define_method('__module_init__')
+end
+
+##
+# Constant: DateTime::GREGORIAN
+# Created:  2013-04-01 18:33:53 +0200
+# Platform: rbx 2.0.0.rc1
+#
+RubyLint.global_scope.define_constant('DateTime::GREGORIAN') do |klass|
+end
+
+##
+# Constant: DateTime::HALF_DAYS_IN_DAY
+# Created:  2013-04-01 18:33:53 +0200
+# Platform: rbx 2.0.0.rc1
+#
+RubyLint.global_scope.define_constant('DateTime::HALF_DAYS_IN_DAY') do |klass|
+end
+
+##
+# Constant: DateTime::HOURS_IN_DAY
+# Created:  2013-04-01 18:33:53 +0200
+# Platform: rbx 2.0.0.rc1
+#
+RubyLint.global_scope.define_constant('DateTime::HOURS_IN_DAY') do |klass|
+end
+
+##
+# Constant: DateTime::ITALY
+# Created:  2013-04-01 18:33:53 +0200
+# Platform: rbx 2.0.0.rc1
+#
+RubyLint.global_scope.define_constant('DateTime::ITALY') do |klass|
+end
+
+##
+# Constant: DateTime::Infinity
+# Created:  2013-04-01 18:33:53 +0200
+# Platform: rbx 2.0.0.rc1
+#
+RubyLint.global_scope.define_constant('DateTime::Infinity') do |klass|
+  klass.inherits(RubyLint.global_constant('Numeric'))
+
+  klass.define_method('__class_init__')
+
+  klass.define_instance_method('+@')
+
+  klass.define_instance_method('-@')
+
+  klass.define_instance_method('<=>') do |method|
+    method.define_argument('other')
+  end
+
+  klass.define_instance_method('abs')
+
+  klass.define_instance_method('coerce') do |method|
+    method.define_argument('other')
+  end
+
+  klass.define_instance_method('d')
+
+  klass.define_instance_method('finite?')
+
+  klass.define_instance_method('infinite?')
+
+  klass.define_instance_method('nan?')
+
+  klass.define_instance_method('zero?')
+end
+
+##
+# Constant: DateTime::JULIAN
+# Created:  2013-04-01 18:33:53 +0200
+# Platform: rbx 2.0.0.rc1
+#
+RubyLint.global_scope.define_constant('DateTime::JULIAN') do |klass|
+end
+
+##
+# Constant: DateTime::LD_EPOCH_IN_CJD
+# Created:  2013-04-01 18:33:53 +0200
+# Platform: rbx 2.0.0.rc1
+#
+RubyLint.global_scope.define_constant('DateTime::LD_EPOCH_IN_CJD') do |klass|
+end
+
+##
+# Constant: DateTime::MILLISECONDS_IN_DAY
+# Created:  2013-04-01 18:33:53 +0200
+# Platform: rbx 2.0.0.rc1
+#
+RubyLint.global_scope.define_constant('DateTime::MILLISECONDS_IN_DAY') do |klass|
+end
+
+##
+# Constant: DateTime::MILLISECONDS_IN_SECOND
+# Created:  2013-04-01 18:33:53 +0200
+# Platform: rbx 2.0.0.rc1
+#
+RubyLint.global_scope.define_constant('DateTime::MILLISECONDS_IN_SECOND') do |klass|
+end
+
+##
+# Constant: DateTime::MINUTES_IN_DAY
+# Created:  2013-04-01 18:33:53 +0200
+# Platform: rbx 2.0.0.rc1
+#
+RubyLint.global_scope.define_constant('DateTime::MINUTES_IN_DAY') do |klass|
+end
+
+##
+# Constant: DateTime::MJD_EPOCH_IN_AJD
+# Created:  2013-04-01 18:33:53 +0200
+# Platform: rbx 2.0.0.rc1
+#
+RubyLint.global_scope.define_constant('DateTime::MJD_EPOCH_IN_AJD') do |klass|
+end
+
+##
+# Constant: DateTime::MJD_EPOCH_IN_CJD
+# Created:  2013-04-01 18:33:53 +0200
+# Platform: rbx 2.0.0.rc1
+#
+RubyLint.global_scope.define_constant('DateTime::MJD_EPOCH_IN_CJD') do |klass|
+end
+
+##
+# Constant: DateTime::MONTHNAMES
+# Created:  2013-04-01 18:33:53 +0200
+# Platform: rbx 2.0.0.rc1
+#
+RubyLint.global_scope.define_constant('DateTime::MONTHNAMES') do |klass|
+end
+
+##
+# Constant: DateTime::NANOSECONDS_IN_DAY
+# Created:  2013-04-01 18:33:53 +0200
+# Platform: rbx 2.0.0.rc1
+#
+RubyLint.global_scope.define_constant('DateTime::NANOSECONDS_IN_DAY') do |klass|
+end
+
+##
+# Constant: DateTime::NANOSECONDS_IN_SECOND
+# Created:  2013-04-01 18:33:53 +0200
+# Platform: rbx 2.0.0.rc1
+#
+RubyLint.global_scope.define_constant('DateTime::NANOSECONDS_IN_SECOND') do |klass|
+end
+
+##
+# Constant: DateTime::SECONDS_IN_DAY
+# Created:  2013-04-01 18:33:53 +0200
+# Platform: rbx 2.0.0.rc1
+#
+RubyLint.global_scope.define_constant('DateTime::SECONDS_IN_DAY') do |klass|
+end
+
+##
+# Constant: DateTime::UNIX_EPOCH_IN_AJD
+# Created:  2013-04-01 18:33:53 +0200
+# Platform: rbx 2.0.0.rc1
+#
+RubyLint.global_scope.define_constant('DateTime::UNIX_EPOCH_IN_AJD') do |klass|
+end
+
+##
+# Constant: DateTime::UNIX_EPOCH_IN_CJD
+# Created:  2013-04-01 18:33:53 +0200
+# Platform: rbx 2.0.0.rc1
+#
+RubyLint.global_scope.define_constant('DateTime::UNIX_EPOCH_IN_CJD') do |klass|
 end

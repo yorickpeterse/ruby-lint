@@ -1,9 +1,10 @@
 ##
 # Constant: Kernel
-# Created:  2013-03-26 21:43:09 +0100
-# Platform: rubinius 2.0.0.rc1 (1.9.3 cbee9a2d yyyy-mm-dd JI) [x86_64-unknown-linux-gnu]
+# Created:  2013-04-01 18:33:54 +0200
+# Platform: rbx 2.0.0.rc1
 #
 RubyLint.global_scope.define_constant('Kernel') do |klass|
+
   klass.define_method('Array') do |method|
     method.define_argument('obj')
   end
@@ -32,6 +33,10 @@ RubyLint.global_scope.define_constant('Kernel') do |klass|
 
   klass.define_method('StringValue') do |method|
     method.define_argument('obj')
+  end
+
+  klass.define_method('URI') do |method|
+    method.define_argument('uri')
   end
 
   klass.define_method('__callee__')
@@ -488,12 +493,3 @@ RubyLint.global_scope.define_constant('Kernel') do |klass|
 
   klass.define_instance_method('untrusted?')
 end
-
-# Methods defined in Kernel (both class and instance methods) are globally
-# available regardless of whether the code is evaluated in a class or instance
-# context.
-RubyLint.global_scope.copy(
-  RubyLint.global_constant('Kernel'),
-  :method,
-  :instance_method
-)

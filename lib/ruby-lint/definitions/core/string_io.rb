@@ -1,7 +1,7 @@
 ##
 # Constant: StringIO
-# Created:  2013-03-26 22:45:01 +0100
-# Platform: rubinius 2.0.0.rc1 (1.9.3 cbee9a2d yyyy-mm-dd JI) [x86_64-unknown-linux-gnu]
+# Created:  2013-04-01 18:33:55 +0200
+# Platform: rbx 2.0.0.rc1
 #
 RubyLint.global_scope.define_constant('StringIO') do |klass|
   klass.inherits(RubyLint.global_constant('Object'))
@@ -229,4 +229,59 @@ RubyLint.global_scope.define_constant('StringIO') do |klass|
   klass.define_instance_method('write_nonblock') do |method|
     method.define_argument('str')
   end
+end
+
+##
+# Constant: StringIO::Data
+# Created:  2013-04-01 18:33:55 +0200
+# Platform: rbx 2.0.0.rc1
+#
+RubyLint.global_scope.define_constant('StringIO::Data') do |klass|
+  klass.inherits(RubyLint.global_constant('Object'))
+
+  klass.define_method('__class_init__')
+
+  klass.define_instance_method('lineno')
+
+  klass.define_instance_method('lineno=')
+
+  klass.define_instance_method('pos')
+
+  klass.define_instance_method('pos=')
+
+  klass.define_instance_method('string')
+
+  klass.define_instance_method('string=')
+end
+
+##
+# Constant: StringIO::SortedElement
+# Created:  2013-04-01 18:33:55 +0200
+# Platform: rbx 2.0.0.rc1
+#
+RubyLint.global_scope.define_constant('StringIO::SortedElement') do |klass|
+  klass.inherits(RubyLint.global_constant('Object'))
+
+  klass.define_method('__class_init__')
+
+  klass.define_instance_method('<=>') do |method|
+    method.define_argument('other')
+  end
+
+  klass.define_instance_method('initialize') do |method|
+    method.define_argument('val')
+    method.define_argument('sort_id')
+  end
+
+  klass.define_instance_method('sort_id')
+
+  klass.define_instance_method('value')
+end
+
+##
+# Constant: StringIO::Undefined
+# Created:  2013-04-01 18:33:55 +0200
+# Platform: rbx 2.0.0.rc1
+#
+RubyLint.global_scope.define_constant('StringIO::Undefined') do |klass|
 end

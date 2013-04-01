@@ -184,7 +184,7 @@ end
         .should == true
     end
 
-    should 'define a class method usin `class << String`' do
+    should 'define a class method using `class << String`' do
       code = <<-CODE
 class << String
   def example
@@ -200,7 +200,7 @@ end
         .should == true
     end
 
-    should 'define a class method usin `class << String` nested in a class' do
+    should 'define a class method using `class << String` nested in a class' do
       code = <<-CODE
 class First
   class << String

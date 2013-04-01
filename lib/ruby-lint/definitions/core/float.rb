@@ -1,7 +1,7 @@
 ##
 # Constant: Float
-# Created:  2013-03-26 22:45:01 +0100
-# Platform: rubinius 2.0.0.rc1 (1.9.3 cbee9a2d yyyy-mm-dd JI) [x86_64-unknown-linux-gnu]
+# Created:  2013-04-01 18:33:54 +0200
+# Platform: rbx 2.0.0.rc1
 #
 RubyLint.global_scope.define_constant('Float') do |klass|
   klass.inherits(RubyLint.global_constant('Numeric'))
@@ -149,4 +149,159 @@ RubyLint.global_scope.define_constant('Float') do |klass|
   klass.define_instance_method('to_s_minimal')
 
   klass.define_instance_method('truncate')
+end
+
+##
+# Constant: Float::DIG
+# Created:  2013-04-01 18:33:54 +0200
+# Platform: rbx 2.0.0.rc1
+#
+RubyLint.global_scope.define_constant('Float::DIG') do |klass|
+end
+
+##
+# Constant: Float::EPSILON
+# Created:  2013-04-01 18:33:54 +0200
+# Platform: rbx 2.0.0.rc1
+#
+RubyLint.global_scope.define_constant('Float::EPSILON') do |klass|
+end
+
+##
+# Constant: Float::FFI
+# Created:  2013-04-01 18:33:54 +0200
+# Platform: rbx 2.0.0.rc1
+#
+RubyLint.global_scope.define_constant('Float::FFI') do |klass|
+
+  klass.define_method('__module_init__')
+
+  klass.define_method('add_typedef') do |method|
+    method.define_argument('current')
+    method.define_argument('add')
+  end
+
+  klass.define_method('config') do |method|
+    method.define_argument('name')
+  end
+
+  klass.define_method('config_hash') do |method|
+    method.define_argument('name')
+  end
+
+  klass.define_method('errno')
+
+  klass.define_method('find_type') do |method|
+    method.define_argument('name')
+  end
+
+  klass.define_method('generate_function') do |method|
+    method.define_argument('ptr')
+    method.define_argument('name')
+    method.define_argument('args')
+    method.define_argument('ret')
+  end
+
+  klass.define_method('generate_trampoline') do |method|
+    method.define_argument('obj')
+    method.define_argument('name')
+    method.define_argument('args')
+    method.define_argument('ret')
+  end
+
+  klass.define_method('size_to_type') do |method|
+    method.define_argument('size')
+  end
+
+  klass.define_method('type_size') do |method|
+    method.define_argument('type')
+  end
+end
+
+##
+# Constant: Float::INFINITY
+# Created:  2013-04-01 18:33:54 +0200
+# Platform: rbx 2.0.0.rc1
+#
+RubyLint.global_scope.define_constant('Float::INFINITY') do |klass|
+end
+
+##
+# Constant: Float::MANT_DIG
+# Created:  2013-04-01 18:33:54 +0200
+# Platform: rbx 2.0.0.rc1
+#
+RubyLint.global_scope.define_constant('Float::MANT_DIG') do |klass|
+end
+
+##
+# Constant: Float::MAX
+# Created:  2013-04-01 18:33:54 +0200
+# Platform: rbx 2.0.0.rc1
+#
+RubyLint.global_scope.define_constant('Float::MAX') do |klass|
+end
+
+##
+# Constant: Float::MAX_10_EXP
+# Created:  2013-04-01 18:33:54 +0200
+# Platform: rbx 2.0.0.rc1
+#
+RubyLint.global_scope.define_constant('Float::MAX_10_EXP') do |klass|
+end
+
+##
+# Constant: Float::MAX_EXP
+# Created:  2013-04-01 18:33:54 +0200
+# Platform: rbx 2.0.0.rc1
+#
+RubyLint.global_scope.define_constant('Float::MAX_EXP') do |klass|
+end
+
+##
+# Constant: Float::MIN
+# Created:  2013-04-01 18:33:54 +0200
+# Platform: rbx 2.0.0.rc1
+#
+RubyLint.global_scope.define_constant('Float::MIN') do |klass|
+end
+
+##
+# Constant: Float::MIN_10_EXP
+# Created:  2013-04-01 18:33:54 +0200
+# Platform: rbx 2.0.0.rc1
+#
+RubyLint.global_scope.define_constant('Float::MIN_10_EXP') do |klass|
+end
+
+##
+# Constant: Float::MIN_EXP
+# Created:  2013-04-01 18:33:54 +0200
+# Platform: rbx 2.0.0.rc1
+#
+RubyLint.global_scope.define_constant('Float::MIN_EXP') do |klass|
+end
+
+##
+# Constant: Float::NAN
+# Created:  2013-04-01 18:33:54 +0200
+# Platform: rbx 2.0.0.rc1
+#
+RubyLint.global_scope.define_constant('Float::NAN') do |klass|
+end
+
+##
+# Constant: Float::RADIX
+# Created:  2013-04-01 18:33:54 +0200
+# Platform: rbx 2.0.0.rc1
+#
+RubyLint.global_scope.define_constant('Float::RADIX') do |klass|
+end
+
+##
+# Constant: Float::ROUNDS
+# Created:  2013-04-01 18:33:54 +0200
+# Platform: rbx 2.0.0.rc1
+#
+RubyLint.global_scope.define_constant('Float::ROUNDS') do |klass|
 end

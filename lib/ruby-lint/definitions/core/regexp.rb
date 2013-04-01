@@ -1,7 +1,7 @@
 ##
 # Constant: Regexp
-# Created:  2013-03-26 22:45:01 +0100
-# Platform: rubinius 2.0.0.rc1 (1.9.3 cbee9a2d yyyy-mm-dd JI) [x86_64-unknown-linux-gnu]
+# Created:  2013-04-01 18:33:54 +0200
+# Platform: rbx 2.0.0.rc1
 #
 RubyLint.global_scope.define_constant('Regexp') do |klass|
   klass.inherits(RubyLint.global_constant('Object'))
@@ -130,4 +130,267 @@ RubyLint.global_scope.define_constant('Regexp') do |klass|
   klass.define_instance_method('to_s')
 
   klass.define_instance_method('~')
+end
+
+##
+# Constant: Regexp::CAPTURE_GROUP
+# Created:  2013-04-01 18:33:54 +0200
+# Platform: rbx 2.0.0.rc1
+#
+RubyLint.global_scope.define_constant('Regexp::CAPTURE_GROUP') do |klass|
+end
+
+##
+# Constant: Regexp::DONT_CAPTURE_GROUP
+# Created:  2013-04-01 18:33:54 +0200
+# Platform: rbx 2.0.0.rc1
+#
+RubyLint.global_scope.define_constant('Regexp::DONT_CAPTURE_GROUP') do |klass|
+end
+
+##
+# Constant: Regexp::ESCAPE_TABLE
+# Created:  2013-04-01 18:33:54 +0200
+# Platform: rbx 2.0.0.rc1
+#
+RubyLint.global_scope.define_constant('Regexp::ESCAPE_TABLE') do |klass|
+end
+
+##
+# Constant: Regexp::EXTENDED
+# Created:  2013-04-01 18:33:54 +0200
+# Platform: rbx 2.0.0.rc1
+#
+RubyLint.global_scope.define_constant('Regexp::EXTENDED') do |klass|
+end
+
+##
+# Constant: Regexp::FIXEDENCODING
+# Created:  2013-04-01 18:33:54 +0200
+# Platform: rbx 2.0.0.rc1
+#
+RubyLint.global_scope.define_constant('Regexp::FIXEDENCODING') do |klass|
+end
+
+##
+# Constant: Regexp::IGNORECASE
+# Created:  2013-04-01 18:33:54 +0200
+# Platform: rbx 2.0.0.rc1
+#
+RubyLint.global_scope.define_constant('Regexp::IGNORECASE') do |klass|
+end
+
+##
+# Constant: Regexp::KCODE_EUC
+# Created:  2013-04-01 18:33:54 +0200
+# Platform: rbx 2.0.0.rc1
+#
+RubyLint.global_scope.define_constant('Regexp::KCODE_EUC') do |klass|
+end
+
+##
+# Constant: Regexp::KCODE_MASK
+# Created:  2013-04-01 18:33:54 +0200
+# Platform: rbx 2.0.0.rc1
+#
+RubyLint.global_scope.define_constant('Regexp::KCODE_MASK') do |klass|
+end
+
+##
+# Constant: Regexp::KCODE_NONE
+# Created:  2013-04-01 18:33:54 +0200
+# Platform: rbx 2.0.0.rc1
+#
+RubyLint.global_scope.define_constant('Regexp::KCODE_NONE') do |klass|
+end
+
+##
+# Constant: Regexp::KCODE_SJIS
+# Created:  2013-04-01 18:33:54 +0200
+# Platform: rbx 2.0.0.rc1
+#
+RubyLint.global_scope.define_constant('Regexp::KCODE_SJIS') do |klass|
+end
+
+##
+# Constant: Regexp::KCODE_UTF8
+# Created:  2013-04-01 18:33:54 +0200
+# Platform: rbx 2.0.0.rc1
+#
+RubyLint.global_scope.define_constant('Regexp::KCODE_UTF8') do |klass|
+end
+
+##
+# Constant: Regexp::MULTILINE
+# Created:  2013-04-01 18:33:54 +0200
+# Platform: rbx 2.0.0.rc1
+#
+RubyLint.global_scope.define_constant('Regexp::MULTILINE') do |klass|
+end
+
+##
+# Constant: Regexp::NOENCODING
+# Created:  2013-04-01 18:33:54 +0200
+# Platform: rbx 2.0.0.rc1
+#
+RubyLint.global_scope.define_constant('Regexp::NOENCODING') do |klass|
+end
+
+##
+# Constant: Regexp::OPTION_MASK
+# Created:  2013-04-01 18:33:54 +0200
+# Platform: rbx 2.0.0.rc1
+#
+RubyLint.global_scope.define_constant('Regexp::OPTION_MASK') do |klass|
+end
+
+##
+# Constant: Regexp::SourceParser
+# Created:  2013-04-01 18:33:54 +0200
+# Platform: rbx 2.0.0.rc1
+#
+RubyLint.global_scope.define_constant('Regexp::SourceParser') do |klass|
+  klass.inherits(RubyLint.global_constant('Object'))
+
+  klass.define_method('__class_init__')
+
+  klass.define_instance_method('add_part!')
+
+  klass.define_instance_method('create_parts')
+
+  klass.define_instance_method('group_part_class')
+
+  klass.define_instance_method('in_group_with_options?')
+
+  klass.define_instance_method('in_lookahead_group?')
+
+  klass.define_instance_method('initialize') do |method|
+    method.define_argument('source')
+    method.define_optional_argument('options')
+  end
+
+  klass.define_instance_method('options_string')
+
+  klass.define_instance_method('parts')
+
+  klass.define_instance_method('parts_string')
+
+  klass.define_instance_method('process_group')
+
+  klass.define_instance_method('process_group_options')
+
+  klass.define_instance_method('process_look_ahead')
+
+  klass.define_instance_method('process_until_group_finished')
+
+  klass.define_instance_method('push_current_character!')
+
+  klass.define_instance_method('push_option!')
+
+  klass.define_instance_method('string')
+end
+
+##
+# Constant: Regexp::SourceParser::LookAheadGroupPart
+# Created:  2013-04-01 18:33:54 +0200
+# Platform: rbx 2.0.0.rc1
+#
+RubyLint.global_scope.define_constant('Regexp::SourceParser::LookAheadGroupPart') do |klass|
+  klass.inherits(RubyLint.global_constant('Regexp::SourceParser::Part'))
+
+  klass.define_method('__class_init__')
+
+  klass.define_instance_method('to_s')
+end
+
+##
+# Constant: Regexp::SourceParser::LookAheadGroupPart::OPTIONS_MAP
+# Created:  2013-04-01 18:33:54 +0200
+# Platform: rbx 2.0.0.rc1
+#
+RubyLint.global_scope.define_constant('Regexp::SourceParser::LookAheadGroupPart::OPTIONS_MAP') do |klass|
+end
+
+##
+# Constant: Regexp::SourceParser::OptionsGroupPart
+# Created:  2013-04-01 18:33:54 +0200
+# Platform: rbx 2.0.0.rc1
+#
+RubyLint.global_scope.define_constant('Regexp::SourceParser::OptionsGroupPart') do |klass|
+  klass.inherits(RubyLint.global_constant('Regexp::SourceParser::Part'))
+
+  klass.define_method('__class_init__')
+
+  klass.define_instance_method('flatten')
+
+  klass.define_instance_method('push_negated_option!') do |method|
+    method.define_argument('identifier')
+  end
+
+  klass.define_instance_method('push_option!') do |method|
+    method.define_argument('identifier')
+  end
+
+  klass.define_instance_method('to_s')
+end
+
+##
+# Constant: Regexp::SourceParser::OptionsGroupPart::OPTIONS_MAP
+# Created:  2013-04-01 18:33:54 +0200
+# Platform: rbx 2.0.0.rc1
+#
+RubyLint.global_scope.define_constant('Regexp::SourceParser::OptionsGroupPart::OPTIONS_MAP') do |klass|
+end
+
+##
+# Constant: Regexp::SourceParser::Part
+# Created:  2013-04-01 18:33:54 +0200
+# Platform: rbx 2.0.0.rc1
+#
+RubyLint.global_scope.define_constant('Regexp::SourceParser::Part') do |klass|
+  klass.inherits(RubyLint.global_constant('Object'))
+
+  klass.define_method('__class_init__')
+
+  klass.define_instance_method('<<') do |method|
+    method.define_argument('str')
+  end
+
+  klass.define_instance_method('empty?')
+
+  klass.define_instance_method('flatten')
+
+  klass.define_instance_method('has_options!')
+
+  klass.define_instance_method('has_options?')
+
+  klass.define_instance_method('initialize') do |method|
+    method.define_optional_argument('source')
+  end
+
+  klass.define_instance_method('options')
+
+  klass.define_instance_method('options=')
+
+  klass.define_instance_method('source')
+
+  klass.define_instance_method('source=')
+
+  klass.define_instance_method('to_s')
+end
+
+##
+# Constant: Regexp::SourceParser::Part::OPTIONS_MAP
+# Created:  2013-04-01 18:33:54 +0200
+# Platform: rbx 2.0.0.rc1
+#
+RubyLint.global_scope.define_constant('Regexp::SourceParser::Part::OPTIONS_MAP') do |klass|
+end
+
+##
+# Constant: Regexp::SourceParser::PossibleOptions
+# Created:  2013-04-01 18:33:54 +0200
+# Platform: rbx 2.0.0.rc1
+#
+RubyLint.global_scope.define_constant('Regexp::SourceParser::PossibleOptions') do |klass|
 end

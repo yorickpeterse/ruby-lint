@@ -38,7 +38,7 @@ module RubyLint
     def on_constant_path(node)
       @in_constant_path = true
 
-      load(node.children.map(&:name).join('::'))
+      load(node.children.first.name)
     end
 
     ##
@@ -56,8 +56,6 @@ module RubyLint
 
       load(node.name)
     end
-
-    private
 
     ##
     # Checks if the given constant is already loaded or not.

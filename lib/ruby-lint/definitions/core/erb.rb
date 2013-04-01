@@ -1,7 +1,7 @@
 ##
 # Constant: ERB
-# Created:  2013-03-26 22:45:01 +0100
-# Platform: rubinius 2.0.0.rc1 (1.9.3 cbee9a2d yyyy-mm-dd JI) [x86_64-unknown-linux-gnu]
+# Created:  2013-04-01 18:33:53 +0200
+# Platform: rbx 2.0.0.rc1
 #
 RubyLint.global_scope.define_constant('ERB') do |klass|
   klass.inherits(RubyLint.global_constant('Object'))
@@ -43,4 +43,262 @@ RubyLint.global_scope.define_constant('ERB') do |klass|
   end
 
   klass.define_instance_method('src')
+end
+
+##
+# Constant: ERB::Compiler
+# Created:  2013-04-01 18:33:53 +0200
+# Platform: rbx 2.0.0.rc1
+#
+RubyLint.global_scope.define_constant('ERB::Compiler') do |klass|
+  klass.inherits(RubyLint.global_constant('Object'))
+
+  klass.define_method('__class_init__')
+
+  klass.define_instance_method('compile') do |method|
+    method.define_argument('s')
+  end
+
+  klass.define_instance_method('content_dump') do |method|
+    method.define_argument('s')
+  end
+
+  klass.define_instance_method('insert_cmd')
+
+  klass.define_instance_method('insert_cmd=')
+
+  klass.define_instance_method('make_scanner') do |method|
+    method.define_argument('src')
+  end
+
+  klass.define_instance_method('percent')
+
+  klass.define_instance_method('post_cmd')
+
+  klass.define_instance_method('post_cmd=')
+
+  klass.define_instance_method('pre_cmd')
+
+  klass.define_instance_method('pre_cmd=')
+
+  klass.define_instance_method('prepare_trim_mode') do |method|
+    method.define_argument('mode')
+  end
+
+  klass.define_instance_method('put_cmd')
+
+  klass.define_instance_method('put_cmd=')
+
+  klass.define_instance_method('trim_mode')
+end
+
+##
+# Constant: ERB::Compiler::Buffer
+# Created:  2013-04-01 18:33:53 +0200
+# Platform: rbx 2.0.0.rc1
+#
+RubyLint.global_scope.define_constant('ERB::Compiler::Buffer') do |klass|
+  klass.inherits(RubyLint.global_constant('Object'))
+
+  klass.define_method('__class_init__')
+
+  klass.define_instance_method('close')
+
+  klass.define_instance_method('cr')
+
+  klass.define_instance_method('push') do |method|
+    method.define_argument('cmd')
+  end
+
+  klass.define_instance_method('script')
+end
+
+##
+# Constant: ERB::Compiler::ExplicitScanner
+# Created:  2013-04-01 18:33:53 +0200
+# Platform: rbx 2.0.0.rc1
+#
+RubyLint.global_scope.define_constant('ERB::Compiler::ExplicitScanner') do |klass|
+  klass.inherits(RubyLint.global_constant('ERB::Compiler::Scanner'))
+
+  klass.define_method('__class_init__')
+
+  klass.define_instance_method('scan')
+end
+
+##
+# Constant: ERB::Compiler::PercentLine
+# Created:  2013-04-01 18:33:53 +0200
+# Platform: rbx 2.0.0.rc1
+#
+RubyLint.global_scope.define_constant('ERB::Compiler::PercentLine') do |klass|
+  klass.inherits(RubyLint.global_constant('Object'))
+
+  klass.define_method('__class_init__')
+
+  klass.define_instance_method('empty?')
+
+  klass.define_instance_method('to_s')
+
+  klass.define_instance_method('value')
+end
+
+##
+# Constant: ERB::Compiler::Scanner
+# Created:  2013-04-01 18:33:53 +0200
+# Platform: rbx 2.0.0.rc1
+#
+RubyLint.global_scope.define_constant('ERB::Compiler::Scanner') do |klass|
+  klass.inherits(RubyLint.global_constant('Object'))
+
+  klass.define_method('__class_init__')
+
+  klass.define_method('default_scanner=') do |method|
+    method.define_argument('klass')
+  end
+
+  klass.define_method('make_scanner') do |method|
+    method.define_argument('src')
+    method.define_argument('trim_mode')
+    method.define_argument('percent')
+  end
+
+  klass.define_method('regist_scanner') do |method|
+    method.define_argument('klass')
+    method.define_argument('trim_mode')
+    method.define_argument('percent')
+  end
+
+  klass.define_instance_method('scan')
+
+  klass.define_instance_method('stag')
+
+  klass.define_instance_method('stag=')
+end
+
+##
+# Constant: ERB::Compiler::SimpleScanner
+# Created:  2013-04-01 18:33:53 +0200
+# Platform: rbx 2.0.0.rc1
+#
+RubyLint.global_scope.define_constant('ERB::Compiler::SimpleScanner') do |klass|
+  klass.inherits(RubyLint.global_constant('ERB::Compiler::Scanner'))
+
+  klass.define_method('__class_init__')
+
+  klass.define_instance_method('scan')
+end
+
+##
+# Constant: ERB::Compiler::SimpleScanner2
+# Created:  2013-04-01 18:33:53 +0200
+# Platform: rbx 2.0.0.rc1
+#
+RubyLint.global_scope.define_constant('ERB::Compiler::SimpleScanner2') do |klass|
+  klass.inherits(RubyLint.global_constant('ERB::Compiler::Scanner'))
+
+  klass.define_method('__class_init__')
+
+  klass.define_instance_method('scan')
+end
+
+##
+# Constant: ERB::Compiler::TrimScanner
+# Created:  2013-04-01 18:33:53 +0200
+# Platform: rbx 2.0.0.rc1
+#
+RubyLint.global_scope.define_constant('ERB::Compiler::TrimScanner') do |klass|
+  klass.inherits(RubyLint.global_constant('ERB::Compiler::Scanner'))
+
+  klass.define_method('__class_init__')
+
+  klass.define_instance_method('explicit_trim_line') do |method|
+    method.define_argument('line')
+  end
+
+  klass.define_instance_method('is_erb_stag?') do |method|
+    method.define_argument('s')
+  end
+
+  klass.define_instance_method('percent_line') do |method|
+    method.define_argument('line')
+    method.define_block_argument('block')
+  end
+
+  klass.define_instance_method('scan') do |method|
+    method.define_block_argument('block')
+  end
+
+  klass.define_instance_method('scan_line') do |method|
+    method.define_argument('line')
+  end
+
+  klass.define_instance_method('stag')
+
+  klass.define_instance_method('stag=')
+
+  klass.define_instance_method('trim_line1') do |method|
+    method.define_argument('line')
+  end
+
+  klass.define_instance_method('trim_line2') do |method|
+    method.define_argument('line')
+  end
+end
+
+##
+# Constant: ERB::Compiler::TrimScanner::ERB_STAG
+# Created:  2013-04-01 18:33:53 +0200
+# Platform: rbx 2.0.0.rc1
+#
+RubyLint.global_scope.define_constant('ERB::Compiler::TrimScanner::ERB_STAG') do |klass|
+end
+
+##
+# Constant: ERB::DefMethod
+# Created:  2013-04-01 18:33:53 +0200
+# Platform: rbx 2.0.0.rc1
+#
+RubyLint.global_scope.define_constant('ERB::DefMethod') do |klass|
+
+  klass.define_method('__module_init__')
+
+  klass.define_method('def_erb_method') do |method|
+    method.define_argument('methodname')
+    method.define_argument('erb_or_fname')
+  end
+end
+
+##
+# Constant: ERB::Revision
+# Created:  2013-04-01 18:33:53 +0200
+# Platform: rbx 2.0.0.rc1
+#
+RubyLint.global_scope.define_constant('ERB::Revision') do |klass|
+end
+
+##
+# Constant: ERB::Util
+# Created:  2013-04-01 18:33:53 +0200
+# Platform: rbx 2.0.0.rc1
+#
+RubyLint.global_scope.define_constant('ERB::Util') do |klass|
+
+  klass.define_method('__module_init__')
+
+  klass.define_method('h') do |method|
+    method.define_argument('s')
+  end
+
+  klass.define_method('html_escape') do |method|
+    method.define_argument('s')
+  end
+
+  klass.define_method('u') do |method|
+    method.define_argument('s')
+  end
+
+  klass.define_method('url_encode') do |method|
+    method.define_argument('s')
+  end
 end

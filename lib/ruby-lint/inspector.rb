@@ -31,20 +31,45 @@ module RubyLint
     # Returns an Array containing all child constants and their childrne
     # (recursively).
     #
-    # @return [Array]
+    # The constants returned by this method are returned as String instances
+    # containing the full path (e.g. `Encoding::BINARY` instead of `BINARY`).
     #
-    def inspect_constants
-      constants = []
+    # @param [Class] source
+    # @param [Array] ignore
+    # @return [Array<String>]
+    #
+    def inspect_constants(source = constant, ignore = [])
+      source_name    = source.to_s
+      constants      = []
+      have_children  = []
+      include_source = source != Object
 
-      constant.constants.each do |name|
-        const = constant.const_get(name)
+      if include_source
+        constants << source_name
+        ignore     = ignore + [source]
+      end
 
-        # Sometimes sub constants are included into the global scope (e.g.
-        # Enumerable::Enumerator). These will be processed anyway so they
-        # should be skipped for now.
-        next if const.to_s.include?('::')
+      source.constants.each do |name|
+        next unless source.const_defined?(name)
 
-        constants << name.to_s
+        constant = source.const_get(name)
+
+        next if ignore.include?(constant)
+
+        name       = name.to_s
+        full_name  = include_source ? "#{source_name}::#{name}" : name
+        ignore    << constant
+        constants << full_name
+
+        if process_child_constants?(source, constant)
+          have_children << constant
+        end
+      end
+
+      have_children.each do |constant|
+        inspect_constants(constant, ignore).each do |child|
+          constants << child unless constants.include?(child)
+        end
       end
 
       return constants
@@ -115,6 +140,17 @@ module RubyLint
     end
 
     private
+
+    ##
+    # @param [Class] source
+    # @param [Class] constant
+    # @return [TrueClass|FalseClass]
+    #
+    def process_child_constants?(source, constant)
+      return constant.respond_to?(:constants) \
+        && constant != source \
+        && !constant.constants.empty?
+    end
 
     ##
     # Returns the method object for the given type and name.

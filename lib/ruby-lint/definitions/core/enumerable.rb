@@ -1,7 +1,7 @@
 ##
 # Constant: Enumerable
-# Created:  2013-03-26 22:45:01 +0100
-# Platform: rubinius 2.0.0.rc1 (1.9.3 cbee9a2d yyyy-mm-dd JI) [x86_64-unknown-linux-gnu]
+# Created:  2013-04-01 18:33:53 +0200
+# Platform: rbx 2.0.0.rc1
 #
 RubyLint.global_scope.define_constant('Enumerable') do |klass|
 
@@ -170,4 +170,183 @@ RubyLint.global_scope.define_constant('Enumerable') do |klass|
   klass.define_instance_method('zip') do |method|
     method.define_rest_argument('args')
   end
+end
+
+##
+# Constant: Enumerable::Enumerator
+# Created:  2013-04-01 18:33:53 +0200
+# Platform: rbx 2.0.0.rc1
+#
+RubyLint.global_scope.define_constant('Enumerable::Enumerator') do |klass|
+  klass.inherits(RubyLint.global_constant('Object'))
+
+  klass.define_method('__class_init__')
+
+  klass.define_instance_method('each') do |method|
+    method.define_block_argument('block')
+  end
+
+  klass.define_instance_method('each_with_index')
+
+  klass.define_instance_method('enum_with_index')
+
+  klass.define_instance_method('initialize') do |method|
+    method.define_optional_argument('obj')
+    method.define_optional_argument('iter')
+    method.define_rest_argument('args')
+    method.define_block_argument('block')
+  end
+
+  klass.define_instance_method('next')
+
+  klass.define_instance_method('peek')
+
+  klass.define_instance_method('peek_values')
+
+  klass.define_instance_method('rewind')
+
+  klass.define_instance_method('with_index') do |method|
+    method.define_optional_argument('offset')
+  end
+end
+
+##
+# Constant: Enumerable::Enumerator::FiberGenerator
+# Created:  2013-04-01 18:33:53 +0200
+# Platform: rbx 2.0.0.rc1
+#
+RubyLint.global_scope.define_constant('Enumerable::Enumerator::FiberGenerator') do |klass|
+  klass.inherits(RubyLint.global_constant('Object'))
+
+  klass.define_method('__class_init__')
+
+  klass.define_instance_method('initialize') do |method|
+    method.define_argument('obj')
+  end
+
+  klass.define_instance_method('next')
+
+  klass.define_instance_method('next?')
+
+  klass.define_instance_method('reset')
+
+  klass.define_instance_method('rewind')
+end
+
+##
+# Constant: Enumerable::Enumerator::Generator
+# Created:  2013-04-01 18:33:53 +0200
+# Platform: rbx 2.0.0.rc1
+#
+RubyLint.global_scope.define_constant('Enumerable::Enumerator::Generator') do |klass|
+  klass.inherits(RubyLint.global_constant('Object'))
+
+  klass.define_method('__class_init__')
+
+  klass.define_instance_method('each')
+
+  klass.define_instance_method('initialize') do |method|
+    method.define_block_argument('block')
+  end
+end
+
+##
+# Constant: Enumerable::Enumerator::SortedElement
+# Created:  2013-04-01 18:33:53 +0200
+# Platform: rbx 2.0.0.rc1
+#
+RubyLint.global_scope.define_constant('Enumerable::Enumerator::SortedElement') do |klass|
+  klass.inherits(RubyLint.global_constant('Object'))
+
+  klass.define_method('__class_init__')
+
+  klass.define_instance_method('<=>') do |method|
+    method.define_argument('other')
+  end
+
+  klass.define_instance_method('initialize') do |method|
+    method.define_argument('val')
+    method.define_argument('sort_id')
+  end
+
+  klass.define_instance_method('sort_id')
+
+  klass.define_instance_method('value')
+end
+
+##
+# Constant: Enumerable::Enumerator::ThreadGenerator
+# Created:  2013-04-01 18:33:53 +0200
+# Platform: rbx 2.0.0.rc1
+#
+RubyLint.global_scope.define_constant('Enumerable::Enumerator::ThreadGenerator') do |klass|
+  klass.inherits(RubyLint.global_constant('Object'))
+
+  klass.define_method('__class_init__')
+
+  klass.define_instance_method('initialize') do |method|
+    method.define_argument('enum')
+    method.define_argument('obj')
+    method.define_argument('meth')
+    method.define_argument('args')
+  end
+
+  klass.define_instance_method('kill') do |method|
+    method.define_argument('obj_id')
+  end
+
+  klass.define_instance_method('next')
+
+  klass.define_instance_method('next?')
+
+  klass.define_instance_method('reset')
+
+  klass.define_instance_method('rewind')
+end
+
+##
+# Constant: Enumerable::Enumerator::Yielder
+# Created:  2013-04-01 18:33:53 +0200
+# Platform: rbx 2.0.0.rc1
+#
+RubyLint.global_scope.define_constant('Enumerable::Enumerator::Yielder') do |klass|
+  klass.inherits(RubyLint.global_constant('Object'))
+
+  klass.define_method('__class_init__')
+
+  klass.define_instance_method('<<') do |method|
+    method.define_argument('value')
+  end
+
+  klass.define_instance_method('initialize') do |method|
+    method.define_block_argument('block')
+  end
+
+  klass.define_instance_method('yield') do |method|
+    method.define_rest_argument('args')
+  end
+end
+
+##
+# Constant: Enumerable::SortedElement
+# Created:  2013-04-01 18:33:53 +0200
+# Platform: rbx 2.0.0.rc1
+#
+RubyLint.global_scope.define_constant('Enumerable::SortedElement') do |klass|
+  klass.inherits(RubyLint.global_constant('Object'))
+
+  klass.define_method('__class_init__')
+
+  klass.define_instance_method('<=>') do |method|
+    method.define_argument('other')
+  end
+
+  klass.define_instance_method('initialize') do |method|
+    method.define_argument('val')
+    method.define_argument('sort_id')
+  end
+
+  klass.define_instance_method('sort_id')
+
+  klass.define_instance_method('value')
 end

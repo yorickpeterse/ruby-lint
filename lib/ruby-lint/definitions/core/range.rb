@@ -1,7 +1,7 @@
 ##
 # Constant: Range
-# Created:  2013-03-26 22:45:01 +0100
-# Platform: rubinius 2.0.0.rc1 (1.9.3 cbee9a2d yyyy-mm-dd JI) [x86_64-unknown-linux-gnu]
+# Created:  2013-04-01 18:33:54 +0200
+# Platform: rbx 2.0.0.rc1
 #
 RubyLint.global_scope.define_constant('Range') do |klass|
   klass.inherits(RubyLint.global_constant('Object'))
@@ -77,4 +77,28 @@ RubyLint.global_scope.define_constant('Range') do |klass|
   klass.define_instance_method('to_a')
 
   klass.define_instance_method('to_s')
+end
+
+##
+# Constant: Range::SortedElement
+# Created:  2013-04-01 18:33:54 +0200
+# Platform: rbx 2.0.0.rc1
+#
+RubyLint.global_scope.define_constant('Range::SortedElement') do |klass|
+  klass.inherits(RubyLint.global_constant('Object'))
+
+  klass.define_method('__class_init__')
+
+  klass.define_instance_method('<=>') do |method|
+    method.define_argument('other')
+  end
+
+  klass.define_instance_method('initialize') do |method|
+    method.define_argument('val')
+    method.define_argument('sort_id')
+  end
+
+  klass.define_instance_method('sort_id')
+
+  klass.define_instance_method('value')
 end

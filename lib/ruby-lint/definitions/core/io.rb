@@ -1,7 +1,7 @@
 ##
 # Constant: IO
-# Created:  2013-03-26 22:45:01 +0100
-# Platform: rubinius 2.0.0.rc1 (1.9.3 cbee9a2d yyyy-mm-dd JI) [x86_64-unknown-linux-gnu]
+# Created:  2013-04-01 18:33:54 +0200
+# Platform: rbx 2.0.0.rc1
 #
 RubyLint.global_scope.define_constant('IO') do |klass|
   klass.inherits(RubyLint.global_constant('Object'))
@@ -451,4 +451,478 @@ RubyLint.global_scope.define_constant('IO') do |klass|
   klass.define_instance_method('write_nonblock') do |method|
     method.define_argument('data')
   end
+end
+
+##
+# Constant: IO::APPEND
+# Created:  2013-04-01 18:33:54 +0200
+# Platform: rbx 2.0.0.rc1
+#
+RubyLint.global_scope.define_constant('IO::APPEND') do |klass|
+end
+
+##
+# Constant: IO::BINARY
+# Created:  2013-04-01 18:33:54 +0200
+# Platform: rbx 2.0.0.rc1
+#
+RubyLint.global_scope.define_constant('IO::BINARY') do |klass|
+end
+
+##
+# Constant: IO::BidirectionalPipe
+# Created:  2013-04-01 18:33:54 +0200
+# Platform: rbx 2.0.0.rc1
+#
+RubyLint.global_scope.define_constant('IO::BidirectionalPipe') do |klass|
+  klass.inherits(RubyLint.global_constant('IO'))
+
+  klass.define_method('__class_init__')
+
+  klass.define_instance_method('<<') do |method|
+    method.define_argument('obj')
+  end
+
+  klass.define_instance_method('close')
+
+  klass.define_instance_method('close_read')
+
+  klass.define_instance_method('close_write')
+
+  klass.define_instance_method('closed?')
+
+  klass.define_instance_method('print') do |method|
+    method.define_rest_argument('args')
+  end
+
+  klass.define_instance_method('printf') do |method|
+    method.define_argument('fmt')
+    method.define_rest_argument('args')
+  end
+
+  klass.define_instance_method('putc') do |method|
+    method.define_argument('obj')
+  end
+
+  klass.define_instance_method('puts') do |method|
+    method.define_rest_argument('args')
+  end
+
+  klass.define_instance_method('set_pipe_info') do |method|
+    method.define_argument('write')
+  end
+
+  klass.define_instance_method('syswrite') do |method|
+    method.define_argument('data')
+  end
+
+  klass.define_instance_method('write') do |method|
+    method.define_argument('data')
+  end
+
+  klass.define_instance_method('write_nonblock') do |method|
+    method.define_argument('data')
+  end
+end
+
+##
+# Constant: IO::CREAT
+# Created:  2013-04-01 18:33:54 +0200
+# Platform: rbx 2.0.0.rc1
+#
+RubyLint.global_scope.define_constant('IO::CREAT') do |klass|
+end
+
+##
+# Constant: IO::EAGAINWaitReadable
+# Created:  2013-04-01 18:33:54 +0200
+# Platform: rbx 2.0.0.rc1
+#
+RubyLint.global_scope.define_constant('IO::EAGAINWaitReadable') do |klass|
+  klass.inherits(RubyLint.global_constant('Errno::EAGAIN'))
+
+  klass.define_method('__class_init__')
+end
+
+##
+# Constant: IO::EAGAINWaitReadable::Errno
+# Created:  2013-04-01 18:33:54 +0200
+# Platform: rbx 2.0.0.rc1
+#
+RubyLint.global_scope.define_constant('IO::EAGAINWaitReadable::Errno') do |klass|
+end
+
+##
+# Constant: IO::EAGAINWaitReadable::Strerror
+# Created:  2013-04-01 18:33:54 +0200
+# Platform: rbx 2.0.0.rc1
+#
+RubyLint.global_scope.define_constant('IO::EAGAINWaitReadable::Strerror') do |klass|
+end
+
+##
+# Constant: IO::EAGAINWaitWritable
+# Created:  2013-04-01 18:33:54 +0200
+# Platform: rbx 2.0.0.rc1
+#
+RubyLint.global_scope.define_constant('IO::EAGAINWaitWritable') do |klass|
+  klass.inherits(RubyLint.global_constant('Errno::EAGAIN'))
+
+  klass.define_method('__class_init__')
+end
+
+##
+# Constant: IO::EAGAINWaitWritable::Errno
+# Created:  2013-04-01 18:33:54 +0200
+# Platform: rbx 2.0.0.rc1
+#
+RubyLint.global_scope.define_constant('IO::EAGAINWaitWritable::Errno') do |klass|
+end
+
+##
+# Constant: IO::EAGAINWaitWritable::Strerror
+# Created:  2013-04-01 18:33:54 +0200
+# Platform: rbx 2.0.0.rc1
+#
+RubyLint.global_scope.define_constant('IO::EAGAINWaitWritable::Strerror') do |klass|
+end
+
+##
+# Constant: IO::EXCL
+# Created:  2013-04-01 18:33:54 +0200
+# Platform: rbx 2.0.0.rc1
+#
+RubyLint.global_scope.define_constant('IO::EXCL') do |klass|
+end
+
+##
+# Constant: IO::EachReader
+# Created:  2013-04-01 18:33:54 +0200
+# Platform: rbx 2.0.0.rc1
+#
+RubyLint.global_scope.define_constant('IO::EachReader') do |klass|
+  klass.inherits(RubyLint.global_constant('Object'))
+
+  klass.define_method('__class_init__')
+
+  klass.define_instance_method('each') do |method|
+    method.define_block_argument('block')
+  end
+
+  klass.define_instance_method('initialize') do |method|
+    method.define_argument('io')
+    method.define_argument('buffer')
+    method.define_argument('separator')
+    method.define_argument('limit')
+  end
+
+  klass.define_instance_method('read_all')
+
+  klass.define_instance_method('read_to_limit')
+
+  klass.define_instance_method('read_to_separator')
+
+  klass.define_instance_method('read_to_separator_with_limit')
+end
+
+##
+# Constant: IO::FFI
+# Created:  2013-04-01 18:33:54 +0200
+# Platform: rbx 2.0.0.rc1
+#
+RubyLint.global_scope.define_constant('IO::FFI') do |klass|
+
+  klass.define_method('__module_init__')
+
+  klass.define_method('add_typedef') do |method|
+    method.define_argument('current')
+    method.define_argument('add')
+  end
+
+  klass.define_method('config') do |method|
+    method.define_argument('name')
+  end
+
+  klass.define_method('config_hash') do |method|
+    method.define_argument('name')
+  end
+
+  klass.define_method('errno')
+
+  klass.define_method('find_type') do |method|
+    method.define_argument('name')
+  end
+
+  klass.define_method('generate_function') do |method|
+    method.define_argument('ptr')
+    method.define_argument('name')
+    method.define_argument('args')
+    method.define_argument('ret')
+  end
+
+  klass.define_method('generate_trampoline') do |method|
+    method.define_argument('obj')
+    method.define_argument('name')
+    method.define_argument('args')
+    method.define_argument('ret')
+  end
+
+  klass.define_method('size_to_type') do |method|
+    method.define_argument('size')
+  end
+
+  klass.define_method('type_size') do |method|
+    method.define_argument('type')
+  end
+end
+
+##
+# Constant: IO::F_GETFL
+# Created:  2013-04-01 18:33:54 +0200
+# Platform: rbx 2.0.0.rc1
+#
+RubyLint.global_scope.define_constant('IO::F_GETFL') do |klass|
+end
+
+##
+# Constant: IO::InternalBuffer
+# Created:  2013-04-01 18:33:54 +0200
+# Platform: rbx 2.0.0.rc1
+#
+RubyLint.global_scope.define_constant('IO::InternalBuffer') do |klass|
+  klass.inherits(RubyLint.global_constant('Object'))
+
+  klass.define_method('__class_init__')
+
+  klass.define_method('allocate')
+
+  klass.define_instance_method('channel')
+
+  klass.define_instance_method('discard') do |method|
+    method.define_argument('skip')
+  end
+
+  klass.define_instance_method('empty?')
+
+  klass.define_instance_method('empty_to') do |method|
+    method.define_argument('io')
+  end
+
+  klass.define_instance_method('exhausted?')
+
+  klass.define_instance_method('fill') do |method|
+    method.define_argument('io')
+  end
+
+  klass.define_instance_method('fill_from') do |method|
+    method.define_argument('io')
+    method.define_optional_argument('skip')
+  end
+
+  klass.define_instance_method('find') do |method|
+    method.define_argument('pattern')
+    method.define_optional_argument('discard')
+  end
+
+  klass.define_instance_method('full?')
+
+  klass.define_instance_method('getbyte') do |method|
+    method.define_argument('io')
+  end
+
+  klass.define_instance_method('getchar') do |method|
+    method.define_argument('io')
+  end
+
+  klass.define_instance_method('inspect')
+
+  klass.define_instance_method('put_back') do |method|
+    method.define_argument('chr')
+  end
+
+  klass.define_instance_method('reset!')
+
+  klass.define_instance_method('shift') do |method|
+    method.define_optional_argument('count')
+  end
+
+  klass.define_instance_method('size')
+
+  klass.define_instance_method('start')
+
+  klass.define_instance_method('total')
+
+  klass.define_instance_method('unseek!') do |method|
+    method.define_argument('io')
+  end
+
+  klass.define_instance_method('unshift') do |method|
+    method.define_argument('str')
+    method.define_argument('start_pos')
+  end
+
+  klass.define_instance_method('unused')
+
+  klass.define_instance_method('used')
+
+  klass.define_instance_method('write_synced?')
+end
+
+##
+# Constant: IO::LOCK_UN
+# Created:  2013-04-01 18:33:54 +0200
+# Platform: rbx 2.0.0.rc1
+#
+RubyLint.global_scope.define_constant('IO::LOCK_UN') do |klass|
+end
+
+##
+# Constant: IO::NOCTTY
+# Created:  2013-04-01 18:33:54 +0200
+# Platform: rbx 2.0.0.rc1
+#
+RubyLint.global_scope.define_constant('IO::NOCTTY') do |klass|
+end
+
+##
+# Constant: IO::NONBLOCK
+# Created:  2013-04-01 18:33:54 +0200
+# Platform: rbx 2.0.0.rc1
+#
+RubyLint.global_scope.define_constant('IO::NONBLOCK') do |klass|
+end
+
+##
+# Constant: IO::NULL
+# Created:  2013-04-01 18:33:54 +0200
+# Platform: rbx 2.0.0.rc1
+#
+RubyLint.global_scope.define_constant('IO::NULL') do |klass|
+end
+
+##
+# Constant: IO::SEEK_CUR
+# Created:  2013-04-01 18:33:54 +0200
+# Platform: rbx 2.0.0.rc1
+#
+RubyLint.global_scope.define_constant('IO::SEEK_CUR') do |klass|
+end
+
+##
+# Constant: IO::SEEK_END
+# Created:  2013-04-01 18:33:54 +0200
+# Platform: rbx 2.0.0.rc1
+#
+RubyLint.global_scope.define_constant('IO::SEEK_END') do |klass|
+end
+
+##
+# Constant: IO::SYNC
+# Created:  2013-04-01 18:33:54 +0200
+# Platform: rbx 2.0.0.rc1
+#
+RubyLint.global_scope.define_constant('IO::SYNC') do |klass|
+end
+
+##
+# Constant: IO::Socketable
+# Created:  2013-04-01 18:33:54 +0200
+# Platform: rbx 2.0.0.rc1
+#
+RubyLint.global_scope.define_constant('IO::Socketable') do |klass|
+
+  klass.define_method('__module_init__')
+
+  klass.define_instance_method('accept')
+end
+
+##
+# Constant: IO::SortedElement
+# Created:  2013-04-01 18:33:54 +0200
+# Platform: rbx 2.0.0.rc1
+#
+RubyLint.global_scope.define_constant('IO::SortedElement') do |klass|
+  klass.inherits(RubyLint.global_constant('Object'))
+
+  klass.define_method('__class_init__')
+
+  klass.define_instance_method('<=>') do |method|
+    method.define_argument('other')
+  end
+
+  klass.define_instance_method('initialize') do |method|
+    method.define_argument('val')
+    method.define_argument('sort_id')
+  end
+
+  klass.define_instance_method('sort_id')
+
+  klass.define_instance_method('value')
+end
+
+##
+# Constant: IO::StreamCopier
+# Created:  2013-04-01 18:33:54 +0200
+# Platform: rbx 2.0.0.rc1
+#
+RubyLint.global_scope.define_constant('IO::StreamCopier') do |klass|
+  klass.inherits(RubyLint.global_constant('Object'))
+
+  klass.define_method('__class_init__')
+
+  klass.define_instance_method('initialize') do |method|
+    method.define_argument('from')
+    method.define_argument('to')
+    method.define_argument('length')
+    method.define_argument('offset')
+  end
+
+  klass.define_instance_method('read_method') do |method|
+    method.define_argument('obj')
+  end
+
+  klass.define_instance_method('run')
+
+  klass.define_instance_method('to_io') do |method|
+    method.define_argument('obj')
+    method.define_argument('mode')
+  end
+end
+
+##
+# Constant: IO::TRUNC
+# Created:  2013-04-01 18:33:54 +0200
+# Platform: rbx 2.0.0.rc1
+#
+RubyLint.global_scope.define_constant('IO::TRUNC') do |klass|
+end
+
+##
+# Constant: IO::TransferIO
+# Created:  2013-04-01 18:33:54 +0200
+# Platform: rbx 2.0.0.rc1
+#
+RubyLint.global_scope.define_constant('IO::TransferIO') do |klass|
+
+  klass.define_method('__module_init__')
+
+  klass.define_instance_method('recv_fd')
+
+  klass.define_instance_method('send_io')
+end
+
+##
+# Constant: IO::WaitReadable
+# Created:  2013-04-01 18:33:54 +0200
+# Platform: rbx 2.0.0.rc1
+#
+RubyLint.global_scope.define_constant('IO::WaitReadable') do |klass|
+end
+
+##
+# Constant: IO::WaitWritable
+# Created:  2013-04-01 18:33:54 +0200
+# Platform: rbx 2.0.0.rc1
+#
+RubyLint.global_scope.define_constant('IO::WaitWritable') do |klass|
 end

@@ -1,13 +1,13 @@
 ##
-# Constant: <%= constant %>
+# Constant: <%= @constant_name %>
 # Created:  <%= Time.new %>
-# Platform: <%= RUBY_DESCRIPTION %>
+# Platform: <%= RUBY_ENGINE %> <%= Rubinius::VERSION rescue RUBY_VERSION %>
 #
-RubyLint.global_scope.define_constant('<%= constant %>') do |klass|
-  <%- if superclass -%>
-  klass.inherits(RubyLint.global_constant('<%= superclass %>'))
+RubyLint.global_scope.define_constant('<%= @constant_name %>') do |klass|
+  <%- if @superclass -%>
+  klass.inherits(RubyLint.global_constant('<%= @superclass %>'))
   <%- end -%>
-  <%- methods.each do |type, collection| -%>
+  <%- @methods.each do |type, collection| -%>
   <%- collection.each do |name, args| -%>
 
   <%- if args.empty? -%>

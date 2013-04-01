@@ -1,7 +1,7 @@
 ##
 # Constant: Time
-# Created:  2013-03-26 22:45:01 +0100
-# Platform: rubinius 2.0.0.rc1 (1.9.3 cbee9a2d yyyy-mm-dd JI) [x86_64-unknown-linux-gnu]
+# Created:  2013-04-01 18:33:55 +0200
+# Platform: rbx 2.0.0.rc1
 #
 RubyLint.global_scope.define_constant('Time') do |klass|
   klass.inherits(RubyLint.global_constant('Object'))
@@ -222,4 +222,12 @@ RubyLint.global_scope.define_constant('Time') do |klass|
   klass.define_instance_method('year')
 
   klass.define_instance_method('zone')
+end
+
+##
+# Constant: Time::MonthValue
+# Created:  2013-04-01 18:33:55 +0200
+# Platform: rbx 2.0.0.rc1
+#
+RubyLint.global_scope.define_constant('Time::MonthValue') do |klass|
 end

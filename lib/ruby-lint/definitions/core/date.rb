@@ -1,7 +1,7 @@
 ##
 # Constant: Date
-# Created:  2013-03-26 22:45:01 +0100
-# Platform: rubinius 2.0.0.rc1 (1.9.3 cbee9a2d yyyy-mm-dd JI) [x86_64-unknown-linux-gnu]
+# Created:  2013-04-01 18:33:53 +0200
+# Platform: rbx 2.0.0.rc1
 #
 RubyLint.global_scope.define_constant('Date') do |klass|
   klass.inherits(RubyLint.global_constant('Object'))
@@ -372,4 +372,335 @@ RubyLint.global_scope.define_constant('Date') do |klass|
   klass.define_instance_method('yday')
 
   klass.define_instance_method('year')
+end
+
+##
+# Constant: Date::ABBR_DAYNAMES
+# Created:  2013-04-01 18:33:53 +0200
+# Platform: rbx 2.0.0.rc1
+#
+RubyLint.global_scope.define_constant('Date::ABBR_DAYNAMES') do |klass|
+end
+
+##
+# Constant: Date::ABBR_MONTHNAMES
+# Created:  2013-04-01 18:33:53 +0200
+# Platform: rbx 2.0.0.rc1
+#
+RubyLint.global_scope.define_constant('Date::ABBR_MONTHNAMES') do |klass|
+end
+
+##
+# Constant: Date::DAYNAMES
+# Created:  2013-04-01 18:33:53 +0200
+# Platform: rbx 2.0.0.rc1
+#
+RubyLint.global_scope.define_constant('Date::DAYNAMES') do |klass|
+end
+
+##
+# Constant: Date::ENGLAND
+# Created:  2013-04-01 18:33:53 +0200
+# Platform: rbx 2.0.0.rc1
+#
+RubyLint.global_scope.define_constant('Date::ENGLAND') do |klass|
+end
+
+##
+# Constant: Date::Format
+# Created:  2013-04-01 18:33:53 +0200
+# Platform: rbx 2.0.0.rc1
+#
+RubyLint.global_scope.define_constant('Date::Format') do |klass|
+
+  klass.define_method('__module_init__')
+end
+
+##
+# Constant: Date::Format::ABBR_DAYS
+# Created:  2013-04-01 18:33:53 +0200
+# Platform: rbx 2.0.0.rc1
+#
+RubyLint.global_scope.define_constant('Date::Format::ABBR_DAYS') do |klass|
+end
+
+##
+# Constant: Date::Format::ABBR_MONTHS
+# Created:  2013-04-01 18:33:53 +0200
+# Platform: rbx 2.0.0.rc1
+#
+RubyLint.global_scope.define_constant('Date::Format::ABBR_MONTHS') do |klass|
+end
+
+##
+# Constant: Date::Format::Bag
+# Created:  2013-04-01 18:33:53 +0200
+# Platform: rbx 2.0.0.rc1
+#
+RubyLint.global_scope.define_constant('Date::Format::Bag') do |klass|
+  klass.inherits(RubyLint.global_constant('Object'))
+
+  klass.define_method('__class_init__')
+
+  klass.define_instance_method('[]') do |method|
+    method.define_argument('key')
+  end
+
+  klass.define_instance_method('[]=') do |method|
+    method.define_argument('key')
+    method.define_argument('val')
+  end
+
+  klass.define_instance_method('_cent')
+
+  klass.define_instance_method('_cent=')
+
+  klass.define_instance_method('_comp')
+
+  klass.define_instance_method('_comp=')
+
+  klass.define_instance_method('_merid')
+
+  klass.define_instance_method('_merid=')
+
+  klass.define_instance_method('hour')
+
+  klass.define_instance_method('hour=')
+
+  klass.define_instance_method('mday')
+
+  klass.define_instance_method('mday=')
+
+  klass.define_instance_method('min')
+
+  klass.define_instance_method('min=')
+
+  klass.define_instance_method('mon')
+
+  klass.define_instance_method('mon=')
+
+  klass.define_instance_method('offset')
+
+  klass.define_instance_method('offset=')
+
+  klass.define_instance_method('sec')
+
+  klass.define_instance_method('sec=')
+
+  klass.define_instance_method('sec_fraction')
+
+  klass.define_instance_method('sec_fraction=')
+
+  klass.define_instance_method('to_hash')
+
+  klass.define_instance_method('year')
+
+  klass.define_instance_method('year=')
+
+  klass.define_instance_method('zone')
+
+  klass.define_instance_method('zone=')
+end
+
+##
+# Constant: Date::Format::Bag::Fast
+# Created:  2013-04-01 18:33:53 +0200
+# Platform: rbx 2.0.0.rc1
+#
+RubyLint.global_scope.define_constant('Date::Format::Bag::Fast') do |klass|
+end
+
+##
+# Constant: Date::Format::DAYS
+# Created:  2013-04-01 18:33:53 +0200
+# Platform: rbx 2.0.0.rc1
+#
+RubyLint.global_scope.define_constant('Date::Format::DAYS') do |klass|
+end
+
+##
+# Constant: Date::Format::MONTHS
+# Created:  2013-04-01 18:33:53 +0200
+# Platform: rbx 2.0.0.rc1
+#
+RubyLint.global_scope.define_constant('Date::Format::MONTHS') do |klass|
+end
+
+##
+# Constant: Date::Format::ZONES
+# Created:  2013-04-01 18:33:53 +0200
+# Platform: rbx 2.0.0.rc1
+#
+RubyLint.global_scope.define_constant('Date::Format::ZONES') do |klass|
+end
+
+##
+# Constant: Date::GREGORIAN
+# Created:  2013-04-01 18:33:53 +0200
+# Platform: rbx 2.0.0.rc1
+#
+RubyLint.global_scope.define_constant('Date::GREGORIAN') do |klass|
+end
+
+##
+# Constant: Date::HALF_DAYS_IN_DAY
+# Created:  2013-04-01 18:33:53 +0200
+# Platform: rbx 2.0.0.rc1
+#
+RubyLint.global_scope.define_constant('Date::HALF_DAYS_IN_DAY') do |klass|
+end
+
+##
+# Constant: Date::HOURS_IN_DAY
+# Created:  2013-04-01 18:33:53 +0200
+# Platform: rbx 2.0.0.rc1
+#
+RubyLint.global_scope.define_constant('Date::HOURS_IN_DAY') do |klass|
+end
+
+##
+# Constant: Date::ITALY
+# Created:  2013-04-01 18:33:53 +0200
+# Platform: rbx 2.0.0.rc1
+#
+RubyLint.global_scope.define_constant('Date::ITALY') do |klass|
+end
+
+##
+# Constant: Date::Infinity
+# Created:  2013-04-01 18:33:53 +0200
+# Platform: rbx 2.0.0.rc1
+#
+RubyLint.global_scope.define_constant('Date::Infinity') do |klass|
+  klass.inherits(RubyLint.global_constant('Numeric'))
+
+  klass.define_method('__class_init__')
+
+  klass.define_instance_method('+@')
+
+  klass.define_instance_method('-@')
+
+  klass.define_instance_method('<=>') do |method|
+    method.define_argument('other')
+  end
+
+  klass.define_instance_method('abs')
+
+  klass.define_instance_method('coerce') do |method|
+    method.define_argument('other')
+  end
+
+  klass.define_instance_method('d')
+
+  klass.define_instance_method('finite?')
+
+  klass.define_instance_method('infinite?')
+
+  klass.define_instance_method('nan?')
+
+  klass.define_instance_method('zero?')
+end
+
+##
+# Constant: Date::JULIAN
+# Created:  2013-04-01 18:33:53 +0200
+# Platform: rbx 2.0.0.rc1
+#
+RubyLint.global_scope.define_constant('Date::JULIAN') do |klass|
+end
+
+##
+# Constant: Date::LD_EPOCH_IN_CJD
+# Created:  2013-04-01 18:33:53 +0200
+# Platform: rbx 2.0.0.rc1
+#
+RubyLint.global_scope.define_constant('Date::LD_EPOCH_IN_CJD') do |klass|
+end
+
+##
+# Constant: Date::MILLISECONDS_IN_DAY
+# Created:  2013-04-01 18:33:53 +0200
+# Platform: rbx 2.0.0.rc1
+#
+RubyLint.global_scope.define_constant('Date::MILLISECONDS_IN_DAY') do |klass|
+end
+
+##
+# Constant: Date::MILLISECONDS_IN_SECOND
+# Created:  2013-04-01 18:33:53 +0200
+# Platform: rbx 2.0.0.rc1
+#
+RubyLint.global_scope.define_constant('Date::MILLISECONDS_IN_SECOND') do |klass|
+end
+
+##
+# Constant: Date::MINUTES_IN_DAY
+# Created:  2013-04-01 18:33:53 +0200
+# Platform: rbx 2.0.0.rc1
+#
+RubyLint.global_scope.define_constant('Date::MINUTES_IN_DAY') do |klass|
+end
+
+##
+# Constant: Date::MJD_EPOCH_IN_AJD
+# Created:  2013-04-01 18:33:53 +0200
+# Platform: rbx 2.0.0.rc1
+#
+RubyLint.global_scope.define_constant('Date::MJD_EPOCH_IN_AJD') do |klass|
+end
+
+##
+# Constant: Date::MJD_EPOCH_IN_CJD
+# Created:  2013-04-01 18:33:53 +0200
+# Platform: rbx 2.0.0.rc1
+#
+RubyLint.global_scope.define_constant('Date::MJD_EPOCH_IN_CJD') do |klass|
+end
+
+##
+# Constant: Date::MONTHNAMES
+# Created:  2013-04-01 18:33:53 +0200
+# Platform: rbx 2.0.0.rc1
+#
+RubyLint.global_scope.define_constant('Date::MONTHNAMES') do |klass|
+end
+
+##
+# Constant: Date::NANOSECONDS_IN_DAY
+# Created:  2013-04-01 18:33:53 +0200
+# Platform: rbx 2.0.0.rc1
+#
+RubyLint.global_scope.define_constant('Date::NANOSECONDS_IN_DAY') do |klass|
+end
+
+##
+# Constant: Date::NANOSECONDS_IN_SECOND
+# Created:  2013-04-01 18:33:53 +0200
+# Platform: rbx 2.0.0.rc1
+#
+RubyLint.global_scope.define_constant('Date::NANOSECONDS_IN_SECOND') do |klass|
+end
+
+##
+# Constant: Date::SECONDS_IN_DAY
+# Created:  2013-04-01 18:33:53 +0200
+# Platform: rbx 2.0.0.rc1
+#
+RubyLint.global_scope.define_constant('Date::SECONDS_IN_DAY') do |klass|
+end
+
+##
+# Constant: Date::UNIX_EPOCH_IN_AJD
+# Created:  2013-04-01 18:33:53 +0200
+# Platform: rbx 2.0.0.rc1
+#
+RubyLint.global_scope.define_constant('Date::UNIX_EPOCH_IN_AJD') do |klass|
+end
+
+##
+# Constant: Date::UNIX_EPOCH_IN_CJD
+# Created:  2013-04-01 18:33:53 +0200
+# Platform: rbx 2.0.0.rc1
+#
+RubyLint.global_scope.define_constant('Date::UNIX_EPOCH_IN_CJD') do |klass|
 end

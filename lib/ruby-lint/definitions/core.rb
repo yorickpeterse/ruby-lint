@@ -4,6 +4,7 @@ require_relative 'core/kernel'
 require_relative 'core/basic_object'
 require_relative 'core/object'
 
+=begin
 require_relative 'core/array'
 require_relative 'core/numeric'
 require_relative 'core/integer'
@@ -19,3 +20,4 @@ require_relative 'core/hash'
 require_relative 'core/string'
 require_relative 'core/symbol'
 require_relative 'core/open_struct'
+=end

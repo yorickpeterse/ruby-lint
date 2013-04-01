@@ -1,7 +1,7 @@
 ##
 # Constant: Thread
-# Created:  2013-03-26 22:45:01 +0100
-# Platform: rubinius 2.0.0.rc1 (1.9.3 cbee9a2d yyyy-mm-dd JI) [x86_64-unknown-linux-gnu]
+# Created:  2013-04-01 18:33:55 +0200
+# Platform: rbx 2.0.0.rc1
 #
 RubyLint.global_scope.define_constant('Thread') do |klass|
   klass.inherits(RubyLint.global_constant('Object'))
@@ -181,4 +181,29 @@ RubyLint.global_scope.define_constant('Thread') do |klass|
   klass.define_instance_method('value')
 
   klass.define_instance_method('wakeup')
+end
+
+##
+# Constant: Thread::Default
+# Created:  2013-04-01 18:33:55 +0200
+# Platform: rbx 2.0.0.rc1
+#
+RubyLint.global_scope.define_constant('Thread::Default') do |klass|
+end
+
+##
+# Constant: Thread::InnerRecursionDetected
+# Created:  2013-04-01 18:33:55 +0200
+# Platform: rbx 2.0.0.rc1
+#
+RubyLint.global_scope.define_constant('Thread::InnerRecursionDetected') do |klass|
+  klass.inherits(RubyLint.global_constant('Exception'))
+end
+
+##
+# Constant: Thread::MUTEX_FOR_THREAD_EXCLUSIVE
+# Created:  2013-04-01 18:33:55 +0200
+# Platform: rbx 2.0.0.rc1
+#
+RubyLint.global_scope.define_constant('Thread::MUTEX_FOR_THREAD_EXCLUSIVE') do |klass|
 end

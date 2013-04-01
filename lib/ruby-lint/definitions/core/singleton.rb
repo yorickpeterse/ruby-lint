@@ -1,7 +1,7 @@
 ##
 # Constant: Singleton
-# Created:  2013-03-26 22:45:01 +0100
-# Platform: rubinius 2.0.0.rc1 (1.9.3 cbee9a2d yyyy-mm-dd JI) [x86_64-unknown-linux-gnu]
+# Created:  2013-04-01 18:33:55 +0200
+# Platform: rbx 2.0.0.rc1
 #
 RubyLint.global_scope.define_constant('Singleton') do |klass|
 
@@ -18,4 +18,20 @@ RubyLint.global_scope.define_constant('Singleton') do |klass|
   klass.define_instance_method('clone')
 
   klass.define_instance_method('dup')
+end
+
+##
+# Constant: Singleton::SingletonClassMethods
+# Created:  2013-04-01 18:33:55 +0200
+# Platform: rbx 2.0.0.rc1
+#
+RubyLint.global_scope.define_constant('Singleton::SingletonClassMethods') do |klass|
+
+  klass.define_method('__module_init__')
+
+  klass.define_instance_method('_load') do |method|
+    method.define_argument('str')
+  end
+
+  klass.define_instance_method('clone')
 end

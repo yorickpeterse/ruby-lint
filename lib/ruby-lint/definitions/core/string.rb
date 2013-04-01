@@ -1,7 +1,7 @@
 ##
 # Constant: String
-# Created:  2013-03-30 13:23:52 +0100
-# Platform: rubinius 2.0.0.rc1 (1.9.3 cbee9a2d yyyy-mm-dd JI) [x86_64-unknown-linux-gnu]
+# Created:  2013-04-01 18:33:55 +0200
+# Platform: rbx 2.0.0.rc1
 #
 RubyLint.global_scope.define_constant('String') do |klass|
   klass.inherits(RubyLint.global_constant('Object'))
@@ -414,6 +414,8 @@ RubyLint.global_scope.define_constant('String') do |klass|
     method.define_optional_argument('two')
   end
 
+  klass.define_instance_method('snake_case')
+
   klass.define_instance_method('split') do |method|
     method.define_optional_argument('pattern')
     method.define_optional_argument('limit')
@@ -554,4 +556,158 @@ RubyLint.global_scope.define_constant('String') do |klass|
   klass.define_instance_method('valid_encoding=')
 
   klass.define_instance_method('valid_encoding?')
+end
+
+##
+# Constant: String::Complexifier
+# Created:  2013-04-01 18:33:55 +0200
+# Platform: rbx 2.0.0.rc1
+#
+RubyLint.global_scope.define_constant('String::Complexifier') do |klass|
+  klass.inherits(RubyLint.global_constant('Object'))
+
+  klass.define_method('__class_init__')
+
+  klass.define_instance_method('convert')
+
+  klass.define_instance_method('initialize') do |method|
+    method.define_argument('value')
+  end
+end
+
+##
+# Constant: String::Complexifier::DENOMINATOR
+# Created:  2013-04-01 18:33:55 +0200
+# Platform: rbx 2.0.0.rc1
+#
+RubyLint.global_scope.define_constant('String::Complexifier::DENOMINATOR') do |klass|
+end
+
+##
+# Constant: String::Complexifier::NUMBER
+# Created:  2013-04-01 18:33:55 +0200
+# Platform: rbx 2.0.0.rc1
+#
+RubyLint.global_scope.define_constant('String::Complexifier::NUMBER') do |klass|
+end
+
+##
+# Constant: String::Complexifier::NUMBERNOS
+# Created:  2013-04-01 18:33:55 +0200
+# Platform: rbx 2.0.0.rc1
+#
+RubyLint.global_scope.define_constant('String::Complexifier::NUMBERNOS') do |klass|
+end
+
+##
+# Constant: String::Complexifier::NUMERATOR
+# Created:  2013-04-01 18:33:55 +0200
+# Platform: rbx 2.0.0.rc1
+#
+RubyLint.global_scope.define_constant('String::Complexifier::NUMERATOR') do |klass|
+end
+
+##
+# Constant: String::Complexifier::PATTERN0
+# Created:  2013-04-01 18:33:55 +0200
+# Platform: rbx 2.0.0.rc1
+#
+RubyLint.global_scope.define_constant('String::Complexifier::PATTERN0') do |klass|
+end
+
+##
+# Constant: String::Complexifier::PATTERN1
+# Created:  2013-04-01 18:33:55 +0200
+# Platform: rbx 2.0.0.rc1
+#
+RubyLint.global_scope.define_constant('String::Complexifier::PATTERN1') do |klass|
+end
+
+##
+# Constant: String::Complexifier::PATTERN2
+# Created:  2013-04-01 18:33:55 +0200
+# Platform: rbx 2.0.0.rc1
+#
+RubyLint.global_scope.define_constant('String::Complexifier::PATTERN2') do |klass|
+end
+
+##
+# Constant: String::Complexifier::SPACE
+# Created:  2013-04-01 18:33:55 +0200
+# Platform: rbx 2.0.0.rc1
+#
+RubyLint.global_scope.define_constant('String::Complexifier::SPACE') do |klass|
+end
+
+##
+# Constant: String::ControlCharacters
+# Created:  2013-04-01 18:33:55 +0200
+# Platform: rbx 2.0.0.rc1
+#
+RubyLint.global_scope.define_constant('String::ControlCharacters') do |klass|
+end
+
+##
+# Constant: String::ControlPrintValue
+# Created:  2013-04-01 18:33:55 +0200
+# Platform: rbx 2.0.0.rc1
+#
+RubyLint.global_scope.define_constant('String::ControlPrintValue') do |klass|
+end
+
+##
+# Constant: String::Rationalizer
+# Created:  2013-04-01 18:33:55 +0200
+# Platform: rbx 2.0.0.rc1
+#
+RubyLint.global_scope.define_constant('String::Rationalizer') do |klass|
+  klass.inherits(RubyLint.global_constant('Object'))
+
+  klass.define_method('__class_init__')
+
+  klass.define_instance_method('convert')
+
+  klass.define_instance_method('initialize') do |method|
+    method.define_argument('value')
+  end
+end
+
+##
+# Constant: String::Rationalizer::DENOMINATOR
+# Created:  2013-04-01 18:33:55 +0200
+# Platform: rbx 2.0.0.rc1
+#
+RubyLint.global_scope.define_constant('String::Rationalizer::DENOMINATOR') do |klass|
+end
+
+##
+# Constant: String::Rationalizer::NUMERATOR
+# Created:  2013-04-01 18:33:55 +0200
+# Platform: rbx 2.0.0.rc1
+#
+RubyLint.global_scope.define_constant('String::Rationalizer::NUMERATOR') do |klass|
+end
+
+##
+# Constant: String::Rationalizer::PATTERN
+# Created:  2013-04-01 18:33:55 +0200
+# Platform: rbx 2.0.0.rc1
+#
+RubyLint.global_scope.define_constant('String::Rationalizer::PATTERN') do |klass|
+end
+
+##
+# Constant: String::Rationalizer::RATIONAL
+# Created:  2013-04-01 18:33:55 +0200
+# Platform: rbx 2.0.0.rc1
+#
+RubyLint.global_scope.define_constant('String::Rationalizer::RATIONAL') do |klass|
+end
+
+##
+# Constant: String::Rationalizer::SPACE
+# Created:  2013-04-01 18:33:55 +0200
+# Platform: rbx 2.0.0.rc1
+#
+RubyLint.global_scope.define_constant('String::Rationalizer::SPACE') do |klass|
 end

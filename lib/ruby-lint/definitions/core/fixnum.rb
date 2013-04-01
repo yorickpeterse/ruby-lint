@@ -1,7 +1,7 @@
 ##
 # Constant: Fixnum
-# Created:  2013-03-26 22:45:01 +0100
-# Platform: rubinius 2.0.0.rc1 (1.9.3 cbee9a2d yyyy-mm-dd JI) [x86_64-unknown-linux-gnu]
+# Created:  2013-04-01 18:33:54 +0200
+# Platform: rbx 2.0.0.rc1
 #
 RubyLint.global_scope.define_constant('Fixnum') do |klass|
   klass.inherits(RubyLint.global_constant('Integer'))
@@ -137,4 +137,20 @@ RubyLint.global_scope.define_constant('Fixnum') do |klass|
   end
 
   klass.define_instance_method('~')
+end
+
+##
+# Constant: Fixnum::MAX
+# Created:  2013-04-01 18:33:54 +0200
+# Platform: rbx 2.0.0.rc1
+#
+RubyLint.global_scope.define_constant('Fixnum::MAX') do |klass|
+end
+
+##
+# Constant: Fixnum::MIN
+# Created:  2013-04-01 18:33:54 +0200
+# Platform: rbx 2.0.0.rc1
+#
+RubyLint.global_scope.define_constant('Fixnum::MIN') do |klass|
 end

@@ -9,11 +9,6 @@ require 'erb'
 
 GEMSPEC = Gem::Specification.load('ruby-lint.gemspec')
 
-DEFINITION_TEMPLATE = File.expand_path(
-  '../lib/ruby-lint/template/definition.erb',
-  __FILE__
-)
-
 Dir['./task/*.rake'].each do |task|
   import(task)
 end

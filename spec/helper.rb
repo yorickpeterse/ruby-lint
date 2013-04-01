@@ -40,9 +40,12 @@ end
 # @return [RubyLint::Definition::RubyObject]
 #
 def build_definitions(code)
+  loader   = RubyLint::ConstantLoader.new
   iterator = RubyLint::DefinitionsBuilder.new
+  ast      = parse(code, false)
 
-  iterator.iterate(parse(code, false))
+  loader.iterate(ast)
+  iterator.iterate(ast)
 
   return iterator.options[:definitions]
 end

@@ -587,6 +587,7 @@ module RubyLint
     def initial_definitions
       definitions = Definition::RubyObject.new(
         :name          => 'root',
+        :type          => :root,
         :parents       => [RubyLint.global_constant('Kernel')],
         :instance_type => :instance
       )

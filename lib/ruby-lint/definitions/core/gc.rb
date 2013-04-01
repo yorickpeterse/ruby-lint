@@ -1,7 +1,7 @@
 ##
 # Constant: GC
-# Created:  2013-03-26 22:45:01 +0100
-# Platform: rubinius 2.0.0.rc1 (1.9.3 cbee9a2d yyyy-mm-dd JI) [x86_64-unknown-linux-gnu]
+# Created:  2013-04-01 18:33:54 +0200
+# Platform: rbx 2.0.0.rc1
 #
 RubyLint.global_scope.define_constant('GC') do |klass|
 
@@ -28,4 +28,30 @@ RubyLint.global_scope.define_constant('GC') do |klass|
   end
 
   klass.define_instance_method('garbage_collect')
+end
+
+##
+# Constant: GC::Profiler
+# Created:  2013-04-01 18:33:54 +0200
+# Platform: rbx 2.0.0.rc1
+#
+RubyLint.global_scope.define_constant('GC::Profiler') do |klass|
+
+  klass.define_method('__module_init__')
+
+  klass.define_method('clear')
+
+  klass.define_method('disable')
+
+  klass.define_method('enable')
+
+  klass.define_method('enabled?')
+
+  klass.define_method('report') do |method|
+    method.define_optional_argument('out')
+  end
+
+  klass.define_method('result')
+
+  klass.define_method('total_time')
 end
