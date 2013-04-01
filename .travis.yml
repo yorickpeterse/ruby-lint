@@ -4,16 +4,12 @@ script: rake
 rvm:
   - 1.9.3
   - 2.0.0
-  - jruby-19mode
   - jruby-head
-  - rbx-head
 
 matrix:
   allow_failures:
-    - rvm: jruby-19mode
     - rvm: 2.0.0
     - rvm: jruby-head
-    - rvm: rbx-head
 
 notifications:
   email:
