@@ -82,8 +82,12 @@ module RubyLint
         end
 
         run do |opts, args|
-          puts self
-          exit
+          if args.empty?
+            puts self
+            exit
+          else
+            CLI.options.commands['analyze'].parse(args)
+          end
         end
       end
     end
