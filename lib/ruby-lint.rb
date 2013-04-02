@@ -1,4 +1,5 @@
 require 'ripper'
+require 'ast/node'
 
 require_relative 'ruby-lint/extensions/string'
 
