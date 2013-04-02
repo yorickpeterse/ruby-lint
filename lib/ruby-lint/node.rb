@@ -29,13 +29,6 @@ module RubyLint
     attr_reader :file
 
     ##
-    # @return [Array]
-    #
-    def to_a
-      return children
-    end
-
-    ##
     # @return [String]
     #
     def name
