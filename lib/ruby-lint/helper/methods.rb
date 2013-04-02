@@ -6,6 +6,7 @@ module RubyLint
     #
     module Methods
       include CurrentScope
+      include Conversion
 
       ##
       # Checks if the method for the given node is defined or not.
@@ -17,7 +18,7 @@ module RubyLint
         scope = method_scope(node)
 
         if scope
-          return scope.has_definition?(node.method_type, node.name)
+          return scope.has_definition?(scope.method_call_type, node.name)
         else
           return false
         end
@@ -33,8 +34,6 @@ module RubyLint
         return method_scope(node).lookup(node.method_type, node.name)
       end
 
-      private
-
       ##
       # Determines the scope to use for a method call.
       #
@@ -42,10 +41,26 @@ module RubyLint
       # @return [RubyLint::Definition::RubyObject]
       #
       def method_scope(node)
-        scope = current_scope
+        return node.receiver ? method_receiver(node.receiver) : current_scope
+      end
 
-        if node.receiver
-          scope = scope.lookup(node.receiver.type, node.receiver.name)
+      ##
+      # Tries to determine the receiver definition of a method call.
+      #
+      # @param [RubyLint::Node|Array] receiver
+      # @return [RubyLint::Definition::RubyObject]
+      #
+      def method_receiver(receiver)
+        receiver = receiver.is_a?(Array) ? receiver[0] : receiver
+        scope    = instance_for_ruby_type(receiver)
+
+        if !scope
+          scope = current_scope.lookup(receiver.type, receiver.name)
+        end
+
+        # Last resort, try to load the receiver as a global constant.
+        if !scope and receiver.constant?
+          scope = RubyLint.global_constant(receiver.name)
         end
 
         return scope

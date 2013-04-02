@@ -43,6 +43,23 @@ module RubyLint
       :aref
     ]
 
+    ##
+    # Hash containing various Node types and the associated Ruby classes.
+    #
+    # @return [Hash]
+    #
+    RUBY_CLASSES = {
+      :string  => 'String',
+      :symbol  => 'Symbol',
+      :integer => 'Fixnum',
+      :float   => 'Float',
+      :regexp  => 'Regexp',
+      :array   => 'Array',
+      :hash    => 'Hash',
+      :range   => 'Range',
+      :lambda  => 'Proc'
+    }
+
     (VARIABLE_TYPES + PREDICATE_METHODS).each do |type|
       define_method("#{type}?") do
         return @type == type
@@ -80,6 +97,13 @@ module RubyLint
     #
     def collection?
       return array? || hash?
+    end
+
+    ##
+    # @return [String]
+    #
+    def ruby_class
+      return RUBY_CLASSES[type]
     end
   end # VariablePredicates
 end # RubyLint

@@ -19,6 +19,7 @@ require_relative 'ruby-lint/definition/ruby_object'
 require_relative 'ruby-lint/definition/ruby_method'
 require_relative 'ruby-lint/definitions/core'
 
+require_relative 'ruby-lint/helper/conversion'
 require_relative 'ruby-lint/helper/current_scope'
 require_relative 'ruby-lint/helper/constant_paths'
 require_relative 'ruby-lint/helper/methods'

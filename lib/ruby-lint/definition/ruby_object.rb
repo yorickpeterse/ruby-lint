@@ -41,6 +41,11 @@ module RubyLint
     # @!attribute [r] type
     #  @return [Symbol] The type of object, e.g. `:constant`.
     #
+    # @!attribute [r] ignore
+    #  @return [TrueClass|FalseClass] When set to `true` the definition should
+    #   be ignored by any analysis related code. This is mostly used when no
+    #   meaningful data could be assigned (e.g. block arguments).
+    #
     # @!attribute [r] definitions
     #  @return [Hash] Hash containing all child the definitions.
     #
@@ -88,6 +93,7 @@ module RubyLint
       attr_reader :column,
         :definitions,
         :file,
+        :ignore,
         :line,
         :name,
         :node,
@@ -110,12 +116,13 @@ module RubyLint
           node          = node.children[-1]
         end
 
-        options[:node]   = node
-        options[:name]   = node.name
-        options[:file]   = node.file
-        options[:line]   = node.line || 1
-        options[:column] = node.column || 0
-        options[:type]   = node.type
+        options[:node] = node
+
+        options[:name]   ||= node.name
+        options[:file]   ||= node.file
+        options[:line]   ||= node.line || 1
+        options[:column] ||= node.column || 0
+        options[:type]   ||= node.type
 
         # Checking to see if :value evaluates to `true` would mean you could
         # never manually assign a nil value.
@@ -454,10 +461,11 @@ module RubyLint
       # Creates a new definition object based on the current one that
       # represents an instance of a Ruby value (instead of a class).
       #
+      # @param [Hash] options
       # @return [RubyLint::Definition::RubyObject]
       #
-      def instance
-        return self.class.new(
+      def instance(options = {})
+        options = {
           :name          => name,
           :type          => type,
           :instance_type => :instance,
@@ -465,7 +473,9 @@ module RubyLint
           :column        => column,
           :value         => value,
           :parents       => [self]
-        )
+        }.merge(options)
+
+        return self.class.new(options)
       end
 
       ##

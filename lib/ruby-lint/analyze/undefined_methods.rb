@@ -7,26 +7,45 @@ module RubyLint
       include Helper::Methods
 
       ##
-      # Hash containing the method definition/call types and their human
-      # readable names.
-      #
-      # @return [Hash]
-      #
-      METHOD_TYPES = {
-        :instance_method => 'instance method',
-        :method          => 'method'
-      }
-
-      ##
       # @param [RubyLint::Node] node
       #
       def on_method(node)
-        unless method_defined?(node)
-          return error(
-            "undefined #{METHOD_TYPES[node.method_type]} #{node.name}",
-            node
-          )
+        valid = method_defined?(node)
+        error = "undefined method #{node.name}"
+
+        # Methods called on block variables should be ignored since these
+        # variables don't carry any class information with them.
+        if !valid and node.receiver
+          receiver = method_receiver(node.receiver)
+          valid    = receiver && receiver.ignore
+
+          if receiver
+            error = receiver_error(node.name, receiver)
+          end
         end
+
+        error(error, node) unless valid
+      end
+
+      private
+
+      ##
+      # Creates an error message for a method call on a receiver.
+      #
+      # @param [String] name
+      # @param [RubyLint::Definition::RubyObject] receiver
+      # @return [String]
+      #
+      def receiver_error(name, receiver)
+        error         = "undefined method #{name} on #{receiver.name}"
+        receiver_name = receiver.ruby_class || receiver.name
+
+        if receiver.instance?
+          error = "undefined method #{name} on an instance " \
+            "of #{receiver_name}"
+        end
+
+        return error
       end
     end # UndefinedMethods
   end # Analyze

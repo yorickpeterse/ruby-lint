@@ -190,8 +190,9 @@ module RubyLint
       scope  = definitions
       method = Definition::RubyMethod.new_from_node(
         node,
-        :parents     => [scope],
-        :method_type => call_type
+        :parents       => [scope],
+        :method_type   => call_type,
+        :instance_type => :instance
       )
 
       if method.receiver
@@ -334,6 +335,32 @@ module RubyLint
     end
 
     ##
+    # Creates a new scope for the block's body.
+    #
+    # @param [RubyLint::Node] node
+    #
+    def on_block(node)
+      block = Definition::RubyObject.new_from_node(node, :name => 'block')
+
+      node.each_argument do |arg|
+        variable = Definition::RubyObject.new_from_node(arg, :ignore => true)
+
+        block.add(arg.type, arg.name, variable)
+      end
+
+      associate_node_definition(node, block)
+
+      @definitions << block
+    end
+
+    ##
+    # @param [RubyLint::Node] node
+    #
+    def after_block(node)
+      @definitions.pop
+    end
+
+    ##
     # Includes/extends a module when the `include` or `extend` method is
     # called.
     #
@@ -392,8 +419,14 @@ module RubyLint
 
       var_def = create_variable_definition(variable, value)
 
+      # Certain types (the core Ruby types in particular) should be turned into
+      # instances when used for assigning a variable.
       if create_instance?(var_def)
+        val_def = RubyLint.global_constant(var_def.value.ruby_class)
+
         var_def.value.instance!
+
+        var_def.value.parents << val_def.instance if val_def
       end
 
       if value and value.collection?
@@ -498,7 +531,7 @@ module RubyLint
     def create_instance?(definition)
       val = definition.value
 
-      return val && (val.collection? || val.scalar?)
+      return val && val.ruby_class
     end
 
     ##

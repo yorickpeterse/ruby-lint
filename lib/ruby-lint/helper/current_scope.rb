@@ -43,7 +43,7 @@ module RubyLint
         @scopes = []
       end
 
-      [:root, :module, :class, :sclass, :method_definition].each do |type|
+      [:root, :module, :class, :sclass, :method_definition, :block].each do |type|
         define_method("on_#{type}") do |node|
           set_current_scope(node)
         end

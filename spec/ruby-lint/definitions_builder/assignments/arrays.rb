@@ -1,6 +1,15 @@
 require File.expand_path('../../../../helper', __FILE__)
 
 describe 'Building variable definitions' do
+  should 'assign arrays as instances' do
+    defs  = build_definitions('numbers = []')
+    value = defs.lookup(:local_variable, 'numbers').value
+
+    value.instance?.should == true
+
+    value.has_definition?(:instance_method, 'each').should == true
+  end
+
   describe 'array index assignments' do
     should 'process single index assignments' do
       code = <<-CODE
