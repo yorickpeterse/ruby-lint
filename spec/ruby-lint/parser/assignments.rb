@@ -130,8 +130,6 @@ describe 'Parsing variable assignments' do
   end
 
   should 'parse assigning one value to an expander and two local variables' do
-    $derp = true
-
     parse('*numbers, number, numberx = 10').should == s(
       :mass_assign,
       s(:assign, s(:local_variable, 'numbers'), s(:array)),
