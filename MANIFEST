@@ -172,6 +172,7 @@ lib/ruby-lint/definitions/core/zero_division_error.rb
 lib/ruby-lint/definitions_builder.rb
 lib/ruby-lint/extensions/string.rb
 lib/ruby-lint/helper/constant_paths.rb
+lib/ruby-lint/helper/conversion.rb
 lib/ruby-lint/helper/current_scope.rb
 lib/ruby-lint/helper/methods.rb
 lib/ruby-lint/inspector.rb
