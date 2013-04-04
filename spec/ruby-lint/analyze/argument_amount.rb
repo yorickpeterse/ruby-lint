@@ -69,4 +69,16 @@ example(10, 20, 30)
 
     report.entries.length.should == 0
   end
+
+  should 'take variable assignments into account' do
+    code = <<-CODE
+name = 'Ruby'
+
+name.downcase
+    CODE
+
+    report = build_report(code, RubyLint::Analyze::ArgumentAmount)
+
+    report.entries.empty?.should == true
+  end
 end

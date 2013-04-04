@@ -16,7 +16,6 @@ module RubyLint
       #
       def method_defined?(node)
         scope = method_scope(node)
-        scope = scope.variable? ? scope.value : scope
 
         if scope
           return scope.has_definition?(scope.method_call_type, node.name)
@@ -32,7 +31,9 @@ module RubyLint
       # @return [RubyLint::Definition::RubyMethod]
       #
       def lookup_method(node)
-        return method_scope(node).lookup(node.method_type, node.name)
+        scope = method_scope(node)
+
+        return scope.lookup(scope.method_call_type, node.name)
       end
 
       ##
@@ -42,7 +43,9 @@ module RubyLint
       # @return [RubyLint::Definition::RubyObject]
       #
       def method_scope(node)
-        return node.receiver ? method_receiver(node.receiver) : current_scope
+        scope = node.receiver ? method_receiver(node.receiver) : current_scope
+
+        return scope.variable? && scope.value ? scope.value : scope
       end
 
       ##
