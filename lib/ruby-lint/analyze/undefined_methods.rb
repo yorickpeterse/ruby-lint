@@ -19,6 +19,10 @@ module RubyLint
           receiver = method_receiver(node.receiver)
           valid    = receiver && receiver.ignore
 
+          if receiver.variable? and receiver.value
+            receiver = receiver.value
+          end
+
           if receiver
             error = receiver_error(node.name, receiver)
           end

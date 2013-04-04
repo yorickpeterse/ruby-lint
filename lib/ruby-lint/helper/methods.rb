@@ -16,6 +16,7 @@ module RubyLint
       #
       def method_defined?(node)
         scope = method_scope(node)
+        scope = scope.variable? ? scope.value : scope
 
         if scope
           return scope.has_definition?(scope.method_call_type, node.name)
