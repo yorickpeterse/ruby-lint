@@ -43,7 +43,22 @@ module RubyLint
         @scopes = []
       end
 
-      [:root, :module, :class, :sclass, :method_definition, :block].each do |type|
+      ##
+      # Array containing the callback names for which a new scope should be
+      # created.
+      #
+      # @return [Array<Symbol>]
+      #
+      SCOPES = [
+        :block,
+        :class,
+        :method_definition,
+        :module,
+        :root,
+        :sclass
+      ]
+
+      SCOPES.each do |type|
         define_method("on_#{type}") do |node|
           set_current_scope(node)
         end

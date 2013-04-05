@@ -6,6 +6,8 @@
 --private
 --protected
 --asset ./doc/css/common.css:css/common.css
+--exclude lib/ruby-lint/definitions/core
+--verbose
 -
 ./doc/*.md
 LICENSE

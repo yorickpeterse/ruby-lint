@@ -1,7 +1,15 @@
 module RubyLint
   module Analyze
     ##
-    # Analysis class that checks for the use of undefined methods.
+    # The UndefinedMethods class checks for the use of undefined methods/local
+    # variables and adds errors whenever needed. Based on the receiver of a
+    # method call the corresponding error message differs to make it easier to
+    # understand what is going on.
+    #
+    # A simple example:
+    #
+    #     foobar        # => undefined method foobar
+    #     'test'.foobar # => undefined method foobar on an instance of String
     #
     class UndefinedMethods < Iterator
       include Helper::Methods

@@ -1,8 +1,16 @@
 module RubyLint
   module Analyze
     ##
-    # Adds warnings whenever a variable defined in a block shadows another
-    # variable defined in the outer scope.
+    # The ShadowingVariables class checks for the use of variables in a block
+    # that shadow outer variables. "Shadowing" means that a variable is used
+    # with the same name as a variable in the surrounding scope. A simple
+    # example:
+    #
+    #     number = 10
+    #
+    #     [10, 20, 30].each do |number|
+    #       puts number # `number` is being shadowed
+    #     end
     #
     class ShadowingVariables < Iterator
       include Helper::CurrentScope

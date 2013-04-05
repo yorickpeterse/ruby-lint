@@ -308,7 +308,7 @@ module RubyLint
     # Called when a value is assigned to an object member.
     #
     # @param [RubyLint::Node] variable
-    # @param [RubyLint::Node] values
+    # @param [RubyLint::Node] value
     #
     def on_field_assign(variable, value)
       object, member = *variable

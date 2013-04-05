@@ -17,7 +17,7 @@ module RubyLint
     ##
     # Provides a small block based DSL for registering multiple names.
     #
-    # @param [String] namespace The namespace to store the names under.
+    # @param [String] scope The scope to store the names under.
     # @see RubyLint::Configuration.names
     #
     def self.register_names(scope)

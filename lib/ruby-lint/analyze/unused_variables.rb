@@ -1,8 +1,9 @@
 module RubyLint
   module Analyze
     ##
-    # {RubyLint::Analyze::UnusedVariables} checks Ruby source code for any
-    # unused variables.
+    # The UnusedVariables class checks for variables that are defined but never
+    # used. Whenever it finds one of these variables it will add a
+    # corresponding warning message.
     #
     class UnusedVariables < Iterator
       include Helper::CurrentScope

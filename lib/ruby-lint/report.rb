@@ -117,7 +117,7 @@ module RubyLint
     # @param [Symbol] name
     # @param [Array] args
     # @param [Proc] block
-    # @raise NoMethodError Raised when an invalid method was called.
+    # @raise [NoMethodError] Raised when an invalid method was called.
     #
     def method_missing(name, *args, &block)
       if valid_level?(name)

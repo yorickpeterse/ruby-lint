@@ -5,7 +5,6 @@ require File.expand_path('../lib/ruby-lint/definition_generator', __FILE__)
 require 'yaml'
 require 'rubygems/package_task'
 require 'digest/sha2'
-require 'erb'
 
 GEMSPEC = Gem::Specification.load('ruby-lint.gemspec')
 

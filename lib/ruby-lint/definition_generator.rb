@@ -1,13 +1,37 @@
 require 'fileutils'
+require 'erb'
 require_relative 'template/scope'
 
 module RubyLint
   ##
+  # The DefinitionGenerator class is used for generating definitions based on
+  # the data that is available in the current Ruby runtime. Using this
+  # generator the otherwise painful and time consuming task of adding
+  # definitions for large projects (e.g. Ruby itself or Rails) becomes very
+  # easy up to the point where it will only take a minute or two.
   #
+  # Note that this generator works best on Ruby implementations that provide
+  # accurate parameter information using `UnboundMethod#parameters`. Currently
+  # the only implementation where this is the case is Rubinius HEAD. Both MRI
+  # and Jruby provide inaccurate information.
+  #
+  # @!attribute [r] directory
+  #  @return [String] The directory to store the generated definitions in.
+  # @!attribute [r] options
+  #  @return [Hash]
+  # @!attribute [String] template
+  #  @return [String] The filepath to the ERB template to use.
+  # @!attribute [r] inspector
+  #  @return [RubyLint::Inspector]
   #
   class DefinitionGenerator
     attr_reader :directory, :options, :template, :inspector
 
+    ##
+    # @param [Class] constant
+    # @param [String] directory
+    # @param [Hash] options
+    #
     def initialize(constant, directory, options = {})
       @options   = default_options.merge(options)
       @inspector = Inspector.new(constant)
@@ -15,7 +39,6 @@ module RubyLint
       @template  = File.read(
         File.expand_path('../template/definition.erb', __FILE__)
       )
-
     end
 
     ##

@@ -1,8 +1,8 @@
 module RubyLint
   module Definition
     ##
-    # Definition class used for storing information about both method calls and
-    # definitions.
+    # The RubyMethod definition class is a definition class used for storing
+    # information about Ruby methods (both class and instance methods).
     #
     # @see RubyLint::Definition::RubyObject
     #
@@ -141,6 +141,11 @@ module RubyLint
       # used as the return value. The block is *not* evaluated until it's
       # called.
       #
+      # @example
+      #  string.define_instance_method(:gsub) do |method|
+      #    method.returns('...')
+      #  end
+      #
       # @param [Mixed] value
       #
       def returns(value = nil, &block)
@@ -149,6 +154,9 @@ module RubyLint
 
       ##
       # Defines a required argument for the method.
+      #
+      # @example
+      #  method.define_argument('number')
       #
       # @param [String] name The name of the argument.
       #

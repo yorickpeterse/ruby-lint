@@ -1,8 +1,9 @@
 module RubyLint
   module Analyze
     ##
-    # Analysation class that validations the amount of specified and required
-    # arguments of a method call.
+    # The ArgumentAmount class is an analysis class that verifies the amount of
+    # arguments given with each method call and adds errors whenever an invalid
+    # amount was given.
     #
     class ArgumentAmount < Iterator
       include Helper::Methods

@@ -168,7 +168,7 @@ module RubyLint
     #
     # @param [String] constant
     # @return [Class]
-    # @raise ArgumentError Raised when one of the segments doesn't exist.
+    # @raise [ArgumentError] Raised when one of the segments doesn't exist.
     #
     def resolve_constant(constant)
       current = Object

@@ -1,23 +1,31 @@
 module RubyLint
   module Definition
     ##
-    # RubyObject is the base definition class used for storing information
-    # about Ruby definitions such as variables and methods.
+    # The RubyObject class is the base definition class of ruby-lint. These so
+    # called definition classes are used for storing information about Ruby
+    # classes and instances. At their most basic form they are a mix between
+    # {RubyLint::Node} and a lookup table.
     #
-    # ruby-lint comes with various definition classes, each serving a specific
-    # purpose:
+    # ruby-lint currently provides the following two definition classes:
     #
-    # * {RubyLint::Definition::RubyObject}: the base class for all definition
-    #   classes, also used for generic data such as integers and strings.
-    # * {RubyLint::Definition::RubyMethod}: definition class used for method
-    #   definitions and method calls.
+    # * {RubyLint::Definition::RubyObject}: the base definition class, used for
+    #   most Ruby types and values.
+    # * {RubyLint::Definition::RubyMethod} definition class that is used for
+    #   methods exclusively.
     #
-    # The usage of all these classes is the same. Data can be added using
-    # {RubyLint::Definition::RubyObject#add} while retrieving data is done
-    # using {RubyLint::Definition::RubyObject#lookup}. Note that some classes
-    # might have slightly different constructor methods.
+    # Using the RubyObject class one could create a definition for the String
+    # class as following:
     #
-    # @todo Update documentation
+    #     string  = RubyObject.new(:name => 'String', :type => :constant)
+    #     newline = RubyObject.new(
+    #       :name  => 'NEWLINE',
+    #       :type  => :constant,
+    #       :value => "\n"
+    #     )
+    #
+    #     string.add(:constant, newline.name, newline)
+    #
+    # For more information see the documentation of the corresponding methods.
     #
     # @!attribute [r] node
     #  @return [RubyLint::Node] The node used for creating the object.
@@ -106,7 +114,13 @@ module RubyLint
         :reference_amount
 
       ##
-      # @param [RubyLint::Node] node The node that this instance belongs to.
+      # Creates a new RubyObject instance based on an instance of
+      # {RubyLint::Node}. This method is primarily used in
+      # {RubyLint::DefinitionsBuilder}, in most cases third-party code should
+      # not have a need for this method.
+      #
+      # @param [RubyLint::Node] node
+      # @return [RubyLint::Definition::RubyObject]
       #
       def self.new_from_node(node, options = {})
         path_segments = []
@@ -151,11 +165,11 @@ module RubyLint
       end
 
       ##
-      # Convert each value of the current definition into a definition
-      # instance.
+      # Converts either a single {RubyLint::Node} instance or a collection of
+      # instances into {RubyObject} instances.
       #
-      # @param [RubyLint::Node|Array] value
-      # @return [Mixed]
+      # @param [RubyLint::Node|Array<RubyLint::Node>] value
+      # @return [RubyLint::Node|Array<RubyLint::Node>]
       #
       def self.create_value_definitions(value)
         if value.is_a?(Array)
@@ -168,15 +182,14 @@ module RubyLint
       end
 
       ##
+      # @example
+      #  string = RubyObject.new(:name => 'String', :type => :constant)
+      #
       # @param [Hash] options Hash containing additional options such as the
-      #  parent definitions.
+      #  parent definitions. For a list of available options see the
+      #  corresponding getter/setter methods of this class.
       #
       # @yieldparam [RubyLint::Definition::RubyObject]
-      #
-      # @option options [Array] :parents The parent definitions.
-      # @option options [RubyLint::Node|RubyLint::Definition::RubyObject]
-      #  :value The custom value to use for the object, set to the output of
-      #  {RubyLint::Node#children} by default.
       #
       def initialize(options = {})
         options = default_options.merge(options)
@@ -201,12 +214,26 @@ module RubyLint
       end
 
       ##
-      # Adds a new definition to the list.
+      # Adds a new definition to the definitions list.
+      #
+      # @example
+      #  string  = RubyObject.new(:name => 'String', :type => :constant)
+      #  newline = RubyObject.new(
+      #    :name  => 'NEWLINE',
+      #    :type  => :constant,
+      #    :value => "\n"
+      #  )
+      #
+      #  string.add(newline.type, newline.name, newline)
       #
       # @param [#to_sym] type The type of definition to add.
       # @param [String] name The name of the definition.
-      # @param [RubyLint::Definition::RubyObject] value The value to store
-      #  under the specified name.
+      # @param [RubyLint::Definition::RubyObject] value
+      #
+      # @raise [TypeError] Raised when a value that is not a RubyObject
+      #  instance (or a subclass of this class) is given.
+      #
+      # @raise [ArgumentError] Raised when the specified type was invalid.
       #
       def add(type, name, value)
         type = prepare_type(type)
@@ -223,10 +250,26 @@ module RubyLint
       end
 
       ##
-      # Looks up the given definition.
+      # Looks up a definition by the given type and name. If no data was found
+      # this method will try to look it up in any parent definitions.
       #
-      # @param [#to_sym] type The type of definition to look up.
-      # @param [String] name The name of the definition to look up.
+      # If no definition was found `nil` will be returned.
+      #
+      # @example
+      #  string  = RubyObject.new(:name => 'String', :type => :constant)
+      #  newline = RubyObject.new(
+      #    :name  => 'NEWLINE',
+      #    :type  => :constant,
+      #    :value => "\n"
+      #  )
+      #
+      #  string.add(newline.type, newline.name, newline)
+      #
+      #  string.lookup(:constant, 'NEWLINE') # => #<RubyLint::Definition...>
+      #
+      # @param [#to_sym] type
+      # @param [String] name
+      # @return [RubyLint::Definition::RubyObject|NilClass]
       #
       def lookup(type, name)
         type, name = prepare_lookup(type, name)
@@ -254,9 +297,13 @@ module RubyLint
       # Returns the definition for the given constant path. If one of the
       # segments does not exist an error is raised instead.
       #
-      # @param [String|Array] path
+      # @example
+      #  example.lookup_constant_path('A::B') # => #<RubyLint::Definition...>
+      #
+      # @param [String|Array<String>] path
       # @return [RubyLint::Definition::RubyObject]
-      # @raise ArgumentError Raised when an invalid constant path is specified.
+      # @raise [ArgumentError] Raised when an invalid constant path is
+      #  specified.
       #
       def lookup_constant_path(path)
         constant = self
@@ -308,8 +355,11 @@ module RubyLint
       # Returns `true` if the current definition list or one of the parents has
       # the specified definition.
       #
-      # @param [#to_sym] type The type of data to look up.
-      # @param [String] name The name of the definition.
+      # @example
+      #  string.has_definition?(:instance_method, 'downcase') # => true
+      #
+      # @param [#to_sym] type
+      # @param [String] name
       # @return [TrueClass|FalseClass]
       #
       def has_definition?(type, name)
@@ -360,9 +410,10 @@ module RubyLint
 
       ##
       # Checks if the specified definition is defined in the current object,
-      # ignoring the definitions of any parent objects.
+      # ignoring data in any parent definitions.
       #
       # @see RubyLint::Definition::RubyObject#has_definition?
+      # @return [TrueClass|FalseClass]
       #
       def defines?(type, name)
         type, name = prepare_lookup(type, name)
@@ -374,7 +425,10 @@ module RubyLint
       # Returns a list of all the definitions for the specific type.  This list
       # excludes anything defined in parent definitions.
       #
-      # @param [#to_sym] type The type of definitions to retrieve.
+      # @example
+      #  string.list(:instance_method) # => [..., ..., ...]
+      #
+      # @param [#to_sym] type
       # @return [Array]
       #
       def list(type)
@@ -382,7 +436,7 @@ module RubyLint
       end
 
       ##
-      # Returns the length of an attribute.
+      # Returns the length of an attribute or 0.
       #
       # @param [#to_sym] attribute
       # @return [Numeric]
@@ -394,7 +448,7 @@ module RubyLint
       end
 
       ##
-      # Removes all the stored child definitions.
+      # Resets the list of definitions for the current RubyObject instance.
       #
       def clear!
         @definitions = {
@@ -440,8 +494,15 @@ module RubyLint
       end
 
       ##
-      # Returns an array containing the "path" of all receivers from left to
-      # right.
+      # Returns an Array containing all the receivers of the current
+      # definition. These receivers are sorted from left to right. For example,
+      # assume the following:
+      #
+      #     a.b.c
+      #
+      # In this case the return value would be as following:
+      #
+      #     [a, b, c]
       #
       # @return [Array]
       #
@@ -461,7 +522,7 @@ module RubyLint
       # Creates a new definition object based on the current one that
       # represents an instance of a Ruby value (instead of a class).
       #
-      # @param [Hash] options
+      # @param [Hash] options Attributes to override in the new definition.
       # @return [RubyLint::Definition::RubyObject]
       #
       def instance(options = {})
@@ -490,6 +551,9 @@ module RubyLint
       ##
       # Defines a new child constant.
       #
+      # @example
+      #  string.define_constant('NEWLINE')
+      #
       # @param [String] name
       # @return [RubyLint::Definition::RubyObject]
       #
@@ -508,6 +572,9 @@ module RubyLint
       ##
       # Defines a new global variable in the current definition.
       #
+      # @example
+      #  string.define_global_variable('$name', '...')
+      #
       # @param [String] name
       # @param [Mixed] value
       #
@@ -516,7 +583,10 @@ module RubyLint
       end
 
       ##
-      # Defines a new child method.
+      # Defines a new class method.
+      #
+      # @example
+      #  string.define_method(:new)
       #
       # @param [String] name
       # @return [RubyLint::Definition::RubyMethod]
@@ -526,7 +596,10 @@ module RubyLint
       end
 
       ##
-      # Defines a new child instance method.
+      # Defines a new instance method.
+      #
+      # @example
+      #  string.define_instance_method(:gsub)
       #
       # @see RubyLint::Definition::RubyObject#define_method
       #
