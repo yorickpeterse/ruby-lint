@@ -56,7 +56,7 @@ command.
 Using ruby-lint from the CLI is very easy. To analyze a set of files
 you run the following:
 
-    $ ruby-lint analyze file1.rb file2.rb
+    $ ruby-lint file1.rb file2.rb
 
 For more information specify either the `-h` or `--help` option.
 
