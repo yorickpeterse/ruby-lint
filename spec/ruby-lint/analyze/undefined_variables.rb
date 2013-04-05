@@ -66,4 +66,22 @@ A::B
     entry.column.should  == 3
     entry.message.should == 'undefined constant B'
   end
+
+  should 'not depend on the order of variable definitions' do
+    code = <<-CODE
+class Person
+  def first
+    @number = 10
+  end
+
+  def second
+    return @number
+  end
+end
+    CODE
+
+    report = build_report(code, RubyLint::Analyze::UndefinedVariables)
+
+    report.entries.empty?.should == true
+  end
 end
