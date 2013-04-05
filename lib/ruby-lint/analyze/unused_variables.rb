@@ -28,7 +28,7 @@ module RubyLint
           variable = current_scope.lookup(node.type, node.name)
 
           if variable and !variable.used?
-            warning("unused #{label} #{variable.name}", variable)
+            warning("unused #{label} #{node.name}", node)
           end
         end
       end

@@ -27,24 +27,11 @@ module RubyLint
     #
     # For more information see the documentation of the corresponding methods.
     #
-    # @!attribute [r] node
-    #  @return [RubyLint::Node] The node used for creating the object.
-    #
     # @!attribute [r] name
     #  @return [String] The name of the object.
     #
     # @!attribute [rw] value
     #  @return [Mixed] The value of the object.
-    #
-    # @!attribute [r] file
-    #  @return [String] The path to the file in which the objects source is
-    #   located.
-    #
-    # @!attribute [r] line
-    #  @return [Numeric]
-    #
-    # @!attribute [r] column
-    #  @return [Numeric]
     #
     # @!attribute [r] type
     #  @return [Symbol] The type of object, e.g. `:constant`.
@@ -100,11 +87,8 @@ module RubyLint
 
       attr_reader :column,
         :definitions,
-        :file,
         :ignore,
-        :line,
         :name,
-        :node,
         :type,
         :value
 
@@ -130,13 +114,8 @@ module RubyLint
           node          = node.children[-1]
         end
 
-        options[:node] = node
-
-        options[:name]   ||= node.name
-        options[:file]   ||= node.file
-        options[:line]   ||= node.line || 1
-        options[:column] ||= node.column || 0
-        options[:type]   ||= node.type
+        options[:name] ||= node.name
+        options[:type] ||= node.type
 
         # Checking to see if :value evaluates to `true` would mean you could
         # never manually assign a nil value.
@@ -530,8 +509,6 @@ module RubyLint
           :name          => name,
           :type          => type,
           :instance_type => :instance,
-          :line          => line,
-          :column        => column,
           :value         => value,
           :parents       => [self]
         }.merge(options)
@@ -711,11 +688,7 @@ module RubyLint
       #
       def default_options
         return {
-          :column            => 0,
-          :file              => '',
           :instance_type     => :class,
-          :line              => 1,
-          :node              => nil,
           :parents           => [],
           :receiver          => nil,
           :reference_amount  => 0,

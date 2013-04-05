@@ -10,27 +10,12 @@ describe RubyLint::Definition::RubyObject do
     @object = RubyLint::Definition::RubyObject.new(
       :type   => :local_variable,
       :name   => 'hello',
-      :line   => 5,
-      :column => 2,
-      :file   => '(test)',
       :value  => value
     )
   end
 
   should 'return the name of the object' do
     @object.name.should == 'hello'
-  end
-
-  should 'return the file path' do
-    @object.file.should == '(test)'
-  end
-
-  should 'return the line number' do
-    @object.line.should == 5
-  end
-
-  should 'return the column number' do
-    @object.column.should == 2
   end
 
   should 'return the object type' do
