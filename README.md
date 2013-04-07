@@ -84,6 +84,13 @@ Noteworthy constants:
 * {RubyLint::Report}
 * {RubyLint::Presenter::Text}
 
+Helper modules:
+
+* {RubyLint::Helper::ConstantPaths}
+* {RubyLint::Helper::Conversion}
+* {RubyLint::Helper::CurrentScope}
+* {RubyLint::Helper::Methods}
+
 ## License
 
 All source code in this repository is licensed under the MIT license unless
