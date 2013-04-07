@@ -74,6 +74,15 @@ of AST nodes), are either unmaintained or severely limited in what they can do.
 ## Documentation
 
 * {file:contributing Contributing}
+* {file:architecture Architecture}
+* {file:code\_analysis Code Analysis}
+
+Noteworthy constants:
+
+* {RubyLint::Node}
+* {RubyLint::Iterator}
+* {RubyLint::Report}
+* {RubyLint::Presenter::Text}
 
 ## License
 

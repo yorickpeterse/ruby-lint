@@ -254,6 +254,7 @@ spec/ruby-lint/report/entry.rb
 spec/simplecov_helper.rb
 task/build.rake
 task/checksum.rake
+task/coverage.rake
 task/doc.rake
 task/generate.rake
 task/manifest.rake
