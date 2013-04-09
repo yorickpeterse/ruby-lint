@@ -56,4 +56,30 @@ end
     entry.column.should  == 18
     entry.message.should == 'shadowing outer local variable number'
   end
+
+  should 'not fail when re-using the same block' do
+    code = <<-CODE
+number = 10
+
+A::B.example do |number|
+  number
+end
+
+A::B.example do |number|
+  number
+end
+    CODE
+
+    report = build_report(code, RubyLint::Analyze::ShadowingVariables)
+
+    report.entries.length.should == 2
+
+    first, second = report.entries
+
+    first.line.should    == 3
+    first.column.should  == 17
+
+    second.line.should    == 7
+    second.column.should  == 17
+  end
 end

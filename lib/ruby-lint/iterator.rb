@@ -43,6 +43,8 @@ module RubyLint
   # * `:definitions`: a set of Ruby definitions such as classes and methods.
   # * `:report`: an instance of {RubyLint::Report} that can be used for adding
   #   information about the analyzed code.
+  # * `:node_definitions`: a Hash that associates {RubyLint::Node} instances
+  #   with the corresponding scope.
   #
   # To make it easier to add data to a report sub classes can use the following
   # three methods:

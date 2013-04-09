@@ -24,6 +24,8 @@ module RubyLint
             warning("shadowing outer local variable #{param.name}", param)
           end
         end
+
+        super
       end
     end # ShadowingVariables
   end # Analyze
