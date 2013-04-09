@@ -58,10 +58,12 @@ end
 # @return [RubyLint::Report]
 #
 def build_report(code, iterator)
-  tokens       = parse(code, false)
+  ast          = parse(code, false)
   defs_builder = RubyLint::DefinitionsBuilder.new
+  loader       = RubyLint::ConstantLoader.new
 
-  defs_builder.iterate(tokens)
+  loader.iterate(ast)
+  defs_builder.iterate(ast)
 
   report   = RubyLint::Report.new
   iterator = iterator.new(
@@ -70,7 +72,7 @@ def build_report(code, iterator)
     :node_definitions => defs_builder.options[:node_definitions]
   )
 
-  iterator.iterate(tokens)
+  iterator.iterate(ast)
 
   return report
 end

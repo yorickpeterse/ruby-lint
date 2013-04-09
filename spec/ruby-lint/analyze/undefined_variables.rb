@@ -99,4 +99,11 @@ end
 
     report.entries.empty?.should == true
   end
+
+  should 'not add errors when autoloading constants' do
+    code   = 'Encoding::BIG5'
+    report = build_report(code, RubyLint::Analyze::UndefinedVariables)
+
+    report.entries.empty?.should == true
+  end
 end
