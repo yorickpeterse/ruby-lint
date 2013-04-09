@@ -43,16 +43,21 @@ module RubyLint
         definitions       = current_scope
         @in_constant_path = true
 
+        # The first constant check should take data from parent scopes into
+        # account. The following segments should not.
+        method = :has_definition?
+
         node.children.each do |segment|
           name = segment.name
 
-          unless definitions.defines?(:constant, name)
+          unless definitions.send(method, :constant, name)
             error("undefined constant #{name}", segment)
 
             break
           end
 
           definitions = definitions.lookup(:constant, name)
+          method      = :defines?
         end
       end
 

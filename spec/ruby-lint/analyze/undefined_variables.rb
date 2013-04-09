@@ -71,8 +71,6 @@ A::B
     code   = 'A::B::C'
     report = build_report(code, RubyLint::Analyze::UndefinedVariables)
 
-    puts report.entries.map(&:message).join("\n")
-
     report.entries.length.should == 1
 
     entry = report.entries[0]
@@ -102,6 +100,20 @@ end
 
   should 'not add errors when autoloading constants' do
     code   = 'Encoding::BIG5'
+    report = build_report(code, RubyLint::Analyze::UndefinedVariables)
+
+    report.entries.empty?.should == true
+  end
+
+  should 'not error when inheriting data in a block' do
+    code = <<-CODE
+NUMBER = 10
+
+example_method do
+  NUMBER
+end
+CODE
+
     report = build_report(code, RubyLint::Analyze::UndefinedVariables)
 
     report.entries.empty?.should == true

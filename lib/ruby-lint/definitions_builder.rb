@@ -340,7 +340,11 @@ module RubyLint
     # @param [RubyLint::Node] node
     #
     def on_block(node)
-      block = Definition::RubyObject.new_from_node(node, :name => 'block')
+      block = Definition::RubyObject.new_from_node(
+        node,
+        :name    => 'block',
+        :parents => [definitions]
+      )
 
       node.each_argument do |arg|
         variable = Definition::RubyObject.new_from_node(arg, :ignore => true)
