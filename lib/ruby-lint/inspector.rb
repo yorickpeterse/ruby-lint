@@ -46,18 +46,18 @@ module RubyLint
 
       if include_source
         constants << source_name
-        ignore     = ignore + [source]
+        ignore     = ignore + [source.to_s]
       end
 
       source.constants.each do |name|
         next unless source.const_defined?(name)
 
-        constant = source.const_get(name)
+        constant  = source.const_get(name)
+        name      = name.to_s
+        full_name = include_source ? "#{source_name}::#{name}" : name
 
-        next if ignore.include?(constant)
+        next if ignore.include?(full_name)
 
-        name       = name.to_s
-        full_name  = include_source ? "#{source_name}::#{name}" : name
         ignore    << constant
         constants << full_name
 
