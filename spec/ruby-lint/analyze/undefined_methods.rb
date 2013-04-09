@@ -135,4 +135,12 @@ name.downcasex
     entry.column.should  == 5
     entry.message.should == 'undefined method downcasex on an instance of String'
   end
+
+  should 'not add errors when calling a method on an undefined constant' do
+    code = 'A.example_method'
+
+    report = build_report(code, RubyLint::Analyze::UndefinedMethods)
+
+    report.entries.empty?.should == true
+  end
 end
