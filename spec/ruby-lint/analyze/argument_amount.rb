@@ -81,4 +81,11 @@ name.downcase
 
     report.entries.empty?.should == true
   end
+
+  should 'not validate methods called on undefined receivers' do
+    code   = 'A.example_method'
+    report = build_report(code, RubyLint::Analyze::ArgumentAmount)
+
+    report.entries.empty?.should == true
+  end
 end

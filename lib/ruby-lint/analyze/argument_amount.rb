@@ -12,7 +12,7 @@ module RubyLint
       # @param [RubyLint::Node] node
       #
       def on_method(node)
-        return unless method_defined?(node)
+        return if invalid_receiver?(node) || !method_defined?(node)
 
         definition    = lookup_method(node)
         specified     = node.gather_arguments.length

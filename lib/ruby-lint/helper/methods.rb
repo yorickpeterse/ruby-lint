@@ -25,6 +25,16 @@ module RubyLint
       end
 
       ##
+      # Returns `true` if the method receiver is invalid.
+      #
+      # @param [RubyLint::Node] node
+      # @return [TrueClass|FalseClass]
+      #
+      def invalid_receiver?(node)
+        return node.receiver && !method_receiver(node.receiver)
+      end
+
+      ##
       # Looks up the method definition for the specified method call.
       #
       # @param [RubyLint::Node] node

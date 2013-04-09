@@ -20,7 +20,7 @@ module RubyLint
       def on_method(node)
         # Don't add errors for non existing receivers as these are handled by
         # classes such as UndefinedVariables.
-        return if node.receiver && !method_receiver(node.receiver)
+        return if invalid_receiver?(node)
 
         valid = method_defined?(node)
         error = "undefined method #{node.name}"
