@@ -71,13 +71,14 @@ Examples:
     RubyLint.configuration.set_analysis(opts[:a]) if opts[:a]
 
     files.each do |file|
-      ast          = RubyLint::Parser.new(File.read(file), file).parse
-      defs_builder = RubyLint::DefinitionsBuilder.new
-      loader       = RubyLint::ConstantLoader.new
+      ast = RubyLint::Parser.new(File.read(file), file).parse
+
+      RubyLint::ConstantLoader.new.iterate(ast)
+
       report       = RubyLint.configuration.report
       presenter    = RubyLint.configuration.presenter.new
+      defs_builder = RubyLint::DefinitionsBuilder.new
 
-      loader.iterate(ast)
       defs_builder.iterate(ast)
 
       RubyLint.configuration.analysis.each do |constant|
