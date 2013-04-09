@@ -85,6 +85,8 @@ module RubyLint
         if existing
           @definitions << update_parent_definitions(existing, scope)
 
+          associate_node_definition(node, existing)
+
           return
         end
       end
@@ -131,6 +133,8 @@ module RubyLint
 
         if existing
           @definitions << update_parent_definitions(existing, scope)
+
+          associate_node_definition(node, existing)
 
           return
         end
