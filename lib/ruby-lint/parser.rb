@@ -89,7 +89,6 @@ module RubyLint
       :unless           => :unless,
       :until            => :until,
       :while            => :while,
-      :const_path_ref   => :constant_path,
       :dot2             => :dot2,
       :dot3             => :dot3,
       :assoc_new        => :key_value,
@@ -103,7 +102,6 @@ module RubyLint
       :super            => :super,
       :yield0           => :yield,
       :yield            => :yield,
-      :const_path_field => :constant_path,
       :sclass           => :sclass
     }
 
@@ -299,6 +297,24 @@ module RubyLint
     #
     def on_brace_block(params, body)
       return Node.new(:block, [params || on_params, on_bodystmt(body)], metadata)
+    end
+
+    ##
+    # @param [RubyLint::Node] left
+    # @param [RubyLint::Node] right
+    # @return [RubyLint::Node]
+    #
+    def on_const_path_ref(left, right)
+      left = left.type == :constant_path ? left.children : left
+
+      return Node.new(:constant_path, [left, right].flatten, metadata)
+    end
+
+    ##
+    # @see #on_constant_path_ref
+    #
+    def on_const_path_field(left, right)
+      return on_const_path_ref(left, right)
     end
 
     ##

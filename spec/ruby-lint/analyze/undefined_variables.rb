@@ -67,6 +67,21 @@ A::B
     entry.message.should == 'undefined constant B'
   end
 
+  should 'add an error when the entire constant path does not exist' do
+    code   = 'A::B::C'
+    report = build_report(code, RubyLint::Analyze::UndefinedVariables)
+
+    puts report.entries.map(&:message).join("\n")
+
+    report.entries.length.should == 1
+
+    entry = report.entries[0]
+
+    entry.line.should    == 1
+    entry.column.should  == 0
+    entry.message.should == 'undefined constant A'
+  end
+
   should 'not depend on the order of variable definitions' do
     code = <<-CODE
 class Person

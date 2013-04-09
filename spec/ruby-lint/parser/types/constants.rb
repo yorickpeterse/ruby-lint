@@ -13,6 +13,15 @@ describe 'Parsing constants' do
     )
   end
 
+  should 'parse a constant path with more than two segments' do
+    parse('A::B::C').should == s(
+      :constant_path,
+      s(:constant, 'A'),
+      s(:constant, 'B'),
+      s(:constant, 'C')
+    )
+  end
+
   should 'parse a top level constant path' do
     parse('::Foo::Bar').should == s(
       :constant_path,

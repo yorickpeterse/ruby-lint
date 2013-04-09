@@ -27,7 +27,8 @@ module RubyLint
 
       VARIABLE_TYPES.each do |type, label|
         define_method("on_#{type}") do |node|
-          unless current_scope.has_definition?(type, node.name)
+          if !current_scope.has_definition?(type, node.name) \
+          and !@in_constant_path
             error("undefined #{label} #{node.name}", node)
           end
         end
@@ -39,17 +40,27 @@ module RubyLint
       # @param [RubyLint::Node] node
       #
       def on_constant_path(node)
-        definitions = current_scope
+        definitions       = current_scope
+        @in_constant_path = true
 
         node.children.each do |segment|
           name = segment.name
 
           unless definitions.defines?(:constant, name)
             error("undefined constant #{name}", segment)
+
+            break
           end
 
           definitions = definitions.lookup(:constant, name)
         end
+      end
+
+      ##
+      # @param [RubyLint::Node] node
+      #
+      def after_constant_path(node)
+        @in_constant_path = false
       end
     end # UndefinedVariables
   end # Analyze
