@@ -344,16 +344,23 @@ module RubyLint
     # @param [RubyLint::Node] node
     #
     def on_block(node)
+      scope = definitions
       block = Definition::RubyObject.new_from_node(
         node,
         :name    => 'block',
-        :parents => [definitions]
+        :parents => [scope]
       )
 
       node.each_argument do |arg|
         variable = Definition::RubyObject.new_from_node(arg, :ignore => true)
 
         block.add(arg.type, arg.name, variable)
+      end
+
+      # Ensure that local variables in the current scope are available inside
+      # the block.
+      scope.list(:local_variable).each do |variable|
+        block.add(variable.type, variable.name, variable)
       end
 
       associate_node_definition(node, block)
