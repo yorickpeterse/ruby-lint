@@ -576,7 +576,7 @@ module RubyLint
     # Resolves the return value of a method call.
     #
     # @param [RubyLint::Node] node
-    # @return [RubyLint::Definition::RubyObject]
+    # @return [RubyLint::Definition::RubyObject|NilClass]
     #
     def resolve_return_value(node)
       source = definitions
@@ -589,7 +589,7 @@ module RubyLint
         end
       end
 
-      return source.call(node.name)
+      return source ? source.call(node.name) : nil
     end
 
     ##
