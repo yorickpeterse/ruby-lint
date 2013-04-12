@@ -361,8 +361,9 @@ module RubyLint
       scope = definitions
       block = Definition::RubyObject.new_from_node(
         node,
-        :name    => 'block',
-        :parents => [scope]
+        :name           => 'block',
+        :parents        => [scope],
+        :update_parents => [:local_variable]
       )
 
       node.each_argument do |arg|

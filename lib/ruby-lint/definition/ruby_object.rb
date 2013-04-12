@@ -59,6 +59,10 @@ module RubyLint
     #  @return [Symbol] Indicates if the object represents a class or an
     #   instance.
     #
+    # @!attribute [r] update_parents
+    #  @return [Array] A list of data types to also add to the parent
+    #   definitions when adding an object to the current one.
+    #
     class RubyObject
       include VariablePredicates
 
@@ -85,7 +89,8 @@ module RubyLint
       #
       PATH_SEPARATOR = '::'
 
-      attr_reader :column,
+      attr_reader :update_parents,
+        :column,
         :definitions,
         :ignore,
         :name,
@@ -226,6 +231,10 @@ module RubyLint
         end
 
         definitions[type][name] = value
+
+        if update_parents.include?(type)
+          update_parent_definitions(type, name, value)
+        end
       end
 
       ##
@@ -630,6 +639,18 @@ module RubyLint
       private
 
       ##
+      # Updates each parent definition if it has an existing definition for hte
+      # given type and name.
+      #
+      # @see #add
+      #
+      def update_parent_definitions(type, name, value)
+        parents.each do |parent|
+          parent.add(type, name, value) if parent.has_definition?(type, name)
+        end
+      end
+
+      ##
       # Adds a new child definition to the current definition.
       #
       # @param [String] name The name of the definition.
@@ -688,6 +709,7 @@ module RubyLint
       #
       def default_options
         return {
+          :update_parents    => [],
           :instance_type     => :class,
           :parents           => [],
           :receiver          => nil,

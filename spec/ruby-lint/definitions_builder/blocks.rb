@@ -23,4 +23,18 @@ end
     number.value.type.should  == :integer
     number.value.value.should == '10'
   end
+
+  should 'use outer local variables when overwriting them' do
+    code = <<-CODE
+number = 10
+
+example do
+  number = 20
+end
+    CODE
+
+    defs = build_definitions(code)
+
+    defs.lookup(:local_variable, 'number').value.value.should == '20'
+  end
 end

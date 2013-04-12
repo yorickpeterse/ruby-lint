@@ -190,4 +190,42 @@ describe RubyLint::Definition::RubyObject do
     instance.name.should          == object.name
     instance.instance_type.should == :instance
   end
+
+  should 'add data to a parent definition' do
+    initial = RubyLint::Definition::RubyObject.new(
+      :type  => :local_variable,
+      :name  => 'test',
+      :value => '10'
+    )
+
+    copy = RubyLint::Definition::RubyObject.new(
+      :type  => :local_variable,
+      :name  => 'test',
+      :value => '20'
+    )
+
+    child_only = RubyLint::Definition::RubyObject.new(
+      :type  => :local_variable,
+      :name  => 'child_only',
+      :value => '30'
+    )
+
+    parent = RubyLint::Definition::RubyObject.new(:name => 'parent')
+    child  = RubyLint::Definition::RubyObject.new(
+      :name           => 'child',
+      :update_parents => [:local_variable],
+      :parents        => [parent]
+    )
+
+    parent.add(initial.type, initial.name, initial)
+
+    child.add(initial.type, initial.name, initial)
+    child.add(copy.type, copy.name, copy)
+    child.add(child_only.type, child_only.name, child_only)
+
+    child.lookup(initial.type, initial.name).should  == copy
+    parent.lookup(initial.type, initial.name).should == copy
+
+    parent.lookup(child_only.type, child_only.name).nil?.should == true
+  end
 end
