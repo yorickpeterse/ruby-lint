@@ -2,13 +2,13 @@ require File.expand_path('../../../helper', __FILE__)
 
 describe 'Evaluating method calls on RubyObject instances' do
   before do
-    @object = RubyLint::Definition::RubyObject.new(
+    @object = ruby_object.new(
       :name          => 'String',
       :type          => :constant,
       :instance_type => :instance
     )
 
-    @method = RubyLint::Definition::RubyMethod.new(
+    @method = ruby_method.new(
       :name         => 'gsub',
       :type         => :instance_method,
       :return_value => proc { |object| object.instance }

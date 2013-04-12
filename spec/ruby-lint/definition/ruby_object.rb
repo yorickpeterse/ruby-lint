@@ -1,13 +1,13 @@
 require File.expand_path('../../../helper', __FILE__)
 
-describe RubyLint::Definition::RubyObject do
+describe ruby_object do
   before do
-    value = RubyLint::Definition::RubyObject.new(
+    value = ruby_object.new(
       :type  => :integer,
       :value => '10'
     )
 
-    @object = RubyLint::Definition::RubyObject.new(
+    @object = ruby_object.new(
       :type   => :local_variable,
       :name   => 'hello',
       :value  => value
@@ -27,7 +27,7 @@ describe RubyLint::Definition::RubyObject do
   end
 
   should 'only store RubyObject objects' do
-    obj = RubyLint::Definition::RubyObject.new(
+    obj = ruby_object.new(
       :type => :local_variable,
       :name => 'foo'
     )
@@ -42,7 +42,7 @@ describe RubyLint::Definition::RubyObject do
   end
 
   should 'store a variable' do
-    var = RubyLint::Definition::RubyObject.new(
+    var = ruby_object.new(
       :type => :local_variable,
       :name => 'number'
     )
@@ -51,14 +51,14 @@ describe RubyLint::Definition::RubyObject do
 
     found = @object.lookup(:local_variable, var.name)
 
-    found.is_a?(RubyLint::Definition::RubyObject).should == true
+    found.is_a?(ruby_object).should == true
 
     found.name.should == 'number'
     found.type.should == :local_variable
   end
 
   should 'clear all the definitions' do
-    var = RubyLint::Definition::RubyObject.new(
+    var = ruby_object.new(
       :type => :local_variable,
       :name => 'number'
     )
@@ -73,13 +73,13 @@ describe RubyLint::Definition::RubyObject do
   end
 
   should 'set the parent definitions' do
-    var1 = RubyLint::Definition::RubyObject.new(
+    var1 = ruby_object.new(
       :type  => :local_variable,
       :name  => 'numberx',
       :value => '10'
     )
 
-    var2 = RubyLint::Definition::RubyObject.new(
+    var2 = ruby_object.new(
       :type    => :local_variable,
       :name    => 'number',
       :value   => '10',
@@ -90,14 +90,14 @@ describe RubyLint::Definition::RubyObject do
   end
 
   should 'retrieve parent definitions' do
-    method = RubyLint::Definition::RubyObject.new(
+    method = ruby_object.new(
       :type => :local_variable,
       :name => 'example'
     )
 
     @object.add(:method, 'example', method)
 
-    child = RubyLint::Definition::RubyObject.new(
+    child = ruby_object.new(
       :type    => :class,
       :name    => 'Example',
       :parents => [@object]
@@ -105,14 +105,14 @@ describe RubyLint::Definition::RubyObject do
 
     found = child.lookup(:method, 'example')
 
-    found.is_a?(RubyLint::Definition::RubyObject).should == true
+    found.is_a?(ruby_object).should == true
 
     found.name.should == 'example'
   end
 
   describe 'creating definitions from RubyLint::Node instances' do
     should 'create a definition for a string' do
-      object = RubyLint::Definition::RubyObject.new_from_node(
+      object = ruby_object.new_from_node(
         s(:string, 'hello')
       )
 
@@ -121,7 +121,7 @@ describe RubyLint::Definition::RubyObject do
     end
 
     should 'create a definition for a variable with a value' do
-      object = RubyLint::Definition::RubyObject.new_from_node(
+      object = ruby_object.new_from_node(
         s(:local_variable, 'number'),
         :value => s(:integer, '10')
       )
@@ -134,7 +134,7 @@ describe RubyLint::Definition::RubyObject do
     end
 
     should 'create a definition for a constant path' do
-      var = RubyLint::Definition::RubyObject.new_from_node(
+      var = ruby_object.new_from_node(
         s(
           :constant_path,
           s(:constant, 'First'),
@@ -157,7 +157,7 @@ describe RubyLint::Definition::RubyObject do
   should 'return multiple values for a collection' do
     variable = s(:local_variable, 'numbers')
     numbers  = s(:array, s(:integer, '10'), s(:integer, '20'))
-    object   = RubyLint::Definition::RubyObject.new_from_node(
+    object   = ruby_object.new_from_node(
       variable,
       :value => numbers
     )
@@ -169,18 +169,15 @@ describe RubyLint::Definition::RubyObject do
 
     values = object.value.value
 
-    values[0].is_a?(RubyLint::Definition::RubyObject).should == true
-    values[1].is_a?(RubyLint::Definition::RubyObject).should == true
+    values[0].is_a?(ruby_object).should == true
+    values[1].is_a?(ruby_object).should == true
 
     values[0].value.should == '10'
     values[1].value.should == '20'
   end
 
   should 'create a RubyObject that represents an instance' do
-    object = RubyLint::Definition::RubyObject.new(
-      :type => :constant,
-      :name => 'String'
-    )
+    object = ruby_object.new(:type => :constant, :name => 'String')
 
     object.instance_type.should == :class
 
@@ -192,26 +189,26 @@ describe RubyLint::Definition::RubyObject do
   end
 
   should 'add data to a parent definition' do
-    initial = RubyLint::Definition::RubyObject.new(
+    initial = ruby_object.new(
       :type  => :local_variable,
       :name  => 'test',
       :value => '10'
     )
 
-    copy = RubyLint::Definition::RubyObject.new(
+    copy = ruby_object.new(
       :type  => :local_variable,
       :name  => 'test',
       :value => '20'
     )
 
-    child_only = RubyLint::Definition::RubyObject.new(
+    child_only = ruby_object.new(
       :type  => :local_variable,
       :name  => 'child_only',
       :value => '30'
     )
 
-    parent = RubyLint::Definition::RubyObject.new(:name => 'parent')
-    child  = RubyLint::Definition::RubyObject.new(
+    parent = ruby_object.new(:name => 'parent')
+    child  = ruby_object.new(
       :name           => 'child',
       :update_parents => [:local_variable],
       :parents        => [parent]

@@ -18,7 +18,7 @@ end
     block  = builder.options[:node_definitions].values.last
     number = block.lookup(:local_variable, 'number')
 
-    number.is_a?(RubyLint::Definition::RubyObject).should == true
+    number.is_a?(ruby_object).should == true
 
     number.value.type.should  == :integer
     number.value.value.should == '10'

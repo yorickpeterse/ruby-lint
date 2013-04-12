@@ -1,27 +1,15 @@
 require File.expand_path('../../../helper', __FILE__)
 
 describe RubyLint::Definition::RubyObject do
-  ##
-  # @param [#to_s] type
-  # @return [RubyLint::Definition::RubyMethod]
-  #
-  def method_with_argument(object, type)
-    return object.define_method('example') do |example|
-      example.send("define_#{type}", 'number')
-    end
-  end
-
   before do
-    @ruby_object = RubyLint::Definition::RubyObject
-    @ruby_method = RubyLint::Definition::RubyMethod
-    @first       = @ruby_object.new(:name => 'First', :type => :constant)
+    @first = ruby_object.new(:name => 'First', :type => :constant)
   end
 
   describe 'definining constants using a DSL' do
     should 'define a constant' do
       @first.define_constant('B')
 
-      @first.lookup(:constant, 'B').is_a?(@ruby_object).should == true
+      @first.lookup(:constant, 'B').is_a?(ruby_object).should == true
     end
 
     should 'define a constant using a block' do
@@ -31,7 +19,7 @@ describe RubyLint::Definition::RubyObject do
 
       @first.lookup(:constant, 'B') \
         .lookup(:constant, 'C') \
-        .is_a?(@ruby_object) \
+        .is_a?(ruby_object) \
         .should == true
     end
 
@@ -46,7 +34,7 @@ describe RubyLint::Definition::RubyObject do
 
       @first.lookup(:constant, 'D') \
         .lookup(:constant, 'C') \
-        .is_a?(@ruby_object) \
+        .is_a?(ruby_object) \
         .should == true
     end
 
@@ -56,7 +44,7 @@ describe RubyLint::Definition::RubyObject do
 
       @first.lookup(:constant, 'A') \
         .lookup(:constant, 'B') \
-        .is_a?(@ruby_object) \
+        .is_a?(ruby_object) \
         .should == true
     end
   end
@@ -65,19 +53,19 @@ describe RubyLint::Definition::RubyObject do
     should 'define a method' do
       @first.define_method('example')
 
-      @first.lookup(:method, 'example').is_a?(@ruby_method).should == true
+      @first.lookup(:method, 'example').is_a?(ruby_method).should == true
     end
 
     should 'define an instance method' do
       @first.define_instance_method('example')
 
       @first.lookup(:instance_method, 'example') \
-        .is_a?(@ruby_method) \
+        .is_a?(ruby_method) \
         .should == true
     end
 
     should 'define a method\'s return value' do
-      string = @ruby_object.new(:type => :string, :value => 'hello')
+      string = ruby_object.new(:type => :string, :value => 'hello')
 
       @first.define_method('example') do |example|
         example.returns(string)
@@ -85,14 +73,14 @@ describe RubyLint::Definition::RubyObject do
 
       @first.lookup(:method, 'example') \
         .return_value \
-        .is_a?(@ruby_object) \
+        .is_a?(ruby_object) \
         .should == true
     end
 
     should 'add a required argument' do
       arg = method_with_argument(@first, :argument).arguments.first
 
-      arg.is_a?(@ruby_object).should == true
+      arg.is_a?(ruby_object).should == true
       arg.name.should                == 'number'
     end
 
@@ -101,28 +89,28 @@ describe RubyLint::Definition::RubyObject do
         .optional_arguments \
         .first
 
-      arg.is_a?(@ruby_object).should == true
+      arg.is_a?(ruby_object).should == true
       arg.name.should                == 'number'
     end
 
     should 'add a rest argument' do
       arg = method_with_argument(@first, :rest_argument).rest_argument
 
-      arg.is_a?(@ruby_object).should == true
+      arg.is_a?(ruby_object).should == true
       arg.name.should                == 'number'
     end
 
     should 'add a more argument' do
       arg = method_with_argument(@first, :more_argument).more_arguments.first
 
-      arg.is_a?(@ruby_object).should == true
+      arg.is_a?(ruby_object).should == true
       arg.name.should                == 'number'
     end
 
     should 'add a block argument' do
       arg = method_with_argument(@first, :block_argument).block_argument
 
-      arg.is_a?(@ruby_object).should == true
+      arg.is_a?(ruby_object).should == true
       arg.name.should                == 'number'
     end
 
@@ -146,7 +134,7 @@ describe RubyLint::Definition::RubyObject do
 
       found = @first.lookup(:global_variable, '$number')
 
-      found.is_a?(@ruby_object).should == true
+      found.is_a?(ruby_object).should == true
       found.type.should                == :global_variable
       found.name.should                == '$number'
     end

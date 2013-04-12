@@ -6,7 +6,7 @@ describe 'Building class definitions' do
       defs    = build_definitions('class Example; end')
       example = defs.lookup(:constant, 'Example')
 
-      example.is_a?(RubyLint::Definition::RubyObject).should == true
+      example.is_a?(ruby_object).should == true
 
       example.type.should == :class
       example.name.should == 'Example'
@@ -23,12 +23,12 @@ end
       defs  = build_definitions(code)
       first = defs.lookup(:constant, 'First')
 
-      first.is_a?(RubyLint::Definition::RubyObject).should == true
+      first.is_a?(ruby_object).should == true
 
       defs.lookup(:constant, 'Second').nil?.should == true
 
       first.lookup(:constant, 'Second') \
-        .is_a?(RubyLint::Definition::RubyObject) \
+        .is_a?(ruby_object) \
         .should == true
     end
 
@@ -46,22 +46,15 @@ end
       defs  = build_definitions(code)
       first = defs.lookup(:constant, 'First')
 
-      first.lookup(:constant, 'Second') \
-        .is_a?(RubyLint::Definition::RubyObject) \
-        .should == true
-
-      first.lookup(:constant, 'Third') \
-        .is_a?(RubyLint::Definition::RubyObject) \
-        .should == true
+      first.lookup(:constant, 'Second').is_a?(ruby_object).should == true
+      first.lookup(:constant, 'Third').is_a?(ruby_object).should == true
 
       first.lookup(:constant, 'Second') \
         .lookup(:constant, 'Third') \
-        .is_a?(RubyLint::Definition::RubyObject) \
+        .is_a?(ruby_object) \
         .should == true
 
-      defs.lookup(:constant, 'Third') \
-        .is_a?(RubyLint::Definition::RubyObject) \
-        .should == true
+      defs.lookup(:constant, 'Third').is_a?(ruby_object).should == true
     end
   end
 
@@ -81,7 +74,7 @@ end
 
       defs.lookup(:constant, 'First') \
         .lookup(:instance_method, 'example') \
-        .is_a?(RubyLint::Definition::RubyMethod) \
+        .is_a?(ruby_method) \
         .should == true
     end
   end
@@ -92,7 +85,7 @@ end
 
       defs.lookup(:constant, 'First') \
         .lookup(:method, 'new') \
-        .is_a?(RubyLint::Definition::RubyMethod) \
+        .is_a?(ruby_method) \
         .should == true
     end
 
@@ -116,7 +109,7 @@ end
 
       defs.lookup(:constant, 'Second') \
         .lookup(:instance_method, 'example') \
-        .is_a?(RubyLint::Definition::RubyMethod) \
+        .is_a?(ruby_method) \
         .should == true
     end
 
@@ -142,7 +135,7 @@ end
 
       defs.lookup(:constant, 'Third') \
         .lookup(:instance_method, 'example') \
-        .is_a?(RubyLint::Definition::RubyMethod) \
+        .is_a?(ruby_method) \
         .should == true
     end
   end
@@ -160,7 +153,7 @@ end
 
       defs.lookup(:constant, 'Example') \
         .lookup(:method, 'class_method') \
-        .is_a?(RubyLint::Definition::RubyMethod) \
+        .is_a?(ruby_method) \
         .should == true
     end
   end
@@ -180,7 +173,7 @@ end
 
       defs.lookup(:constant, 'First') \
         .lookup(:method, 'example') \
-        .is_a?(RubyLint::Definition::RubyMethod) \
+        .is_a?(ruby_method) \
         .should == true
     end
 
@@ -196,7 +189,7 @@ end
 
       defs.lookup(:constant, 'String') \
         .lookup(:method, 'example') \
-        .is_a?(RubyLint::Definition::RubyMethod) \
+        .is_a?(ruby_method) \
         .should == true
     end
 
@@ -214,12 +207,12 @@ end
 
       defs.lookup(:constant, 'First') \
         .lookup(:method, 'example') \
-        .is_a?(RubyLint::Definition::RubyMethod) \
+        .is_a?(ruby_method) \
         .should == false
 
       defs.lookup(:constant, 'String') \
         .lookup(:method, 'example') \
-        .is_a?(RubyLint::Definition::RubyMethod) \
+        .is_a?(ruby_method) \
         .should == true
     end
   end
@@ -230,7 +223,7 @@ end
 
       defs.lookup(:constant, 'String') \
         .lookup(:method, 'new') \
-        .is_a?(RubyLint::Definition::RubyMethod) \
+        .is_a?(ruby_method) \
         .should == true
     end
   end

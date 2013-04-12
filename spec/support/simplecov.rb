@@ -1,7 +1,7 @@
 require 'simplecov'
 
 SimpleCov.configure do
-  root         File.expand_path('../../', __FILE__)
+  root         File.expand_path('../../../', __FILE__)
   command_name 'bacon'
   project_name 'ruby-lint'
 

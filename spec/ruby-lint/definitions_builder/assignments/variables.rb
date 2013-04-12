@@ -6,11 +6,11 @@ describe 'Building variable definitions' do
       defs   = build_definitions('number = 10')
       number = defs.lookup(:local_variable, 'number')
 
-      number.is_a?(RubyLint::Definition::RubyObject).should == true
-      number.name.should == 'number'
+      number.is_a?(ruby_object).should == true
+      number.name.should               == 'number'
 
-      number.value.is_a?(RubyLint::Definition::RubyObject).should == true
-      number.value.value.should == '10'
+      number.value.is_a?(ruby_object).should == true
+      number.value.value.should              == '10'
     end
 
     should 'process mass variable assignments' do
@@ -18,12 +18,12 @@ describe 'Building variable definitions' do
       number  = defs.lookup(:local_variable, 'number')
       numberx = defs.lookup(:local_variable, 'numberx')
 
-      number.is_a?(RubyLint::Definition::RubyObject).should == true
+      number.is_a?(ruby_object).should == true
 
       number.name.should        == 'number'
       number.value.value.should == '10'
 
-      numberx.is_a?(RubyLint::Definition::RubyObject).should == true
+      numberx.is_a?(ruby_object).should == true
 
       numberx.name.should        == 'numberx'
       numberx.value.value.should == '20'
@@ -33,7 +33,7 @@ describe 'Building variable definitions' do
       defs = build_definitions('Kernel::FOO = 10')
       foo  = defs.lookup(:constant, 'Kernel').lookup(:constant, 'FOO')
 
-      foo.is_a?(RubyLint::Definition::RubyObject).should == true
+      foo.is_a?(ruby_object).should == true
 
       foo.name.should        == 'FOO'
       foo.value.value.should == '10'
@@ -61,7 +61,7 @@ describe 'Building variable definitions' do
       %w{first second third}.each do |name|
         variable = defs.lookup(:local_variable, name)
 
-        variable.is_a?(RubyLint::Definition::RubyObject).should == true
+        variable.is_a?(ruby_object).should == true
 
         variable.value.type.should  == :integer
         variable.value.value.should == '10'

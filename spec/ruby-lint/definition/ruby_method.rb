@@ -1,8 +1,8 @@
 require File.expand_path('../../../helper', __FILE__)
 
-describe RubyLint::Definition::RubyMethod do
+describe ruby_method do
   before do
-    @method_def = RubyLint::Definition::RubyMethod.new_from_node(
+    @method_def = ruby_method.new_from_node(
       s(
         :method_definition,
         'example',
@@ -22,7 +22,7 @@ describe RubyLint::Definition::RubyMethod do
       )
     )
 
-    @method_call = RubyLint::Definition::RubyMethod.new_from_node(
+    @method_call = ruby_method.new_from_node(
       s(
         :method,
         'example',
@@ -46,19 +46,13 @@ describe RubyLint::Definition::RubyMethod do
   end
 
   should 'return the method definition receiver' do
-    @method_def.receiver \
-      .is_a?(RubyLint::Definition::RubyObject) \
-      .should == true
-
-    @method_def.receiver.name.should == 'String'
+    @method_def.receiver.is_a?(ruby_object).should == true
+    @method_def.receiver.name.should               == 'String'
   end
 
   should 'return the method call receiver' do
-    @method_call.receiver \
-      .is_a?(RubyLint::Definition::RubyObject) \
-      .should == true
-
-    @method_call.receiver.name.should == 'String'
+    @method_call.receiver.is_a?(ruby_object).should == true
+    @method_call.receiver.name.should               == 'String'
   end
 
   should 'set the correct method definition type' do
@@ -71,7 +65,7 @@ describe RubyLint::Definition::RubyMethod do
 
       required = @method_def.arguments[0]
 
-      required.is_a?(RubyLint::Definition::RubyObject).should == true
+      required.is_a?(ruby_object).should == true
 
       required.name.should == 'required'
     end
@@ -81,11 +75,11 @@ describe RubyLint::Definition::RubyMethod do
 
       number = @method_def.optional_arguments[0]
 
-      number.is_a?(RubyLint::Definition::RubyObject).should == true
+      number.is_a?(ruby_object).should == true
 
       number.name.should == 'number'
 
-      number.value.is_a?(RubyLint::Definition::RubyObject).should == true
+      number.value.is_a?(ruby_object).should == true
 
       number.value.value.should == '10'
     end
@@ -111,11 +105,11 @@ describe RubyLint::Definition::RubyMethod do
 
     should 'add method arguments to the definitions list' do
       @method_def.lookup(:local_variable, 'required') \
-        .is_a?(RubyLint::Definition::RubyObject) \
+        .is_a?(ruby_object) \
         .should == true
 
       @method_def.lookup(:local_variable, 'block') \
-        .is_a?(RubyLint::Definition::RubyObject) \
+        .is_a?(ruby_object) \
         .should == true
     end
   end
@@ -126,13 +120,13 @@ describe RubyLint::Definition::RubyMethod do
 
       param = @method_call.arguments[0]
 
-      param.is_a?(RubyLint::Definition::RubyObject).should == true
+      param.is_a?(ruby_object).should == true
       param.type.should                                    == :integer
       param.value.should                                   == '10'
     end
 
     should 'process a constant path' do
-      method = RubyLint::Definition::RubyMethod.new_from_node(
+      method = ruby_method.new_from_node(
         s(
           :method,
           'example',
@@ -150,23 +144,23 @@ describe RubyLint::Definition::RubyMethod do
 
       param = method.arguments[0]
 
-      param.is_a?(RubyLint::Definition::RubyObject).should == true
+      param.is_a?(ruby_object).should == true
       param.type.should == :constant
       param.name.should == 'Second'
 
-      param.receiver.is_a?(RubyLint::Definition::RubyObject).should == true
+      param.receiver.is_a?(ruby_object).should == true
       param.receiver.type.should == :constant
       param.receiver.name.should == 'First'
     end
   end
 
   should 'list all the methods of a class' do
-    klass = RubyLint::Definition::RubyObject.new(
+    klass = ruby_object.new(
       :type => :class,
       :name => 'Example'
     )
 
-    method = RubyLint::Definition::RubyMethod.new(
+    method = ruby_method.new(
       :name     => 'class_method',
       :receiver => klass.lookup(:keyword, 'self')
     )

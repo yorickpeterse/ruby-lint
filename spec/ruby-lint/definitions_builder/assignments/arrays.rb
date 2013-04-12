@@ -20,19 +20,18 @@ describe 'Building variable definitions' do
       defs    = build_definitions(code)
       numbers = defs.lookup(:local_variable, 'numbers')
 
-      numbers.is_a?(RubyLint::Definition::RubyObject).should == true
-
-      numbers.value.is_a?(RubyLint::Definition::RubyObject).should == true
-      numbers.value.type.should == :array
+      numbers.is_a?(ruby_object).should       == true
+      numbers.value.is_a?(ruby_object).should == true
+      numbers.value.type.should               == :array
 
       first = numbers.lookup(:member, 0)
 
-      first.is_a?(RubyLint::Definition::RubyObject).should == true
-      first.type.should  == :integer
+      first.is_a?(ruby_object).should == true
+      first.type.should               == :integer
 
-      first.value.is_a?(RubyLint::Definition::RubyObject).should == true
-      first.value.type.should  == :integer
-      first.value.value.should == '10'
+      first.value.is_a?(ruby_object).should == true
+      first.value.type.should               == :integer
+      first.value.value.should              == '10'
     end
 
     should 'process multiple index assignments' do

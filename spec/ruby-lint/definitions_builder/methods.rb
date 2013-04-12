@@ -6,11 +6,11 @@ describe 'Building method definitions' do
       defs    = build_definitions('def example; end')
       example = defs.lookup(:instance_method, 'example')
 
-      example.is_a?(RubyLint::Definition::RubyMethod).should == true
+      example.is_a?(ruby_method).should == true
 
-      example.type.should            == :method_definition
+      example.type.should        == :method_definition
       example.method_type.should == :instance_method
-      example.name.should            == 'example'
+      example.name.should        == 'example'
     end
 
     should 'process a nested method' do
@@ -24,10 +24,10 @@ end
       defs  = build_definitions(code)
       first = defs.lookup(:instance_method, 'first')
 
-      first.is_a?(RubyLint::Definition::RubyMethod).should == true
+      first.is_a?(ruby_method).should == true
 
       first.lookup(:instance_method, 'second') \
-        .is_a?(RubyLint::Definition::RubyMethod) \
+        .is_a?(ruby_method) \
         .should == true
 
       defs.lookup(:instance_method, 'second').nil?.should == true
@@ -48,16 +48,16 @@ end
       first = defs.lookup(:instance_method, 'first')
 
       first.lookup(:instance_method, 'second') \
-        .is_a?(RubyLint::Definition::RubyMethod) \
+        .is_a?(ruby_method) \
         .should == true
 
       first.lookup(:instance_method, 'second') \
         .lookup(:instance_method, 'third') \
-        .is_a?(RubyLint::Definition::RubyMethod) \
+        .is_a?(ruby_method) \
         .should == true
 
       defs.lookup(:instance_method, 'third') \
-        .is_a?(RubyLint::Definition::RubyMethod) \
+        .is_a?(ruby_method) \
         .should == true
     end
   end
@@ -73,7 +73,7 @@ end
 
     defs.lookup(:instance_method, 'example') \
       .lookup(:local_variable, 'number') \
-      .is_a?(RubyLint::Definition::RubyObject) \
+      .is_a?(ruby_object) \
       .should == true
 
     defs.lookup(:local_variable, 'number').nil?.should == true
@@ -90,7 +90,7 @@ end
 
     defs.lookup(:constant, 'String') \
       .lookup(:method, 'example') \
-      .is_a?(RubyLint::Definition::RubyMethod) \
+      .is_a?(ruby_method) \
       .should == true
 
     defs.lookup(:method, 'example').nil?.should          == true
@@ -109,7 +109,7 @@ end
 
       defs.lookup(:instance_method, 'example') \
         .lookup(:local_variable, 'number') \
-        .is_a?(RubyLint::Definition::RubyObject) \
+        .is_a?(ruby_object) \
         .should == true
     end
 
@@ -124,7 +124,7 @@ end
 
       defs.lookup(:instance_method, 'example') \
         .lookup(:local_variable, 'other_number') \
-        .is_a?(RubyLint::Definition::RubyObject) \
+        .is_a?(ruby_object) \
         .should == true
     end
   end
@@ -140,7 +140,7 @@ end
       defs = build_definitions(code)
 
       defs.lookup(:instance_variable, '@number') \
-        .is_a?(RubyLint::Definition::RubyObject) \
+        .is_a?(ruby_object) \
         .should == true
     end
   end

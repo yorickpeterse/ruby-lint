@@ -40,10 +40,9 @@ numbers['one'] = 1
       numbers = defs.lookup(:local_variable, 'numbers')
       one     = numbers.lookup(:member, 'one')
 
-      one.is_a?(RubyLint::Definition::RubyObject).should == true
-
-      one.name.should == 'one'
-      one.type.should == :string
+      one.is_a?(ruby_object).should == true
+      one.name.should               == 'one'
+      one.type.should               == :string
 
       one.value.type.should  == :integer
       one.value.value.should == '1'

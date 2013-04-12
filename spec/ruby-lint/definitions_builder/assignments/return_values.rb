@@ -6,7 +6,7 @@ describe 'Using return values in assignments' do
     defs  = build_definitions(code)
     value = defs.lookup(:local_variable, 'word').value
 
-    value.is_a?(RubyLint::Definition::RubyObject).should == true
+    value.is_a?(ruby_object).should == true
 
     value.type.should      == :constant
     value.name.should      == 'String'
@@ -31,7 +31,7 @@ number = example
     defs  = build_definitions(code)
     value = defs.lookup(:local_variable, 'word').value
 
-    value.is_a?(RubyLint::Definition::RubyObject).should == true
+    value.is_a?(ruby_object).should == true
 
     value.type.should      == :constant
     value.name.should      == 'String'
