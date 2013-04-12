@@ -49,6 +49,8 @@ module RubyLint
         end
 
         increment_reference_amount(variable) if variable
+
+        enable_reference_counting
       end
     end
 
@@ -61,6 +63,7 @@ module RubyLint
       @options[:node_definitions] = {}
       @options[:definitions]      = initial_definitions
 
+      enable_reference_counting
       associate_node_definition(node, definitions)
     end
 
@@ -79,12 +82,15 @@ module RubyLint
         :parents => [scope]
       )
 
+      increment_reference_amount(mod_def)
+
       if scope.has_definition?(:constant, mod_def.name)
         existing = scope.lookup(:constant, mod_def.name)
 
         if existing
           @definitions << update_parent_definitions(existing, scope)
 
+          increment_reference_amount(existing)
           associate_node_definition(node, existing)
 
           return
@@ -127,6 +133,8 @@ module RubyLint
         :parents => [parent, scope]
       )
 
+      increment_reference_amount(class_def)
+
       # Use an existing definition list if it exists.
       if scope.has_definition?(:constant, class_def.name)
         existing = scope.lookup(:constant, class_def.name)
@@ -134,6 +142,7 @@ module RubyLint
         if existing
           @definitions << update_parent_definitions(existing, scope)
 
+          increment_reference_amount(existing)
           associate_node_definition(node, existing)
 
           return
@@ -255,14 +264,15 @@ module RubyLint
         assign_variable(definitions_for(variable), variable, value)
       end
 
-      @skip_increment_reference = true
+      # Don't count references for the variable that's being assigned.
+      disable_reference_counting
     end
 
     ##
     # @see RubyLint::DefinitionsBuilder#on_assign
     #
     def after_assign(node)
-      @skip_increment_reference = false
+      enable_reference_counting
     end
 
     ##
@@ -515,7 +525,21 @@ module RubyLint
     # @param [RubyLint::Definition::RubyObject] definition
     #
     def increment_reference_amount(definition)
-      definition.reference_amount += 1 unless @skip_increment_reference
+      definition.reference_amount += 1 if @enable_reference_counting
+    end
+
+    ##
+    # Enables reference counting of variables.
+    #
+    def enable_reference_counting
+      @enable_reference_counting = true
+    end
+
+    ##
+    # Disables reference counting of variables.
+    #
+    def disable_reference_counting
+      @enable_reference_counting = false
     end
 
     ##
