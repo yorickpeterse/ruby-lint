@@ -245,6 +245,10 @@ module RubyLint
       variable, value = *node
       assign_method   = "on_#{variable.type}_assign"
 
+      # Deal with multiple variable assignments such as the following:
+      # first = second = third = 10
+      value = resolve_assignment_value(value)
+
       if respond_to?(assign_method)
         send(assign_method, variable, value)
       else
@@ -423,7 +427,7 @@ module RubyLint
     #
     def assign_variable(definition, variable, value, type = variable.type)
       # Resolve variable values.
-      if value and value.variable?
+      if value and (value.variable? or value.constant?)
         found_value = resolve_variable(value)
         value       = found_value if found_value
       end
@@ -559,7 +563,7 @@ module RubyLint
     def resolve_variable(variable)
       resolved = variable
 
-      if variable.variable?
+      if variable.variable? or variable.constant?
         resolved = definitions.lookup(variable.type, variable.name)
 
         if resolved and !resolved.constant?
@@ -590,6 +594,21 @@ module RubyLint
       end
 
       return source ? source.call(node.name) : nil
+    end
+
+    ##
+    # Extracts the end value used in multiple variable assignments in the form
+    # of `first = second = third = 10`.
+    #
+    # @param [RubyLint::Node|Array] node
+    # @return [RubyLint::Node]
+    #
+    def resolve_assignment_value(node)
+      if node.respond_to?(:type) and node.type == :assign
+        node = resolve_assignment_value(node.value)
+      end
+
+      return node
     end
 
     ##

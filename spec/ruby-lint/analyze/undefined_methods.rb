@@ -143,4 +143,32 @@ name.downcasex
 
     report.entries.empty?.should == true
   end
+
+  should 'not add errors for methods called on variables without values' do
+    code = <<-CODE
+def example(number)
+  number.to_s
+end
+    CODE
+
+    report = build_report(code, RubyLint::Analyze::UndefinedMethods)
+
+    report.entries.empty?.should == true
+  end
+
+  should 'report the right receiver name in multiple variable assignments' do
+    code = <<-CODE
+number = 10
+
+first = second = number.foobar
+    CODE
+
+    report = build_report(code, RubyLint::Analyze::UndefinedMethods)
+
+    report.entries.length.should == 1
+
+    entry = report.entries[0]
+
+    entry.message.should == 'undefined method foobar on an instance of Fixnum'
+  end
 end

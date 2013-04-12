@@ -13,7 +13,7 @@ describe 'Building variable definitions' do
       number.value.value.should == '10'
     end
 
-    should 'process multiple variable assignments' do
+    should 'process mass variable assignments' do
       defs    = build_definitions('number, numberx = 10, 20')
       number  = defs.lookup(:local_variable, 'number')
       numberx = defs.lookup(:local_variable, 'numberx')
@@ -52,6 +52,20 @@ describe 'Building variable definitions' do
 
       var.value.type.should  == :integer
       var.value.value.should == '1'
+    end
+
+    should 'handle multiple variable assignments' do
+      code = 'first = second = third = 10'
+      defs = build_definitions(code)
+
+      %w{first second third}.each do |name|
+        variable = defs.lookup(:local_variable, name)
+
+        variable.is_a?(RubyLint::Definition::RubyObject).should == true
+
+        variable.value.type.should  == :integer
+        variable.value.value.should == '10'
+      end
     end
   end
 end

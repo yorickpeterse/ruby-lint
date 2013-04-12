@@ -13,9 +13,7 @@ module RubyLint
       :local_variable,
       :instance_variable,
       :class_variable,
-      :global_variable,
-      :constant,
-      :constant_path
+      :global_variable
     ]
 
     ##
@@ -32,15 +30,17 @@ module RubyLint
     # @return [Array]
     #
     PREDICATE_METHODS = [
+      :aref,
       :array,
       :class,
+      :constant,
+      :constant_path,
       :hash,
       :identifier,
       :keyword,
       :method,
       :method_definition,
-      :module,
-      :aref
+      :module
     ]
 
     ##
