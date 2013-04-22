@@ -4,12 +4,10 @@ script: rake travis
 rvm:
   - 1.9.3
   - 2.0.0
-  - jruby-head
 
 matrix:
   allow_failures:
     - rvm: 2.0.0
-    - rvm: jruby-head
 
 notifications:
   email:
