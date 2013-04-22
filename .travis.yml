@@ -1,5 +1,5 @@
 ---
-script: rake
+script: rake travis
 
 rvm:
   - 1.9.3

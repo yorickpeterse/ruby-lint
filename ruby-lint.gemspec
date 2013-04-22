@@ -26,6 +26,7 @@ Gem::Specification.new do |s|
   s.add_development_dependency 'bacon-colored_output'
   s.add_development_dependency 'simplecov'
   s.add_development_dependency 'rubygems-openpgp'
+  s.add_development_dependency 'coveralls'
 
   # NOTE: This is to prevent Travis CI from soiling its pants. It's not a
   # really nice solution but it seems to be the only way (at least for now).
