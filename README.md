@@ -1,7 +1,9 @@
 # ruby-lint
 
 ruby-lint is a linter and static code analysis tool for Ruby. It is inspired by
-similar tools such as jshint and flake8.
+similar tools such as jshint, flake8 and similar tools. ruby-lint primarily
+focuses on logic related errors such as the use of non existing variables
+instead of focusing on semantics (e.g. the amount of characters per line).
 
 ## Requirements
 
@@ -76,6 +78,7 @@ of AST nodes), are either unmaintained or severely limited in what they can do.
 * {file:contributing Contributing}
 * {file:architecture Architecture}
 * {file:code\_analysis Code Analysis}
+* {file:configuration Configuration}
 
 Noteworthy constants:
 

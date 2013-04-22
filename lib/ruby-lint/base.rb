@@ -31,6 +31,8 @@ module RubyLint
   ##
   # Provides a simple DSL for configuring ruby-lint.
   #
+  # @yieldparam [RubyLint::Configuration]
+  #
   def self.configure
     yield configuration
   end
