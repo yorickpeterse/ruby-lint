@@ -1,5 +1,9 @@
 # ruby-lint
 
+[![Build Status](https://travis-ci.org/YorickPeterse/ruby-lint.png?branch=master)](https://travis-ci.org/YorickPeterse/ruby-lint)
+[![Coverage Status](https://coveralls.io/repos/YorickPeterse/ruby-lint/badge.png?branch=master)](https://coveralls.io/r/YorickPeterse/ruby-lint)
+[![Code Climate](https://codeclimate.com/github/YorickPeterse/ruby-lint.png)](https://codeclimate.com/github/YorickPeterse/ruby-lint)
+
 ruby-lint is a linter and static code analysis tool for Ruby. It is inspired by
 similar tools such as jshint, flake8 and similar tools. ruby-lint primarily
 focuses on logic related errors such as the use of non existing variables
