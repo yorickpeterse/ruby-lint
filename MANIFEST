@@ -13,6 +13,7 @@ doc/DCO.md
 doc/architecture.md
 doc/build/.gitkeep
 doc/code_analysis.md
+doc/configuration.md
 doc/contributing.md
 doc/css/.gitkeep
 doc/css/common.css
