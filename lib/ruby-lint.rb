@@ -16,6 +16,7 @@ require_relative 'ruby-lint/definition_builder/base'
 require_relative 'ruby-lint/definition_builder/ruby_module'
 require_relative 'ruby-lint/definition_builder/ruby_class'
 require_relative 'ruby-lint/definition_builder/ruby_sclass'
+require_relative 'ruby-lint/definition_builder/ruby_method'
 
 require_relative 'ruby-lint/iterator'
 require_relative 'ruby-lint/definitions_builder'
