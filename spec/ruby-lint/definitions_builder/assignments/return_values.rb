@@ -4,7 +4,7 @@ describe 'Using return values in assignments' do
   it 'should assign a return value' do
     code  = 'word = String.new'
     defs  = build_definitions(code)
-    value = defs.lookup(:local_variable, 'word').value
+    value = defs.lookup(:lvar, 'word').value
 
     value.is_a?(ruby_object).should == true
 
@@ -23,13 +23,13 @@ number = example
 
     defs = build_definitions(code)
 
-    defs.lookup(:local_variable, 'number').value.nil?.should == true
+    defs.lookup(:lvar, 'number').value.nil?.should == true
   end
 
   it 'should assign return values when chaining method calls' do
     code  = 'word = String.new.initialize.initialize'
     defs  = build_definitions(code)
-    value = defs.lookup(:local_variable, 'word').value
+    value = defs.lookup(:lvar, 'word').value
 
     value.is_a?(ruby_object).should == true
 
@@ -42,37 +42,37 @@ number = example
     should 'create a new String instance' do
       defs = build_definitions('number = "10"')
 
-      defs.lookup(:local_variable, 'number').value.instance?.should == true
+      defs.lookup(:lvar, 'number').value.instance?.should == true
     end
 
     should 'create a new Symbol instance' do
       defs = build_definitions('number = :"10"')
 
-      defs.lookup(:local_variable, 'number').value.instance?.should == true
+      defs.lookup(:lvar, 'number').value.instance?.should == true
     end
 
     should 'create a new Fixnum instance' do
       defs = build_definitions('number = 10')
 
-      defs.lookup(:local_variable, 'number').value.instance?.should == true
+      defs.lookup(:lvar, 'number').value.instance?.should == true
     end
 
     should 'create a new Float instance' do
       defs = build_definitions('number = 10.0')
 
-      defs.lookup(:local_variable, 'number').value.instance?.should == true
+      defs.lookup(:lvar, 'number').value.instance?.should == true
     end
 
     should 'create a new Array instance' do
       defs = build_definitions('number = [10]')
 
-      defs.lookup(:local_variable, 'number').value.instance?.should == true
+      defs.lookup(:lvar, 'number').value.instance?.should == true
     end
 
     should 'create a new Hash instance' do
       defs = build_definitions('number = {:a => 10}')
 
-      defs.lookup(:local_variable, 'number').value.instance?.should == true
+      defs.lookup(:lvar, 'number').value.instance?.should == true
     end
   end
 end

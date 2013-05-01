@@ -9,12 +9,7 @@ module RubyLint
     #
     # @return [Array]
     #
-    VARIABLE_TYPES = [
-      :local_variable,
-      :instance_variable,
-      :class_variable,
-      :global_variable
-    ]
+    VARIABLE_TYPES = [:lvar, :ivar, :cvar, :gvar]
 
     ##
     # Array containing various Ruby types that are considered to be scalar
@@ -22,26 +17,14 @@ module RubyLint
     #
     # @return [Array]
     #
-    SCALAR_TYPES = [:integer, :float, :string, :symbol]
+    SCALAR_TYPES = [:int, :float, :str, :sym]
 
     ##
     # Array containing various predicate methods to create.
     #
     # @return [Array]
     #
-    PREDICATE_METHODS = [
-      :aref,
-      :array,
-      :class,
-      :constant,
-      :constant_path,
-      :hash,
-      :identifier,
-      :keyword,
-      :method,
-      :method_definition,
-      :module
-    ]
+    PREDICATE_METHODS = [:array, :class, :const, :hash, :module]
 
     ##
     # Hash containing various Node types and the associated Ruby classes.
@@ -49,15 +32,16 @@ module RubyLint
     # @return [Hash]
     #
     RUBY_CLASSES = {
-      :string  => 'String',
-      :symbol  => 'Symbol',
-      :integer => 'Fixnum',
-      :float   => 'Float',
-      :regexp  => 'Regexp',
-      :array   => 'Array',
-      :hash    => 'Hash',
-      :range   => 'Range',
-      :lambda  => 'Proc'
+      :str    => 'String',
+      :sym    => 'Symbol',
+      :int    => 'Fixnum',
+      :float  => 'Float',
+      :regexp => 'Regexp',
+      :array  => 'Array',
+      :hash   => 'Hash',
+      :irange => 'Range',
+      :erange => 'Range',
+      :lambda => 'Proc'
     }
 
     (VARIABLE_TYPES + PREDICATE_METHODS).each do |type|
@@ -72,14 +56,35 @@ module RubyLint
     # @return [TrueClass|FalseClass]
     #
     def variable?
-      return VARIABLE_TYPES.include?(@type)
+      return VARIABLE_TYPES.include?(type)
     end
 
     ##
     # @return [TrueClass|FalseClass]
     #
     def constant?
-      return @type == :constant || @type == :module || @type == :class
+      return type == :const || type == :module || type == :class
+    end
+
+    ##
+    # @return [TrueClass|FalseClass]
+    #
+    def constant_path?
+      return constant? && children[0].constant?
+    end
+
+    ##
+    # @return [TrueClass|FalseClass]
+    #
+    def method?
+      return type == :send || type == :method
+    end
+
+    ##
+    # @return [TrueClass|FalseClass]
+    #
+    def method_definition?
+      return type == :def || type == :method_definition
     end
 
     ##
@@ -87,7 +92,7 @@ module RubyLint
     # integer.
     #
     def scalar?
-      return SCALAR_TYPES.include?(@type)
+      return SCALAR_TYPES.include?(type)
     end
 
     ##

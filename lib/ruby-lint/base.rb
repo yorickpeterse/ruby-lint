@@ -17,12 +17,12 @@ module RubyLint
   # @return [RubyLint::Definition::RubyObject]
   #
   def self.global_constant(name)
-    found = global_scope.lookup(:constant, name)
+    found = global_scope.lookup(:const, name)
 
     if !found and !constant_loader.loaded?(name)
       constant_loader.load(name)
 
-      found = global_scope.lookup(:constant, name)
+      found = global_scope.lookup(:const, name)
     end
 
     return found

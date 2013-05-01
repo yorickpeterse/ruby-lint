@@ -21,9 +21,6 @@ module RubyLint
     #  @return [RubyLint::Definition::RubyObject] The rest argument of a
     #   method definition.
     #
-    # @!attribute [r] more_arguments
-    #  @return [Array] A set of "more" arguments of the method definition.
-    #
     # @!attribute [r] block_argument
     #  @return [RubyLint::Definition::RubyObject] The block argument of a
     #   method definition.
@@ -43,17 +40,15 @@ module RubyLint
       # @return [Hash]
       #
       ARGUMENT_TYPE_MAPPING = {
-        :argument          => :arguments,
-        :optional_argument => :optional_arguments,
-        :rest_argument     => :rest_argument,
-        :more_argument     => :more_arguments,
-        :block_argument    => :block_argument
+        :arg      => :arguments,
+        :optarg   => :optional_arguments,
+        :restarg  => :rest_argument,
+        :blockarg => :block_argument
       }
 
       attr_reader :block_argument,
         :arguments,
         :method_type,
-        :more_arguments,
         :optional_arguments,
         :rest_argument,
         :return_value,
@@ -65,8 +60,11 @@ module RubyLint
       def self.new_from_node(node, options = {})
         options  = default_method_options.merge(options)
         options  = options.merge(gather_arguments(node))
-        receiver = node.receiver
+        receiver = node.children[0]
 
+        options[:type] = node.method? ? :method : :method_definition
+
+        options[:name]        ||= node.children[1].to_s
         options[:method_type] ||= node.method_type
 
         if receiver
@@ -85,16 +83,35 @@ module RubyLint
       # @return [Hash]
       #
       def self.gather_arguments(node)
-        arguments = default_arguments
+        mapped = default_arguments
 
-        ARGUMENT_TYPE_MAPPING.each do |from, to|
-          args = node.gather_arguments(from)
-          args = args.map { |n| RubyObject.new_from_node(n, :value => n.value) }
+        if node.method?
+          mapped[:arguments] = node.children[2..-1].map do |n|
+            RubyObject.new_from_node(n, :value => n.value)
+          end
 
-          arguments[to] = arguments[to].is_a?(Array) ? args : args[0]
+          return mapped
         end
 
-        return arguments
+        args = node.children[2].children
+
+        args.each do |argument_node|
+          to       = ARGUMENT_TYPE_MAPPING[argument_node.type]
+          value    = to == :optional_arguments ? argument_node.value : nil
+          argument = RubyObject.new_from_node(
+            argument_node,
+            :type  => :lvar,
+            :value => value
+          )
+
+          if mapped[to].is_a?(Array)
+            mapped[to] << argument
+          else
+            mapped[to] = argument
+          end
+        end
+
+        return mapped
       end
 
       ##
@@ -107,7 +124,6 @@ module RubyLint
           :arguments          => [],
           :optional_arguments => [],
           :rest_argument      => nil,
-          :more_arguments     => [],
           :block_argument     => nil
         }
       end
@@ -129,7 +145,6 @@ module RubyLint
       def initialize(*args)
         @arguments          = []
         @optional_arguments = []
-        @more_arguments     = []
 
         super
 
@@ -183,15 +198,6 @@ module RubyLint
       end
 
       ##
-      # Defines a more argument for the method.
-      #
-      # @see RubyLint::Definition::RubyObject#define_argument
-      #
-      def define_more_argument(name)
-        @more_arguments << create_variable(name)
-      end
-
-      ##
       # Defines a block argument for the method.
       #
       # @see RubyLint::Definition::RubyObject#define_argument
@@ -227,7 +233,6 @@ module RubyLint
           arguments,
           optional_arguments,
           [rest_argument],
-          more_arguments,
           [block_argument]
         ]
       end
@@ -237,7 +242,7 @@ module RubyLint
       # @return [RubyLint::Definition::RubyObject]
       #
       def create_variable(name)
-        variable = RubyObject.new(:type => :local_variable, :name => name)
+        variable = RubyObject.new(:type => :lvar, :name => name)
 
         add(variable.type, variable.name, variable)
 

@@ -81,7 +81,7 @@ module RubyLint
     #  iterate over.
     #
     def iterate(node)
-      return unless node.is_a?(Node)
+      return unless node.is_a?(AST::Node)
 
       before, after = callback_names(node)
 
@@ -154,31 +154,6 @@ module RubyLint
     #
     def has_report?
       return @options[:report].is_a?(Report)
-    end
-
-    ##
-    # Returns a definition list to use for the last segment in the constant
-    # path. If one of the segments is invalid `nil` is returned instead.
-    #
-    # @param [Array] path An array of nodes or definitions that make up the
-    #  constant path.
-    # @return [RubyLint::Definition::RubyObject|NilClass]
-    #
-    def resolve_definitions(path)
-      current = definitions
-
-      path.each do |segment|
-        if segment.is_a?(Definition::RubyObject)
-          name = segment.name
-        else
-          name = segment.children[0]
-        end
-
-        found = current.lookup(segment.type, name)
-        found ? current = found : return
-      end
-
-      return current
     end
 
     ##

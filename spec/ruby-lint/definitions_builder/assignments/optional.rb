@@ -10,13 +10,13 @@ number ||= 20
 
       defs = build_definitions(code)
 
-      defs.lookup(:local_variable, 'number').value.value.should == '10'
+      defs.lookup(:lvar, 'number').value.value.should == '10'
     end
 
     should 'process an assignment for a non existing variable' do
       defs = build_definitions('number ||= 10')
 
-      defs.lookup(:local_variable, 'number').value.value.should == '10'
+      defs.lookup(:lvar, 'number').value.value.should == '10'
     end
   end
 end

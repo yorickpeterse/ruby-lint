@@ -4,31 +4,23 @@ describe ruby_method do
   before do
     @method_def = ruby_method.new_from_node(
       s(
-        :method_definition,
-        'example',
+        :defs,
+        s(:const, nil, :String),
+        :example,
         s(
-          :arguments,
-          s(:argument, s(:local_variable, 'required')),
-          s(
-            :optional_argument,
-            s(:local_variable, 'number', s(:integer, '10'))
-          ),
-          s(:rest_argument, s(:local_variable, 'rest')),
-          s(:more_argument, s(:local_variable, 'more')),
-          s(:block_argument, s(:local_variable, 'block'))
+          :args,
+          s(:arg, :required),
+          s(:optarg, :number, s(:int, 10)),
+          s(:restarg, :rest),
+          s(:arg, :more),
+          s(:blockarg, :block)
         ),
-        s(:constant, 'String'),
-        s(:body, [s(:return, s(:local_variable, 'required'))])
+        s(:begin, s(:return, s(:lvar, :block)))
       )
     )
 
     @method_call = ruby_method.new_from_node(
-      s(
-        :method,
-        'example',
-        s(:arguments, s(:argument, s(:integer, '10'))),
-        s(:constant, 'String')
-      )
+      s(:send, s(:const, nil, :String), :example, s(:int, 10))
     )
   end
 
@@ -61,7 +53,7 @@ describe ruby_method do
 
   describe 'method definition arguments' do
     should 'return the required arguments' do
-      @method_def.arguments.length.should == 1
+      @method_def.arguments.length.should == 2
 
       required = @method_def.arguments[0]
 
@@ -81,21 +73,12 @@ describe ruby_method do
 
       number.value.is_a?(ruby_object).should == true
 
-      number.value.value.should == '10'
+      number.value.value.should == 10
     end
 
     should 'return the rest argument' do
       @method_def.rest_argument.nil?.should == false
       @method_def.rest_argument.name.should == 'rest'
-    end
-
-    should 'return the more arguments' do
-      @method_def.more_arguments.length.should == 1
-
-      param = @method_def.more_arguments[0]
-
-      param.name.should       == 'more'
-      param.value.nil?.should == true
     end
 
     should 'return the block argument' do
@@ -104,61 +87,23 @@ describe ruby_method do
     end
 
     should 'add method arguments to the definitions list' do
-      @method_def.lookup(:local_variable, 'required') \
-        .is_a?(ruby_object) \
-        .should == true
-
-      @method_def.lookup(:local_variable, 'block') \
-        .is_a?(ruby_object) \
-        .should == true
+      @method_def.lookup(:lvar, 'required').is_a?(ruby_object).should == true
+      @method_def.lookup(:lvar, 'block').is_a?(ruby_object).should    == true
     end
   end
 
-  describe 'method call arguments' do
-    should 'return the specified arguments' do
-      @method_call.arguments.length.should == 1
+  should 'return the specified arguments of a method call' do
+    @method_call.arguments.length.should == 1
 
-      param = @method_call.arguments[0]
+    param = @method_call.arguments[0]
 
-      param.is_a?(ruby_object).should == true
-      param.type.should                                    == :integer
-      param.value.should                                   == '10'
-    end
-
-    should 'process a constant path' do
-      method = ruby_method.new_from_node(
-        s(
-          :method,
-          'example',
-          s(
-            :arguments,
-            s(
-              :argument,
-              s(:constant_path, s(:constant, 'First'), s(:constant, 'Second'))
-            )
-          ),
-          nil,
-          nil
-        )
-      )
-
-      param = method.arguments[0]
-
-      param.is_a?(ruby_object).should == true
-      param.type.should == :constant
-      param.name.should == 'Second'
-
-      param.receiver.is_a?(ruby_object).should == true
-      param.receiver.type.should == :constant
-      param.receiver.name.should == 'First'
-    end
+    param.is_a?(ruby_object).should == true
+    param.type.should               == :int
+    param.value.should              == 10
   end
 
   should 'list all the methods of a class' do
-    klass = ruby_object.new(
-      :type => :class,
-      :name => 'Example'
-    )
+    klass = ruby_object.new(:type => :class, :name => 'Example')
 
     method = ruby_method.new(
       :name     => 'class_method',

@@ -28,33 +28,18 @@ module RubyLint
     def initialize(*args)
       super
 
-      @loaded           = {}
-      @in_constant_path = false
+      @loaded = {}
     end
 
     ##
     # @param [RubyLint::Node] node
     #
-    def on_constant_path(node)
-      @in_constant_path = true
-
-      load(node.children.first.name)
-    end
-
-    ##
-    # @param [RubyLint::Node] node
-    #
-    def after_constant_path(node)
-      @in_constant_path = false
-    end
-
-    ##
-    # @param [RubyLint::Node] node
-    #
-    def on_constant(node)
+    def on_const(node)
       return if @in_constant_path
 
-      load(node.name)
+      root = node.children[0] ? node.children[0] : node
+
+      load(root.children[1].to_s)
     end
 
     ##

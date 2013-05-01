@@ -1,12 +1,22 @@
-require 'ripper'
-require 'ast/node'
+require 'parser'
 
 require_relative 'ruby-lint/extensions/string'
 
 require_relative 'ruby-lint/variable_predicates'
-require_relative 'ruby-lint/node'
+require_relative 'ruby-lint/ast/node'
+require_relative 'ruby-lint/ast/builder'
 require_relative 'ruby-lint/parser'
-require_relative 'ruby-lint/parser_error'
+
+require_relative 'ruby-lint/helper/conversion'
+require_relative 'ruby-lint/helper/current_scope'
+require_relative 'ruby-lint/helper/constant_paths'
+require_relative 'ruby-lint/helper/methods'
+
+require_relative 'ruby-lint/definition_builder/base'
+require_relative 'ruby-lint/definition_builder/ruby_module'
+require_relative 'ruby-lint/definition_builder/ruby_class'
+require_relative 'ruby-lint/definition_builder/ruby_sclass'
+
 require_relative 'ruby-lint/iterator'
 require_relative 'ruby-lint/definitions_builder'
 require_relative 'ruby-lint/constant_loader'
@@ -18,11 +28,6 @@ require_relative 'ruby-lint/base'
 require_relative 'ruby-lint/definition/ruby_object'
 require_relative 'ruby-lint/definition/ruby_method'
 require_relative 'ruby-lint/definitions/core'
-
-require_relative 'ruby-lint/helper/conversion'
-require_relative 'ruby-lint/helper/current_scope'
-require_relative 'ruby-lint/helper/constant_paths'
-require_relative 'ruby-lint/helper/methods'
 
 require_relative 'ruby-lint/analyze/unused_variables'
 require_relative 'ruby-lint/analyze/shadowing_variables'

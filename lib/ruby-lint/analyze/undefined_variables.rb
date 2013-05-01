@@ -19,10 +19,10 @@ module RubyLint
       # @return [Hash]
       #
       VARIABLE_TYPES = {
-        :global_variable   => 'global variable',
-        :instance_variable => 'instance variable',
-        :class_variable    => 'class variable',
-        :constant          => 'constant'
+        :gvar   => 'global variable',
+        :ivar => 'instance variable',
+        :cvar    => 'class variable',
+        :const          => 'constant'
       }
 
       VARIABLE_TYPES.each do |type, label|
@@ -50,13 +50,13 @@ module RubyLint
         node.children.each do |segment|
           name = segment.name
 
-          unless definitions.send(method, :constant, name)
+          unless definitions.send(method, :const, name)
             error("undefined constant #{name}", segment)
 
             break
           end
 
-          definitions = definitions.lookup(:constant, name)
+          definitions = definitions.lookup(:const, name)
           method      = :defines?
         end
       end

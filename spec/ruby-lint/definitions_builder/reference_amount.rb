@@ -10,7 +10,7 @@ number
 
     defs = build_definitions(code)
 
-    defs.lookup(:local_variable, 'number').reference_amount.should == 2
+    defs.lookup(:lvar, 'number').reference_amount.should == 2
   end
 
   should 'count the amount of references for a constant path' do

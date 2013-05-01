@@ -13,17 +13,17 @@ describe 'RubyLint::Iterator' do
         @options[:events] << :after_root
       end
 
-      def on_integer(node)
-        unless @options[:events].include?(:on_integer)
-          @options[:events] << :on_integer
+      def on_int(node)
+        unless @options[:events].include?(:on_int)
+          @options[:events] << :on_int
         end
 
         @options[:numbers] << node.children[0]
       end
 
-      def after_integer(node)
-        unless @options[:events].include?(:after_integer)
-          @options[:events] << :after_integer
+      def after_int(node)
+        unless @options[:events].include?(:after_int)
+          @options[:events] << :after_int
         end
       end
     end
@@ -32,11 +32,11 @@ describe 'RubyLint::Iterator' do
 
     iterator.iterate(ast)
 
-    iterator.options[:numbers].should == ['10', '20', '30']
+    iterator.options[:numbers].should == [10, 20, 30]
     iterator.options[:events].should  == [
       :on_root,
-      :on_integer,
-      :after_integer,
+      :on_int,
+      :after_int,
       :after_root
     ]
   end
@@ -54,15 +54,15 @@ end
 
     iterator = Class.new(RubyLint::Iterator) do
       def on_class(node)
-        @options[:class] = node.children[0].children[0]
+        @options[:class] = node.children[0].children[1]
       end
 
-      def on_method_definition(node)
+      def on_def(node)
         @options[:method] = node.children[0]
       end
 
-      def on_method(node)
-        @options[:call] = node.children[0]
+      def on_send(node)
+        @options[:call] = node.children[1]
       end
     end
 
@@ -70,8 +70,8 @@ end
 
     iterator.iterate(ast)
 
-    iterator.options[:class].should  == 'Example'
-    iterator.options[:method].should == 'some_method'
-    iterator.options[:call].should   == 'puts'
+    iterator.options[:class].should  == :Example
+    iterator.options[:method].should == :some_method
+    iterator.options[:call].should   == :puts
   end
 end

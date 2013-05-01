@@ -16,14 +16,14 @@ module RubyLint
     # Using the RubyObject class one could create a definition for the String
     # class as following:
     #
-    #     string  = RubyObject.new(:name => 'String', :type => :constant)
+    #     string  = RubyObject.new(:name => 'String', :type => :const)
     #     newline = RubyObject.new(
     #       :name  => 'NEWLINE',
-    #       :type  => :constant,
+    #       :type  => :const,
     #       :value => "\n"
     #     )
     #
-    #     string.add(:constant, newline.name, newline)
+    #     string.add(:const, newline.name, newline)
     #
     # For more information see the documentation of the corresponding methods.
     #
@@ -34,7 +34,7 @@ module RubyLint
     #  @return [Mixed] The value of the object.
     #
     # @!attribute [r] type
-    #  @return [Symbol] The type of object, e.g. `:constant`.
+    #  @return [Symbol] The type of object, e.g. `:const`.
     #
     # @!attribute [r] ignore
     #  @return [TrueClass|FalseClass] When set to `true` the definition should
@@ -73,11 +73,11 @@ module RubyLint
       # @return [Array]
       #
       LOOKUP_PARENT = [
-        :class_variable,
-        :constant,
-        :global_variable,
+        :const,
+        :cvar,
+        :gvar,
         :instance_method,
-        :instance_variable,
+        :ivar,
         :keyword,
         :method
       ]
@@ -112,13 +112,6 @@ module RubyLint
       # @return [RubyLint::Definition::RubyObject]
       #
       def self.new_from_node(node, options = {})
-        path_segments = []
-
-        if node.constant_path?
-          path_segments = node.children[0..-2].reverse
-          node          = node.children[-1]
-        end
-
         options[:name] ||= node.name
         options[:type] ||= node.type
 
@@ -132,20 +125,7 @@ module RubyLint
           options[:value] = create_value_definitions(options[:value])
         end
 
-        object = new(options)
-
-        # Assign the receivers of this object.
-        #
-        # TODO: this approach doesn't take existing definitions into account,
-        # instead it will always create a new one for each segment.
-        if !path_segments.empty? and !options[:receiver]
-          path_segments.inject(object) do |source, segment|
-            source.receiver = new_from_node(segment)
-            source.receiver
-          end
-        end
-
-        return object
+        return new(options)
       end
 
       ##
@@ -158,7 +138,7 @@ module RubyLint
       def self.create_value_definitions(value)
         if value.is_a?(Array)
           value = value.map { |v| create_value_definitions(v) }
-        elsif value.is_a?(Node)
+        elsif value.is_a?(AST::Node)
           value = RubyObject.new_from_node(value)
         end
 
@@ -167,7 +147,7 @@ module RubyLint
 
       ##
       # @example
-      #  string = RubyObject.new(:name => 'String', :type => :constant)
+      #  string = RubyObject.new(:name => 'String', :type => :const)
       #
       # @param [Hash] options Hash containing additional options such as the
       #  parent definitions. For a list of available options see the
@@ -194,17 +174,18 @@ module RubyLint
       # @param [RubyLint::Definition::RubyObject|RubyLint::Node] value
       #
       def value=(value)
-        @value = value.is_a?(Node) ? RubyObject.new_from_node(value) : value
+        @value = value.is_a?(AST::Node) \
+          ? RubyObject.new_from_node(value) : value
       end
 
       ##
       # Adds a new definition to the definitions list.
       #
       # @example
-      #  string  = RubyObject.new(:name => 'String', :type => :constant)
+      #  string  = RubyObject.new(:name => 'String', :type => :const)
       #  newline = RubyObject.new(
       #    :name  => 'NEWLINE',
-      #    :type  => :constant,
+      #    :type  => :const,
       #    :value => "\n"
       #  )
       #
@@ -244,16 +225,16 @@ module RubyLint
       # If no definition was found `nil` will be returned.
       #
       # @example
-      #  string  = RubyObject.new(:name => 'String', :type => :constant)
+      #  string  = RubyObject.new(:name => 'String', :type => :const)
       #  newline = RubyObject.new(
       #    :name  => 'NEWLINE',
-      #    :type  => :constant,
+      #    :type  => :const,
       #    :value => "\n"
       #  )
       #
       #  string.add(newline.type, newline.name, newline)
       #
-      #  string.lookup(:constant, 'NEWLINE') # => #<RubyLint::Definition...>
+      #  string.lookup(:const, 'NEWLINE') # => #<RubyLint::Definition...>
       #
       # @param [#to_sym] type
       # @param [String] name
@@ -298,7 +279,7 @@ module RubyLint
         path     = path.split(PATH_SEPARATOR) if path.is_a?(String)
 
         path.each do |segment|
-          found = constant.lookup(:constant, segment)
+          found = constant.lookup(:const, segment)
 
           if found
             constant = found
@@ -440,15 +421,15 @@ module RubyLint
       #
       def clear!
         @definitions = {
-          :local_variable    => {},
-          :instance_variable => {},
-          :class_variable    => {},
-          :global_variable   => {},
-          :constant          => {},
-          :method            => {},
-          :instance_method   => {},
-          :member            => {},
-          :keyword           => {}
+          :lvar            => {},
+          :ivar            => {},
+          :cvar            => {},
+          :gvar            => {},
+          :const           => {},
+          :method          => {},
+          :instance_method => {},
+          :member          => {},
+          :keyword         => {}
         }
       end
 
@@ -549,7 +530,7 @@ module RubyLint
           target     = lookup_constant_path(path[0..-2])
           definition = target.define_constant(path[-1], &block)
         else
-          definition = add_child_definition(name, :constant, &block)
+          definition = add_child_definition(name, :const, &block)
         end
 
         return definition
@@ -565,7 +546,7 @@ module RubyLint
       # @param [Mixed] value
       #
       def define_global_variable(name, value = nil)
-        return add_child_definition(name, :global_variable, value)
+        return add_child_definition(name, :gvar, value)
       end
 
       ##

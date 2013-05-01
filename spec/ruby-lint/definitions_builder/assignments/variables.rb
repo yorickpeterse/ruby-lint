@@ -4,7 +4,7 @@ describe 'Building variable definitions' do
   describe 'variables' do
     should 'process basic variable assignments' do
       defs   = build_definitions('number = 10')
-      number = defs.lookup(:local_variable, 'number')
+      number = defs.lookup(:lvar, 'number')
 
       number.is_a?(ruby_object).should == true
       number.name.should               == 'number'
@@ -15,8 +15,8 @@ describe 'Building variable definitions' do
 
     should 'process mass variable assignments' do
       defs    = build_definitions('number, numberx = 10, 20')
-      number  = defs.lookup(:local_variable, 'number')
-      numberx = defs.lookup(:local_variable, 'numberx')
+      number  = defs.lookup(:lvar, 'number')
+      numberx = defs.lookup(:lvar, 'numberx')
 
       number.is_a?(ruby_object).should == true
 
@@ -48,9 +48,9 @@ describe 'Building variable definitions' do
       CODE
 
       defs = build_definitions(code)
-      var  = defs.lookup(:local_variable, 'd')
+      var  = defs.lookup(:lvar, 'd')
 
-      var.value.type.should  == :integer
+      var.value.type.should  == :int
       var.value.value.should == '1'
     end
 
@@ -59,11 +59,11 @@ describe 'Building variable definitions' do
       defs = build_definitions(code)
 
       %w{first second third}.each do |name|
-        variable = defs.lookup(:local_variable, name)
+        variable = defs.lookup(:lvar, name)
 
         variable.is_a?(ruby_object).should == true
 
-        variable.value.type.should  == :integer
+        variable.value.type.should  == :int
         variable.value.value.should == '10'
       end
     end

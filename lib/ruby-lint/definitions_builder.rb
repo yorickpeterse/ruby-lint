@@ -6,13 +6,15 @@ module RubyLint
   # code.
   #
   class DefinitionsBuilder < Iterator
+    include Helper::ConstantPaths
+
     ##
     # Array of variable types that should be exported to the outer scope of a
     # method definition.
     #
     # @return [Array]
     #
-    EXPORT_VARIABLES = [:instance_variable, :class_variable, :constant]
+    EXPORT_VARIABLES = [:ivar, :cvar, :const]
 
     ##
     # Hash containing the definition types to copy when including/extending a
@@ -22,11 +24,11 @@ module RubyLint
     #
     INCLUDE_CALLS = {
       'include' => {
-        :constant        => :constant,
+        :const           => :const,
         :instance_method => :instance_method
       },
       'extend' => {
-        :constant        => :constant,
+        :const           => :const,
         :instance_method => :method
       }
     }
@@ -34,12 +36,11 @@ module RubyLint
     # Define the methods used for incrementing the amount of references to a
     # variable.
     [
-      :local_variable,
-      :global_variable,
-      :instance_variable,
-      :class_variable,
-      :constant,
-      :constant_path
+      :lvar,
+      :gvar,
+      :ivar,
+      :cvar,
+      :const
     ].each do |type|
       define_method("on_#{type}") do |node|
         if node.constant_path?
@@ -84,8 +85,8 @@ module RubyLint
 
       increment_reference_amount(mod_def)
 
-      if scope.has_definition?(:constant, mod_def.name)
-        existing = scope.lookup(:constant, mod_def.name)
+      if scope.has_definition?(:const, mod_def.name)
+        existing = scope.lookup(:const, mod_def.name)
 
         if existing
           @definitions << update_parent_definitions(existing, scope)
@@ -136,8 +137,8 @@ module RubyLint
       increment_reference_amount(class_def)
 
       # Use an existing definition list if it exists.
-      if scope.has_definition?(:constant, class_def.name)
-        existing = scope.lookup(:constant, class_def.name)
+      if scope.has_definition?(:const, class_def.name)
+        existing = scope.lookup(:const, class_def.name)
 
         if existing
           @definitions << update_parent_definitions(existing, scope)
@@ -199,7 +200,7 @@ module RubyLint
     #
     # @param [RubyLint::Node] node
     #
-    def on_method_definition(node)
+    def on_def(node)
       scope  = definitions
       method = Definition::RubyMethod.new_from_node(
         node,
@@ -231,7 +232,7 @@ module RubyLint
     #
     # @param [RubyLint::Node] node
     #
-    def after_method_definition(node)
+    def after_def(node)
       method = @definitions.pop
 
       # TODO: variables should only be exported when the method is actually
@@ -343,12 +344,13 @@ module RubyLint
     # @param [RubyLint::Node] node
     #
     def on_for(node)
-      scope = definitions
+      scope     = definitions
+      variables = node.children[0].children
 
       # The values are set to `nil` as the only reliable way of retrieving
       # these is actual code evaluation.
-      node.children[0].each do |variable|
-        assign_variable(scope, variable, nil)
+      variables.each do |variable|
+        assign_variable(scope, variable, nil, :lvar)
       end
     end
 
@@ -363,10 +365,12 @@ module RubyLint
         node,
         :name           => 'block',
         :parents        => [scope],
-        :update_parents => [:local_variable]
+        :update_parents => [:lvar]
       )
 
-      node.each_argument do |arg|
+      args = node.children[1].children
+
+      args.each do |arg|
         variable = Definition::RubyObject.new_from_node(arg, :ignore => true)
 
         block.add(arg.type, arg.name, variable)
@@ -374,7 +378,7 @@ module RubyLint
 
       # Ensure that local variables in the current scope are available inside
       # the block.
-      scope.list(:local_variable).each do |variable|
+      scope.list(:lvar).each do |variable|
         block.add(variable.type, variable.name, variable)
       end
 
@@ -552,7 +556,7 @@ module RubyLint
     # @return [RubyLint::Definition::RubyObject]
     #
     def create_variable_definition(variable, value = nil)
-      if variable.is_a?(Node)
+      if variable.is_a?(AST::Node)
         definition = Definition::RubyObject.new_from_node(
           variable,
           :value => value
@@ -666,7 +670,7 @@ module RubyLint
     def define_module(node, constant)
       add_self(constant)
 
-      definitions.add(:constant, constant.name, constant)
+      definitions.add(:const, constant.name, constant)
 
       associate_node_definition(node, constant)
 

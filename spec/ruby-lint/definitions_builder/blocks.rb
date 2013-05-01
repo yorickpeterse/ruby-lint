@@ -16,12 +16,12 @@ end
     builder.iterate(ast)
 
     block  = builder.options[:node_definitions].values.last
-    number = block.lookup(:local_variable, 'number')
+    number = block.lookup(:lvar, 'number')
 
     number.is_a?(ruby_object).should == true
 
-    number.value.type.should  == :integer
-    number.value.value.should == '10'
+    number.value.type.should  == :int
+    number.value.value.should == 10
   end
 
   should 'use outer local variables when overwriting them' do
@@ -35,6 +35,6 @@ end
 
     defs = build_definitions(code)
 
-    defs.lookup(:local_variable, 'number').value.value.should == '20'
+    defs.lookup(:lvar, 'number').value.value.should == '20'
   end
 end

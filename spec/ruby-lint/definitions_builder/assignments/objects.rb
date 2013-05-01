@@ -9,14 +9,14 @@ describe 'Building variable definitions' do
       CODE
 
       defs   = build_definitions(code)
-      person = defs.lookup(:local_variable, 'person')
+      person = defs.lookup(:lvar, 'person')
       name   = person.lookup(:member, 'name')
 
       name.is_a?(ruby_object).should == true
       name.name.should               == 'name'
       name.type.should               == :identifier
 
-      name.value.type.should  == :string
+      name.value.type.should  == :str
       name.value.value.should == 'Matz'
     end
   end

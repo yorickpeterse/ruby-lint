@@ -60,8 +60,8 @@ module RubyLint
           inspected_methods = inspect_methods(current_inspector)
           variables         = {
             :methods       => method_information(inspected_methods),
-            :constant      => current_inspector.constant,
-            :constant_name => current_inspector.constant_name,
+            :const      => current_inspector.constant,
+            :const_name => current_inspector.constant_name,
             :superclass    => (current_inspector.constant.superclass rescue nil)
           }
 

@@ -10,7 +10,7 @@ end
 
     defs = build_definitions(code)
 
-    defs.lookup(:local_variable, 'key').is_a?(ruby_object).should   == true
-    defs.lookup(:local_variable, 'value').is_a?(ruby_object).should == true
+    defs.lookup(:lvar, 'key').is_a?(ruby_object).should   == true
+    defs.lookup(:lvar, 'value').is_a?(ruby_object).should == true
   end
 end

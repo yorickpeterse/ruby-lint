@@ -16,11 +16,11 @@ module RubyLint
       # @return [Hash]
       #
       VARIABLE_TYPES = {
-        :local_variable    => 'local variable',
-        :global_variable   => 'global variable',
-        :instance_variable => 'instance variable',
-        :class_variable    => 'class variable',
-        :constant          => 'constant'
+        :lvar    => 'local variable',
+        :gvar   => 'global variable',
+        :ivar => 'instance variable',
+        :cvar    => 'class variable',
+        :const          => 'constant'
       }
 
       VARIABLE_TYPES.each do |type, label|

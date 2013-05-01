@@ -72,11 +72,11 @@ end
     defs = build_definitions(code)
 
     defs.lookup(:instance_method, 'example') \
-      .lookup(:local_variable, 'number') \
+      .lookup(:lvar, 'number') \
       .is_a?(ruby_object) \
       .should == true
 
-    defs.lookup(:local_variable, 'number').nil?.should == true
+    defs.lookup(:lvar, 'number').nil?.should == true
   end
 
   should 'process a definition with a receiver' do
@@ -108,7 +108,7 @@ end
       defs = build_definitions(code)
 
       defs.lookup(:instance_method, 'example') \
-        .lookup(:local_variable, 'number') \
+        .lookup(:lvar, 'number') \
         .is_a?(ruby_object) \
         .should == true
     end
@@ -123,7 +123,7 @@ end
       defs = build_definitions(code)
 
       defs.lookup(:instance_method, 'example') \
-        .lookup(:local_variable, 'other_number') \
+        .lookup(:lvar, 'other_number') \
         .is_a?(ruby_object) \
         .should == true
     end

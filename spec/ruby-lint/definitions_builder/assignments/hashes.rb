@@ -3,7 +3,7 @@ require File.expand_path('../../../../helper', __FILE__)
 describe 'Building variable definitions' do
   should 'assign hashes as instances' do
     defs  = build_definitions('numbers = {}')
-    value = defs.lookup(:local_variable, 'numbers').value
+    value = defs.lookup(:lvar, 'numbers').value
 
     value.instance?.should == true
 
@@ -14,18 +14,18 @@ describe 'Building variable definitions' do
     should 'return key/value pairs as an Array' do
       code    = 'numbers = {:key => "value", :extra => "example"}'
       defs    = build_definitions(code)
-      numbers = defs.lookup(:local_variable, 'numbers')
+      numbers = defs.lookup(:lvar, 'numbers')
       value   = numbers.value
 
       value.value.is_a?(Array).should == true
       value.value.length.should       == 2
 
       value.value[0].name.should        == 'key'
-      value.value[0].value.type.should  == :string
+      value.value[0].value.type.should  == :str
       value.value[0].value.value.should == 'value'
 
       value.value[1].name.should        == 'extra'
-      value.value[1].value.type.should  == :string
+      value.value[1].value.type.should  == :str
       value.value[1].value.value.should == 'example'
     end
 
@@ -37,14 +37,14 @@ numbers['one'] = 1
 
       defs = build_definitions(code)
 
-      numbers = defs.lookup(:local_variable, 'numbers')
+      numbers = defs.lookup(:lvar, 'numbers')
       one     = numbers.lookup(:member, 'one')
 
       one.is_a?(ruby_object).should == true
       one.name.should               == 'one'
-      one.type.should               == :string
+      one.type.should               == :str
 
-      one.value.type.should  == :integer
+      one.value.type.should  == :int
       one.value.value.should == '1'
     end
 
@@ -56,7 +56,7 @@ numbers[key] = 1
       CODE
 
       defs    = build_definitions(code)
-      numbers = defs.lookup(:local_variable, 'numbers')
+      numbers = defs.lookup(:lvar, 'numbers')
 
       numbers.lookup(:member, 'one').value.value.should == '1'
       numbers.lookup(:member, 'two').value.value.should == '2'

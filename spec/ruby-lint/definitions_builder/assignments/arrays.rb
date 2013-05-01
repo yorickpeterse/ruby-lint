@@ -3,7 +3,7 @@ require File.expand_path('../../../../helper', __FILE__)
 describe 'Building variable definitions' do
   should 'assign arrays as instances' do
     defs  = build_definitions('numbers = []')
-    value = defs.lookup(:local_variable, 'numbers').value
+    value = defs.lookup(:lvar, 'numbers').value
 
     value.instance?.should == true
 
@@ -18,7 +18,7 @@ describe 'Building variable definitions' do
       CODE
 
       defs    = build_definitions(code)
-      numbers = defs.lookup(:local_variable, 'numbers')
+      numbers = defs.lookup(:lvar, 'numbers')
 
       numbers.is_a?(ruby_object).should       == true
       numbers.value.is_a?(ruby_object).should == true
@@ -27,10 +27,10 @@ describe 'Building variable definitions' do
       first = numbers.lookup(:member, 0)
 
       first.is_a?(ruby_object).should == true
-      first.type.should               == :integer
+      first.type.should               == :int
 
       first.value.is_a?(ruby_object).should == true
-      first.value.type.should               == :integer
+      first.value.type.should               == :int
       first.value.value.should              == '10'
     end
 
@@ -43,7 +43,7 @@ numbers[4,5,6] = 40, 50
       CODE
 
       defs    = build_definitions(code)
-      numbers = defs.lookup(:local_variable, 'numbers')
+      numbers = defs.lookup(:lvar, 'numbers')
 
       numbers.lookup(:member, '0').value.value.should == '10'
       numbers.lookup(:member, '1').value.should       == nil
@@ -62,7 +62,7 @@ numbers[index] = 20
       CODE
 
       defs    = build_definitions(code)
-      numbers = defs.lookup(:local_variable, 'numbers')
+      numbers = defs.lookup(:lvar, 'numbers')
 
       numbers.lookup(:member, '0').value.value.should == '10'
       numbers.lookup(:member, '1').value.value.should == '20'

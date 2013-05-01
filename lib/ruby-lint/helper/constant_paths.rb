@@ -10,7 +10,7 @@ module RubyLint
       # block.
       #
       # @example
-      #  path = s(:constant_path, s(:constant, 'A'), s(:constant, 'B')
+      #  path = s(:const_path, s(:const, 'A'), s(:const, 'B')
       #
       #  iterate_constant_path(path) do |name, segment, definition|
       #    puts name
@@ -29,12 +29,44 @@ module RubyLint
 
         node.children.each do |segment|
           name       = segment.children[0]
-          definition = definitions.lookup(:constant, name)
+          definition = definitions.lookup(:const, name)
 
           yield name, segment, definition
 
           definition ? definitions = definition : break
         end
+      end
+
+      ##
+      # Returns a definition list to use for the last segment in the constant
+      # path. If one of the segments is invalid `nil` is returned instead.
+      #
+      # @param [Array] path An array of nodes or definitions that make up the
+      #  constant path.
+      # @return [RubyLint::Definition::RubyObject|NilClass]
+      #
+      def resolve_constant_path(path)
+        current = definitions
+
+        path.each do |segment|
+          type = :const
+          name = segment
+
+          if segment.is_a?(AST::Node)
+            type = segment.type
+            name = segment.children[1]
+          end
+
+          found = current.lookup(type, name.to_s)
+
+          if found
+            current = found
+          else
+            return
+          end
+        end
+
+        return current
       end
     end # ConstantPaths
   end # Helper
