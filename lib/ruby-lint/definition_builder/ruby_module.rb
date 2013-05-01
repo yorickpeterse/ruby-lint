@@ -29,23 +29,7 @@ module RubyLint
         return scope
       end
 
-      private
-
-      ##
-      # Tries to resolve the definition for the node's name.
-      #
-      # @param [RubyLint::AST::Node] node
-      # @return [RubyLint::Definition::RubyObject]
-      #
-      def resolve_constant_name(node)
-        if node.children[0]
-          found = resolve_constant_path(node.children)
-        else
-          found = definitions.lookup(node.type, constant_name(node))
-        end
-
-        return found
-      end
+      protected
 
       ##
       # Returns the name of the module.
@@ -54,16 +38,6 @@ module RubyLint
       #
       def module_name
         return constant_name(node.children[0])
-      end
-
-      ##
-      # Returns the name of a constant node as a String.
-      #
-      # @param [RubyLint::AST::Node] node
-      # @return [String]
-      #
-      def constant_name(node)
-        return node.children[1].to_s
       end
 
       ##

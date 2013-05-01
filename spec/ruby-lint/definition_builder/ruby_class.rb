@@ -108,35 +108,4 @@ describe RubyLint::DefinitionBuilder::RubyClass do
       builder.scope.should == root.lookup(:const, 'A')
     end
   end
-
-=begin
-  describe 'dealing with sclass blocks' do
-    describe 'using self' do
-      before do
-        node  = s(:sclass, s(:self), s(:nil))
-        @root = ruby_object.new(:name => 'root')
-
-        @root.add(:keyword, 'self', @root)
-
-        @builder = RubyLint::DefinitionBuilder::RubyClass.new(node, @root)
-      end
-
-      should 'not set a name' do
-        @builder.build.name.nil?.should == true
-      end
-
-      should 'return the scope to define the class in' do
-        @builder.scope.should == @root
-      end
-    end
-
-    describe 'using a constant' do
-
-    end
-
-    describe 'using a constant path' do
-
-    end
-  end
-=end
 end
