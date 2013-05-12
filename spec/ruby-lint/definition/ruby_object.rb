@@ -205,4 +205,15 @@ describe ruby_object do
 
     parent.lookup(child_only.type, child_only.name).nil?.should == true
   end
+
+  should 'return the members as the definition value' do
+    array   = ruby_object.new(:type => :array, :members_as_value => true)
+    member0 = ruby_object.new(:type => :integer, :value => 10)
+    member1 = ruby_object.new(:type => :integer, :value => 20)
+
+    array.add(:member, '0', member0)
+    array.add(:member, '1', member1)
+
+    array.value.should == {'0' => member0, '1' => member1}
+  end
 end

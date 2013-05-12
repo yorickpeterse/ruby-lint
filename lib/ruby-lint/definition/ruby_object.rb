@@ -63,6 +63,11 @@ module RubyLint
     #  @return [Array] A list of data types to also add to the parent
     #   definitions when adding an object to the current one.
     #
+    # @!attribute [r] members_as_value
+    #  @return [TrueClass|FalseClass] When set to `true` the {#value} getter
+    #   returns a collection of the members instead of the manually defined
+    #   value.
+    #
     class RubyObject
       include VariablePredicates
 
@@ -93,9 +98,9 @@ module RubyLint
         :column,
         :definitions,
         :ignore,
+        :members_as_value,
         :name,
-        :type,
-        :value
+        :type
 
       attr_accessor :instance_type,
         :parents,
@@ -162,9 +167,22 @@ module RubyLint
           instance_variable_set("@#{key}", value)
         end
 
+        @value = nil if members_as_value
+
         clear!
 
         yield self if block_given?
+      end
+
+      ##
+      # Returns the value of the definition. If `members_as_value` is set to
+      # `true` the return value is a Hash containing the names and values of
+      # each member.
+      #
+      # @return [Hash|RubyLint::Definition::RubyObject]
+      #
+      def value
+        return members_as_value ? definitions[:member] : @value
       end
 
       ##
