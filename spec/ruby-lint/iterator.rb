@@ -1,6 +1,18 @@
 require File.expand_path('../../helper', __FILE__)
 
 describe 'RubyLint::Iterator' do
+  should 'call after_initialize if it is defined' do
+    iterator = Class.new(RubyLint::Iterator) do
+      attr_reader :number
+
+      def after_initialize
+        @number = 10
+      end
+    end
+
+    iterator.new.number.should == 10
+  end
+
   should 'iterate over a simple AST' do
     ast = parse('10; 20; 30', false)
 

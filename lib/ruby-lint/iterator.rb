@@ -72,6 +72,8 @@ module RubyLint
       @options     = default_options.merge(options)
       @definitions = []
       @call_types  = []
+
+      after_initialize if respond_to?(:after_initialize)
     end
 
     ##
