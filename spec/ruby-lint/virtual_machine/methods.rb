@@ -87,7 +87,7 @@ end
 
     defs = build_definitions(code)
 
-    defs.lookup(:constant, 'String') \
+    defs.lookup(:const, 'String') \
       .lookup(:method, 'example') \
       .is_a?(ruby_method) \
       .should == true

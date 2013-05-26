@@ -67,12 +67,12 @@ module RubyLint
       @last_assigned_value = variable.value
     end
 
-    def on_cdecl(node)
+    def on_casgn(node)
       @asgn_nesting  += 1
       @values_buffer << []
     end
 
-    def after_cdecl(node)
+    def after_casgn(node)
       @asgn_nesting -= 1
 
       values = pop_values

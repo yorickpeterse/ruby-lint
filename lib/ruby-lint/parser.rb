@@ -1,39 +1,12 @@
 module RubyLint
   ##
+  # {RubyLint::Parser} provides a small wrapper around the Parser Gem and
+  # allows for the use of a custom AST builder.
   #
   class Parser
-    ##
-    # Tries to require the parser class based on the current Ruby version.
-    #
-    def self.require_parser
-      begin
-        require "parser/ruby#{ruby_version}"
-      rescue LoadError
-        require 'parser/ruby19'
-      end
-    end
-
-    ##
-    # Returns an identifier that indicates the current Ruby version.
-    #
-    # @return [String]
-    #
-    def self.ruby_version
-      return RUBY_VERSION.split('.').first(2).join('')
-    end
-
-    ##
-    # Returns the Parser constant to use based on the current Ruby version.
-    #
-    # @return [Class]
-    #
-    def self.parser_constant
-      return ::Parser.const_get("Ruby#{ruby_version}")
-    end
-
     def initialize
       builder = AST::Builder.new
-      @parser = self.class.parser_constant.new(builder)
+      @parser = ::Parser::CurrentRuby.new(builder)
 
       @parser.diagnostics.all_errors_are_fatal = true
     end
@@ -55,5 +28,3 @@ module RubyLint
     end
   end # Parser
 end # RubyLint
-
-RubyLint::Parser.require_parser

@@ -6,13 +6,11 @@ module RubyLint
     #
     class Builder < ::Parser::Builders::Default
       ##
-      # @param [Symbol] type
-      # @param [Array] children
-      # @param [Parser::Source::Map] source_map
+      # @see Parser::Builders::Default#n
       # @return [RubyLint::AST::Node]
       #
-      def n(type, children, source_map)
-        return Node.new(type, children, :source_map => source_map)
+      def n(type, children, location)
+        return Node.new(type, children, :location => location)
       end
     end # Builder
   end # AST
