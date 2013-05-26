@@ -25,15 +25,16 @@ module RubyLint
     # Called after a new instance of the virtual machine has been created.
     #
     def after_initialize
-      @associations     = {}
-      @definitions      = initial_definitions
-      @scopes           = [@definitions]
-      @in_sclass        = false
-      @in_mass_assign   = false
-      @asgn_nesting     = 0
-      @masgn_nesting    = 0
-      @values_buffer    = []
-      @variables_buffer = []
+      @associations        = {}
+      @definitions         = initial_definitions
+      @scopes              = [@definitions]
+      @in_sclass           = false
+      @in_mass_assign      = false
+      @asgn_nesting        = 0
+      @masgn_nesting       = 0
+      @values_buffer       = []
+      @variables_buffer    = []
+      @last_assigned_value = nil
     end
 
     def on_lvasgn(node)
@@ -44,7 +45,12 @@ module RubyLint
     def after_lvasgn(node)
       @asgn_nesting -= 1
 
-      values   = pop_values
+      values = pop_values
+
+      if values.empty? and @last_assigned_value
+        values = [@last_assigned_value]
+      end
+
       variable = Definition::RubyObject.new(
         :type          => :lvar,
         :name          => node.children[0].to_s,
@@ -57,6 +63,8 @@ module RubyLint
       else
         current_scope.add(variable.type, variable.name, variable)
       end
+
+      @last_assigned_value = variable.value
     end
 
     def on_cdecl(node)
