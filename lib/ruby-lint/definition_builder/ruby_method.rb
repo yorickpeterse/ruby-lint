@@ -2,8 +2,16 @@ module RubyLint
   module DefinitionBuilder
     class RubyMethod < Base
       ##
+      # Called after a new instance has been created.
+      #
+      def after_initialize
+        @options[:type] ||= :instance_method
+      end
+
+      ##
       # Builds the definition for the method definition.
       #
+      # @see #new_node
       # @return [RubyLint::Definition::RubyMethod]
       #
       def build
@@ -19,9 +27,8 @@ module RubyLint
         scope = definitions
 
         if has_receiver?
-          receiver = node.children[0]
-          found    = lookup_receiver_definition(receiver)
-          scope    = found if found
+          found = lookup_receiver_definition(receiver_node)
+          scope = found if found
         end
 
         return scope
@@ -36,11 +43,13 @@ module RubyLint
       # @return [RubyLint::Definition::RubyObject]
       #
       def lookup_receiver_definition(node)
+        # NOTE: not so sure if it's save to assume there's always a valid
+        # RubyObject returned here.
         if node.constant?
           return resolve_constant_name(node)
+        elsif node.self?
+          return definitions.lookup(:keyword, 'self')
         else
-          # NOTE: not so sure if it's save to assume there's always a valid
-          # RubyObject returned here.
           return definitions.lookup(node.type, node.children[0]).value
         end
       end
@@ -57,9 +66,18 @@ module RubyLint
       # @return [RubyLint::Definition::RubyObject]
       #
       def new_node(parents)
+        type = options[:type]
+
+        if has_receiver?
+          receiver = lookup_receiver_definition(receiver_node)
+          type     = :method if receiver.class?
+        end
+
         return Definition::RubyMethod.new(
-          :name    => method_name,
-          :parents => parents
+          :name          => method_name,
+          :parents       => parents,
+          :type          => type,
+          :instance_type => :instance
         )
       end
 
@@ -75,6 +93,10 @@ module RubyLint
       #
       def name_index
         return has_receiver? ? 1 : 0
+      end
+
+      def receiver_node
+        return node.children[0]
       end
     end # RubyMethod
   end # DefinitionBuilder

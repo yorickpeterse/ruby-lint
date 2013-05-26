@@ -4,11 +4,11 @@ describe 'Building class definitions' do
   describe 'scoping definitions' do
     should 'process a global class' do
       defs    = build_definitions('class Example; end')
-      example = defs.lookup(:constant, 'Example')
+      example = defs.lookup(:const, 'Example')
 
       example.is_a?(ruby_object).should == true
 
-      example.type.should == :class
+      example.type.should == :const
       example.name.should == 'Example'
     end
 
@@ -21,13 +21,13 @@ end
       CODE
 
       defs  = build_definitions(code)
-      first = defs.lookup(:constant, 'First')
+      first = defs.lookup(:const, 'First')
 
       first.is_a?(ruby_object).should == true
 
-      defs.lookup(:constant, 'Second').nil?.should == true
+      defs.lookup(:const, 'Second').nil?.should == true
 
-      first.lookup(:constant, 'Second') \
+      first.lookup(:const, 'Second') \
         .is_a?(ruby_object) \
         .should == true
     end
@@ -44,17 +44,17 @@ end
       CODE
 
       defs  = build_definitions(code)
-      first = defs.lookup(:constant, 'First')
+      first = defs.lookup(:const, 'First')
 
-      first.lookup(:constant, 'Second').is_a?(ruby_object).should == true
-      first.lookup(:constant, 'Third').is_a?(ruby_object).should == true
+      first.lookup(:const, 'Second').is_a?(ruby_object).should == true
+      first.lookup(:const, 'Third').is_a?(ruby_object).should == true
 
-      first.lookup(:constant, 'Second') \
-        .lookup(:constant, 'Third') \
+      first.lookup(:const, 'Second') \
+        .lookup(:const, 'Third') \
         .is_a?(ruby_object) \
         .should == true
 
-      defs.lookup(:constant, 'Third').is_a?(ruby_object).should == true
+      defs.lookup(:const, 'Third').is_a?(ruby_object).should == true
     end
   end
 
@@ -72,7 +72,7 @@ end
 
       defs = build_definitions(code)
 
-      defs.lookup(:constant, 'First') \
+      defs.lookup(:const, 'First') \
         .lookup(:instance_method, 'example') \
         .is_a?(ruby_method) \
         .should == true
@@ -83,7 +83,7 @@ end
     should 'set the default parent class' do
       defs = build_definitions('class First; end')
 
-      defs.lookup(:constant, 'First') \
+      defs.lookup(:const, 'First') \
         .lookup(:method, 'new') \
         .is_a?(ruby_method) \
         .should == true
@@ -102,12 +102,12 @@ end
 
       defs = build_definitions(code)
 
-      defs.lookup(:constant, 'Second') \
+      defs.lookup(:const, 'Second') \
         .parents \
         .map(&:name) \
         .should == ['First', 'root']
 
-      defs.lookup(:constant, 'Second') \
+      defs.lookup(:const, 'Second') \
         .lookup(:instance_method, 'example') \
         .is_a?(ruby_method) \
         .should == true
@@ -128,12 +128,12 @@ end
 
       defs = build_definitions(code)
 
-      defs.lookup(:constant, 'Third') \
+      defs.lookup(:const, 'Third') \
         .parents \
         .map(&:name) \
         .should == ['Second', 'root']
 
-      defs.lookup(:constant, 'Third') \
+      defs.lookup(:const, 'Third') \
         .lookup(:instance_method, 'example') \
         .is_a?(ruby_method) \
         .should == true
@@ -151,7 +151,7 @@ end
 
       defs = build_definitions(code)
 
-      defs.lookup(:constant, 'Example') \
+      defs.lookup(:const, 'Example') \
         .lookup(:method, 'class_method') \
         .is_a?(ruby_method) \
         .should == true
@@ -171,7 +171,7 @@ end
 
       defs = build_definitions(code)
 
-      defs.lookup(:constant, 'First') \
+      defs.lookup(:const, 'First') \
         .lookup(:method, 'example') \
         .is_a?(ruby_method) \
         .should == true
@@ -187,7 +187,7 @@ end
 
       defs = build_definitions(code)
 
-      defs.lookup(:constant, 'String') \
+      defs.lookup(:const, 'String') \
         .lookup(:method, 'example') \
         .is_a?(ruby_method) \
         .should == true
@@ -205,12 +205,12 @@ end
 
       defs = build_definitions(code)
 
-      defs.lookup(:constant, 'First') \
+      defs.lookup(:const, 'First') \
         .lookup(:method, 'example') \
         .is_a?(ruby_method) \
         .should == false
 
-      defs.lookup(:constant, 'String') \
+      defs.lookup(:const, 'String') \
         .lookup(:method, 'example') \
         .is_a?(ruby_method) \
         .should == true
@@ -221,7 +221,7 @@ end
     should 'inherit from Object when importing String' do
       defs = build_definitions('String')
 
-      defs.lookup(:constant, 'String') \
+      defs.lookup(:const, 'String') \
         .lookup(:method, 'new') \
         .is_a?(ruby_method) \
         .should == true

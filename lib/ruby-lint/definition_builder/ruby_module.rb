@@ -48,11 +48,16 @@ module RubyLint
       # @return [RubyLint::Definition::RubyObject]
       #
       def new_node(parents)
-        return Definition::RubyObject.new(
+        definition = Definition::RubyObject.new(
           :name             => module_name,
           :parents          => parents,
-          :reference_amount => 1
+          :reference_amount => 1,
+          :type             => :const
         )
+
+        definition.add(:keyword, 'self', definition)
+
+        return definition
       end
     end # RubyModule
   end # DefinitionBuilder

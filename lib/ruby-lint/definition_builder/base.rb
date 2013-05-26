@@ -9,15 +9,19 @@ module RubyLint
     class Base
       include Helper::ConstantPaths
 
-      attr_reader :definitions, :node
+      attr_reader :definitions, :node, :options
 
       ##
       # @param [RubyLint::AST::Node] node
       # @param [RubyLint::Definition::RubyObject] definitions
+      # @param [Hash] options
       #
-      def initialize(node, definitions)
+      def initialize(node, definitions, options = {})
         @node        = node
         @definitions = definitions
+        @options     = options
+
+        after_initialize if respond_to?(:after_initialize)
       end
 
       protected
@@ -30,7 +34,7 @@ module RubyLint
       #
       def resolve_constant_name(node)
         if node.children[0]
-          found = resolve_constant_path(node.children)
+          found = resolve_constant_path(node)
         else
           found = definitions.lookup(node.type, constant_name(node))
         end

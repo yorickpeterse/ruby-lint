@@ -4,11 +4,11 @@ describe 'Building module definitions' do
   describe 'scoping definitions' do
     should 'process a global module' do
       defs    = build_definitions('module Example; end')
-      example = defs.lookup(:constant, 'Example')
+      example = defs.lookup(:const, 'Example')
 
       example.is_a?(ruby_object).should == true
 
-      example.type.should == :module
+      example.type.should == :const
       example.name.should == 'Example'
     end
 
@@ -21,13 +21,13 @@ end
       CODE
 
       defs  = build_definitions(code)
-      first = defs.lookup(:constant, 'First')
+      first = defs.lookup(:const, 'First')
 
       first.is_a?(ruby_object).should == true
 
-      defs.lookup(:constant, 'Second').nil?.should == true
+      defs.lookup(:const, 'Second').nil?.should == true
 
-      first.lookup(:constant, 'Second') \
+      first.lookup(:const, 'Second') \
         .is_a?(ruby_object) \
         .should == true
     end
@@ -44,24 +44,24 @@ end
       CODE
 
       defs  = build_definitions(code)
-      first = defs.lookup(:constant, 'First')
+      first = defs.lookup(:const, 'First')
 
-      first.lookup(:constant, 'Second') \
+      first.lookup(:const, 'Second') \
         .is_a?(ruby_object) \
         .should == true
 
       # Due to "First" and "Third" being defined in the same scope the "Third"
       # constant is available inside the "First" module.
-      first.lookup(:constant, 'Third') \
+      first.lookup(:const, 'Third') \
         .is_a?(ruby_object) \
         .should == true
 
-      first.lookup(:constant, 'Second') \
-        .lookup(:constant, 'Third') \
+      first.lookup(:const, 'Second') \
+        .lookup(:const, 'Third') \
         .is_a?(ruby_object) \
         .should == true
 
-      defs.lookup(:constant, 'Third') \
+      defs.lookup(:const, 'Third') \
         .is_a?(ruby_object) \
         .should == true
     end
@@ -81,7 +81,7 @@ end
 
       defs = build_definitions(code)
 
-      defs.lookup(:constant, 'First') \
+      defs.lookup(:const, 'First') \
         .lookup(:instance_method, 'example') \
         .is_a?(ruby_method) \
         .should == true
@@ -103,7 +103,7 @@ end
 
       defs = build_definitions(code)
 
-      defs.lookup(:constant, 'Second') \
+      defs.lookup(:const, 'Second') \
         .lookup(:instance_method, 'example') \
         .is_a?(ruby_method) \
         .should == true
@@ -123,7 +123,7 @@ end
 
       defs = build_definitions(code)
 
-      defs.lookup(:constant, 'Second') \
+      defs.lookup(:const, 'Second') \
         .lookup(:method, 'example') \
         .is_a?(ruby_method) \
         .should == true
@@ -145,7 +145,7 @@ end
 
       defs = build_definitions(code)
 
-      defs.lookup(:constant, 'Third') \
+      defs.lookup(:const, 'Third') \
         .lookup(:instance_method, 'example') \
         .is_a?(ruby_method) \
         .should == true
@@ -166,7 +166,7 @@ end
 
       defs = build_definitions(code)
 
-      defs.lookup(:constant, 'Second') \
+      defs.lookup(:const, 'Second') \
         .lookup(:instance_method, 'example') \
         .is_a?(ruby_method) \
         .should == true

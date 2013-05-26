@@ -5,14 +5,14 @@
 # @return [RubyLint::Definition::RubyObject]
 #
 def build_definitions(code)
-  loader   = RubyLint::ConstantLoader.new
-  iterator = RubyLint::DefinitionsBuilder.new
-  ast      = parse(code, false)
+  loader = RubyLint::ConstantLoader.new
+  vm     = RubyLint::VirtualMachine.new
+  ast    = parse(code, false)
 
   loader.iterate(ast)
-  iterator.iterate(ast)
+  vm.iterate(ast)
 
-  return iterator.options[:definitions]
+  return vm.definitions
 end
 
 ##
@@ -24,7 +24,7 @@ end
 #
 def build_report(code, iterator)
   ast          = parse(code, false)
-  defs_builder = RubyLint::DefinitionsBuilder.new
+  defs_builder = RubyLint::VirtualMachine.new
   loader       = RubyLint::ConstantLoader.new
 
   loader.iterate(ast)
@@ -33,8 +33,8 @@ def build_report(code, iterator)
   report   = RubyLint::Report.new
   iterator = iterator.new(
     :report           => report,
-    :definitions      => defs_builder.options[:definitions],
-    :node_definitions => defs_builder.options[:node_definitions]
+    :definitions      => defs_builder.definitions,
+    :node_definitions => defs_builder.associations
   )
 
   iterator.iterate(ast)

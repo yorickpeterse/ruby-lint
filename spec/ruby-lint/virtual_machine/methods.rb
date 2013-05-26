@@ -8,9 +8,8 @@ describe 'Building method definitions' do
 
       example.is_a?(ruby_method).should == true
 
-      example.type.should        == :method_definition
-      example.method_type.should == :instance_method
-      example.name.should        == 'example'
+      example.type.should == :instance_method
+      example.name.should == 'example'
     end
 
     should 'process a nested method' do

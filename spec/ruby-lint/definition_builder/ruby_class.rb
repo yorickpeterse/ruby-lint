@@ -12,6 +12,10 @@ describe RubyLint::DefinitionBuilder::RubyClass do
       @builder.build.name.should == 'A'
     end
 
+    should 'return the type of the class' do
+      @builder.build.type.should == :const
+    end
+
     should 'return the parent definitions' do
       built = @builder.build
 

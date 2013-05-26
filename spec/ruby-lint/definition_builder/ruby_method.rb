@@ -4,12 +4,16 @@ describe RubyLint::DefinitionBuilder::RubyMethod do
   describe 'defining a method without a receiver' do
     before do
       node     = s(:def, :example, s(:args), s(:nil))
-      @root    = ruby_object.new(:name => 'root')
+      @root    = ruby_object.new(:name => 'root', :instance_type => :instance)
       @builder = RubyLint::DefinitionBuilder::RubyMethod.new(node, @root)
     end
 
     should 'return the name of the method' do
       @builder.build.name.should == 'example'
+    end
+
+    should 'return the type of the method' do
+      @builder.build.type.should == :instance_method
     end
 
     should 'return the parent definitions' do
@@ -24,7 +28,7 @@ describe RubyLint::DefinitionBuilder::RubyMethod do
   describe 'defining a method with a constant as a receiver' do
     before do
       node  = s(:defs, s(:const, nil, :A), :example, s(:args), s(:nil))
-      @root = ruby_object.new(:name => 'root')
+      @root = ruby_object.new(:name => 'root', :instance_type => :instance)
 
       @root.define_constant('A')
 
@@ -54,7 +58,7 @@ describe RubyLint::DefinitionBuilder::RubyMethod do
         s(:nil)
       )
 
-      @root = ruby_object.new(:name => 'root')
+      @root = ruby_object.new(:name => 'root', :instance_type => :instance)
 
       @root.define_constant('A').define_constant('B')
 
@@ -78,7 +82,7 @@ describe RubyLint::DefinitionBuilder::RubyMethod do
   describe 'defining a method with a variable as a receiver' do
     before do
       node  = s(:defs, s(:lvar, :number), :example, s(:args), s(:nil))
-      @root = ruby_object.new(:name => 'root')
+      @root = ruby_object.new(:name => 'root', :instance_type => :instance)
       @val  = ruby_object.new(:type => :int, :value => '10')
       @lvar = ruby_object.new(:name => 'number', :type => :lvar, :value => @val)
 

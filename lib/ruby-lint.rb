@@ -20,7 +20,7 @@ require_relative 'ruby-lint/definition_builder/ruby_method'
 require_relative 'ruby-lint/definition_builder/assignment'
 
 require_relative 'ruby-lint/iterator'
-require_relative 'ruby-lint/definitions_builder'
+require_relative 'ruby-lint/virtual_machine'
 require_relative 'ruby-lint/constant_loader'
 
 require_relative 'ruby-lint/configuration'

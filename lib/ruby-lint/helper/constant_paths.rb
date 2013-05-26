@@ -38,35 +38,42 @@ module RubyLint
       end
 
       ##
-      # Returns a definition list to use for the last segment in the constant
-      # path. If one of the segments is invalid `nil` is returned instead.
+      # Looks up a definition for a given constant path. If no constant could
+      # be found `nil` is returned.
       #
-      # @param [Array] path An array of nodes or definitions that make up the
-      #  constant path.
+      # @param [RubyLint::AST::Node] node
       # @return [RubyLint::Definition::RubyObject|NilClass]
       #
-      def resolve_constant_path(path)
+      def resolve_constant_path(node)
         current = definitions
 
-        path.each do |segment|
-          type = :const
-          name = segment
+        constant_segments(node).each do |segment|
+          found = current.lookup(:const, segment)
 
-          if segment.is_a?(AST::Node)
-            type = segment.type
-            name = segment.children[1]
-          end
-
-          found = current.lookup(type, name.to_s)
-
-          if found
-            current = found
-          else
-            return
-          end
+          found ? current = found : return
         end
 
         return current
+      end
+
+      private
+
+      ##
+      # Returns an Array containing the segments of a constant path.
+      #
+      # @param [RubyLint::AST::Node] node
+      # @return [Array<String>]
+      #
+      def constant_segments(node)
+        segments = []
+
+        if node.children[0]
+          segments.concat(constant_segments(node.children[0]))
+        end
+
+        segments << node.children[1].to_s
+
+        return segments
       end
     end # ConstantPaths
   end # Helper

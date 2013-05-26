@@ -195,7 +195,7 @@ module RubyLint
     # @return [Array]
     #
     def callback_names(node)
-      return [:"on_#{node.type}", :"after_#{node.type}"]
+      return ["on_#{node.type}", "after_#{node.type}"]
     end
 
     ##

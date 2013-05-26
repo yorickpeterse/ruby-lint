@@ -10,7 +10,7 @@ describe 'Building variable definitions' do
       number.name.should               == 'number'
 
       number.value.is_a?(ruby_object).should == true
-      number.value.value.should              == '10'
+      number.value.value.should              == 10
     end
 
     should 'process mass variable assignments' do
@@ -21,37 +21,37 @@ describe 'Building variable definitions' do
       number.is_a?(ruby_object).should == true
 
       number.name.should        == 'number'
-      number.value.value.should == '10'
+      number.value.value.should == 10
 
       numberx.is_a?(ruby_object).should == true
 
       numberx.name.should        == 'numberx'
-      numberx.value.value.should == '20'
+      numberx.value.value.should == 20
     end
 
     should 'process constant path assignments' do
       defs = build_definitions('Kernel::FOO = 10')
-      foo  = defs.lookup(:constant, 'Kernel').lookup(:constant, 'FOO')
+      foo  = defs.lookup(:const, 'Kernel').lookup(:const, 'FOO')
 
       foo.is_a?(ruby_object).should == true
 
       foo.name.should        == 'FOO'
-      foo.value.value.should == '10'
+      foo.value.value.should == 10
     end
 
     should 'process recursive variable assignments' do
       code = <<-CODE
-  a = 1
-  b = a
-  c = b
-  d = c
+a = 1
+b = a
+c = b
+d = c
       CODE
 
       defs = build_definitions(code)
       var  = defs.lookup(:lvar, 'd')
 
       var.value.type.should  == :int
-      var.value.value.should == '1'
+      var.value.value.should == 1
     end
 
     should 'handle multiple variable assignments' do
@@ -64,7 +64,7 @@ describe 'Building variable definitions' do
         variable.is_a?(ruby_object).should == true
 
         variable.value.type.should  == :int
-        variable.value.value.should == '10'
+        variable.value.value.should == 10
       end
     end
   end

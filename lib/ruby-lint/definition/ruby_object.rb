@@ -197,6 +197,16 @@ module RubyLint
       end
 
       ##
+      # Adds the definition object to the current one.
+      #
+      # @see #add
+      # @param [RubyLint::Definition::RubyObject] definition
+      #
+      def add_definition(definition)
+        add(definition.type, definition.name, definition)
+      end
+
+      ##
       # Adds a new definition to the definitions list.
       #
       # @example
