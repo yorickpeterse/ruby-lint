@@ -7,6 +7,7 @@ require_relative 'ruby-lint/variable_predicates'
 require_relative 'ruby-lint/ast/node'
 require_relative 'ruby-lint/ast/builder'
 require_relative 'ruby-lint/parser'
+require_relative 'ruby-lint/nested_stack'
 
 require_relative 'ruby-lint/helper/conversion'
 require_relative 'ruby-lint/helper/current_scope'

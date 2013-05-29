@@ -1,19 +1,25 @@
 require File.expand_path('../../../../helper', __FILE__)
 
-describe 'Building variable definitions' do
-  describe 'variables' do
-    should 'process basic variable assignments' do
-      defs   = build_definitions('number = 10')
-      number = defs.lookup(:lvar, 'number')
+describe RubyLint::VirtualMachine do
+  describe 'variable assignments' do
+    should 'assign different types of variables' do
+      types = {
+        'number'   => :lvar,
+        '@number'  => :ivar,
+        '@@number' => :cvar,
+        '$number'  => :gvar,
+        'NUMBER'   => :const
+      }
 
-      number.is_a?(ruby_object).should == true
-      number.name.should               == 'number'
+      types.each do |name, type|
+        number = build_definitions("#{name} = 10").lookup(type, name)
 
-      number.value.is_a?(ruby_object).should == true
-      number.value.value.should              == 10
+        number.name.should        == name
+        number.value.value.should == 10
+      end
     end
 
-    should 'process mass variable assignments' do
+    should 'assign multiple values to multiple variables' do
       defs    = build_definitions('number, numberx = 10, 20')
       number  = defs.lookup(:lvar, 'number')
       numberx = defs.lookup(:lvar, 'numberx')
@@ -29,7 +35,7 @@ describe 'Building variable definitions' do
       numberx.value.value.should == 20
     end
 
-    should 'process constant path assignments' do
+    should 'assign a value to a constant path' do
       defs = build_definitions('Kernel::FOO = 10')
       foo  = defs.lookup(:const, 'Kernel').lookup(:const, 'FOO')
 
@@ -39,22 +45,7 @@ describe 'Building variable definitions' do
       foo.value.value.should == 10
     end
 
-    should 'process recursive variable assignments' do
-      code = <<-CODE
-a = 1
-b = a
-c = b
-d = c
-      CODE
-
-      defs = build_definitions(code)
-      var  = defs.lookup(:lvar, 'd')
-
-      var.value.type.should  == :int
-      var.value.value.should == 1
-    end
-
-    should 'handle multiple variable assignments' do
+    should 'assign a single value to multiple variables' do
       code = 'first = second = third = 10'
       defs = build_definitions(code)
 
@@ -66,6 +57,29 @@ d = c
         variable.value.type.should  == :int
         variable.value.value.should == 10
       end
+    end
+
+    should 'resolve variables in assignments' do
+      code = <<-CODE
+a = 1
+b = a
+
+foo = 100 # to ensure this code doesn't use the last assigned values.
+
+c = b
+d = c
+      CODE
+
+      defs = build_definitions(code)
+
+      %w{a b c d}.each do |name|
+        var = defs.lookup(:lvar, name)
+
+        var.value.type.should  == :int
+        var.value.value.should == 1
+      end
+
+      defs.lookup(:lvar, 'foo').value.value.should == 100
     end
   end
 end

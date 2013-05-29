@@ -4,6 +4,10 @@ module RubyLint
 
     attr_reader :associations, :definitions
 
+    attr_reader :value_stack, :variable_stack
+
+    private :value_stack, :variable_stack
+
     ##
     # Hash containing the definition types to copy when including/extending a
     # module.
@@ -21,61 +25,82 @@ module RubyLint
       }
     }
 
+    ASSIGNMENT_TYPES = {
+      :lvasgn => :lvar,
+      :ivasgn => :ivar,
+      :cvasgn => :cvar,
+      :gvasgn => :gvar
+    }
+
+    PRIMITIVES = [:int, :float, :str, :sym]
+
+    ##
+    # Hash containing various Node types and the associated Ruby classes.
+    #
+    # @return [Hash]
+    #
+    RUBY_CLASSES = {
+      :str    => 'String',
+      :sym    => 'Symbol',
+      :int    => 'Fixnum',
+      :float  => 'Float',
+      :regexp => 'Regexp',
+      :array  => 'Array',
+      :hash   => 'Hash',
+      :irange => 'Range',
+      :erange => 'Range',
+      :lambda => 'Proc'
+    }
+
+    SEND_MAPPING = {'[]=' => 'assign_member'}
+
     ##
     # Called after a new instance of the virtual machine has been created.
     #
     def after_initialize
-      @associations        = {}
-      @definitions         = initial_definitions
-      @scopes              = [@definitions]
-      @in_sclass           = false
-      @in_mass_assign      = false
-      @asgn_nesting        = 0
-      @masgn_nesting       = 0
-      @values_buffer       = []
-      @variables_buffer    = []
-      @last_assigned_value = nil
+      @associations   = {}
+      @definitions    = initial_definitions
+      @scopes         = [@definitions]
+      @in_sclass      = false
+      @value_stack    = NestedStack.new
+      @variable_stack = NestedStack.new
+
+      reset_method_type
     end
 
-    def on_lvasgn(node)
-      @asgn_nesting  += 1
-      @values_buffer << []
+    def on_assign(node)
+      reset_assignment_value
+      value_stack.add_stack
     end
 
-    def after_lvasgn(node)
-      @asgn_nesting -= 1
+    def after_assign(node)
+      values = value_stack.pop
 
-      values = pop_values
-
-      if values.empty? and @last_assigned_value
-        values = [@last_assigned_value]
+      if values.empty? and assignment_value
+        values = [assignment_value]
       end
 
       variable = Definition::RubyObject.new(
-        :type          => :lvar,
+        :type          => ASSIGNMENT_TYPES[node.type],
         :name          => node.children[0].to_s,
         :value         => values.first, # TODO: handle multiple values
         :instance_type => :instance
       )
 
-      if buffer_variables?
-        push_variable(variable)
-      else
-        current_scope.add(variable.type, variable.name, variable)
-      end
+      buffer_assignment_value(variable.value)
 
-      @last_assigned_value = variable.value
+      add_variable(variable)
     end
 
-    def on_casgn(node)
-      @asgn_nesting  += 1
-      @values_buffer << []
+    ASSIGNMENT_TYPES.each do |callback, type|
+      alias :"on_#{callback}" :on_assign
+      alias :"after_#{callback}" :after_assign
     end
+
+    alias on_casgn on_assign
 
     def after_casgn(node)
-      @asgn_nesting -= 1
-
-      values = pop_values
+      values = value_stack.pop
       scope  = current_scope
 
       if node.children[0]
@@ -91,24 +116,17 @@ module RubyLint
         :instance_type => :instance
       )
 
-      if buffer_variables?
-        push_variable(variable)
-      else
-        scope.add(variable.type, variable.name, variable)
-      end
+      add_variable(variable, scope)
     end
 
     def on_masgn(node)
-      @masgn_nesting    += 1
-      @values_buffer    << []
-      @variables_buffer << []
+      value_stack.add_stack
+      variable_stack.add_stack
     end
 
     def after_masgn(node)
-      @masgn_nesting -= 1
-
-      variables = pop_variables
-      values    = pop_values
+      variables = variable_stack.pop
+      values    = value_stack.pop
 
       variables.each_with_index do |variable, index|
         variable.value = values[index]
@@ -117,24 +135,20 @@ module RubyLint
       end
     end
 
-    def on_lvar(node)
-      if buffer_values?
-        name = node.children[0].to_s
-
-        push_value(current_scope.lookup(:lvar, name).value)
+    PRIMITIVES.each do |type|
+      define_method("on_#{type}") do |node|
+        push_value(node)
       end
     end
 
-    def on_int(node)
-      if buffer_values?
-        value = Definition::RubyObject.new(
-          :type          => :int,
-          :value         => node.children[0],
-          :instance_type => :instance
-        )
-
-        push_value(value)
+    ASSIGNMENT_TYPES.each do |asgn_name, type|
+      define_method("on_#{type}") do |node|
+        push_variable(node)
       end
+    end
+
+    def on_array(node)
+      # TODO: implement this
     end
 
     def on_module(node)
@@ -166,23 +180,21 @@ module RubyLint
 
       push_scope(definition)
 
-      @in_sclass = true
+      @method_type = :method
     end
 
     def after_sclass(node)
-      @in_sclass = false
-
+      reset_method_type
       pop_scope
     end
 
     def on_def(node)
-      if @in_sclass
-        opts = {:type => :method}
-      else
-        opts = {:type => :instance_method}
-      end
+      builder = DefinitionBuilder::RubyMethod.new(
+        node,
+        current_scope,
+        :type => @method_type
+      )
 
-      builder    = DefinitionBuilder::RubyMethod.new(node, current_scope, opts)
       definition = builder.build
 
       builder.scope.add_definition(definition)
@@ -200,10 +212,23 @@ module RubyLint
     alias after_defs after_def
 
     def on_send(node)
-      name = node.children[1].to_s
+      name     = node.children[1].to_s
+      name     = SEND_MAPPING.fetch(name, name)
+      callback = "on_send_#{name}"
 
-      return unless INCLUDE_CALLS.key?(name)
+      execute_callback(callback, node)
+    end
 
+    def after_send(node)
+      name     = node.children[1].to_s
+      name     = SEND_MAPPING.fetch(name, name)
+      callback = "after_send_#{name}"
+
+      execute_callback(callback, node)
+    end
+
+    def on_send_include(node)
+      name       = node.children[1].to_s
       arguments  = node.children[2..-1]
       copy_types = INCLUDE_CALLS[name]
       scope      = current_scope
@@ -223,6 +248,18 @@ module RubyLint
           end
         end
       end
+    end
+
+    alias on_send_extend on_send_include
+
+    def on_send_assign_member(node)
+=begin
+      receiver_node = node.children[0]
+      receiver_name = receiver_node.children[0].to_s
+      receiver      = current_scope.lookup(receiver_node.type, receiver_name)
+      members       = node.children[2..-2]
+      value         = node.children[-1]
+=end
     end
 
     private
@@ -307,28 +344,59 @@ module RubyLint
       @scopes.pop
     end
 
-    def buffer_values?
-      return @asgn_nesting > 0 || @masgn_nesting > 0
+    def push_variable(node)
+      return unless value_stack.push?
+
+      name = node.children[0].to_s
+
+      value_stack.push(current_scope.lookup(node.type, name).value)
     end
 
-    def buffer_variables?
-      return @masgn_nesting > 0
+    def push_value(node, options = {})
+      value_stack.push(create_primitive(node, options)) if value_stack.push?
     end
 
-    def push_value(value)
-      @values_buffer.last << value
+    def add_variable(variable, scope = current_scope)
+      if variable_stack.push?
+        variable_stack.push(variable)
+      else
+        scope.add(variable.type, variable.name, variable)
+      end
     end
 
-    def pop_values
-      return @values_buffer.pop
+    def create_primitive(node, options = {})
+      parents    = []
+      ruby_class = RUBY_CLASSES[node.type]
+
+      if ruby_class
+        found = RubyLint.global_constant(ruby_class)
+        parents << found if found
+      end
+
+      options = {
+        :type          => node.type,
+        :value         => node.children[0],
+        :instance_type => :instance,
+        :parents       => parents
+      }.merge(options)
+
+      return Definition::RubyObject.new(options)
     end
 
-    def push_variable(variable)
-      @variables_buffer.last << variable
+    def reset_assignment_value
+      @assignment_value = nil
     end
 
-    def pop_variables
-      return @variables_buffer.pop
+    def assignment_value
+      return @assignment_value
+    end
+
+    def buffer_assignment_value(value)
+      @assignment_value = value
+    end
+
+    def reset_method_type
+      @method_type = :instance_method
     end
   end # VirtualMachine
 end # RubyLint

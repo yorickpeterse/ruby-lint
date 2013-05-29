@@ -5,6 +5,7 @@ describe 'Building variable definitions' do
     defs  = build_definitions('numbers = []')
     value = defs.lookup(:lvar, 'numbers').value
 
+    value.type.should      == :array
     value.instance?.should == true
 
     value.has_definition?(:instance_method, 'each').should == true
@@ -24,14 +25,14 @@ describe 'Building variable definitions' do
       numbers.value.is_a?(ruby_object).should == true
       numbers.value.type.should               == :array
 
-      first = numbers.lookup(:member, 0)
+      first = numbers.lookup(:member, '0')
 
       first.is_a?(ruby_object).should == true
       first.type.should               == :int
 
       first.value.is_a?(ruby_object).should == true
       first.value.type.should               == :int
-      first.value.value.should              == '10'
+      first.value.value.should              == 10
     end
 
     should 'process multiple index assignments' do
@@ -45,12 +46,12 @@ numbers[4,5,6] = 40, 50
       defs    = build_definitions(code)
       numbers = defs.lookup(:lvar, 'numbers')
 
-      numbers.lookup(:member, '0').value.value.should == '10'
+      numbers.lookup(:member, '0').value.value.should == 10
       numbers.lookup(:member, '1').value.should       == nil
-      numbers.lookup(:member, '2').value.value.should == '20'
-      numbers.lookup(:member, '3').value.value.should == '30'
-      numbers.lookup(:member, '4').value.value.should == '40'
-      numbers.lookup(:member, '5').value.value.should == '50'
+      numbers.lookup(:member, '2').value.value.should == 20
+      numbers.lookup(:member, '3').value.value.should == 30
+      numbers.lookup(:member, '4').value.value.should == 40
+      numbers.lookup(:member, '5').value.value.should == 50
       numbers.lookup(:member, '6').value.should       == nil
     end
 
@@ -64,8 +65,8 @@ numbers[index] = 20
       defs    = build_definitions(code)
       numbers = defs.lookup(:lvar, 'numbers')
 
-      numbers.lookup(:member, '0').value.value.should == '10'
-      numbers.lookup(:member, '1').value.value.should == '20'
+      numbers.lookup(:member, '0').value.value.should == 10
+      numbers.lookup(:member, '1').value.value.should == 20
     end
   end
 end
