@@ -345,7 +345,7 @@ module RubyLint
     end
 
     def push_variable(node)
-      return unless value_stack.push?
+      return if value_stack.empty?
 
       name = node.children[0].to_s
 
@@ -353,14 +353,16 @@ module RubyLint
     end
 
     def push_value(node, options = {})
-      value_stack.push(create_primitive(node, options)) if value_stack.push?
+      unless value_stack.empty?
+        value_stack.push(create_primitive(node, options))
+      end
     end
 
     def add_variable(variable, scope = current_scope)
-      if variable_stack.push?
-        variable_stack.push(variable)
-      else
+      if variable_stack.empty?
         scope.add(variable.type, variable.name, variable)
+      else
+        variable_stack.push(variable)
       end
     end
 
