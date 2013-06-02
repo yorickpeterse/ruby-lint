@@ -34,24 +34,6 @@ module RubyLint
 
     PRIMITIVES = [:int, :float, :str, :sym]
 
-    ##
-    # Hash containing various Node types and the associated Ruby classes.
-    #
-    # @return [Hash]
-    #
-    RUBY_CLASSES = {
-      :str    => 'String',
-      :sym    => 'Symbol',
-      :int    => 'Fixnum',
-      :float  => 'Float',
-      :regexp => 'Regexp',
-      :array  => 'Array',
-      :hash   => 'Hash',
-      :irange => 'Range',
-      :erange => 'Range',
-      :lambda => 'Proc'
-    }
-
     SEND_MAPPING = {'[]=' => 'assign_member'}
 
     ##
@@ -143,7 +125,7 @@ module RubyLint
 
     ASSIGNMENT_TYPES.each do |asgn_name, type|
       define_method("on_#{type}") do |node|
-        push_variable(node)
+        push_variable_value(node)
       end
     end
 
@@ -292,9 +274,10 @@ module RubyLint
       builder    = definition_builder.new(node, current_scope)
       definition = builder.build
       scope      = builder.scope
+      existing   = scope.lookup(definition.type, definition.name)
 
-      if scope.has_definition?(definition.type, definition.name)
-        definition = scope.lookup(definition.type, definition.name)
+      if existing
+        definition = existing
 
         unless definition.parents.include?(current_scope)
           definition.parents << current_scope
@@ -344,7 +327,7 @@ module RubyLint
       @scopes.pop
     end
 
-    def push_variable(node)
+    def push_variable_value(node)
       return if value_stack.empty?
 
       name = node.children[0].to_s
@@ -367,22 +350,9 @@ module RubyLint
     end
 
     def create_primitive(node, options = {})
-      parents    = []
-      ruby_class = RUBY_CLASSES[node.type]
+      builder = DefinitionBuilder::Primitive.new(node, current_scope, options)
 
-      if ruby_class
-        found = RubyLint.global_constant(ruby_class)
-        parents << found if found
-      end
-
-      options = {
-        :type          => node.type,
-        :value         => node.children[0],
-        :instance_type => :instance,
-        :parents       => parents
-      }.merge(options)
-
-      return Definition::RubyObject.new(options)
+      return builder.build
     end
 
     def reset_assignment_value
