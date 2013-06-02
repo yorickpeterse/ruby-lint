@@ -52,4 +52,11 @@ describe RubyLint::DefinitionBuilder::Primitive do
 
     builder.build.class?.should == true
   end
+
+  should 'include the definitions of the corresponding Ruby class' do
+    builder = RubyLint::DefinitionBuilder::Primitive.new(s(:int, 10), @root)
+    built   = builder.build
+
+    built.lookup(:instance_method, 'to_s').is_a?(ruby_object).should == true
+  end
 end

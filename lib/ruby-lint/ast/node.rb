@@ -27,6 +27,15 @@ module RubyLint
       end
 
       ##
+      # Returns the name of the node, assuming it's a variable node.
+      #
+      # @return [String]
+      #
+      def variable_name
+        return const? ? children[1].to_s : children[0].to_s
+      end
+
+      ##
       # @return [Mixed]
       #
       def value

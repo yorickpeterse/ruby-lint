@@ -46,6 +46,7 @@ module RubyLint
       @in_sclass      = false
       @value_stack    = NestedStack.new
       @variable_stack = NestedStack.new
+      @ignored_nodes  = []
 
       reset_method_type
     end
@@ -79,7 +80,13 @@ module RubyLint
       alias :"after_#{callback}" :after_assign
     end
 
-    alias on_casgn on_assign
+    def on_casgn(node)
+      # Don't push values for the receiver constant.
+      @ignored_nodes << node.children[0] if node.children[0]
+
+      reset_assignment_value
+      value_stack.add_stack
+    end
 
     def after_casgn(node)
       values = value_stack.pop
@@ -119,7 +126,7 @@ module RubyLint
 
     PRIMITIVES.each do |type|
       define_method("on_#{type}") do |node|
-        push_value(node)
+        push_value(create_primitive(node))
       end
     end
 
@@ -129,8 +136,18 @@ module RubyLint
       end
     end
 
+    def on_const(node)
+      push_variable_value(node)
+    end
+
     def on_array(node)
-      # TODO: implement this
+      definition = Definition::RubyObject.new(
+        :type          => :array,
+        :instance_type => :instance,
+        :parents       => [RubyLint.global_constant('Array')]
+      )
+
+      push_value(definition)
     end
 
     def on_module(node)
@@ -210,20 +227,15 @@ module RubyLint
     end
 
     def on_send_include(node)
-      name       = node.children[1].to_s
-      arguments  = node.children[2..-1]
-      copy_types = INCLUDE_CALLS[name]
+      value_stack.add_stack
+    end
+
+    def after_send_include(node)
+      copy_types = INCLUDE_CALLS[node.children[1].to_s]
       scope      = current_scope
+      arguments  = value_stack.pop
 
-      arguments.each do |arg|
-        if arg.receiver and arg.const?
-          source = resolve_constant_path(arg)
-        else
-          source = scope.lookup(arg.type, arg.name)
-        end
-
-        next unless source
-
+      arguments.each do |source|
         copy_types.each do |from, to|
           source.list(from).each do |definition|
             scope.add(to, definition.name, definition)
@@ -233,6 +245,7 @@ module RubyLint
     end
 
     alias on_send_extend on_send_include
+    alias after_send_extend after_send_include
 
     def on_send_assign_member(node)
 =begin
@@ -328,17 +341,21 @@ module RubyLint
     end
 
     def push_variable_value(node)
-      return if value_stack.empty?
+      return if value_stack.empty? || @ignored_nodes.include?(node)
 
-      name = node.children[0].to_s
+      if node.const? and node.children[0]
+        definition = resolve_constant_path(node)
+      else
+        definition = current_scope.lookup(node.type, node.variable_name)
+      end
 
-      value_stack.push(current_scope.lookup(node.type, name).value)
+      value = definition.value ? definition.value : definition
+
+      push_value(value)
     end
 
-    def push_value(node, options = {})
-      unless value_stack.empty?
-        value_stack.push(create_primitive(node, options))
-      end
+    def push_value(definition)
+      value_stack.push(definition) if definition && !value_stack.empty?
     end
 
     def add_variable(variable, scope = current_scope)
