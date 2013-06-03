@@ -207,13 +207,28 @@ describe ruby_object do
   end
 
   should 'return the members as the definition value' do
-    array   = ruby_object.new(:type => :array, :members_as_value => true)
-    member0 = ruby_object.new(:type => :integer, :value => 10)
-    member1 = ruby_object.new(:type => :integer, :value => 20)
+    array  = ruby_object.new(:type => :array, :members_as_value => true)
+    values = [10, 20]
 
-    array.add(:member, '0', member0)
-    array.add(:member, '1', member1)
+    values.each_with_index do |value, index|
+      value  = ruby_object.new(:type => :int, :value => value)
+      member = ruby_object.new(
+        :type  => :member,
+        :name  => index.to_s,
+        :value => value
+      )
 
-    array.value.should == {'0' => member0, '1' => member1}
+      array.add(member.type, member.name, member)
+    end
+
+    array.value.is_a?(Array).should == true
+    array.value.length.should       == 2
+
+    values.each_with_index do |value, index|
+      array.value[index].name.should == index.to_s
+
+      array.value[index].value.type.should  == :int
+      array.value[index].value.value.should == value
+    end
   end
 end

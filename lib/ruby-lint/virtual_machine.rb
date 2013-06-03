@@ -141,11 +141,27 @@ module RubyLint
     end
 
     def on_array(node)
+      value_stack.add_stack
+    end
+
+    def after_array(node)
+      values     = value_stack.pop
       definition = Definition::RubyObject.new(
         :type          => :array,
         :instance_type => :instance,
         :parents       => [RubyLint.global_constant('Array')]
       )
+
+      values.each_with_index do |value, index|
+        index  = index.to_s
+        member = Definition::RubyObject.new(
+          :type  => :member,
+          :name  => index,
+          :value => value
+        )
+
+        definition.add_definition(member)
+      end
 
       push_value(definition)
     end

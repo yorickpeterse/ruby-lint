@@ -182,7 +182,7 @@ module RubyLint
       # @return [Hash|RubyLint::Definition::RubyObject]
       #
       def value
-        return members_as_value ? definitions[:member] : @value
+        return members_as_value ? list(:member) : @value
       end
 
       ##

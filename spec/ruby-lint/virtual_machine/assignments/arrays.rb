@@ -1,17 +1,32 @@
 require File.expand_path('../../../../helper', __FILE__)
 
-describe 'Building variable definitions' do
-  should 'assign arrays as instances' do
-    defs  = build_definitions('numbers = []')
-    value = defs.lookup(:lvar, 'numbers').value
+describe RubyLint::VirtualMachine do
+  describe 'array assignments' do
+    should 'assign an empty array' do
+      defs  = build_definitions('numbers = []')
+      value = defs.lookup(:lvar, 'numbers').value
 
-    value.type.should      == :array
-    value.instance?.should == true
+      value.type.should      == :array
+      value.instance?.should == true
 
-    value.has_definition?(:instance_method, 'each').should == true
-  end
+      value.has_definition?(:instance_method, 'each').should == true
+    end
 
-  describe 'array index assignments' do
+    should 'assign an array with values' do
+      defs    = build_definitions('numbers = [10, 20]')
+      array   = defs.lookup(:lvar, 'numbers').value
+      members = [10, 20]
+
+      members.each_with_index do |value, index|
+        index  = index.to_s
+        member = array.lookup(:member, index)
+
+        member.name.should        == index
+        member.value.type.should  == :int
+        member.value.value.should == value
+      end
+    end
+
     should 'process single index assignments' do
       code = <<-CODE
   numbers    = []
