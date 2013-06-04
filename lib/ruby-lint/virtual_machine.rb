@@ -147,9 +147,10 @@ module RubyLint
     def after_array(node)
       values     = value_stack.pop
       definition = Definition::RubyObject.new(
-        :type          => :array,
-        :instance_type => :instance,
-        :parents       => [RubyLint.global_constant('Array')]
+        :type             => :array,
+        :instance_type    => :instance,
+        :parents          => [RubyLint.global_constant('Array')],
+        :members_as_value => true
       )
 
       values.each_with_index do |value, index|
@@ -264,13 +265,27 @@ module RubyLint
     alias after_send_extend after_send_include
 
     def on_send_assign_member(node)
-=begin
-      receiver_node = node.children[0]
-      receiver_name = receiver_node.children[0].to_s
-      receiver      = current_scope.lookup(receiver_node.type, receiver_name)
-      members       = node.children[2..-2]
-      value         = node.children[-1]
-=end
+      value_stack.add_stack
+    end
+
+    def after_send_assign_member(node)
+      array, *indexes, values = value_stack.pop
+
+      if values.array?
+        values = values.list(:member).map(&:value)
+      else
+        values = [values]
+      end
+
+      indexes.each do |index|
+        member = Definition::RubyObject.new(
+          :name  => index.value.to_s,
+          :type  => :member,
+          :value => values.shift
+        )
+
+        array.add_definition(member)
+      end
     end
 
     private

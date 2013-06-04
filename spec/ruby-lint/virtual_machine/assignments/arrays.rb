@@ -40,10 +40,10 @@ describe RubyLint::VirtualMachine do
       numbers.value.is_a?(ruby_object).should == true
       numbers.value.type.should               == :array
 
-      first = numbers.lookup(:member, '0')
+      first = numbers.value.lookup(:member, '0')
 
-      first.is_a?(ruby_object).should == true
-      first.type.should               == :int
+      first.type.should == :member
+      first.name.should == '0'
 
       first.value.is_a?(ruby_object).should == true
       first.value.type.should               == :int
@@ -59,7 +59,7 @@ numbers[4,5,6] = 40, 50
       CODE
 
       defs    = build_definitions(code)
-      numbers = defs.lookup(:lvar, 'numbers')
+      numbers = defs.lookup(:lvar, 'numbers').value
 
       numbers.lookup(:member, '0').value.value.should == 10
       numbers.lookup(:member, '1').value.should       == nil
@@ -78,7 +78,7 @@ numbers[index] = 20
       CODE
 
       defs    = build_definitions(code)
-      numbers = defs.lookup(:lvar, 'numbers')
+      numbers = defs.lookup(:lvar, 'numbers').value
 
       numbers.lookup(:member, '0').value.value.should == 10
       numbers.lookup(:member, '1').value.value.should == 20
