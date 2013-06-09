@@ -1,65 +1,52 @@
 require File.expand_path('../../../../helper', __FILE__)
 
-describe 'Building variable definitions' do
-  should 'assign hashes as instances' do
-    defs  = build_definitions('numbers = {}')
-    value = defs.lookup(:lvar, 'numbers').value
+describe RubyLint::VirtualMachine do
+  describe 'hash assignments' do
+    should 'assign an empty hash' do
+      defs  = build_definitions('numbers = {}')
+      value = defs.lookup(:lvar, 'numbers').value
 
-    value.instance?.should == true
+      value.type.should      == :hash
+      value.instance?.should == true
 
-    value.has_definition?(:instance_method, 'each').should == true
-  end
-
-  describe 'hash key assignments' do
-    should 'return key/value pairs as an Array' do
-      code    = 'numbers = {:key => "value", :extra => "example"}'
-      defs    = build_definitions(code)
-      numbers = defs.lookup(:lvar, 'numbers')
-      value   = numbers.value
-
-      value.value.is_a?(Array).should == true
-      value.value.length.should       == 2
-
-      value.value[0].name.should        == 'key'
-      value.value[0].value.type.should  == :str
-      value.value[0].value.value.should == 'value'
-
-      value.value[1].name.should        == 'extra'
-      value.value[1].value.type.should  == :str
-      value.value[1].value.value.should == 'example'
+      value.has_definition?(:instance_method, 'each').should == true
     end
 
-    should 'process a single key assignment' do
+    should 'assign a hash with values' do
+      defs    = build_definitions('numbers = {:one => 1, :two => 2}')
+      hash    = defs.lookup(:lvar, 'numbers').value
+      members = {'one' => 1, 'two' => 2}
+
+      members.each do |name, value|
+        member = hash.lookup(:member, name)
+
+        member.name.should        == name
+        member.value.type.should  == :int
+        member.value.value.should == value
+      end
+    end
+
+    should 'process single key assignments' do
+      defs   = build_definitions('numbers = {}; numbers[:one] = 1')
+      hash   = defs.lookup(:lvar, 'numbers').value
+      member = hash.lookup(:member, 'one')
+
+      member.value.type.should  == :int
+      member.value.value.should == 1
+    end
+
+    should 'process key assignments using variables' do
       code = <<-CODE
-numbers        = {}
-numbers['one'] = 1
+key          = :two
+numbers      = {:one => 1}
+numbers[key] = 2
       CODE
 
       defs = build_definitions(code)
+      hash = defs.lookup(:lvar, 'numbers').value
 
-      numbers = defs.lookup(:lvar, 'numbers')
-      one     = numbers.lookup(:member, 'one')
-
-      one.is_a?(ruby_object).should == true
-      one.name.should               == 'one'
-      one.type.should               == :str
-
-      one.value.type.should  == :int
-      one.value.value.should == '1'
-    end
-
-    should 'process a single key assignment using variables' do
-      code = <<-CODE
-key          = 'one'
-numbers      = {'two' => 2}
-numbers[key] = 1
-      CODE
-
-      defs    = build_definitions(code)
-      numbers = defs.lookup(:lvar, 'numbers')
-
-      numbers.lookup(:member, 'one').value.value.should == '1'
-      numbers.lookup(:member, 'two').value.value.should == '2'
+      hash.lookup(:member, 'one').value.value.should == 1
+      hash.lookup(:member, 'two').value.value.should == 2
     end
   end
 end

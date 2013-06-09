@@ -145,26 +145,43 @@ module RubyLint
     end
 
     def after_array(node)
-      values     = value_stack.pop
-      definition = Definition::RubyObject.new(
-        :type             => :array,
-        :instance_type    => :instance,
-        :parents          => [RubyLint.global_constant('Array')],
-        :members_as_value => true
+      builder = DefinitionBuilder::RubyArray.new(
+        node,
+        current_scope,
+        :values => value_stack.pop
       )
 
-      values.each_with_index do |value, index|
-        index  = index.to_s
-        member = Definition::RubyObject.new(
-          :type  => :member,
-          :name  => index,
-          :value => value
-        )
+      push_value(builder.build)
+    end
 
-        definition.add_definition(member)
-      end
+    def on_hash(node)
+      value_stack.add_stack
+    end
 
-      push_value(definition)
+    def after_hash(node)
+      builder = DefinitionBuilder::RubyHash.new(
+        node,
+        current_scope,
+        :values => value_stack.pop
+      )
+
+      push_value(builder.build)
+    end
+
+    def on_pair(node)
+      value_stack.add_stack
+    end
+
+    def after_pair(node)
+      key, value = value_stack.pop
+
+      member = Definition::RubyObject.new(
+        :name  => key.value.to_s,
+        :type  => :member,
+        :value => value
+      )
+
+      push_value(member)
     end
 
     def on_module(node)
