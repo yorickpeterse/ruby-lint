@@ -8,7 +8,7 @@ describe 'Using return values in assignments' do
 
     value.is_a?(ruby_object).should == true
 
-    value.type.should      == :constant
+    value.type.should      == :const
     value.name.should      == 'String'
     value.instance?.should == true
   end
@@ -33,7 +33,7 @@ number = example
 
     value.is_a?(ruby_object).should == true
 
-    value.type.should      == :constant
+    value.type.should      == :const
     value.name.should      == 'String'
     value.instance?.should == true
   end

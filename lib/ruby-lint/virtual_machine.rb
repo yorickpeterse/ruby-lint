@@ -124,6 +124,26 @@ module RubyLint
       end
     end
 
+    def on_or_asgn(node)
+      value_stack.add_stack
+      variable_stack.add_stack
+    end
+
+    def after_or_asgn(node)
+      variables = variable_stack.pop
+      values    = value_stack.pop
+
+      variables.each do |variable|
+        value = values.shift
+
+        unless current_scope.has_definition?(variable.type, variable.name)
+          variable.value = value
+
+          current_scope.add_definition(variable)
+        end
+      end
+    end
+
     PRIMITIVES.each do |type|
       define_method("on_#{type}") do |node|
         push_value(create_primitive(node))
