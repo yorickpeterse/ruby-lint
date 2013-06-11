@@ -1,6 +1,43 @@
 require File.expand_path('../../../helper', __FILE__)
 
-describe 'Building method definitions' do
+describe RubyLint::VirtualMachine do
+  describe 'defining methods' do
+    should 'process a definition with a variable assignment in the body' do
+      code = <<-CODE
+  def example
+    number = 10
+  end
+      CODE
+
+      defs = build_definitions(code)
+
+      defs.lookup(:instance_method, 'example') \
+        .lookup(:lvar, 'number') \
+        .is_a?(ruby_object) \
+        .should == true
+
+      defs.lookup(:lvar, 'number').nil?.should == true
+    end
+
+    should 'process a definition with a receiver' do
+      code = <<-CODE
+  def String.example
+    number = 10
+  end
+      CODE
+
+      defs = build_definitions(code)
+
+      defs.lookup(:const, 'String') \
+        .lookup(:method, 'example') \
+        .is_a?(ruby_method) \
+        .should == true
+
+      defs.lookup(:method, 'example').nil?.should          == true
+      defs.lookup(:instance_method, 'example').nil?.should == true
+    end
+  end
+
   describe 'scoping method definitions' do
     should 'process a global method' do
       defs    = build_definitions('def example; end')
@@ -61,41 +98,6 @@ end
     end
   end
 
-  should 'process a definition with a variable assignment in the body' do
-    code = <<-CODE
-def example
-  number = 10
-end
-    CODE
-
-    defs = build_definitions(code)
-
-    defs.lookup(:instance_method, 'example') \
-      .lookup(:lvar, 'number') \
-      .is_a?(ruby_object) \
-      .should == true
-
-    defs.lookup(:lvar, 'number').nil?.should == true
-  end
-
-  should 'process a definition with a receiver' do
-    code = <<-CODE
-def String.example
-  number = 10
-end
-    CODE
-
-    defs = build_definitions(code)
-
-    defs.lookup(:const, 'String') \
-      .lookup(:method, 'example') \
-      .is_a?(ruby_method) \
-      .should == true
-
-    defs.lookup(:method, 'example').nil?.should          == true
-    defs.lookup(:instance_method, 'example').nil?.should == true
-  end
-
   describe 'creating variables for method parameters' do
     should 'create local variables' do
       code = <<-CODE
@@ -126,9 +128,30 @@ end
         .is_a?(ruby_object) \
         .should == true
     end
+
+    should 'take all argument types into account' do
+      code = <<-CODE
+def example(required, optional = 10, *splat, more, &block)
+  _required = required
+  _optional = optional
+  _splat    = splat
+  _more     = more
+  _block    = block
+end
+      CODE
+
+      defs   = build_definitions(code)
+      method = defs.lookup(:instance_method, 'example')
+
+      %w{_required _splat _more _block}.each do |name|
+        method.lookup(:lvar, name).is_a?(ruby_object).should == true
+      end
+
+      method.lookup(:lvar, '_optional').value.value.should == 10
+    end
   end
 
-  describe 'exporting variables' do
+  describe 'exporting variables out of method scopes' do
     should 'export variables to the outer scope' do
       code = <<-CODE
 def example
@@ -138,7 +161,7 @@ end
 
       defs = build_definitions(code)
 
-      defs.lookup(:instance_variable, '@number') \
+      defs.lookup(:ivar, '@number') \
         .is_a?(ruby_object) \
         .should == true
     end

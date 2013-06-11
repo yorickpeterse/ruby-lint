@@ -36,6 +36,10 @@ module RubyLint
 
     SEND_MAPPING = {'[]=' => 'assign_member'}
 
+    ARGUMENT_TYPES = [:arg, :optarg, :restarg, :blockarg]
+
+    EXPORT_VARIABLES = [:ivar, :cvar, :const]
+
     ##
     # Called after a new instance of the virtual machine has been created.
     #
@@ -57,22 +61,15 @@ module RubyLint
     end
 
     def after_assign(node)
-      values = value_stack.pop
+      type  = ASSIGNMENT_TYPES[node.type]
+      name  = node.children[0].to_s
+      value = value_stack.pop.first
 
-      if values.empty? and assignment_value
-        values = [assignment_value]
+      if !value and assignment_value
+        value = assignment_value
       end
 
-      variable = Definition::RubyObject.new(
-        :type          => ASSIGNMENT_TYPES[node.type],
-        :name          => node.children[0].to_s,
-        :value         => values.first, # TODO: handle multiple values
-        :instance_type => :instance
-      )
-
-      buffer_assignment_value(variable.value)
-
-      add_variable(variable)
+      assign_variable(type, name, value)
     end
 
     ASSIGNMENT_TYPES.each do |callback, type|
@@ -267,7 +264,36 @@ module RubyLint
     end
 
     def after_def(node)
-      pop_scope
+      previous = pop_scope
+      current  = current_scope
+
+      EXPORT_VARIABLES.each do |type|
+        current.copy(previous, type)
+      end
+    end
+
+    def on_args(node)
+      variable_stack.add_stack
+    end
+
+    def after_args(node)
+      variables = variable_stack.pop
+
+      variables.each do |variable|
+        current_scope.add_definition(variable)
+      end
+    end
+
+    ARGUMENT_TYPES.each do |type|
+      define_method("on_#{type}") do |node|
+        value_stack.add_stack
+      end
+
+      define_method("after_#{type}") do |node|
+        value = value_stack.pop.first
+
+        assign_variable(:lvar, node.children[0].to_s, value)
+      end
     end
 
     alias on_defs on_def
@@ -435,6 +461,19 @@ module RubyLint
       value_stack.add_stack
     end
 
+    def assign_variable(type, name, value)
+      variable = Definition::RubyObject.new(
+        :type          => type,
+        :name          => name,
+        :value         => value,
+        :instance_type => :instance
+      )
+
+      buffer_assignment_value(variable.value)
+
+      add_variable(variable)
+    end
+
     def add_variable(variable, scope = current_scope)
       if variable_stack.empty?
         scope.add(variable.type, variable.name, variable)
@@ -486,7 +525,9 @@ module RubyLint
     end
 
     def increment_reference_amount(node)
-      definition_for_node(node).reference_amount += 1
+      definition = definition_for_node(node)
+
+      definition.reference_amount += 1 if definition
     end
   end # VirtualMachine
 end # RubyLint
