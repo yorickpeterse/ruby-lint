@@ -159,11 +159,13 @@ module RubyLint
 
     ASSIGNMENT_TYPES.each do |asgn_name, type|
       define_method("on_#{type}") do |node|
+        increment_reference_amount(node)
         push_variable_value(node)
       end
     end
 
     def on_const(node)
+      increment_reference_amount(node)
       push_variable_value(node)
     end
 
@@ -418,13 +420,8 @@ module RubyLint
     def push_variable_value(node)
       return if value_stack.empty? || @ignored_nodes.include?(node)
 
-      if node.const? and node.children[0]
-        definition = resolve_constant_path(node)
-      else
-        definition = current_scope.lookup(node.type, node.variable_name)
-      end
-
-      value = definition.value ? definition.value : definition
+      definition = definition_for_node(node)
+      value      = definition.value ? definition.value : definition
 
       push_value(value)
     end
@@ -476,6 +473,20 @@ module RubyLint
 
         buffer_assignment_value(variable.value)
       end
+    end
+
+    def definition_for_node(node)
+      if node.const? and node.children[0]
+        definition = resolve_constant_path(node)
+      else
+        definition = current_scope.lookup(node.type, node.variable_name)
+      end
+
+      return definition
+    end
+
+    def increment_reference_amount(node)
+      definition_for_node(node).reference_amount += 1
     end
   end # VirtualMachine
 end # RubyLint

@@ -3,25 +3,17 @@ require File.expand_path('../../../helper', __FILE__)
 describe 'Building definitions for blocks' do
   should 'make outer local variables available to the inside of a block' do
     code = <<-CODE
-number = 10
+number  = 10
+@number = nil
 
 example do
-  number_string = number.to_s
+  @number = number
 end
     CODE
 
-    ast     = parse(code, false)
-    builder = RubyLint::DefinitionsBuilder.new
+    defs = build_definitions(code)
 
-    builder.iterate(ast)
-
-    block  = builder.options[:node_definitions].values.last
-    number = block.lookup(:lvar, 'number')
-
-    number.is_a?(ruby_object).should == true
-
-    number.value.type.should  == :int
-    number.value.value.should == 10
+    defs.lookup(:ivar, '@number').value.value.should == 10
   end
 
   should 'use outer local variables when overwriting them' do
@@ -35,6 +27,6 @@ end
 
     defs = build_definitions(code)
 
-    defs.lookup(:lvar, 'number').value.value.should == '20'
+    defs.lookup(:lvar, 'number').value.value.should == 20
   end
 end
