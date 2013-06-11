@@ -109,55 +109,46 @@ module RubyLint
     end
 
     def on_masgn(node)
-      value_stack.add_stack
-      variable_stack.add_stack
+      add_stacks
     end
 
     def after_masgn(node)
       variables = variable_stack.pop
-      values    = value_stack.pop
+      value     = value_stack.pop.first
+
+      if value.array?
+        values = value.value
+      else
+        values = [value]
+      end
 
       variables.each_with_index do |variable, index|
-        variable.value = values[index]
+        variable.value = values[index].value
 
         current_scope.add(variable.type, variable.name, variable)
       end
     end
 
     def on_or_asgn(node)
-      value_stack.add_stack
-      variable_stack.add_stack
+      add_stacks
     end
 
     def after_or_asgn(node)
       variable = variable_stack.pop.first
       value    = value_stack.pop.first
 
-      unless current_scope.has_definition?(variable.type, variable.name)
-        variable.value = value
-
-        current_scope.add_definition(variable)
-
-        buffer_assignment_value(variable.value)
-      end
+      conditional_assignment(variable, value, false)
     end
 
     def on_and_asgn(node)
-      value_stack.add_stack
-      variable_stack.add_stack
+      add_stacks
     end
 
     def after_and_asgn(node)
       variable = variable_stack.pop.first
       value    = value_stack.pop.first
 
-      if current_scope.has_definition?(variable.type, variable.name)
-        variable.value = value
-
-        current_scope.add_definition(variable)
-
-        buffer_assignment_value(variable.value)
-      end
+      conditional_assignment(variable, value)
     end
 
     PRIMITIVES.each do |type|
@@ -442,6 +433,11 @@ module RubyLint
       value_stack.push(definition) if definition && !value_stack.empty?
     end
 
+    def add_stacks
+      variable_stack.add_stack
+      value_stack.add_stack
+    end
+
     def add_variable(variable, scope = current_scope)
       if variable_stack.empty?
         scope.add(variable.type, variable.name, variable)
@@ -470,6 +466,16 @@ module RubyLint
 
     def reset_method_type
       @method_type = :instance_method
+    end
+
+    def conditional_assignment(variable, value, bool = true)
+      if current_scope.has_definition?(variable.type, variable.name) == bool
+        variable.value = value
+
+        current_scope.add_definition(variable)
+
+        buffer_assignment_value(variable.value)
+      end
     end
   end # VirtualMachine
 end # RubyLint
