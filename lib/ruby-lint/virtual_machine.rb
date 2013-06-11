@@ -130,17 +130,33 @@ module RubyLint
     end
 
     def after_or_asgn(node)
-      variables = variable_stack.pop
-      values    = value_stack.pop
+      variable = variable_stack.pop.first
+      value    = value_stack.pop.first
 
-      variables.each do |variable|
-        value = values.shift
+      unless current_scope.has_definition?(variable.type, variable.name)
+        variable.value = value
 
-        unless current_scope.has_definition?(variable.type, variable.name)
-          variable.value = value
+        current_scope.add_definition(variable)
 
-          current_scope.add_definition(variable)
-        end
+        buffer_assignment_value(variable.value)
+      end
+    end
+
+    def on_and_asgn(node)
+      value_stack.add_stack
+      variable_stack.add_stack
+    end
+
+    def after_and_asgn(node)
+      variable = variable_stack.pop.first
+      value    = value_stack.pop.first
+
+      if current_scope.has_definition?(variable.type, variable.name)
+        variable.value = value
+
+        current_scope.add_definition(variable)
+
+        buffer_assignment_value(variable.value)
       end
     end
 
