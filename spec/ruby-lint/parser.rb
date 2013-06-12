@@ -1,10 +1,6 @@
 require File.expand_path('../../helper', __FILE__)
 
 describe RubyLint::Parser do
-  should 'retrieve the parser constant' do
-    RubyLint::Parser.parser_constant.respond_to?(:parse).should == true
-  end
-
   should 'parse a block of Ruby code' do
     ast = parse('10', false)
 
