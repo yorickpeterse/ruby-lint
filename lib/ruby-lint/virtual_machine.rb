@@ -304,15 +304,23 @@ module RubyLint
       name     = SEND_MAPPING.fetch(name, name)
       callback = "on_send_#{name}"
 
+      value_stack.add_stack
+
       execute_callback(callback, node)
     end
 
     def after_send(node)
-      name     = node.children[1].to_s
-      name     = SEND_MAPPING.fetch(name, name)
-      callback = "after_send_#{name}"
+      name        = node.children[1].to_s
+      mapped_name = SEND_MAPPING.fetch(name, name)
+      callback    = "after_send_#{mapped_name}"
 
       execute_callback(callback, node)
+
+      context, _ = value_stack.pop
+      context    = current_scope unless context
+      retval     = context.call(name)
+
+      push_value(retval)
     end
 
     def on_send_include(node)
