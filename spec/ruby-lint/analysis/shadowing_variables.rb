@@ -1,6 +1,6 @@
 require File.expand_path('../../../helper', __FILE__)
 
-describe RubyLint::Analyze::ShadowingVariables do
+describe RubyLint::Analysis::ShadowingVariables do
   should 'warn for shadowing outer variables' do
     code = <<-CODE
 number = 10
@@ -10,7 +10,7 @@ number = 10
 end
     CODE
 
-    report = build_report(code, RubyLint::Analyze::ShadowingVariables)
+    report = build_report(code, RubyLint::Analysis::ShadowingVariables)
     entry  = report.entries[0]
 
     entry.is_a?(RubyLint::Report::Entry).should == true
@@ -31,7 +31,7 @@ def example
 end
     CODE
 
-    report = build_report(code, RubyLint::Analyze::ShadowingVariables)
+    report = build_report(code, RubyLint::Analysis::ShadowingVariables)
 
     report.entries.empty?.should == true
   end
@@ -47,7 +47,7 @@ def example; end
 end
     CODE
 
-    report = build_report(code, RubyLint::Analyze::ShadowingVariables)
+    report = build_report(code, RubyLint::Analysis::ShadowingVariables)
     entry  = report.entries[0]
 
     entry.is_a?(RubyLint::Report::Entry).should == true
@@ -70,7 +70,7 @@ A::B.example do |number|
 end
     CODE
 
-    report = build_report(code, RubyLint::Analyze::ShadowingVariables)
+    report = build_report(code, RubyLint::Analysis::ShadowingVariables)
 
     report.entries.length.should == 2
 

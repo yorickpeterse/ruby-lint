@@ -1,8 +1,8 @@
 require File.expand_path('../../../helper', __FILE__)
 
-describe RubyLint::Analyze::UnusedVariables do
+describe RubyLint::Analysis::UnusedVariables do
   should 'warn for unused local variables' do
-    report = build_report('number = 1', RubyLint::Analyze::UnusedVariables)
+    report = build_report('number = 1', RubyLint::Analysis::UnusedVariables)
     entry  = report.entries[0]
 
     entry.is_a?(RubyLint::Report::Entry).should == true
@@ -12,19 +12,20 @@ describe RubyLint::Analyze::UnusedVariables do
     entry.message.should == 'unused local variable number'
   end
 
-  should 'warn for unused global variables' do
-    report = build_report('$number = 1', RubyLint::Analyze::UnusedVariables)
-    entry  = report.entries[0]
+  should 'not warn for used variables' do
+    code = <<-CODE
+number = 1
 
-    entry.is_a?(RubyLint::Report::Entry).should == true
+number
+    CODE
 
-    entry.line.should    == 1
-    entry.column.should  == 0
-    entry.message.should == 'unused global variable $number'
+    report = build_report(code, RubyLint::Analysis::UnusedVariables)
+
+    report.entries.empty?.should == true
   end
 
   should 'warn for unused constants' do
-    report = build_report('NUMBER = 10', RubyLint::Analyze::UnusedVariables)
+    report = build_report('NUMBER = 10', RubyLint::Analysis::UnusedVariables)
     entry  = report.entries[0]
 
     entry.is_a?(RubyLint::Report::Entry).should == true
@@ -32,6 +33,18 @@ describe RubyLint::Analyze::UnusedVariables do
     entry.line.should    == 1
     entry.column.should  == 0
     entry.message.should == 'unused constant NUMBER'
+  end
+
+  should 'not warn for used constants' do
+    code = <<-CODE
+A = 10
+
+A
+    CODE
+
+    report = build_report(code, RubyLint::Analysis::UnusedVariables)
+
+    report.entries.empty?.should == true
   end
 
   should 'warn for unused constant paths' do
@@ -42,7 +55,7 @@ end
 A::B = 10
     CODE
 
-    report = build_report(code, RubyLint::Analyze::UnusedVariables)
+    report = build_report(code, RubyLint::Analysis::UnusedVariables)
 
     report.entries.length.should == 1
 
@@ -51,8 +64,8 @@ A::B = 10
     entry.is_a?(RubyLint::Report::Entry).should == true
 
     entry.line.should    == 4
-    entry.column.should  == 3
-    entry.message.should == 'unused constant B'
+    entry.column.should  == 0
+    entry.message.should == 'unused constant A::B'
   end
 
   should 'warn for unused variables in a method scope' do
@@ -62,7 +75,7 @@ def some_method
 end
     CODE
 
-    report = build_report(code, RubyLint::Analyze::UnusedVariables)
+    report = build_report(code, RubyLint::Analysis::UnusedVariables)
     entry  = report.entries[0]
 
     entry.is_a?(RubyLint::Report::Entry).should == true
@@ -78,7 +91,7 @@ first  = 10
 second = first
     CODE
 
-    report = build_report(code, RubyLint::Analyze::UnusedVariables)
+    report = build_report(code, RubyLint::Analysis::UnusedVariables)
 
     report.entries.length.should == 1
 
@@ -98,7 +111,7 @@ class B
 end
     CODE
 
-    report = build_report(code, RubyLint::Analyze::UnusedVariables)
+    report = build_report(code, RubyLint::Analysis::UnusedVariables)
 
     report.entries.empty?.should == true
   end

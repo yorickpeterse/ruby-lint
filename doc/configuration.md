@@ -3,7 +3,7 @@
 
 The default configuration of ruby-lint should be suitable for most people.
 However, depending on your code base you may get an usual amount of false
-positives. In particular the class {RubyLint::Analyze::UndefinedMethods} can
+positives. In particular the class {RubyLint::Analysis::UndefinedMethods} can
 produce a lot of false positives.
 
 ruby-lint allows developers to customize the various parts of the tool such as

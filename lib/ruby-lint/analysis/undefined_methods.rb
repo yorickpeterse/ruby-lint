@@ -1,5 +1,5 @@
 module RubyLint
-  module Analyze
+  module Analysis
     ##
     # The UndefinedMethods class checks for the use of undefined methods/local
     # variables and adds errors whenever needed. Based on the receiver of a
@@ -64,5 +64,5 @@ module RubyLint
         return error
       end
     end # UndefinedMethods
-  end # Analyze
+  end # Analysis
 end # RubyLint

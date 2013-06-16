@@ -1,6 +1,6 @@
 RubyLint::CLI.options.command :analyze do
   banner      'Usage: ruby-lint analyze [FILES] [OPTIONS]'
-  description 'Analyzes the source code of Ruby files'
+  description 'Analysiss the source code of Ruby files'
 
   separator <<-EOF.chomp
 

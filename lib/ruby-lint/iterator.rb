@@ -16,17 +16,17 @@ module RubyLint
   #
   # These event names are used to call the corresponding callback methods if
   # they exist. Each callback method takes a single argument: the node (an
-  # instance of {RubyLint::Node}) that belongs to the event.
+  # instance of {RubyLint::AST::Node}) that belongs to the event.
   #
   # Creating iterator classes is done by extending this particular class and
   # adding the needed methods to it:
   #
   #     class MyIterator < RubyLint::Iterator
-  #       def on_integer(node)
+  #       def on_int(node)
   #         puts node.children[0]
   #       end
   #
-  #       def after_integer(node)
+  #       def after_int(node)
   #         puts '---'
   #       end
   #     end
@@ -34,27 +34,6 @@ module RubyLint
   # When used this particular iterator class would display the values of all
   # integers it processes. After processing an integer it will display three
   # dashes.
-  #
-  # Each instance of a class that subclasses {RubyLint::Iterator} also has
-  # access to the instance variable `@options`. This instance variable is used
-  # to store certain information, such as the list of definitions for a block
-  # of Ruby code. The following two keys are set by default:
-  #
-  # * `:definitions`: a set of Ruby definitions such as classes and methods.
-  # * `:report`: an instance of {RubyLint::Report} that can be used for adding
-  #   information about the analyzed code.
-  # * `:node_definitions`: a Hash that associates {RubyLint::Node} instances
-  #   with the corresponding scope.
-  #
-  # To make it easier to add data to a report sub classes can use the following
-  # three methods:
-  #
-  # * error
-  # * info
-  # * warning
-  #
-  # These methods take away some of the boilerplate that would otherwise be
-  # required to check for a report and add data to it if it's set.
   #
   class Iterator
     ##
@@ -69,9 +48,9 @@ module RubyLint
     #  iterator.
     #
     def initialize(options = {})
-      @options     = default_options.merge(options)
-      @definitions = []
-      @call_types  = []
+      options.each do |key, value|
+        instance_variable_set("@#{key}", value)
+      end
 
       after_initialize if respond_to?(:after_initialize)
     end
@@ -103,82 +82,6 @@ module RubyLint
     protected
 
     ##
-    # Adds an error message to the report.
-    #
-    # @param [String] message The message to add.
-    # @param [RubyLint::Node] node The node for which to add the message.
-    #
-    def error(message, node)
-      add_message(:error, message, node)
-    end
-
-    ##
-    # Adds a warning message to the report.
-    #
-    # @see RubyLint::Callback#error
-    #
-    def warning(message, node)
-      add_message(:warning, message, node)
-    end
-
-    ##
-    # Adds a regular informational message to the report.
-    #
-    # @see RubyLint::Callback#error
-    #
-    def info(message, node)
-      add_message(:info, message, node)
-    end
-
-    ##
-    # Adds a message of the given level.
-    #
-    # @param [Symbol] level
-    # @param [String] message
-    # @param [String] node
-    #
-    def add_message(level, message, node)
-      if has_report?
-        @options[:report].add(
-          level,
-          message,
-          node.line,
-          node.column,
-          node.file
-        )
-      end
-    end
-
-    ##
-    # Returns `true` if the current iterator has a report instance set.
-    #
-    # @return [TrueClass|FalseClass]
-    #
-    def has_report?
-      return @options[:report].is_a?(Report)
-    end
-
-    ##
-    # Returns the call type to use for method calls.
-    #
-    # @return [Symbol]
-    #
-    def call_type
-      return @call_types.empty? ? :instance_method : @call_types[-1]
-    end
-
-    ##
-    # Returns the current definition list to use.
-    #
-    # @return [RubyLint::Definition::RubyObject]
-    #
-    def definitions
-      return @definitions.empty? ? @options[:definitions] : @definitions[-1]
-    end
-
-    protected
-
-    ##
     # Executes the specified callback method if it exists.
     #
     # @param [String|Symbol] name The name of the callback method to execute.
@@ -196,35 +99,6 @@ module RubyLint
     #
     def callback_names(node)
       return ["on_#{node.type}", "after_#{node.type}"]
-    end
-
-    ##
-    # Associates a definitions object with a node of the AST.
-    #
-    # @param [RubyLint::Node] node
-    # @param [RubyLint::Definition::RubyObject] definitions
-    #
-    def associate_node_definition(node, definitions)
-      @options[:node_definitions][node] = definitions
-    end
-
-    ##
-    # Retrieves the definitions list associated to an AST node.
-    #
-    # @param [RubyLint::Node] node
-    # @return [RubyLint::Definition::RubyObject|NilClass]
-    #
-    def associated_definition(node)
-      return @options[:node_definitions][node]
-    end
-
-    ##
-    # Returns a Hash containing the default configuration options.
-    #
-    # @return [Hash]
-    #
-    def default_options
-      return {:node_definitions => {}}
     end
   end # Iterator
 end # RubyLint

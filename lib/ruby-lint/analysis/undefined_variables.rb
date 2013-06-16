@@ -1,5 +1,5 @@
 module RubyLint
-  module Analyze
+  module Analysis
     ##
     # The UndefinedVariables class checks for the use of undefined variables
     # (such as instance variables and constants). The order of definition and
@@ -7,7 +7,7 @@ module RubyLint
     #
     # This analysis class does *not* check for undefined local variables. Ruby
     # treats these as method calls and as result they are handled by
-    # {RubyLint::Analyze::UndefinedMethods} instead.
+    # {RubyLint::Analysis::UndefinedMethods} instead.
     #
     class UndefinedVariables < Iterator
       include Helper::CurrentScope
@@ -68,5 +68,5 @@ module RubyLint
         @in_constant_path = false
       end
     end # UndefinedVariables
-  end # Analyze
+  end # Analysis
 end # RubyLint

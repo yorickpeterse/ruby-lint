@@ -1,6 +1,6 @@
 require File.expand_path('../../../helper', __FILE__)
 
-describe RubyLint::Analyze::ArgumentAmount do
+describe RubyLint::Analysis::ArgumentAmount do
   should 'validate the amount of required arguments' do
     code = <<-CODE
 def example(first, second)
@@ -9,7 +9,7 @@ end
 example
     CODE
 
-    report = build_report(code, RubyLint::Analyze::ArgumentAmount)
+    report = build_report(code, RubyLint::Analysis::ArgumentAmount)
     entry  = report.entries[0]
 
     entry.is_a?(RubyLint::Report::Entry).should == true
@@ -27,7 +27,7 @@ end
 example
     CODE
 
-    report = build_report(code, RubyLint::Analyze::ArgumentAmount)
+    report = build_report(code, RubyLint::Analysis::ArgumentAmount)
     entry  = report.entries[0]
 
     entry.is_a?(RubyLint::Report::Entry).should == true
@@ -46,7 +46,7 @@ end
 example
     CODE
 
-    report = build_report(code, RubyLint::Analyze::ArgumentAmount)
+    report = build_report(code, RubyLint::Analysis::ArgumentAmount)
     entry  = report.entries[0]
 
     entry.is_a?(RubyLint::Report::Entry).should == true
@@ -65,7 +65,7 @@ end
 example(10, 20, 30)
     CODE
 
-    report = build_report(code, RubyLint::Analyze::ArgumentAmount)
+    report = build_report(code, RubyLint::Analysis::ArgumentAmount)
 
     report.entries.length.should == 0
   end
@@ -77,14 +77,14 @@ name = 'Ruby'
 name.downcase
     CODE
 
-    report = build_report(code, RubyLint::Analyze::ArgumentAmount)
+    report = build_report(code, RubyLint::Analysis::ArgumentAmount)
 
     report.entries.empty?.should == true
   end
 
   should 'not validate methods called on undefined receivers' do
     code   = 'A.example_method'
-    report = build_report(code, RubyLint::Analyze::ArgumentAmount)
+    report = build_report(code, RubyLint::Analysis::ArgumentAmount)
 
     report.entries.empty?.should == true
   end

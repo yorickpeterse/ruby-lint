@@ -1,8 +1,8 @@
 require File.expand_path('../../../helper', __FILE__)
 
-describe RubyLint::Analyze::UndefinedVariables do
+describe RubyLint::Analysis::UndefinedVariables do
   should 'add an error for using an undefined instance variable' do
-    report = build_report('@number', RubyLint::Analyze::UndefinedVariables)
+    report = build_report('@number', RubyLint::Analysis::UndefinedVariables)
     entry  = report.entries[0]
 
     entry.is_a?(RubyLint::Report::Entry).should == true
@@ -13,7 +13,7 @@ describe RubyLint::Analyze::UndefinedVariables do
   end
 
   should 'add an error for using an undefined class variable' do
-    report = build_report('@@number', RubyLint::Analyze::UndefinedVariables)
+    report = build_report('@@number', RubyLint::Analysis::UndefinedVariables)
     entry  = report.entries[0]
 
     entry.is_a?(RubyLint::Report::Entry).should == true
@@ -24,7 +24,7 @@ describe RubyLint::Analyze::UndefinedVariables do
   end
 
   should 'add an error for using an undefined global variable' do
-    report = build_report('$number', RubyLint::Analyze::UndefinedVariables)
+    report = build_report('$number', RubyLint::Analysis::UndefinedVariables)
     entry  = report.entries[0]
 
     entry.is_a?(RubyLint::Report::Entry).should == true
@@ -35,7 +35,7 @@ describe RubyLint::Analyze::UndefinedVariables do
   end
 
   should 'add an error for using an undefined constant' do
-    report = build_report('NUMBER', RubyLint::Analyze::UndefinedVariables)
+    report = build_report('NUMBER', RubyLint::Analysis::UndefinedVariables)
     entry  = report.entries[0]
 
     entry.is_a?(RubyLint::Report::Entry).should == true
@@ -57,7 +57,7 @@ end
 A::B
     CODE
 
-    report = build_report(code, RubyLint::Analyze::UndefinedVariables)
+    report = build_report(code, RubyLint::Analysis::UndefinedVariables)
     entry  = report.entries[0]
 
     entry.is_a?(RubyLint::Report::Entry).should == true
@@ -69,7 +69,7 @@ A::B
 
   should 'add an error when the entire constant path does not exist' do
     code   = 'A::B::C'
-    report = build_report(code, RubyLint::Analyze::UndefinedVariables)
+    report = build_report(code, RubyLint::Analysis::UndefinedVariables)
 
     report.entries.length.should == 1
 
@@ -93,14 +93,14 @@ class Person
 end
     CODE
 
-    report = build_report(code, RubyLint::Analyze::UndefinedVariables)
+    report = build_report(code, RubyLint::Analysis::UndefinedVariables)
 
     report.entries.empty?.should == true
   end
 
   should 'not add errors when autoloading constants' do
     code   = 'Encoding::BIG5'
-    report = build_report(code, RubyLint::Analyze::UndefinedVariables)
+    report = build_report(code, RubyLint::Analysis::UndefinedVariables)
 
     report.entries.empty?.should == true
   end
@@ -114,7 +114,7 @@ example_method do
 end
 CODE
 
-    report = build_report(code, RubyLint::Analyze::UndefinedVariables)
+    report = build_report(code, RubyLint::Analysis::UndefinedVariables)
 
     report.entries.empty?.should == true
   end

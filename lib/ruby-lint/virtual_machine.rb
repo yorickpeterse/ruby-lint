@@ -55,6 +55,10 @@ module RubyLint
       reset_method_type
     end
 
+    def on_root(node)
+      associate_node(node, current_scope)
+    end
+
     def on_assign(node)
       reset_assignment_value
       value_stack.add_stack

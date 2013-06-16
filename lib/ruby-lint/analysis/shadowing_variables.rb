@@ -1,5 +1,5 @@
 module RubyLint
-  module Analyze
+  module Analysis
     ##
     # The ShadowingVariables class checks for the use of variables in a block
     # that shadow outer variables. "Shadowing" means that a variable is used
@@ -28,5 +28,5 @@ module RubyLint
         super
       end
     end # ShadowingVariables
-  end # Analyze
+  end # Analysis
 end # RubyLint

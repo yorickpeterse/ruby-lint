@@ -7,13 +7,26 @@ module RubyLint
     class Node < ::Parser::AST::Node
       include ::RubyLint::VariablePredicates
 
-      [:line, :begin_column, :end_column, :file].each do |name|
-        define_method(name) do
-          return source_map.expression.send(name)
-        end
+      ##
+      # @return [Numeric]
+      #
+      def line
+        return location.expression.line
       end
 
-      alias column begin_column
+      ##
+      # @return [Numeric]
+      #
+      def column
+        return location.expression.column
+      end
+
+      ##
+      # @return [String]
+      #
+      def file
+        return location.expression.source_buffer.name
+      end
 
       ##
       # @todo Think about whether or not this method is really needed.

@@ -1,9 +1,9 @@
 RubyLint::Configuration.register_names 'analysis' do |names|
-  names['argument_amount']     = RubyLint::Analyze::ArgumentAmount
-  names['shadowing_variables'] = RubyLint::Analyze::ShadowingVariables
-  names['undefined_methods']   = RubyLint::Analyze::UndefinedMethods
-  names['undefined_variables'] = RubyLint::Analyze::UndefinedVariables
-  names['unused_variables']    = RubyLint::Analyze::UnusedVariables
+  names['argument_amount']     = RubyLint::Analysis::ArgumentAmount
+  names['shadowing_variables'] = RubyLint::Analysis::ShadowingVariables
+  names['undefined_methods']   = RubyLint::Analysis::UndefinedMethods
+  names['undefined_variables'] = RubyLint::Analysis::UndefinedVariables
+  names['unused_variables']    = RubyLint::Analysis::UnusedVariables
 end
 
 RubyLint::Configuration.register_names 'presenters' do |names|

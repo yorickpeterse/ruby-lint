@@ -23,19 +23,15 @@ end
 # @return [RubyLint::Report]
 #
 def build_report(code, iterator)
-  ast          = parse(code, false)
-  defs_builder = RubyLint::VirtualMachine.new
-  loader       = RubyLint::ConstantLoader.new
+  ast    = parse(code, false)
+  vm     = RubyLint::VirtualMachine.new
+  loader = RubyLint::ConstantLoader.new
 
   loader.iterate(ast)
-  defs_builder.iterate(ast)
+  vm.iterate(ast)
 
   report   = RubyLint::Report.new
-  iterator = iterator.new(
-    :report           => report,
-    :definitions      => defs_builder.definitions,
-    :node_definitions => defs_builder.associations
-  )
+  iterator = iterator.new(:report => report, :vm => vm)
 
   iterator.iterate(ast)
 

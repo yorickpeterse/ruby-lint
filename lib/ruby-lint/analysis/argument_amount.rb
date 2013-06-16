@@ -1,5 +1,5 @@
 module RubyLint
-  module Analyze
+  module Analysis
     ##
     # The ArgumentAmount class is an analysis class that verifies the amount of
     # arguments given with each method call and adds errors whenever an invalid
@@ -69,5 +69,5 @@ module RubyLint
         end
       end
     end # ArgumentAmount
-  end # Analyze
+  end # Analysis
 end # RubyLint

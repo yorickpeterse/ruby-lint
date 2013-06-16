@@ -47,7 +47,7 @@ One can see the definitions builder as a very basic virtual machine.
 
 This is where the real work start. The analysis step consists out of various
 Ruby classes of which each performs its own type of analysis. For example,
-{RubyLint::Analyze::UndefinedMethods} checks for the use of undefined methods.
+{RubyLint::Analysis::UndefinedMethods} checks for the use of undefined methods.
 
 ## Reports
 
