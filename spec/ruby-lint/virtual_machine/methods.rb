@@ -149,6 +149,27 @@ end
 
       method.lookup(:lvar, '_optional').value.value.should == 10
     end
+
+    should 'store arguments under special types' do
+      code = <<-CODE
+def example(required, optional = 10, *splat, more, &block)
+end
+      CODE
+
+      defs   = build_definitions(code)
+      method = defs.lookup(:instance_method, 'example')
+      types  = [
+        [:arg, 'required'],
+        [:optarg, 'optional'],
+        [:restarg, 'splat'],
+        [:arg, 'more'],
+        [:blockarg, 'block']
+      ]
+
+      types.each do |(type, name)|
+        method.lookup(type, name).is_a?(ruby_object).should == true
+      end
+    end
   end
 
   describe 'exporting variables out of method scopes' do

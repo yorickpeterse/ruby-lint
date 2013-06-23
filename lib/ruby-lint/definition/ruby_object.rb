@@ -459,7 +459,11 @@ module RubyLint
           :method          => {},
           :instance_method => {},
           :member          => {},
-          :keyword         => {}
+          :keyword         => {},
+          :arg             => {},
+          :optarg          => {},
+          :restarg         => {},
+          :blockarg        => {}
         }
       end
 

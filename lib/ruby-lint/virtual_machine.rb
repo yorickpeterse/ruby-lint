@@ -373,8 +373,17 @@ module RubyLint
 
       define_method("after_#{type}") do |node|
         value = value_stack.pop.first
+        name  = node.children[0].to_s
+        arg   = Definition::RubyObject.new(
+          :type          => type,
+          :name          => name,
+          :value         => value,
+          :instance_type => :instance
+        )
 
-        assign_variable(:lvar, node.children[0].to_s, value)
+        current_scope.add_definition(arg)
+
+        assign_variable(:lvar, name, value)
       end
     end
 
