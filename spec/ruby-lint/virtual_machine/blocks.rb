@@ -33,17 +33,32 @@ end
     block_def.lookup(:lvar, 'number').value.value.should == 10
   end
 
-  should 'update outer local variables modified in the block' do
+  should 'update outer variables modified in the block' do
     code = <<-CODE
-number = 10
+number   = 10
+@number  = 10
+@@number = 10
+$number  = 10
 
 example do
-  number = 20
+  number   = 20
+  @number  = 20
+  @@number = 20
+  $number  = 20
 end
     CODE
 
     defs = build_definitions(code)
 
-    defs.lookup(:lvar, 'number').value.value.should == 20
+    variables = {
+      :lvar => 'number',
+      :ivar => '@number',
+      :cvar => '@@number',
+      :gvar => '$number'
+    }
+
+    variables.each do |type, name|
+      defs.lookup(type, name).value.value.should == 20
+    end
   end
 end

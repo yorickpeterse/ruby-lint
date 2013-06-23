@@ -291,7 +291,8 @@ module RubyLint
         :name           => 'block',
         :type           => :block,
         :parents        => [current_scope],
-        :update_parents => [:lvar]
+        # TODO: apply this to other scopes as well (where needed).
+        :update_parents => [:lvar, :ivar, :cvar, :gvar]
       )
 
       current_scope.list(:lvar).each do |variable|
