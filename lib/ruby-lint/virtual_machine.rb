@@ -401,7 +401,9 @@ module RubyLint
     end
 
     def after_send(node)
-      name        = node.children[1].to_s
+      receiver, name, _ = *node
+
+      name        = name.to_s
       mapped_name = SEND_MAPPING.fetch(name, name)
       callback    = "after_send_#{mapped_name}"
 
@@ -410,6 +412,10 @@ module RubyLint
       context, _ = value_stack.pop
       context    = current_scope unless context
       retval     = context.call(name)
+
+      # Associate the receiver node with the context so that it becomes easier
+      # to retrieve later on.
+      associate_node(receiver, context) if receiver
 
       push_value(retval)
     end

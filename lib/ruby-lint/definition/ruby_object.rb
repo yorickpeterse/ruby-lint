@@ -435,15 +435,13 @@ module RubyLint
       end
 
       ##
-      # Returns the length of an attribute or 0.
+      # Returns the amount of definitions stored for a given type.
       #
-      # @param [#to_sym] attribute
+      # @param [#to_sym] type
       # @return [Numeric]
       #
-      def length_of(attribute)
-        value = send(attribute)
-
-        return value ? value.length : 0
+      def amount(type)
+        return list(type).length
       end
 
       ##

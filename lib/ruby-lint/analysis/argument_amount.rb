@@ -5,27 +5,32 @@ module RubyLint
     # arguments given with each method call and adds errors whenever an invalid
     # amount was given.
     #
-    class ArgumentAmount < Iterator
-      include Helper::Methods
-
+    class ArgumentAmount < Base
       ##
       # @param [RubyLint::Node] node
       #
-      def on_method(node)
-        return if invalid_receiver?(node) || !method_defined?(node)
+      def on_send(node)
+        receiver, name, args = *node
 
-        definition    = lookup_method(node)
-        specified     = node.gather_arguments.length
-        minimum       = definition.length_of(:arguments)
-        optional      = definition.length_of(:optional_arguments)
-        maximum       = minimum + optional
-        rest          = !definition.rest_argument.nil?
-        expected_text = expected_text(minimum, maximum, optional)
+        name  = name.to_s
+        scope = current_scope
 
-        unless correct_argument_amount(minimum, maximum, specified, rest)
+        if receiver and vm.associations.key?(receiver)
+          scope = vm.associations[receiver]
+        end
+
+        method = scope.lookup(scope.method_call_type, name)
+
+        return unless method
+
+        given    = args ? args.children.length : 0
+        min, max = argument_range(method)
+
+        unless correct_argument_amount(min, max, given)
+          text = argument_text(method, given)
+
           error(
-            "wrong number of arguments (expected #{expected_text} but " \
-              "got #{specified})",
+            "wrong number of arguments (expected #{text} but got #{given})",
             node
           )
         end
@@ -34,39 +39,45 @@ module RubyLint
       private
 
       ##
-      # @param [Numeric] minimum
-      # @param [Numeric] maximum
-      # @param [Numeric] specified
-      # @param [TrueClass|FalseClass] rest
+      # @param [Numeric] min
+      # @param [Numeric] max
+      # @param [Numeric] given
       # @return [TrueClass|FalseClass]
       #
-      def correct_argument_amount(minimum, maximum, specified, rest = false)
-        valid = false
-
-        if rest
-          valid = specified >= minimum
-        else
-          valid = specified >= minimum && specified <= maximum
-        end
-
-        return valid
+      def correct_argument_amount(min, max, given)
+        return given >= min && given <= max
       end
 
       ##
-      # Creates a string that indicates the amount of parameters that can be
-      # specified for a method.
+      # Returns a String that indicates the amount of required arguments.
       #
-      # @param [Numeric] minimum
-      # @param [Numeric] maximum
-      # @param [Numeric] optional
+      # @param [RubyLint::Definition::RubyMethod] method
+      # @param [Numeric] given
       # @return [String]
       #
-      def expected_text(minimum, maximum, optional)
-        if optional > 0
-          return "#{minimum}..#{maximum}"
+      def argument_text(method, given)
+        min = method.amount(:arg)
+        opt = method.amount(:optarg)
+
+        return opt > 0 ? "#{min}..#{min + opt}" : min.to_s
+      end
+
+      ##
+      # Returns the minimum and maximum amount of arguments for a method call.
+      #
+      # @param [RubyLint::Definition::RubyMethod] method
+      # @return [Array]
+      #
+      def argument_range(method)
+        min = method.amount(:arg)
+
+        if method.amount(:restarg) > 0
+          max = Float::INFINITY
         else
-          return minimum.to_s
+          max = min + method.amount(:optarg) + method.amount(:restarg)
         end
+
+        return min, max
       end
     end # ArgumentAmount
   end # Analysis
