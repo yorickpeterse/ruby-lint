@@ -545,9 +545,12 @@ module RubyLint
       return if value_stack.empty? || @ignored_nodes.include?(node)
 
       definition = definition_for_node(node)
-      value      = definition.value ? definition.value : definition
 
-      push_value(value)
+      if definition
+        value = definition.value ? definition.value : definition
+
+        push_value(value)
+      end
     end
 
     def push_value(definition)

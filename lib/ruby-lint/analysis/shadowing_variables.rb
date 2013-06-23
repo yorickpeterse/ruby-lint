@@ -12,20 +12,35 @@ module RubyLint
     #       puts number # `number` is being shadowed
     #     end
     #
-    class ShadowingVariables < Iterator
-      include Helper::CurrentScope
-
+    class ShadowingVariables < Base
       ##
-      # @param [RubyLint::Node] node
+      # @param [RubyLint::AST::Node] node
       #
       def on_block(node)
-        node.each_argument do |param|
-          if current_scope.has_definition?(param.type, param.name)
-            warning("shadowing outer local variable #{param.name}", param)
-          end
-        end
+        @outer_scope = current_scope
+        @in_block    = true
 
         super
+      end
+
+      ##
+      # @param [RubyLint::AST::Node] node
+      #
+      def after_block(node)
+        @in_block    = false
+        @outer_scope = nil
+
+        super
+      end
+
+      ##
+      # @param [RubyLint::AST::Node] node
+      #
+      def on_arg(node)
+        if @in_block \
+        and @outer_scope.has_definition?(:lvar, node.variable_name)
+          warning("shadowing outer local variable #{node.variable_name}", node)
+        end
       end
     end # ShadowingVariables
   end # Analysis
