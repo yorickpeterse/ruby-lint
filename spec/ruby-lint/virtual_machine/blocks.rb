@@ -1,22 +1,39 @@
 require File.expand_path('../../../helper', __FILE__)
 
-describe 'Building definitions for blocks' do
-  should 'make outer local variables available to the inside of a block' do
+describe RubyLint::VirtualMachine do
+  should 'make variables available in a block' do
     code = <<-CODE
-number  = 10
-@number = nil
+number = 10
 
 example do
-  @number = number
 end
     CODE
 
-    defs = build_definitions(code)
+    definition = build_associations(code).to_a.last.last
 
-    defs.lookup(:ivar, '@number').value.value.should == 10
+    number = definition.lookup(:lvar, 'number')
+
+    number.is_a?(ruby_object).should == true
+    number.value.value.should        == 10
   end
 
-  should 'use outer local variables when overwriting them' do
+  should 'make block arguments available as variables inside the block only' do
+    code = <<-CODE
+example do
+  number = 10
+end
+    CODE
+
+    associations = build_associations(code).to_a
+
+    root_def  = associations.first.last
+    block_def = associations.last.last
+
+    root_def.lookup(:lvar, 'number').nil?.should         == true
+    block_def.lookup(:lvar, 'number').value.value.should == 10
+  end
+
+  should 'update outer local variables modified in the block' do
     code = <<-CODE
 number = 10
 

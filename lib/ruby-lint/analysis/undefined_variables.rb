@@ -9,9 +9,7 @@ module RubyLint
     # treats these as method calls and as result they are handled by
     # {RubyLint::Analysis::UndefinedMethods} instead.
     #
-    class UndefinedVariables < Iterator
-      include Helper::CurrentScope
-
+    class UndefinedVariables < Base
       ##
       # Hash containing the various variable types to add errors for whenever
       # they are used but not defined.
@@ -19,53 +17,29 @@ module RubyLint
       # @return [Hash]
       #
       VARIABLE_TYPES = {
-        :gvar   => 'global variable',
-        :ivar => 'instance variable',
-        :cvar    => 'class variable',
-        :const          => 'constant'
+        :gvar  => 'global variable',
+        :ivar  => 'instance variable',
+        :cvar  => 'class variable'
       }
 
       VARIABLE_TYPES.each do |type, label|
         define_method("on_#{type}") do |node|
-          if !current_scope.has_definition?(type, node.name) \
-          and !@in_constant_path
-            error("undefined #{label} #{node.name}", node)
+          unless current_scope.has_definition?(type, node.variable_name)
+            error("undefined #{label} #{node.variable_name}", node)
           end
         end
       end
 
       ##
-      # Validates each segment of a constant path in the correct scope.
+      # Handles regular constants as well as constant paths.
       #
-      # @param [RubyLint::Node] node
+      # @param [RubyLint::AST::Node] node
       #
-      def on_constant_path(node)
-        definitions       = current_scope
-        @in_constant_path = true
+      def on_const(node)
+        variable = resolve_constant_path(node)
+        name     = constant_segments(node).join('::')
 
-        # The first constant check should take data from parent scopes into
-        # account. The following segments should not.
-        method = :has_definition?
-
-        node.children.each do |segment|
-          name = segment.name
-
-          unless definitions.send(method, :const, name)
-            error("undefined constant #{name}", segment)
-
-            break
-          end
-
-          definitions = definitions.lookup(:const, name)
-          method      = :defines?
-        end
-      end
-
-      ##
-      # @param [RubyLint::Node] node
-      #
-      def after_constant_path(node)
-        @in_constant_path = false
+        error("undefined constant #{name}", node) unless variable
       end
     end # UndefinedVariables
   end # Analysis

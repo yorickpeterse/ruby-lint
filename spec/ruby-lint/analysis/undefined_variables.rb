@@ -45,9 +45,9 @@ describe RubyLint::Analysis::UndefinedVariables do
     entry.message.should == 'undefined constant NUMBER'
   end
 
-  should 'add an error for using an undefined constant in a constant path' do
+  should 'add an error for using an undefined constant path' do
     code = <<-CODE
-# This is to ensure that the on_constant() callback isn't used to check for "B"
+# This is to ensure that the on_const() callback isn't used to check for "B"
 # in the global scope.
 B = 10
 
@@ -63,21 +63,8 @@ A::B
     entry.is_a?(RubyLint::Report::Entry).should == true
 
     entry.line.should    == 8
-    entry.column.should  == 3
-    entry.message.should == 'undefined constant B'
-  end
-
-  should 'add an error when the entire constant path does not exist' do
-    code   = 'A::B::C'
-    report = build_report(code, RubyLint::Analysis::UndefinedVariables)
-
-    report.entries.length.should == 1
-
-    entry = report.entries[0]
-
-    entry.line.should    == 1
     entry.column.should  == 0
-    entry.message.should == 'undefined constant A'
+    entry.message.should == 'undefined constant A::B'
   end
 
   should 'not depend on the order of variable definitions' do

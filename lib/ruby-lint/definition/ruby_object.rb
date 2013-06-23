@@ -266,9 +266,11 @@ module RubyLint
       #
       # @param [#to_sym] type
       # @param [String] name
+      # @param [TrueClass|FalseClass] lookup_parent Whether definitions should
+      #  be looked up from parent definitions.
       # @return [RubyLint::Definition::RubyObject|NilClass]
       #
-      def lookup(type, name)
+      def lookup(type, name, lookup_parent = true)
         type, name = prepare_lookup(type, name)
         found      = nil
 
@@ -276,7 +278,7 @@ module RubyLint
           found = definitions[type][name]
 
         # Look up the definition in the parent scope(s) (if any are set).
-        elsif lookup_parent?(type)
+        elsif lookup_parent?(type) and lookup_parent
           parents.each do |parent|
             parent_definition = parent.lookup(type, name)
 

@@ -1,10 +1,18 @@
 module RubyLint
+  ##
+  # @!attribute [r] associations
+  #  @return [Hash]
+  # @!attribute [r] definitions
+  #  @return [RubyLint::Definition::RubyObject]
+  # @!attribute [r] value_stack
+  #  @return [RubyLint::NestedStack]
+  # @!attribute [r] variable_stack
+  #  @return [RubyLint::NestedStack]
+  #
   class VirtualMachine < Iterator
     include Helper::ConstantPaths
 
-    attr_reader :associations, :definitions
-
-    attr_reader :value_stack, :variable_stack
+    attr_reader :associations, :definitions, :value_stack, :variable_stack
 
     private :value_stack, :variable_stack
 
@@ -25,6 +33,12 @@ module RubyLint
       }
     }
 
+    ##
+    # Hash containing variable assignment types and the corresponding variable
+    # reference types.
+    #
+    # @return [Hash]
+    #
     ASSIGNMENT_TYPES = {
       :lvasgn => :lvar,
       :ivasgn => :ivar,
@@ -32,27 +46,69 @@ module RubyLint
       :gvasgn => :gvar
     }
 
+    ##
+    # Collection of primitive value types.
+    #
+    # @return [Array]
+    #
     PRIMITIVES = [:int, :float, :str, :sym]
 
+    ##
+    # Remaps the names for `on_send` callback nodes in cases where the original
+    # name of a method could not be used. For example, `on_send_[]=` is
+    # considered to be invalid syntax and thus its mapped to
+    # `on_send_assign_member`.
+    #
+    # @return [Hash]
+    #
     SEND_MAPPING = {'[]=' => 'assign_member'}
 
+    ##
+    # Array containing the various argument types of method definitions.
+    #
+    # @return [Array]
+    #
     ARGUMENT_TYPES = [:arg, :optarg, :restarg, :blockarg]
 
+    ##
+    # The types of variables to export outside of a method definition.
+    #
+    # @return [Array]
+    #
     EXPORT_VARIABLES = [:ivar, :cvar, :const]
+
+    ##
+    # Array containing the directories to use for looking up definition files.
+    #
+    # @return [Array]
+    #
+    LOAD_PATH = [File.expand_path('../definitions/core', __FILE__)]
 
     ##
     # Called after a new instance of the virtual machine has been created.
     #
     def after_initialize
-      @associations   = {}
-      @definitions    = initial_definitions
-      @scopes         = [@definitions]
-      @in_sclass      = false
-      @value_stack    = NestedStack.new
-      @variable_stack = NestedStack.new
-      @ignored_nodes  = []
+      @associations     = {}
+      @definitions      = initial_definitions
+      @scopes           = [@definitions]
+      @in_sclass        = false
+      @value_stack      = NestedStack.new
+      @variable_stack   = NestedStack.new
+      @ignored_nodes    = []
+      @constant_loader  = ConstantLoader.new
 
       reset_method_type
+    end
+
+    ##
+    # Processes the given AST. Constants are autoloaded first.
+    #
+    # @see #iterate
+    #
+    def run(ast)
+      @constant_loader.iterate(ast)
+
+      iterate(ast)
     end
 
     def on_root(node)
@@ -227,6 +283,27 @@ module RubyLint
     end
 
     def after_class(node)
+      pop_scope
+    end
+
+    def on_block(node)
+      definition = Definition::RubyObject.new(
+        :name           => 'block',
+        :type           => :block,
+        :parents        => [current_scope],
+        :update_parents => [:lvar]
+      )
+
+      current_scope.list(:lvar).each do |variable|
+        definition.add_definition(variable)
+      end
+
+      associate_node(node, definition)
+
+      push_scope(definition)
+    end
+
+    def after_block(node)
       pop_scope
     end
 
@@ -442,6 +519,14 @@ module RubyLint
     # @param [RubyLint::Definition::RubyObject] definition
     #
     def push_scope(definition)
+      unless definition.is_a?(RubyLint::Definition::RubyObject)
+        raise(
+          ArgumentError,
+          "Expected a RubyLint::Definition::RubyObject but got " \
+            "#{definition.class} instead"
+        )
+      end
+
       @scopes << definition
     end
 
