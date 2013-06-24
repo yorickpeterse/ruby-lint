@@ -161,12 +161,12 @@ end
   describe 'using sclass blocks' do
     should 'define a class method using `class << self`' do
       code = <<-CODE
-  class First
-    class << self
-      def example
-      end
+class First
+  class << self
+    def example
     end
   end
+end
       CODE
 
       defs = build_definitions(code)
@@ -175,6 +175,19 @@ end
         .lookup(:method, 'example') \
         .is_a?(ruby_method) \
         .should == true
+    end
+
+    should 'define a class method using `class << self` in the global scope' do
+      code = <<-CODE
+class << self
+  def example
+  end
+end
+      CODE
+
+      defs = build_definitions(code)
+
+      defs.lookup(:method, 'example').is_a?(ruby_method).should == true
     end
 
     should 'define a class method using `class << String`' do

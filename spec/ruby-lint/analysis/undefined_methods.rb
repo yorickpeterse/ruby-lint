@@ -28,7 +28,7 @@ String.example_method
     entry.is_a?(RubyLint::Report::Entry).should == true
 
     entry.line.should    == 6
-    entry.column.should  == 7
+    entry.column.should  == 0
     entry.message.should == 'undefined method example_method on String'
   end
 
@@ -40,7 +40,7 @@ String.example_method
     entry.is_a?(RubyLint::Report::Entry).should == true
 
     entry.line.should    == 1
-    entry.column.should  == 8
+    entry.column.should  == 0
     entry.message.should == 'undefined method example_method ' \
       'on an instance of String'
   end

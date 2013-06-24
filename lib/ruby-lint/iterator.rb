@@ -37,13 +37,6 @@ module RubyLint
   #
   class Iterator
     ##
-    # Hash containing the options that were set for the iterator.
-    #
-    # @return [Hash]
-    #
-    attr_reader :options
-
-    ##
     # @param [Hash] options Hash containing custom options to set for the
     #  iterator.
     #

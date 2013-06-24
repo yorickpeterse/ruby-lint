@@ -11,57 +11,31 @@ module RubyLint
     #     foobar        # => undefined method foobar
     #     'test'.foobar # => undefined method foobar on an instance of String
     #
-    class UndefinedMethods < Iterator
-      include Helper::Methods
+    class UndefinedMethods < Base
+      def on_send(node)
+        receiver, name, _  = *node
 
-      ##
-      # @param [RubyLint::Node] node
-      #
-      def on_method(node)
-        # Don't add errors for non existing receivers as these are handled by
-        # classes such as UndefinedVariables.
-        return if invalid_receiver?(node)
+        name  = name.to_s
+        scope = current_scope
 
-        valid = method_defined?(node)
-        error = "undefined method #{node.name}"
+        if receiver and vm.associations.key?(receiver)
+          scope = vm.associations[receiver]
 
-        # Methods called on block variables should be ignored since these
-        # variables don't carry any class information with them.
-        if !valid and node.receiver
-          receiver = method_receiver(node.receiver)
-          valid    = receiver && receiver.ignore
-
-          if receiver.variable? and receiver.value
-            receiver = receiver.value
+          # TODO: no point in creating strings if there's no error. Also move
+          # the error message to a separate method.
+          if scope.instance?
+            klass = scope.ruby_class ? scope.ruby_class : scope.name
+            error = "undefined method #{name} on an instance of #{klass}"
+          else
+            error = "undefined method #{name} on #{scope.name}"
           end
-
-          if receiver
-            error = receiver_error(node.name, receiver)
-          end
+        else
+          error = "undefined method #{name}"
         end
 
-        error(error, node) unless valid
-      end
+        exists = scope.has_definition?(scope.method_call_type, name)
 
-      private
-
-      ##
-      # Creates an error message for a method call on a receiver.
-      #
-      # @param [String] name
-      # @param [RubyLint::Definition::RubyObject] receiver
-      # @return [String]
-      #
-      def receiver_error(name, receiver)
-        error         = "undefined method #{name} on #{receiver.name}"
-        receiver_name = receiver.ruby_class || receiver.name
-
-        if receiver.instance?
-          error = "undefined method #{name} on an instance " \
-            "of #{receiver_name}"
-        end
-
-        return error
+        error(error, node) unless exists
       end
     end # UndefinedMethods
   end # Analysis

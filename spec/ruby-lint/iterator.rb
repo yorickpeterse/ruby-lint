@@ -17,6 +17,12 @@ describe 'RubyLint::Iterator' do
     ast = parse('10; 20; 30', false)
 
     iterator = Class.new(RubyLint::Iterator) do
+      attr_reader :options
+
+      def after_initialize
+        @options = {:events => [], :numbers => []}
+      end
+
       def on_root(node)
         @options[:events] << :on_root
       end
@@ -65,6 +71,12 @@ end
     ast = parse(code, false)
 
     iterator = Class.new(RubyLint::Iterator) do
+      attr_reader :options
+
+      def after_initialize
+        @options = {}
+      end
+
       def on_class(node)
         @options[:class] = node.children[0].children[1]
       end

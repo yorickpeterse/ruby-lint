@@ -311,6 +311,8 @@ module RubyLint
     def on_sclass(node)
       receiver = node.children[0]
 
+      # TODO: this won't work for receivers that are types (e.g. a string) or
+      # methods.
       if receiver.self?
         definition = current_scope.lookup(:keyword, 'self')
       else
@@ -481,6 +483,8 @@ module RubyLint
       )
 
       definitions.merge(RubyLint.global_scope)
+
+      definitions.add(:keyword, 'self', definitions)
 
       return definitions
     end
