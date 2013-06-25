@@ -132,7 +132,7 @@ name.downcasex
     entry = report.entries[0]
 
     entry.line.should    == 4
-    entry.column.should  == 5
+    entry.column.should  == 0
     entry.message.should == 'undefined method downcasex on an instance of String'
   end
 

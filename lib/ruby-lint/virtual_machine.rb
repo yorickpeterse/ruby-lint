@@ -412,14 +412,16 @@ module RubyLint
       execute_callback(callback, node)
 
       context, _ = value_stack.pop
-      context    = current_scope unless context
-      retval     = context.call(name)
 
-      # Associate the receiver node with the context so that it becomes easier
-      # to retrieve later on.
-      associate_node(receiver, context) if receiver
+      if context
+        retval = context.call(name)
 
-      push_value(retval)
+        # Associate the receiver node with the context so that it becomes
+        # easier to retrieve later on.
+        associate_node(receiver, context) if receiver
+
+        push_value(retval)
+      end
     end
 
     def on_send_include(node)
