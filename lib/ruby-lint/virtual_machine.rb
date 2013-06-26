@@ -640,7 +640,7 @@ module RubyLint
       if node.const? and node.children[0]
         definition = resolve_constant_path(node)
       else
-        definition = current_scope.lookup(node.type, node.variable_name)
+        definition = current_scope.lookup(node.type, node.name)
       end
 
       return definition

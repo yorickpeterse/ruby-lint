@@ -24,8 +24,8 @@ module RubyLint
 
       VARIABLE_TYPES.each do |type, label|
         define_method("on_#{type}") do |node|
-          unless current_scope.has_definition?(type, node.variable_name)
-            error("undefined #{label} #{node.variable_name}", node)
+          unless current_scope.has_definition?(type, node.name)
+            error("undefined #{label} #{node.name}", node)
           end
         end
       end

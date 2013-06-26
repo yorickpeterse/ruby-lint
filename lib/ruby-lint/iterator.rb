@@ -62,11 +62,7 @@ module RubyLint
       execute_callback(before, node)
 
       node.children.each do |child|
-        if child.is_a?(Array)
-          child.each { |c| iterate(c) }
-        else
-          iterate(child)
-        end
+        iterate(child) if child.is_a?(AST::Node)
       end
 
       execute_callback(after, node)

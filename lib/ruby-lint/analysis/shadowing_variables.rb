@@ -38,8 +38,8 @@ module RubyLint
       #
       def on_arg(node)
         if @in_block \
-        and @outer_scope.has_definition?(:lvar, node.variable_name)
-          warning("shadowing outer local variable #{node.variable_name}", node)
+        and @outer_scope.has_definition?(:lvar, node.name)
+          warning("shadowing outer local variable #{node.name}", node)
         end
       end
     end # ShadowingVariables

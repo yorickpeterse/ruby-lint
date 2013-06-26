@@ -22,7 +22,7 @@ module RubyLint
       VARIABLE_TYPES.each do |type, label|
         define_method("on_#{type}") do |node|
           type     = VirtualMachine::ASSIGNMENT_TYPES[node.type]
-          name     = node.variable_name
+          name     = node.name
           variable = current_scope.lookup(type, name)
 
           if variable and !variable.used?

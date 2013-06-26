@@ -55,91 +55,6 @@ module RubyLint
         :visibility
 
       ##
-      # @see RubyLint::Definition::RubyObject#new_from_node
-      #
-      def self.new_from_node(node, options = {})
-        options  = default_method_options.merge(options)
-        options  = options.merge(gather_arguments(node))
-        receiver = node.children[0]
-
-        options[:type] = node.method? ? :method : :method_definition
-
-        options[:name]        ||= node.children[1].to_s
-        options[:method_type] ||= node.method_type
-
-        if receiver
-          options[:receiver]    = RubyObject.new_from_node(receiver)
-          options[:method_type] = :method
-        end
-
-        return super(node, options)
-      end
-
-      ##
-      # Returns a Hash containing all the arguments grouped together based on
-      # their types.
-      #
-      # @param [RubyLint::Node] node
-      # @return [Hash]
-      #
-      def self.gather_arguments(node)
-        mapped = default_arguments
-
-        if node.method?
-          mapped[:arguments] = node.children[2..-1].map do |n|
-            RubyObject.new_from_node(n, :value => n.value)
-          end
-
-          return mapped
-        end
-
-        args = node.children[2].children
-
-        args.each do |argument_node|
-          to       = ARGUMENT_TYPE_MAPPING[argument_node.type]
-          value    = to == :optional_arguments ? argument_node.value : nil
-          argument = RubyObject.new_from_node(
-            argument_node,
-            :type  => :lvar,
-            :value => value
-          )
-
-          if mapped[to].is_a?(Array)
-            mapped[to] << argument
-          else
-            mapped[to] = argument
-          end
-        end
-
-        return mapped
-      end
-
-      ##
-      # Returns the default Hash for a set of method arguments.
-      #
-      # @return [Hash]
-      #
-      def self.default_arguments
-        return {
-          :arguments          => [],
-          :optional_arguments => [],
-          :rest_argument      => nil,
-          :block_argument     => nil
-        }
-      end
-
-      ##
-      # Returns a Hash containing the default options for this class. The name
-      # is different than {RubyLint::Definition::RubyObject#default_options} to
-      # prevent any naming issues.
-      #
-      # @return [Hash]
-      #
-      def self.default_method_options
-        return {:method_type => :instance_method}
-      end
-
-      ##
       # @see RubyLint::Definition::RubyObject#initialize
       #
       def initialize(*args)
@@ -147,8 +62,6 @@ module RubyLint
         @optional_arguments = []
 
         super
-
-        define_arguments unless method?
       end
 
       ##
@@ -207,35 +120,6 @@ module RubyLint
       end
 
       private
-
-      ##
-      # Adds all the arguments of this method to the definitions list.
-      #
-      def define_arguments
-        all_arguments.each do |params|
-          next unless params
-
-          params.each do |param|
-            add(param.type, param.name, param) if param
-          end
-        end
-      end
-
-      ##
-      # Returns an Array containing all the method arguments. Each arguments
-      # set (even single ones such as the more argument) is returned as an
-      # Array making it easier to iterate over the collection.
-      #
-      # @return [Array]
-      #
-      def all_arguments
-        return [
-          arguments,
-          optional_arguments,
-          [rest_argument],
-          [block_argument]
-        ]
-      end
 
       ##
       # @param [String] name

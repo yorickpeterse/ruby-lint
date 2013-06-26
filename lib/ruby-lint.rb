@@ -9,10 +9,7 @@ require_relative 'ruby-lint/ast/builder'
 require_relative 'ruby-lint/parser'
 require_relative 'ruby-lint/nested_stack'
 
-require_relative 'ruby-lint/helper/conversion'
-require_relative 'ruby-lint/helper/current_scope'
 require_relative 'ruby-lint/helper/constant_paths'
-require_relative 'ruby-lint/helper/methods'
 
 require_relative 'ruby-lint/definition_builder/base'
 require_relative 'ruby-lint/definition_builder/ruby_module'

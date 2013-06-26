@@ -110,52 +110,6 @@ describe ruby_object do
     found.name.should == 'example'
   end
 
-  describe 'creating definitions from AST nodes' do
-    should 'create a definition for a string' do
-      object = ruby_object.new_from_node(
-        s(:str, 'hello')
-      )
-
-      object.type.should  == :str
-      object.value.should == 'hello'
-    end
-
-    should 'create a definition for a variable with a value' do
-      object = ruby_object.new_from_node(
-        s(:lvar, 'number'),
-        :value => s(:int, '10')
-      )
-
-      object.type.should == :lvar
-      object.name.should == 'number'
-
-      object.value.type.should  == :int
-      object.value.value.should == '10'
-    end
-  end
-
-  should 'return multiple values for a collection' do
-    variable = s(:lvar, 'numbers')
-    numbers  = s(:array, s(:int, '10'), s(:int, '20'))
-    object   = ruby_object.new_from_node(
-      variable,
-      :value => numbers
-    )
-
-    object.value.type.should == :array
-
-    object.value.value.is_a?(Array).should == true
-    object.value.value.length.should       == 2
-
-    values = object.value.value
-
-    values[0].is_a?(ruby_object).should == true
-    values[1].is_a?(ruby_object).should == true
-
-    values[0].value.should == '10'
-    values[1].value.should == '20'
-  end
-
   should 'create a RubyObject that represents an instance' do
     object = ruby_object.new(:type => :const, :name => 'String')
 

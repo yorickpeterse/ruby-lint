@@ -59,10 +59,10 @@ module RubyLint
           current_inspector = Inspector.new(name)
           inspected_methods = inspect_methods(current_inspector)
           variables         = {
-            :methods       => method_information(inspected_methods),
+            :methods    => method_information(inspected_methods),
             :const      => current_inspector.constant,
             :const_name => current_inspector.constant_name,
-            :superclass    => (current_inspector.constant.superclass rescue nil)
+            :superclass => (current_inspector.constant.superclass rescue nil)
           }
 
           scope = Template::Scope.new(variables)

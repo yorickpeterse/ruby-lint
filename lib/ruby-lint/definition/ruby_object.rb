@@ -36,20 +36,11 @@ module RubyLint
     # @!attribute [r] type
     #  @return [Symbol] The type of object, e.g. `:const`.
     #
-    # @!attribute [r] ignore
-    #  @return [TrueClass|FalseClass] When set to `true` the definition should
-    #   be ignored by any analysis related code. This is mostly used when no
-    #   meaningful data could be assigned (e.g. block arguments).
-    #
     # @!attribute [r] definitions
     #  @return [Hash] Hash containing all child the definitions.
     #
     # @!attribute [rw] parents
     #  @return [Array] Array containing the parent definitions.
-    #
-    # @!attribute [rw] receiver
-    #  @return [RubyLint::Definition::RubyObject] The receiver on which the
-    #   object was defined/called.
     #
     # @!attribute [rw] reference_amount
     #  @return [Numeric] The amount of times an object was referenced.
@@ -97,58 +88,11 @@ module RubyLint
       attr_reader :update_parents,
         :column,
         :definitions,
-        :ignore,
         :members_as_value,
         :name,
         :type
 
-      attr_accessor :instance_type,
-        :parents,
-        :receiver,
-        :reference_amount
-
-      ##
-      # Creates a new RubyObject instance based on an instance of
-      # {RubyLint::Node}. This method is primarily used in
-      # {RubyLint::DefinitionsBuilder}, in most cases third-party code should
-      # not have a need for this method.
-      #
-      # @param [RubyLint::Node] node
-      # @return [RubyLint::Definition::RubyObject]
-      #
-      def self.new_from_node(node, options = {})
-        options[:name] ||= node.name
-        options[:type] ||= node.type
-
-        # Checking to see if :value evaluates to `true` would mean you could
-        # never manually assign a nil value.
-        unless options.key?(:value)
-          options[:value] = node.value
-        end
-
-        if options[:value]
-          options[:value] = create_value_definitions(options[:value])
-        end
-
-        return new(options)
-      end
-
-      ##
-      # Converts either a single {RubyLint::Node} instance or a collection of
-      # instances into {RubyObject} instances.
-      #
-      # @param [RubyLint::Node|Array<RubyLint::Node>] value
-      # @return [RubyLint::Node|Array<RubyLint::Node>]
-      #
-      def self.create_value_definitions(value)
-        if value.is_a?(Array)
-          value = value.map { |v| create_value_definitions(v) }
-        elsif value.is_a?(AST::Node)
-          value = RubyObject.new_from_node(value)
-        end
-
-        return value
-      end
+      attr_accessor :instance_type, :parents, :reference_amount
 
       ##
       # @example
@@ -186,14 +130,12 @@ module RubyLint
       end
 
       ##
-      # Sets the value of the definition. If a {RubyLint::Node} instance is
-      # specified it will be converted to a definition instance.
+      # Sets the value of the definition.
       #
-      # @param [RubyLint::Definition::RubyObject|RubyLint::Node] value
+      # @param [Mixed] value
       #
       def value=(value)
-        @value = value.is_a?(AST::Node) \
-          ? RubyObject.new_from_node(value) : value
+        @value = value
       end
 
       ##
@@ -400,14 +342,6 @@ module RubyLint
       end
 
       ##
-      # Updates the definition object so that it represents an instance of a
-      # Ruby value.
-      #
-      def instance!
-        @instance_type = :instance
-      end
-
-      ##
       # Checks if the specified definition is defined in the current object,
       # ignoring data in any parent definitions.
       #
@@ -492,31 +426,6 @@ module RubyLint
         source.list(source_type).each do |definition|
           add(target_type, definition.name, definition)
         end
-      end
-
-      ##
-      # Returns an Array containing all the receivers of the current
-      # definition. These receivers are sorted from left to right. For example,
-      # assume the following:
-      #
-      #     a.b.c
-      #
-      # In this case the return value would be as following:
-      #
-      #     [a, b, c]
-      #
-      # @return [Array]
-      #
-      def receiver_path
-        receivers = []
-        source    = self
-
-        while receiver = source.receiver
-          receivers << receiver
-          source     = receiver
-        end
-
-        return receivers << self
       end
 
       ##
