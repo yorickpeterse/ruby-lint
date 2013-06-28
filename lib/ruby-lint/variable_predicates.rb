@@ -5,13 +5,6 @@ module RubyLint
   #
   module VariablePredicates
     ##
-    # Array containing the various variable types that are available in Ruby.
-    #
-    # @return [Array]
-    #
-    VARIABLE_TYPES = [:lvar, :ivar, :cvar, :gvar]
-
-    ##
     # Array containing various Ruby types that are considered to be scalar
     # values.
     #
@@ -44,19 +37,10 @@ module RubyLint
       :lambda => 'Proc'
     }
 
-    (VARIABLE_TYPES + PREDICATE_METHODS).each do |type|
+    PREDICATE_METHODS.each do |type|
       define_method("#{type}?") do
         return @type == type
       end
-    end
-
-    ##
-    # Returns `true` if the current node is a variable node.
-    #
-    # @return [TrueClass|FalseClass]
-    #
-    def variable?
-      return VARIABLE_TYPES.include?(type)
     end
 
     ##
@@ -71,37 +55,6 @@ module RubyLint
     #
     def constant_path?
       return constant? && children[0].constant?
-    end
-
-    ##
-    # @return [TrueClass|FalseClass]
-    #
-    def method?
-      return type == :send || type == :method
-    end
-
-    ##
-    # @return [TrueClass|FalseClass]
-    #
-    def method_definition?
-      return type == :def || type == :method_definition
-    end
-
-    ##
-    # Returns `true` if the object type is a Ruby scalar such as a string or
-    # integer.
-    #
-    def scalar?
-      return SCALAR_TYPES.include?(type)
-    end
-
-    ##
-    # Indicates if the node is a collection of values.
-    #
-    # @return [TrueClass|FalseClass]
-    #
-    def collection?
-      return array? || hash?
     end
 
     ##
