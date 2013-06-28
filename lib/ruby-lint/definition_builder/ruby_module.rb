@@ -4,10 +4,10 @@ module RubyLint
       ##
       # Creates a new module definition.
       #
-      # @see #new_node
+      # @see #new_definition
       #
       def build
-        return new_node([definitions])
+        return new_definition([definitions])
       end
 
       ##
@@ -47,7 +47,7 @@ module RubyLint
       # @param [Array] parents
       # @return [RubyLint::Definition::RubyObject]
       #
-      def new_node(parents)
+      def new_definition(parents)
         definition = Definition::RubyObject.new(
           :name             => module_name,
           :parents          => parents,

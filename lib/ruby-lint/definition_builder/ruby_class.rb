@@ -15,7 +15,7 @@ module RubyLint
           parent = found if found
         end
 
-        return new_node([parent, definitions])
+        return new_definition([parent, definitions])
       end
     end # RubyClass
   end # DefinitionBuilder

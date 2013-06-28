@@ -281,17 +281,8 @@ module RubyLint
     end
 
     def on_block(node)
-      definition = Definition::RubyObject.new(
-        :name           => 'block',
-        :type           => :block,
-        :parents        => [current_scope],
-        # TODO: apply this to other scopes as well (where needed).
-        :update_parents => [:lvar, :ivar, :cvar, :gvar]
-      )
-
-      current_scope.list(:lvar).each do |variable|
-        definition.add_definition(variable)
-      end
+      builder    = DefinitionBuilder::RubyBlock.new(node, current_scope)
+      definition = builder.build
 
       associate_node(node, definition)
 
@@ -308,16 +299,16 @@ module RubyLint
       # TODO: this won't work for receivers that are types (e.g. a string) or
       # methods.
       if receiver.self?
-        definition = current_scope.lookup(:keyword, 'self')
+        definition   = current_scope.lookup(:keyword, 'self')
+        @method_type = :method
       else
-        definition = current_scope.lookup(receiver.type, receiver.name)
+        definition   = current_scope.lookup(receiver.type, receiver.name)
+        @method_type = definition.method_call_type
       end
 
       associate_node(node, definition)
 
       push_scope(definition)
-
-      @method_type = :method
     end
 
     def after_sclass(node)

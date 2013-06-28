@@ -11,11 +11,11 @@ module RubyLint
       ##
       # Builds the definition for the method definition.
       #
-      # @see #new_node
+      # @see #new_definition
       # @return [RubyLint::Definition::RubyMethod]
       #
       def build
-        return new_node([scope])
+        return new_definition([scope])
       end
 
       ##
@@ -65,7 +65,7 @@ module RubyLint
       # @param [Array] parents The parent definitions.
       # @return [RubyLint::Definition::RubyObject]
       #
-      def new_node(parents)
+      def new_definition(parents)
         type = options[:type]
 
         if has_receiver?
