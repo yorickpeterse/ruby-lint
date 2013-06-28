@@ -266,30 +266,37 @@ module RubyLint
       end
 
       ##
-      # Mimics a method call based on the given method name and the instance
-      # type of the current definition.
+      # Mimics a method call by executing the method for the given name. This
+      # method should be defined in the current definition.
+      #
+      # @param [String] name The name of the method.
+      # @return [Mixed]
+      #
+      def call_method(name)
+        # TODO: raise an error when the method doesn't exist?
+        method = lookup(method_call_type, name)
+
+        return method.call(self) if method
+      end
+
+      ##
+      # Performs a method call on the current definition.
       #
       # If the return value of a method definition is set to a Proc (or any
       # other object that responds to `:call`) it will be called and passed the
       # current instance as an argument.
       #
-      # @todo Support for method arguments, if needed.
-      # @param [String] name The name of the method to call.
+      # TODO: add support for specifying method arguments.
+      #
+      # @param [RubyLint::Definition::RubyObject] context The context in which
+      #  the method was called.
       # @return [Mixed]
       #
-      def call(name)
-        method       = lookup(method_call_type, name)
-        return_value = nil
+      def call(context = self)
+        retval = return_value
+        retval = retval.call(context) if retval.respond_to?(:call)
 
-        if method
-          return_value = method.return_value
-
-          if return_value.respond_to?(:call)
-            return_value = return_value.call(self)
-          end
-        end
-
-        return return_value
+        return retval
       end
 
       ##

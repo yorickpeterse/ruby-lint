@@ -33,19 +33,6 @@ module RubyLint
     #  @return [Mixed] The value that is returned by the method.
     #
     class RubyMethod < RubyObject
-      ##
-      # Hash that contains the node types and attribute names to store the
-      # arguments in.
-      #
-      # @return [Hash]
-      #
-      ARGUMENT_TYPE_MAPPING = {
-        :arg      => :arguments,
-        :optarg   => :optional_arguments,
-        :restarg  => :rest_argument,
-        :blockarg => :block_argument
-      }
-
       attr_reader :block_argument,
         :arguments,
         :method_type,
@@ -89,7 +76,7 @@ module RubyLint
       # @param [String] name The name of the argument.
       #
       def define_argument(name)
-        @arguments << create_variable(name)
+        @arguments << create_argument(:arg, name)
       end
 
       ##
@@ -98,7 +85,7 @@ module RubyLint
       # @see RubyLint::Definition::RubyObject#define_argument
       #
       def define_optional_argument(name)
-        @optional_arguments << create_variable(name)
+        @optional_arguments << create_argument(:optarg, name)
       end
 
       ##
@@ -107,7 +94,7 @@ module RubyLint
       # @see RubyLint::Definition::RubyObject#define_argument
       #
       def define_rest_argument(name)
-        @rest_argument = create_variable(name)
+        @rest_argument = create_argument(:restarg, name)
       end
 
       ##
@@ -116,21 +103,25 @@ module RubyLint
       # @see RubyLint::Definition::RubyObject#define_argument
       #
       def define_block_argument(name)
-        @block_argument = create_variable(name)
+        @block_argument = create_argument(:blockarg, name)
       end
 
       private
 
       ##
-      # @param [String] name
+      # @param [Symbol] type The type of argument.
+      # @param [String] name The name of the argument.
+      #
       # @return [RubyLint::Definition::RubyObject]
       #
-      def create_variable(name)
-        variable = RubyObject.new(:type => :lvar, :name => name)
+      def create_argument(type, name)
+        arg = RubyObject.new(:type => type, :name => name)
+        var = RubyObject.new(:type => :lvar, :name => name)
 
-        add(variable.type, variable.name, variable)
+        add_definition(arg)
+        add_definition(var)
 
-        return variable
+        return arg
       end
     end # RubyMethod
   end # Definition

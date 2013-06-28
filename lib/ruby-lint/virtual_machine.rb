@@ -414,7 +414,7 @@ module RubyLint
       context, _ = value_stack.pop
 
       if context
-        retval = context.call(name)
+        retval = context.call_method(name)
 
         # Associate the receiver node with the context so that it becomes
         # easier to retrieve later on.
