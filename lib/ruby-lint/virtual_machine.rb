@@ -171,13 +171,7 @@ module RubyLint
 
     def after_masgn(node)
       variables = variable_stack.pop
-      value     = value_stack.pop.first
-
-      if value.array?
-        values = value.value
-      else
-        values = [value]
-      end
+      values    = value_stack.pop.first.value
 
       variables.each_with_index do |variable, index|
         variable.value = values[index].value

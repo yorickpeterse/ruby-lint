@@ -41,6 +41,31 @@ describe ruby_object do
     end
   end
 
+  should 'only add valid collection types' do
+    obj = ruby_object.new(:name => 'Foo', :type => :test)
+
+    should.raise?(ArgumentError) do
+      @object.add_definition(obj)
+    end
+  end
+
+  should 'look up a constant path' do
+    first  = ruby_object.new(:name => 'A', :type => :const)
+    second = ruby_object.new(:name => 'B', :type => :const)
+    third  = ruby_object.new(:name => 'C', :type => :const)
+
+    second.add_definition(third)
+    first.add_definition(second)
+
+    first.lookup_constant_path('B::C').should == third
+  end
+
+  should 'error when looking up an invalid constant path' do
+    should.raise?(ArgumentError) do
+      @object.lookup_constant_path('A::B::C')
+    end
+  end
+
   should 'store a variable' do
     var = ruby_object.new(
       :type => :lvar,
