@@ -55,8 +55,8 @@ module RubyLint
     # @return [Array]
     #
     def default_analysis_classes
-      return Analyze.constants.map do |const|
-        Analyze.const_get(const)
+      return Analysis.constants.map do |const|
+        Analysis.const_get(const)
       end
     end
 

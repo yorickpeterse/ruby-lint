@@ -11,6 +11,8 @@ module RubyLint
   #  @return [Hash] Hash containing the loaded constants.
   #
   class ConstantLoader < Iterator
+    include Helper::ConstantPaths
+
     attr_reader :loaded
 
     ##
@@ -23,38 +25,17 @@ module RubyLint
     ]
 
     ##
-    # @see RubyLint::Iterator#initialize
+    # Called after a new instance of the class is created.
     #
-    def initialize(*args)
-      super
-
-      @loaded           = {}
-      @in_constant_path = false
+    def after_initialize
+      @loaded = {}
     end
 
     ##
     # @param [RubyLint::Node] node
     #
-    def on_constant_path(node)
-      @in_constant_path = true
-
-      load(node.children.first.name)
-    end
-
-    ##
-    # @param [RubyLint::Node] node
-    #
-    def after_constant_path(node)
-      @in_constant_path = false
-    end
-
-    ##
-    # @param [RubyLint::Node] node
-    #
-    def on_constant(node)
-      return if @in_constant_path
-
-      load(node.name)
+    def on_const(node)
+      load(constant_segments(node).first)
     end
 
     ##

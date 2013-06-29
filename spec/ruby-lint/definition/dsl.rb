@@ -2,14 +2,14 @@ require File.expand_path('../../../helper', __FILE__)
 
 describe RubyLint::Definition::RubyObject do
   before do
-    @first = ruby_object.new(:name => 'First', :type => :constant)
+    @first = ruby_object.new(:name => 'First', :type => :const)
   end
 
   describe 'definining constants using a DSL' do
     should 'define a constant' do
       @first.define_constant('B')
 
-      @first.lookup(:constant, 'B').is_a?(ruby_object).should == true
+      @first.lookup(:const, 'B').is_a?(ruby_object).should == true
     end
 
     should 'define a constant using a block' do
@@ -17,8 +17,8 @@ describe RubyLint::Definition::RubyObject do
         b.define_constant('C')
       end
 
-      @first.lookup(:constant, 'B') \
-        .lookup(:constant, 'C') \
+      @first.lookup(:const, 'B') \
+        .lookup(:const, 'C') \
         .is_a?(ruby_object) \
         .should == true
     end
@@ -29,11 +29,11 @@ describe RubyLint::Definition::RubyObject do
       end
 
       @first.define_constant('D') do |d|
-        d.inherits(@first.lookup(:constant, 'B'))
+        d.inherits(@first.lookup(:const, 'B'))
       end
 
-      @first.lookup(:constant, 'D') \
-        .lookup(:constant, 'C') \
+      @first.lookup(:const, 'D') \
+        .lookup(:const, 'C') \
         .is_a?(ruby_object) \
         .should == true
     end
@@ -42,8 +42,8 @@ describe RubyLint::Definition::RubyObject do
       @first.define_constant('A')
       @first.define_constant('A::B')
 
-      @first.lookup(:constant, 'A') \
-        .lookup(:constant, 'B') \
+      @first.lookup(:const, 'A') \
+        .lookup(:const, 'B') \
         .is_a?(ruby_object) \
         .should == true
     end
@@ -65,7 +65,7 @@ describe RubyLint::Definition::RubyObject do
     end
 
     should 'define a method\'s return value' do
-      string = ruby_object.new(:type => :string, :value => 'hello')
+      string = ruby_object.new(:type => :str, :value => 'hello')
 
       @first.define_method('example') do |example|
         example.returns(string)
@@ -100,13 +100,6 @@ describe RubyLint::Definition::RubyObject do
       arg.name.should                == 'number'
     end
 
-    should 'add a more argument' do
-      arg = method_with_argument(@first, :more_argument).more_arguments.first
-
-      arg.is_a?(ruby_object).should == true
-      arg.name.should                == 'number'
-    end
-
     should 'add a block argument' do
       arg = method_with_argument(@first, :block_argument).block_argument
 
@@ -132,11 +125,11 @@ describe RubyLint::Definition::RubyObject do
     should 'define a global variable' do
       @first.define_global_variable('$number', '10')
 
-      found = @first.lookup(:global_variable, '$number')
+      found = @first.lookup(:gvar, '$number')
 
       found.is_a?(ruby_object).should == true
-      found.type.should                == :global_variable
-      found.name.should                == '$number'
+      found.type.should               == :gvar
+      found.name.should               == '$number'
     end
   end
 end

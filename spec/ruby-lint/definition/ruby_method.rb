@@ -1,175 +1,92 @@
 require File.expand_path('../../../helper', __FILE__)
 
-describe ruby_method do
-  before do
-    @method_def = ruby_method.new_from_node(
-      s(
-        :method_definition,
-        'example',
-        s(
-          :arguments,
-          s(:argument, s(:local_variable, 'required')),
-          s(
-            :optional_argument,
-            s(:local_variable, 'number', s(:integer, '10'))
-          ),
-          s(:rest_argument, s(:local_variable, 'rest')),
-          s(:more_argument, s(:local_variable, 'more')),
-          s(:block_argument, s(:local_variable, 'block'))
-        ),
-        s(:constant, 'String'),
-        s(:body, [s(:return, s(:local_variable, 'required'))])
-      )
-    )
-
-    @method_call = ruby_method.new_from_node(
-      s(
-        :method,
-        'example',
-        s(:arguments, s(:argument, s(:integer, '10'))),
-        s(:constant, 'String')
-      )
-    )
-  end
-
-  should 'return the correct method names' do
-    @method_def.name.should  == 'example'
-    @method_call.name.should == 'example'
-  end
-
-  should 'return the correct object types' do
-    @method_def.type.should  == :method_definition
-    @method_call.type.should == :method
-
-    @method_def.method?.should  == false
-    @method_call.method?.should == true
-  end
-
-  should 'return the method definition receiver' do
-    @method_def.receiver.is_a?(ruby_object).should == true
-    @method_def.receiver.name.should               == 'String'
-  end
-
-  should 'return the method call receiver' do
-    @method_call.receiver.is_a?(ruby_object).should == true
-    @method_call.receiver.name.should               == 'String'
-  end
-
-  should 'set the correct method definition type' do
-    @method_def.method_type.should == :method
-  end
-
-  describe 'method definition arguments' do
-    should 'return the required arguments' do
-      @method_def.arguments.length.should == 1
-
-      required = @method_def.arguments[0]
-
-      required.is_a?(ruby_object).should == true
-
-      required.name.should == 'required'
+describe RubyLint::Definition::RubyObject do
+  describe 'method definition DSL' do
+    before do
+      @method = ruby_method.new(:name => 'example', :type => :instance_method)
     end
 
-    should 'return the optional arguments' do
-      @method_def.optional_arguments.length.should == 1
+    describe 'return values' do
+      should 'return a static value' do
+        @method.returns(10)
 
-      number = @method_def.optional_arguments[0]
+        @method.return_value.should == 10
+      end
 
-      number.is_a?(ruby_object).should == true
+      should 'return a value using a block' do
+        @method.returns do
+          20
+        end
 
-      number.name.should == 'number'
-
-      number.value.is_a?(ruby_object).should == true
-
-      number.value.value.should == '10'
+        @method.return_value.is_a?(Proc).should == true
+        @method.return_value.call.should        == 20
+      end
     end
 
-    should 'return the rest argument' do
-      @method_def.rest_argument.nil?.should == false
-      @method_def.rest_argument.name.should == 'rest'
-    end
+    describe 'calling methods' do
+      before do
+        @method.returns(10)
+      end
 
-    should 'return the more arguments' do
-      @method_def.more_arguments.length.should == 1
+      should 'call the method directly' do
+        @method.call.should == 10
+      end
 
-      param = @method_def.more_arguments[0]
-
-      param.name.should       == 'more'
-      param.value.nil?.should == true
-    end
-
-    should 'return the block argument' do
-      @method_def.block_argument.nil?.should == false
-      @method_def.block_argument.name.should == 'block'
-    end
-
-    should 'add method arguments to the definitions list' do
-      @method_def.lookup(:local_variable, 'required') \
-        .is_a?(ruby_object) \
-        .should == true
-
-      @method_def.lookup(:local_variable, 'block') \
-        .is_a?(ruby_object) \
-        .should == true
-    end
-  end
-
-  describe 'method call arguments' do
-    should 'return the specified arguments' do
-      @method_call.arguments.length.should == 1
-
-      param = @method_call.arguments[0]
-
-      param.is_a?(ruby_object).should == true
-      param.type.should                                    == :integer
-      param.value.should                                   == '10'
-    end
-
-    should 'process a constant path' do
-      method = ruby_method.new_from_node(
-        s(
-          :method,
-          'example',
-          s(
-            :arguments,
-            s(
-              :argument,
-              s(:constant_path, s(:constant, 'First'), s(:constant, 'Second'))
-            )
-          ),
-          nil,
-          nil
+      should 'call the method by name' do
+        container = ruby_object.new(
+          :name          => 'String',
+          :type          => :const,
+          :instance_type => :instance
         )
-      )
 
-      param = method.arguments[0]
+        container.add_definition(@method)
 
-      param.is_a?(ruby_object).should == true
-      param.type.should == :constant
-      param.name.should == 'Second'
+        container.call_method('example').should == 10
+      end
 
-      param.receiver.is_a?(ruby_object).should == true
-      param.receiver.type.should == :constant
-      param.receiver.name.should == 'First'
+      should 'raise for calling an undefined method' do
+        container = ruby_object.new(
+          :name          => 'String',
+          :type          => :const,
+          :instance_type => :instance
+        )
+
+        error = should.raise?(NoMethodError) do
+          container.call_method('derp')
+        end
+
+        error.message.should =~ /undefined method derp for/i
+      end
     end
-  end
 
-  should 'list all the methods of a class' do
-    klass = ruby_object.new(
-      :type => :class,
-      :name => 'Example'
-    )
+    describe 'defining arguments' do
+      should 'define an argument' do
+        @method.define_argument('number')
 
-    method = ruby_method.new(
-      :name     => 'class_method',
-      :receiver => klass.lookup(:keyword, 'self')
-    )
+        @method.lookup(:arg, 'number').is_a?(ruby_object).should  == true
+        @method.lookup(:lvar, 'number').is_a?(ruby_object).should == true
+      end
 
-    klass.add(:method, method.name, method)
+      should 'define an optional argument' do
+        @method.define_optional_argument('number')
 
-    methods = klass.list(:method)
+        @method.lookup(:optarg, 'number').is_a?(ruby_object).should == true
+        @method.lookup(:lvar, 'number').is_a?(ruby_object).should   == true
+      end
 
-    methods.length.should  == 1
-    methods[0].name.should == 'class_method'
+      should 'define a rest argument' do
+        @method.define_rest_argument('number')
+
+        @method.lookup(:restarg, 'number').is_a?(ruby_object).should == true
+        @method.lookup(:lvar, 'number').is_a?(ruby_object).should   == true
+      end
+
+      should 'define a block argument' do
+        @method.define_block_argument('number')
+
+        @method.lookup(:blockarg, 'number').is_a?(ruby_object).should == true
+        @method.lookup(:lvar, 'number').is_a?(ruby_object).should   == true
+      end
+    end
   end
 end

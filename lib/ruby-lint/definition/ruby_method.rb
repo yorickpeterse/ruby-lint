@@ -21,9 +21,6 @@ module RubyLint
     #  @return [RubyLint::Definition::RubyObject] The rest argument of a
     #   method definition.
     #
-    # @!attribute [r] more_arguments
-    #  @return [Array] A set of "more" arguments of the method definition.
-    #
     # @!attribute [r] block_argument
     #  @return [RubyLint::Definition::RubyObject] The block argument of a
     #   method definition.
@@ -36,92 +33,13 @@ module RubyLint
     #  @return [Mixed] The value that is returned by the method.
     #
     class RubyMethod < RubyObject
-      ##
-      # Hash that contains the node types and attribute names to store the
-      # arguments in.
-      #
-      # @return [Hash]
-      #
-      ARGUMENT_TYPE_MAPPING = {
-        :argument          => :arguments,
-        :optional_argument => :optional_arguments,
-        :rest_argument     => :rest_argument,
-        :more_argument     => :more_arguments,
-        :block_argument    => :block_argument
-      }
-
       attr_reader :block_argument,
         :arguments,
         :method_type,
-        :more_arguments,
         :optional_arguments,
         :rest_argument,
         :return_value,
         :visibility
-
-      ##
-      # @see RubyLint::Definition::RubyObject#new_from_node
-      #
-      def self.new_from_node(node, options = {})
-        options  = default_method_options.merge(options)
-        options  = options.merge(gather_arguments(node))
-        receiver = node.receiver
-
-        options[:method_type] ||= node.method_type
-
-        if receiver
-          options[:receiver]    = RubyObject.new_from_node(receiver)
-          options[:method_type] = :method
-        end
-
-        return super(node, options)
-      end
-
-      ##
-      # Returns a Hash containing all the arguments grouped together based on
-      # their types.
-      #
-      # @param [RubyLint::Node] node
-      # @return [Hash]
-      #
-      def self.gather_arguments(node)
-        arguments = default_arguments
-
-        ARGUMENT_TYPE_MAPPING.each do |from, to|
-          args = node.gather_arguments(from)
-          args = args.map { |n| RubyObject.new_from_node(n, :value => n.value) }
-
-          arguments[to] = arguments[to].is_a?(Array) ? args : args[0]
-        end
-
-        return arguments
-      end
-
-      ##
-      # Returns the default Hash for a set of method arguments.
-      #
-      # @return [Hash]
-      #
-      def self.default_arguments
-        return {
-          :arguments          => [],
-          :optional_arguments => [],
-          :rest_argument      => nil,
-          :more_arguments     => [],
-          :block_argument     => nil
-        }
-      end
-
-      ##
-      # Returns a Hash containing the default options for this class. The name
-      # is different than {RubyLint::Definition::RubyObject#default_options} to
-      # prevent any naming issues.
-      #
-      # @return [Hash]
-      #
-      def self.default_method_options
-        return {:method_type => :instance_method}
-      end
 
       ##
       # @see RubyLint::Definition::RubyObject#initialize
@@ -129,11 +47,8 @@ module RubyLint
       def initialize(*args)
         @arguments          = []
         @optional_arguments = []
-        @more_arguments     = []
 
         super
-
-        define_arguments unless method?
       end
 
       ##
@@ -161,7 +76,7 @@ module RubyLint
       # @param [String] name The name of the argument.
       #
       def define_argument(name)
-        @arguments << create_variable(name)
+        @arguments << create_argument(:arg, name)
       end
 
       ##
@@ -170,7 +85,7 @@ module RubyLint
       # @see RubyLint::Definition::RubyObject#define_argument
       #
       def define_optional_argument(name)
-        @optional_arguments << create_variable(name)
+        @optional_arguments << create_argument(:optarg, name)
       end
 
       ##
@@ -179,16 +94,7 @@ module RubyLint
       # @see RubyLint::Definition::RubyObject#define_argument
       #
       def define_rest_argument(name)
-        @rest_argument = create_variable(name)
-      end
-
-      ##
-      # Defines a more argument for the method.
-      #
-      # @see RubyLint::Definition::RubyObject#define_argument
-      #
-      def define_more_argument(name)
-        @more_arguments << create_variable(name)
+        @rest_argument = create_argument(:restarg, name)
       end
 
       ##
@@ -197,51 +103,25 @@ module RubyLint
       # @see RubyLint::Definition::RubyObject#define_argument
       #
       def define_block_argument(name)
-        @block_argument = create_variable(name)
+        @block_argument = create_argument(:blockarg, name)
       end
 
       private
 
       ##
-      # Adds all the arguments of this method to the definitions list.
+      # @param [Symbol] type The type of argument.
+      # @param [String] name The name of the argument.
       #
-      def define_arguments
-        all_arguments.each do |params|
-          next unless params
-
-          params.each do |param|
-            add(param.type, param.name, param) if param
-          end
-        end
-      end
-
-      ##
-      # Returns an Array containing all the method arguments. Each arguments
-      # set (even single ones such as the more argument) is returned as an
-      # Array making it easier to iterate over the collection.
-      #
-      # @return [Array]
-      #
-      def all_arguments
-        return [
-          arguments,
-          optional_arguments,
-          [rest_argument],
-          more_arguments,
-          [block_argument]
-        ]
-      end
-
-      ##
-      # @param [String] name
       # @return [RubyLint::Definition::RubyObject]
       #
-      def create_variable(name)
-        variable = RubyObject.new(:type => :local_variable, :name => name)
+      def create_argument(type, name)
+        arg = RubyObject.new(:type => type, :name => name)
+        var = RubyObject.new(:type => :lvar, :name => name)
 
-        add(variable.type, variable.name, variable)
+        add_definition(arg)
+        add_definition(var)
 
-        return variable
+        return arg
       end
     end # RubyMethod
   end # Definition

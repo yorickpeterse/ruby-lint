@@ -1,5 +1,23 @@
 module RubyLint
   ##
+  # Hash containing various Node types and the associated Ruby classes.
+  #
+  # @return [Hash]
+  #
+  RUBY_CLASSES = {
+    :str    => 'String',
+    :sym    => 'Symbol',
+    :int    => 'Fixnum',
+    :float  => 'Float',
+    :regexp => 'Regexp',
+    :array  => 'Array',
+    :hash   => 'Hash',
+    :irange => 'Range',
+    :erange => 'Range',
+    :lambda => 'Proc'
+  }
+
+  ##
   # @return [RubyLint::GlobalScope]
   #
   def self.global_scope
@@ -17,15 +35,30 @@ module RubyLint
   # @return [RubyLint::Definition::RubyObject]
   #
   def self.global_constant(name)
-    found = global_scope.lookup(:constant, name)
+    found = global_scope.lookup(:const, name)
 
     if !found and !constant_loader.loaded?(name)
       constant_loader.load(name)
 
-      found = global_scope.lookup(:constant, name)
+      found = global_scope.lookup(:const, name)
     end
 
     return found
+  end
+
+  ##
+  # Returns a definition for a given node type.
+  #
+  # @param [Symbol] type
+  # @return [RubyLint::Definition::RubyObject]
+  # @raise ArgumentError Raised when an invalid type was specified.
+  #
+  def self.definition_for_type(type)
+    ruby_class = RUBY_CLASSES[type]
+
+    raise(ArgumentError, "The type #{type} is invalid") unless ruby_class
+
+    return RubyLint.global_constant(ruby_class)
   end
 
   ##

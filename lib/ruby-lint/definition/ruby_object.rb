@@ -16,14 +16,14 @@ module RubyLint
     # Using the RubyObject class one could create a definition for the String
     # class as following:
     #
-    #     string  = RubyObject.new(:name => 'String', :type => :constant)
+    #     string  = RubyObject.new(:name => 'String', :type => :const)
     #     newline = RubyObject.new(
     #       :name  => 'NEWLINE',
-    #       :type  => :constant,
+    #       :type  => :const,
     #       :value => "\n"
     #     )
     #
-    #     string.add(:constant, newline.name, newline)
+    #     string.add(:const, newline.name, newline)
     #
     # For more information see the documentation of the corresponding methods.
     #
@@ -34,22 +34,13 @@ module RubyLint
     #  @return [Mixed] The value of the object.
     #
     # @!attribute [r] type
-    #  @return [Symbol] The type of object, e.g. `:constant`.
-    #
-    # @!attribute [r] ignore
-    #  @return [TrueClass|FalseClass] When set to `true` the definition should
-    #   be ignored by any analysis related code. This is mostly used when no
-    #   meaningful data could be assigned (e.g. block arguments).
+    #  @return [Symbol] The type of object, e.g. `:const`.
     #
     # @!attribute [r] definitions
     #  @return [Hash] Hash containing all child the definitions.
     #
     # @!attribute [rw] parents
     #  @return [Array] Array containing the parent definitions.
-    #
-    # @!attribute [rw] receiver
-    #  @return [RubyLint::Definition::RubyObject] The receiver on which the
-    #   object was defined/called.
     #
     # @!attribute [rw] reference_amount
     #  @return [Numeric] The amount of times an object was referenced.
@@ -63,6 +54,11 @@ module RubyLint
     #  @return [Array] A list of data types to also add to the parent
     #   definitions when adding an object to the current one.
     #
+    # @!attribute [r] members_as_value
+    #  @return [TrueClass|FalseClass] When set to `true` the {#value} getter
+    #   returns a collection of the members instead of the manually defined
+    #   value.
+    #
     class RubyObject
       include VariablePredicates
 
@@ -73,11 +69,11 @@ module RubyLint
       # @return [Array]
       #
       LOOKUP_PARENT = [
-        :class_variable,
-        :constant,
-        :global_variable,
+        :const,
+        :cvar,
+        :gvar,
         :instance_method,
-        :instance_variable,
+        :ivar,
         :keyword,
         :method
       ]
@@ -92,82 +88,15 @@ module RubyLint
       attr_reader :update_parents,
         :column,
         :definitions,
-        :ignore,
+        :members_as_value,
         :name,
-        :type,
-        :value
+        :type
 
-      attr_accessor :instance_type,
-        :parents,
-        :receiver,
-        :reference_amount
-
-      ##
-      # Creates a new RubyObject instance based on an instance of
-      # {RubyLint::Node}. This method is primarily used in
-      # {RubyLint::DefinitionsBuilder}, in most cases third-party code should
-      # not have a need for this method.
-      #
-      # @param [RubyLint::Node] node
-      # @return [RubyLint::Definition::RubyObject]
-      #
-      def self.new_from_node(node, options = {})
-        path_segments = []
-
-        if node.constant_path?
-          path_segments = node.children[0..-2].reverse
-          node          = node.children[-1]
-        end
-
-        options[:name] ||= node.name
-        options[:type] ||= node.type
-
-        # Checking to see if :value evaluates to `true` would mean you could
-        # never manually assign a nil value.
-        unless options.key?(:value)
-          options[:value] = node.value
-        end
-
-        if options[:value]
-          options[:value] = create_value_definitions(options[:value])
-        end
-
-        object = new(options)
-
-        # Assign the receivers of this object.
-        #
-        # TODO: this approach doesn't take existing definitions into account,
-        # instead it will always create a new one for each segment.
-        if !path_segments.empty? and !options[:receiver]
-          path_segments.inject(object) do |source, segment|
-            source.receiver = new_from_node(segment)
-            source.receiver
-          end
-        end
-
-        return object
-      end
-
-      ##
-      # Converts either a single {RubyLint::Node} instance or a collection of
-      # instances into {RubyObject} instances.
-      #
-      # @param [RubyLint::Node|Array<RubyLint::Node>] value
-      # @return [RubyLint::Node|Array<RubyLint::Node>]
-      #
-      def self.create_value_definitions(value)
-        if value.is_a?(Array)
-          value = value.map { |v| create_value_definitions(v) }
-        elsif value.is_a?(Node)
-          value = RubyObject.new_from_node(value)
-        end
-
-        return value
-      end
+      attr_accessor :instance_type, :parents, :reference_amount
 
       ##
       # @example
-      #  string = RubyObject.new(:name => 'String', :type => :constant)
+      #  string = RubyObject.new(:name => 'String', :type => :const)
       #
       # @param [Hash] options Hash containing additional options such as the
       #  parent definitions. For a list of available options see the
@@ -182,29 +111,51 @@ module RubyLint
           instance_variable_set("@#{key}", value)
         end
 
+        @value = nil if members_as_value
+
         clear!
 
         yield self if block_given?
       end
 
       ##
-      # Sets the value of the definition. If a {RubyLint::Node} instance is
-      # specified it will be converted to a definition instance.
+      # Returns the value of the definition. If `members_as_value` is set to
+      # `true` the return value is a Hash containing the names and values of
+      # each member.
       #
-      # @param [RubyLint::Definition::RubyObject|RubyLint::Node] value
+      # @return [Hash|RubyLint::Definition::RubyObject]
+      #
+      def value
+        return members_as_value ? list(:member) : @value
+      end
+
+      ##
+      # Sets the value of the definition.
+      #
+      # @param [Mixed] value
       #
       def value=(value)
-        @value = value.is_a?(Node) ? RubyObject.new_from_node(value) : value
+        @value = value
+      end
+
+      ##
+      # Adds the definition object to the current one.
+      #
+      # @see #add
+      # @param [RubyLint::Definition::RubyObject] definition
+      #
+      def add_definition(definition)
+        add(definition.type, definition.name, definition)
       end
 
       ##
       # Adds a new definition to the definitions list.
       #
       # @example
-      #  string  = RubyObject.new(:name => 'String', :type => :constant)
+      #  string  = RubyObject.new(:name => 'String', :type => :const)
       #  newline = RubyObject.new(
       #    :name  => 'NEWLINE',
-      #    :type  => :constant,
+      #    :type  => :const,
       #    :value => "\n"
       #  )
       #
@@ -244,22 +195,24 @@ module RubyLint
       # If no definition was found `nil` will be returned.
       #
       # @example
-      #  string  = RubyObject.new(:name => 'String', :type => :constant)
+      #  string  = RubyObject.new(:name => 'String', :type => :const)
       #  newline = RubyObject.new(
       #    :name  => 'NEWLINE',
-      #    :type  => :constant,
+      #    :type  => :const,
       #    :value => "\n"
       #  )
       #
       #  string.add(newline.type, newline.name, newline)
       #
-      #  string.lookup(:constant, 'NEWLINE') # => #<RubyLint::Definition...>
+      #  string.lookup(:const, 'NEWLINE') # => #<RubyLint::Definition...>
       #
       # @param [#to_sym] type
       # @param [String] name
+      # @param [TrueClass|FalseClass] lookup_parent Whether definitions should
+      #  be looked up from parent definitions.
       # @return [RubyLint::Definition::RubyObject|NilClass]
       #
-      def lookup(type, name)
+      def lookup(type, name, lookup_parent = true)
         type, name = prepare_lookup(type, name)
         found      = nil
 
@@ -267,7 +220,7 @@ module RubyLint
           found = definitions[type][name]
 
         # Look up the definition in the parent scope(s) (if any are set).
-        elsif lookup_parent?(type)
+        elsif lookup_parent?(type) and lookup_parent
           parents.each do |parent|
             parent_definition = parent.lookup(type, name)
 
@@ -298,7 +251,7 @@ module RubyLint
         path     = path.split(PATH_SEPARATOR) if path.is_a?(String)
 
         path.each do |segment|
-          found = constant.lookup(:constant, segment)
+          found = constant.lookup(:const, segment)
 
           if found
             constant = found
@@ -313,30 +266,49 @@ module RubyLint
       end
 
       ##
-      # Mimics a method call based on the given method name and the instance
-      # type of the current definition.
+      # Mimics a method call by executing the method for the given name. This
+      # method should be defined in the current definition.
+      #
+      # @param [String] name The name of the method.
+      # @return [Mixed]
+      #
+      def call_method(name)
+        method = lookup(method_call_type, name)
+
+        unless method
+          raise NoMethodError, "Undefined method #{name} for #{self.inspect}"
+        end
+
+        return method.call(self)
+      end
+
+      ##
+      # Returns `true` if a method is defined, similar to `respond_to?`.
+      #
+      # @return [TrueClass|FalseClass]
+      #
+      def method_defined?(name)
+        return has_definition?(method_call_type, name)
+      end
+
+      ##
+      # Performs a method call on the current definition.
       #
       # If the return value of a method definition is set to a Proc (or any
       # other object that responds to `:call`) it will be called and passed the
       # current instance as an argument.
       #
-      # @todo Support for method arguments, if needed.
-      # @param [String] name The name of the method to call.
+      # TODO: add support for specifying method arguments.
+      #
+      # @param [RubyLint::Definition::RubyObject] context The context in which
+      #  the method was called.
       # @return [Mixed]
       #
-      def call(name)
-        method       = lookup(method_call_type, name)
-        return_value = nil
+      def call(context = self)
+        retval = return_value
+        retval = retval.call(context) if retval.respond_to?(:call)
 
-        if method
-          return_value = method.return_value
-
-          if return_value.respond_to?(:call)
-            return_value = return_value.call(self)
-          end
-        end
-
-        return return_value
+        return retval
       end
 
       ##
@@ -389,14 +361,6 @@ module RubyLint
       end
 
       ##
-      # Updates the definition object so that it represents an instance of a
-      # Ruby value.
-      #
-      def instance!
-        @instance_type = :instance
-      end
-
-      ##
       # Checks if the specified definition is defined in the current object,
       # ignoring data in any parent definitions.
       #
@@ -424,15 +388,13 @@ module RubyLint
       end
 
       ##
-      # Returns the length of an attribute or 0.
+      # Returns the amount of definitions stored for a given type.
       #
-      # @param [#to_sym] attribute
+      # @param [#to_sym] type
       # @return [Numeric]
       #
-      def length_of(attribute)
-        value = send(attribute)
-
-        return value ? value.length : 0
+      def amount(type)
+        return list(type).length
       end
 
       ##
@@ -440,15 +402,19 @@ module RubyLint
       #
       def clear!
         @definitions = {
-          :local_variable    => {},
-          :instance_variable => {},
-          :class_variable    => {},
-          :global_variable   => {},
-          :constant          => {},
-          :method            => {},
-          :instance_method   => {},
-          :member            => {},
-          :keyword           => {}
+          :lvar            => {},
+          :ivar            => {},
+          :cvar            => {},
+          :gvar            => {},
+          :const           => {},
+          :method          => {},
+          :instance_method => {},
+          :member          => {},
+          :keyword         => {},
+          :arg             => {},
+          :optarg          => {},
+          :restarg         => {},
+          :blockarg        => {}
         }
       end
 
@@ -479,31 +445,6 @@ module RubyLint
         source.list(source_type).each do |definition|
           add(target_type, definition.name, definition)
         end
-      end
-
-      ##
-      # Returns an Array containing all the receivers of the current
-      # definition. These receivers are sorted from left to right. For example,
-      # assume the following:
-      #
-      #     a.b.c
-      #
-      # In this case the return value would be as following:
-      #
-      #     [a, b, c]
-      #
-      # @return [Array]
-      #
-      def receiver_path
-        receivers = []
-        source    = self
-
-        while receiver = source.receiver
-          receivers << receiver
-          source     = receiver
-        end
-
-        return receivers << self
       end
 
       ##
@@ -549,7 +490,7 @@ module RubyLint
           target     = lookup_constant_path(path[0..-2])
           definition = target.define_constant(path[-1], &block)
         else
-          definition = add_child_definition(name, :constant, &block)
+          definition = add_child_definition(name, :const, &block)
         end
 
         return definition
@@ -565,7 +506,7 @@ module RubyLint
       # @param [Mixed] value
       #
       def define_global_variable(name, value = nil)
-        return add_child_definition(name, :global_variable, value)
+        return add_child_definition(name, :gvar, value)
       end
 
       ##

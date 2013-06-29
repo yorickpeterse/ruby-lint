@@ -5,14 +5,12 @@
 # @return [RubyLint::Definition::RubyObject]
 #
 def build_definitions(code)
-  loader   = RubyLint::ConstantLoader.new
-  iterator = RubyLint::DefinitionsBuilder.new
-  ast      = parse(code, false)
+  ast = parse(code, false)
+  vm  = RubyLint::VirtualMachine.new
 
-  loader.iterate(ast)
-  iterator.iterate(ast)
+  vm.run(ast)
 
-  return iterator.options[:definitions]
+  return vm.definitions
 end
 
 ##
@@ -23,21 +21,30 @@ end
 # @return [RubyLint::Report]
 #
 def build_report(code, iterator)
-  ast          = parse(code, false)
-  defs_builder = RubyLint::DefinitionsBuilder.new
-  loader       = RubyLint::ConstantLoader.new
+  ast = parse(code, false)
+  vm  = RubyLint::VirtualMachine.new
 
-  loader.iterate(ast)
-  defs_builder.iterate(ast)
+  vm.run(ast)
 
   report   = RubyLint::Report.new
-  iterator = iterator.new(
-    :report           => report,
-    :definitions      => defs_builder.options[:definitions],
-    :node_definitions => defs_builder.options[:node_definitions]
-  )
+  iterator = iterator.new(:report => report, :vm => vm)
 
   iterator.iterate(ast)
 
   return report
+end
+
+##
+# Processes the given AST and returns the node associations.
+#
+# @see build_definitions
+# @return [Hash]
+#
+def build_associations(code)
+  ast = parse(code, false)
+  vm  = RubyLint::VirtualMachine.new
+
+  vm.run(ast)
+
+  return vm.associations
 end

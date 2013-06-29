@@ -8,16 +8,14 @@
 # @return [RubyLint::Node]
 #
 def parse(code, first = true)
-  ast = RubyLint::Parser.new(code).parse
+  ast = RubyLint::Parser.new.parse(code)
 
   return first ? ast.children[0] : ast
 end
 
 ##
-# Shorthand for creating instances of {RubyLint::Node}.
-#
-# @see RubyLint::Node#initialize
+# Shorthand for creating instances of a AST node.
 #
 def s(type, *children)
-  return RubyLint::Node.new(type, children)
+  return RubyLint::AST::Node.new(type, children)
 end

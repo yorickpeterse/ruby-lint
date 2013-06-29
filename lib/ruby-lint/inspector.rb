@@ -12,7 +12,7 @@ module RubyLint
   #  @return [String]
   #
   class Inspector
-    attr_reader :constant, :constant_name
+    attr_reader :const, :const_name
 
     ##
     # @param [String|Class] constant
@@ -147,7 +147,7 @@ module RubyLint
     # @return [TrueClass|FalseClass]
     #
     def process_child_constants?(source, constant)
-      return constant.respond_to?(:constants) \
+      return constant.respond_to?(:consts) \
         && constant != source \
         && !constant.constants.empty?
     end

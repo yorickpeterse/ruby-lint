@@ -6,35 +6,44 @@ module RubyLint
     #
     module ConstantPaths
       ##
-      # Iterates over each segment of the constant path and yields the supplied
-      # block.
+      # Looks up a definition for a given constant path. If no constant could
+      # be found `nil` is returned.
       #
-      # @example
-      #  path = s(:constant_path, s(:constant, 'A'), s(:constant, 'B')
+      # The first constant segment in the path can inherit constants from the
+      # outer scope, any following constants will be limited to the scope of
+      # the constant itself.
       #
-      #  iterate_constant_path(path) do |name, segment, definition|
-      #    puts name
-      #  end
+      # @param [RubyLint::AST::Node] node
+      # @return [RubyLint::Definition::RubyObject|NilClass]
       #
-      # @param [RubyLint::Node] node The constant path to iterate over.
-      #
-      # @yieldparam [String] name The name of the current segment.
-      # @yieldparam [RubyLint::Node] node The raw AST node of the current
-      #  segment.
-      # @yieldparam [RubyLint::Definition::RubyObject] definition The
-      #  definition object of the current segment.
-      #
-      def iterate_constant_path(node)
-        definitions = current_scope
+      def resolve_constant_path(node)
+        current = definitions
 
-        node.children.each do |segment|
-          name       = segment.children[0]
-          definition = definitions.lookup(:constant, name)
+        constant_segments(node).each_with_index do |segment, index|
+          found = current.lookup(:const, segment, index == 0)
 
-          yield name, segment, definition
-
-          definition ? definitions = definition : break
+          found ? current = found : return
         end
+
+        return current
+      end
+
+      ##
+      # Returns an Array containing the segments of a constant path.
+      #
+      # @param [RubyLint::AST::Node] node
+      # @return [Array<String>]
+      #
+      def constant_segments(node)
+        segments = []
+
+        if node.children[0]
+          segments.concat(constant_segments(node.children[0]))
+        end
+
+        segments << node.children[1].to_s
+
+        return segments
       end
     end # ConstantPaths
   end # Helper
