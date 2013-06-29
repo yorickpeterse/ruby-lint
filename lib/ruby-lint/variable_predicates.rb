@@ -17,7 +17,7 @@ module RubyLint
     #
     # @return [Array]
     #
-    PREDICATE_METHODS = [:array, :class, :const, :hash, :module, :self]
+    PREDICATE_METHODS = [:array, :class, :const, :hash, :module, :self, :block]
 
     ##
     # Hash containing various Node types and the associated Ruby classes.

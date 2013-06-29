@@ -273,10 +273,22 @@ module RubyLint
       # @return [Mixed]
       #
       def call_method(name)
-        # TODO: raise an error when the method doesn't exist?
         method = lookup(method_call_type, name)
 
-        return method.call(self) if method
+        unless method
+          raise NoMethodError, "Undefined method #{name} for #{self.inspect}"
+        end
+
+        return method.call(self)
+      end
+
+      ##
+      # Returns `true` if a method is defined, similar to `respond_to?`.
+      #
+      # @return [TrueClass|FalseClass]
+      #
+      def method_defined?(name)
+        return has_definition?(method_call_type, name)
       end
 
       ##

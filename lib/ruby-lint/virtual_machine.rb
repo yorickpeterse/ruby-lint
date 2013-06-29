@@ -402,14 +402,26 @@ module RubyLint
 
       execute_callback(callback, node)
 
-      context, _ = value_stack.pop
+      receiver_and_args = value_stack.pop
 
-      if context
+      if receiver
+        context = receiver_and_args.shift
+      else
+        context = current_scope
+
+        # `parser` wraps (block) nodes around (send) calls which is a bit
+        # inconvenient
+        context = previous_scope if context.block?
+      end
+
+      # Associate the receiver node with the context so that it becomes
+      # easier to retrieve later on.
+      if receiver && context
+        associate_node(receiver, context)
+      end
+
+      if context and context.method_defined?(name)
         retval = context.call_method(name)
-
-        # Associate the receiver node with the context so that it becomes
-        # easier to retrieve later on.
-        associate_node(receiver, context) if receiver
 
         push_value(retval)
       end
@@ -513,6 +525,13 @@ module RubyLint
     #
     def current_scope
       return @scopes.last
+    end
+
+    ##
+    # @return [RubyLint::Definition::RubyObject]
+    #
+    def previous_scope
+      return @scopes[-2]
     end
 
     ##

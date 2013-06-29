@@ -43,6 +43,20 @@ describe RubyLint::Definition::RubyObject do
 
         container.call_method('example').should == 10
       end
+
+      should 'raise for calling an undefined method' do
+        container = ruby_object.new(
+          :name          => 'String',
+          :type          => :const,
+          :instance_type => :instance
+        )
+
+        error = should.raise?(NoMethodError) do
+          container.call_method('derp')
+        end
+
+        error.message.should =~ /undefined method derp for/i
+      end
     end
 
     describe 'defining arguments' do
