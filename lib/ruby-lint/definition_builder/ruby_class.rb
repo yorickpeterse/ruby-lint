@@ -2,20 +2,19 @@ module RubyLint
   module DefinitionBuilder
     class RubyClass < RubyModule
       ##
+      # Called after creating a new instance of the class.
+      #
+      def after_initialize
+        options[:parent] ||= RubyLint.global_constant('Object')
+      end
+
+      ##
       # Builds the definition for a Ruby class.
       #
       # @see RubyLint::DefinitionBuilder::RubyModule#build
       #
       def build
-        parent      = RubyLint.global_constant('Object')
-        parent_node = node.children[1]
-
-        if parent_node
-          found  = resolve_constant_name(parent_node)
-          parent = found if found
-        end
-
-        return new_definition([parent, definitions])
+        return new_definition([options[:parent], definitions])
       end
     end # RubyClass
   end # DefinitionBuilder

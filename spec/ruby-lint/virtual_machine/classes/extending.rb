@@ -71,8 +71,10 @@ end
 
       defs = build_definitions(code)
 
-      defs.lookup(:const, 'MyString').parents \
-        .should == [defs.lookup(:const, 'String')]
+      parents = defs.lookup(:const, 'MyString').parents
+
+      parents.length.should                                  == 2
+      parents.include?(defs.lookup(:const, 'String')).should == true
     end
 
     should 'inherit from Object when importing String' do

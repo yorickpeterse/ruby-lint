@@ -273,7 +273,13 @@ module RubyLint
     end
 
     def on_class(node)
-      define_module(node, DefinitionBuilder::RubyClass)
+      parent = nil
+
+      if node.children[1]
+        parent = evaluate_node(node.children[1]).first
+      end
+
+      define_module(node, DefinitionBuilder::RubyClass, :parent => parent)
     end
 
     def after_class(node)
@@ -481,9 +487,10 @@ module RubyLint
     #
     # @param [RubyLint::Node] node
     # @param [Class] definition_builder
+    # @param [Hash] options
     #
-    def define_module(node, definition_builder)
-      builder    = definition_builder.new(node, current_scope)
+    def define_module(node, definition_builder, options = {})
+      builder    = definition_builder.new(node, current_scope, options)
       definition = builder.build
       scope      = builder.scope
       existing   = scope.lookup(definition.type, definition.name)
@@ -491,9 +498,7 @@ module RubyLint
       if existing
         definition = existing
 
-        unless definition.parents.include?(current_scope)
-          definition.parents << current_scope
-        end
+        inherit_definition(definition, current_scope)
       else
         scope.add_definition(definition)
       end
@@ -634,6 +639,20 @@ module RubyLint
       definition = definition_for_node(node)
 
       definition.reference_amount += 1 if definition
+    end
+
+    def evaluate_node(node)
+      value_stack.add_stack
+
+      iterate(node)
+
+      return value_stack.pop
+    end
+
+    def inherit_current_scope(definition, inherit)
+      unless definition.parents.include?(inherit)
+        definition.parents << inherit
+      end
     end
   end # VirtualMachine
 end # RubyLint
