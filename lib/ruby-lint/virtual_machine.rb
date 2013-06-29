@@ -540,10 +540,9 @@ module RubyLint
     ##
     # Removes a scope from the list.
     #
-    # TODO: raise an error when trying to pop the stack when it is already
-    # empty.
-    #
     def pop_scope
+      raise 'Trying to pop an empty scope' if @scopes.empty?
+
       @scopes.pop
     end
 
