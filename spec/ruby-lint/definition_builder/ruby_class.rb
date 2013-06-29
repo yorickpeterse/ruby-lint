@@ -41,7 +41,11 @@ describe RubyLint::DefinitionBuilder::RubyClass do
 
       @root.define_constant('B')
 
-      @builder = RubyLint::DefinitionBuilder::RubyClass.new(node, @root)
+      @builder = RubyLint::DefinitionBuilder::RubyClass.new(
+        node,
+        @root,
+        :parent => @root.lookup(:const, 'B')
+      )
     end
 
     should 'return the name of the class' do
@@ -74,9 +78,14 @@ describe RubyLint::DefinitionBuilder::RubyClass do
       @root = ruby_object.new(:name => 'root')
 
       @root.define_constant('A')
-      @root.define_constant('C').define_constant('D')
 
-      @builder = RubyLint::DefinitionBuilder::RubyClass.new(node, @root)
+      d_const = @root.define_constant('C').define_constant('D')
+
+      @builder = RubyLint::DefinitionBuilder::RubyClass.new(
+        node,
+        @root,
+        :parent => d_const
+      )
     end
 
     should 'return the name of the class' do

@@ -264,6 +264,10 @@ module RubyLint
       push_value(member)
     end
 
+    def on_self(node)
+      push_value(current_scope.lookup(:keyword, 'self'))
+    end
+
     def on_module(node)
       define_module(node, DefinitionBuilder::RubyModule)
     end
@@ -276,7 +280,7 @@ module RubyLint
       parent = nil
 
       if node.children[1]
-        parent = evaluate_node(node.children[1]).first
+        parent = evaluate_node(node.children[1])
 
         if !parent or !parent.const?
           raise TypeError, 'classes can only inherit another class'
@@ -304,17 +308,9 @@ module RubyLint
     end
 
     def on_sclass(node)
-      receiver = node.children[0]
-
-      # TODO: this won't work for receivers that are types (e.g. a string) or
-      # methods.
-      if receiver.self?
-        definition   = current_scope.lookup(:keyword, 'self')
-        @method_type = :method
-      else
-        definition   = current_scope.lookup(receiver.type, receiver.name)
-        @method_type = definition.method_call_type
-      end
+      parent       = node.children[0]
+      definition   = evaluate_node(parent)
+      @method_type = parent.self? ? :method : definition.method_call_type
 
       associate_node(node, definition)
 
@@ -650,10 +646,10 @@ module RubyLint
 
       iterate(node)
 
-      return value_stack.pop
+      return value_stack.pop.first
     end
 
-    def inherit_current_scope(definition, inherit)
+    def inherit_definition(definition, inherit)
       unless definition.parents.include?(inherit)
         definition.parents << inherit
       end
