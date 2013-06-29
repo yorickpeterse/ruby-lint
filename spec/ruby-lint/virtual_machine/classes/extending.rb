@@ -77,6 +77,21 @@ end
       parents.include?(defs.lookup(:const, 'String')).should == true
     end
 
+    # Ruby only allows classes to inherit from constants.
+    should 'not be able to inherit non constant values' do
+      code = <<-CODE
+class MyString < 'foo'
+
+end
+      CODE
+
+      error = should.raise?(TypeError) do
+        build_definitions(code)
+      end
+
+      error.message.should == 'classes can only inherit another class'
+    end
+
     should 'inherit from Object when importing String' do
       defs = build_definitions('String')
 

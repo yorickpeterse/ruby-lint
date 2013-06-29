@@ -277,6 +277,10 @@ module RubyLint
 
       if node.children[1]
         parent = evaluate_node(node.children[1]).first
+
+        if !parent or !parent.const?
+          raise TypeError, 'classes can only inherit another class'
+        end
       end
 
       define_module(node, DefinitionBuilder::RubyClass, :parent => parent)
