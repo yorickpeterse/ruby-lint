@@ -1,5 +1,6 @@
 require 'bacon'
 require 'bacon/colored_output'
+require 'stringio'
 require_relative 'support/bacon'
 
 if ENV['COVERAGE']

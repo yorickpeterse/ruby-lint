@@ -23,16 +23,28 @@ Examples:
 
   RubyLint::CLI.help_option(self)
 
-  run do |opts, args|
-    file = args[0]
+  ##
+  # @return [IO]
+  #
+  def output_destination
+    return @output_destination ||= STDOUT
+  end
 
-    if !file or !File.file?(file)
-      abort 'You must specify an existing file'
-    end
+  ##
+  # @param [IO] destination
+  #
+  def output_destination=(destination)
+    @output_destination = destination
+  end
+
+  run do |opts, args|
+    file = File.expand_path(args[0])
+
+    abort 'You must specify an existing file' unless File.file?(file)
 
     code   = File.read(file)
     parser = RubyLint::Parser.new
 
-    puts parser.parse(code, file).inspect
+    output_destination.puts parser.parse(code, file).inspect
   end
 end
