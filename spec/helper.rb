@@ -15,5 +15,6 @@ require_relative '../lib/ruby-lint'
 require_relative 'support/building'
 require_relative 'support/parsing'
 require_relative 'support/definitions'
+require_relative 'support/fixtures'
 
 Bacon.summary_on_exit
