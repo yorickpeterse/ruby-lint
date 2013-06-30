@@ -11,19 +11,22 @@ instead of focusing on semantics (e.g. the amount of characters per line).
 
 ## Requirements
 
-* Ruby (MRI) 1.9.3 or newer
+* a Ruby implementation running 1.9 or newer
 * a Unix based Operating System
+
+The following Ruby implementations/versions are officially supported:
+
+* Ruby 1.9.3 or 2.0 and newer
+* Rubinius head running in 1.9 mode
+* Jruby head running in 1.8 mode
+
+Ruby implementations running a 1.8 based version of Ruby are not supported.
 
 ## Installation
 
 The easiest way to install ruby-lint is to install it from RubyGems:
 
     $ gem install ruby-lint
-
-Alternatively you can install it from a RubyGems mirror that I run (updated
-daily and only mirrors a very small subset of RubyGems):
-
-    $ gem install --source=http://rubygems.yorickpeterse.com/
 
 If you prefer to install (and build) ruby-lint from the source code you can do
 so as following:
@@ -65,17 +68,6 @@ you run the following:
     $ ruby-lint file1.rb file2.rb
 
 For more information specify either the `-h` or `--help` option.
-
-## Compatibility
-
-For the time being ruby-lint only runs on MRI 1.9 due to its dependency on
-Ripper, a library that is not available on Rubinius, Jruby and other Ruby
-implementations.
-
-In the future I intend to move away from Ripper but when this happens depends
-on when I can find something that suits my needs. Most existing solutions, such
-as `ruby_parser` lack features that I require (such as storing column numbers
-of AST nodes), are either unmaintained or severely limited in what they can do.
 
 ## Documentation
 
