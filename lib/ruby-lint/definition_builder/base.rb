@@ -1,6 +1,9 @@
 module RubyLint
   module DefinitionBuilder
     ##
+    # Base definition builder that provides common methods for individual
+    # builder classes.
+    #
     # @!attribute [r] node
     #  @return [RubyLint::AST::Node]
     # @!attribute [r] definitions
@@ -25,22 +28,6 @@ module RubyLint
       end
 
       protected
-
-      ##
-      # Tries to resolve the definition for the node's name.
-      #
-      # @param [RubyLint::AST::Node] node
-      # @return [RubyLint::Definition::RubyObject]
-      #
-      def resolve_constant_name(node)
-        if node.children[0]
-          found = resolve_constant_path(node)
-        else
-          found = definitions.lookup(node.type, constant_name(node))
-        end
-
-        return found
-      end
 
       ##
       # Returns the name of a constant node as a String.

@@ -1,5 +1,9 @@
 module RubyLint
   module DefinitionBuilder
+    ##
+    # Definition builder used for building primitive Ruby types such as
+    # integers and strings.
+    #
     class Primitive < Base
       ##
       # @return [RubyLint::Definition::RubyObject]

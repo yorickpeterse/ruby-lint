@@ -1,5 +1,8 @@
 module RubyLint
   module DefinitionBuilder
+    ##
+    # Definition builder used for building Ruby classes.
+    #
     class RubyClass < RubyModule
       ##
       # Called after creating a new instance of the class.

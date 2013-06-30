@@ -1,5 +1,9 @@
 module RubyLint
   module DefinitionBuilder
+    ##
+    # Definition builder used for building Ruby modules as well as providing
+    # the groundwork for building Ruby classes.
+    #
     class RubyModule < Base
       ##
       # Creates a new module definition.
@@ -22,7 +26,7 @@ module RubyLint
         # name_prefix contains the constant path leading up to the name. For
         # example, if the name is `A::B::C` this node would contain `A::B`.
         if name_prefix
-          found = resolve_constant_name(name_prefix)
+          found = resolve_constant_path(name_prefix)
           scope = found if found
         end
 

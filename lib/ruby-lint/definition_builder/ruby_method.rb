@@ -1,5 +1,9 @@
 module RubyLint
   module DefinitionBuilder
+    ##
+    # Definition builder for building method definitions. Receivers should be
+    # set from the outside (= the VM).
+    #
     class RubyMethod < Base
       ##
       # Called after a new instance has been created.

@@ -1,5 +1,8 @@
 module RubyLint
   module DefinitionBuilder
+    ##
+    # Definition builder for building Ruby arrays.
+    #
     class RubyArray < Base
       ##
       # Builds the definition for the array and assigns the values as members.

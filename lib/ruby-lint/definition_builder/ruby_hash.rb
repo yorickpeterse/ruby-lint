@@ -1,5 +1,8 @@
 module RubyLint
   module DefinitionBuilder
+    ##
+    # Definition builder for building Ruby hashes.
+    #
     class RubyHash < RubyArray
       ##
       # Builds the definition for the Hash and assigns the members.

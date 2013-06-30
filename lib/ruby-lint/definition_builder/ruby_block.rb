@@ -1,5 +1,8 @@
 module RubyLint
   module DefinitionBuilder
+    ##
+    # Definition builder for building Ruby blocks.
+    #
     class RubyBlock < Base
       ##
       # @return [RubyLint::Definition::RubyObject]
