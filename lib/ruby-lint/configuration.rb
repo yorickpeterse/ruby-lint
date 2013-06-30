@@ -2,17 +2,49 @@ module RubyLint
   ##
   # The Configuration class is used for storing configuration information used
   # when running the CLI of ruby-lint. It contains information such as the
-  # reporting levels, the formatter to use and so on.
+  # available analysis classes and report levels.
   #
-  # @!attribute [rw] presenter
-  #  @return [RubyLint::Presenter] The presenter to use for displaying reports.
-  # @!attribute [rw] report_levels
-  #  @return [Array] The reporting levels to use.
-  # @!attribute [rw] analysis
-  #  @return [Array] The analysis classes to enable.
+  # @!attribute [r] analysis_classes
+  #  @return [Array]
+  # @!attribute [r] report_levels
+  #  @return [Array]
+  # @!attribute [r] presenter
+  #  @return [Class]
   #
   class Configuration
-    attr_accessor :presenter, :report_levels, :analysis
+    attr_reader :analysis_classes, :report_levels, :presenter
+
+    ##
+    # Returns an Array of locations from which to load configuration files.
+    #
+    # @return [Array]
+    #
+    def self.configuration_files
+      return [
+        File.join(Dir.pwd, 'ruby-lint.yml'),
+        File.expand_path('~/.ruby-lint.yml', __FILE__)
+      ]
+    end
+
+    ##
+    # Creates a new configuration instance by loading a configuration file.
+    #
+    # @param [Array] paths The Array of configuration files to process. Only
+    #  the first existing file will be loaded.
+    # @return [RubyLint::Configuration]
+    #
+    def self.load_from_file(paths = configuration_files)
+      paths.each do |path|
+        if File.file?(path)
+          options       = YAML.load_file(path)
+          configuration = new(options)
+
+          return configuration
+        end
+      end
+
+      return new
+    end
 
     ##
     # Provides a small block based DSL for registering multiple names.
@@ -43,70 +75,107 @@ module RubyLint
     #
     def initialize(options = {})
       options.each do |key, value|
-        instance_variable_set("@#{key}", value)
+        setter = "#{key}="
+
+        if respond_to?(setter)
+          send(setter, value)
+        end
       end
 
-      @presenter     ||= RubyLint::Presenter::Text
-      @report_levels ||= Report::DEFAULT_LEVELS
-      @analysis      ||= default_analysis_classes
+      @analysis_classes ||= default_analysis_classes
+      @report_levels    ||= default_report_levels
+      @presenter        ||= default_presenter
+    end
+
+    ##
+    # Requires a list of files.
+    #
+    # @param [Array] files
+    #
+    def requires=(files)
+      files.each { |file| require(file) }
+    end
+
+    ##
+    # Returns a list of the enabled report levels.
+    #
+    # @param [Array] given The report levels specified by the user.
+    # @return [Array]
+    #
+    def report_levels=(given)
+      available = self.class.names['levels']
+      levels    = []
+
+      given.each do |level|
+        levels << available[level] if available[level]
+      end
+
+      if levels.empty?
+        levels = default_report_levels
+      end
+
+      @report_levels = levels
+    end
+
+    ##
+    # Returns the presenter to use.
+    #
+    # @param [String] name The friendly name of the presenter as set by the user.
+    # @return [RubyLint::Presenter]
+    # @raise ArgumentError Raised when an invalid presenter is specified.
+    #
+    def presenter=(name)
+      found = self.class.names['presenters'][name]
+
+      if found
+        @presenter = found
+      else
+        raise ArgumentError, "Invalid presenter: #{name}"
+      end
+    end
+
+    ##
+    # Returns a collection of the analysis constants to use.
+    #
+    # @param [Array] names The analysis names as given by the user.
+    # @return [Array]
+    #
+    def analysis_classes=(names)
+      classes   = []
+      available = self.class.names['analysis']
+
+      names.each do |name|
+        classes << available[name] if available[name]
+      end
+
+      if classes.empty?
+        classes = default_analysis_classes
+      end
+
+      @analysis_classes = classes
+    end
+
+    ##
+    # Returns the default (= all) analysis classes to use.
+    #
+    # @return [Array]
+    #
+    def default_analysis_classes
+      return self.class.names['analysis'].values
     end
 
     ##
     # @return [Array]
     #
-    def default_analysis_classes
-      return Analysis.constants.map do |const|
-        Analysis.const_get(const)
-      end
+    def default_report_levels
+      return RubyLint::Report::DEFAULT_LEVELS
     end
 
     ##
-    # Returns a report with the report levels set based on this configuration
-    # instance.
+    # @return [Class]
     #
-    # @return [RubyLint::Report]
-    #
-    def report
-      return Report.new(report_levels)
-    end
-
-    ##
-    # Set the reporting levels based on a set of CLI options.
-    #
-    # @param [Array] levels
-    #
-    def set_reporting_levels(levels)
-      self.report_levels = []
-      available          = self.class.names['levels']
-
-      levels.each do |level|
-        report_levels << available[level] if available[level]
-      end
-    end
-
-    ##
-    # Sets the presenter based on a set of CLI options.
-    #
-    # @param [String] name
-    #
-    def set_presenter(name)
-      if self.class.names['presenters'][name]
-        self.presenter = self.class.names['presenters'][name]
-      end
-    end
-
-    ##
-    # Sets the analysis classes based on a set of CLI options.
-    #
-    # @param [Array] names
-    #
-    def set_analysis(names)
-      self.analysis = []
-      available     = self.class.names['analysis']
-
-      names.each do |name|
-        self.analysis << available[name] if available[name]
-      end
+    def default_presenter
+      return RubyLint::Presenter::Text
     end
   end # Configuration
 end # RubyLint

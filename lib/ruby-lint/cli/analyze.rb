@@ -59,41 +59,68 @@ Examples:
   on :p=, :presenter=, 'The presenter to use', :as => String
   on :a=, :analysis=, 'The analysis classes to use', :as => Array
 
+  ##
+  # Returns an Array containing the file paths that exist. If a non existing
+  # file is encountered `abort` is called.
+  #
+  # @param [Array] files
+  # @return [Array]
+  #
+  def extract_files(files)
+    existing = []
+
+    files.each do |file|
+      file = File.expand_path(file)
+
+      if File.file?(file)
+        existing << file
+      else
+        abort "The file #{file} does not exist"
+      end
+    end
+
+    return existing
+  end
+
+  ##
+  # @return [Hash]
+  #
+  def option_mapping
+    return {
+      :levels    => :report_levels=,
+      :presenter => :presenter=,
+      :analysis  => :analysis_classes=
+    }
+  end
+
   run do |opts, args|
     abort 'You must specify at least one file to analyze' if args.empty?
 
-    files = RubyLint::CLI.existing_files(args)
+    files         = extract_files(args)
+    configuration = RubyLint::Configuration.load_from_file
+    parser        = RubyLint::Parser.new
+    report        = RubyLint::Report.new(configuration.report_levels)
+    presenter     = configuration.presenter.new
 
-    RubyLint.load_configuration
-
-    RubyLint.configuration.set_reporting_levels(opts[:l]) if opts[:l]
-    RubyLint.configuration.set_presenter(opts[:p]) if opts[:p]
-    RubyLint.configuration.set_analysis(opts[:a]) if opts[:a]
+    option_mapping.each do |key, setter|
+      configuration.send(setter, opts[key]) if opts[key]
+    end
 
     files.each do |file|
-      ast = RubyLint::Parser.new(File.read(file), file).parse
+      code = File.read(file)
+      ast  = parser.parse(code, file)
+      vm   = RubyLint::VirtualMachine.new
 
-      RubyLint::ConstantLoader.new.iterate(ast)
+      vm.run(ast)
 
-      report       = RubyLint.configuration.report
-      presenter    = RubyLint.configuration.presenter.new
-      defs_builder = RubyLint::DefinitionsBuilder.new
-
-      defs_builder.iterate(ast)
-
-      RubyLint.configuration.analysis.each do |constant|
-        instance = constant.new(
-          :report           => report,
-          :definitions      => defs_builder.options[:definitions],
-          :node_definitions => defs_builder.options[:node_definitions]
-        )
-
+      configuration.analysis_classes.each do |const|
+        instance = const.new(:vm => vm, :report => report)
         instance.iterate(ast)
       end
-
-      output = presenter.present(report)
-
-      puts output unless output.empty?
     end
+
+    output = presenter.present(report)
+
+    puts output unless output.empty?
   end # run do |opts, args|
 end # RubyLint::CLI.options.command

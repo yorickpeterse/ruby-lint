@@ -19,29 +19,6 @@ module RubyLint
     OPTIONS_HEADER = "\nOptions:\n"
 
     ##
-    # Returns an Array containing the file paths that exist. If a non existing
-    # file is encountered `abort` is called.
-    #
-    # @param [Array] files
-    # @return [Array]
-    #
-    def self.existing_files(files)
-      existing = []
-
-      files.each do |file|
-        file = File.expand_path(file)
-
-        if File.file?(file)
-          existing << file
-        else
-          abort "The file #{file} does not exist"
-        end
-      end
-
-      return existing
-    end
-
-    ##
     # Returns a String containing a list of names as registered in
     # {RubyLint::Configuration.names}.
     #

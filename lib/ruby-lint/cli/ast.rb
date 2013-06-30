@@ -19,7 +19,7 @@ Examples:
     $ ruby-lint ast ./test_file.rb
   EOF
 
-  separator   RubyLint::CLI::OPTIONS_HEADER
+  separator RubyLint::CLI::OPTIONS_HEADER
 
   RubyLint::CLI.help_option(self)
 
@@ -30,6 +30,9 @@ Examples:
       abort 'You must specify an existing file'
     end
 
-    puts RubyLint::Parser.new(File.read(file), file).parse.inspect
+    code   = File.read(file)
+    parser = RubyLint::Parser.new
+
+    puts parser.parse(code, file).inspect
   end
 end

@@ -1,0 +1,8 @@
+---
+report_levels:
+  - info
+
+analysis_classes:
+  - undefined_methods
+
+presenter: json
