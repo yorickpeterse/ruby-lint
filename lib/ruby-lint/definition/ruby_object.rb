@@ -493,6 +493,8 @@ module RubyLint
           definition = add_child_definition(name, :const, &block)
         end
 
+        definition.add(:keyword, 'self', definition)
+
         return definition
       end
 
