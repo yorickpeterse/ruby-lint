@@ -289,10 +289,11 @@ module RubyLint
     #
     def after_masgn(node)
       variables = variable_stack.pop
-      values    = value_stack.pop.first.value
+      values    = value_stack.pop.first
+      values    = values ? values.value : []
 
       variables.each_with_index do |variable, index|
-        variable.value = values[index].value
+        variable.value = values[index].value if values[index]
 
         current_scope.add(variable.type, variable.name, variable)
       end
@@ -314,7 +315,9 @@ module RubyLint
       variable = variable_stack.pop.first
       value    = value_stack.pop.first
 
-      conditional_assignment(variable, value, false)
+      if variable and value
+        conditional_assignment(variable, value, false)
+      end
     end
 
     ##
@@ -418,6 +421,8 @@ module RubyLint
     #
     def after_pair(node)
       key, value = value_stack.pop
+
+      return unless key
 
       member = Definition::RubyObject.new(
         :name  => key.value.to_s,
@@ -707,18 +712,19 @@ module RubyLint
     #
     def after_send_assign_member(node)
       array, *indexes, values = value_stack.pop
+      index_values            = []
 
-      if values.array?
-        values = values.list(:member).map(&:value)
-      else
-        values = [values]
+      if values and values.array?
+        index_values = values.list(:member).map(&:value)
+      elsif values
+        index_values = [values]
       end
 
       indexes.each do |index|
         member = Definition::RubyObject.new(
           :name  => index.value.to_s,
           :type  => :member,
-          :value => values.shift
+          :value => index_values.shift
         )
 
         array.add_definition(member)
