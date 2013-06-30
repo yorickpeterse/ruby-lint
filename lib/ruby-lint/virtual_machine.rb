@@ -201,15 +201,26 @@ module RubyLint
       end
     end
 
+    ##
+    # @param [RubyLint::AST::Node] node
+    #
     def on_root(node)
       associate_node(node, current_scope)
     end
 
+    ##
+    # Processes a regular variable assignment.
+    #
+    # @param [RubyLint::AST::Node] node
+    #
     def on_assign(node)
       reset_assignment_value
       value_stack.add_stack
     end
 
+    ##
+    # @see #on_assign
+    #
     def after_assign(node)
       type  = ASSIGNMENT_TYPES[node.type]
       name  = node.children[0].to_s
@@ -227,6 +238,11 @@ module RubyLint
       alias :"after_#{callback}" :after_assign
     end
 
+    ##
+    # Processes the assignment of a constant.
+    #
+    # @param [RubyLint::AST::Node] node
+    #
     def on_casgn(node)
       # Don't push values for the receiver constant.
       @ignored_nodes << node.children[0] if node.children[0]
@@ -235,6 +251,9 @@ module RubyLint
       value_stack.add_stack
     end
 
+    ##
+    # @see #on_casgn
+    #
     def after_casgn(node)
       values = value_stack.pop
       scope  = current_scope
@@ -255,10 +274,19 @@ module RubyLint
       add_variable(variable, scope)
     end
 
+    ##
+    # @param [RubyLint::AST::Node] node
+    #
     def on_masgn(node)
       add_stacks
     end
 
+    ##
+    # Processes a mass variable assignment using the stacks created by
+    # {#on_masgn}.
+    #
+    # @param [RubyLint::AST::Node] node
+    #
     def after_masgn(node)
       variables = variable_stack.pop
       values    = value_stack.pop.first.value
@@ -270,10 +298,18 @@ module RubyLint
       end
     end
 
+    ##
+    # @param [RubyLint::AST::Node] node
+    #
     def on_or_asgn(node)
       add_stacks
     end
 
+    ##
+    # Processes an `or` assignment in the form of `variable ||= value`.
+    #
+    # @param [RubyLint::AST::Node] node
+    #
     def after_or_asgn(node)
       variable = variable_stack.pop.first
       value    = value_stack.pop.first
@@ -281,10 +317,18 @@ module RubyLint
       conditional_assignment(variable, value, false)
     end
 
+    ##
+    # @param [RubyLint::AST::Node] node
+    #
     def on_and_asgn(node)
       add_stacks
     end
 
+    ##
+    # Processes an `and` assignment in the form of `variable &&= value`.
+    #
+    # @param [RubyLint::AST::Node] node
+    #
     def after_and_asgn(node)
       variable = variable_stack.pop.first
       value    = value_stack.pop.first
@@ -292,12 +336,15 @@ module RubyLint
       conditional_assignment(variable, value)
     end
 
+    # Creates the callback methods for various primitives such as integers.
     PRIMITIVES.each do |type|
       define_method("on_#{type}") do |node|
         push_value(create_primitive(node))
       end
     end
 
+    # Creates the callback methods for various variable types such as local
+    # variables.
     ASSIGNMENT_TYPES.each do |asgn_name, type|
       define_method("on_#{type}") do |node|
         increment_reference_amount(node)
@@ -305,15 +352,26 @@ module RubyLint
       end
     end
 
+    ##
+    # @param [RubyLint::AST::Node] node
+    #
     def on_const(node)
       increment_reference_amount(node)
       push_variable_value(node)
     end
 
+    ##
+    # @param [RubyLint::AST::Node] node
+    #
     def on_array(node)
       value_stack.add_stack
     end
 
+    ##
+    # Builds an Array.
+    #
+    # @param [RubyLint::AST::Node] node
+    #
     def after_array(node)
       builder = DefinitionBuilder::RubyArray.new(
         node,
@@ -324,10 +382,18 @@ module RubyLint
       push_value(builder.build)
     end
 
+    ##
+    # @param [RubyLint::AST::Node] node
+    #
     def on_hash(node)
       value_stack.add_stack
     end
 
+    ##
+    # Builds a Hash.
+    #
+    # @param [RubyLint::AST::Node] node
+    #
     def after_hash(node)
       builder = DefinitionBuilder::RubyHash.new(
         node,
@@ -338,10 +404,18 @@ module RubyLint
       push_value(builder.build)
     end
 
+    ##
+    # @param [RubyLint::AST::Node] node
+    #
     def on_pair(node)
       value_stack.add_stack
     end
 
+    ##
+    # Processes a key/value pair.
+    #
+    # @param [RubyLint::AST::Node] node
+    #
     def after_pair(node)
       key, value = value_stack.pop
 
@@ -354,23 +428,40 @@ module RubyLint
       push_value(member)
     end
 
+    ##
+    # @param [RubyLint::AST::Node] node
+    #
     def on_self(node)
       push_value(current_scope.lookup(:keyword, 'self'))
     end
 
+    ##
+    # Creates the definition for a module.
+    #
+    # @param [RubyLint::AST::Node] node
+    #
     def on_module(node)
       define_module(node, DefinitionBuilder::RubyModule)
     end
 
+    ##
+    # @param [RubyLint::AST::Node] node
+    #
     def after_module(node)
       pop_scope
     end
 
+    ##
+    # Creates the definition for a class.
+    #
+    # @param [RubyLint::AST::Node] node
+    #
     def on_class(node)
-      parent = nil
+      parent      = nil
+      parent_node = node.children[1]
 
-      if node.children[1]
-        parent = evaluate_node(node.children[1])
+      if parent_node
+        parent = evaluate_node(parent_node)
 
         if !parent or !parent.const?
           raise TypeError, 'classes can only inherit another class'
@@ -380,10 +471,18 @@ module RubyLint
       define_module(node, DefinitionBuilder::RubyClass, :parent => parent)
     end
 
+    ##
+    # @param [RubyLint::AST::Node] node
+    #
     def after_class(node)
       pop_scope
     end
 
+    ##
+    # Builds the definition for a block.
+    #
+    # @param [RubyLint::AST::Node] node
+    #
     def on_block(node)
       builder    = DefinitionBuilder::RubyBlock.new(node, current_scope)
       definition = builder.build
@@ -393,10 +492,22 @@ module RubyLint
       push_scope(definition)
     end
 
+    ##
+    # @param [RubyLint::AST::Node] node
+    #
     def after_block(node)
       pop_scope
     end
 
+    ##
+    # Processes an sclass block. Sclass blocks look like the following:
+    #
+    #     class << self
+    #
+    #     end
+    #
+    # @param [RubyLint::AST::Node] node
+    #
     def on_sclass(node)
       parent       = node.children[0]
       definition   = evaluate_node(parent)
@@ -407,11 +518,19 @@ module RubyLint
       push_scope(definition)
     end
 
+    ##
+    # @param [RubyLint::AST::Node] node
+    #
     def after_sclass(node)
       reset_method_type
       pop_scope
     end
 
+    ##
+    # Creates the definition for a method definition.
+    #
+    # @param [RubyLint::AST::Node] node
+    #
     def on_def(node)
       builder = DefinitionBuilder::RubyMethod.new(
         node,
@@ -428,6 +547,11 @@ module RubyLint
       push_scope(definition)
     end
 
+    ##
+    # Exports various variables to the outer scope of the method definition.
+    #
+    # @param [RubyLint::AST::Node] node
+    #
     def after_def(node)
       previous = pop_scope
       current  = current_scope
@@ -437,10 +561,16 @@ module RubyLint
       end
     end
 
+    ##
+    # @param [RubyLint::AST::Node] node
+    #
     def on_args(node)
       variable_stack.add_stack
     end
 
+    ##
+    # @param [RubyLint::AST::Node] node
+    #
     def after_args(node)
       variables = variable_stack.pop
 
@@ -449,6 +579,7 @@ module RubyLint
       end
     end
 
+    # Creates callbacks for various argument types such as :arg and :optarg.
     ARGUMENT_TYPES.each do |type|
       define_method("on_#{type}") do |node|
         value_stack.add_stack
@@ -473,6 +604,12 @@ module RubyLint
     alias on_defs on_def
     alias after_defs after_def
 
+    ##
+    # Processes a method call. If a certain method call has its own dedicated
+    # callback that one will be called as well.
+    #
+    # @param [RubyLint::AST::Node] node
+    #
     def on_send(node)
       name     = node.children[1].to_s
       name     = SEND_MAPPING.fetch(name, name)
@@ -483,6 +620,9 @@ module RubyLint
       execute_callback(callback, node)
     end
 
+    ##
+    # @param [RubyLint::AST::Node] node
+    #
     def after_send(node)
       receiver, name, _ = *node
 
@@ -517,10 +657,18 @@ module RubyLint
       end
     end
 
+    ##
+    # @param [RubyLint::AST::Node] node
+    #
     def on_send_include(node)
       value_stack.add_stack
     end
 
+    ##
+    # Processes a `include` method call.
+    #
+    # @param [RubyLint::AST::Node] node
+    #
     def after_send_include(node)
       copy_types = INCLUDE_CALLS[node.children[1].to_s]
       scope      = current_scope
@@ -538,10 +686,18 @@ module RubyLint
     alias on_send_extend on_send_include
     alias after_send_extend after_send_include
 
+    ##
+    # @param [RubyLint::AST::Node] node
+    #
     def on_send_assign_member(node)
       value_stack.add_stack
     end
 
+    ##
+    # Processes the assignment of an object member (array index or hash key).
+    #
+    # @param [RubyLint::AST::Node] node
+    #
     def after_send_assign_member(node)
       array, *indexes, values = value_stack.pop
 
@@ -660,6 +816,11 @@ module RubyLint
       @scopes.pop
     end
 
+    ##
+    # Pushes the value of a variable onto the value stack.
+    #
+    # @param [RubyLint::AST::Node] node
+    #
     def push_variable_value(node)
       return if value_stack.empty? || @ignored_nodes.include?(node)
 
@@ -672,15 +833,30 @@ module RubyLint
       end
     end
 
+    ##
+    # Pushes a definition (of a value) onto the value stack.
+    #
+    # @param [RubyLint::Definition::RubyObject] definition
+    #
     def push_value(definition)
       value_stack.push(definition) if definition && !value_stack.empty?
     end
 
+    ##
+    # Adds a new variable and value stack.
+    #
     def add_stacks
       variable_stack.add_stack
       value_stack.add_stack
     end
 
+    ##
+    # Assigns a basic variable.
+    #
+    # @param [Symbol] type The type of variable.
+    # @param [String] name The name of the variable
+    # @param [RubyLint::Definition::RubyObject] value
+    #
     def assign_variable(type, name, value)
       variable = Definition::RubyObject.new(
         :type          => type,
@@ -694,6 +870,13 @@ module RubyLint
       add_variable(variable)
     end
 
+    ##
+    # Adds a variable to the current scope of, if a the variable stack is not
+    # empty, add it to the stack instead.
+    #
+    # @param [RubyLint::Definition::RubyObject] variable
+    # @param [RubyLint::Definition::RubyObject] scope
+    #
     def add_variable(variable, scope = current_scope)
       if variable_stack.empty?
         scope.add(variable.type, variable.name, variable)
@@ -702,28 +885,56 @@ module RubyLint
       end
     end
 
+    ##
+    # Creates a primitive value such as an integer.
+    #
+    # @param [RubyLint::AST::Node] node
+    # @param [Hash] options
+    #
     def create_primitive(node, options = {})
       builder = DefinitionBuilder::Primitive.new(node, current_scope, options)
 
       return builder.build
     end
 
+    ##
+    # Resets the variable used for storing the last assignment value.
+    #
     def reset_assignment_value
       @assignment_value = nil
     end
 
+    ##
+    # Returns the value of the last assignment.
+    #
     def assignment_value
       return @assignment_value
     end
 
+    ##
+    # Stores the value as the last assigned value.
+    #
+    # @param [RubyLint::Definition::RubyObject] value
+    #
     def buffer_assignment_value(value)
       @assignment_value = value
     end
 
+    ##
+    # Resets the method assignment/call type.
+    #
     def reset_method_type
       @method_type = :instance_method
     end
 
+    ##
+    # Performs a conditional assignment.
+    #
+    # @param [RubyLint::Definition::RubyObject] variable
+    # @param [RubyLint::Definition::RubyValue] value
+    # @param [TrueClass|FalseClass] bool When set to `true` existing variables
+    #  will be overwritten.
+    #
     def conditional_assignment(variable, value, bool = true)
       if current_scope.has_definition?(variable.type, variable.name) == bool
         variable.value = value
@@ -734,6 +945,12 @@ module RubyLint
       end
     end
 
+    ##
+    # Returns the definition for the given node.
+    #
+    # @param [RubyLint::AST::Node] node
+    # @return [RubyLint::Definition::RubyObject]
+    #
     def definition_for_node(node)
       if node.const? and node.children[0]
         definition = resolve_constant_path(node)
@@ -744,6 +961,12 @@ module RubyLint
       return definition
     end
 
+    ##
+    # Increments the reference amount of a node's definition unless the
+    # definition is frozen.
+    #
+    # @param [RubyLint::AST::Node] node
+    #
     def increment_reference_amount(node)
       definition = definition_for_node(node)
 
@@ -752,6 +975,12 @@ module RubyLint
       end
     end
 
+    ##
+    # Evaluates and returns the value of the given node.
+    #
+    # @param [RubyLint::AST::Node] node
+    # @return [RubyLint::Definition::RubyObject]
+    #
     def evaluate_node(node)
       value_stack.add_stack
 
@@ -760,6 +989,13 @@ module RubyLint
       return value_stack.pop.first
     end
 
+    ##
+    # Includes the definition `inherit` in the list of parent definitions of
+    # `definition`.
+    #
+    # @param [RubyLint::Definition::RubyObject] definition
+    # @param [RubyLint::Definition::RubyObject] inherit
+    #
     def inherit_definition(definition, inherit)
       unless definition.parents.include?(inherit)
         definition.parents << inherit
