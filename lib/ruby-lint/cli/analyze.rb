@@ -93,6 +93,20 @@ Examples:
     }
   end
 
+  ##
+  # @return [IO]
+  #
+  def output_destination
+    return @output_destination ||= STDOUT
+  end
+
+  ##
+  # @param [IO] destination
+  #
+  def output_destination=(destination)
+    @output_destination = destination
+  end
+
   run do |opts, args|
     abort 'You must specify at least one file to analyze' if args.empty?
 
@@ -121,6 +135,6 @@ Examples:
 
     output = presenter.present(report)
 
-    puts output unless output.empty?
+    output_destination.puts output unless output.empty?
   end # run do |opts, args|
 end # RubyLint::CLI.options.command
