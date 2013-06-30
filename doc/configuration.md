@@ -22,8 +22,8 @@ changes to stick around you'll want to use a configuration file instead.
 When running the CLI ruby-lint will try to load one of the following two
 configuration files:
 
-* $PWD/ruby-lint.rb
-* $HOME/.ruby-lint.rb
+* $PWD/ruby-lint.yml
+* $HOME/.ruby-lint.yml
 
 Here `$PWD` refers to the current working directory and `$HOME` to the user's
 home directory. If ruby-lint finds a configuration file in the current working
@@ -33,54 +33,25 @@ fallback.
 
 ## Configuring ruby-lint
 
-The various configuration settings are set using plain old Ruby, there's no
-YAML nonsense that gets in your way.
+Configuration is done using simple YAML files with the following structure:
 
-Configuration settings are stored in {RubyLint.configuration} (as an instance
-of {RubyLint::Configuration}). Although you can access this object directly in
-the form of `RubyLint.configuration.foo = :bar` it's recommended that you use
-{RubyLint.configure} instead since it provides a shorter and friendlier syntax.
+* `requires`: an Array of files to require before running ruby-lint
+* `report_levels`: an Array of report levels to enable.
+* `analysis_classes`: an Array of the human friendly names of the analysis
+  classes to enable.
+* `presenter`: the human friendly name of the presenter to use.
 
-The boilerplate for configuring ruby-lint looks like the following:
+A basic example looks lik the following:
 
-    RubyLint.configure do |config|
+    ---
+    requires:
+      - ruby-lint/definitions/core/string
+    report_levels:
+      - error
+    analysis_classes:
+      - undefined_methods
+      - undefined_variables
+    presenter: json
 
-    end
-
-To change the presenter to use you'd use the following:
-
-    RubyLint.configure do |config|
-      config.presenter = RubyLint::Presenter::JSON
-    end
-
-Changing the analysis classes is done as following:
-
-    RubyLint.configure do |config|
-      # Only use the two classes listed below.
-      config.analysis = [
-        RubyLint::Analysis::UndefinedVariables,
-        RubyLint::Analysis::ShadowingVariables
-      ]
-    end
-
-And changing the reporting levels:
-
-    RubyLint.configure do |config|
-      config.report_levels = [:error]
-    end
-
-Combined together this leads to the following configuration:
-
-    RubyLint.configure do |config|
-      config.presenter = RubyLint::Presenter::JSON
-
-      # Only use the two classes listed below.
-      config.analysis = [
-        RubyLint::Analysis::UndefinedVariables,
-        RubyLint::Analysis::ShadowingVariables
-      ]
-
-      config.report_levels = [:error]
-    end
-
-For more information see the documentation of {RubyLint::Configuration}.
+If no value is given for a certain configuration option the default value(s)
+will be used instead.
