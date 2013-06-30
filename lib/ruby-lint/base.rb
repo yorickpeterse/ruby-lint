@@ -1,38 +1,5 @@
 module RubyLint
   ##
-  # Hash containing various Node types and the associated Ruby classes.
-  #
-  # @return [Hash]
-  #
-  RUBY_CLASSES = {
-    :str    => 'String',
-    :sym    => 'Symbol',
-    :int    => 'Fixnum',
-    :float  => 'Float',
-    :regexp => 'Regexp',
-    :array  => 'Array',
-    :hash   => 'Hash',
-    :irange => 'Range',
-    :erange => 'Range',
-    :lambda => 'Proc'
-  }
-
-  ##
-  # Returns a definition for a given node type.
-  #
-  # @param [Symbol] type
-  # @return [RubyLint::Definition::RubyObject]
-  # @raise ArgumentError Raised when an invalid type was specified.
-  #
-  def self.definition_for_type(type)
-    ruby_class = RUBY_CLASSES[type]
-
-    raise(ArgumentError, "The type #{type} is invalid") unless ruby_class
-
-    return RubyLint::VirtualMachine.global_constant(ruby_class)
-  end
-
-  ##
   # Provides a simple DSL for configuring ruby-lint.
   #
   # @yieldparam [RubyLint::Configuration]
