@@ -532,10 +532,17 @@ module RubyLint
     # @param [RubyLint::AST::Node] node
     #
     def on_def(node)
+      receiver = nil
+
+      if node.type == :defs
+        receiver = evaluate_node(node.children[0])
+      end
+
       builder = DefinitionBuilder::RubyMethod.new(
         node,
         current_scope,
-        :type => @method_type
+        :type     => @method_type,
+        :receiver => receiver
       )
 
       definition = builder.build

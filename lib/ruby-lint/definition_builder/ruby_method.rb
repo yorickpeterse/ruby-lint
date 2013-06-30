@@ -26,33 +26,14 @@ module RubyLint
       def scope
         scope = definitions
 
-        if has_receiver?
-          found = lookup_receiver_definition(receiver_node)
-          scope = found if found
+        if has_receiver? and options[:receiver]
+          scope = options[:receiver]
         end
 
         return scope
       end
 
       private
-
-      ##
-      # Looks up the receiver used for the method definition.
-      #
-      # @param [RubyLint::AST::Node] node
-      # @return [RubyLint::Definition::RubyObject]
-      #
-      def lookup_receiver_definition(node)
-        # NOTE: not so sure if it's save to assume there's always a valid
-        # RubyObject returned here.
-        if node.constant?
-          return resolve_constant_name(node)
-        elsif node.self?
-          return definitions.lookup(:keyword, 'self')
-        else
-          return definitions.lookup(node.type, node.children[0]).value
-        end
-      end
 
       ##
       # @return [String]
@@ -69,8 +50,7 @@ module RubyLint
         type = options[:type]
 
         if has_receiver?
-          receiver = lookup_receiver_definition(receiver_node)
-          type     = :method if receiver.class?
+          type = :method if options[:receiver].class?
         end
 
         return Definition::RubyMethod.new(
@@ -93,10 +73,6 @@ module RubyLint
       #
       def name_index
         return has_receiver? ? 1 : 0
-      end
-
-      def receiver_node
-        return node.children[0]
       end
     end # RubyMethod
   end # DefinitionBuilder
