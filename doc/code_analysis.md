@@ -2,11 +2,11 @@
 # Code Analysis
 
 Code analysis in ruby-lint is done using a set of classes that extend
-{RubyLint::Iterator}. This base class provides various methods for easily
+{RubyLint::Analysis::Base}. This base class provides various methods for easily
 walking over an AST by using callback methods based on the node types. For
 example, the callback method `on_string` is used before a `(string)` node is
 processed. For more low level details see the API documentation of
-{RubyLint::Iterator}.
+{RubyLint::Iterator} and {RubyLint::Analysis::Base} (which extends the former).
 
 For this guide we'll be creating an analysis class that checks for local
 variables written in camelCase. Whenever it finds these variables a warning
@@ -15,7 +15,7 @@ instead.
 
 At the most basic level this class looks like the following:
 
-    class CamelCaseVariables < RubyLint::Iterator
+    class CamelCaseVariables < RubyLint::Analysis::Base
 
     end
 
@@ -26,7 +26,7 @@ adding errors and the likes.
 To use this class you'll have to create an instance of it and call
 {RubyLint::Iterator#iterate} and pass it an AST:
 
-    ast      = RubyLint::Parser.new('exampleNumber = 10').parse
+    ast      = RubyLint::Parser.new.parse('exampleNumber = 10')
     iterator = CamelCaseVariables.new
 
     iterator.iterate(ast)
@@ -42,13 +42,13 @@ Here X is the name of the node type. Methods that start with `on_` will be
 executed before any child nodes (of the current node) are processed.  Methods
 that start with `after_` will be executed after the node and its child nodes
 have been processed. Each callback method takes a single argument: an instance
-of {RubyLint::Node} containing information about the current node.
+of {RubyLint::AST::Node} containing information about the current node.
 
 In the above example we only need an `on_` callback:
 
-    class CamelCaseVariables < RubyLint::Iterator
-      def on_local_variable(node)
-        if node.name =~ /[a-z][A-Z]/
+    class CamelCaseVariables < RubyLint::Analysis::Base
+      def on_lvar(node)
+        if node.children[0].to_s =~ /[a-z][A-Z]/
           warning('use snake_case for local variables', node)
         end
       end
@@ -72,15 +72,15 @@ use:
 
 The full code of this exercise looks like the following:
 
-    class CamelCaseVariables < RubyLint::Iterator
-      def on_local_variable(node)
-        if node.name =~ /[a-z][A-Z]/
+    class CamelCaseVariables < RubyLint::Analysis::Base
+      def on_lvar(node)
+        if node.children[0].to_s =~ /[a-z][A-Z]/
           warning('use snake_case for local variables', node)
         end
       end
     end
 
-    ast       = RubyLint::Parser.new('exampleNumber = 10').parse
+    ast       = RubyLint::Parser.new.parse('exampleNumber = 10')
     report    = RubyLint::Report.new
     iterator  = CamelCaseVariables.new(:report => report)
     presenter = RubyLint::Presenter::Text.new

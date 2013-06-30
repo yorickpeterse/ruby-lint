@@ -20,28 +20,22 @@ would look like the following:
 
     (string "hello")
 
-Each node is an instance of {RubyLint::Node}. Each node can contain a number of
-child nodes. If one were to format the above S expression as an Array you'd get
-the following:
+Each node is an instance of {RubyLint::AST::Node}. Each node can contain a
+number of child nodes. If one were to format the above S expression as an Array
+you'd get the following:
 
     [:string, ["hello"]]
 
-For more information see the documentation of {RubyLint::Node} and the
-corresponding tests found in `spec/ruby-lint/parser/`.
+The parser used by ruby-lint is the [parser gem][parser gem] and as such
+ruby-lint can support various Ruby implementations and versions.
 
-Currently the parser is based on Ripper, a library that comes with MRI 1.9 and
-newer. Because of this ruby-lint will be unable to support Rubinius and Jruby
-for the time being. In the future this parser will be replaced with something
-that runs on all the common Ruby implementations.
+## Virtual Machine
 
-## Definitions Builder
-
-The {RubyLint::DefinitionsBuilder definitions builder} iterates over the AST
-and evaluates it so that variables can be created, methods can be defined and
-so on. Once finished a single {RubyLint::Definition::RubyObject} definition is
-created that contains all the Ruby data of a block of Ruby code.
-
-One can see the definitions builder as a very basic virtual machine.
+The ruby-lint virtual machine is a stack based virtual machine used for
+partially evaluating Ruby code in order to build definitions of method
+definitions, class definitions, variable assignments and so on. For more
+information on the internals of this class see the documentation of
+{RubyLint::VirtualMachine}.
 
 ## Analysis
 
@@ -61,3 +55,5 @@ as well as a message (e.g. an error message).
 Presenters are classes tasked with the job of presenting a report. Currently
 ruby-lint ships with a presenter that outputs a report in plain text as well as
 one that outputs a report in JSON.
+
+[parser gem]: https://github.com/whitequark/parser
