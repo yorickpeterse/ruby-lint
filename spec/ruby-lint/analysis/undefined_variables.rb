@@ -105,4 +105,11 @@ CODE
 
     report.entries.empty?.should == true
   end
+
+  should 'not add errors for variable references in string interpolation' do
+    code   = 'number = 10; "#{number}"'
+    report = build_report(code, RubyLint::Analysis::UndefinedVariables)
+
+    report.entries.empty?.should == true
+  end
 end
