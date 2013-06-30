@@ -3,7 +3,7 @@
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint.global_scope.define_constant('FileUtils') do |klass|
+RubyLint::VirtualMachine.global_scope.define_constant('FileUtils') do |klass|
 
   klass.define_method('__module_init__')
 
@@ -291,7 +291,7 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint.global_scope.define_constant('FileUtils::DryRun') do |klass|
+RubyLint::VirtualMachine.global_scope.define_constant('FileUtils::DryRun') do |klass|
 
   klass.define_method('__module_init__')
 
@@ -477,8 +477,8 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint.global_scope.define_constant('FileUtils::Entry_') do |klass|
-  klass.inherits(RubyLint.global_constant('Object'))
+RubyLint::VirtualMachine.global_scope.define_constant('FileUtils::Entry_') do |klass|
+  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
 
   klass.define_method('__class_init__')
 
@@ -561,7 +561,7 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint.global_scope.define_constant('FileUtils::Entry_::DIRECTORY_TERM') do |klass|
+RubyLint::VirtualMachine.global_scope.define_constant('FileUtils::Entry_::DIRECTORY_TERM') do |klass|
 end
 
 ##
@@ -569,7 +569,7 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint.global_scope.define_constant('FileUtils::Entry_::SYSCASE') do |klass|
+RubyLint::VirtualMachine.global_scope.define_constant('FileUtils::Entry_::SYSCASE') do |klass|
 end
 
 ##
@@ -577,7 +577,7 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint.global_scope.define_constant('FileUtils::Entry_::S_IF_DOOR') do |klass|
+RubyLint::VirtualMachine.global_scope.define_constant('FileUtils::Entry_::S_IF_DOOR') do |klass|
 end
 
 ##
@@ -585,7 +585,7 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint.global_scope.define_constant('FileUtils::LN_SUPPORTED') do |klass|
+RubyLint::VirtualMachine.global_scope.define_constant('FileUtils::LN_SUPPORTED') do |klass|
 end
 
 ##
@@ -593,7 +593,7 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint.global_scope.define_constant('FileUtils::LOW_METHODS') do |klass|
+RubyLint::VirtualMachine.global_scope.define_constant('FileUtils::LOW_METHODS') do |klass|
 end
 
 ##
@@ -601,7 +601,7 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint.global_scope.define_constant('FileUtils::LowMethods') do |klass|
+RubyLint::VirtualMachine.global_scope.define_constant('FileUtils::LowMethods') do |klass|
 
   klass.define_method('__module_init__')
 end
@@ -611,7 +611,7 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint.global_scope.define_constant('FileUtils::METHODS') do |klass|
+RubyLint::VirtualMachine.global_scope.define_constant('FileUtils::METHODS') do |klass|
 end
 
 ##
@@ -619,7 +619,7 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint.global_scope.define_constant('FileUtils::NoWrite') do |klass|
+RubyLint::VirtualMachine.global_scope.define_constant('FileUtils::NoWrite') do |klass|
 
   klass.define_method('__module_init__')
 
@@ -805,7 +805,7 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint.global_scope.define_constant('FileUtils::OPT_TABLE') do |klass|
+RubyLint::VirtualMachine.global_scope.define_constant('FileUtils::OPT_TABLE') do |klass|
 end
 
 ##
@@ -813,7 +813,7 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint.global_scope.define_constant('FileUtils::RUBY') do |klass|
+RubyLint::VirtualMachine.global_scope.define_constant('FileUtils::RUBY') do |klass|
 end
 
 ##
@@ -821,7 +821,7 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint.global_scope.define_constant('FileUtils::StreamUtils_') do |klass|
+RubyLint::VirtualMachine.global_scope.define_constant('FileUtils::StreamUtils_') do |klass|
 
   klass.define_method('__module_init__')
 end
@@ -831,7 +831,7 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint.global_scope.define_constant('FileUtils::Verbose') do |klass|
+RubyLint::VirtualMachine.global_scope.define_constant('FileUtils::Verbose') do |klass|
 
   klass.define_method('__module_init__')
 

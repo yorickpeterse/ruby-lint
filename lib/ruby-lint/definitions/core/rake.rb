@@ -3,7 +3,7 @@
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint.global_scope.define_constant('Rake') do |klass|
+RubyLint::VirtualMachine.global_scope.define_constant('Rake') do |klass|
 
   klass.define_method('__module_init__')
 
@@ -29,7 +29,7 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint.global_scope.define_constant('Rake::AltSystem') do |klass|
+RubyLint::VirtualMachine.global_scope.define_constant('Rake::AltSystem') do |klass|
 
   klass.define_method('__module_init__')
 
@@ -50,8 +50,8 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint.global_scope.define_constant('Rake::Application') do |klass|
-  klass.inherits(RubyLint.global_constant('Object'))
+RubyLint::VirtualMachine.global_scope.define_constant('Rake::Application') do |klass|
+  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
 
   klass.define_method('__class_init__')
 
@@ -177,7 +177,7 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint.global_scope.define_constant('Rake::Application::DEFAULT_RAKEFILES') do |klass|
+RubyLint::VirtualMachine.global_scope.define_constant('Rake::Application::DEFAULT_RAKEFILES') do |klass|
 end
 
 ##
@@ -185,7 +185,7 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint.global_scope.define_constant('Rake::Cloneable') do |klass|
+RubyLint::VirtualMachine.global_scope.define_constant('Rake::Cloneable') do |klass|
 
   klass.define_method('__module_init__')
 
@@ -199,7 +199,7 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint.global_scope.define_constant('Rake::DSL') do |klass|
+RubyLint::VirtualMachine.global_scope.define_constant('Rake::DSL') do |klass|
 
   klass.define_method('__module_init__')
 end
@@ -209,7 +209,7 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint.global_scope.define_constant('Rake::DSL::DEFAULT') do |klass|
+RubyLint::VirtualMachine.global_scope.define_constant('Rake::DSL::DEFAULT') do |klass|
 end
 
 ##
@@ -217,7 +217,7 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint.global_scope.define_constant('Rake::DSL::DryRun') do |klass|
+RubyLint::VirtualMachine.global_scope.define_constant('Rake::DSL::DryRun') do |klass|
 
   klass.define_method('__module_init__')
 
@@ -403,8 +403,8 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint.global_scope.define_constant('Rake::DSL::Entry_') do |klass|
-  klass.inherits(RubyLint.global_constant('Object'))
+RubyLint::VirtualMachine.global_scope.define_constant('Rake::DSL::Entry_') do |klass|
+  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
 
   klass.define_method('__class_init__')
 
@@ -487,7 +487,7 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint.global_scope.define_constant('Rake::DSL::LN_SUPPORTED') do |klass|
+RubyLint::VirtualMachine.global_scope.define_constant('Rake::DSL::LN_SUPPORTED') do |klass|
 end
 
 ##
@@ -495,7 +495,7 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint.global_scope.define_constant('Rake::DSL::LOW_METHODS') do |klass|
+RubyLint::VirtualMachine.global_scope.define_constant('Rake::DSL::LOW_METHODS') do |klass|
 end
 
 ##
@@ -503,7 +503,7 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint.global_scope.define_constant('Rake::DSL::LowMethods') do |klass|
+RubyLint::VirtualMachine.global_scope.define_constant('Rake::DSL::LowMethods') do |klass|
 
   klass.define_method('__module_init__')
 end
@@ -513,7 +513,7 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint.global_scope.define_constant('Rake::DSL::METHODS') do |klass|
+RubyLint::VirtualMachine.global_scope.define_constant('Rake::DSL::METHODS') do |klass|
 end
 
 ##
@@ -521,7 +521,7 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint.global_scope.define_constant('Rake::DSL::NoWrite') do |klass|
+RubyLint::VirtualMachine.global_scope.define_constant('Rake::DSL::NoWrite') do |klass|
 
   klass.define_method('__module_init__')
 
@@ -707,7 +707,7 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint.global_scope.define_constant('Rake::DSL::OPT_TABLE') do |klass|
+RubyLint::VirtualMachine.global_scope.define_constant('Rake::DSL::OPT_TABLE') do |klass|
 end
 
 ##
@@ -715,7 +715,7 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint.global_scope.define_constant('Rake::DSL::RUBY') do |klass|
+RubyLint::VirtualMachine.global_scope.define_constant('Rake::DSL::RUBY') do |klass|
 end
 
 ##
@@ -723,7 +723,7 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint.global_scope.define_constant('Rake::DSL::StreamUtils_') do |klass|
+RubyLint::VirtualMachine.global_scope.define_constant('Rake::DSL::StreamUtils_') do |klass|
 
   klass.define_method('__module_init__')
 end
@@ -733,7 +733,7 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint.global_scope.define_constant('Rake::DSL::Verbose') do |klass|
+RubyLint::VirtualMachine.global_scope.define_constant('Rake::DSL::Verbose') do |klass|
 
   klass.define_method('__module_init__')
 
@@ -933,8 +933,8 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint.global_scope.define_constant('Rake::DefaultLoader') do |klass|
-  klass.inherits(RubyLint.global_constant('Object'))
+RubyLint::VirtualMachine.global_scope.define_constant('Rake::DefaultLoader') do |klass|
+  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
 
   klass.define_method('__class_init__')
 
@@ -948,7 +948,7 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint.global_scope.define_constant('Rake::DeprecatedCommands') do |klass|
+RubyLint::VirtualMachine.global_scope.define_constant('Rake::DeprecatedCommands') do |klass|
 end
 
 ##
@@ -956,7 +956,7 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint.global_scope.define_constant('Rake::DeprecatedObjectDSL') do |klass|
+RubyLint::VirtualMachine.global_scope.define_constant('Rake::DeprecatedObjectDSL') do |klass|
 
   klass.define_method('__module_init__')
 end
@@ -966,7 +966,7 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint.global_scope.define_constant('Rake::EARLY') do |klass|
+RubyLint::VirtualMachine.global_scope.define_constant('Rake::EARLY') do |klass|
 end
 
 ##
@@ -974,7 +974,7 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint.global_scope.define_constant('Rake::EMPTY_TASK_ARGS') do |klass|
+RubyLint::VirtualMachine.global_scope.define_constant('Rake::EMPTY_TASK_ARGS') do |klass|
 end
 
 ##
@@ -982,8 +982,8 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint.global_scope.define_constant('Rake::EarlyTime') do |klass|
-  klass.inherits(RubyLint.global_constant('Object'))
+RubyLint::VirtualMachine.global_scope.define_constant('Rake::EarlyTime') do |klass|
+  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
 
   klass.define_method('__class_init__')
 
@@ -1001,7 +1001,7 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint.global_scope.define_constant('Rake::EarlyTime::SingletonClassMethods') do |klass|
+RubyLint::VirtualMachine.global_scope.define_constant('Rake::EarlyTime::SingletonClassMethods') do |klass|
 
   klass.define_method('__module_init__')
 
@@ -1017,8 +1017,8 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint.global_scope.define_constant('Rake::FileCreationTask') do |klass|
-  klass.inherits(RubyLint.global_constant('Rake::FileTask'))
+RubyLint::VirtualMachine.global_scope.define_constant('Rake::FileCreationTask') do |klass|
+  klass.inherits(RubyLint::VirtualMachine.global_constant('Rake::FileTask'))
 
   klass.define_method('__class_init__')
 
@@ -1032,8 +1032,8 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint.global_scope.define_constant('Rake::FileList') do |klass|
-  klass.inherits(RubyLint.global_constant('Object'))
+RubyLint::VirtualMachine.global_scope.define_constant('Rake::FileList') do |klass|
+  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
 
   klass.define_method('[]') do |method|
     method.define_rest_argument('args')
@@ -1760,7 +1760,7 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint.global_scope.define_constant('Rake::FileList::ARRAY_METHODS') do |klass|
+RubyLint::VirtualMachine.global_scope.define_constant('Rake::FileList::ARRAY_METHODS') do |klass|
 end
 
 ##
@@ -1768,7 +1768,7 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint.global_scope.define_constant('Rake::FileList::DEFAULT_IGNORE_PATTERNS') do |klass|
+RubyLint::VirtualMachine.global_scope.define_constant('Rake::FileList::DEFAULT_IGNORE_PATTERNS') do |klass|
 end
 
 ##
@@ -1776,7 +1776,7 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint.global_scope.define_constant('Rake::FileList::DEFAULT_IGNORE_PROCS') do |klass|
+RubyLint::VirtualMachine.global_scope.define_constant('Rake::FileList::DEFAULT_IGNORE_PROCS') do |klass|
 end
 
 ##
@@ -1784,7 +1784,7 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint.global_scope.define_constant('Rake::FileList::DELEGATING_METHODS') do |klass|
+RubyLint::VirtualMachine.global_scope.define_constant('Rake::FileList::DELEGATING_METHODS') do |klass|
 end
 
 ##
@@ -1792,7 +1792,7 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint.global_scope.define_constant('Rake::FileList::MUST_DEFINE') do |klass|
+RubyLint::VirtualMachine.global_scope.define_constant('Rake::FileList::MUST_DEFINE') do |klass|
 end
 
 ##
@@ -1800,7 +1800,7 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint.global_scope.define_constant('Rake::FileList::MUST_NOT_DEFINE') do |klass|
+RubyLint::VirtualMachine.global_scope.define_constant('Rake::FileList::MUST_NOT_DEFINE') do |klass|
 end
 
 ##
@@ -1808,7 +1808,7 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint.global_scope.define_constant('Rake::FileList::SPECIAL_RETURN') do |klass|
+RubyLint::VirtualMachine.global_scope.define_constant('Rake::FileList::SPECIAL_RETURN') do |klass|
 end
 
 ##
@@ -1816,8 +1816,8 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint.global_scope.define_constant('Rake::FileTask') do |klass|
-  klass.inherits(RubyLint.global_constant('Rake::Task'))
+RubyLint::VirtualMachine.global_scope.define_constant('Rake::FileTask') do |klass|
+  klass.inherits(RubyLint::VirtualMachine.global_constant('Rake::Task'))
 
   klass.define_method('__class_init__')
 
@@ -1836,7 +1836,7 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint.global_scope.define_constant('Rake::FileUtilsExt') do |klass|
+RubyLint::VirtualMachine.global_scope.define_constant('Rake::FileUtilsExt') do |klass|
 
   klass.define_method('__module_init__')
 
@@ -2040,7 +2040,7 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint.global_scope.define_constant('Rake::FileUtilsExt::DEFAULT') do |klass|
+RubyLint::VirtualMachine.global_scope.define_constant('Rake::FileUtilsExt::DEFAULT') do |klass|
 end
 
 ##
@@ -2048,7 +2048,7 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint.global_scope.define_constant('Rake::FileUtilsExt::DryRun') do |klass|
+RubyLint::VirtualMachine.global_scope.define_constant('Rake::FileUtilsExt::DryRun') do |klass|
 
   klass.define_method('__module_init__')
 
@@ -2234,8 +2234,8 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint.global_scope.define_constant('Rake::FileUtilsExt::Entry_') do |klass|
-  klass.inherits(RubyLint.global_constant('Object'))
+RubyLint::VirtualMachine.global_scope.define_constant('Rake::FileUtilsExt::Entry_') do |klass|
+  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
 
   klass.define_method('__class_init__')
 
@@ -2318,7 +2318,7 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint.global_scope.define_constant('Rake::FileUtilsExt::LN_SUPPORTED') do |klass|
+RubyLint::VirtualMachine.global_scope.define_constant('Rake::FileUtilsExt::LN_SUPPORTED') do |klass|
 end
 
 ##
@@ -2326,7 +2326,7 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint.global_scope.define_constant('Rake::FileUtilsExt::LOW_METHODS') do |klass|
+RubyLint::VirtualMachine.global_scope.define_constant('Rake::FileUtilsExt::LOW_METHODS') do |klass|
 end
 
 ##
@@ -2334,7 +2334,7 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint.global_scope.define_constant('Rake::FileUtilsExt::LowMethods') do |klass|
+RubyLint::VirtualMachine.global_scope.define_constant('Rake::FileUtilsExt::LowMethods') do |klass|
 
   klass.define_method('__module_init__')
 end
@@ -2344,7 +2344,7 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint.global_scope.define_constant('Rake::FileUtilsExt::METHODS') do |klass|
+RubyLint::VirtualMachine.global_scope.define_constant('Rake::FileUtilsExt::METHODS') do |klass|
 end
 
 ##
@@ -2352,7 +2352,7 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint.global_scope.define_constant('Rake::FileUtilsExt::NoWrite') do |klass|
+RubyLint::VirtualMachine.global_scope.define_constant('Rake::FileUtilsExt::NoWrite') do |klass|
 
   klass.define_method('__module_init__')
 
@@ -2538,7 +2538,7 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint.global_scope.define_constant('Rake::FileUtilsExt::OPT_TABLE') do |klass|
+RubyLint::VirtualMachine.global_scope.define_constant('Rake::FileUtilsExt::OPT_TABLE') do |klass|
 end
 
 ##
@@ -2546,7 +2546,7 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint.global_scope.define_constant('Rake::FileUtilsExt::RUBY') do |klass|
+RubyLint::VirtualMachine.global_scope.define_constant('Rake::FileUtilsExt::RUBY') do |klass|
 end
 
 ##
@@ -2554,7 +2554,7 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint.global_scope.define_constant('Rake::FileUtilsExt::StreamUtils_') do |klass|
+RubyLint::VirtualMachine.global_scope.define_constant('Rake::FileUtilsExt::StreamUtils_') do |klass|
 
   klass.define_method('__module_init__')
 end
@@ -2564,7 +2564,7 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint.global_scope.define_constant('Rake::FileUtilsExt::Verbose') do |klass|
+RubyLint::VirtualMachine.global_scope.define_constant('Rake::FileUtilsExt::Verbose') do |klass|
 
   klass.define_method('__module_init__')
 
@@ -2764,8 +2764,8 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint.global_scope.define_constant('Rake::InvocationChain') do |klass|
-  klass.inherits(RubyLint.global_constant('Object'))
+RubyLint::VirtualMachine.global_scope.define_constant('Rake::InvocationChain') do |klass|
+  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
 
   klass.define_method('__class_init__')
 
@@ -2790,7 +2790,7 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint.global_scope.define_constant('Rake::InvocationChain::EMPTY') do |klass|
+RubyLint::VirtualMachine.global_scope.define_constant('Rake::InvocationChain::EMPTY') do |klass|
 end
 
 ##
@@ -2798,8 +2798,8 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint.global_scope.define_constant('Rake::InvocationChain::EmptyInvocationChain') do |klass|
-  klass.inherits(RubyLint.global_constant('Object'))
+RubyLint::VirtualMachine.global_scope.define_constant('Rake::InvocationChain::EmptyInvocationChain') do |klass|
+  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
 
   klass.define_method('__class_init__')
 
@@ -2819,7 +2819,7 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint.global_scope.define_constant('Rake::InvocationExceptionMixin') do |klass|
+RubyLint::VirtualMachine.global_scope.define_constant('Rake::InvocationExceptionMixin') do |klass|
 
   klass.define_method('__module_init__')
 
@@ -2835,8 +2835,8 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint.global_scope.define_constant('Rake::MultiTask') do |klass|
-  klass.inherits(RubyLint.global_constant('Rake::Task'))
+RubyLint::VirtualMachine.global_scope.define_constant('Rake::MultiTask') do |klass|
+  klass.inherits(RubyLint::VirtualMachine.global_constant('Rake::Task'))
 
   klass.define_method('__class_init__')
 end
@@ -2846,8 +2846,8 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint.global_scope.define_constant('Rake::NameSpace') do |klass|
-  klass.inherits(RubyLint.global_constant('Object'))
+RubyLint::VirtualMachine.global_scope.define_constant('Rake::NameSpace') do |klass|
+  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
 
   klass.define_method('__class_init__')
 
@@ -2863,8 +2863,8 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint.global_scope.define_constant('Rake::PackageTask') do |klass|
-  klass.inherits(RubyLint.global_constant('Rake::TaskLib'))
+RubyLint::VirtualMachine.global_scope.define_constant('Rake::PackageTask') do |klass|
+  klass.inherits(RubyLint::VirtualMachine.global_constant('Rake::TaskLib'))
 
   klass.define_method('__class_init__')
 
@@ -2933,7 +2933,7 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint.global_scope.define_constant('Rake::PackageTask::DEFAULT') do |klass|
+RubyLint::VirtualMachine.global_scope.define_constant('Rake::PackageTask::DEFAULT') do |klass|
 end
 
 ##
@@ -2941,7 +2941,7 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint.global_scope.define_constant('Rake::PackageTask::DryRun') do |klass|
+RubyLint::VirtualMachine.global_scope.define_constant('Rake::PackageTask::DryRun') do |klass|
 
   klass.define_method('__module_init__')
 
@@ -3127,8 +3127,8 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint.global_scope.define_constant('Rake::PackageTask::Entry_') do |klass|
-  klass.inherits(RubyLint.global_constant('Object'))
+RubyLint::VirtualMachine.global_scope.define_constant('Rake::PackageTask::Entry_') do |klass|
+  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
 
   klass.define_method('__class_init__')
 
@@ -3211,7 +3211,7 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint.global_scope.define_constant('Rake::PackageTask::LN_SUPPORTED') do |klass|
+RubyLint::VirtualMachine.global_scope.define_constant('Rake::PackageTask::LN_SUPPORTED') do |klass|
 end
 
 ##
@@ -3219,7 +3219,7 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint.global_scope.define_constant('Rake::PackageTask::LOW_METHODS') do |klass|
+RubyLint::VirtualMachine.global_scope.define_constant('Rake::PackageTask::LOW_METHODS') do |klass|
 end
 
 ##
@@ -3227,7 +3227,7 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint.global_scope.define_constant('Rake::PackageTask::LowMethods') do |klass|
+RubyLint::VirtualMachine.global_scope.define_constant('Rake::PackageTask::LowMethods') do |klass|
 
   klass.define_method('__module_init__')
 end
@@ -3237,7 +3237,7 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint.global_scope.define_constant('Rake::PackageTask::METHODS') do |klass|
+RubyLint::VirtualMachine.global_scope.define_constant('Rake::PackageTask::METHODS') do |klass|
 end
 
 ##
@@ -3245,7 +3245,7 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint.global_scope.define_constant('Rake::PackageTask::NoWrite') do |klass|
+RubyLint::VirtualMachine.global_scope.define_constant('Rake::PackageTask::NoWrite') do |klass|
 
   klass.define_method('__module_init__')
 
@@ -3431,7 +3431,7 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint.global_scope.define_constant('Rake::PackageTask::OPT_TABLE') do |klass|
+RubyLint::VirtualMachine.global_scope.define_constant('Rake::PackageTask::OPT_TABLE') do |klass|
 end
 
 ##
@@ -3439,7 +3439,7 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint.global_scope.define_constant('Rake::PackageTask::RUBY') do |klass|
+RubyLint::VirtualMachine.global_scope.define_constant('Rake::PackageTask::RUBY') do |klass|
 end
 
 ##
@@ -3447,7 +3447,7 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint.global_scope.define_constant('Rake::PackageTask::StreamUtils_') do |klass|
+RubyLint::VirtualMachine.global_scope.define_constant('Rake::PackageTask::StreamUtils_') do |klass|
 
   klass.define_method('__module_init__')
 end
@@ -3457,7 +3457,7 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint.global_scope.define_constant('Rake::PackageTask::Verbose') do |klass|
+RubyLint::VirtualMachine.global_scope.define_constant('Rake::PackageTask::Verbose') do |klass|
 
   klass.define_method('__module_init__')
 
@@ -3657,8 +3657,8 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint.global_scope.define_constant('Rake::PseudoStatus') do |klass|
-  klass.inherits(RubyLint.global_constant('Object'))
+RubyLint::VirtualMachine.global_scope.define_constant('Rake::PseudoStatus') do |klass|
+  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
 
   klass.define_method('__class_init__')
 
@@ -3680,8 +3680,8 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint.global_scope.define_constant('Rake::RuleRecursionOverflowError') do |klass|
-  klass.inherits(RubyLint.global_constant('StandardError'))
+RubyLint::VirtualMachine.global_scope.define_constant('Rake::RuleRecursionOverflowError') do |klass|
+  klass.inherits(RubyLint::VirtualMachine.global_constant('StandardError'))
 
   klass.define_method('__class_init__')
 
@@ -3697,8 +3697,8 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint.global_scope.define_constant('Rake::Task') do |klass|
-  klass.inherits(RubyLint.global_constant('Object'))
+RubyLint::VirtualMachine.global_scope.define_constant('Rake::Task') do |klass|
+  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
 
   klass.define_method('[]') do |method|
     method.define_argument('task_name')
@@ -3820,8 +3820,8 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint.global_scope.define_constant('Rake::TaskArgumentError') do |klass|
-  klass.inherits(RubyLint.global_constant('ArgumentError'))
+RubyLint::VirtualMachine.global_scope.define_constant('Rake::TaskArgumentError') do |klass|
+  klass.inherits(RubyLint::VirtualMachine.global_constant('ArgumentError'))
 end
 
 ##
@@ -3829,8 +3829,8 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint.global_scope.define_constant('Rake::TaskArguments') do |klass|
-  klass.inherits(RubyLint.global_constant('Object'))
+RubyLint::VirtualMachine.global_scope.define_constant('Rake::TaskArguments') do |klass|
+  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
 
   klass.define_method('__class_init__')
 
@@ -3878,8 +3878,8 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint.global_scope.define_constant('Rake::TaskArguments::SortedElement') do |klass|
-  klass.inherits(RubyLint.global_constant('Object'))
+RubyLint::VirtualMachine.global_scope.define_constant('Rake::TaskArguments::SortedElement') do |klass|
+  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
 
   klass.define_method('__class_init__')
 
@@ -3902,8 +3902,8 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint.global_scope.define_constant('Rake::TaskLib') do |klass|
-  klass.inherits(RubyLint.global_constant('Object'))
+RubyLint::VirtualMachine.global_scope.define_constant('Rake::TaskLib') do |klass|
+  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
 
   klass.define_method('__class_init__')
 
@@ -3918,7 +3918,7 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint.global_scope.define_constant('Rake::TaskLib::DEFAULT') do |klass|
+RubyLint::VirtualMachine.global_scope.define_constant('Rake::TaskLib::DEFAULT') do |klass|
 end
 
 ##
@@ -3926,7 +3926,7 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint.global_scope.define_constant('Rake::TaskLib::DryRun') do |klass|
+RubyLint::VirtualMachine.global_scope.define_constant('Rake::TaskLib::DryRun') do |klass|
 
   klass.define_method('__module_init__')
 
@@ -4112,8 +4112,8 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint.global_scope.define_constant('Rake::TaskLib::Entry_') do |klass|
-  klass.inherits(RubyLint.global_constant('Object'))
+RubyLint::VirtualMachine.global_scope.define_constant('Rake::TaskLib::Entry_') do |klass|
+  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
 
   klass.define_method('__class_init__')
 
@@ -4196,7 +4196,7 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint.global_scope.define_constant('Rake::TaskLib::LN_SUPPORTED') do |klass|
+RubyLint::VirtualMachine.global_scope.define_constant('Rake::TaskLib::LN_SUPPORTED') do |klass|
 end
 
 ##
@@ -4204,7 +4204,7 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint.global_scope.define_constant('Rake::TaskLib::LOW_METHODS') do |klass|
+RubyLint::VirtualMachine.global_scope.define_constant('Rake::TaskLib::LOW_METHODS') do |klass|
 end
 
 ##
@@ -4212,7 +4212,7 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint.global_scope.define_constant('Rake::TaskLib::LowMethods') do |klass|
+RubyLint::VirtualMachine.global_scope.define_constant('Rake::TaskLib::LowMethods') do |klass|
 
   klass.define_method('__module_init__')
 end
@@ -4222,7 +4222,7 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint.global_scope.define_constant('Rake::TaskLib::METHODS') do |klass|
+RubyLint::VirtualMachine.global_scope.define_constant('Rake::TaskLib::METHODS') do |klass|
 end
 
 ##
@@ -4230,7 +4230,7 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint.global_scope.define_constant('Rake::TaskLib::NoWrite') do |klass|
+RubyLint::VirtualMachine.global_scope.define_constant('Rake::TaskLib::NoWrite') do |klass|
 
   klass.define_method('__module_init__')
 
@@ -4416,7 +4416,7 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint.global_scope.define_constant('Rake::TaskLib::OPT_TABLE') do |klass|
+RubyLint::VirtualMachine.global_scope.define_constant('Rake::TaskLib::OPT_TABLE') do |klass|
 end
 
 ##
@@ -4424,7 +4424,7 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint.global_scope.define_constant('Rake::TaskLib::RUBY') do |klass|
+RubyLint::VirtualMachine.global_scope.define_constant('Rake::TaskLib::RUBY') do |klass|
 end
 
 ##
@@ -4432,7 +4432,7 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint.global_scope.define_constant('Rake::TaskLib::StreamUtils_') do |klass|
+RubyLint::VirtualMachine.global_scope.define_constant('Rake::TaskLib::StreamUtils_') do |klass|
 
   klass.define_method('__module_init__')
 end
@@ -4442,7 +4442,7 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint.global_scope.define_constant('Rake::TaskLib::Verbose') do |klass|
+RubyLint::VirtualMachine.global_scope.define_constant('Rake::TaskLib::Verbose') do |klass|
 
   klass.define_method('__module_init__')
 
@@ -4642,7 +4642,7 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint.global_scope.define_constant('Rake::TaskManager') do |klass|
+RubyLint::VirtualMachine.global_scope.define_constant('Rake::TaskManager') do |klass|
 
   klass.define_method('__module_init__')
 
@@ -4715,7 +4715,7 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint.global_scope.define_constant('Rake::Version') do |klass|
+RubyLint::VirtualMachine.global_scope.define_constant('Rake::Version') do |klass|
 
   klass.define_method('__module_init__')
 end
@@ -4725,7 +4725,7 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint.global_scope.define_constant('Rake::Version::BUILD') do |klass|
+RubyLint::VirtualMachine.global_scope.define_constant('Rake::Version::BUILD') do |klass|
 end
 
 ##
@@ -4733,7 +4733,7 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint.global_scope.define_constant('Rake::Version::MAJOR') do |klass|
+RubyLint::VirtualMachine.global_scope.define_constant('Rake::Version::MAJOR') do |klass|
 end
 
 ##
@@ -4741,7 +4741,7 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint.global_scope.define_constant('Rake::Version::MINOR') do |klass|
+RubyLint::VirtualMachine.global_scope.define_constant('Rake::Version::MINOR') do |klass|
 end
 
 ##
@@ -4749,7 +4749,7 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint.global_scope.define_constant('Rake::Version::NUMBERS') do |klass|
+RubyLint::VirtualMachine.global_scope.define_constant('Rake::Version::NUMBERS') do |klass|
 end
 
 ##
@@ -4757,7 +4757,7 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint.global_scope.define_constant('Rake::Win32') do |klass|
+RubyLint::VirtualMachine.global_scope.define_constant('Rake::Win32') do |klass|
 
   klass.define_method('__module_init__')
 
@@ -4779,6 +4779,6 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint.global_scope.define_constant('Rake::Win32::Win32HomeError') do |klass|
-  klass.inherits(RubyLint.global_constant('RuntimeError'))
+RubyLint::VirtualMachine.global_scope.define_constant('Rake::Win32::Win32HomeError') do |klass|
+  klass.inherits(RubyLint::VirtualMachine.global_constant('RuntimeError'))
 end

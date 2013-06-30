@@ -3,7 +3,7 @@
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint.global_scope.define_constant('Gem') do |klass|
+RubyLint::VirtualMachine.global_scope.define_constant('Gem') do |klass|
 
   klass.define_method('__module_init__')
 
@@ -342,8 +342,8 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint.global_scope.define_constant('Gem::Builder') do |klass|
-  klass.inherits(RubyLint.global_constant('Object'))
+RubyLint::VirtualMachine.global_scope.define_constant('Gem::Builder') do |klass|
+  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
 
   klass.define_method('__class_init__')
 
@@ -359,8 +359,8 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint.global_scope.define_constant('Gem::Cache') do |klass|
-  klass.inherits(RubyLint.global_constant('Object'))
+RubyLint::VirtualMachine.global_scope.define_constant('Gem::Cache') do |klass|
+  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
 
   klass.define_method('__class_init__')
 
@@ -571,8 +571,8 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint.global_scope.define_constant('Gem::CommandLineError') do |klass|
-  klass.inherits(RubyLint.global_constant('Gem::Exception'))
+RubyLint::VirtualMachine.global_scope.define_constant('Gem::CommandLineError') do |klass|
+  klass.inherits(RubyLint::VirtualMachine.global_constant('Gem::Exception'))
 end
 
 ##
@@ -580,8 +580,8 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint.global_scope.define_constant('Gem::ConfigFile') do |klass|
-  klass.inherits(RubyLint.global_constant('Object'))
+RubyLint::VirtualMachine.global_scope.define_constant('Gem::ConfigFile') do |klass|
+  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
 
   klass.define_method('__class_init__')
 
@@ -672,7 +672,7 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint.global_scope.define_constant('Gem::ConfigFile::DEFAULT_BULK_THRESHOLD') do |klass|
+RubyLint::VirtualMachine.global_scope.define_constant('Gem::ConfigFile::DEFAULT_BULK_THRESHOLD') do |klass|
 end
 
 ##
@@ -680,7 +680,7 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint.global_scope.define_constant('Gem::ConfigFile::OPERATING_SYSTEM_DEFAULTS') do |klass|
+RubyLint::VirtualMachine.global_scope.define_constant('Gem::ConfigFile::OPERATING_SYSTEM_DEFAULTS') do |klass|
 end
 
 ##
@@ -688,7 +688,7 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint.global_scope.define_constant('Gem::ConfigFile::SYSTEM_WIDE_CONFIG_FILE') do |klass|
+RubyLint::VirtualMachine.global_scope.define_constant('Gem::ConfigFile::SYSTEM_WIDE_CONFIG_FILE') do |klass|
 end
 
 ##
@@ -696,7 +696,7 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint.global_scope.define_constant('Gem::ConfigMap') do |klass|
+RubyLint::VirtualMachine.global_scope.define_constant('Gem::ConfigMap') do |klass|
 end
 
 ##
@@ -704,8 +704,8 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint.global_scope.define_constant('Gem::Dependency') do |klass|
-  klass.inherits(RubyLint.global_constant('Object'))
+RubyLint::VirtualMachine.global_scope.define_constant('Gem::Dependency') do |klass|
+  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
 
   klass.define_method('__class_init__')
 
@@ -774,7 +774,7 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint.global_scope.define_constant('Gem::Dependency::TYPES') do |klass|
+RubyLint::VirtualMachine.global_scope.define_constant('Gem::Dependency::TYPES') do |klass|
 end
 
 ##
@@ -782,8 +782,8 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint.global_scope.define_constant('Gem::DependencyError') do |klass|
-  klass.inherits(RubyLint.global_constant('Gem::Exception'))
+RubyLint::VirtualMachine.global_scope.define_constant('Gem::DependencyError') do |klass|
+  klass.inherits(RubyLint::VirtualMachine.global_constant('Gem::Exception'))
 end
 
 ##
@@ -791,8 +791,8 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint.global_scope.define_constant('Gem::DependencyList') do |klass|
-  klass.inherits(RubyLint.global_constant('Object'))
+RubyLint::VirtualMachine.global_scope.define_constant('Gem::DependencyList') do |klass|
+  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
 
   klass.define_method('__class_init__')
 
@@ -865,8 +865,8 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint.global_scope.define_constant('Gem::DependencyList::Cyclic') do |klass|
-  klass.inherits(RubyLint.global_constant('StandardError'))
+RubyLint::VirtualMachine.global_scope.define_constant('Gem::DependencyList::Cyclic') do |klass|
+  klass.inherits(RubyLint::VirtualMachine.global_constant('StandardError'))
 end
 
 ##
@@ -874,8 +874,8 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint.global_scope.define_constant('Gem::DependencyList::SortedElement') do |klass|
-  klass.inherits(RubyLint.global_constant('Object'))
+RubyLint::VirtualMachine.global_scope.define_constant('Gem::DependencyList::SortedElement') do |klass|
+  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
 
   klass.define_method('__class_init__')
 
@@ -898,8 +898,8 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint.global_scope.define_constant('Gem::DependencyRemovalException') do |klass|
-  klass.inherits(RubyLint.global_constant('Gem::Exception'))
+RubyLint::VirtualMachine.global_scope.define_constant('Gem::DependencyRemovalException') do |klass|
+  klass.inherits(RubyLint::VirtualMachine.global_constant('Gem::Exception'))
 end
 
 ##
@@ -907,7 +907,7 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint.global_scope.define_constant('Gem::Deprecate') do |klass|
+RubyLint::VirtualMachine.global_scope.define_constant('Gem::Deprecate') do |klass|
 
   klass.define_method('__module_init__')
 
@@ -932,8 +932,8 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint.global_scope.define_constant('Gem::DocumentError') do |klass|
-  klass.inherits(RubyLint.global_constant('Gem::Exception'))
+RubyLint::VirtualMachine.global_scope.define_constant('Gem::DocumentError') do |klass|
+  klass.inherits(RubyLint::VirtualMachine.global_constant('Gem::Exception'))
 end
 
 ##
@@ -941,8 +941,8 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint.global_scope.define_constant('Gem::EndOfYAMLException') do |klass|
-  klass.inherits(RubyLint.global_constant('Gem::Exception'))
+RubyLint::VirtualMachine.global_scope.define_constant('Gem::EndOfYAMLException') do |klass|
+  klass.inherits(RubyLint::VirtualMachine.global_constant('Gem::Exception'))
 end
 
 ##
@@ -950,8 +950,8 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint.global_scope.define_constant('Gem::Exception') do |klass|
-  klass.inherits(RubyLint.global_constant('RuntimeError'))
+RubyLint::VirtualMachine.global_scope.define_constant('Gem::Exception') do |klass|
+  klass.inherits(RubyLint::VirtualMachine.global_constant('RuntimeError'))
 end
 
 ##
@@ -959,8 +959,8 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint.global_scope.define_constant('Gem::FilePermissionError') do |klass|
-  klass.inherits(RubyLint.global_constant('Gem::Exception'))
+RubyLint::VirtualMachine.global_scope.define_constant('Gem::FilePermissionError') do |klass|
+  klass.inherits(RubyLint::VirtualMachine.global_constant('Gem::Exception'))
 
   klass.define_method('__class_init__')
 end
@@ -970,8 +970,8 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint.global_scope.define_constant('Gem::FormatException') do |klass|
-  klass.inherits(RubyLint.global_constant('Gem::Exception'))
+RubyLint::VirtualMachine.global_scope.define_constant('Gem::FormatException') do |klass|
+  klass.inherits(RubyLint::VirtualMachine.global_constant('Gem::Exception'))
 
   klass.define_method('__class_init__')
 
@@ -985,8 +985,8 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint.global_scope.define_constant('Gem::GemNotFoundException') do |klass|
-  klass.inherits(RubyLint.global_constant('Gem::Exception'))
+RubyLint::VirtualMachine.global_scope.define_constant('Gem::GemNotFoundException') do |klass|
+  klass.inherits(RubyLint::VirtualMachine.global_constant('Gem::Exception'))
 
   klass.define_method('__class_init__')
 
@@ -1002,8 +1002,8 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint.global_scope.define_constant('Gem::GemNotInHomeException') do |klass|
-  klass.inherits(RubyLint.global_constant('Gem::Exception'))
+RubyLint::VirtualMachine.global_scope.define_constant('Gem::GemNotInHomeException') do |klass|
+  klass.inherits(RubyLint::VirtualMachine.global_constant('Gem::Exception'))
 
   klass.define_method('__class_init__')
 
@@ -1017,8 +1017,8 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint.global_scope.define_constant('Gem::GemPathSearcher') do |klass|
-  klass.inherits(RubyLint.global_constant('Object'))
+RubyLint::VirtualMachine.global_scope.define_constant('Gem::GemPathSearcher') do |klass|
+  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
 
   klass.define_method('__class_init__')
 
@@ -1097,8 +1097,8 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint.global_scope.define_constant('Gem::InstallError') do |klass|
-  klass.inherits(RubyLint.global_constant('Gem::Exception'))
+RubyLint::VirtualMachine.global_scope.define_constant('Gem::InstallError') do |klass|
+  klass.inherits(RubyLint::VirtualMachine.global_constant('Gem::Exception'))
 end
 
 ##
@@ -1106,8 +1106,8 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint.global_scope.define_constant('Gem::InvalidSpecificationException') do |klass|
-  klass.inherits(RubyLint.global_constant('Gem::Exception'))
+RubyLint::VirtualMachine.global_scope.define_constant('Gem::InvalidSpecificationException') do |klass|
+  klass.inherits(RubyLint::VirtualMachine.global_constant('Gem::Exception'))
 end
 
 ##
@@ -1115,8 +1115,8 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint.global_scope.define_constant('Gem::LoadError') do |klass|
-  klass.inherits(RubyLint.global_constant('LoadError'))
+RubyLint::VirtualMachine.global_scope.define_constant('Gem::LoadError') do |klass|
+  klass.inherits(RubyLint::VirtualMachine.global_constant('LoadError'))
 
   klass.define_method('__class_init__')
 
@@ -1134,8 +1134,8 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint.global_scope.define_constant('Gem::LoadError::InvalidExtensionError') do |klass|
-  klass.inherits(RubyLint.global_constant('LoadError'))
+RubyLint::VirtualMachine.global_scope.define_constant('Gem::LoadError::InvalidExtensionError') do |klass|
+  klass.inherits(RubyLint::VirtualMachine.global_constant('LoadError'))
 end
 
 ##
@@ -1143,8 +1143,8 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint.global_scope.define_constant('Gem::LoadError::MRIExtensionError') do |klass|
-  klass.inherits(RubyLint.global_constant('LoadError::InvalidExtensionError'))
+RubyLint::VirtualMachine.global_scope.define_constant('Gem::LoadError::MRIExtensionError') do |klass|
+  klass.inherits(RubyLint::VirtualMachine.global_constant('LoadError::InvalidExtensionError'))
 end
 
 ##
@@ -1152,7 +1152,7 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint.global_scope.define_constant('Gem::MARSHAL_SPEC_DIR') do |klass|
+RubyLint::VirtualMachine.global_scope.define_constant('Gem::MARSHAL_SPEC_DIR') do |klass|
 end
 
 ##
@@ -1160,8 +1160,8 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint.global_scope.define_constant('Gem::NoAliasYAMLTree') do |klass|
-  klass.inherits(RubyLint.global_constant('Psych::Visitors::YAMLTree'))
+RubyLint::VirtualMachine.global_scope.define_constant('Gem::NoAliasYAMLTree') do |klass|
+  klass.inherits(RubyLint::VirtualMachine.global_constant('Psych::Visitors::YAMLTree'))
 
   klass.define_method('__class_init__')
 
@@ -1180,7 +1180,7 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint.global_scope.define_constant('Gem::NoAliasYAMLTree::DISPATCH') do |klass|
+RubyLint::VirtualMachine.global_scope.define_constant('Gem::NoAliasYAMLTree::DISPATCH') do |klass|
 end
 
 ##
@@ -1188,8 +1188,8 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint.global_scope.define_constant('Gem::OperationNotSupportedError') do |klass|
-  klass.inherits(RubyLint.global_constant('Gem::Exception'))
+RubyLint::VirtualMachine.global_scope.define_constant('Gem::OperationNotSupportedError') do |klass|
+  klass.inherits(RubyLint::VirtualMachine.global_constant('Gem::Exception'))
 end
 
 ##
@@ -1197,8 +1197,8 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint.global_scope.define_constant('Gem::PackageTask') do |klass|
-  klass.inherits(RubyLint.global_constant('Rake::PackageTask'))
+RubyLint::VirtualMachine.global_scope.define_constant('Gem::PackageTask') do |klass|
+  klass.inherits(RubyLint::VirtualMachine.global_constant('Rake::PackageTask'))
 
   klass.define_method('__class_init__')
 
@@ -1218,7 +1218,7 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint.global_scope.define_constant('Gem::PackageTask::DEFAULT') do |klass|
+RubyLint::VirtualMachine.global_scope.define_constant('Gem::PackageTask::DEFAULT') do |klass|
 end
 
 ##
@@ -1226,7 +1226,7 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint.global_scope.define_constant('Gem::PackageTask::DryRun') do |klass|
+RubyLint::VirtualMachine.global_scope.define_constant('Gem::PackageTask::DryRun') do |klass|
 
   klass.define_method('__module_init__')
 
@@ -1412,8 +1412,8 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint.global_scope.define_constant('Gem::PackageTask::Entry_') do |klass|
-  klass.inherits(RubyLint.global_constant('Object'))
+RubyLint::VirtualMachine.global_scope.define_constant('Gem::PackageTask::Entry_') do |klass|
+  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
 
   klass.define_method('__class_init__')
 
@@ -1496,7 +1496,7 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint.global_scope.define_constant('Gem::PackageTask::LN_SUPPORTED') do |klass|
+RubyLint::VirtualMachine.global_scope.define_constant('Gem::PackageTask::LN_SUPPORTED') do |klass|
 end
 
 ##
@@ -1504,7 +1504,7 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint.global_scope.define_constant('Gem::PackageTask::LOW_METHODS') do |klass|
+RubyLint::VirtualMachine.global_scope.define_constant('Gem::PackageTask::LOW_METHODS') do |klass|
 end
 
 ##
@@ -1512,7 +1512,7 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint.global_scope.define_constant('Gem::PackageTask::LowMethods') do |klass|
+RubyLint::VirtualMachine.global_scope.define_constant('Gem::PackageTask::LowMethods') do |klass|
 
   klass.define_method('__module_init__')
 end
@@ -1522,7 +1522,7 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint.global_scope.define_constant('Gem::PackageTask::METHODS') do |klass|
+RubyLint::VirtualMachine.global_scope.define_constant('Gem::PackageTask::METHODS') do |klass|
 end
 
 ##
@@ -1530,7 +1530,7 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint.global_scope.define_constant('Gem::PackageTask::NoWrite') do |klass|
+RubyLint::VirtualMachine.global_scope.define_constant('Gem::PackageTask::NoWrite') do |klass|
 
   klass.define_method('__module_init__')
 
@@ -1716,7 +1716,7 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint.global_scope.define_constant('Gem::PackageTask::OPT_TABLE') do |klass|
+RubyLint::VirtualMachine.global_scope.define_constant('Gem::PackageTask::OPT_TABLE') do |klass|
 end
 
 ##
@@ -1724,7 +1724,7 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint.global_scope.define_constant('Gem::PackageTask::RUBY') do |klass|
+RubyLint::VirtualMachine.global_scope.define_constant('Gem::PackageTask::RUBY') do |klass|
 end
 
 ##
@@ -1732,7 +1732,7 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint.global_scope.define_constant('Gem::PackageTask::StreamUtils_') do |klass|
+RubyLint::VirtualMachine.global_scope.define_constant('Gem::PackageTask::StreamUtils_') do |klass|
 
   klass.define_method('__module_init__')
 end
@@ -1742,7 +1742,7 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint.global_scope.define_constant('Gem::PackageTask::Verbose') do |klass|
+RubyLint::VirtualMachine.global_scope.define_constant('Gem::PackageTask::Verbose') do |klass|
 
   klass.define_method('__module_init__')
 
@@ -1942,8 +1942,8 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint.global_scope.define_constant('Gem::PathSupport') do |klass|
-  klass.inherits(RubyLint.global_constant('Object'))
+RubyLint::VirtualMachine.global_scope.define_constant('Gem::PathSupport') do |klass|
+  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
 
   klass.define_method('__class_init__')
 
@@ -1957,8 +1957,8 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint.global_scope.define_constant('Gem::Platform') do |klass|
-  klass.inherits(RubyLint.global_constant('Object'))
+RubyLint::VirtualMachine.global_scope.define_constant('Gem::Platform') do |klass|
+  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
 
   klass.define_method('__class_init__')
 
@@ -2020,7 +2020,7 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint.global_scope.define_constant('Gem::Platform::CURRENT') do |klass|
+RubyLint::VirtualMachine.global_scope.define_constant('Gem::Platform::CURRENT') do |klass|
 end
 
 ##
@@ -2028,7 +2028,7 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint.global_scope.define_constant('Gem::Platform::RUBY') do |klass|
+RubyLint::VirtualMachine.global_scope.define_constant('Gem::Platform::RUBY') do |klass|
 end
 
 ##
@@ -2036,7 +2036,7 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint.global_scope.define_constant('Gem::RUBYGEMS_DIR') do |klass|
+RubyLint::VirtualMachine.global_scope.define_constant('Gem::RUBYGEMS_DIR') do |klass|
 end
 
 ##
@@ -2044,7 +2044,7 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint.global_scope.define_constant('Gem::RbConfigPriorities') do |klass|
+RubyLint::VirtualMachine.global_scope.define_constant('Gem::RbConfigPriorities') do |klass|
 end
 
 ##
@@ -2052,8 +2052,8 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint.global_scope.define_constant('Gem::RemoteError') do |klass|
-  klass.inherits(RubyLint.global_constant('Gem::Exception'))
+RubyLint::VirtualMachine.global_scope.define_constant('Gem::RemoteError') do |klass|
+  klass.inherits(RubyLint::VirtualMachine.global_constant('Gem::Exception'))
 end
 
 ##
@@ -2061,8 +2061,8 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint.global_scope.define_constant('Gem::RemoteInstallationCancelled') do |klass|
-  klass.inherits(RubyLint.global_constant('Gem::Exception'))
+RubyLint::VirtualMachine.global_scope.define_constant('Gem::RemoteInstallationCancelled') do |klass|
+  klass.inherits(RubyLint::VirtualMachine.global_constant('Gem::Exception'))
 end
 
 ##
@@ -2070,8 +2070,8 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint.global_scope.define_constant('Gem::RemoteInstallationSkipped') do |klass|
-  klass.inherits(RubyLint.global_constant('Gem::Exception'))
+RubyLint::VirtualMachine.global_scope.define_constant('Gem::RemoteInstallationSkipped') do |klass|
+  klass.inherits(RubyLint::VirtualMachine.global_constant('Gem::Exception'))
 end
 
 ##
@@ -2079,8 +2079,8 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint.global_scope.define_constant('Gem::RemoteSourceException') do |klass|
-  klass.inherits(RubyLint.global_constant('Gem::Exception'))
+RubyLint::VirtualMachine.global_scope.define_constant('Gem::RemoteSourceException') do |klass|
+  klass.inherits(RubyLint::VirtualMachine.global_constant('Gem::Exception'))
 end
 
 ##
@@ -2088,8 +2088,8 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint.global_scope.define_constant('Gem::Requirement') do |klass|
-  klass.inherits(RubyLint.global_constant('Object'))
+RubyLint::VirtualMachine.global_scope.define_constant('Gem::Requirement') do |klass|
+  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
 
   klass.define_method('__class_init__')
 
@@ -2158,7 +2158,7 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint.global_scope.define_constant('Gem::Requirement::OPS') do |klass|
+RubyLint::VirtualMachine.global_scope.define_constant('Gem::Requirement::OPS') do |klass|
 end
 
 ##
@@ -2166,7 +2166,7 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint.global_scope.define_constant('Gem::Requirement::PATTERN') do |klass|
+RubyLint::VirtualMachine.global_scope.define_constant('Gem::Requirement::PATTERN') do |klass|
 end
 
 ##
@@ -2174,8 +2174,8 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint.global_scope.define_constant('Gem::SourceIndex') do |klass|
-  klass.inherits(RubyLint.global_constant('Object'))
+RubyLint::VirtualMachine.global_scope.define_constant('Gem::SourceIndex') do |klass|
+  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
 
   klass.define_method('__class_init__')
 
@@ -2386,8 +2386,8 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint.global_scope.define_constant('Gem::SourceIndex::SortedElement') do |klass|
-  klass.inherits(RubyLint.global_constant('Object'))
+RubyLint::VirtualMachine.global_scope.define_constant('Gem::SourceIndex::SortedElement') do |klass|
+  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
 
   klass.define_method('__class_init__')
 
@@ -2410,8 +2410,8 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint.global_scope.define_constant('Gem::SpecFetcher') do |klass|
-  klass.inherits(RubyLint.global_constant('Object'))
+RubyLint::VirtualMachine.global_scope.define_constant('Gem::SpecFetcher') do |klass|
+  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
 
   klass.define_method('__class_init__')
 
@@ -2480,7 +2480,7 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint.global_scope.define_constant('Gem::SpecFetcher::FILES') do |klass|
+RubyLint::VirtualMachine.global_scope.define_constant('Gem::SpecFetcher::FILES') do |klass|
 end
 
 ##
@@ -2488,8 +2488,8 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint.global_scope.define_constant('Gem::Specification') do |klass|
-  klass.inherits(RubyLint.global_constant('Object'))
+RubyLint::VirtualMachine.global_scope.define_constant('Gem::Specification') do |klass|
+  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
 
   klass.define_method('__class_init__')
 
@@ -3000,7 +3000,7 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint.global_scope.define_constant('Gem::Specification::CURRENT_SPECIFICATION_VERSION') do |klass|
+RubyLint::VirtualMachine.global_scope.define_constant('Gem::Specification::CURRENT_SPECIFICATION_VERSION') do |klass|
 end
 
 ##
@@ -3008,7 +3008,7 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint.global_scope.define_constant('Gem::Specification::MARSHAL_FIELDS') do |klass|
+RubyLint::VirtualMachine.global_scope.define_constant('Gem::Specification::MARSHAL_FIELDS') do |klass|
 end
 
 ##
@@ -3016,7 +3016,7 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint.global_scope.define_constant('Gem::Specification::NONEXISTENT_SPECIFICATION_VERSION') do |klass|
+RubyLint::VirtualMachine.global_scope.define_constant('Gem::Specification::NONEXISTENT_SPECIFICATION_VERSION') do |klass|
 end
 
 ##
@@ -3024,7 +3024,7 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint.global_scope.define_constant('Gem::Specification::TODAY') do |klass|
+RubyLint::VirtualMachine.global_scope.define_constant('Gem::Specification::TODAY') do |klass|
 end
 
 ##
@@ -3032,8 +3032,8 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint.global_scope.define_constant('Gem::SyckDefaultKey') do |klass|
-  klass.inherits(RubyLint.global_constant('Object'))
+RubyLint::VirtualMachine.global_scope.define_constant('Gem::SyckDefaultKey') do |klass|
+  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
 
   klass.define_method('__class_init__')
 
@@ -3045,8 +3045,8 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint.global_scope.define_constant('Gem::SystemExitException') do |klass|
-  klass.inherits(RubyLint.global_constant('SystemExit'))
+RubyLint::VirtualMachine.global_scope.define_constant('Gem::SystemExitException') do |klass|
+  klass.inherits(RubyLint::VirtualMachine.global_constant('SystemExit'))
 
   klass.define_method('__class_init__')
 
@@ -3060,7 +3060,7 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint.global_scope.define_constant('Gem::VERSION') do |klass|
+RubyLint::VirtualMachine.global_scope.define_constant('Gem::VERSION') do |klass|
 end
 
 ##
@@ -3068,8 +3068,8 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint.global_scope.define_constant('Gem::VerificationError') do |klass|
-  klass.inherits(RubyLint.global_constant('Gem::Exception'))
+RubyLint::VirtualMachine.global_scope.define_constant('Gem::VerificationError') do |klass|
+  klass.inherits(RubyLint::VirtualMachine.global_constant('Gem::Exception'))
 end
 
 ##
@@ -3077,8 +3077,8 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint.global_scope.define_constant('Gem::Version') do |klass|
-  klass.inherits(RubyLint.global_constant('Object'))
+RubyLint::VirtualMachine.global_scope.define_constant('Gem::Version') do |klass|
+  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
 
   klass.define_method('__class_init__')
 
@@ -3141,7 +3141,7 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint.global_scope.define_constant('Gem::Version::ANCHORED_VERSION_PATTERN') do |klass|
+RubyLint::VirtualMachine.global_scope.define_constant('Gem::Version::ANCHORED_VERSION_PATTERN') do |klass|
 end
 
 ##
@@ -3149,7 +3149,7 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint.global_scope.define_constant('Gem::Version::VERSION_PATTERN') do |klass|
+RubyLint::VirtualMachine.global_scope.define_constant('Gem::Version::VERSION_PATTERN') do |klass|
 end
 
 ##
@@ -3157,5 +3157,5 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint.global_scope.define_constant('Gem::WIN_PATTERNS') do |klass|
+RubyLint::VirtualMachine.global_scope.define_constant('Gem::WIN_PATTERNS') do |klass|
 end

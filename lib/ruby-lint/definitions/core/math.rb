@@ -3,7 +3,7 @@
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint.global_scope.define_constant('Math') do |klass|
+RubyLint::VirtualMachine.global_scope.define_constant('Math') do |klass|
 
   klass.define_method('__module_init__')
 
@@ -125,8 +125,8 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint.global_scope.define_constant('Math::DomainError') do |klass|
-  klass.inherits(RubyLint.global_constant('SystemCallError'))
+RubyLint::VirtualMachine.global_scope.define_constant('Math::DomainError') do |klass|
+  klass.inherits(RubyLint::VirtualMachine.global_constant('SystemCallError'))
 end
 
 ##
@@ -134,7 +134,7 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint.global_scope.define_constant('Math::E') do |klass|
+RubyLint::VirtualMachine.global_scope.define_constant('Math::E') do |klass|
 end
 
 ##
@@ -142,7 +142,7 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint.global_scope.define_constant('Math::FFI') do |klass|
+RubyLint::VirtualMachine.global_scope.define_constant('Math::FFI') do |klass|
 
   klass.define_method('__module_init__')
 
@@ -193,7 +193,7 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint.global_scope.define_constant('Math::FactorialTable') do |klass|
+RubyLint::VirtualMachine.global_scope.define_constant('Math::FactorialTable') do |klass|
 end
 
 ##
@@ -201,5 +201,5 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint.global_scope.define_constant('Math::PI') do |klass|
+RubyLint::VirtualMachine.global_scope.define_constant('Math::PI') do |klass|
 end

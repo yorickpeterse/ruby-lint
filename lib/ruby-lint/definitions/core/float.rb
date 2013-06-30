@@ -3,8 +3,8 @@
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint.global_scope.define_constant('Float') do |klass|
-  klass.inherits(RubyLint.global_constant('Numeric'))
+RubyLint::VirtualMachine.global_scope.define_constant('Float') do |klass|
+  klass.inherits(RubyLint::VirtualMachine.global_constant('Numeric'))
 
   klass.define_method('__class_init__')
 
@@ -156,7 +156,7 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint.global_scope.define_constant('Float::DIG') do |klass|
+RubyLint::VirtualMachine.global_scope.define_constant('Float::DIG') do |klass|
 end
 
 ##
@@ -164,7 +164,7 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint.global_scope.define_constant('Float::EPSILON') do |klass|
+RubyLint::VirtualMachine.global_scope.define_constant('Float::EPSILON') do |klass|
 end
 
 ##
@@ -172,7 +172,7 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint.global_scope.define_constant('Float::FFI') do |klass|
+RubyLint::VirtualMachine.global_scope.define_constant('Float::FFI') do |klass|
 
   klass.define_method('__module_init__')
 
@@ -223,7 +223,7 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint.global_scope.define_constant('Float::INFINITY') do |klass|
+RubyLint::VirtualMachine.global_scope.define_constant('Float::INFINITY') do |klass|
 end
 
 ##
@@ -231,7 +231,7 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint.global_scope.define_constant('Float::MANT_DIG') do |klass|
+RubyLint::VirtualMachine.global_scope.define_constant('Float::MANT_DIG') do |klass|
 end
 
 ##
@@ -239,7 +239,7 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint.global_scope.define_constant('Float::MAX') do |klass|
+RubyLint::VirtualMachine.global_scope.define_constant('Float::MAX') do |klass|
 end
 
 ##
@@ -247,7 +247,7 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint.global_scope.define_constant('Float::MAX_10_EXP') do |klass|
+RubyLint::VirtualMachine.global_scope.define_constant('Float::MAX_10_EXP') do |klass|
 end
 
 ##
@@ -255,7 +255,7 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint.global_scope.define_constant('Float::MAX_EXP') do |klass|
+RubyLint::VirtualMachine.global_scope.define_constant('Float::MAX_EXP') do |klass|
 end
 
 ##
@@ -263,7 +263,7 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint.global_scope.define_constant('Float::MIN') do |klass|
+RubyLint::VirtualMachine.global_scope.define_constant('Float::MIN') do |klass|
 end
 
 ##
@@ -271,7 +271,7 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint.global_scope.define_constant('Float::MIN_10_EXP') do |klass|
+RubyLint::VirtualMachine.global_scope.define_constant('Float::MIN_10_EXP') do |klass|
 end
 
 ##
@@ -279,7 +279,7 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint.global_scope.define_constant('Float::MIN_EXP') do |klass|
+RubyLint::VirtualMachine.global_scope.define_constant('Float::MIN_EXP') do |klass|
 end
 
 ##
@@ -287,7 +287,7 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint.global_scope.define_constant('Float::NAN') do |klass|
+RubyLint::VirtualMachine.global_scope.define_constant('Float::NAN') do |klass|
 end
 
 ##
@@ -295,7 +295,7 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint.global_scope.define_constant('Float::RADIX') do |klass|
+RubyLint::VirtualMachine.global_scope.define_constant('Float::RADIX') do |klass|
 end
 
 ##
@@ -303,5 +303,5 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint.global_scope.define_constant('Float::ROUNDS') do |klass|
+RubyLint::VirtualMachine.global_scope.define_constant('Float::ROUNDS') do |klass|
 end

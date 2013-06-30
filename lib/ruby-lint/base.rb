@@ -18,35 +18,6 @@ module RubyLint
   }
 
   ##
-  # @return [RubyLint::GlobalScope]
-  #
-  def self.global_scope
-    return @global_scope ||= Definition::RubyObject.new(
-      :name => 'global',
-      :type => :global
-    )
-  end
-
-  ##
-  # Looks up the given constant in the global scope. If it does not exist this
-  # method will try to load it from one of the existing definitions.
-  #
-  # @param [String] name
-  # @return [RubyLint::Definition::RubyObject]
-  #
-  def self.global_constant(name)
-    found = global_scope.lookup(:const, name)
-
-    if !found and !constant_loader.loaded?(name)
-      constant_loader.load(name)
-
-      found = global_scope.lookup(:const, name)
-    end
-
-    return found
-  end
-
-  ##
   # Returns a definition for a given node type.
   #
   # @param [Symbol] type
@@ -58,7 +29,7 @@ module RubyLint
 
     raise(ArgumentError, "The type #{type} is invalid") unless ruby_class
 
-    return RubyLint.global_constant(ruby_class)
+    return RubyLint::VirtualMachine.global_constant(ruby_class)
   end
 
   ##
@@ -82,13 +53,6 @@ module RubyLint
   #
   def self.configuration=(config)
     @configuration = config
-  end
-
-  ##
-  # @return [RubyLint::ConstantLoader]
-  #
-  def self.constant_loader
-    return @constant_loader ||= ConstantLoader.new
   end
 
   ##

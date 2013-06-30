@@ -3,8 +3,8 @@
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint.global_scope.define_constant('LoadError') do |klass|
-  klass.inherits(RubyLint.global_constant('ScriptError'))
+RubyLint::VirtualMachine.global_scope.define_constant('LoadError') do |klass|
+  klass.inherits(RubyLint::VirtualMachine.global_constant('ScriptError'))
 
   klass.define_method('__class_init__')
 end
@@ -14,8 +14,8 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint.global_scope.define_constant('LoadError::InvalidExtensionError') do |klass|
-  klass.inherits(RubyLint.global_constant('LoadError'))
+RubyLint::VirtualMachine.global_scope.define_constant('LoadError::InvalidExtensionError') do |klass|
+  klass.inherits(RubyLint::VirtualMachine.global_constant('LoadError'))
 end
 
 ##
@@ -23,6 +23,6 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint.global_scope.define_constant('LoadError::MRIExtensionError') do |klass|
-  klass.inherits(RubyLint.global_constant('LoadError::InvalidExtensionError'))
+RubyLint::VirtualMachine.global_scope.define_constant('LoadError::MRIExtensionError') do |klass|
+  klass.inherits(RubyLint::VirtualMachine.global_constant('LoadError::InvalidExtensionError'))
 end

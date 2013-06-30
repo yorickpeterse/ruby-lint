@@ -3,7 +3,7 @@
 # Created:  2013-04-01 18:33:55 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint.global_scope.define_constant('RubyLint') do |klass|
+RubyLint::VirtualMachine.global_scope.define_constant('RubyLint') do |klass|
 
   klass.define_method('__module_init__')
 end
@@ -13,8 +13,8 @@ end
 # Created:  2013-04-01 18:33:55 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint.global_scope.define_constant('RubyLint::DefinitionGenerator') do |klass|
-  klass.inherits(RubyLint.global_constant('Object'))
+RubyLint::VirtualMachine.global_scope.define_constant('RubyLint::DefinitionGenerator') do |klass|
+  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
 
   klass.define_method('__class_init__')
 
@@ -34,8 +34,8 @@ end
 # Created:  2013-04-01 18:33:55 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint.global_scope.define_constant('RubyLint::Inspector') do |klass|
-  klass.inherits(RubyLint.global_constant('Object'))
+RubyLint::VirtualMachine.global_scope.define_constant('RubyLint::Inspector') do |klass|
+  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
 
   klass.define_method('__class_init__')
 
@@ -66,7 +66,7 @@ end
 # Created:  2013-04-01 18:33:55 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint.global_scope.define_constant('RubyLint::Template') do |klass|
+RubyLint::VirtualMachine.global_scope.define_constant('RubyLint::Template') do |klass|
 
   klass.define_method('__module_init__')
 end
@@ -76,8 +76,8 @@ end
 # Created:  2013-04-01 18:33:55 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint.global_scope.define_constant('RubyLint::Template::Scope') do |klass|
-  klass.inherits(RubyLint.global_constant('Object'))
+RubyLint::VirtualMachine.global_scope.define_constant('RubyLint::Template::Scope') do |klass|
+  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
 
   klass.define_method('__class_init__')
 
@@ -89,5 +89,5 @@ end
 # Created:  2013-04-01 18:33:55 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint.global_scope.define_constant('RubyLint::VERSION') do |klass|
+RubyLint::VirtualMachine.global_scope.define_constant('RubyLint::VERSION') do |klass|
 end

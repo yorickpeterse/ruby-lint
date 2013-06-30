@@ -3,7 +3,7 @@
 # Created:  2013-04-01 18:33:55 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint.global_scope.define_constant('Singleton') do |klass|
+RubyLint::VirtualMachine.global_scope.define_constant('Singleton') do |klass|
 
   klass.define_method('__init__') do |method|
     method.define_argument('klass')
@@ -25,7 +25,7 @@ end
 # Created:  2013-04-01 18:33:55 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint.global_scope.define_constant('Singleton::SingletonClassMethods') do |klass|
+RubyLint::VirtualMachine.global_scope.define_constant('Singleton::SingletonClassMethods') do |klass|
 
   klass.define_method('__module_init__')
 

@@ -3,8 +3,8 @@
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint.global_scope.define_constant('NoMethodError') do |klass|
-  klass.inherits(RubyLint.global_constant('NameError'))
+RubyLint::VirtualMachine.global_scope.define_constant('NoMethodError') do |klass|
+  klass.inherits(RubyLint::VirtualMachine.global_constant('NameError'))
 
   klass.define_method('__class_init__')
 

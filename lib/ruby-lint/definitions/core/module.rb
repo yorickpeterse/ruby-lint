@@ -3,7 +3,7 @@
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint.global_scope.define_constant('Module') do |klass|
+RubyLint::VirtualMachine.global_scope.define_constant('Module') do |klass|
   klass.define_method('__class_init__')
 
   klass.define_method('allocate')

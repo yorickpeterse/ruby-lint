@@ -3,8 +3,8 @@
 # Created:  2013-04-01 18:33:52 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint.global_scope.define_constant('Bignum') do |klass|
-  klass.inherits(RubyLint.global_constant('Integer'))
+RubyLint::VirtualMachine.global_scope.define_constant('Bignum') do |klass|
+  klass.inherits(RubyLint::VirtualMachine.global_constant('Integer'))
 
   klass.define_method('__class_init__')
 

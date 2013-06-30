@@ -20,7 +20,7 @@ module RubyLint
       # @see RubyLint::DefinitionBuilder::RubyArray#parents
       #
       def parents
-        return [RubyLint.global_constant('Hash')]
+        return [RubyLint::VirtualMachine.global_constant('Hash')]
       end
 
       ##

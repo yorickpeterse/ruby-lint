@@ -3,7 +3,7 @@
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint.global_scope.define_constant('Process') do |klass|
+RubyLint::VirtualMachine.global_scope.define_constant('Process') do |klass|
 
   klass.define_method('__module_init__')
 
@@ -178,7 +178,7 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint.global_scope.define_constant('Process::Constants') do |klass|
+RubyLint::VirtualMachine.global_scope.define_constant('Process::Constants') do |klass|
 
   klass.define_method('__module_init__')
 end
@@ -188,7 +188,7 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint.global_scope.define_constant('Process::FFI') do |klass|
+RubyLint::VirtualMachine.global_scope.define_constant('Process::FFI') do |klass|
 
   klass.define_method('__module_init__')
 
@@ -239,7 +239,7 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint.global_scope.define_constant('Process::GID') do |klass|
+RubyLint::VirtualMachine.global_scope.define_constant('Process::GID') do |klass|
 
   klass.define_method('__module_init__')
 
@@ -273,7 +273,7 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint.global_scope.define_constant('Process::RLIMIT_AS') do |klass|
+RubyLint::VirtualMachine.global_scope.define_constant('Process::RLIMIT_AS') do |klass|
 end
 
 ##
@@ -281,7 +281,7 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint.global_scope.define_constant('Process::RLIMIT_CORE') do |klass|
+RubyLint::VirtualMachine.global_scope.define_constant('Process::RLIMIT_CORE') do |klass|
 end
 
 ##
@@ -289,7 +289,7 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint.global_scope.define_constant('Process::RLIMIT_MEMLOCK') do |klass|
+RubyLint::VirtualMachine.global_scope.define_constant('Process::RLIMIT_MEMLOCK') do |klass|
 end
 
 ##
@@ -297,7 +297,7 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint.global_scope.define_constant('Process::RLIMIT_MSGQUEUE') do |klass|
+RubyLint::VirtualMachine.global_scope.define_constant('Process::RLIMIT_MSGQUEUE') do |klass|
 end
 
 ##
@@ -305,7 +305,7 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint.global_scope.define_constant('Process::RLIMIT_NICE') do |klass|
+RubyLint::VirtualMachine.global_scope.define_constant('Process::RLIMIT_NICE') do |klass|
 end
 
 ##
@@ -313,7 +313,7 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint.global_scope.define_constant('Process::RLIMIT_NOFILE') do |klass|
+RubyLint::VirtualMachine.global_scope.define_constant('Process::RLIMIT_NOFILE') do |klass|
 end
 
 ##
@@ -321,7 +321,7 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint.global_scope.define_constant('Process::RLIMIT_NPROC') do |klass|
+RubyLint::VirtualMachine.global_scope.define_constant('Process::RLIMIT_NPROC') do |klass|
 end
 
 ##
@@ -329,7 +329,7 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint.global_scope.define_constant('Process::RLIMIT_RSS') do |klass|
+RubyLint::VirtualMachine.global_scope.define_constant('Process::RLIMIT_RSS') do |klass|
 end
 
 ##
@@ -337,7 +337,7 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint.global_scope.define_constant('Process::RLIMIT_RTPRIO') do |klass|
+RubyLint::VirtualMachine.global_scope.define_constant('Process::RLIMIT_RTPRIO') do |klass|
 end
 
 ##
@@ -345,7 +345,7 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint.global_scope.define_constant('Process::RLIMIT_RTTIME') do |klass|
+RubyLint::VirtualMachine.global_scope.define_constant('Process::RLIMIT_RTTIME') do |klass|
 end
 
 ##
@@ -353,7 +353,7 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint.global_scope.define_constant('Process::RLIMIT_SIGPENDING') do |klass|
+RubyLint::VirtualMachine.global_scope.define_constant('Process::RLIMIT_SIGPENDING') do |klass|
 end
 
 ##
@@ -361,7 +361,7 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint.global_scope.define_constant('Process::RLIMIT_STACK') do |klass|
+RubyLint::VirtualMachine.global_scope.define_constant('Process::RLIMIT_STACK') do |klass|
 end
 
 ##
@@ -369,7 +369,7 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint.global_scope.define_constant('Process::RLIM_INFINITY') do |klass|
+RubyLint::VirtualMachine.global_scope.define_constant('Process::RLIM_INFINITY') do |klass|
 end
 
 ##
@@ -377,8 +377,8 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint.global_scope.define_constant('Process::Rlimit') do |klass|
-  klass.inherits(RubyLint.global_constant('Rubinius::FFI::Struct'))
+RubyLint::VirtualMachine.global_scope.define_constant('Process::Rlimit') do |klass|
+  klass.inherits(RubyLint::VirtualMachine.global_constant('Rubinius::FFI::Struct'))
 
   klass.define_method('__class_init__')
 end
@@ -388,8 +388,8 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint.global_scope.define_constant('Process::Rlimit::InlineArray') do |klass|
-  klass.inherits(RubyLint.global_constant('Object'))
+RubyLint::VirtualMachine.global_scope.define_constant('Process::Rlimit::InlineArray') do |klass|
+  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
 
   klass.define_method('__class_init__')
 
@@ -421,8 +421,8 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint.global_scope.define_constant('Process::Rlimit::InlineCharArray') do |klass|
-  klass.inherits(RubyLint.global_constant('Rubinius::FFI::Struct::InlineArray'))
+RubyLint::VirtualMachine.global_scope.define_constant('Process::Rlimit::InlineCharArray') do |klass|
+  klass.inherits(RubyLint::VirtualMachine.global_constant('Rubinius::FFI::Struct::InlineArray'))
 
   klass.define_method('__class_init__')
 
@@ -438,8 +438,8 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint.global_scope.define_constant('Process::Status') do |klass|
-  klass.inherits(RubyLint.global_constant('Object'))
+RubyLint::VirtualMachine.global_scope.define_constant('Process::Status') do |klass|
+  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
 
   klass.define_method('__class_init__')
 
@@ -490,7 +490,7 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint.global_scope.define_constant('Process::Sys') do |klass|
+RubyLint::VirtualMachine.global_scope.define_constant('Process::Sys') do |klass|
 
   klass.define_method('__module_init__')
 
@@ -556,7 +556,7 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint.global_scope.define_constant('Process::UID') do |klass|
+RubyLint::VirtualMachine.global_scope.define_constant('Process::UID') do |klass|
 
   klass.define_method('__module_init__')
 
@@ -590,7 +590,7 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint.global_scope.define_constant('Process::WNOHANG') do |klass|
+RubyLint::VirtualMachine.global_scope.define_constant('Process::WNOHANG') do |klass|
 end
 
 ##
@@ -598,5 +598,5 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint.global_scope.define_constant('Process::WUNTRACED') do |klass|
+RubyLint::VirtualMachine.global_scope.define_constant('Process::WUNTRACED') do |klass|
 end

@@ -3,8 +3,8 @@
 # Created:  2013-04-01 18:33:55 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint.global_scope.define_constant('Struct') do |klass|
-  klass.inherits(RubyLint.global_constant('Object'))
+RubyLint::VirtualMachine.global_scope.define_constant('Struct') do |klass|
+  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
 
   klass.define_method('__class_init__')
 
@@ -90,8 +90,8 @@ end
 # Created:  2013-04-01 18:33:55 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint.global_scope.define_constant('Struct::Group') do |klass|
-  klass.inherits(RubyLint.global_constant('Rubinius::FFI::Struct'))
+RubyLint::VirtualMachine.global_scope.define_constant('Struct::Group') do |klass|
+  klass.inherits(RubyLint::VirtualMachine.global_constant('Rubinius::FFI::Struct'))
 
   klass.define_method('__class_init__')
 
@@ -109,7 +109,7 @@ end
 # Created:  2013-04-01 18:33:55 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint.global_scope.define_constant('Struct::Group::FFI') do |klass|
+RubyLint::VirtualMachine.global_scope.define_constant('Struct::Group::FFI') do |klass|
 
   klass.define_method('__module_init__')
 
@@ -160,8 +160,8 @@ end
 # Created:  2013-04-01 18:33:55 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint.global_scope.define_constant('Struct::Group::InlineArray') do |klass|
-  klass.inherits(RubyLint.global_constant('Object'))
+RubyLint::VirtualMachine.global_scope.define_constant('Struct::Group::InlineArray') do |klass|
+  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
 
   klass.define_method('__class_init__')
 
@@ -193,8 +193,8 @@ end
 # Created:  2013-04-01 18:33:55 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint.global_scope.define_constant('Struct::Group::InlineCharArray') do |klass|
-  klass.inherits(RubyLint.global_constant('Rubinius::FFI::Struct::InlineArray'))
+RubyLint::VirtualMachine.global_scope.define_constant('Struct::Group::InlineCharArray') do |klass|
+  klass.inherits(RubyLint::VirtualMachine.global_constant('Rubinius::FFI::Struct::InlineArray'))
 
   klass.define_method('__class_init__')
 
@@ -210,8 +210,8 @@ end
 # Created:  2013-04-01 18:33:55 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint.global_scope.define_constant('Struct::Passwd') do |klass|
-  klass.inherits(RubyLint.global_constant('Rubinius::FFI::Struct'))
+RubyLint::VirtualMachine.global_scope.define_constant('Struct::Passwd') do |klass|
+  klass.inherits(RubyLint::VirtualMachine.global_constant('Rubinius::FFI::Struct'))
 
   klass.define_method('__class_init__')
 
@@ -235,8 +235,8 @@ end
 # Created:  2013-04-01 18:33:55 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint.global_scope.define_constant('Struct::Passwd::InlineArray') do |klass|
-  klass.inherits(RubyLint.global_constant('Object'))
+RubyLint::VirtualMachine.global_scope.define_constant('Struct::Passwd::InlineArray') do |klass|
+  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
 
   klass.define_method('__class_init__')
 
@@ -268,8 +268,8 @@ end
 # Created:  2013-04-01 18:33:55 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint.global_scope.define_constant('Struct::Passwd::InlineCharArray') do |klass|
-  klass.inherits(RubyLint.global_constant('Rubinius::FFI::Struct::InlineArray'))
+RubyLint::VirtualMachine.global_scope.define_constant('Struct::Passwd::InlineCharArray') do |klass|
+  klass.inherits(RubyLint::VirtualMachine.global_constant('Rubinius::FFI::Struct::InlineArray'))
 
   klass.define_method('__class_init__')
 
@@ -285,8 +285,8 @@ end
 # Created:  2013-04-01 18:33:55 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint.global_scope.define_constant('Struct::SortedElement') do |klass|
-  klass.inherits(RubyLint.global_constant('Object'))
+RubyLint::VirtualMachine.global_scope.define_constant('Struct::SortedElement') do |klass|
+  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
 
   klass.define_method('__class_init__')
 
@@ -309,8 +309,8 @@ end
 # Created:  2013-04-01 18:33:55 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint.global_scope.define_constant('Struct::Tms') do |klass|
-  klass.inherits(RubyLint.global_constant('Struct'))
+RubyLint::VirtualMachine.global_scope.define_constant('Struct::Tms') do |klass|
+  klass.inherits(RubyLint::VirtualMachine.global_constant('Struct'))
 
   klass.define_method('[]') do |method|
     method.define_rest_argument('args')
@@ -353,5 +353,5 @@ end
 # Created:  2013-04-01 18:33:55 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint.global_scope.define_constant('Struct::Tms::STRUCT_ATTRS') do |klass|
+RubyLint::VirtualMachine.global_scope.define_constant('Struct::Tms::STRUCT_ATTRS') do |klass|
 end

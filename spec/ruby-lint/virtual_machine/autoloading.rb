@@ -2,7 +2,7 @@ require File.expand_path('../../../helper', __FILE__)
 
 describe RubyLint::VirtualMachine do
   after do
-    RubyLint.global_scope.definitions[:const].delete('ERB')
+    RubyLint::VirtualMachine.global_scope.definitions[:const].delete('ERB')
   end
 
   should 'automatically load constants' do
@@ -10,7 +10,7 @@ describe RubyLint::VirtualMachine do
 
     definitions.lookup(:const, 'ERB').is_a?(ruby_object).should == true
 
-    RubyLint.global_scope.lookup(:const, 'ERB') \
+    RubyLint::VirtualMachine.global_scope.lookup(:const, 'ERB') \
       .is_a?(ruby_object) \
       .should == true
   end
@@ -23,7 +23,7 @@ describe RubyLint::VirtualMachine do
       .is_a?(ruby_object) \
       .should == true
 
-    RubyLint.global_scope.lookup(:const, 'Enumerable') \
+    RubyLint::VirtualMachine.global_scope.lookup(:const, 'Enumerable') \
       .lookup(:const, 'Enumerator') \
       .is_a?(ruby_object) \
       .should == true

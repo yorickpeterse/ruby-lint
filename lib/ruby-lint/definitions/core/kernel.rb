@@ -3,7 +3,7 @@
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint.global_scope.define_constant('Kernel') do |klass|
+RubyLint::VirtualMachine.global_scope.define_constant('Kernel') do |klass|
 
   klass.define_method('Array') do |method|
     method.define_argument('obj')
@@ -497,8 +497,8 @@ end
 # Methods defined in Kernel (both class and instance methods) are globally
 # available regardless of whether the code is evaluated in a class or instance
 # context.
-RubyLint.global_scope.copy(
-  RubyLint.global_constant('Kernel'),
+RubyLint::VirtualMachine.global_scope.copy(
+  RubyLint::VirtualMachine.global_constant('Kernel'),
   :method,
   :instance_method
 )

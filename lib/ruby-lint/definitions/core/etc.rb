@@ -3,7 +3,7 @@
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint.global_scope.define_constant('Etc') do |klass|
+RubyLint::VirtualMachine.global_scope.define_constant('Etc') do |klass|
 
   klass.define_method('__module_init__')
 
@@ -47,7 +47,7 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint.global_scope.define_constant('Etc::FFI') do |klass|
+RubyLint::VirtualMachine.global_scope.define_constant('Etc::FFI') do |klass|
 
   klass.define_method('__module_init__')
 
@@ -98,8 +98,8 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint.global_scope.define_constant('Etc::Group') do |klass|
-  klass.inherits(RubyLint.global_constant('Rubinius::FFI::Struct'))
+RubyLint::VirtualMachine.global_scope.define_constant('Etc::Group') do |klass|
+  klass.inherits(RubyLint::VirtualMachine.global_constant('Rubinius::FFI::Struct'))
 
   klass.define_method('__class_init__')
 
@@ -117,8 +117,8 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint.global_scope.define_constant('Etc::Passwd') do |klass|
-  klass.inherits(RubyLint.global_constant('Rubinius::FFI::Struct'))
+RubyLint::VirtualMachine.global_scope.define_constant('Etc::Passwd') do |klass|
+  klass.inherits(RubyLint::VirtualMachine.global_constant('Rubinius::FFI::Struct'))
 
   klass.define_method('__class_init__')
 

@@ -127,6 +127,42 @@ module RubyLint
     LOAD_PATH = [File.expand_path('../definitions/core', __FILE__)]
 
     ##
+    # @return [RubyLint::Definition::RubyObject]
+    #
+    def self.global_scope
+      return @global_scope ||= Definition::RubyObject.new(
+        :name => 'global',
+        :type => :global
+      )
+    end
+
+    ##
+    # Looks up the given constant in the global scope. If it does not exist
+    # this method will try to load it from one of the existing definitions.
+    #
+    # @param [String] name
+    # @return [RubyLint::Definition::RubyObject]
+    #
+    def self.global_constant(name)
+      found = global_scope.lookup(:const, name)
+
+      if !found and !constant_loader.loaded?(name)
+        constant_loader.load(name)
+
+        found = global_scope.lookup(:const, name)
+      end
+
+      return found
+    end
+
+    ##
+    # @return [RubyLint::ConstantLoader]
+    #
+    def self.constant_loader
+      return @constant_loader ||= ConstantLoader.new
+    end
+
+    ##
     # Called after a new instance of the virtual machine has been created.
     #
     def after_initialize
@@ -137,7 +173,6 @@ module RubyLint
       @value_stack      = NestedStack.new
       @variable_stack   = NestedStack.new
       @ignored_nodes    = []
-      @constant_loader  = ConstantLoader.new
 
       reset_method_type
     end
@@ -148,7 +183,7 @@ module RubyLint
     # @see #iterate
     #
     def run(ast)
-      @constant_loader.iterate(ast)
+      self.class.constant_loader.iterate(ast)
 
       iterate(ast)
 
@@ -538,11 +573,11 @@ module RubyLint
       definitions = Definition::RubyObject.new(
         :name          => 'root',
         :type          => :root,
-        :parents       => [RubyLint.global_constant('Kernel')],
+        :parents       => [RubyLint::VirtualMachine.global_constant('Kernel')],
         :instance_type => :instance
       )
 
-      definitions.merge(RubyLint.global_scope)
+      definitions.merge(RubyLint::VirtualMachine.global_scope)
 
       definitions.add(:keyword, 'self', definitions)
 

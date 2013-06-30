@@ -3,8 +3,8 @@
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint.global_scope.define_constant('Regexp') do |klass|
-  klass.inherits(RubyLint.global_constant('Object'))
+RubyLint::VirtualMachine.global_scope.define_constant('Regexp') do |klass|
+  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
 
   klass.define_method('__class_init__')
 
@@ -137,7 +137,7 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint.global_scope.define_constant('Regexp::CAPTURE_GROUP') do |klass|
+RubyLint::VirtualMachine.global_scope.define_constant('Regexp::CAPTURE_GROUP') do |klass|
 end
 
 ##
@@ -145,7 +145,7 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint.global_scope.define_constant('Regexp::DONT_CAPTURE_GROUP') do |klass|
+RubyLint::VirtualMachine.global_scope.define_constant('Regexp::DONT_CAPTURE_GROUP') do |klass|
 end
 
 ##
@@ -153,7 +153,7 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint.global_scope.define_constant('Regexp::ESCAPE_TABLE') do |klass|
+RubyLint::VirtualMachine.global_scope.define_constant('Regexp::ESCAPE_TABLE') do |klass|
 end
 
 ##
@@ -161,7 +161,7 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint.global_scope.define_constant('Regexp::EXTENDED') do |klass|
+RubyLint::VirtualMachine.global_scope.define_constant('Regexp::EXTENDED') do |klass|
 end
 
 ##
@@ -169,7 +169,7 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint.global_scope.define_constant('Regexp::FIXEDENCODING') do |klass|
+RubyLint::VirtualMachine.global_scope.define_constant('Regexp::FIXEDENCODING') do |klass|
 end
 
 ##
@@ -177,7 +177,7 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint.global_scope.define_constant('Regexp::IGNORECASE') do |klass|
+RubyLint::VirtualMachine.global_scope.define_constant('Regexp::IGNORECASE') do |klass|
 end
 
 ##
@@ -185,7 +185,7 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint.global_scope.define_constant('Regexp::KCODE_EUC') do |klass|
+RubyLint::VirtualMachine.global_scope.define_constant('Regexp::KCODE_EUC') do |klass|
 end
 
 ##
@@ -193,7 +193,7 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint.global_scope.define_constant('Regexp::KCODE_MASK') do |klass|
+RubyLint::VirtualMachine.global_scope.define_constant('Regexp::KCODE_MASK') do |klass|
 end
 
 ##
@@ -201,7 +201,7 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint.global_scope.define_constant('Regexp::KCODE_NONE') do |klass|
+RubyLint::VirtualMachine.global_scope.define_constant('Regexp::KCODE_NONE') do |klass|
 end
 
 ##
@@ -209,7 +209,7 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint.global_scope.define_constant('Regexp::KCODE_SJIS') do |klass|
+RubyLint::VirtualMachine.global_scope.define_constant('Regexp::KCODE_SJIS') do |klass|
 end
 
 ##
@@ -217,7 +217,7 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint.global_scope.define_constant('Regexp::KCODE_UTF8') do |klass|
+RubyLint::VirtualMachine.global_scope.define_constant('Regexp::KCODE_UTF8') do |klass|
 end
 
 ##
@@ -225,7 +225,7 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint.global_scope.define_constant('Regexp::MULTILINE') do |klass|
+RubyLint::VirtualMachine.global_scope.define_constant('Regexp::MULTILINE') do |klass|
 end
 
 ##
@@ -233,7 +233,7 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint.global_scope.define_constant('Regexp::NOENCODING') do |klass|
+RubyLint::VirtualMachine.global_scope.define_constant('Regexp::NOENCODING') do |klass|
 end
 
 ##
@@ -241,7 +241,7 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint.global_scope.define_constant('Regexp::OPTION_MASK') do |klass|
+RubyLint::VirtualMachine.global_scope.define_constant('Regexp::OPTION_MASK') do |klass|
 end
 
 ##
@@ -249,8 +249,8 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint.global_scope.define_constant('Regexp::SourceParser') do |klass|
-  klass.inherits(RubyLint.global_constant('Object'))
+RubyLint::VirtualMachine.global_scope.define_constant('Regexp::SourceParser') do |klass|
+  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
 
   klass.define_method('__class_init__')
 
@@ -295,8 +295,8 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint.global_scope.define_constant('Regexp::SourceParser::LookAheadGroupPart') do |klass|
-  klass.inherits(RubyLint.global_constant('Regexp::SourceParser::Part'))
+RubyLint::VirtualMachine.global_scope.define_constant('Regexp::SourceParser::LookAheadGroupPart') do |klass|
+  klass.inherits(RubyLint::VirtualMachine.global_constant('Regexp::SourceParser::Part'))
 
   klass.define_method('__class_init__')
 
@@ -308,7 +308,7 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint.global_scope.define_constant('Regexp::SourceParser::LookAheadGroupPart::OPTIONS_MAP') do |klass|
+RubyLint::VirtualMachine.global_scope.define_constant('Regexp::SourceParser::LookAheadGroupPart::OPTIONS_MAP') do |klass|
 end
 
 ##
@@ -316,8 +316,8 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint.global_scope.define_constant('Regexp::SourceParser::OptionsGroupPart') do |klass|
-  klass.inherits(RubyLint.global_constant('Regexp::SourceParser::Part'))
+RubyLint::VirtualMachine.global_scope.define_constant('Regexp::SourceParser::OptionsGroupPart') do |klass|
+  klass.inherits(RubyLint::VirtualMachine.global_constant('Regexp::SourceParser::Part'))
 
   klass.define_method('__class_init__')
 
@@ -339,7 +339,7 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint.global_scope.define_constant('Regexp::SourceParser::OptionsGroupPart::OPTIONS_MAP') do |klass|
+RubyLint::VirtualMachine.global_scope.define_constant('Regexp::SourceParser::OptionsGroupPart::OPTIONS_MAP') do |klass|
 end
 
 ##
@@ -347,8 +347,8 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint.global_scope.define_constant('Regexp::SourceParser::Part') do |klass|
-  klass.inherits(RubyLint.global_constant('Object'))
+RubyLint::VirtualMachine.global_scope.define_constant('Regexp::SourceParser::Part') do |klass|
+  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
 
   klass.define_method('__class_init__')
 
@@ -384,7 +384,7 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint.global_scope.define_constant('Regexp::SourceParser::Part::OPTIONS_MAP') do |klass|
+RubyLint::VirtualMachine.global_scope.define_constant('Regexp::SourceParser::Part::OPTIONS_MAP') do |klass|
 end
 
 ##
@@ -392,5 +392,5 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint.global_scope.define_constant('Regexp::SourceParser::PossibleOptions') do |klass|
+RubyLint::VirtualMachine.global_scope.define_constant('Regexp::SourceParser::PossibleOptions') do |klass|
 end

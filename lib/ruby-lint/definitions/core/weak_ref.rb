@@ -3,8 +3,8 @@
 # Created:  2013-04-01 18:33:55 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint.global_scope.define_constant('WeakRef') do |klass|
-  klass.inherits(RubyLint.global_constant('BasicObject'))
+RubyLint::VirtualMachine.global_scope.define_constant('WeakRef') do |klass|
+  klass.inherits(RubyLint::VirtualMachine.global_constant('BasicObject'))
 
   klass.define_method('__class_init__')
 
@@ -37,6 +37,6 @@ end
 # Created:  2013-04-01 18:33:55 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint.global_scope.define_constant('WeakRef::RefError') do |klass|
-  klass.inherits(RubyLint.global_constant('RuntimeError'))
+RubyLint::VirtualMachine.global_scope.define_constant('WeakRef::RefError') do |klass|
+  klass.inherits(RubyLint::VirtualMachine.global_constant('RuntimeError'))
 end

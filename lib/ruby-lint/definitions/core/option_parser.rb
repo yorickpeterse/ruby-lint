@@ -3,8 +3,8 @@
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint.global_scope.define_constant('OptionParser') do |klass|
-  klass.inherits(RubyLint.global_constant('Object'))
+RubyLint::VirtualMachine.global_scope.define_constant('OptionParser') do |klass|
+  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
 
   klass.define_method('__class_init__')
 
@@ -224,7 +224,7 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint.global_scope.define_constant('OptionParser::Acceptables') do |klass|
+RubyLint::VirtualMachine.global_scope.define_constant('OptionParser::Acceptables') do |klass|
 
   klass.define_method('__module_init__')
 end
@@ -234,8 +234,8 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint.global_scope.define_constant('OptionParser::AmbiguousArgument') do |klass|
-  klass.inherits(RubyLint.global_constant('OptionParser::InvalidArgument'))
+RubyLint::VirtualMachine.global_scope.define_constant('OptionParser::AmbiguousArgument') do |klass|
+  klass.inherits(RubyLint::VirtualMachine.global_constant('OptionParser::InvalidArgument'))
 
   klass.define_method('__class_init__')
 end
@@ -245,7 +245,7 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint.global_scope.define_constant('OptionParser::AmbiguousArgument::Reason') do |klass|
+RubyLint::VirtualMachine.global_scope.define_constant('OptionParser::AmbiguousArgument::Reason') do |klass|
 end
 
 ##
@@ -253,8 +253,8 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint.global_scope.define_constant('OptionParser::AmbiguousOption') do |klass|
-  klass.inherits(RubyLint.global_constant('OptionParser::ParseError'))
+RubyLint::VirtualMachine.global_scope.define_constant('OptionParser::AmbiguousOption') do |klass|
+  klass.inherits(RubyLint::VirtualMachine.global_constant('OptionParser::ParseError'))
 
   klass.define_method('__class_init__')
 end
@@ -264,7 +264,7 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint.global_scope.define_constant('OptionParser::AmbiguousOption::Reason') do |klass|
+RubyLint::VirtualMachine.global_scope.define_constant('OptionParser::AmbiguousOption::Reason') do |klass|
 end
 
 ##
@@ -272,7 +272,7 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint.global_scope.define_constant('OptionParser::Arguable') do |klass|
+RubyLint::VirtualMachine.global_scope.define_constant('OptionParser::Arguable') do |klass|
 
   klass.define_method('__module_init__')
 
@@ -304,7 +304,7 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint.global_scope.define_constant('OptionParser::ArgumentStyle') do |klass|
+RubyLint::VirtualMachine.global_scope.define_constant('OptionParser::ArgumentStyle') do |klass|
 end
 
 ##
@@ -312,8 +312,8 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint.global_scope.define_constant('OptionParser::CompletingHash') do |klass|
-  klass.inherits(RubyLint.global_constant('Hash'))
+RubyLint::VirtualMachine.global_scope.define_constant('OptionParser::CompletingHash') do |klass|
+  klass.inherits(RubyLint::VirtualMachine.global_constant('Hash'))
 
   klass.define_method('__class_init__')
 
@@ -327,8 +327,8 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint.global_scope.define_constant('OptionParser::CompletingHash::Bucket') do |klass|
-  klass.inherits(RubyLint.global_constant('Object'))
+RubyLint::VirtualMachine.global_scope.define_constant('OptionParser::CompletingHash::Bucket') do |klass|
+  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
 
   klass.define_method('__class_init__')
 
@@ -380,8 +380,8 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint.global_scope.define_constant('OptionParser::CompletingHash::Entries') do |klass|
-  klass.inherits(RubyLint.global_constant('Object'))
+RubyLint::VirtualMachine.global_scope.define_constant('OptionParser::CompletingHash::Entries') do |klass|
+  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
 
   klass.define_method('[]') do |method|
     method.define_rest_argument('args')
@@ -511,8 +511,8 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint.global_scope.define_constant('OptionParser::CompletingHash::Iterator') do |klass|
-  klass.inherits(RubyLint.global_constant('Object'))
+RubyLint::VirtualMachine.global_scope.define_constant('OptionParser::CompletingHash::Iterator') do |klass|
+  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
 
   klass.define_method('__class_init__')
 
@@ -530,7 +530,7 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint.global_scope.define_constant('OptionParser::CompletingHash::MAX_ENTRIES') do |klass|
+RubyLint::VirtualMachine.global_scope.define_constant('OptionParser::CompletingHash::MAX_ENTRIES') do |klass|
 end
 
 ##
@@ -538,7 +538,7 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint.global_scope.define_constant('OptionParser::CompletingHash::MIN_SIZE') do |klass|
+RubyLint::VirtualMachine.global_scope.define_constant('OptionParser::CompletingHash::MIN_SIZE') do |klass|
 end
 
 ##
@@ -546,8 +546,8 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint.global_scope.define_constant('OptionParser::CompletingHash::SortedElement') do |klass|
-  klass.inherits(RubyLint.global_constant('Object'))
+RubyLint::VirtualMachine.global_scope.define_constant('OptionParser::CompletingHash::SortedElement') do |klass|
+  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
 
   klass.define_method('__class_init__')
 
@@ -570,8 +570,8 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint.global_scope.define_constant('OptionParser::CompletingHash::State') do |klass|
-  klass.inherits(RubyLint.global_constant('Object'))
+RubyLint::VirtualMachine.global_scope.define_constant('OptionParser::CompletingHash::State') do |klass|
+  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
 
   klass.define_method('__class_init__')
 
@@ -606,7 +606,7 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint.global_scope.define_constant('OptionParser::Completion') do |klass|
+RubyLint::VirtualMachine.global_scope.define_constant('OptionParser::Completion') do |klass|
 
   klass.define_method('__module_init__')
 
@@ -628,7 +628,7 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint.global_scope.define_constant('OptionParser::DecimalInteger') do |klass|
+RubyLint::VirtualMachine.global_scope.define_constant('OptionParser::DecimalInteger') do |klass|
 end
 
 ##
@@ -636,7 +636,7 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint.global_scope.define_constant('OptionParser::DecimalNumeric') do |klass|
+RubyLint::VirtualMachine.global_scope.define_constant('OptionParser::DecimalNumeric') do |klass|
 end
 
 ##
@@ -644,7 +644,7 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint.global_scope.define_constant('OptionParser::DefaultList') do |klass|
+RubyLint::VirtualMachine.global_scope.define_constant('OptionParser::DefaultList') do |klass|
 end
 
 ##
@@ -652,8 +652,8 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint.global_scope.define_constant('OptionParser::InvalidArgument') do |klass|
-  klass.inherits(RubyLint.global_constant('OptionParser::ParseError'))
+RubyLint::VirtualMachine.global_scope.define_constant('OptionParser::InvalidArgument') do |klass|
+  klass.inherits(RubyLint::VirtualMachine.global_constant('OptionParser::ParseError'))
 
   klass.define_method('__class_init__')
 end
@@ -663,7 +663,7 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint.global_scope.define_constant('OptionParser::InvalidArgument::Reason') do |klass|
+RubyLint::VirtualMachine.global_scope.define_constant('OptionParser::InvalidArgument::Reason') do |klass|
 end
 
 ##
@@ -671,8 +671,8 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint.global_scope.define_constant('OptionParser::InvalidOption') do |klass|
-  klass.inherits(RubyLint.global_constant('OptionParser::ParseError'))
+RubyLint::VirtualMachine.global_scope.define_constant('OptionParser::InvalidOption') do |klass|
+  klass.inherits(RubyLint::VirtualMachine.global_constant('OptionParser::ParseError'))
 
   klass.define_method('__class_init__')
 end
@@ -682,7 +682,7 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint.global_scope.define_constant('OptionParser::InvalidOption::Reason') do |klass|
+RubyLint::VirtualMachine.global_scope.define_constant('OptionParser::InvalidOption::Reason') do |klass|
 end
 
 ##
@@ -690,7 +690,7 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint.global_scope.define_constant('OptionParser::LastModified') do |klass|
+RubyLint::VirtualMachine.global_scope.define_constant('OptionParser::LastModified') do |klass|
 end
 
 ##
@@ -698,8 +698,8 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint.global_scope.define_constant('OptionParser::List') do |klass|
-  klass.inherits(RubyLint.global_constant('Object'))
+RubyLint::VirtualMachine.global_scope.define_constant('OptionParser::List') do |klass|
+  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
 
   klass.define_method('__class_init__')
 
@@ -761,8 +761,8 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint.global_scope.define_constant('OptionParser::MissingArgument') do |klass|
-  klass.inherits(RubyLint.global_constant('OptionParser::ParseError'))
+RubyLint::VirtualMachine.global_scope.define_constant('OptionParser::MissingArgument') do |klass|
+  klass.inherits(RubyLint::VirtualMachine.global_constant('OptionParser::ParseError'))
 
   klass.define_method('__class_init__')
 end
@@ -772,7 +772,7 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint.global_scope.define_constant('OptionParser::MissingArgument::Reason') do |klass|
+RubyLint::VirtualMachine.global_scope.define_constant('OptionParser::MissingArgument::Reason') do |klass|
 end
 
 ##
@@ -780,7 +780,7 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint.global_scope.define_constant('OptionParser::NO_ARGUMENT') do |klass|
+RubyLint::VirtualMachine.global_scope.define_constant('OptionParser::NO_ARGUMENT') do |klass|
 end
 
 ##
@@ -788,8 +788,8 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint.global_scope.define_constant('OptionParser::NeedlessArgument') do |klass|
-  klass.inherits(RubyLint.global_constant('OptionParser::ParseError'))
+RubyLint::VirtualMachine.global_scope.define_constant('OptionParser::NeedlessArgument') do |klass|
+  klass.inherits(RubyLint::VirtualMachine.global_constant('OptionParser::ParseError'))
 
   klass.define_method('__class_init__')
 end
@@ -799,7 +799,7 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint.global_scope.define_constant('OptionParser::NeedlessArgument::Reason') do |klass|
+RubyLint::VirtualMachine.global_scope.define_constant('OptionParser::NeedlessArgument::Reason') do |klass|
 end
 
 ##
@@ -807,7 +807,7 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint.global_scope.define_constant('OptionParser::NoArgument') do |klass|
+RubyLint::VirtualMachine.global_scope.define_constant('OptionParser::NoArgument') do |klass|
 end
 
 ##
@@ -815,7 +815,7 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint.global_scope.define_constant('OptionParser::OPTIONAL_ARGUMENT') do |klass|
+RubyLint::VirtualMachine.global_scope.define_constant('OptionParser::OPTIONAL_ARGUMENT') do |klass|
 end
 
 ##
@@ -823,7 +823,7 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint.global_scope.define_constant('OptionParser::OctalInteger') do |klass|
+RubyLint::VirtualMachine.global_scope.define_constant('OptionParser::OctalInteger') do |klass|
 end
 
 ##
@@ -831,7 +831,7 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint.global_scope.define_constant('OptionParser::Officious') do |klass|
+RubyLint::VirtualMachine.global_scope.define_constant('OptionParser::Officious') do |klass|
 end
 
 ##
@@ -839,8 +839,8 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint.global_scope.define_constant('OptionParser::OptionMap') do |klass|
-  klass.inherits(RubyLint.global_constant('Hash'))
+RubyLint::VirtualMachine.global_scope.define_constant('OptionParser::OptionMap') do |klass|
+  klass.inherits(RubyLint::VirtualMachine.global_constant('Hash'))
 
   klass.define_method('__class_init__')
 end
@@ -850,8 +850,8 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint.global_scope.define_constant('OptionParser::OptionMap::Bucket') do |klass|
-  klass.inherits(RubyLint.global_constant('Object'))
+RubyLint::VirtualMachine.global_scope.define_constant('OptionParser::OptionMap::Bucket') do |klass|
+  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
 
   klass.define_method('__class_init__')
 
@@ -903,8 +903,8 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint.global_scope.define_constant('OptionParser::OptionMap::Entries') do |klass|
-  klass.inherits(RubyLint.global_constant('Object'))
+RubyLint::VirtualMachine.global_scope.define_constant('OptionParser::OptionMap::Entries') do |klass|
+  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
 
   klass.define_method('[]') do |method|
     method.define_rest_argument('args')
@@ -1034,8 +1034,8 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint.global_scope.define_constant('OptionParser::OptionMap::Iterator') do |klass|
-  klass.inherits(RubyLint.global_constant('Object'))
+RubyLint::VirtualMachine.global_scope.define_constant('OptionParser::OptionMap::Iterator') do |klass|
+  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
 
   klass.define_method('__class_init__')
 
@@ -1053,7 +1053,7 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint.global_scope.define_constant('OptionParser::OptionMap::MAX_ENTRIES') do |klass|
+RubyLint::VirtualMachine.global_scope.define_constant('OptionParser::OptionMap::MAX_ENTRIES') do |klass|
 end
 
 ##
@@ -1061,7 +1061,7 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint.global_scope.define_constant('OptionParser::OptionMap::MIN_SIZE') do |klass|
+RubyLint::VirtualMachine.global_scope.define_constant('OptionParser::OptionMap::MIN_SIZE') do |klass|
 end
 
 ##
@@ -1069,8 +1069,8 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint.global_scope.define_constant('OptionParser::OptionMap::SortedElement') do |klass|
-  klass.inherits(RubyLint.global_constant('Object'))
+RubyLint::VirtualMachine.global_scope.define_constant('OptionParser::OptionMap::SortedElement') do |klass|
+  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
 
   klass.define_method('__class_init__')
 
@@ -1093,8 +1093,8 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint.global_scope.define_constant('OptionParser::OptionMap::State') do |klass|
-  klass.inherits(RubyLint.global_constant('Object'))
+RubyLint::VirtualMachine.global_scope.define_constant('OptionParser::OptionMap::State') do |klass|
+  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
 
   klass.define_method('__class_init__')
 
@@ -1129,7 +1129,7 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint.global_scope.define_constant('OptionParser::OptionalArgument') do |klass|
+RubyLint::VirtualMachine.global_scope.define_constant('OptionParser::OptionalArgument') do |klass|
 end
 
 ##
@@ -1137,8 +1137,8 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint.global_scope.define_constant('OptionParser::ParseError') do |klass|
-  klass.inherits(RubyLint.global_constant('RuntimeError'))
+RubyLint::VirtualMachine.global_scope.define_constant('OptionParser::ParseError') do |klass|
+  klass.inherits(RubyLint::VirtualMachine.global_constant('RuntimeError'))
 
   klass.define_method('__class_init__')
 
@@ -1177,7 +1177,7 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint.global_scope.define_constant('OptionParser::ParseError::Reason') do |klass|
+RubyLint::VirtualMachine.global_scope.define_constant('OptionParser::ParseError::Reason') do |klass|
 end
 
 ##
@@ -1185,7 +1185,7 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint.global_scope.define_constant('OptionParser::RCSID') do |klass|
+RubyLint::VirtualMachine.global_scope.define_constant('OptionParser::RCSID') do |klass|
 end
 
 ##
@@ -1193,7 +1193,7 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint.global_scope.define_constant('OptionParser::REQUIRED_ARGUMENT') do |klass|
+RubyLint::VirtualMachine.global_scope.define_constant('OptionParser::REQUIRED_ARGUMENT') do |klass|
 end
 
 ##
@@ -1201,7 +1201,7 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint.global_scope.define_constant('OptionParser::Release') do |klass|
+RubyLint::VirtualMachine.global_scope.define_constant('OptionParser::Release') do |klass|
 end
 
 ##
@@ -1209,7 +1209,7 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint.global_scope.define_constant('OptionParser::RequiredArgument') do |klass|
+RubyLint::VirtualMachine.global_scope.define_constant('OptionParser::RequiredArgument') do |klass|
 end
 
 ##
@@ -1217,7 +1217,7 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint.global_scope.define_constant('OptionParser::SPLAT_PROC') do |klass|
+RubyLint::VirtualMachine.global_scope.define_constant('OptionParser::SPLAT_PROC') do |klass|
 end
 
 ##
@@ -1225,8 +1225,8 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint.global_scope.define_constant('OptionParser::Switch') do |klass|
-  klass.inherits(RubyLint.global_constant('Object'))
+RubyLint::VirtualMachine.global_scope.define_constant('OptionParser::Switch') do |klass|
+  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
 
   klass.define_method('__class_init__')
 
@@ -1279,8 +1279,8 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint.global_scope.define_constant('OptionParser::Switch::NoArgument') do |klass|
-  klass.inherits(RubyLint.global_constant('OptionParser::Switch'))
+RubyLint::VirtualMachine.global_scope.define_constant('OptionParser::Switch::NoArgument') do |klass|
+  klass.inherits(RubyLint::VirtualMachine.global_constant('OptionParser::Switch'))
 
   klass.define_method('__class_init__')
 
@@ -1301,8 +1301,8 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint.global_scope.define_constant('OptionParser::Switch::OptionalArgument') do |klass|
-  klass.inherits(RubyLint.global_constant('OptionParser::Switch'))
+RubyLint::VirtualMachine.global_scope.define_constant('OptionParser::Switch::OptionalArgument') do |klass|
+  klass.inherits(RubyLint::VirtualMachine.global_constant('OptionParser::Switch'))
 
   klass.define_method('__class_init__')
 
@@ -1318,8 +1318,8 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint.global_scope.define_constant('OptionParser::Switch::PlacedArgument') do |klass|
-  klass.inherits(RubyLint.global_constant('OptionParser::Switch'))
+RubyLint::VirtualMachine.global_scope.define_constant('OptionParser::Switch::PlacedArgument') do |klass|
+  klass.inherits(RubyLint::VirtualMachine.global_constant('OptionParser::Switch'))
 
   klass.define_method('__class_init__')
 
@@ -1335,8 +1335,8 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint.global_scope.define_constant('OptionParser::Switch::RequiredArgument') do |klass|
-  klass.inherits(RubyLint.global_constant('OptionParser::Switch'))
+RubyLint::VirtualMachine.global_scope.define_constant('OptionParser::Switch::RequiredArgument') do |klass|
+  klass.inherits(RubyLint::VirtualMachine.global_constant('OptionParser::Switch'))
 
   klass.define_method('__class_init__')
 
@@ -1351,5 +1351,5 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint.global_scope.define_constant('OptionParser::Version') do |klass|
+RubyLint::VirtualMachine.global_scope.define_constant('OptionParser::Version') do |klass|
 end
