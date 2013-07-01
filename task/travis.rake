@@ -4,4 +4,5 @@ task :travis do
   ENV['COVERAGE']  = '1'
 
   Rake::Task['test'].invoke
+  Rake::Task['cop'].invoke
 end
