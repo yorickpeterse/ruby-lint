@@ -47,3 +47,13 @@ FavorSprintf:
 # Doesn't take load order into account so ignore it (for now).
 Documentation:
   Enabled: false
+
+EndAlignment:
+  Enabled: false
+
+# This doesn't do well with my line-wrapping style.
+AlignParameters:
+  Enabled: false
+
+LineContinuation:
+  Enabled: false

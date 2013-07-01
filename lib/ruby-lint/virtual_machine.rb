@@ -234,8 +234,8 @@ module RubyLint
     end
 
     ASSIGNMENT_TYPES.each do |callback, type|
-      alias :"on_#{callback}" :on_assign
-      alias :"after_#{callback}" :after_assign
+      alias_method :"on_#{callback}", :on_assign
+      alias_method :"after_#{callback}", :after_assign
     end
 
     ##
@@ -613,8 +613,8 @@ module RubyLint
       end
     end
 
-    alias on_defs on_def
-    alias after_defs after_def
+    alias_method :on_defs, :on_def
+    alias_method :after_defs, :after_def
 
     ##
     # Processes a method call. If a certain method call has its own dedicated
@@ -695,8 +695,8 @@ module RubyLint
       end
     end
 
-    alias on_send_extend on_send_include
-    alias after_send_extend after_send_include
+    alias_method :on_send_extend, :on_send_include
+    alias_method :after_send_extend, :after_send_include
 
     ##
     # @param [RubyLint::AST::Node] node

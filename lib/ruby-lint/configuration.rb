@@ -120,7 +120,8 @@ module RubyLint
     ##
     # Returns the presenter to use.
     #
-    # @param [String] name The friendly name of the presenter as set by the user.
+    # @param [String] name The friendly name of the presenter as set by the
+    #  user.
     # @return [RubyLint::Presenter]
     # @raise ArgumentError Raised when an invalid presenter is specified.
     #
