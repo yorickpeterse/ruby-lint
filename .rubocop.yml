@@ -1,0 +1,49 @@
+---
+AllCops:
+  Excludes:
+    - lib/ruby-lint/definitions/*
+
+
+# The Ruby 1.9 Hash syntax is meh. It doesn't work for String based keys and
+# you can't align the keys/values nicely.
+HashSyntax:
+  Enabled: false
+
+LineLength:
+  Max: 79
+
+MethodLength:
+  Max: 30
+
+# Doesn't make code much more readable when dealing with short Hashes. Big ones
+# are wrapped onto multiple lines anyway.
+SpaceInsideHashLiteralBraces:
+  Enabled: false
+
+# The usage of and/or is fine in most cases except when for example trying to
+# return a boolean value based on multiple conditions (e.g. `return foo &&
+# bar`).
+AndOr:
+  Enabled: false
+
+# This doesn't take line length into account and as such is more often than not
+# flat out wrong.
+IfUnlessModifier:
+  Enabled: false
+
+# Results in a false positive when using an instance variable that doesn't
+# match the method name.
+TrivialAccessors:
+  Enabled: false
+
+# I have no idea why this would even be required. The encoding comment is only
+# needed if you're actually dealing with UTF-8 source code.
+Encoding:
+  Enabled: false
+
+FavorSprintf:
+  Enabled: false
+
+# Doesn't take load order into account so ignore it (for now).
+Documentation:
+  Enabled: false

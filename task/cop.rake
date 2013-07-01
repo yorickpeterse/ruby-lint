@@ -1,0 +1,4 @@
+desc 'Runs rubocop on lib/'
+task :cop do
+  sh 'rubocop lib/; true'
+end
