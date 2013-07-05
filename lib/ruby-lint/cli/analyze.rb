@@ -112,28 +112,13 @@ Examples:
 
     files         = extract_files(args)
     configuration = RubyLint::Configuration.load_from_file
-    parser        = RubyLint::Parser.new
-    report        = RubyLint::Report.new(configuration.report_levels)
-    presenter     = configuration.presenter.new
 
     option_mapping.each do |key, setter|
       configuration.send(setter, opts[key]) if opts[key]
     end
 
-    files.each do |file|
-      code = File.read(file)
-      ast  = parser.parse(code, file)
-      vm   = RubyLint::VirtualMachine.new
-
-      vm.run(ast)
-
-      configuration.analysis_classes.each do |const|
-        instance = const.new(:vm => vm, :report => report)
-        instance.iterate(ast)
-      end
-    end
-
-    output = presenter.present(report)
+    runner = RubyLint::Runner.new(configuration)
+    output = runner.analyze(files)
 
     output_destination.puts output unless output.empty?
   end # run do |opts, args|

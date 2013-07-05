@@ -44,4 +44,5 @@ require_relative 'ruby-lint/presenter/json'
 
 require_relative 'ruby-lint/configuration'
 require_relative 'ruby-lint/default_names'
+require_relative 'ruby-lint/runner'
 require_relative 'ruby-lint/version'

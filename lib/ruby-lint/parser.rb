@@ -3,12 +3,24 @@ module RubyLint
   # {RubyLint::Parser} provides a small wrapper around the Parser Gem and
   # allows for the use of a custom AST builder.
   #
+  # @!attribute [r] internal_parser
+  #  @return [Parser::Parser]
+  #
   class Parser
-    def initialize
-      builder = AST::Builder.new
-      @parser = ::Parser::CurrentRuby.new(builder)
+    attr_reader :internal_parser
 
-      @parser.diagnostics.all_errors_are_fatal = true
+    def initialize
+      builder          = AST::Builder.new
+      @internal_parser = ::Parser::CurrentRuby.new(builder)
+    end
+
+    ##
+    # Registers the consumer with the internal diagnostics handler.
+    #
+    # @param [#call] consumer
+    #
+    def consumer=(consumer)
+      internal_parser.diagnostics.consumer = consumer
     end
 
     ##
@@ -22,7 +34,9 @@ module RubyLint
     def parse(code, file = '(ruby-lint)', line = 1)
       buffer        = ::Parser::Source::Buffer.new(file, line)
       buffer.source = code
-      ast           = @parser.parse(buffer)
+      ast           = internal_parser.parse(buffer)
+
+      internal_parser.reset
 
       return AST::Node.new(:root, [ast])
     end
