@@ -29,10 +29,5 @@ Gem::Specification.new do |s|
   s.add_development_dependency 'coveralls'
   s.add_development_dependency 'rubocop', ['>= 0.9.0']
   s.add_development_dependency 'json'
-
-  # NOTE: This is to prevent Travis CI from soiling its pants. It's not a
-  # really nice solution but it seems to be the only way (at least for now).
-  if RUBY_PLATFORM != 'java'
-    s.add_development_dependency 'redcarpet', ['>= 2.1.1']
-  end
+  s.add_development_dependency 'kramdown'
 end

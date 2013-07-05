@@ -1,6 +1,6 @@
 ./lib/ruby-lint/**/*.rb ./lib/ruby-lint.rb
 -m markdown
--M redcarpet
+-M kramdown
 -o ./doc/build
 -r ./README.md
 --private
