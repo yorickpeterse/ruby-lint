@@ -52,7 +52,16 @@ module RubyLint
       source.constants.each do |name|
         next unless source.const_defined?(name)
 
-        constant  = source.const_get(name)
+        # FIXME: When using autoload/Rails in some cases this will trigger a
+        # load error. I have no idea why.
+        begin
+          constant = source.const_get(name)
+        rescue LoadError => error
+          warn error.message
+
+          next
+        end
+
         name      = name.to_s
         full_name = include_source ? "#{source_name}::#{name}" : name
 
