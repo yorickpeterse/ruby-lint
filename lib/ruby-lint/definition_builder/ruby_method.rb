@@ -61,7 +61,8 @@ module RubyLint
           :name          => method_name,
           :parents       => parents,
           :type          => type,
-          :instance_type => :instance
+          :instance_type => :instance,
+          :visibility    => options[:visibility]
         )
       end
 

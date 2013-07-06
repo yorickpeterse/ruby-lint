@@ -127,6 +127,13 @@ module RubyLint
     LOAD_PATH = [File.expand_path('../definitions/core', __FILE__)]
 
     ##
+    # The available method visibilities.
+    #
+    # @return [Array]
+    #
+    VISIBILITIES = [:public, :protected, :private].freeze
+
+    ##
     # @return [RubyLint::Definition::RubyObject]
     #
     def self.global_scope
@@ -173,6 +180,7 @@ module RubyLint
       @value_stack      = NestedStack.new
       @variable_stack   = NestedStack.new
       @ignored_nodes    = []
+      @visibility       = :public
 
       reset_method_type
     end
@@ -546,8 +554,9 @@ module RubyLint
       builder = DefinitionBuilder::RubyMethod.new(
         node,
         current_scope,
-        :type     => @method_type,
-        :receiver => receiver
+        :type       => @method_type,
+        :receiver   => receiver,
+        :visibility => @visibility
       )
 
       definition = builder.build
@@ -697,6 +706,12 @@ module RubyLint
 
     alias_method :on_send_extend, :on_send_include
     alias_method :after_send_extend, :after_send_include
+
+    VISIBILITIES.each do |vis|
+      define_method("on_send_#{vis}") do |node|
+        @visibility = vis
+      end
+    end
 
     ##
     # @param [RubyLint::AST::Node] node
