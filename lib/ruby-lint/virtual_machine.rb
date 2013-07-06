@@ -154,7 +154,7 @@ module RubyLint
       found = global_scope.lookup(:const, name)
 
       if !found and !constant_loader.loaded?(name)
-        constant_loader.load(name)
+        constant_loader.load_constant(name)
 
         found = global_scope.lookup(:const, name)
       end

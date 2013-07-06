@@ -21,7 +21,8 @@ module RubyLint
     # @return [Array]
     #
     LOAD_PATH = [
-      File.expand_path('../definitions/core', __FILE__)
+      File.expand_path('../definitions/core', __FILE__),
+      File.expand_path('../definitions/rails', __FILE__)
     ]
 
     ##
@@ -35,7 +36,7 @@ module RubyLint
     # @param [RubyLint::Node] node
     #
     def on_const(node)
-      load(constant_segments(node).first)
+      load_constant(constant_segments(node).first)
     end
 
     ##
@@ -53,7 +54,7 @@ module RubyLint
     #
     # @param [String] constant
     #
-    def load(constant)
+    def load_constant(constant)
       return if loaded?(constant)
 
       filename = constant.snake_case + '.rb'
