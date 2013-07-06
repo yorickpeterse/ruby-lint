@@ -61,15 +61,15 @@ module RubyLint
           superclass        = nil
 
           if current_inspector.constant \
-          and current_inspector.constant.superclass
+          and current_inspector.constant.respond_to?(:superclass)
             superclass = current_inspector.constant.superclass
           end
 
           variables = {
-            :methods    => method_information(inspected_methods),
-            :const      => current_inspector.constant,
-            :const_name => current_inspector.constant_name,
-            :superclass => superclass
+            :methods       => method_information(inspected_methods),
+            :constant      => current_inspector.constant,
+            :constant_name => current_inspector.constant_name,
+            :superclass    => superclass
           }
 
           scope = Template::Scope.new(variables)

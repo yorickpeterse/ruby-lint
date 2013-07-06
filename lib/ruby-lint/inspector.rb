@@ -12,7 +12,7 @@ module RubyLint
   #  @return [String]
   #
   class Inspector
-    attr_reader :const, :const_name
+    attr_reader :constant, :constant_name
 
     ##
     # @param [String|Class] constant
