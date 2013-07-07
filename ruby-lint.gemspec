@@ -29,4 +29,5 @@ Gem::Specification.new do |s|
   s.add_development_dependency 'coveralls'
   s.add_development_dependency 'json'
   s.add_development_dependency 'kramdown'
+  s.add_development_dependency 'ruby-prof'
 end
