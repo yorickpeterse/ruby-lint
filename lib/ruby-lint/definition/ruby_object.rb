@@ -235,16 +235,13 @@ module RubyLint
       end
 
       ##
-      # Returns the definition for the given constant path. If one of the
-      # segments does not exist an error is raised instead.
+      # Returns the definition for the given constant path.
       #
       # @example
       #  example.lookup_constant_path('A::B') # => #<RubyLint::Definition...>
       #
       # @param [String|Array<String>] path
       # @return [RubyLint::Definition::RubyObject]
-      # @raise [ArgumentError] Raised when an invalid constant path is
-      #  specified.
       #
       def lookup_constant_path(path)
         constant = self
@@ -253,13 +250,7 @@ module RubyLint
         path.each do |segment|
           found = constant.lookup(:const, segment)
 
-          if found
-            constant = found
-          else
-            name = path.join(PATH_SEPARATOR)
-
-            raise ArgumentError, "Invalid constant path: #{name}"
-          end
+          found ? constant = found : return
         end
 
         return constant

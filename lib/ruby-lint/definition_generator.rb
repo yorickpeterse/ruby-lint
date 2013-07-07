@@ -1,6 +1,7 @@
 require 'fileutils'
 require 'erb'
 require_relative 'template/scope'
+require_relative 'generated_constant'
 
 module RubyLint
   ##
@@ -17,10 +18,13 @@ module RubyLint
   #
   # @!attribute [r] directory
   #  @return [String] The directory to store the generated definitions in.
+  #
   # @!attribute [r] options
   #  @return [Hash]
-  # @!attribute [String] template
-  #  @return [String] The filepath to the ERB template to use.
+  #
+  # @!attribute [r] template
+  #  @return [String] The ERB template to use.
+  #
   # @!attribute [r] inspector
   #  @return [RubyLint::Inspector]
   #
@@ -48,8 +52,8 @@ module RubyLint
       constants = inspector.inspect_constants.sort - options[:ignore]
 
       group_constants(constants).each do |root, names|
-        filepath    = File.join(directory, "#{root.snake_case}.rb")
-        definitions = []
+        filepath  = File.join(directory, "#{root.snake_case}.rb")
+        constants = []
 
         if File.file?(filepath) and !options[:overwrite]
           next
@@ -60,26 +64,24 @@ module RubyLint
           inspected_methods = inspect_methods(current_inspector)
           superclass        = nil
 
-          if current_inspector.constant \
-          and current_inspector.constant.respond_to?(:superclass)
-            superclass = current_inspector.constant.superclass
+          if current_inspector.inspect_superclass
+            superclass = current_inspector.inspect_superclass.to_s
           end
 
-          variables = {
-            :methods       => method_information(inspected_methods),
-            :constant      => current_inspector.constant,
-            :constant_name => current_inspector.constant_name,
-            :superclass    => superclass
-          }
+          constant = GeneratedConstant.new(
+            :name       => current_inspector.constant_name,
+            :constant   => current_inspector.constant,
+            :methods    => method_information(inspected_methods),
+            :superclass => superclass
+          )
 
-          scope = Template::Scope.new(variables)
-          erb   = ERB.new(template, nil, '-').result(scope.get_binding)
-
-          definitions << erb
+          constants << constant
         end
 
+        erb = render_template(template, :constants => constants)
+
         File.open(filepath, 'w') do |handle|
-          handle.write(definitions.join("\n").strip)
+          handle.write(erb)
         end
       end
     end
@@ -137,7 +139,7 @@ module RubyLint
           args = []
 
           method.parameters.each do |arg|
-            args << {:method => arg_mapping[arg[0]], :name => arg[1]}
+            args << {:type => arg_mapping[arg[0]], :name => arg[1]}
           end
 
           info[type][method.name] = args
@@ -157,6 +159,23 @@ module RubyLint
         :rest  => :rest_argument,
         :block => :block_argument
       }
+    end
+
+    ##
+    # @param [String] template
+    # @param [Hash] variables
+    #
+    def render_template(template, variables = {})
+      scope = Template::Scope.new(variables)
+      erb   = ERB.new(template, nil, '-').result(scope.get_binding)
+
+      # Trim excessive newlines.
+      erb.gsub!(/\n{3,}/, "\n\n")
+
+      # Get rid of the occasional empty newline before `end` tokens.
+      erb.gsub!(/\n{2,}end/, "\nend")
+
+      return erb
     end
   end # DefinitionGenerator
 end # RubyLint

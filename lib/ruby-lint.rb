@@ -27,6 +27,7 @@ require_relative 'ruby-lint/constant_loader'
 
 require_relative 'ruby-lint/definition/ruby_object'
 require_relative 'ruby-lint/definition/ruby_method'
+require_relative 'ruby-lint/definition/constant_proxy'
 require_relative 'ruby-lint/definitions/core'
 
 require_relative 'ruby-lint/analysis/base'

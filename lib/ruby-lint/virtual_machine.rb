@@ -151,15 +151,26 @@ module RubyLint
     # @return [RubyLint::Definition::RubyObject]
     #
     def self.global_constant(name)
-      found = global_scope.lookup(:const, name)
+      found = global_scope.lookup_constant_path(name)
 
       if !found and !constant_loader.loaded?(name)
         constant_loader.load_constant(name)
 
-        found = global_scope.lookup(:const, name)
+        found = global_scope.lookup_constant_path(name)
       end
 
       return found
+    end
+
+    ##
+    # Creates a new proxy for a global constant.
+    #
+    # @param [String] name The name of the constant, can include an entire
+    #  constant path in the form of `Foo::Bar`.
+    # @return [RubyLint::Definition::ConstantProxy]
+    #
+    def self.constant_proxy(name)
+      return Definition::ConstantProxy.new(global_scope, name)
     end
 
     ##

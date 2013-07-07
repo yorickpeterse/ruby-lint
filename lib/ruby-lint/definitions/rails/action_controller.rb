@@ -1,9 +1,11 @@
-##
-# Constant: ActionController
-# Created:  2013-07-06 18:52:17 +0200
-# Platform: rbx 2.0.0.rc1
+# This file was automatically generated, any manual changes will be lost the
+# next time this file is generated.
 #
+# Created:  2013-07-07 17:54:58 +0200
+# Platform: rbx 2.0.0.rc1
+
 RubyLint::VirtualMachine.global_scope.define_constant('ActionController') do |klass|
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_method('add_renderer') do |method|
     method.define_argument('key')
@@ -13,33 +15,18 @@ RubyLint::VirtualMachine.global_scope.define_constant('ActionController') do |kl
   klass.define_method('eager_load!')
 end
 
-##
-# Constant: ActionController::ActionControllerError
-# Created:  2013-07-06 18:52:17 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('ActionController::ActionControllerError') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('StandardError'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('StandardError'))
 end
 
-##
-# Constant: ActionController::BadRequest
-# Created:  2013-07-06 18:52:17 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('ActionController::BadRequest') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('ActionController::ActionControllerError'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('ActionController::ActionControllerError'))
 
   klass.define_instance_method('original_exception')
 end
 
-##
-# Constant: ActionController::Base
-# Created:  2013-07-06 18:52:17 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('ActionController::Base') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('ActionController::Metal'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('ActionController::Metal'))
 
   klass.define_method('_flash_types')
 
@@ -455,12 +442,8 @@ RubyLint::VirtualMachine.global_scope.define_constant('ActionController::Base') 
   end
 end
 
-##
-# Constant: ActionController::Caching
-# Created:  2013-07-06 18:52:17 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('ActionController::Caching') do |klass|
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_instance_method('cache') do |method|
     method.define_argument('key')
@@ -471,12 +454,8 @@ RubyLint::VirtualMachine.global_scope.define_constant('ActionController::Caching
   klass.define_instance_method('view_cache_dependencies')
 end
 
-##
-# Constant: ActionController::ConditionalGet
-# Created:  2013-07-06 18:52:17 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('ActionController::ConditionalGet') do |klass|
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_instance_method('expires_in') do |method|
     method.define_argument('seconds')
@@ -496,20 +475,12 @@ RubyLint::VirtualMachine.global_scope.define_constant('ActionController::Conditi
   end
 end
 
-##
-# Constant: ActionController::Cookies
-# Created:  2013-07-06 18:52:17 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('ActionController::Cookies') do |klass|
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 end
 
-##
-# Constant: ActionController::DataStreaming
-# Created:  2013-07-06 18:52:17 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('ActionController::DataStreaming') do |klass|
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_instance_method('send_data') do |method|
     method.define_argument('data')
@@ -522,12 +493,8 @@ RubyLint::VirtualMachine.global_scope.define_constant('ActionController::DataStr
   end
 end
 
-##
-# Constant: ActionController::Flash
-# Created:  2013-07-06 18:52:17 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('ActionController::Flash') do |klass|
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_instance_method('redirect_to') do |method|
     method.define_optional_argument('options')
@@ -535,24 +502,16 @@ RubyLint::VirtualMachine.global_scope.define_constant('ActionController::Flash')
   end
 end
 
-##
-# Constant: ActionController::ForceSSL
-# Created:  2013-07-06 18:52:17 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('ActionController::ForceSSL') do |klass|
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_instance_method('force_ssl_redirect') do |method|
     method.define_optional_argument('host_or_options')
   end
 end
 
-##
-# Constant: ActionController::Head
-# Created:  2013-07-06 18:52:17 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('ActionController::Head') do |klass|
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_instance_method('head') do |method|
     method.define_argument('status')
@@ -560,40 +519,24 @@ RubyLint::VirtualMachine.global_scope.define_constant('ActionController::Head') 
   end
 end
 
-##
-# Constant: ActionController::Helpers
-# Created:  2013-07-06 18:52:17 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('ActionController::Helpers') do |klass|
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_method('helpers_path')
 
   klass.define_method('helpers_path=')
 end
 
-##
-# Constant: ActionController::HideActions
-# Created:  2013-07-06 18:52:17 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('ActionController::HideActions') do |klass|
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 end
 
-##
-# Constant: ActionController::HttpAuthentication
-# Created:  2013-07-06 18:52:17 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('ActionController::HttpAuthentication') do |klass|
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 end
 
-##
-# Constant: ActionController::ImplicitRender
-# Created:  2013-07-06 18:52:17 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('ActionController::ImplicitRender') do |klass|
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_instance_method('default_render') do |method|
     method.define_rest_argument('args')
@@ -609,12 +552,8 @@ RubyLint::VirtualMachine.global_scope.define_constant('ActionController::Implici
   end
 end
 
-##
-# Constant: ActionController::Instrumentation
-# Created:  2013-07-06 18:52:17 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('ActionController::Instrumentation') do |klass|
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_instance_method('process_action') do |method|
     method.define_rest_argument('args')
@@ -643,21 +582,12 @@ RubyLint::VirtualMachine.global_scope.define_constant('ActionController::Instrum
   klass.define_instance_method('view_runtime=')
 end
 
-##
-# Constant: ActionController::Integration
-# Created:  2013-07-06 18:52:17 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('ActionController::Integration') do |klass|
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 end
 
-##
-# Constant: ActionController::IntegrationTest
-# Created:  2013-07-06 18:52:17 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('ActionController::IntegrationTest') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('ActiveSupport::TestCase'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('ActiveSupport::TestCase'))
 
   klass.define_method('_setup_callbacks')
 
@@ -674,12 +604,8 @@ RubyLint::VirtualMachine.global_scope.define_constant('ActionController::Integra
   klass.define_instance_method('url_options')
 end
 
-##
-# Constant: ActionController::Live
-# Created:  2013-07-06 18:52:17 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('ActionController::Live') do |klass|
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_instance_method('log_error') do |method|
     method.define_argument('exception')
@@ -698,13 +624,8 @@ RubyLint::VirtualMachine.global_scope.define_constant('ActionController::Live') 
   end
 end
 
-##
-# Constant: ActionController::Metal
-# Created:  2013-07-06 18:52:17 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('ActionController::Metal') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('AbstractController::Base'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('AbstractController::Base'))
 
   klass.define_method('action') do |method|
     method.define_argument('name')
@@ -807,22 +728,12 @@ RubyLint::VirtualMachine.global_scope.define_constant('ActionController::Metal')
   end
 end
 
-##
-# Constant: ActionController::MethodNotAllowed
-# Created:  2013-07-06 18:52:17 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('ActionController::MethodNotAllowed') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('ActionController::ActionControllerError'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('ActionController::ActionControllerError'))
 end
 
-##
-# Constant: ActionController::Middleware
-# Created:  2013-07-06 18:52:17 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('ActionController::Middleware') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('ActionController::Metal'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('ActionController::Metal'))
 
   klass.define_method('build') do |method|
     method.define_rest_argument('args')
@@ -845,12 +756,8 @@ RubyLint::VirtualMachine.global_scope.define_constant('ActionController::Middlew
   end
 end
 
-##
-# Constant: ActionController::MimeResponds
-# Created:  2013-07-06 18:52:17 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('ActionController::MimeResponds') do |klass|
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_instance_method('collect_mimes_from_class_level')
 
@@ -870,21 +777,12 @@ RubyLint::VirtualMachine.global_scope.define_constant('ActionController::MimeRes
   end
 end
 
-##
-# Constant: ActionController::MissingFile
-# Created:  2013-07-06 18:52:17 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('ActionController::MissingFile') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('ActionController::ActionControllerError'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('ActionController::ActionControllerError'))
 end
 
-##
-# Constant: ActionController::ModelNaming
-# Created:  2013-07-06 18:52:17 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('ActionController::ModelNaming') do |klass|
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_instance_method('convert_to_model') do |method|
     method.define_argument('object')
@@ -895,33 +793,18 @@ RubyLint::VirtualMachine.global_scope.define_constant('ActionController::ModelNa
   end
 end
 
-##
-# Constant: ActionController::NotImplemented
-# Created:  2013-07-06 18:52:17 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('ActionController::NotImplemented') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('ActionController::MethodNotAllowed'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('ActionController::MethodNotAllowed'))
 end
 
-##
-# Constant: ActionController::ParameterMissing
-# Created:  2013-07-06 18:52:17 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('ActionController::ParameterMissing') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('KeyError'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('KeyError'))
 
   klass.define_instance_method('param')
 end
 
-##
-# Constant: ActionController::Parameters
-# Created:  2013-07-06 18:52:17 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('ActionController::Parameters') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('ActiveSupport::HashWithIndifferentAccess'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('ActiveSupport::HashWithIndifferentAccess'))
 
   klass.define_method('action_on_unpermitted_parameters')
 
@@ -967,24 +850,16 @@ RubyLint::VirtualMachine.global_scope.define_constant('ActionController::Paramet
   end
 end
 
-##
-# Constant: ActionController::ParamsWrapper
-# Created:  2013-07-06 18:52:17 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('ActionController::ParamsWrapper') do |klass|
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_instance_method('process_action') do |method|
     method.define_rest_argument('args')
   end
 end
 
-##
-# Constant: ActionController::RackDelegation
-# Created:  2013-07-06 18:52:17 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('ActionController::RackDelegation') do |klass|
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_instance_method('content_type') do |method|
     method.define_rest_argument('args')
@@ -1030,29 +905,16 @@ RubyLint::VirtualMachine.global_scope.define_constant('ActionController::RackDel
   end
 end
 
-##
-# Constant: ActionController::Railtie
-# Created:  2013-07-06 18:52:17 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('ActionController::Railtie') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Rails::Railtie'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Rails::Railtie'))
 end
 
-##
-# Constant: ActionController::Railties
-# Created:  2013-07-06 18:52:17 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('ActionController::Railties') do |klass|
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 end
 
-##
-# Constant: ActionController::RecordIdentifier
-# Created:  2013-07-06 18:52:17 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('ActionController::RecordIdentifier') do |klass|
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_method('dom_class') do |method|
     method.define_argument('record')
@@ -1075,12 +937,8 @@ RubyLint::VirtualMachine.global_scope.define_constant('ActionController::RecordI
   end
 end
 
-##
-# Constant: ActionController::Redirecting
-# Created:  2013-07-06 18:52:17 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('ActionController::Redirecting') do |klass|
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_instance_method('redirect_to') do |method|
     method.define_optional_argument('options')
@@ -1088,21 +946,12 @@ RubyLint::VirtualMachine.global_scope.define_constant('ActionController::Redirec
   end
 end
 
-##
-# Constant: ActionController::RenderError
-# Created:  2013-07-06 18:52:17 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('ActionController::RenderError') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('ActionController::ActionControllerError'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('ActionController::ActionControllerError'))
 end
 
-##
-# Constant: ActionController::Renderers
-# Created:  2013-07-06 18:52:17 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('ActionController::Renderers') do |klass|
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_method('add') do |method|
     method.define_argument('key')
@@ -1133,12 +982,8 @@ RubyLint::VirtualMachine.global_scope.define_constant('ActionController::Rendere
   end
 end
 
-##
-# Constant: ActionController::Rendering
-# Created:  2013-07-06 18:52:17 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('ActionController::Rendering') do |klass|
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_instance_method('process_action') do |method|
     method.define_rest_argument('')
@@ -1157,12 +1002,8 @@ RubyLint::VirtualMachine.global_scope.define_constant('ActionController::Renderi
   end
 end
 
-##
-# Constant: ActionController::RequestForgeryProtection
-# Created:  2013-07-06 18:52:17 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('ActionController::RequestForgeryProtection') do |klass|
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_instance_method('form_authenticity_param')
 
@@ -1177,12 +1018,8 @@ RubyLint::VirtualMachine.global_scope.define_constant('ActionController::Request
   klass.define_instance_method('verify_authenticity_token')
 end
 
-##
-# Constant: ActionController::Rescue
-# Created:  2013-07-06 18:52:17 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('ActionController::Rescue') do |klass|
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_instance_method('rescue_with_handler') do |method|
     method.define_argument('exception')
@@ -1191,13 +1028,8 @@ RubyLint::VirtualMachine.global_scope.define_constant('ActionController::Rescue'
   klass.define_instance_method('show_detailed_exceptions?')
 end
 
-##
-# Constant: ActionController::Responder
-# Created:  2013-07-06 18:52:17 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('ActionController::Responder') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_method('call') do |method|
     method.define_rest_argument('args')
@@ -1299,40 +1131,22 @@ RubyLint::VirtualMachine.global_scope.define_constant('ActionController::Respond
   klass.define_instance_method('to_js')
 end
 
-##
-# Constant: ActionController::Routing
-# Created:  2013-07-06 18:52:17 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('ActionController::Routing') do |klass|
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 end
 
-##
-# Constant: ActionController::RoutingError
-# Created:  2013-07-06 18:52:17 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('ActionController::RoutingError') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('ActionController::ActionControllerError'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('ActionController::ActionControllerError'))
 
   klass.define_instance_method('failures')
 end
 
-##
-# Constant: ActionController::SessionOverflowError
-# Created:  2013-07-06 18:52:17 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('ActionController::SessionOverflowError') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('ActionController::ActionControllerError'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('ActionController::ActionControllerError'))
 end
 
-##
-# Constant: ActionController::Streaming
-# Created:  2013-07-06 18:52:17 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('ActionController::Streaming') do |klass|
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_instance_method('_process_options') do |method|
     method.define_argument('options')
@@ -1343,12 +1157,8 @@ RubyLint::VirtualMachine.global_scope.define_constant('ActionController::Streami
   end
 end
 
-##
-# Constant: ActionController::StrongParameters
-# Created:  2013-07-06 18:52:17 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('ActionController::StrongParameters') do |klass|
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_instance_method('params')
 
@@ -1357,12 +1167,8 @@ RubyLint::VirtualMachine.global_scope.define_constant('ActionController::StrongP
   end
 end
 
-##
-# Constant: ActionController::TemplateAssertions
-# Created:  2013-07-06 18:52:17 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('ActionController::TemplateAssertions') do |klass|
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_instance_method('assert_template') do |method|
     method.define_optional_argument('options')
@@ -1378,13 +1184,8 @@ RubyLint::VirtualMachine.global_scope.define_constant('ActionController::Templat
   klass.define_instance_method('teardown_subscriptions')
 end
 
-##
-# Constant: ActionController::TestCase
-# Created:  2013-07-06 18:52:17 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('ActionController::TestCase') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('ActiveSupport::TestCase'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('ActiveSupport::TestCase'))
 
   klass.define_method('_controller_class')
 
@@ -1405,71 +1206,39 @@ RubyLint::VirtualMachine.global_scope.define_constant('ActionController::TestCas
   klass.define_instance_method('_controller_class?')
 end
 
-##
-# Constant: ActionController::Testing
-# Created:  2013-07-06 18:52:17 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('ActionController::Testing') do |klass|
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_instance_method('headers=') do |method|
     method.define_argument('new_headers')
   end
 end
 
-##
-# Constant: ActionController::UnknownController
-# Created:  2013-07-06 18:52:17 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('ActionController::UnknownController') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('ActionController::ActionControllerError'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('ActionController::ActionControllerError'))
 end
 
-##
-# Constant: ActionController::UnknownFormat
-# Created:  2013-07-06 18:52:17 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('ActionController::UnknownFormat') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('ActionController::ActionControllerError'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('ActionController::ActionControllerError'))
 end
 
-##
-# Constant: ActionController::UnknownHttpMethod
-# Created:  2013-07-06 18:52:17 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('ActionController::UnknownHttpMethod') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('ActionController::ActionControllerError'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('ActionController::ActionControllerError'))
 end
 
-##
-# Constant: ActionController::UnpermittedParameters
-# Created:  2013-07-06 18:52:17 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('ActionController::UnpermittedParameters') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('IndexError'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('IndexError'))
 
   klass.define_instance_method('params')
 end
 
-##
-# Constant: ActionController::UrlFor
-# Created:  2013-07-06 18:52:17 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('ActionController::UrlFor') do |klass|
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_instance_method('url_options')
 end
 
-##
-# Constant: ActionController::UrlGenerationError
-# Created:  2013-07-06 18:52:17 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('ActionController::UrlGenerationError') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('ActionController::RoutingError'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('ActionController::RoutingError'))
 end
+

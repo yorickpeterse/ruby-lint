@@ -1,20 +1,17 @@
-##
-# Constant: ActionMailer
-# Created:  2013-07-06 18:52:18 +0200
-# Platform: rbx 2.0.0.rc1
+# This file was automatically generated, any manual changes will be lost the
+# next time this file is generated.
 #
+# Created:  2013-07-07 17:54:58 +0200
+# Platform: rbx 2.0.0.rc1
+
 RubyLint::VirtualMachine.global_scope.define_constant('ActionMailer') do |klass|
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_method('version')
 end
 
-##
-# Constant: ActionMailer::Base
-# Created:  2013-07-06 18:52:18 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('ActionMailer::Base') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('AbstractController::Base'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('AbstractController::Base'))
 
   klass.define_method('_helper_methods')
 
@@ -414,13 +411,8 @@ RubyLint::VirtualMachine.global_scope.define_constant('ActionMailer::Base') do |
   klass.define_instance_method('test_settings?')
 end
 
-##
-# Constant: ActionMailer::Collector
-# Created:  2013-07-06 18:52:18 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('ActionMailer::Collector') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_instance_method('all') do |method|
     method.define_rest_argument('args')
@@ -440,24 +432,16 @@ RubyLint::VirtualMachine.global_scope.define_constant('ActionMailer::Collector')
   klass.define_instance_method('responses')
 end
 
-##
-# Constant: ActionMailer::DeliveryMethods
-# Created:  2013-07-06 18:52:18 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('ActionMailer::DeliveryMethods') do |klass|
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_instance_method('wrap_delivery_behavior!') do |method|
     method.define_rest_argument('args')
   end
 end
 
-##
-# Constant: ActionMailer::MailHelper
-# Created:  2013-07-06 18:52:18 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('ActionMailer::MailHelper') do |klass|
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_instance_method('attachments')
 
@@ -476,22 +460,12 @@ RubyLint::VirtualMachine.global_scope.define_constant('ActionMailer::MailHelper'
   klass.define_instance_method('message')
 end
 
-##
-# Constant: ActionMailer::Railtie
-# Created:  2013-07-06 18:52:18 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('ActionMailer::Railtie') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Rails::Railtie'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Rails::Railtie'))
 end
 
-##
-# Constant: ActionMailer::TestCase
-# Created:  2013-07-06 18:52:18 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('ActionMailer::TestCase') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('ActiveSupport::TestCase'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('ActiveSupport::TestCase'))
 
   klass.define_method('_mailer_class')
 
@@ -510,12 +484,8 @@ RubyLint::VirtualMachine.global_scope.define_constant('ActionMailer::TestCase') 
   klass.define_instance_method('_mailer_class?')
 end
 
-##
-# Constant: ActionMailer::TestHelper
-# Created:  2013-07-06 18:52:18 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('ActionMailer::TestHelper') do |klass|
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_instance_method('assert_emails') do |method|
     method.define_argument('number')
@@ -526,10 +496,7 @@ RubyLint::VirtualMachine.global_scope.define_constant('ActionMailer::TestHelper'
   end
 end
 
-##
-# Constant: ActionMailer::VERSION
-# Created:  2013-07-06 18:52:18 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('ActionMailer::VERSION') do |klass|
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 end
+

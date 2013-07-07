@@ -1,9 +1,11 @@
-##
-# Constant: ActiveSupport
-# Created:  2013-07-06 18:52:18 +0200
-# Platform: rbx 2.0.0.rc1
+# This file was automatically generated, any manual changes will be lost the
+# next time this file is generated.
 #
+# Created:  2013-07-07 17:54:58 +0200
+# Platform: rbx 2.0.0.rc1
+
 RubyLint::VirtualMachine.global_scope.define_constant('ActiveSupport') do |klass|
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_method('encode_big_decimal_as_string') do |method|
     method.define_rest_argument('args')
@@ -64,12 +66,8 @@ RubyLint::VirtualMachine.global_scope.define_constant('ActiveSupport') do |klass
   end
 end
 
-##
-# Constant: ActiveSupport::Autoload
-# Created:  2013-07-06 18:52:18 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('ActiveSupport::Autoload') do |klass|
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_method('extended') do |method|
     method.define_argument('base')
@@ -95,13 +93,8 @@ RubyLint::VirtualMachine.global_scope.define_constant('ActiveSupport::Autoload')
   klass.define_instance_method('eager_load!')
 end
 
-##
-# Constant: ActiveSupport::BacktraceCleaner
-# Created:  2013-07-06 18:52:18 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('ActiveSupport::BacktraceCleaner') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_instance_method('add_filter') do |method|
     method.define_block_argument('block')
@@ -126,25 +119,16 @@ RubyLint::VirtualMachine.global_scope.define_constant('ActiveSupport::BacktraceC
   klass.define_instance_method('remove_silencers!')
 end
 
-##
-# Constant: ActiveSupport::BasicObject
-# Created:  2013-07-06 18:52:18 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('ActiveSupport::BasicObject') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('ActiveSupport::ProxyObject'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('ActiveSupport::ProxyObject'))
 
   klass.define_method('inherited') do |method|
     method.define_rest_argument('')
   end
 end
 
-##
-# Constant: ActiveSupport::Benchmarkable
-# Created:  2013-07-06 18:52:18 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('ActiveSupport::Benchmarkable') do |klass|
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_instance_method('benchmark') do |method|
     method.define_optional_argument('message')
@@ -154,12 +138,8 @@ RubyLint::VirtualMachine.global_scope.define_constant('ActiveSupport::Benchmarka
   klass.define_instance_method('silence')
 end
 
-##
-# Constant: ActiveSupport::Cache
-# Created:  2013-07-06 18:52:18 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('ActiveSupport::Cache') do |klass|
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_method('expand_cache_key') do |method|
     method.define_argument('key')
@@ -171,13 +151,8 @@ RubyLint::VirtualMachine.global_scope.define_constant('ActiveSupport::Cache') do
   end
 end
 
-##
-# Constant: ActiveSupport::CachingKeyGenerator
-# Created:  2013-07-06 18:52:18 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('ActiveSupport::CachingKeyGenerator') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_instance_method('generate_key') do |method|
     method.define_argument('salt')
@@ -185,12 +160,8 @@ RubyLint::VirtualMachine.global_scope.define_constant('ActiveSupport::CachingKey
   end
 end
 
-##
-# Constant: ActiveSupport::Callbacks
-# Created:  2013-07-06 18:52:18 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('ActiveSupport::Callbacks') do |klass|
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_instance_method('run_callbacks') do |method|
     method.define_argument('kind')
@@ -198,12 +169,8 @@ RubyLint::VirtualMachine.global_scope.define_constant('ActiveSupport::Callbacks'
   end
 end
 
-##
-# Constant: ActiveSupport::Concern
-# Created:  2013-07-06 18:52:18 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('ActiveSupport::Concern') do |klass|
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_method('extended') do |method|
     method.define_argument('base')
@@ -219,22 +186,14 @@ RubyLint::VirtualMachine.global_scope.define_constant('ActiveSupport::Concern') 
   end
 end
 
-##
-# Constant: ActiveSupport::Configurable
-# Created:  2013-07-06 18:52:18 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('ActiveSupport::Configurable') do |klass|
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_instance_method('config')
 end
 
-##
-# Constant: ActiveSupport::Dependencies
-# Created:  2013-07-06 18:52:18 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('ActiveSupport::Dependencies') do |klass|
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_method('autoload_once_paths')
 
@@ -478,13 +437,8 @@ RubyLint::VirtualMachine.global_scope.define_constant('ActiveSupport::Dependenci
   end
 end
 
-##
-# Constant: ActiveSupport::Deprecation
-# Created:  2013-07-06 18:52:18 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('ActiveSupport::Deprecation') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_method('behavior') do |method|
     method.define_rest_argument('args')
@@ -567,12 +521,8 @@ RubyLint::VirtualMachine.global_scope.define_constant('ActiveSupport::Deprecatio
   klass.define_instance_method('deprecation_horizon=')
 end
 
-##
-# Constant: ActiveSupport::DescendantsTracker
-# Created:  2013-07-06 18:52:18 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('ActiveSupport::DescendantsTracker') do |klass|
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_method('clear')
 
@@ -598,13 +548,8 @@ RubyLint::VirtualMachine.global_scope.define_constant('ActiveSupport::Descendant
   end
 end
 
-##
-# Constant: ActiveSupport::Duration
-# Created:  2013-07-06 18:52:18 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('ActiveSupport::Duration') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('ActiveSupport::ProxyObject'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('ActiveSupport::ProxyObject'))
 
   klass.define_method('===') do |method|
     method.define_argument('other')
@@ -668,13 +613,8 @@ RubyLint::VirtualMachine.global_scope.define_constant('ActiveSupport::Duration')
   klass.define_instance_method('value=')
 end
 
-##
-# Constant: ActiveSupport::FileUpdateChecker
-# Created:  2013-07-06 18:52:18 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('ActiveSupport::FileUpdateChecker') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_instance_method('execute')
 
@@ -683,12 +623,8 @@ RubyLint::VirtualMachine.global_scope.define_constant('ActiveSupport::FileUpdate
   klass.define_instance_method('updated?')
 end
 
-##
-# Constant: ActiveSupport::Gzip
-# Created:  2013-07-06 18:52:18 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('ActiveSupport::Gzip') do |klass|
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_method('compress') do |method|
     method.define_argument('source')
@@ -701,13 +637,8 @@ RubyLint::VirtualMachine.global_scope.define_constant('ActiveSupport::Gzip') do 
   end
 end
 
-##
-# Constant: ActiveSupport::HashWithIndifferentAccess
-# Created:  2013-07-06 18:52:18 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('ActiveSupport::HashWithIndifferentAccess') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Hash'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Hash'))
 
   klass.define_method('[]') do |method|
     method.define_rest_argument('args')
@@ -828,12 +759,8 @@ RubyLint::VirtualMachine.global_scope.define_constant('ActiveSupport::HashWithIn
   klass.define_instance_method('with_indifferent_access')
 end
 
-##
-# Constant: ActiveSupport::Inflector
-# Created:  2013-07-06 18:52:18 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('ActiveSupport::Inflector') do |klass|
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_instance_method('camelize') do |method|
     method.define_argument('term')
@@ -918,23 +845,14 @@ RubyLint::VirtualMachine.global_scope.define_constant('ActiveSupport::Inflector'
   end
 end
 
-##
-# Constant: ActiveSupport::InheritableOptions
-# Created:  2013-07-06 18:52:18 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('ActiveSupport::InheritableOptions') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('ActiveSupport::OrderedOptions'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('ActiveSupport::OrderedOptions'))
 
   klass.define_instance_method('inheritable_copy')
 end
 
-##
-# Constant: ActiveSupport::JSON
-# Created:  2013-07-06 18:52:18 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('ActiveSupport::JSON') do |klass|
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_method('backend')
 
@@ -965,13 +883,8 @@ RubyLint::VirtualMachine.global_scope.define_constant('ActiveSupport::JSON') do 
   end
 end
 
-##
-# Constant: ActiveSupport::KeyGenerator
-# Created:  2013-07-06 18:52:18 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('ActiveSupport::KeyGenerator') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_instance_method('generate_key') do |method|
     method.define_argument('salt')
@@ -979,26 +892,16 @@ RubyLint::VirtualMachine.global_scope.define_constant('ActiveSupport::KeyGenerat
   end
 end
 
-##
-# Constant: ActiveSupport::LegacyKeyGenerator
-# Created:  2013-07-06 18:52:18 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('ActiveSupport::LegacyKeyGenerator') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_instance_method('generate_key') do |method|
     method.define_argument('salt')
   end
 end
 
-##
-# Constant: ActiveSupport::LogSubscriber
-# Created:  2013-07-06 18:52:18 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('ActiveSupport::LogSubscriber') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('ActiveSupport::Subscriber'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('ActiveSupport::Subscriber'))
 
   klass.define_method('colorize_logging')
 
@@ -1071,13 +974,8 @@ RubyLint::VirtualMachine.global_scope.define_constant('ActiveSupport::LogSubscri
   end
 end
 
-##
-# Constant: ActiveSupport::Logger
-# Created:  2013-07-06 18:52:18 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('ActiveSupport::Logger') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Logger'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Logger'))
 
   klass.define_method('broadcast') do |method|
     method.define_argument('logger')
@@ -1096,13 +994,8 @@ RubyLint::VirtualMachine.global_scope.define_constant('ActiveSupport::Logger') d
   end
 end
 
-##
-# Constant: ActiveSupport::MessageEncryptor
-# Created:  2013-07-06 18:52:18 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('ActiveSupport::MessageEncryptor') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_instance_method('decrypt_and_verify') do |method|
     method.define_argument('value')
@@ -1113,13 +1006,8 @@ RubyLint::VirtualMachine.global_scope.define_constant('ActiveSupport::MessageEnc
   end
 end
 
-##
-# Constant: ActiveSupport::MessageVerifier
-# Created:  2013-07-06 18:52:18 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('ActiveSupport::MessageVerifier') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_instance_method('generate') do |method|
     method.define_argument('value')
@@ -1130,26 +1018,32 @@ RubyLint::VirtualMachine.global_scope.define_constant('ActiveSupport::MessageVer
   end
 end
 
-##
-# Constant: ActiveSupport::Multibyte
-# Created:  2013-07-06 18:52:18 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('ActiveSupport::Multibyte') do |klass|
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
+
+  klass.define_method('clean') do |method|
+    method.define_argument('string')
+  end
 
   klass.define_method('proxy_class')
 
   klass.define_method('proxy_class=') do |method|
     method.define_argument('klass')
   end
+
+  klass.define_method('valid_character')
+
+  klass.define_method('verify') do |method|
+    method.define_argument('string')
+  end
+
+  klass.define_method('verify!') do |method|
+    method.define_argument('string')
+  end
 end
 
-##
-# Constant: ActiveSupport::Notifications
-# Created:  2013-07-06 18:52:18 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('ActiveSupport::Notifications') do |klass|
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_method('instrument') do |method|
     method.define_argument('name')
@@ -1183,12 +1077,8 @@ RubyLint::VirtualMachine.global_scope.define_constant('ActiveSupport::Notificati
   end
 end
 
-##
-# Constant: ActiveSupport::NumberHelper
-# Created:  2013-07-06 18:52:18 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('ActiveSupport::NumberHelper') do |klass|
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_instance_method('number_to_currency') do |method|
     method.define_argument('number')
@@ -1226,22 +1116,12 @@ RubyLint::VirtualMachine.global_scope.define_constant('ActiveSupport::NumberHelp
   end
 end
 
-##
-# Constant: ActiveSupport::OptionMerger
-# Created:  2013-07-06 18:52:18 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('ActiveSupport::OptionMerger') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 end
 
-##
-# Constant: ActiveSupport::OrderedHash
-# Created:  2013-07-06 18:52:18 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('ActiveSupport::OrderedHash') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Hash'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Hash'))
 
   klass.define_instance_method('encode_with') do |method|
     method.define_argument('coder')
@@ -1254,13 +1134,8 @@ RubyLint::VirtualMachine.global_scope.define_constant('ActiveSupport::OrderedHas
   klass.define_instance_method('to_yaml_type')
 end
 
-##
-# Constant: ActiveSupport::OrderedOptions
-# Created:  2013-07-06 18:52:18 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('ActiveSupport::OrderedOptions') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Hash'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Hash'))
 
   klass.define_instance_method('[]') do |method|
     method.define_argument('key')
@@ -1286,12 +1161,8 @@ RubyLint::VirtualMachine.global_scope.define_constant('ActiveSupport::OrderedOpt
   end
 end
 
-##
-# Constant: ActiveSupport::PerThreadRegistry
-# Created:  2013-07-06 18:52:18 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('ActiveSupport::PerThreadRegistry') do |klass|
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_instance_method('method_missing') do |method|
     method.define_argument('name')
@@ -1300,34 +1171,20 @@ RubyLint::VirtualMachine.global_scope.define_constant('ActiveSupport::PerThreadR
   end
 end
 
-##
-# Constant: ActiveSupport::ProxyObject
-# Created:  2013-07-06 18:52:18 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('ActiveSupport::ProxyObject') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('BasicObject'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('BasicObject'))
 
   klass.define_instance_method('raise') do |method|
     method.define_rest_argument('args')
   end
 end
 
-##
-# Constant: ActiveSupport::Railtie
-# Created:  2013-07-06 18:52:18 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('ActiveSupport::Railtie') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Rails::Railtie'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Rails::Railtie'))
 end
 
-##
-# Constant: ActiveSupport::Rescuable
-# Created:  2013-07-06 18:52:18 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('ActiveSupport::Rescuable') do |klass|
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_instance_method('handler_for_rescue') do |method|
     method.define_argument('exception')
@@ -1338,13 +1195,8 @@ RubyLint::VirtualMachine.global_scope.define_constant('ActiveSupport::Rescuable'
   end
 end
 
-##
-# Constant: ActiveSupport::SafeBuffer
-# Created:  2013-07-06 18:52:18 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('ActiveSupport::SafeBuffer') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('String'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('String'))
 
   klass.define_instance_method('%') do |method|
     method.define_argument('args')
@@ -1563,22 +1415,12 @@ RubyLint::VirtualMachine.global_scope.define_constant('ActiveSupport::SafeBuffer
   end
 end
 
-##
-# Constant: ActiveSupport::StringInquirer
-# Created:  2013-07-06 18:52:18 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('ActiveSupport::StringInquirer') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('String'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('String'))
 end
 
-##
-# Constant: ActiveSupport::Subscriber
-# Created:  2013-07-06 18:52:18 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('ActiveSupport::Subscriber') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_method('attach_to') do |method|
     method.define_argument('namespace')
@@ -1601,25 +1443,16 @@ RubyLint::VirtualMachine.global_scope.define_constant('ActiveSupport::Subscriber
   end
 end
 
-##
-# Constant: ActiveSupport::SubscriberQueueRegistry
-# Created:  2013-07-06 18:52:18 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('ActiveSupport::SubscriberQueueRegistry') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_instance_method('get_queue') do |method|
     method.define_argument('queue_key')
   end
 end
 
-##
-# Constant: ActiveSupport::TaggedLogging
-# Created:  2013-07-06 18:52:18 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('ActiveSupport::TaggedLogging') do |klass|
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_method('new') do |method|
     method.define_argument('logger')
@@ -1647,13 +1480,8 @@ RubyLint::VirtualMachine.global_scope.define_constant('ActiveSupport::TaggedLogg
   end
 end
 
-##
-# Constant: ActiveSupport::TestCase
-# Created:  2013-07-06 18:52:18 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('ActiveSupport::TestCase') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('MiniTest::Unit::TestCase'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('MiniTest::Unit::TestCase'))
 
   klass.define_method('_setup_callbacks')
 
@@ -1783,21 +1611,12 @@ RubyLint::VirtualMachine.global_scope.define_constant('ActiveSupport::TestCase')
   klass.define_instance_method('method_name')
 end
 
-##
-# Constant: ActiveSupport::Testing
-# Created:  2013-07-06 18:52:18 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('ActiveSupport::Testing') do |klass|
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 end
 
-##
-# Constant: ActiveSupport::TimeWithZone
-# Created:  2013-07-06 18:52:18 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('ActiveSupport::TimeWithZone') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_method('name')
 
@@ -1991,13 +1810,8 @@ RubyLint::VirtualMachine.global_scope.define_constant('ActiveSupport::TimeWithZo
   klass.define_instance_method('zone')
 end
 
-##
-# Constant: ActiveSupport::TimeZone
-# Created:  2013-07-06 18:52:18 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('ActiveSupport::TimeZone') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_method('[]') do |method|
     method.define_argument('arg')
@@ -2085,31 +1899,18 @@ RubyLint::VirtualMachine.global_scope.define_constant('ActiveSupport::TimeZone')
   end
 end
 
-##
-# Constant: ActiveSupport::VERSION
-# Created:  2013-07-06 18:52:18 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('ActiveSupport::VERSION') do |klass|
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 end
 
-##
-# Constant: ActiveSupport::XMLConverter
-# Created:  2013-07-06 18:52:18 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('ActiveSupport::XMLConverter') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_instance_method('to_h')
 end
 
-##
-# Constant: ActiveSupport::XmlMini
-# Created:  2013-07-06 18:52:18 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('ActiveSupport::XmlMini') do |klass|
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_instance_method('_dasherize') do |method|
     method.define_argument('key')
@@ -2152,14 +1953,11 @@ RubyLint::VirtualMachine.global_scope.define_constant('ActiveSupport::XmlMini') 
   end
 end
 
-##
-# Constant: ActiveSupport::XmlMini_REXML
-# Created:  2013-07-06 18:52:18 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('ActiveSupport::XmlMini_REXML') do |klass|
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_instance_method('parse') do |method|
     method.define_argument('data')
   end
 end
+

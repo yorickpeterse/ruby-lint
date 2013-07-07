@@ -1,20 +1,17 @@
-##
-# Constant: ActionView
-# Created:  2013-07-06 18:52:18 +0200
-# Platform: rbx 2.0.0.rc1
+# This file was automatically generated, any manual changes will be lost the
+# next time this file is generated.
 #
+# Created:  2013-07-07 17:54:58 +0200
+# Platform: rbx 2.0.0.rc1
+
 RubyLint::VirtualMachine.global_scope.define_constant('ActionView') do |klass|
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_method('eager_load!')
 end
 
-##
-# Constant: ActionView::AbstractRenderer
-# Created:  2013-07-06 18:52:18 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('ActionView::AbstractRenderer') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_instance_method('extract_details') do |method|
     method.define_argument('options')
@@ -57,22 +54,12 @@ RubyLint::VirtualMachine.global_scope.define_constant('ActionView::AbstractRende
   end
 end
 
-##
-# Constant: ActionView::ActionViewError
-# Created:  2013-07-06 18:52:18 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('ActionView::ActionViewError') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('StandardError'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('StandardError'))
 end
 
-##
-# Constant: ActionView::Base
-# Created:  2013-07-06 18:52:18 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('ActionView::Base') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_method('_routes')
 
@@ -223,20 +210,12 @@ RubyLint::VirtualMachine.global_scope.define_constant('ActionView::Base') do |kl
   klass.define_instance_method('view_renderer=')
 end
 
-##
-# Constant: ActionView::CompiledTemplates
-# Created:  2013-07-06 18:52:18 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('ActionView::CompiledTemplates') do |klass|
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 end
 
-##
-# Constant: ActionView::Context
-# Created:  2013-07-06 18:52:18 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('ActionView::Context') do |klass|
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_instance_method('_layout_for') do |method|
     method.define_optional_argument('name')
@@ -253,13 +232,8 @@ RubyLint::VirtualMachine.global_scope.define_constant('ActionView::Context') do 
   klass.define_instance_method('view_flow=')
 end
 
-##
-# Constant: ActionView::DependencyTracker
-# Created:  2013-07-06 18:52:18 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('ActionView::DependencyTracker') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_method('find_dependencies') do |method|
     method.define_argument('name')
@@ -276,13 +250,8 @@ RubyLint::VirtualMachine.global_scope.define_constant('ActionView::DependencyTra
   end
 end
 
-##
-# Constant: ActionView::Digestor
-# Created:  2013-07-06 18:52:18 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('ActionView::Digestor') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_method('cache')
 
@@ -310,30 +279,16 @@ RubyLint::VirtualMachine.global_scope.define_constant('ActionView::Digestor') do
   klass.define_instance_method('options')
 end
 
-##
-# Constant: ActionView::ENCODING_FLAG
-# Created:  2013-07-06 18:52:18 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('ActionView::ENCODING_FLAG') do |klass|
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 end
 
-##
-# Constant: ActionView::EncodingError
-# Created:  2013-07-06 18:52:18 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('ActionView::EncodingError') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('StandardError'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('StandardError'))
 end
 
-##
-# Constant: ActionView::FallbackFileSystemResolver
-# Created:  2013-07-06 18:52:18 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('ActionView::FallbackFileSystemResolver') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('ActionView::FileSystemResolver'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('ActionView::FileSystemResolver'))
 
   klass.define_method('instances')
 
@@ -342,13 +297,8 @@ RubyLint::VirtualMachine.global_scope.define_constant('ActionView::FallbackFileS
   end
 end
 
-##
-# Constant: ActionView::FileSystemResolver
-# Created:  2013-07-06 18:52:18 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('ActionView::FileSystemResolver') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('ActionView::PathResolver'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('ActionView::PathResolver'))
 
   klass.define_instance_method('==') do |method|
     method.define_argument('resolver')
@@ -363,21 +313,12 @@ RubyLint::VirtualMachine.global_scope.define_constant('ActionView::FileSystemRes
   klass.define_instance_method('to_s')
 end
 
-##
-# Constant: ActionView::Helpers
-# Created:  2013-07-06 18:52:18 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('ActionView::Helpers') do |klass|
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 end
 
-##
-# Constant: ActionView::LogSubscriber
-# Created:  2013-07-06 18:52:18 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('ActionView::LogSubscriber') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('ActiveSupport::LogSubscriber'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('ActiveSupport::LogSubscriber'))
 
   klass.define_instance_method('from_rails_root') do |method|
     method.define_argument('string')
@@ -398,13 +339,8 @@ RubyLint::VirtualMachine.global_scope.define_constant('ActionView::LogSubscriber
   end
 end
 
-##
-# Constant: ActionView::LookupContext
-# Created:  2013-07-06 18:52:18 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('ActionView::LookupContext') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_method('fallbacks')
 
@@ -459,32 +395,18 @@ RubyLint::VirtualMachine.global_scope.define_constant('ActionView::LookupContext
   klass.define_instance_method('with_layout_format')
 end
 
-##
-# Constant: ActionView::MissingRequestError
-# Created:  2013-07-06 18:52:18 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('ActionView::MissingRequestError') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('StandardError'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('StandardError'))
 end
 
-##
-# Constant: ActionView::MissingTemplate
-# Created:  2013-07-06 18:52:18 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('ActionView::MissingTemplate') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('ActionView::ActionViewError'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('ActionView::ActionViewError'))
 
   klass.define_instance_method('path')
 end
 
-##
-# Constant: ActionView::ModelNaming
-# Created:  2013-07-06 18:52:18 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('ActionView::ModelNaming') do |klass|
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_instance_method('convert_to_model') do |method|
     method.define_argument('object')
@@ -495,13 +417,8 @@ RubyLint::VirtualMachine.global_scope.define_constant('ActionView::ModelNaming')
   end
 end
 
-##
-# Constant: ActionView::OptimizedFileSystemResolver
-# Created:  2013-07-06 18:52:18 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('ActionView::OptimizedFileSystemResolver') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('ActionView::FileSystemResolver'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('ActionView::FileSystemResolver'))
 
   klass.define_instance_method('build_query') do |method|
     method.define_argument('path')
@@ -509,13 +426,8 @@ RubyLint::VirtualMachine.global_scope.define_constant('ActionView::OptimizedFile
   end
 end
 
-##
-# Constant: ActionView::OutputBuffer
-# Created:  2013-07-06 18:52:18 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('ActionView::OutputBuffer') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('ActiveSupport::SafeBuffer'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('ActiveSupport::SafeBuffer'))
 
   klass.define_instance_method('<<') do |method|
     method.define_argument('value')
@@ -534,13 +446,8 @@ RubyLint::VirtualMachine.global_scope.define_constant('ActionView::OutputBuffer'
   end
 end
 
-##
-# Constant: ActionView::OutputFlow
-# Created:  2013-07-06 18:52:18 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('ActionView::OutputFlow') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_instance_method('append') do |method|
     method.define_argument('key')
@@ -564,24 +471,14 @@ RubyLint::VirtualMachine.global_scope.define_constant('ActionView::OutputFlow') 
   end
 end
 
-##
-# Constant: ActionView::PartialDigestor
-# Created:  2013-07-06 18:52:18 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('ActionView::PartialDigestor') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('ActionView::Digestor'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('ActionView::Digestor'))
 
   klass.define_instance_method('partial?')
 end
 
-##
-# Constant: ActionView::PartialRenderer
-# Created:  2013-07-06 18:52:18 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('ActionView::PartialRenderer') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('ActionView::AbstractRenderer'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('ActionView::AbstractRenderer'))
 
   klass.define_instance_method('render') do |method|
     method.define_argument('context')
@@ -594,22 +491,12 @@ RubyLint::VirtualMachine.global_scope.define_constant('ActionView::PartialRender
   klass.define_instance_method('render_partial')
 end
 
-##
-# Constant: ActionView::PathResolver
-# Created:  2013-07-06 18:52:18 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('ActionView::PathResolver') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('ActionView::Resolver'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('ActionView::Resolver'))
 end
 
-##
-# Constant: ActionView::PathSet
-# Created:  2013-07-06 18:52:18 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('ActionView::PathSet') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_instance_method('+') do |method|
     method.define_argument('array')
@@ -683,21 +570,12 @@ RubyLint::VirtualMachine.global_scope.define_constant('ActionView::PathSet') do 
   end
 end
 
-##
-# Constant: ActionView::Railtie
-# Created:  2013-07-06 18:52:18 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('ActionView::Railtie') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Rails::Railtie'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Rails::Railtie'))
 end
 
-##
-# Constant: ActionView::RecordIdentifier
-# Created:  2013-07-06 18:52:18 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('ActionView::RecordIdentifier') do |klass|
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_instance_method('dom_class') do |method|
     method.define_argument('record_or_class')
@@ -714,13 +592,8 @@ RubyLint::VirtualMachine.global_scope.define_constant('ActionView::RecordIdentif
   end
 end
 
-##
-# Constant: ActionView::Renderer
-# Created:  2013-07-06 18:52:18 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('ActionView::Renderer') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_instance_method('lookup_context')
 
@@ -748,13 +621,8 @@ RubyLint::VirtualMachine.global_scope.define_constant('ActionView::Renderer') do
   end
 end
 
-##
-# Constant: ActionView::Resolver
-# Created:  2013-07-06 18:52:18 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('ActionView::Resolver') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_method('caching')
 
@@ -787,12 +655,8 @@ RubyLint::VirtualMachine.global_scope.define_constant('ActionView::Resolver') do
   end
 end
 
-##
-# Constant: ActionView::RoutingUrlFor
-# Created:  2013-07-06 18:52:18 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('ActionView::RoutingUrlFor') do |klass|
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_method('default_url_options=') do |method|
     method.define_argument('obj')
@@ -813,13 +677,8 @@ RubyLint::VirtualMachine.global_scope.define_constant('ActionView::RoutingUrlFor
   klass.define_instance_method('url_options')
 end
 
-##
-# Constant: ActionView::StreamingBuffer
-# Created:  2013-07-06 18:52:18 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('ActionView::StreamingBuffer') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_instance_method('<<') do |method|
     method.define_argument('value')
@@ -846,13 +705,8 @@ RubyLint::VirtualMachine.global_scope.define_constant('ActionView::StreamingBuff
   end
 end
 
-##
-# Constant: ActionView::StreamingFlow
-# Created:  2013-07-06 18:52:18 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('ActionView::StreamingFlow') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('ActionView::OutputFlow'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('ActionView::OutputFlow'))
 
   klass.define_instance_method('append!') do |method|
     method.define_argument('key')
@@ -864,13 +718,8 @@ RubyLint::VirtualMachine.global_scope.define_constant('ActionView::StreamingFlow
   end
 end
 
-##
-# Constant: ActionView::StreamingTemplateRenderer
-# Created:  2013-07-06 18:52:18 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('ActionView::StreamingTemplateRenderer') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('ActionView::TemplateRenderer'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('ActionView::TemplateRenderer'))
 
   klass.define_instance_method('render_template') do |method|
     method.define_argument('template')
@@ -879,13 +728,8 @@ RubyLint::VirtualMachine.global_scope.define_constant('ActionView::StreamingTemp
   end
 end
 
-##
-# Constant: ActionView::Template
-# Created:  2013-07-06 18:52:18 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('ActionView::Template') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_instance_method('compile') do |method|
     method.define_argument('view')
@@ -951,13 +795,8 @@ RubyLint::VirtualMachine.global_scope.define_constant('ActionView::Template') do
   klass.define_instance_method('virtual_path=')
 end
 
-##
-# Constant: ActionView::TemplateError
-# Created:  2013-07-06 18:52:18 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('ActionView::TemplateError') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('ActionView::ActionViewError'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('ActionView::ActionViewError'))
 
   klass.define_instance_method('annoted_source_code')
 
@@ -981,13 +820,8 @@ RubyLint::VirtualMachine.global_scope.define_constant('ActionView::TemplateError
   end
 end
 
-##
-# Constant: ActionView::TemplateRenderer
-# Created:  2013-07-06 18:52:18 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('ActionView::TemplateRenderer') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('ActionView::AbstractRenderer'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('ActionView::AbstractRenderer'))
 
   klass.define_instance_method('determine_template') do |method|
     method.define_argument('options')
@@ -1020,13 +854,8 @@ RubyLint::VirtualMachine.global_scope.define_constant('ActionView::TemplateRende
   end
 end
 
-##
-# Constant: ActionView::TestCase
-# Created:  2013-07-06 18:52:18 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('ActionView::TestCase') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('ActiveSupport::TestCase'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('ActiveSupport::TestCase'))
 
   klass.define_method('_helper_methods')
 
@@ -1061,13 +890,9 @@ RubyLint::VirtualMachine.global_scope.define_constant('ActionView::TestCase') do
   klass.define_instance_method('_helpers?')
 end
 
-##
-# Constant: ActionView::WrongEncodingError
-# Created:  2013-07-06 18:52:18 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('ActionView::WrongEncodingError') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('ActionView::EncodingError'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('ActionView::EncodingError'))
 
   klass.define_instance_method('message')
 end
+

@@ -1,26 +1,19 @@
-##
-# Constant: AbstractController
-# Created:  2013-07-06 18:52:17 +0200
-# Platform: rbx 2.0.0.rc1
+# This file was automatically generated, any manual changes will be lost the
+# next time this file is generated.
 #
+# Created:  2013-07-07 17:54:57 +0200
+# Platform: rbx 2.0.0.rc1
+
 RubyLint::VirtualMachine.global_scope.define_constant('AbstractController') do |klass|
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 end
 
-##
-# Constant: AbstractController::AssetPaths
-# Created:  2013-07-06 18:52:17 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('AbstractController::AssetPaths') do |klass|
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 end
 
-##
-# Constant: AbstractController::Base
-# Created:  2013-07-06 18:52:17 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('AbstractController::Base') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_method('abstract')
 
@@ -77,24 +70,16 @@ RubyLint::VirtualMachine.global_scope.define_constant('AbstractController::Base'
   end
 end
 
-##
-# Constant: AbstractController::Callbacks
-# Created:  2013-07-06 18:52:17 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('AbstractController::Callbacks') do |klass|
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_instance_method('process_action') do |method|
     method.define_rest_argument('args')
   end
 end
 
-##
-# Constant: AbstractController::Collector
-# Created:  2013-07-06 18:52:17 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('AbstractController::Collector') do |klass|
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_method('generate_method_for_mime') do |method|
     method.define_argument('mime')
@@ -211,20 +196,12 @@ RubyLint::VirtualMachine.global_scope.define_constant('AbstractController::Colle
   end
 end
 
-##
-# Constant: AbstractController::Helpers
-# Created:  2013-07-06 18:52:17 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('AbstractController::Helpers') do |klass|
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 end
 
-##
-# Constant: AbstractController::Layouts
-# Created:  2013-07-06 18:52:17 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('AbstractController::Layouts') do |klass|
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_instance_method('_layout_conditions') do |method|
     method.define_rest_argument('args')
@@ -240,28 +217,16 @@ RubyLint::VirtualMachine.global_scope.define_constant('AbstractController::Layou
   klass.define_instance_method('action_has_layout?')
 end
 
-##
-# Constant: AbstractController::Logger
-# Created:  2013-07-06 18:52:17 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('AbstractController::Logger') do |klass|
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 end
 
-##
-# Constant: AbstractController::Railties
-# Created:  2013-07-06 18:52:17 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('AbstractController::Railties') do |klass|
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 end
 
-##
-# Constant: AbstractController::Rendering
-# Created:  2013-07-06 18:52:17 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('AbstractController::Rendering') do |klass|
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_instance_method('_render_template') do |method|
     method.define_argument('options')
@@ -296,12 +261,8 @@ RubyLint::VirtualMachine.global_scope.define_constant('AbstractController::Rende
   klass.define_instance_method('view_renderer')
 end
 
-##
-# Constant: AbstractController::Translation
-# Created:  2013-07-06 18:52:17 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('AbstractController::Translation') do |klass|
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_instance_method('l') do |method|
     method.define_rest_argument('args')
@@ -320,22 +281,14 @@ RubyLint::VirtualMachine.global_scope.define_constant('AbstractController::Trans
   end
 end
 
-##
-# Constant: AbstractController::UrlFor
-# Created:  2013-07-06 18:52:17 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('AbstractController::UrlFor') do |klass|
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_instance_method('_routes')
 end
 
-##
-# Constant: AbstractController::ViewPaths
-# Created:  2013-07-06 18:52:17 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('AbstractController::ViewPaths') do |klass|
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_instance_method('_prefixes')
 
@@ -379,3 +332,4 @@ RubyLint::VirtualMachine.global_scope.define_constant('AbstractController::ViewP
     method.define_block_argument('block')
   end
 end
+

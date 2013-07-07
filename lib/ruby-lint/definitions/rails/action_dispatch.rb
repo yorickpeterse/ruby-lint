@@ -1,9 +1,11 @@
-##
-# Constant: ActionDispatch
-# Created:  2013-07-06 18:52:17 +0200
-# Platform: rbx 2.0.0.rc1
+# This file was automatically generated, any manual changes will be lost the
+# next time this file is generated.
 #
+# Created:  2013-07-07 17:54:58 +0200
+# Platform: rbx 2.0.0.rc1
+
 RubyLint::VirtualMachine.global_scope.define_constant('ActionDispatch') do |klass|
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_method('test_app')
 
@@ -18,21 +20,12 @@ RubyLint::VirtualMachine.global_scope.define_constant('ActionDispatch') do |klas
   end
 end
 
-##
-# Constant: ActionDispatch::Assertions
-# Created:  2013-07-06 18:52:17 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('ActionDispatch::Assertions') do |klass|
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 end
 
-##
-# Constant: ActionDispatch::Callbacks
-# Created:  2013-07-06 18:52:17 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('ActionDispatch::Callbacks') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_method('_call_callbacks')
 
@@ -73,39 +66,24 @@ RubyLint::VirtualMachine.global_scope.define_constant('ActionDispatch::Callbacks
   end
 end
 
-##
-# Constant: ActionDispatch::Cookies
-# Created:  2013-07-06 18:52:17 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('ActionDispatch::Cookies') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_instance_method('call') do |method|
     method.define_argument('env')
   end
 end
 
-##
-# Constant: ActionDispatch::DebugExceptions
-# Created:  2013-07-06 18:52:17 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('ActionDispatch::DebugExceptions') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_instance_method('call') do |method|
     method.define_argument('env')
   end
 end
 
-##
-# Constant: ActionDispatch::ExceptionWrapper
-# Created:  2013-07-06 18:52:17 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('ActionDispatch::ExceptionWrapper') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_method('rescue_responses')
 
@@ -156,51 +134,28 @@ RubyLint::VirtualMachine.global_scope.define_constant('ActionDispatch::Exception
   klass.define_instance_method('status_code')
 end
 
-##
-# Constant: ActionDispatch::Flash
-# Created:  2013-07-06 18:52:17 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('ActionDispatch::Flash') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_instance_method('call') do |method|
     method.define_argument('env')
   end
 end
 
-##
-# Constant: ActionDispatch::Http
-# Created:  2013-07-06 18:52:17 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('ActionDispatch::Http') do |klass|
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 end
 
-##
-# Constant: ActionDispatch::IllegalStateError
-# Created:  2013-07-06 18:52:17 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('ActionDispatch::IllegalStateError') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('StandardError'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('StandardError'))
 end
 
-##
-# Constant: ActionDispatch::Integration
-# Created:  2013-07-06 18:52:17 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('ActionDispatch::Integration') do |klass|
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 end
 
-##
-# Constant: ActionDispatch::IntegrationTest
-# Created:  2013-07-06 18:52:17 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('ActionDispatch::IntegrationTest') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('ActiveSupport::TestCase'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('ActiveSupport::TestCase'))
 
   klass.define_method('_setup_callbacks')
 
@@ -217,21 +172,12 @@ RubyLint::VirtualMachine.global_scope.define_constant('ActionDispatch::Integrati
   klass.define_instance_method('url_options')
 end
 
-##
-# Constant: ActionDispatch::Journey
-# Created:  2013-07-06 18:52:17 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('ActionDispatch::Journey') do |klass|
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 end
 
-##
-# Constant: ActionDispatch::MiddlewareStack
-# Created:  2013-07-06 18:52:17 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('ActionDispatch::MiddlewareStack') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_instance_method('[]') do |method|
     method.define_argument('i')
@@ -296,26 +242,16 @@ RubyLint::VirtualMachine.global_scope.define_constant('ActionDispatch::Middlewar
   end
 end
 
-##
-# Constant: ActionDispatch::ParamsParser
-# Created:  2013-07-06 18:52:17 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('ActionDispatch::ParamsParser') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_instance_method('call') do |method|
     method.define_argument('env')
   end
 end
 
-##
-# Constant: ActionDispatch::PublicExceptions
-# Created:  2013-07-06 18:52:17 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('ActionDispatch::PublicExceptions') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_instance_method('call') do |method|
     method.define_argument('env')
@@ -326,22 +262,12 @@ RubyLint::VirtualMachine.global_scope.define_constant('ActionDispatch::PublicExc
   klass.define_instance_method('public_path=')
 end
 
-##
-# Constant: ActionDispatch::Railtie
-# Created:  2013-07-06 18:52:17 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('ActionDispatch::Railtie') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Rails::Railtie'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Rails::Railtie'))
 end
 
-##
-# Constant: ActionDispatch::Reloader
-# Created:  2013-07-06 18:52:17 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('ActionDispatch::Reloader') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_method('_cleanup_callbacks')
 
@@ -394,13 +320,8 @@ RubyLint::VirtualMachine.global_scope.define_constant('ActionDispatch::Reloader'
   klass.define_instance_method('prepare!')
 end
 
-##
-# Constant: ActionDispatch::RemoteIp
-# Created:  2013-07-06 18:52:17 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('ActionDispatch::RemoteIp') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_instance_method('call') do |method|
     method.define_argument('env')
@@ -411,13 +332,8 @@ RubyLint::VirtualMachine.global_scope.define_constant('ActionDispatch::RemoteIp'
   klass.define_instance_method('proxies')
 end
 
-##
-# Constant: ActionDispatch::Request
-# Created:  2013-07-06 18:52:17 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('ActionDispatch::Request') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Rack::Request'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Rack::Request'))
 
   klass.define_method('ignore_accept_header')
 
@@ -556,26 +472,16 @@ RubyLint::VirtualMachine.global_scope.define_constant('ActionDispatch::Request')
   klass.define_instance_method('xml_http_request?')
 end
 
-##
-# Constant: ActionDispatch::RequestId
-# Created:  2013-07-06 18:52:17 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('ActionDispatch::RequestId') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_instance_method('call') do |method|
     method.define_argument('env')
   end
 end
 
-##
-# Constant: ActionDispatch::Response
-# Created:  2013-07-06 18:52:17 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('ActionDispatch::Response') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_method('default_charset')
 
@@ -705,21 +611,12 @@ RubyLint::VirtualMachine.global_scope.define_constant('ActionDispatch::Response'
   klass.define_instance_method('to_path')
 end
 
-##
-# Constant: ActionDispatch::Routing
-# Created:  2013-07-06 18:52:17 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('ActionDispatch::Routing') do |klass|
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 end
 
-##
-# Constant: ActionDispatch::SSL
-# Created:  2013-07-06 18:52:17 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('ActionDispatch::SSL') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_method('default_hsts_options')
 
@@ -728,46 +625,28 @@ RubyLint::VirtualMachine.global_scope.define_constant('ActionDispatch::SSL') do 
   end
 end
 
-##
-# Constant: ActionDispatch::Session
-# Created:  2013-07-06 18:52:17 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('ActionDispatch::Session') do |klass|
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 end
 
-##
-# Constant: ActionDispatch::ShowExceptions
-# Created:  2013-07-06 18:52:17 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('ActionDispatch::ShowExceptions') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_instance_method('call') do |method|
     method.define_argument('env')
   end
 end
 
-##
-# Constant: ActionDispatch::Static
-# Created:  2013-07-06 18:52:17 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('ActionDispatch::Static') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_instance_method('call') do |method|
     method.define_argument('env')
   end
 end
 
-##
-# Constant: ActionDispatch::TestProcess
-# Created:  2013-07-06 18:52:17 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('ActionDispatch::TestProcess') do |klass|
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_instance_method('assigns') do |method|
     method.define_optional_argument('key')
@@ -788,13 +667,8 @@ RubyLint::VirtualMachine.global_scope.define_constant('ActionDispatch::TestProce
   klass.define_instance_method('session')
 end
 
-##
-# Constant: ActionDispatch::TestRequest
-# Created:  2013-07-06 18:52:17 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('ActionDispatch::TestRequest') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('ActionDispatch::Request'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('ActionDispatch::Request'))
 
   klass.define_method('new') do |method|
     method.define_optional_argument('env')
@@ -849,13 +723,8 @@ RubyLint::VirtualMachine.global_scope.define_constant('ActionDispatch::TestReque
   end
 end
 
-##
-# Constant: ActionDispatch::TestResponse
-# Created:  2013-07-06 18:52:17 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('ActionDispatch::TestResponse') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('ActionDispatch::Response'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('ActionDispatch::Response'))
 
   klass.define_method('from_response') do |method|
     method.define_argument('response')
@@ -869,3 +738,4 @@ RubyLint::VirtualMachine.global_scope.define_constant('ActionDispatch::TestRespo
 
   klass.define_instance_method('success?')
 end
+

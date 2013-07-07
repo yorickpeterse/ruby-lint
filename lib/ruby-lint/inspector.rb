@@ -115,6 +115,15 @@ module RubyLint
     end
 
     ##
+    # Returns the superclass of the current constant or `nil` if there is none.
+    #
+    # @return [Mixed]
+    #
+    def inspect_superclass
+      return constant.respond_to?(:superclass) ? constant.superclass : nil
+    end
+
+    ##
     # Formats the list of methods in a human readable format.
     #
     # @param [Array] methods

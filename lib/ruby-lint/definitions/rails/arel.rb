@@ -1,9 +1,11 @@
-##
-# Constant: Arel
-# Created:  2013-07-06 18:52:18 +0200
-# Platform: rbx 2.0.0.rc1
+# This file was automatically generated, any manual changes will be lost the
+# next time this file is generated.
 #
+# Created:  2013-07-07 17:54:58 +0200
+# Platform: rbx 2.0.0.rc1
+
 RubyLint::VirtualMachine.global_scope.define_constant('Arel') do |klass|
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_method('sql') do |method|
     method.define_argument('raw_sql')
@@ -12,55 +14,34 @@ RubyLint::VirtualMachine.global_scope.define_constant('Arel') do |klass|
   klass.define_method('star')
 end
 
-##
-# Constant: Arel::AliasPredication
-# Created:  2013-07-06 18:52:18 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('Arel::AliasPredication') do |klass|
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_instance_method('as') do |method|
     method.define_argument('other')
   end
 end
 
-##
-# Constant: Arel::Attribute
-# Created:  2013-07-06 18:52:18 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('Arel::Attribute') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('#<Class:0x1d4dc>'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('#<Class:0x17c48>'))
 
   klass.define_instance_method('lower')
 end
 
-##
-# Constant: Arel::Attributes
-# Created:  2013-07-06 18:52:18 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('Arel::Attributes') do |klass|
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_method('for') do |method|
     method.define_argument('column')
   end
 end
 
-##
-# Constant: Arel::Compatibility
-# Created:  2013-07-06 18:52:18 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('Arel::Compatibility') do |klass|
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 end
 
-##
-# Constant: Arel::Crud
-# Created:  2013-07-06 18:52:18 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('Arel::Crud') do |klass|
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_instance_method('compile_delete')
 
@@ -85,13 +66,8 @@ RubyLint::VirtualMachine.global_scope.define_constant('Arel::Crud') do |klass|
   end
 end
 
-##
-# Constant: Arel::DeleteManager
-# Created:  2013-07-06 18:52:18 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('Arel::DeleteManager') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Arel::TreeManager'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Arel::TreeManager'))
 
   klass.define_instance_method('from') do |method|
     method.define_argument('relation')
@@ -102,20 +78,12 @@ RubyLint::VirtualMachine.global_scope.define_constant('Arel::DeleteManager') do 
   end
 end
 
-##
-# Constant: Arel::Expression
-# Created:  2013-07-06 18:52:18 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('Arel::Expression') do |klass|
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 end
 
-##
-# Constant: Arel::Expressions
-# Created:  2013-07-06 18:52:18 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('Arel::Expressions') do |klass|
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_instance_method('average')
 
@@ -134,12 +102,8 @@ RubyLint::VirtualMachine.global_scope.define_constant('Arel::Expressions') do |k
   klass.define_instance_method('sum')
 end
 
-##
-# Constant: Arel::FactoryMethods
-# Created:  2013-07-06 18:52:18 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('Arel::FactoryMethods') do |klass|
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_instance_method('create_and') do |method|
     method.define_argument('clauses')
@@ -177,22 +141,12 @@ RubyLint::VirtualMachine.global_scope.define_constant('Arel::FactoryMethods') do
   end
 end
 
-##
-# Constant: Arel::InnerJoin
-# Created:  2013-07-06 18:52:18 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('Arel::InnerJoin') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Arel::Nodes::Join'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Arel::Nodes::Join'))
 end
 
-##
-# Constant: Arel::InsertManager
-# Created:  2013-07-06 18:52:18 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('Arel::InsertManager') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Arel::TreeManager'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Arel::TreeManager'))
 
   klass.define_instance_method('columns')
 
@@ -214,12 +168,8 @@ RubyLint::VirtualMachine.global_scope.define_constant('Arel::InsertManager') do 
   end
 end
 
-##
-# Constant: Arel::Math
-# Created:  2013-07-06 18:52:18 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('Arel::Math') do |klass|
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_instance_method('*') do |method|
     method.define_argument('other')
@@ -238,13 +188,8 @@ RubyLint::VirtualMachine.global_scope.define_constant('Arel::Math') do |klass|
   end
 end
 
-##
-# Constant: Arel::Node
-# Created:  2013-07-06 18:52:18 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('Arel::Node') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_instance_method('and') do |method|
     method.define_argument('right')
@@ -265,41 +210,24 @@ RubyLint::VirtualMachine.global_scope.define_constant('Arel::Node') do |klass|
   end
 end
 
-##
-# Constant: Arel::Nodes
-# Created:  2013-07-06 18:52:18 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('Arel::Nodes') do |klass|
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 end
 
-##
-# Constant: Arel::OrderPredications
-# Created:  2013-07-06 18:52:18 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('Arel::OrderPredications') do |klass|
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_instance_method('asc')
 
   klass.define_instance_method('desc')
 end
 
-##
-# Constant: Arel::OuterJoin
-# Created:  2013-07-06 18:52:18 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('Arel::OuterJoin') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Arel::Nodes::Join'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Arel::Nodes::Join'))
 end
 
-##
-# Constant: Arel::Predications
-# Created:  2013-07-06 18:52:18 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('Arel::Predications') do |klass|
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_instance_method('does_not_match') do |method|
     method.define_argument('other')
@@ -422,13 +350,8 @@ RubyLint::VirtualMachine.global_scope.define_constant('Arel::Predications') do |
   end
 end
 
-##
-# Constant: Arel::SelectManager
-# Created:  2013-07-06 18:52:18 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('Arel::SelectManager') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Arel::TreeManager'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Arel::TreeManager'))
 
   klass.define_instance_method('as') do |method|
     method.define_argument('other')
@@ -559,30 +482,16 @@ RubyLint::VirtualMachine.global_scope.define_constant('Arel::SelectManager') do 
   end
 end
 
-##
-# Constant: Arel::Sql
-# Created:  2013-07-06 18:52:18 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('Arel::Sql') do |klass|
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 end
 
-##
-# Constant: Arel::SqlLiteral
-# Created:  2013-07-06 18:52:18 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('Arel::SqlLiteral') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Arel::Nodes::SqlLiteral'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Arel::Nodes::SqlLiteral'))
 end
 
-##
-# Constant: Arel::Table
-# Created:  2013-07-06 18:52:18 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('Arel::Table') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_method('engine')
 
@@ -678,13 +587,8 @@ RubyLint::VirtualMachine.global_scope.define_constant('Arel::Table') do |klass|
   end
 end
 
-##
-# Constant: Arel::TreeManager
-# Created:  2013-07-06 18:52:18 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('Arel::TreeManager') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_instance_method('ast')
 
@@ -701,13 +605,8 @@ RubyLint::VirtualMachine.global_scope.define_constant('Arel::TreeManager') do |k
   end
 end
 
-##
-# Constant: Arel::UpdateManager
-# Created:  2013-07-06 18:52:18 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('Arel::UpdateManager') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Arel::TreeManager'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Arel::TreeManager'))
 
   klass.define_instance_method('key')
 
@@ -740,20 +639,12 @@ RubyLint::VirtualMachine.global_scope.define_constant('Arel::UpdateManager') do 
   end
 end
 
-##
-# Constant: Arel::VERSION
-# Created:  2013-07-06 18:52:18 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('Arel::VERSION') do |klass|
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 end
 
-##
-# Constant: Arel::Visitors
-# Created:  2013-07-06 18:52:18 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('Arel::Visitors') do |klass|
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_method('for') do |method|
     method.define_argument('engine')
@@ -764,14 +655,11 @@ RubyLint::VirtualMachine.global_scope.define_constant('Arel::Visitors') do |klas
   end
 end
 
-##
-# Constant: Arel::WindowPredications
-# Created:  2013-07-06 18:52:18 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('Arel::WindowPredications') do |klass|
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_instance_method('over') do |method|
     method.define_optional_argument('expr')
   end
 end
+

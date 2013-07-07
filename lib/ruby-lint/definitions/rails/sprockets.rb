@@ -1,27 +1,19 @@
-##
-# Constant: Sprockets
-# Created:  2013-07-06 18:52:19 +0200
-# Platform: rbx 2.0.0.rc1
+# This file was automatically generated, any manual changes will be lost the
+# next time this file is generated.
 #
+# Created:  2013-07-07 17:54:58 +0200
+# Platform: rbx 2.0.0.rc1
+
 RubyLint::VirtualMachine.global_scope.define_constant('Sprockets') do |klass|
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 end
 
-##
-# Constant: Sprockets::ArgumentError
-# Created:  2013-07-06 18:52:19 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('Sprockets::ArgumentError') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Sprockets::Error'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Sprockets::Error'))
 end
 
-##
-# Constant: Sprockets::Asset
-# Created:  2013-07-06 18:52:19 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('Sprockets::Asset') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_method('from_hash') do |method|
     method.define_argument('environment')
@@ -108,13 +100,8 @@ RubyLint::VirtualMachine.global_scope.define_constant('Sprockets::Asset') do |kl
   end
 end
 
-##
-# Constant: Sprockets::AssetAttributes
-# Created:  2013-07-06 18:52:19 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('Sprockets::AssetAttributes') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_instance_method('content_type')
 
@@ -137,13 +124,8 @@ RubyLint::VirtualMachine.global_scope.define_constant('Sprockets::AssetAttribute
   klass.define_instance_method('search_paths')
 end
 
-##
-# Constant: Sprockets::Base
-# Created:  2013-07-06 18:52:19 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('Sprockets::Base') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_instance_method('[]') do |method|
     method.define_rest_argument('args')
@@ -311,13 +293,8 @@ RubyLint::VirtualMachine.global_scope.define_constant('Sprockets::Base') do |kla
   end
 end
 
-##
-# Constant: Sprockets::BundledAsset
-# Created:  2013-07-06 18:52:19 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('Sprockets::BundledAsset') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Sprockets::Asset'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Sprockets::Asset'))
 
   klass.define_instance_method('body')
 
@@ -341,21 +318,12 @@ RubyLint::VirtualMachine.global_scope.define_constant('Sprockets::BundledAsset')
   klass.define_instance_method('to_a')
 end
 
-##
-# Constant: Sprockets::Cache
-# Created:  2013-07-06 18:52:19 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('Sprockets::Cache') do |klass|
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 end
 
-##
-# Constant: Sprockets::CharsetNormalizer
-# Created:  2013-07-06 18:52:19 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('Sprockets::CharsetNormalizer') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Tilt::Template'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Tilt::Template'))
 
   klass.define_instance_method('evaluate') do |method|
     method.define_argument('context')
@@ -366,22 +334,12 @@ RubyLint::VirtualMachine.global_scope.define_constant('Sprockets::CharsetNormali
   klass.define_instance_method('prepare')
 end
 
-##
-# Constant: Sprockets::CircularDependencyError
-# Created:  2013-07-06 18:52:19 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('Sprockets::CircularDependencyError') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Sprockets::Error'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Sprockets::Error'))
 end
 
-##
-# Constant: Sprockets::ClosureCompressor
-# Created:  2013-07-06 18:52:19 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('Sprockets::ClosureCompressor') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Tilt::Template'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Tilt::Template'))
 
   klass.define_method('engine_initialized?')
 
@@ -396,12 +354,8 @@ RubyLint::VirtualMachine.global_scope.define_constant('Sprockets::ClosureCompres
   klass.define_instance_method('prepare')
 end
 
-##
-# Constant: Sprockets::Compressing
-# Created:  2013-07-06 18:52:19 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('Sprockets::Compressing') do |klass|
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_instance_method('compressors')
 
@@ -424,22 +378,12 @@ RubyLint::VirtualMachine.global_scope.define_constant('Sprockets::Compressing') 
   end
 end
 
-##
-# Constant: Sprockets::ContentTypeMismatch
-# Created:  2013-07-06 18:52:19 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('Sprockets::ContentTypeMismatch') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Sprockets::Error'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Sprockets::Error'))
 end
 
-##
-# Constant: Sprockets::Context
-# Created:  2013-07-06 18:52:19 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('Sprockets::Context') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_instance_method('__LINE__=')
 
@@ -526,13 +470,8 @@ RubyLint::VirtualMachine.global_scope.define_constant('Sprockets::Context') do |
   end
 end
 
-##
-# Constant: Sprockets::DirectiveProcessor
-# Created:  2013-07-06 18:52:19 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('Sprockets::DirectiveProcessor') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Tilt::Template'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Tilt::Template'))
 
   klass.define_instance_method('body')
 
@@ -603,13 +542,8 @@ RubyLint::VirtualMachine.global_scope.define_constant('Sprockets::DirectiveProce
   klass.define_instance_method('processed_source')
 end
 
-##
-# Constant: Sprockets::EcoTemplate
-# Created:  2013-07-06 18:52:19 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('Sprockets::EcoTemplate') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Tilt::Template'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Tilt::Template'))
 
   klass.define_method('engine_initialized?')
 
@@ -624,13 +558,8 @@ RubyLint::VirtualMachine.global_scope.define_constant('Sprockets::EcoTemplate') 
   klass.define_instance_method('prepare')
 end
 
-##
-# Constant: Sprockets::EjsTemplate
-# Created:  2013-07-06 18:52:19 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('Sprockets::EjsTemplate') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Tilt::Template'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Tilt::Template'))
 
   klass.define_method('engine_initialized?')
 
@@ -645,12 +574,8 @@ RubyLint::VirtualMachine.global_scope.define_constant('Sprockets::EjsTemplate') 
   klass.define_instance_method('prepare')
 end
 
-##
-# Constant: Sprockets::EngineError
-# Created:  2013-07-06 18:52:19 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('Sprockets::EngineError') do |klass|
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_instance_method('message')
 
@@ -659,12 +584,8 @@ RubyLint::VirtualMachine.global_scope.define_constant('Sprockets::EngineError') 
   klass.define_instance_method('sprockets_annotation=')
 end
 
-##
-# Constant: Sprockets::Engines
-# Created:  2013-07-06 18:52:19 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('Sprockets::Engines') do |klass|
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_instance_method('engine_extensions')
 
@@ -678,13 +599,8 @@ RubyLint::VirtualMachine.global_scope.define_constant('Sprockets::Engines') do |
   end
 end
 
-##
-# Constant: Sprockets::Environment
-# Created:  2013-07-06 18:52:19 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('Sprockets::Environment') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Sprockets::Base'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Sprockets::Base'))
 
   klass.define_instance_method('expire_index!')
 
@@ -696,31 +612,16 @@ RubyLint::VirtualMachine.global_scope.define_constant('Sprockets::Environment') 
   klass.define_instance_method('index')
 end
 
-##
-# Constant: Sprockets::Error
-# Created:  2013-07-06 18:52:19 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('Sprockets::Error') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('StandardError'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('StandardError'))
 end
 
-##
-# Constant: Sprockets::FileNotFound
-# Created:  2013-07-06 18:52:19 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('Sprockets::FileNotFound') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Sprockets::Error'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Sprockets::Error'))
 end
 
-##
-# Constant: Sprockets::Index
-# Created:  2013-07-06 18:52:19 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('Sprockets::Index') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Sprockets::Base'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Sprockets::Base'))
 
   klass.define_instance_method('build_asset') do |method|
     method.define_argument('path')
@@ -742,13 +643,8 @@ RubyLint::VirtualMachine.global_scope.define_constant('Sprockets::Index') do |kl
   klass.define_instance_method('index')
 end
 
-##
-# Constant: Sprockets::JstProcessor
-# Created:  2013-07-06 18:52:19 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('Sprockets::JstProcessor') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Tilt::Template'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Tilt::Template'))
 
   klass.define_method('default_namespace')
 
@@ -763,13 +659,8 @@ RubyLint::VirtualMachine.global_scope.define_constant('Sprockets::JstProcessor')
   klass.define_instance_method('prepare')
 end
 
-##
-# Constant: Sprockets::Manifest
-# Created:  2013-07-06 18:52:19 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('Sprockets::Manifest') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_instance_method('assets')
 
@@ -806,12 +697,8 @@ RubyLint::VirtualMachine.global_scope.define_constant('Sprockets::Manifest') do 
   klass.define_instance_method('save')
 end
 
-##
-# Constant: Sprockets::Mime
-# Created:  2013-07-06 18:52:19 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('Sprockets::Mime') do |klass|
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_instance_method('encoding_for_mime_type') do |method|
     method.define_argument('type')
@@ -833,12 +720,8 @@ RubyLint::VirtualMachine.global_scope.define_constant('Sprockets::Mime') do |kla
   klass.define_instance_method('registered_mime_types')
 end
 
-##
-# Constant: Sprockets::Paths
-# Created:  2013-07-06 18:52:19 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('Sprockets::Paths') do |klass|
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_instance_method('append_path') do |method|
     method.define_argument('path')
@@ -859,13 +742,8 @@ RubyLint::VirtualMachine.global_scope.define_constant('Sprockets::Paths') do |kl
   klass.define_instance_method('trail')
 end
 
-##
-# Constant: Sprockets::ProcessedAsset
-# Created:  2013-07-06 18:52:19 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('Sprockets::ProcessedAsset') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Sprockets::Asset'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Sprockets::Asset'))
 
   klass.define_instance_method('dependency_digest')
 
@@ -885,12 +763,8 @@ RubyLint::VirtualMachine.global_scope.define_constant('Sprockets::ProcessedAsset
   klass.define_instance_method('source')
 end
 
-##
-# Constant: Sprockets::Processing
-# Created:  2013-07-06 18:52:19 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('Sprockets::Processing') do |klass|
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_instance_method('bundle_processors') do |method|
     method.define_optional_argument('mime_type')
@@ -953,13 +827,8 @@ RubyLint::VirtualMachine.global_scope.define_constant('Sprockets::Processing') d
   end
 end
 
-##
-# Constant: Sprockets::Processor
-# Created:  2013-07-06 18:52:19 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('Sprockets::Processor') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Tilt::Template'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Tilt::Template'))
 
   klass.define_method('name')
 
@@ -975,30 +844,16 @@ RubyLint::VirtualMachine.global_scope.define_constant('Sprockets::Processor') do
   klass.define_instance_method('prepare')
 end
 
-##
-# Constant: Sprockets::Rails
-# Created:  2013-07-06 18:52:19 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('Sprockets::Rails') do |klass|
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 end
 
-##
-# Constant: Sprockets::Railtie
-# Created:  2013-07-06 18:52:19 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('Sprockets::Railtie') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Rails::Railtie'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Rails::Railtie'))
 end
 
-##
-# Constant: Sprockets::SafetyColons
-# Created:  2013-07-06 18:52:19 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('Sprockets::SafetyColons') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Tilt::Template'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Tilt::Template'))
 
   klass.define_instance_method('evaluate') do |method|
     method.define_argument('context')
@@ -1009,13 +864,8 @@ RubyLint::VirtualMachine.global_scope.define_constant('Sprockets::SafetyColons')
   klass.define_instance_method('prepare')
 end
 
-##
-# Constant: Sprockets::SassCompressor
-# Created:  2013-07-06 18:52:19 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('Sprockets::SassCompressor') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Tilt::Template'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Tilt::Template'))
 
   klass.define_method('engine_initialized?')
 
@@ -1030,13 +880,8 @@ RubyLint::VirtualMachine.global_scope.define_constant('Sprockets::SassCompressor
   klass.define_instance_method('prepare')
 end
 
-##
-# Constant: Sprockets::SassTemplate
-# Created:  2013-07-06 18:52:19 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('Sprockets::SassTemplate') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Tilt::Template'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Tilt::Template'))
 
   klass.define_method('engine_initialized?')
 
@@ -1053,24 +898,14 @@ RubyLint::VirtualMachine.global_scope.define_constant('Sprockets::SassTemplate')
   klass.define_instance_method('syntax')
 end
 
-##
-# Constant: Sprockets::ScssTemplate
-# Created:  2013-07-06 18:52:19 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('Sprockets::ScssTemplate') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Sprockets::SassTemplate'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Sprockets::SassTemplate'))
 
   klass.define_instance_method('syntax')
 end
 
-##
-# Constant: Sprockets::StaticAsset
-# Created:  2013-07-06 18:52:19 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('Sprockets::StaticAsset') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Sprockets::Asset'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Sprockets::Asset'))
 
   klass.define_instance_method('source')
 
@@ -1082,13 +917,8 @@ RubyLint::VirtualMachine.global_scope.define_constant('Sprockets::StaticAsset') 
   end
 end
 
-##
-# Constant: Sprockets::UglifierCompressor
-# Created:  2013-07-06 18:52:19 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('Sprockets::UglifierCompressor') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Tilt::Template'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Tilt::Template'))
 
   klass.define_method('engine_initialized?')
 
@@ -1103,12 +933,8 @@ RubyLint::VirtualMachine.global_scope.define_constant('Sprockets::UglifierCompre
   klass.define_instance_method('prepare')
 end
 
-##
-# Constant: Sprockets::Utils
-# Created:  2013-07-06 18:52:19 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('Sprockets::Utils') do |klass|
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_method('normalize_extension') do |method|
     method.define_argument('extension')
@@ -1120,21 +946,12 @@ RubyLint::VirtualMachine.global_scope.define_constant('Sprockets::Utils') do |kl
   end
 end
 
-##
-# Constant: Sprockets::VERSION
-# Created:  2013-07-06 18:52:19 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('Sprockets::VERSION') do |klass|
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 end
 
-##
-# Constant: Sprockets::YUICompressor
-# Created:  2013-07-06 18:52:19 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('Sprockets::YUICompressor') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Tilt::Template'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Tilt::Template'))
 
   klass.define_method('engine_initialized?')
 
@@ -1148,3 +965,4 @@ RubyLint::VirtualMachine.global_scope.define_constant('Sprockets::YUICompressor'
 
   klass.define_instance_method('prepare')
 end
+

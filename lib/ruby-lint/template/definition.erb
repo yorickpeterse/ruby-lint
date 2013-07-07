@@ -1,13 +1,16 @@
-##
-# Constant: <%= @constant_name %>
+# This file was automatically generated, any manual changes will be lost the
+# next time this file is generated.
+#
 # Created:  <%= Time.new %>
 # Platform: <%= RUBY_ENGINE %> <%= Rubinius::VERSION rescue RUBY_VERSION %>
-#
-RubyLint::VirtualMachine.global_scope.define_constant('<%= @constant_name %>') do |klass|
-  <%- if @superclass -%>
-  klass.inherits(RubyLint::VirtualMachine.global_constant('<%= @superclass %>'))
+
+<% @constants.each do |constant| %>
+RubyLint::VirtualMachine.global_scope.define_constant('<%= constant.name %>') do |klass|
+  <%- if constant.superclass -%>
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('<%= constant.superclass %>'))
   <%- end -%>
-  <%- @methods.each do |type, collection| -%>
+
+  <%- constant.methods.each do |type, collection| -%>
   <%- collection.each do |name, args| -%>
 
   <%- if args.empty? -%>
@@ -15,10 +18,11 @@ RubyLint::VirtualMachine.global_scope.define_constant('<%= @constant_name %>') d
   <%- else -%>
   klass.define_<%= type %>('<%= name %>') do |method|
     <%- args.each do |arg| -%>
-    method.define_<%= arg[:method] %>('<%= arg[:name] %>')
+    method.define_<%= arg[:type] %>('<%= arg[:name] %>')
     <%- end -%>
   end
   <%- end -%>
   <%- end -%>
   <%- end -%>
 end
+<% end %>

@@ -34,6 +34,7 @@ namespace :generate do
 
   desc 'Generates definitions for Rails'
   task :rails do
+    require 'mail'
     require 'rails/all'
 
     dir = File.expand_path('../../lib/ruby-lint/definitions/rails', __FILE__)

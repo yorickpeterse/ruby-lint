@@ -1,9 +1,11 @@
-##
-# Constant: Rails
-# Created:  2013-07-06 18:52:18 +0200
-# Platform: rbx 2.0.0.rc1
+# This file was automatically generated, any manual changes will be lost the
+# next time this file is generated.
 #
+# Created:  2013-07-07 17:54:58 +0200
+# Platform: rbx 2.0.0.rc1
+
 RubyLint::VirtualMachine.global_scope.define_constant('Rails') do |klass|
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_method('application')
 
@@ -42,13 +44,8 @@ RubyLint::VirtualMachine.global_scope.define_constant('Rails') do |klass|
   klass.define_method('version')
 end
 
-##
-# Constant: Rails::Application
-# Created:  2013-07-06 18:52:18 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('Rails::Application') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Rails::Engine'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Rails::Engine'))
 
   klass.define_method('inherited') do |method|
     method.define_argument('base')
@@ -146,21 +143,12 @@ RubyLint::VirtualMachine.global_scope.define_constant('Rails::Application') do |
   klass.define_instance_method('watchable_args')
 end
 
-##
-# Constant: Rails::Configuration
-# Created:  2013-07-06 18:52:19 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('Rails::Configuration') do |klass|
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 end
 
-##
-# Constant: Rails::DeprecatedConstant
-# Created:  2013-07-06 18:52:19 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('Rails::DeprecatedConstant') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('ActiveSupport::Deprecation::DeprecatedConstantProxy'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('ActiveSupport::Deprecation::DeprecatedConstantProxy'))
 
   klass.define_method('deprecate') do |method|
     method.define_argument('old')
@@ -168,13 +156,8 @@ RubyLint::VirtualMachine.global_scope.define_constant('Rails::DeprecatedConstant
   end
 end
 
-##
-# Constant: Rails::Engine
-# Created:  2013-07-06 18:52:19 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('Rails::Engine') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Rails::Railtie'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Rails::Railtie'))
 
   klass.define_method('called_from')
 
@@ -298,12 +281,8 @@ RubyLint::VirtualMachine.global_scope.define_constant('Rails::Engine') do |klass
   end
 end
 
-##
-# Constant: Rails::Info
-# Created:  2013-07-06 18:52:19 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('Rails::Info') do |klass|
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_method('framework_version') do |method|
     method.define_argument('framework')
@@ -335,13 +314,8 @@ RubyLint::VirtualMachine.global_scope.define_constant('Rails::Info') do |klass|
   end
 end
 
-##
-# Constant: Rails::InfoController
-# Created:  2013-07-06 18:52:19 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('Rails::InfoController') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('ActionController::Base'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('ActionController::Base'))
 
   klass.define_method('_helpers')
 
@@ -368,12 +342,8 @@ RubyLint::VirtualMachine.global_scope.define_constant('Rails::InfoController') d
   klass.define_instance_method('routes')
 end
 
-##
-# Constant: Rails::Initializable
-# Created:  2013-07-06 18:52:19 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('Rails::Initializable') do |klass|
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_method('included') do |method|
     method.define_argument('base')
@@ -387,29 +357,16 @@ RubyLint::VirtualMachine.global_scope.define_constant('Rails::Initializable') do
   end
 end
 
-##
-# Constant: Rails::Paths
-# Created:  2013-07-06 18:52:19 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('Rails::Paths') do |klass|
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 end
 
-##
-# Constant: Rails::Rack
-# Created:  2013-07-06 18:52:19 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('Rails::Rack') do |klass|
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 end
 
-##
-# Constant: Rails::Railtie
-# Created:  2013-07-06 18:52:19 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('Rails::Railtie') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_method('abstract_railtie?')
 
@@ -469,30 +426,16 @@ RubyLint::VirtualMachine.global_scope.define_constant('Rails::Railtie') do |klas
   end
 end
 
-##
-# Constant: Rails::TestUnitRailtie
-# Created:  2013-07-06 18:52:19 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('Rails::TestUnitRailtie') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Rails::Railtie'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Rails::Railtie'))
 end
 
-##
-# Constant: Rails::VERSION
-# Created:  2013-07-06 18:52:19 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('Rails::VERSION') do |klass|
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 end
 
-##
-# Constant: Rails::WelcomeController
-# Created:  2013-07-06 18:52:19 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('Rails::WelcomeController') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('ActionController::Base'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('ActionController::Base'))
 
   klass.define_method('_helpers')
 
@@ -506,3 +449,4 @@ RubyLint::VirtualMachine.global_scope.define_constant('Rails::WelcomeController'
 
   klass.define_instance_method('index')
 end
+

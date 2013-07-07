@@ -60,12 +60,6 @@ describe ruby_object do
     first.lookup_constant_path('B::C').should == third
   end
 
-  should 'error when looking up an invalid constant path' do
-    should.raise?(ArgumentError) do
-      @object.lookup_constant_path('A::B::C')
-    end
-  end
-
   should 'store a variable' do
     var = ruby_object.new(
       :type => :lvar,

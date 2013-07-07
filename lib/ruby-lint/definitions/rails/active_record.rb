@@ -1,67 +1,41 @@
-##
-# Constant: ActiveRecord
-# Created:  2013-07-06 18:52:18 +0200
-# Platform: rbx 2.0.0.rc1
+# This file was automatically generated, any manual changes will be lost the
+# next time this file is generated.
 #
+# Created:  2013-07-07 17:54:58 +0200
+# Platform: rbx 2.0.0.rc1
+
 RubyLint::VirtualMachine.global_scope.define_constant('ActiveRecord') do |klass|
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_method('eager_load!')
 
   klass.define_method('version')
 end
 
-##
-# Constant: ActiveRecord::ActiveRecordError
-# Created:  2013-07-06 18:52:18 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('ActiveRecord::ActiveRecordError') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('StandardError'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('StandardError'))
 end
 
-##
-# Constant: ActiveRecord::AdapterNotFound
-# Created:  2013-07-06 18:52:18 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('ActiveRecord::AdapterNotFound') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('ActiveRecord::ActiveRecordError'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('ActiveRecord::ActiveRecordError'))
 end
 
-##
-# Constant: ActiveRecord::AdapterNotSpecified
-# Created:  2013-07-06 18:52:18 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('ActiveRecord::AdapterNotSpecified') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('ActiveRecord::ActiveRecordError'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('ActiveRecord::ActiveRecordError'))
 end
 
-##
-# Constant: ActiveRecord::Aggregations
-# Created:  2013-07-06 18:52:18 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('ActiveRecord::Aggregations') do |klass|
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_instance_method('clear_aggregation_cache')
 end
 
-##
-# Constant: ActiveRecord::AssociationTypeMismatch
-# Created:  2013-07-06 18:52:18 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('ActiveRecord::AssociationTypeMismatch') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('ActiveRecord::ActiveRecordError'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('ActiveRecord::ActiveRecordError'))
 end
 
-##
-# Constant: ActiveRecord::Associations
-# Created:  2013-07-06 18:52:18 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('ActiveRecord::Associations') do |klass|
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_instance_method('association') do |method|
     method.define_argument('name')
@@ -72,12 +46,8 @@ RubyLint::VirtualMachine.global_scope.define_constant('ActiveRecord::Association
   klass.define_instance_method('clear_association_cache')
 end
 
-##
-# Constant: ActiveRecord::AttributeAssignment
-# Created:  2013-07-06 18:52:18 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('ActiveRecord::AttributeAssignment') do |klass|
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_instance_method('assign_attributes') do |method|
     method.define_argument('new_attributes')
@@ -88,25 +58,16 @@ RubyLint::VirtualMachine.global_scope.define_constant('ActiveRecord::AttributeAs
   end
 end
 
-##
-# Constant: ActiveRecord::AttributeAssignmentError
-# Created:  2013-07-06 18:52:18 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('ActiveRecord::AttributeAssignmentError') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('ActiveRecord::ActiveRecordError'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('ActiveRecord::ActiveRecordError'))
 
   klass.define_instance_method('attribute')
 
   klass.define_instance_method('exception')
 end
 
-##
-# Constant: ActiveRecord::AttributeMethods
-# Created:  2013-07-06 18:52:18 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('ActiveRecord::AttributeMethods') do |klass|
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_instance_method('[]') do |method|
     method.define_argument('attr_name')
@@ -177,12 +138,8 @@ RubyLint::VirtualMachine.global_scope.define_constant('ActiveRecord::AttributeMe
   end
 end
 
-##
-# Constant: ActiveRecord::AutosaveAssociation
-# Created:  2013-07-06 18:52:18 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('ActiveRecord::AutosaveAssociation') do |klass|
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_instance_method('changed_for_autosave?')
 
@@ -201,13 +158,8 @@ RubyLint::VirtualMachine.global_scope.define_constant('ActiveRecord::AutosaveAss
   end
 end
 
-##
-# Constant: ActiveRecord::Base
-# Created:  2013-07-06 18:52:18 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('ActiveRecord::Base') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_method('_attr_readonly')
 
@@ -797,12 +749,8 @@ RubyLint::VirtualMachine.global_scope.define_constant('ActiveRecord::Base') do |
   klass.define_instance_method('validation_context=')
 end
 
-##
-# Constant: ActiveRecord::Batches
-# Created:  2013-07-06 18:52:18 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('ActiveRecord::Batches') do |klass|
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_instance_method('find_each') do |method|
     method.define_optional_argument('options')
@@ -813,12 +761,8 @@ RubyLint::VirtualMachine.global_scope.define_constant('ActiveRecord::Batches') d
   end
 end
 
-##
-# Constant: ActiveRecord::Calculations
-# Created:  2013-07-06 18:52:18 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('ActiveRecord::Calculations') do |klass|
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_instance_method('average') do |method|
     method.define_argument('column_name')
@@ -857,12 +801,8 @@ RubyLint::VirtualMachine.global_scope.define_constant('ActiveRecord::Calculation
   end
 end
 
-##
-# Constant: ActiveRecord::Callbacks
-# Created:  2013-07-06 18:52:18 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('ActiveRecord::Callbacks') do |klass|
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_instance_method('destroy')
 
@@ -871,37 +811,20 @@ RubyLint::VirtualMachine.global_scope.define_constant('ActiveRecord::Callbacks')
   end
 end
 
-##
-# Constant: ActiveRecord::Coders
-# Created:  2013-07-06 18:52:18 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('ActiveRecord::Coders') do |klass|
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 end
 
-##
-# Constant: ActiveRecord::ConfigurationError
-# Created:  2013-07-06 18:52:18 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('ActiveRecord::ConfigurationError') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('ActiveRecord::ActiveRecordError'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('ActiveRecord::ActiveRecordError'))
 end
 
-##
-# Constant: ActiveRecord::ConnectionAdapters
-# Created:  2013-07-06 18:52:18 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('ActiveRecord::ConnectionAdapters') do |klass|
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 end
 
-##
-# Constant: ActiveRecord::ConnectionHandling
-# Created:  2013-07-06 18:52:18 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('ActiveRecord::ConnectionHandling') do |klass|
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_instance_method('clear_active_connections!') do |method|
     method.define_rest_argument('args')
@@ -945,30 +868,16 @@ RubyLint::VirtualMachine.global_scope.define_constant('ActiveRecord::ConnectionH
   klass.define_instance_method('retrieve_connection')
 end
 
-##
-# Constant: ActiveRecord::ConnectionNotEstablished
-# Created:  2013-07-06 18:52:18 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('ActiveRecord::ConnectionNotEstablished') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('ActiveRecord::ActiveRecordError'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('ActiveRecord::ActiveRecordError'))
 end
 
-##
-# Constant: ActiveRecord::ConnectionTimeoutError
-# Created:  2013-07-06 18:52:18 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('ActiveRecord::ConnectionTimeoutError') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('ActiveRecord::ConnectionNotEstablished'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('ActiveRecord::ConnectionNotEstablished'))
 end
 
-##
-# Constant: ActiveRecord::Core
-# Created:  2013-07-06 18:52:18 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('ActiveRecord::Core') do |klass|
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_instance_method('<=>') do |method|
     method.define_argument('other_object')
@@ -1021,29 +930,16 @@ RubyLint::VirtualMachine.global_scope.define_constant('ActiveRecord::Core') do |
   end
 end
 
-##
-# Constant: ActiveRecord::CounterCache
-# Created:  2013-07-06 18:52:18 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('ActiveRecord::CounterCache') do |klass|
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 end
 
-##
-# Constant: ActiveRecord::DangerousAttributeError
-# Created:  2013-07-06 18:52:18 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('ActiveRecord::DangerousAttributeError') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('ActiveRecord::ActiveRecordError'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('ActiveRecord::ActiveRecordError'))
 end
 
-##
-# Constant: ActiveRecord::Delegation
-# Created:  2013-07-06 18:52:18 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('ActiveRecord::Delegation') do |klass|
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_instance_method('all?') do |method|
     method.define_rest_argument('args')
@@ -1132,21 +1028,12 @@ RubyLint::VirtualMachine.global_scope.define_constant('ActiveRecord::Delegation'
   end
 end
 
-##
-# Constant: ActiveRecord::DeleteRestrictionError
-# Created:  2013-07-06 18:52:18 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('ActiveRecord::DeleteRestrictionError') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('ActiveRecord::ActiveRecordError'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('ActiveRecord::ActiveRecordError'))
 end
 
-##
-# Constant: ActiveRecord::DeprecatedFinders
-# Created:  2013-07-06 18:52:18 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('ActiveRecord::DeprecatedFinders') do |klass|
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_instance_method('all') do |method|
     method.define_optional_argument('options')
@@ -1178,30 +1065,16 @@ RubyLint::VirtualMachine.global_scope.define_constant('ActiveRecord::DeprecatedF
   end
 end
 
-##
-# Constant: ActiveRecord::DuplicateMigrationNameError
-# Created:  2013-07-06 18:52:18 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('ActiveRecord::DuplicateMigrationNameError') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('ActiveRecord::ActiveRecordError'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('ActiveRecord::ActiveRecordError'))
 end
 
-##
-# Constant: ActiveRecord::DuplicateMigrationVersionError
-# Created:  2013-07-06 18:52:18 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('ActiveRecord::DuplicateMigrationVersionError') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('ActiveRecord::ActiveRecordError'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('ActiveRecord::ActiveRecordError'))
 end
 
-##
-# Constant: ActiveRecord::DynamicMatchers
-# Created:  2013-07-06 18:52:18 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('ActiveRecord::DynamicMatchers') do |klass|
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_instance_method('respond_to?') do |method|
     method.define_argument('name')
@@ -1209,21 +1082,12 @@ RubyLint::VirtualMachine.global_scope.define_constant('ActiveRecord::DynamicMatc
   end
 end
 
-##
-# Constant: ActiveRecord::EagerLoadPolymorphicError
-# Created:  2013-07-06 18:52:18 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('ActiveRecord::EagerLoadPolymorphicError') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('ActiveRecord::ActiveRecordError'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('ActiveRecord::ActiveRecordError'))
 end
 
-##
-# Constant: ActiveRecord::Explain
-# Created:  2013-07-06 18:52:18 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('ActiveRecord::Explain') do |klass|
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_instance_method('collecting_queries_for_explain')
 
@@ -1232,13 +1096,8 @@ RubyLint::VirtualMachine.global_scope.define_constant('ActiveRecord::Explain') d
   end
 end
 
-##
-# Constant: ActiveRecord::ExplainRegistry
-# Created:  2013-07-06 18:52:18 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('ActiveRecord::ExplainRegistry') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_instance_method('collect')
 
@@ -1253,12 +1112,8 @@ RubyLint::VirtualMachine.global_scope.define_constant('ActiveRecord::ExplainRegi
   klass.define_instance_method('reset')
 end
 
-##
-# Constant: ActiveRecord::FinderMethods
-# Created:  2013-07-06 18:52:18 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('ActiveRecord::FinderMethods') do |klass|
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_instance_method('apply_join_dependency') do |method|
     method.define_argument('relation')
@@ -1342,185 +1197,88 @@ RubyLint::VirtualMachine.global_scope.define_constant('ActiveRecord::FinderMetho
   end
 end
 
-##
-# Constant: ActiveRecord::HasAndBelongsToManyAssociationForeignKeyNeeded
-# Created:  2013-07-06 18:52:18 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('ActiveRecord::HasAndBelongsToManyAssociationForeignKeyNeeded') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('ActiveRecord::ActiveRecordError'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('ActiveRecord::ActiveRecordError'))
 end
 
-##
-# Constant: ActiveRecord::HasManyThroughAssociationNotFoundError
-# Created:  2013-07-06 18:52:18 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('ActiveRecord::HasManyThroughAssociationNotFoundError') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('ActiveRecord::ActiveRecordError'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('ActiveRecord::ActiveRecordError'))
 end
 
-##
-# Constant: ActiveRecord::HasManyThroughAssociationPointlessSourceTypeError
-# Created:  2013-07-06 18:52:18 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('ActiveRecord::HasManyThroughAssociationPointlessSourceTypeError') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('ActiveRecord::ActiveRecordError'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('ActiveRecord::ActiveRecordError'))
 end
 
-##
-# Constant: ActiveRecord::HasManyThroughAssociationPolymorphicSourceError
-# Created:  2013-07-06 18:52:18 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('ActiveRecord::HasManyThroughAssociationPolymorphicSourceError') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('ActiveRecord::ActiveRecordError'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('ActiveRecord::ActiveRecordError'))
 end
 
-##
-# Constant: ActiveRecord::HasManyThroughAssociationPolymorphicThroughError
-# Created:  2013-07-06 18:52:18 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('ActiveRecord::HasManyThroughAssociationPolymorphicThroughError') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('ActiveRecord::ActiveRecordError'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('ActiveRecord::ActiveRecordError'))
 end
 
-##
-# Constant: ActiveRecord::HasManyThroughCantAssociateNewRecords
-# Created:  2013-07-06 18:52:18 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('ActiveRecord::HasManyThroughCantAssociateNewRecords') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('ActiveRecord::ActiveRecordError'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('ActiveRecord::ActiveRecordError'))
 end
 
-##
-# Constant: ActiveRecord::HasManyThroughCantAssociateThroughHasOneOrManyReflection
-# Created:  2013-07-06 18:52:18 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('ActiveRecord::HasManyThroughCantAssociateThroughHasOneOrManyReflection') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('ActiveRecord::ActiveRecordError'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('ActiveRecord::ActiveRecordError'))
 end
 
-##
-# Constant: ActiveRecord::HasManyThroughCantDissociateNewRecords
-# Created:  2013-07-06 18:52:18 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('ActiveRecord::HasManyThroughCantDissociateNewRecords') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('ActiveRecord::ActiveRecordError'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('ActiveRecord::ActiveRecordError'))
 end
 
-##
-# Constant: ActiveRecord::HasManyThroughNestedAssociationsAreReadonly
-# Created:  2013-07-06 18:52:18 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('ActiveRecord::HasManyThroughNestedAssociationsAreReadonly') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('ActiveRecord::ActiveRecordError'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('ActiveRecord::ActiveRecordError'))
 end
 
-##
-# Constant: ActiveRecord::HasManyThroughSourceAssociationNotFoundError
-# Created:  2013-07-06 18:52:18 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('ActiveRecord::HasManyThroughSourceAssociationNotFoundError') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('ActiveRecord::ActiveRecordError'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('ActiveRecord::ActiveRecordError'))
 end
 
-##
-# Constant: ActiveRecord::HasOneThroughCantAssociateThroughCollection
-# Created:  2013-07-06 18:52:18 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('ActiveRecord::HasOneThroughCantAssociateThroughCollection') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('ActiveRecord::ActiveRecordError'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('ActiveRecord::ActiveRecordError'))
 end
 
-##
-# Constant: ActiveRecord::IllegalMigrationNameError
-# Created:  2013-07-06 18:52:18 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('ActiveRecord::IllegalMigrationNameError') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('ActiveRecord::ActiveRecordError'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('ActiveRecord::ActiveRecordError'))
 end
 
-##
-# Constant: ActiveRecord::ImmutableRelation
-# Created:  2013-07-06 18:52:18 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('ActiveRecord::ImmutableRelation') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('ActiveRecord::ActiveRecordError'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('ActiveRecord::ActiveRecordError'))
 end
 
-##
-# Constant: ActiveRecord::Inheritance
-# Created:  2013-07-06 18:52:18 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('ActiveRecord::Inheritance') do |klass|
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 end
 
-##
-# Constant: ActiveRecord::Integration
-# Created:  2013-07-06 18:52:18 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('ActiveRecord::Integration') do |klass|
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_instance_method('cache_key')
 
   klass.define_instance_method('to_param')
 end
 
-##
-# Constant: ActiveRecord::InvalidForeignKey
-# Created:  2013-07-06 18:52:18 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('ActiveRecord::InvalidForeignKey') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('ActiveRecord::WrappedDatabaseException'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('ActiveRecord::WrappedDatabaseException'))
 end
 
-##
-# Constant: ActiveRecord::InverseOfAssociationNotFoundError
-# Created:  2013-07-06 18:52:18 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('ActiveRecord::InverseOfAssociationNotFoundError') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('ActiveRecord::ActiveRecordError'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('ActiveRecord::ActiveRecordError'))
 end
 
-##
-# Constant: ActiveRecord::IrreversibleMigration
-# Created:  2013-07-06 18:52:18 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('ActiveRecord::IrreversibleMigration') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('ActiveRecord::ActiveRecordError'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('ActiveRecord::ActiveRecordError'))
 end
 
-##
-# Constant: ActiveRecord::Locking
-# Created:  2013-07-06 18:52:18 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('ActiveRecord::Locking') do |klass|
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 end
 
-##
-# Constant: ActiveRecord::Migration
-# Created:  2013-07-06 18:52:18 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('ActiveRecord::Migration') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_method('check_pending!')
 
@@ -1629,13 +1387,8 @@ RubyLint::VirtualMachine.global_scope.define_constant('ActiveRecord::Migration')
   end
 end
 
-##
-# Constant: ActiveRecord::MigrationProxy
-# Created:  2013-07-06 18:52:18 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('ActiveRecord::MigrationProxy') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('#<Class:0x1b610>'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('#<Class:0x17a7c>'))
 
   klass.define_instance_method('announce') do |method|
     method.define_rest_argument('args')
@@ -1662,13 +1415,8 @@ RubyLint::VirtualMachine.global_scope.define_constant('ActiveRecord::MigrationPr
   end
 end
 
-##
-# Constant: ActiveRecord::Migrator
-# Created:  2013-07-06 18:52:18 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('ActiveRecord::Migrator') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_method('current_version')
 
@@ -1754,52 +1502,30 @@ RubyLint::VirtualMachine.global_scope.define_constant('ActiveRecord::Migrator') 
   klass.define_instance_method('runnable')
 end
 
-##
-# Constant: ActiveRecord::ModelSchema
-# Created:  2013-07-06 18:52:18 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('ActiveRecord::ModelSchema') do |klass|
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 end
 
-##
-# Constant: ActiveRecord::MultiparameterAssignmentErrors
-# Created:  2013-07-06 18:52:18 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('ActiveRecord::MultiparameterAssignmentErrors') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('ActiveRecord::ActiveRecordError'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('ActiveRecord::ActiveRecordError'))
 
   klass.define_instance_method('errors')
 end
 
-##
-# Constant: ActiveRecord::NestedAttributes
-# Created:  2013-07-06 18:52:18 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('ActiveRecord::NestedAttributes') do |klass|
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_instance_method('_destroy')
 end
 
-##
-# Constant: ActiveRecord::NullMigration
-# Created:  2013-07-06 18:52:18 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('ActiveRecord::NullMigration') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('ActiveRecord::MigrationProxy'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('ActiveRecord::MigrationProxy'))
 
   klass.define_instance_method('mtime')
 end
 
-##
-# Constant: ActiveRecord::NullRelation
-# Created:  2013-07-06 18:52:18 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('ActiveRecord::NullRelation') do |klass|
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_instance_method('any?')
 
@@ -1852,21 +1578,12 @@ RubyLint::VirtualMachine.global_scope.define_constant('ActiveRecord::NullRelatio
   klass.define_instance_method('where_values_hash')
 end
 
-##
-# Constant: ActiveRecord::PendingMigrationError
-# Created:  2013-07-06 18:52:18 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('ActiveRecord::PendingMigrationError') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('ActiveRecord::ActiveRecordError'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('ActiveRecord::ActiveRecordError'))
 end
 
-##
-# Constant: ActiveRecord::Persistence
-# Created:  2013-07-06 18:52:18 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('ActiveRecord::Persistence') do |klass|
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_instance_method('becomes') do |method|
     method.define_argument('klass')
@@ -1963,13 +1680,8 @@ RubyLint::VirtualMachine.global_scope.define_constant('ActiveRecord::Persistence
   end
 end
 
-##
-# Constant: ActiveRecord::PredicateBuilder
-# Created:  2013-07-06 18:52:18 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('ActiveRecord::PredicateBuilder') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_method('build') do |method|
     method.define_argument('attribute')
@@ -1994,34 +1706,20 @@ RubyLint::VirtualMachine.global_scope.define_constant('ActiveRecord::PredicateBu
   end
 end
 
-##
-# Constant: ActiveRecord::PreparedStatementInvalid
-# Created:  2013-07-06 18:52:18 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('ActiveRecord::PreparedStatementInvalid') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('ActiveRecord::ActiveRecordError'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('ActiveRecord::ActiveRecordError'))
 end
 
-##
-# Constant: ActiveRecord::QueryCache
-# Created:  2013-07-06 18:52:18 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('ActiveRecord::QueryCache') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_instance_method('call') do |method|
     method.define_argument('env')
   end
 end
 
-##
-# Constant: ActiveRecord::QueryMethods
-# Created:  2013-07-06 18:52:18 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('ActiveRecord::QueryMethods') do |klass|
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_instance_method('arel')
 
@@ -2354,12 +2052,8 @@ RubyLint::VirtualMachine.global_scope.define_constant('ActiveRecord::QueryMethod
   end
 end
 
-##
-# Constant: ActiveRecord::Querying
-# Created:  2013-07-06 18:52:18 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('ActiveRecord::Querying') do |klass|
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_instance_method('any?') do |method|
     method.define_rest_argument('args')
@@ -2651,94 +2345,46 @@ RubyLint::VirtualMachine.global_scope.define_constant('ActiveRecord::Querying') 
   end
 end
 
-##
-# Constant: ActiveRecord::Railtie
-# Created:  2013-07-06 18:52:18 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('ActiveRecord::Railtie') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Rails::Railtie'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Rails::Railtie'))
 end
 
-##
-# Constant: ActiveRecord::ReadOnlyAssociation
-# Created:  2013-07-06 18:52:18 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('ActiveRecord::ReadOnlyAssociation') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('ActiveRecord::ActiveRecordError'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('ActiveRecord::ActiveRecordError'))
 end
 
-##
-# Constant: ActiveRecord::ReadOnlyRecord
-# Created:  2013-07-06 18:52:18 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('ActiveRecord::ReadOnlyRecord') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('ActiveRecord::ActiveRecordError'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('ActiveRecord::ActiveRecordError'))
 end
 
-##
-# Constant: ActiveRecord::ReadonlyAttributes
-# Created:  2013-07-06 18:52:18 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('ActiveRecord::ReadonlyAttributes') do |klass|
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_instance_method('_attr_readonly')
 end
 
-##
-# Constant: ActiveRecord::RecordNotDestroyed
-# Created:  2013-07-06 18:52:18 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('ActiveRecord::RecordNotDestroyed') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('ActiveRecord::ActiveRecordError'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('ActiveRecord::ActiveRecordError'))
 end
 
-##
-# Constant: ActiveRecord::RecordNotFound
-# Created:  2013-07-06 18:52:18 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('ActiveRecord::RecordNotFound') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('ActiveRecord::ActiveRecordError'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('ActiveRecord::ActiveRecordError'))
 end
 
-##
-# Constant: ActiveRecord::RecordNotSaved
-# Created:  2013-07-06 18:52:18 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('ActiveRecord::RecordNotSaved') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('ActiveRecord::ActiveRecordError'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('ActiveRecord::ActiveRecordError'))
 end
 
-##
-# Constant: ActiveRecord::RecordNotUnique
-# Created:  2013-07-06 18:52:18 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('ActiveRecord::RecordNotUnique') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('ActiveRecord::WrappedDatabaseException'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('ActiveRecord::WrappedDatabaseException'))
 end
 
-##
-# Constant: ActiveRecord::Reflection
-# Created:  2013-07-06 18:52:18 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('ActiveRecord::Reflection') do |klass|
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 end
 
-##
-# Constant: ActiveRecord::Relation
-# Created:  2013-07-06 18:52:18 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('ActiveRecord::Relation') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_instance_method('==') do |method|
     method.define_argument('other')
@@ -2898,13 +2544,8 @@ RubyLint::VirtualMachine.global_scope.define_constant('ActiveRecord::Relation') 
   klass.define_instance_method('with_default_scope')
 end
 
-##
-# Constant: ActiveRecord::Result
-# Created:  2013-07-06 18:52:18 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('ActiveRecord::Result') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_instance_method('[]') do |method|
     method.define_argument('idx')
@@ -2931,22 +2572,12 @@ RubyLint::VirtualMachine.global_scope.define_constant('ActiveRecord::Result') do
   klass.define_instance_method('to_hash')
 end
 
-##
-# Constant: ActiveRecord::Rollback
-# Created:  2013-07-06 18:52:18 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('ActiveRecord::Rollback') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('ActiveRecord::ActiveRecordError'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('ActiveRecord::ActiveRecordError'))
 end
 
-##
-# Constant: ActiveRecord::RuntimeRegistry
-# Created:  2013-07-06 18:52:18 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('ActiveRecord::RuntimeRegistry') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_instance_method('connection_handler')
 
@@ -2961,23 +2592,14 @@ RubyLint::VirtualMachine.global_scope.define_constant('ActiveRecord::RuntimeRegi
   klass.define_instance_method('sql_runtime=')
 end
 
-##
-# Constant: ActiveRecord::Sanitization
-# Created:  2013-07-06 18:52:18 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('ActiveRecord::Sanitization') do |klass|
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_instance_method('quoted_id')
 end
 
-##
-# Constant: ActiveRecord::Schema
-# Created:  2013-07-06 18:52:18 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('ActiveRecord::Schema') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('ActiveRecord::Migration'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('ActiveRecord::Migration'))
 
   klass.define_method('define') do |method|
     method.define_optional_argument('info')
@@ -2992,13 +2614,8 @@ RubyLint::VirtualMachine.global_scope.define_constant('ActiveRecord::Schema') do
   klass.define_instance_method('migrations_paths')
 end
 
-##
-# Constant: ActiveRecord::SchemaDumper
-# Created:  2013-07-06 18:52:18 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('ActiveRecord::SchemaDumper') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_method('dump') do |method|
     method.define_optional_argument('connection')
@@ -3022,13 +2639,8 @@ RubyLint::VirtualMachine.global_scope.define_constant('ActiveRecord::SchemaDumpe
   end
 end
 
-##
-# Constant: ActiveRecord::SchemaMigration
-# Created:  2013-07-06 18:52:18 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('ActiveRecord::SchemaMigration') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('ActiveRecord::Base'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('ActiveRecord::Base'))
 
   klass.define_method('_validators')
 
@@ -3045,22 +2657,14 @@ RubyLint::VirtualMachine.global_scope.define_constant('ActiveRecord::SchemaMigra
   klass.define_instance_method('version')
 end
 
-##
-# Constant: ActiveRecord::Scoping
-# Created:  2013-07-06 18:52:18 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('ActiveRecord::Scoping') do |klass|
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_instance_method('populate_with_current_scope_attributes')
 end
 
-##
-# Constant: ActiveRecord::Serialization
-# Created:  2013-07-06 18:52:18 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('ActiveRecord::Serialization') do |klass|
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_instance_method('serializable_hash') do |method|
     method.define_optional_argument('options')
@@ -3072,21 +2676,12 @@ RubyLint::VirtualMachine.global_scope.define_constant('ActiveRecord::Serializati
   end
 end
 
-##
-# Constant: ActiveRecord::SerializationTypeMismatch
-# Created:  2013-07-06 18:52:18 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('ActiveRecord::SerializationTypeMismatch') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('ActiveRecord::ActiveRecordError'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('ActiveRecord::ActiveRecordError'))
 end
 
-##
-# Constant: ActiveRecord::SpawnMethods
-# Created:  2013-07-06 18:52:18 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('ActiveRecord::SpawnMethods') do |klass|
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_instance_method('except') do |method|
     method.define_rest_argument('skips')
@@ -3107,47 +2702,28 @@ RubyLint::VirtualMachine.global_scope.define_constant('ActiveRecord::SpawnMethod
   klass.define_instance_method('spawn')
 end
 
-##
-# Constant: ActiveRecord::StaleObjectError
-# Created:  2013-07-06 18:52:18 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('ActiveRecord::StaleObjectError') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('ActiveRecord::ActiveRecordError'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('ActiveRecord::ActiveRecordError'))
 
   klass.define_instance_method('attempted_action')
 
   klass.define_instance_method('record')
 end
 
-##
-# Constant: ActiveRecord::StatementCache
-# Created:  2013-07-06 18:52:18 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('ActiveRecord::StatementCache') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_instance_method('execute')
 end
 
-##
-# Constant: ActiveRecord::StatementInvalid
-# Created:  2013-07-06 18:52:18 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('ActiveRecord::StatementInvalid') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('ActiveRecord::ActiveRecordError'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('ActiveRecord::ActiveRecordError'))
 
   klass.define_instance_method('original_exception')
 end
 
-##
-# Constant: ActiveRecord::Store
-# Created:  2013-07-06 18:52:18 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('ActiveRecord::Store') do |klass|
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_instance_method('read_store_attribute') do |method|
     method.define_argument('store_attribute')
@@ -3161,30 +2737,16 @@ RubyLint::VirtualMachine.global_scope.define_constant('ActiveRecord::Store') do 
   end
 end
 
-##
-# Constant: ActiveRecord::SubclassNotFound
-# Created:  2013-07-06 18:52:18 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('ActiveRecord::SubclassNotFound') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('ActiveRecord::ActiveRecordError'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('ActiveRecord::ActiveRecordError'))
 end
 
-##
-# Constant: ActiveRecord::Tasks
-# Created:  2013-07-06 18:52:18 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('ActiveRecord::Tasks') do |klass|
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 end
 
-##
-# Constant: ActiveRecord::TestCase
-# Created:  2013-07-06 18:52:18 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('ActiveRecord::TestCase') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('ActiveSupport::TestCase'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('ActiveSupport::TestCase'))
 
   klass.define_instance_method('assert_date_from_db') do |method|
     method.define_argument('expected')
@@ -3208,12 +2770,8 @@ RubyLint::VirtualMachine.global_scope.define_constant('ActiveRecord::TestCase') 
   klass.define_instance_method('teardown')
 end
 
-##
-# Constant: ActiveRecord::TestFixtures
-# Created:  2013-07-06 18:52:18 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('ActiveRecord::TestFixtures') do |klass|
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_instance_method('after_teardown')
 
@@ -3228,42 +2786,24 @@ RubyLint::VirtualMachine.global_scope.define_constant('ActiveRecord::TestFixture
   klass.define_instance_method('teardown_fixtures')
 end
 
-##
-# Constant: ActiveRecord::ThrowResult
-# Created:  2013-07-06 18:52:18 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('ActiveRecord::ThrowResult') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('ActiveRecord::ActiveRecordError'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('ActiveRecord::ActiveRecordError'))
 end
 
-##
-# Constant: ActiveRecord::Timestamp
-# Created:  2013-07-06 18:52:18 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('ActiveRecord::Timestamp') do |klass|
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_instance_method('initialize_dup') do |method|
     method.define_argument('other')
   end
 end
 
-##
-# Constant: ActiveRecord::TransactionIsolationError
-# Created:  2013-07-06 18:52:18 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('ActiveRecord::TransactionIsolationError') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('ActiveRecord::ActiveRecordError'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('ActiveRecord::ActiveRecordError'))
 end
 
-##
-# Constant: ActiveRecord::Transactions
-# Created:  2013-07-06 18:52:18 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('ActiveRecord::Transactions') do |klass|
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_instance_method('add_to_transaction')
 
@@ -3309,61 +2849,34 @@ RubyLint::VirtualMachine.global_scope.define_constant('ActiveRecord::Transaction
   klass.define_instance_method('with_transaction_returning_status')
 end
 
-##
-# Constant: ActiveRecord::Translation
-# Created:  2013-07-06 18:52:18 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('ActiveRecord::Translation') do |klass|
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_instance_method('i18n_scope')
 
   klass.define_instance_method('lookup_ancestors')
 end
 
-##
-# Constant: ActiveRecord::UnknownAttributeError
-# Created:  2013-07-06 18:52:18 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('ActiveRecord::UnknownAttributeError') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('NoMethodError'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('NoMethodError'))
 end
 
-##
-# Constant: ActiveRecord::UnknownMigrationVersionError
-# Created:  2013-07-06 18:52:18 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('ActiveRecord::UnknownMigrationVersionError') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('ActiveRecord::ActiveRecordError'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('ActiveRecord::ActiveRecordError'))
 end
 
-##
-# Constant: ActiveRecord::UnknownPrimaryKey
-# Created:  2013-07-06 18:52:18 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('ActiveRecord::UnknownPrimaryKey') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('ActiveRecord::ActiveRecordError'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('ActiveRecord::ActiveRecordError'))
 
   klass.define_instance_method('model')
 end
 
-##
-# Constant: ActiveRecord::VERSION
-# Created:  2013-07-06 18:52:18 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('ActiveRecord::VERSION') do |klass|
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 end
 
-##
-# Constant: ActiveRecord::Validations
-# Created:  2013-07-06 18:52:18 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('ActiveRecord::Validations') do |klass|
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_instance_method('perform_validations') do |method|
     method.define_optional_argument('options')
@@ -3382,11 +2895,7 @@ RubyLint::VirtualMachine.global_scope.define_constant('ActiveRecord::Validations
   end
 end
 
-##
-# Constant: ActiveRecord::WrappedDatabaseException
-# Created:  2013-07-06 18:52:18 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('ActiveRecord::WrappedDatabaseException') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('ActiveRecord::StatementInvalid'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('ActiveRecord::StatementInvalid'))
 end
+

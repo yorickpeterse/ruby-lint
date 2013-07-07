@@ -1,21 +1,19 @@
-##
-# Constant: ActiveModel
-# Created:  2013-07-06 18:52:18 +0200
-# Platform: rbx 2.0.0.rc1
+# This file was automatically generated, any manual changes will be lost the
+# next time this file is generated.
 #
+# Created:  2013-07-07 17:54:58 +0200
+# Platform: rbx 2.0.0.rc1
+
 RubyLint::VirtualMachine.global_scope.define_constant('ActiveModel') do |klass|
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_method('version')
 
   klass.define_instance_method('eager_load!')
 end
 
-##
-# Constant: ActiveModel::AttributeMethods
-# Created:  2013-07-06 18:52:18 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('ActiveModel::AttributeMethods') do |klass|
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_instance_method('attribute_method?') do |method|
     method.define_argument('attr_name')
@@ -44,21 +42,12 @@ RubyLint::VirtualMachine.global_scope.define_constant('ActiveModel::AttributeMet
   end
 end
 
-##
-# Constant: ActiveModel::BlockValidator
-# Created:  2013-07-06 18:52:18 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('ActiveModel::BlockValidator') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('ActiveModel::EachValidator'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('ActiveModel::EachValidator'))
 end
 
-##
-# Constant: ActiveModel::Callbacks
-# Created:  2013-07-06 18:52:18 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('ActiveModel::Callbacks') do |klass|
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_method('extended') do |method|
     method.define_argument('base')
@@ -69,12 +58,8 @@ RubyLint::VirtualMachine.global_scope.define_constant('ActiveModel::Callbacks') 
   end
 end
 
-##
-# Constant: ActiveModel::Conversion
-# Created:  2013-07-06 18:52:18 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('ActiveModel::Conversion') do |klass|
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_instance_method('to_key')
 
@@ -85,20 +70,12 @@ RubyLint::VirtualMachine.global_scope.define_constant('ActiveModel::Conversion')
   klass.define_instance_method('to_partial_path')
 end
 
-##
-# Constant: ActiveModel::DeprecatedMassAssignmentSecurity
-# Created:  2013-07-06 18:52:18 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('ActiveModel::DeprecatedMassAssignmentSecurity') do |klass|
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 end
 
-##
-# Constant: ActiveModel::Dirty
-# Created:  2013-07-06 18:52:18 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('ActiveModel::Dirty') do |klass|
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_instance_method('changed')
 
@@ -111,13 +88,8 @@ RubyLint::VirtualMachine.global_scope.define_constant('ActiveModel::Dirty') do |
   klass.define_instance_method('previous_changes')
 end
 
-##
-# Constant: ActiveModel::EachValidator
-# Created:  2013-07-06 18:52:18 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('ActiveModel::EachValidator') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('ActiveModel::Validator'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('ActiveModel::Validator'))
 
   klass.define_instance_method('attributes')
 
@@ -134,13 +106,8 @@ RubyLint::VirtualMachine.global_scope.define_constant('ActiveModel::EachValidato
   end
 end
 
-##
-# Constant: ActiveModel::Errors
-# Created:  2013-07-06 18:52:18 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('ActiveModel::Errors') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_instance_method('[]') do |method|
     method.define_argument('attribute')
@@ -248,41 +215,24 @@ RubyLint::VirtualMachine.global_scope.define_constant('ActiveModel::Errors') do 
   klass.define_instance_method('values')
 end
 
-##
-# Constant: ActiveModel::ForbiddenAttributesProtection
-# Created:  2013-07-06 18:52:18 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('ActiveModel::ForbiddenAttributesProtection') do |klass|
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_instance_method('sanitize_for_mass_assignment') do |method|
     method.define_argument('attributes')
   end
 end
 
-##
-# Constant: ActiveModel::Lint
-# Created:  2013-07-06 18:52:18 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('ActiveModel::Lint') do |klass|
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 end
 
-##
-# Constant: ActiveModel::MissingAttributeError
-# Created:  2013-07-06 18:52:18 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('ActiveModel::MissingAttributeError') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('NoMethodError'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('NoMethodError'))
 end
 
-##
-# Constant: ActiveModel::Model
-# Created:  2013-07-06 18:52:18 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('ActiveModel::Model') do |klass|
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_method('included') do |method|
     method.define_argument('base')
@@ -291,13 +241,8 @@ RubyLint::VirtualMachine.global_scope.define_constant('ActiveModel::Model') do |
   klass.define_instance_method('persisted?')
 end
 
-##
-# Constant: ActiveModel::Name
-# Created:  2013-07-06 18:52:18 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('ActiveModel::Name') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_instance_method('!~') do |method|
     method.define_rest_argument('args')
@@ -362,12 +307,8 @@ RubyLint::VirtualMachine.global_scope.define_constant('ActiveModel::Name') do |k
   end
 end
 
-##
-# Constant: ActiveModel::Naming
-# Created:  2013-07-06 18:52:18 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('ActiveModel::Naming') do |klass|
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_method('param_key') do |method|
     method.define_argument('record_or_class')
@@ -396,33 +337,20 @@ RubyLint::VirtualMachine.global_scope.define_constant('ActiveModel::Naming') do 
   klass.define_instance_method('model_name')
 end
 
-##
-# Constant: ActiveModel::Railtie
-# Created:  2013-07-06 18:52:18 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('ActiveModel::Railtie') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Rails::Railtie'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Rails::Railtie'))
 end
 
-##
-# Constant: ActiveModel::SecurePassword
-# Created:  2013-07-06 18:52:18 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('ActiveModel::SecurePassword') do |klass|
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_method('min_cost')
 
   klass.define_method('min_cost=')
 end
 
-##
-# Constant: ActiveModel::Serialization
-# Created:  2013-07-06 18:52:18 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('ActiveModel::Serialization') do |klass|
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_instance_method('read_attribute_for_serialization') do |method|
     method.define_argument('message')
@@ -434,38 +362,20 @@ RubyLint::VirtualMachine.global_scope.define_constant('ActiveModel::Serializatio
   end
 end
 
-##
-# Constant: ActiveModel::Serializers
-# Created:  2013-07-06 18:52:18 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('ActiveModel::Serializers') do |klass|
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 end
 
-##
-# Constant: ActiveModel::StrictValidationFailed
-# Created:  2013-07-06 18:52:18 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('ActiveModel::StrictValidationFailed') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('StandardError'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('StandardError'))
 end
 
-##
-# Constant: ActiveModel::TestCase
-# Created:  2013-07-06 18:52:18 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('ActiveModel::TestCase') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('ActiveSupport::TestCase'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('ActiveSupport::TestCase'))
 end
 
-##
-# Constant: ActiveModel::Translation
-# Created:  2013-07-06 18:52:18 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('ActiveModel::Translation') do |klass|
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_instance_method('human_attribute_name') do |method|
     method.define_argument('attribute')
@@ -477,20 +387,12 @@ RubyLint::VirtualMachine.global_scope.define_constant('ActiveModel::Translation'
   klass.define_instance_method('lookup_ancestors')
 end
 
-##
-# Constant: ActiveModel::VERSION
-# Created:  2013-07-06 18:52:18 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('ActiveModel::VERSION') do |klass|
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 end
 
-##
-# Constant: ActiveModel::Validations
-# Created:  2013-07-06 18:52:18 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('ActiveModel::Validations') do |klass|
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_instance_method('errors')
 
@@ -519,13 +421,8 @@ RubyLint::VirtualMachine.global_scope.define_constant('ActiveModel::Validations'
   end
 end
 
-##
-# Constant: ActiveModel::Validator
-# Created:  2013-07-06 18:52:18 +0200
-# Platform: rbx 2.0.0.rc1
-#
 RubyLint::VirtualMachine.global_scope.define_constant('ActiveModel::Validator') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_method('kind')
 
@@ -537,3 +434,4 @@ RubyLint::VirtualMachine.global_scope.define_constant('ActiveModel::Validator') 
     method.define_argument('record')
   end
 end
+
