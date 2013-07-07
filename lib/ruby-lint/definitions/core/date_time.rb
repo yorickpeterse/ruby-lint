@@ -4,7 +4,7 @@
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('DateTime') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Date'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Date'))
 
   klass.define_method('__class_init__')
 
@@ -247,7 +247,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('DateTime::Infinity') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Numeric'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Numeric'))
 
   klass.define_method('__class_init__')
 

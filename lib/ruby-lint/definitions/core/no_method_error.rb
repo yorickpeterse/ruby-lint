@@ -4,7 +4,7 @@
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('NoMethodError') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('NameError'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('NameError'))
 
   klass.define_method('__class_init__')
 

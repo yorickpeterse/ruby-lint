@@ -5,8 +5,8 @@
 #
 RubyLint::VirtualMachine.global_scope.define_constant('BasicObject') do |klass|
   klass.inherits(
-    RubyLint::VirtualMachine.global_constant('Class'),
-    RubyLint::VirtualMachine.global_constant('Kernel')
+    RubyLint::VirtualMachine.constant_proxy('Class'),
+    RubyLint::VirtualMachine.constant_proxy('Kernel')
   )
 
   klass.define_method('__class_init__')

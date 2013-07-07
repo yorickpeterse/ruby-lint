@@ -498,7 +498,7 @@ end
 # available regardless of whether the code is evaluated in a class or instance
 # context.
 RubyLint::VirtualMachine.global_scope.copy(
-  RubyLint::VirtualMachine.global_constant('Kernel'),
+  RubyLint::VirtualMachine.constant_proxy('Kernel'),
   :method,
   :instance_method
 )

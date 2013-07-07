@@ -14,7 +14,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('RubyLint::DefinitionGenerator') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_method('__class_init__')
 
@@ -35,7 +35,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('RubyLint::Inspector') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_method('__class_init__')
 
@@ -77,7 +77,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('RubyLint::Template::Scope') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_method('__class_init__')
 

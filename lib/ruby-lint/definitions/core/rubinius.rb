@@ -245,7 +245,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::ARGFClass') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_method('__class_init__')
 
@@ -357,7 +357,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::ARGFClass::SortedElement') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_method('__class_init__')
 
@@ -391,7 +391,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::AST::AccessUndefined') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Rubinius::AST::Send'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Rubinius::AST::Send'))
 
   klass.define_method('__class_init__')
 
@@ -414,7 +414,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::AST::AccessUndefined::TransformState') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_method('__class_init__')
 
@@ -433,7 +433,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::AST::ActualArguments') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Rubinius::AST::Node'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Rubinius::AST::Node'))
 
   klass.define_method('__class_init__')
 
@@ -472,7 +472,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::AST::ActualArguments::TransformState') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_method('__class_init__')
 
@@ -491,7 +491,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::AST::Alias') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Rubinius::AST::Node'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Rubinius::AST::Node'))
 
   klass.define_method('__class_init__')
 
@@ -516,7 +516,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::AST::Alias::TransformState') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_method('__class_init__')
 
@@ -535,7 +535,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::AST::And') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Rubinius::AST::Node'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Rubinius::AST::Node'))
 
   klass.define_method('__class_init__')
 
@@ -571,7 +571,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::AST::And::TransformState') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_method('__class_init__')
 
@@ -590,7 +590,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::AST::ArrayLiteral') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Rubinius::AST::Node'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Rubinius::AST::Node'))
 
   klass.define_method('__class_init__')
 
@@ -619,7 +619,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::AST::ArrayLiteral::TransformState') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_method('__class_init__')
 
@@ -638,7 +638,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::AST::AsciiGrapher') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_method('__class_init__')
 
@@ -680,7 +680,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::AST::AttributeAssignment') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Rubinius::AST::SendWithArguments'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Rubinius::AST::SendWithArguments'))
 
   klass.define_method('__class_init__')
 
@@ -697,7 +697,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::AST::AttributeAssignment::TransformState') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_method('__class_init__')
 
@@ -716,7 +716,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::AST::BackRef') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Rubinius::AST::Node'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Rubinius::AST::Node'))
 
   klass.define_method('__class_init__')
 
@@ -751,7 +751,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::AST::BackRef::TransformState') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_method('__class_init__')
 
@@ -770,7 +770,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::AST::Begin') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Rubinius::AST::Node'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Rubinius::AST::Node'))
 
   klass.define_method('__class_init__')
 
@@ -791,7 +791,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::AST::Begin::TransformState') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_method('__class_init__')
 
@@ -810,7 +810,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::AST::Block') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Rubinius::AST::Node'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Rubinius::AST::Node'))
 
   klass.define_method('__class_init__')
 
@@ -841,7 +841,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::AST::Block::TransformState') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_method('__class_init__')
 
@@ -860,7 +860,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::AST::BlockArgument') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Rubinius::AST::Node'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Rubinius::AST::Node'))
 
   klass.define_method('__class_init__')
 
@@ -879,7 +879,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::AST::BlockArgument::TransformState') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_method('__class_init__')
 
@@ -898,7 +898,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::AST::BlockGiven') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Rubinius::AST::Send'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Rubinius::AST::Send'))
 
   klass.define_method('__class_init__')
 
@@ -921,7 +921,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::AST::BlockGiven::TransformState') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_method('__class_init__')
 
@@ -940,7 +940,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::AST::BlockPass') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Rubinius::AST::Node'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Rubinius::AST::Node'))
 
   klass.define_method('__class_init__')
 
@@ -969,7 +969,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::AST::BlockPass19') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Rubinius::AST::BlockPass'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Rubinius::AST::BlockPass'))
 
   klass.define_method('__class_init__')
 
@@ -984,7 +984,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::AST::BlockPass19::TransformState') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_method('__class_init__')
 
@@ -1003,7 +1003,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::AST::BlockPass::TransformState') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_method('__class_init__')
 
@@ -1022,7 +1022,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::AST::Break') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Rubinius::AST::Node'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Rubinius::AST::Node'))
 
   klass.define_method('__class_init__')
 
@@ -1050,7 +1050,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::AST::Break::TransformState') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_method('__class_init__')
 
@@ -1069,7 +1069,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::AST::CallCustom') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Rubinius::AST::SendWithArguments'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Rubinius::AST::SendWithArguments'))
 
   klass.define_method('__class_init__')
 
@@ -1092,7 +1092,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::AST::CallCustom::TransformState') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_method('__class_init__')
 
@@ -1111,7 +1111,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::AST::Case') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Rubinius::AST::Node'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Rubinius::AST::Node'))
 
   klass.define_method('__class_init__')
 
@@ -1138,7 +1138,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::AST::Case::TransformState') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_method('__class_init__')
 
@@ -1157,7 +1157,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::AST::CheckFrozen') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Rubinius::AST::SendWithArguments'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Rubinius::AST::SendWithArguments'))
 
   klass.define_method('__class_init__')
 
@@ -1180,7 +1180,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::AST::CheckFrozen::TransformState') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_method('__class_init__')
 
@@ -1199,7 +1199,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::AST::Class') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Rubinius::AST::Node'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Rubinius::AST::Node'))
 
   klass.define_method('__class_init__')
 
@@ -1228,7 +1228,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::AST::Class::TransformState') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_method('__class_init__')
 
@@ -1247,7 +1247,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::AST::ClassName') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Rubinius::AST::Node'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Rubinius::AST::Node'))
 
   klass.define_method('__class_init__')
 
@@ -1276,7 +1276,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::AST::ClassName::TransformState') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_method('__class_init__')
 
@@ -1295,7 +1295,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::AST::ClassScope') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Rubinius::AST::ClosedScope'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Rubinius::AST::ClosedScope'))
 
   klass.define_method('__class_init__')
 
@@ -1312,7 +1312,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::AST::ClassScope::TransformState') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_method('__class_init__')
 
@@ -1331,7 +1331,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::AST::ClassVariableAccess') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Rubinius::AST::VariableAccess'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Rubinius::AST::VariableAccess'))
 
   klass.define_method('__class_init__')
 
@@ -1365,7 +1365,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::AST::ClassVariableAccess::TransformState') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_method('__class_init__')
 
@@ -1384,7 +1384,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::AST::ClassVariableAssignment') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Rubinius::AST::VariableAssignment'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Rubinius::AST::VariableAssignment'))
 
   klass.define_method('__class_init__')
 
@@ -1401,7 +1401,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::AST::ClassVariableAssignment::TransformState') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_method('__class_init__')
 
@@ -1420,7 +1420,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::AST::ClassVariableDeclaration') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Rubinius::AST::ClassVariableAssignment'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Rubinius::AST::ClassVariableAssignment'))
 
   klass.define_method('__class_init__')
 
@@ -1433,7 +1433,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::AST::ClassVariableDeclaration::TransformState') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_method('__class_init__')
 
@@ -1452,7 +1452,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::AST::ClosedScope') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Rubinius::AST::Node'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Rubinius::AST::Node'))
 
   klass.define_method('__class_init__')
 
@@ -1498,7 +1498,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::AST::ClosedScope::TransformState') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_method('__class_init__')
 
@@ -1517,7 +1517,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::AST::CollectSplat') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Rubinius::AST::Node'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Rubinius::AST::Node'))
 
   klass.define_method('__class_init__')
 
@@ -1534,7 +1534,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::AST::CollectSplat::TransformState') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_method('__class_init__')
 
@@ -1553,7 +1553,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::AST::ConcatArgs') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Rubinius::AST::Node'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Rubinius::AST::Node'))
 
   klass.define_method('__class_init__')
 
@@ -1580,7 +1580,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::AST::ConcatArgs::TransformState') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_method('__class_init__')
 
@@ -1599,7 +1599,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::AST::ConstantAccess') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Rubinius::AST::Node'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Rubinius::AST::Node'))
 
   klass.define_method('__class_init__')
 
@@ -1644,7 +1644,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::AST::ConstantAccess::TransformState') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_method('__class_init__')
 
@@ -1663,7 +1663,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::AST::ConstantAssignment') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Rubinius::AST::Node'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Rubinius::AST::Node'))
 
   klass.define_method('__class_init__')
 
@@ -1692,7 +1692,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::AST::ConstantAssignment::TransformState') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_method('__class_init__')
 
@@ -1711,7 +1711,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::AST::Container') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Rubinius::AST::ClosedScope'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Rubinius::AST::ClosedScope'))
 
   klass.define_method('__class_init__')
 
@@ -1756,7 +1756,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::AST::Container::TransformState') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_method('__class_init__')
 
@@ -1775,7 +1775,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::AST::CurrentException') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Rubinius::AST::Node'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Rubinius::AST::Node'))
 
   klass.define_method('__class_init__')
 
@@ -1796,7 +1796,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::AST::CurrentException::TransformState') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_method('__class_init__')
 
@@ -1815,7 +1815,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::AST::DefaultArguments') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Rubinius::AST::Node'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Rubinius::AST::Node'))
 
   klass.define_method('__class_init__')
 
@@ -1844,7 +1844,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::AST::DefaultArguments::TransformState') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_method('__class_init__')
 
@@ -1863,7 +1863,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::AST::Define') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Rubinius::AST::ClosedScope'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Rubinius::AST::ClosedScope'))
 
   klass.define_method('__class_init__')
 
@@ -1892,7 +1892,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::AST::Define::TransformState') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_method('__class_init__')
 
@@ -1911,7 +1911,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::AST::DefineSingleton') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Rubinius::AST::Node'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Rubinius::AST::Node'))
 
   klass.define_method('__class_init__')
 
@@ -1936,7 +1936,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::AST::DefineSingleton::TransformState') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_method('__class_init__')
 
@@ -1955,7 +1955,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::AST::DefineSingletonScope') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Rubinius::AST::Define'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Rubinius::AST::Define'))
 
   klass.define_method('__class_init__')
 
@@ -1971,7 +1971,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::AST::DefineSingletonScope::TransformState') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_method('__class_init__')
 
@@ -1990,7 +1990,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::AST::Defined') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Rubinius::AST::Node'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Rubinius::AST::Node'))
 
   klass.define_method('__class_init__')
 
@@ -2011,7 +2011,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::AST::Defined::TransformState') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_method('__class_init__')
 
@@ -2030,7 +2030,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::AST::DynamicExecuteString') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Rubinius::AST::DynamicString'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Rubinius::AST::DynamicString'))
 
   klass.define_method('__class_init__')
 
@@ -2051,7 +2051,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::AST::DynamicExecuteString::TransformState') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_method('__class_init__')
 
@@ -2070,7 +2070,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::AST::DynamicOnceRegex') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Rubinius::AST::DynamicRegex'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Rubinius::AST::DynamicRegex'))
 
   klass.define_method('__class_init__')
 
@@ -2091,7 +2091,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::AST::DynamicOnceRegex::TransformState') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_method('__class_init__')
 
@@ -2110,7 +2110,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::AST::DynamicRegex') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Rubinius::AST::DynamicString'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Rubinius::AST::DynamicString'))
 
   klass.define_method('__class_init__')
 
@@ -2131,7 +2131,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::AST::DynamicRegex::TransformState') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_method('__class_init__')
 
@@ -2150,7 +2150,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::AST::DynamicString') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Rubinius::AST::StringLiteral'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Rubinius::AST::StringLiteral'))
 
   klass.define_method('__class_init__')
 
@@ -2185,7 +2185,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::AST::DynamicString::TransformState') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_method('__class_init__')
 
@@ -2204,7 +2204,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::AST::DynamicSymbol') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Rubinius::AST::DynamicString'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Rubinius::AST::DynamicString'))
 
   klass.define_method('__class_init__')
 
@@ -2221,7 +2221,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::AST::DynamicSymbol::TransformState') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_method('__class_init__')
 
@@ -2240,7 +2240,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::AST::ElementAssignment') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Rubinius::AST::SendWithArguments'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Rubinius::AST::SendWithArguments'))
 
   klass.define_method('__class_init__')
 
@@ -2261,7 +2261,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::AST::ElementAssignment::TransformState') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_method('__class_init__')
 
@@ -2280,7 +2280,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::AST::EmptyArray') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Rubinius::AST::Node'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Rubinius::AST::Node'))
 
   klass.define_method('__class_init__')
 
@@ -2305,7 +2305,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::AST::EmptyArray::TransformState') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_method('__class_init__')
 
@@ -2324,7 +2324,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::AST::EmptyBody') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Rubinius::AST::Node'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Rubinius::AST::Node'))
 
   klass.define_method('__class_init__')
 
@@ -2341,7 +2341,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::AST::EmptyBody::TransformState') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_method('__class_init__')
 
@@ -2360,7 +2360,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::AST::EmptySplat') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Rubinius::AST::Node'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Rubinius::AST::Node'))
 
   klass.define_method('__class_init__')
 
@@ -2377,7 +2377,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::AST::EmptySplat::TransformState') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_method('__class_init__')
 
@@ -2396,7 +2396,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::AST::Encoding') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Rubinius::AST::Node'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Rubinius::AST::Node'))
 
   klass.define_method('__class_init__')
 
@@ -2417,7 +2417,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::AST::Encoding::TransformState') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_method('__class_init__')
 
@@ -2436,7 +2436,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::AST::EndData') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Rubinius::AST::Node'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Rubinius::AST::Node'))
 
   klass.define_method('__class_init__')
 
@@ -2455,7 +2455,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::AST::EndData::TransformState') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_method('__class_init__')
 
@@ -2474,7 +2474,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::AST::Ensure') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Rubinius::AST::Node'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Rubinius::AST::Node'))
 
   klass.define_method('__class_init__')
 
@@ -2499,7 +2499,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::AST::Ensure::TransformState') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_method('__class_init__')
 
@@ -2526,7 +2526,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::AST::EvalExpression') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Rubinius::AST::Container'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Rubinius::AST::Container'))
 
   klass.define_method('__class_init__')
 
@@ -2565,7 +2565,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::AST::EvalExpression::TransformState') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_method('__class_init__')
 
@@ -2584,7 +2584,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::AST::Evaluator') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_method('__class_init__')
 
@@ -2612,7 +2612,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::AST::ExecuteString') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Rubinius::AST::StringLiteral'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Rubinius::AST::StringLiteral'))
 
   klass.define_method('__class_init__')
 
@@ -2633,7 +2633,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::AST::ExecuteString::TransformState') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_method('__class_init__')
 
@@ -2652,7 +2652,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::AST::FalseLiteral') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Rubinius::AST::Node'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Rubinius::AST::Node'))
 
   klass.define_method('__class_init__')
 
@@ -2677,7 +2677,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::AST::FalseLiteral::TransformState') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_method('__class_init__')
 
@@ -2696,7 +2696,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::AST::File') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Rubinius::AST::Node'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Rubinius::AST::Node'))
 
   klass.define_method('__class_init__')
 
@@ -2713,7 +2713,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::AST::File::TransformState') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_method('__class_init__')
 
@@ -2732,7 +2732,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::AST::FixnumLiteral') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Rubinius::AST::NumberLiteral'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Rubinius::AST::NumberLiteral'))
 
   klass.define_method('__class_init__')
 
@@ -2751,7 +2751,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::AST::FixnumLiteral::TransformState') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_method('__class_init__')
 
@@ -2770,7 +2770,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::AST::Flip2') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Rubinius::AST::Node'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Rubinius::AST::Node'))
 
   klass.define_method('__class_init__')
 
@@ -2802,7 +2802,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::AST::Flip2::TransformState') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_method('__class_init__')
 
@@ -2821,7 +2821,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::AST::Flip3') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Rubinius::AST::Flip2'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Rubinius::AST::Flip2'))
 
   klass.define_method('__class_init__')
 
@@ -2836,7 +2836,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::AST::Flip3::TransformState') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_method('__class_init__')
 
@@ -2855,7 +2855,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::AST::FloatLiteral') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Rubinius::AST::Node'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Rubinius::AST::Node'))
 
   klass.define_method('__class_init__')
 
@@ -2880,7 +2880,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::AST::FloatLiteral::TransformState') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_method('__class_init__')
 
@@ -2899,7 +2899,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::AST::For') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Rubinius::AST::Iter'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Rubinius::AST::Iter'))
 
   klass.define_method('__class_init__')
 
@@ -2928,7 +2928,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::AST::For19') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Rubinius::AST::For'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Rubinius::AST::For'))
 
   klass.define_method('__class_init__')
 end
@@ -2939,7 +2939,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::AST::For19::TransformState') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_method('__class_init__')
 
@@ -2958,7 +2958,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::AST::For19Arguments') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Rubinius::AST::Node'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Rubinius::AST::Node'))
 
   klass.define_method('__class_init__')
 
@@ -2981,7 +2981,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::AST::For19Arguments::TransformState') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_method('__class_init__')
 
@@ -3000,7 +3000,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::AST::For::TransformState') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_method('__class_init__')
 
@@ -3019,7 +3019,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::AST::FormalArguments') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Rubinius::AST::Node'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Rubinius::AST::Node'))
 
   klass.define_method('__class_init__')
 
@@ -3082,7 +3082,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::AST::FormalArguments19') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Rubinius::AST::FormalArguments'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Rubinius::AST::FormalArguments'))
 
   klass.define_method('__class_init__')
 
@@ -3113,7 +3113,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::AST::FormalArguments19::TransformState') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_method('__class_init__')
 
@@ -3132,7 +3132,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::AST::FormalArguments::TransformState') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_method('__class_init__')
 
@@ -3151,7 +3151,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::AST::GlobalVariableAccess') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Rubinius::AST::VariableAccess'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Rubinius::AST::VariableAccess'))
 
   klass.define_method('__class_init__')
 
@@ -3194,7 +3194,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::AST::GlobalVariableAccess::TransformState') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_method('__class_init__')
 
@@ -3213,7 +3213,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::AST::GlobalVariableAssignment') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Rubinius::AST::VariableAssignment'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Rubinius::AST::VariableAssignment'))
 
   klass.define_method('__class_init__')
 
@@ -3234,7 +3234,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::AST::GlobalVariableAssignment::TransformState') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_method('__class_init__')
 
@@ -3253,7 +3253,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::AST::HashLiteral') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Rubinius::AST::Node'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Rubinius::AST::Node'))
 
   klass.define_method('__class_init__')
 
@@ -3282,7 +3282,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::AST::HashLiteral::TransformState') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_method('__class_init__')
 
@@ -3301,7 +3301,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::AST::If') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Rubinius::AST::Node'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Rubinius::AST::Node'))
 
   klass.define_method('__class_init__')
 
@@ -3334,7 +3334,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::AST::If::TransformState') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_method('__class_init__')
 
@@ -3353,7 +3353,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::AST::InlineAssembly') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Rubinius::AST::SendWithArguments'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Rubinius::AST::SendWithArguments'))
 
   klass.define_method('__class_init__')
 
@@ -3376,7 +3376,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::AST::InlineAssembly::TransformState') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_method('__class_init__')
 
@@ -3395,7 +3395,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::AST::InstanceVariableAccess') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Rubinius::AST::VariableAccess'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Rubinius::AST::VariableAccess'))
 
   klass.define_method('__class_init__')
 
@@ -3425,7 +3425,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::AST::InstanceVariableAccess::TransformState') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_method('__class_init__')
 
@@ -3444,7 +3444,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::AST::InstanceVariableAssignment') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Rubinius::AST::VariableAssignment'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Rubinius::AST::VariableAssignment'))
 
   klass.define_method('__class_init__')
 
@@ -3465,7 +3465,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::AST::InstanceVariableAssignment::TransformState') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_method('__class_init__')
 
@@ -3484,7 +3484,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::AST::InvokePrimitive') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Rubinius::AST::SendWithArguments'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Rubinius::AST::SendWithArguments'))
 
   klass.define_method('__class_init__')
 
@@ -3507,7 +3507,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::AST::InvokePrimitive::TransformState') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_method('__class_init__')
 
@@ -3526,7 +3526,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::AST::Iter') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Rubinius::AST::Node'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Rubinius::AST::Node'))
 
   klass.define_method('__class_init__')
 
@@ -3583,7 +3583,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::AST::Iter19') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Rubinius::AST::Iter'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Rubinius::AST::Iter'))
 
   klass.define_method('__class_init__')
 
@@ -3598,7 +3598,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::AST::Iter19::TransformState') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_method('__class_init__')
 
@@ -3617,7 +3617,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::AST::Iter::TransformState') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_method('__class_init__')
 
@@ -3636,7 +3636,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::AST::IterArguments') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Rubinius::AST::Node'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Rubinius::AST::Node'))
 
   klass.define_method('__class_init__')
 
@@ -3688,7 +3688,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::AST::IterArguments::TransformState') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_method('__class_init__')
 
@@ -3707,7 +3707,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::AST::Literal') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_method('__class_init__')
 
@@ -3736,7 +3736,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::AST::LocalVariableAccess') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Rubinius::AST::VariableAccess'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Rubinius::AST::VariableAccess'))
 
   klass.define_method('__class_init__')
 
@@ -3766,7 +3766,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::AST::LocalVariableAccess::TransformState') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_method('__class_init__')
 
@@ -3785,7 +3785,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::AST::LocalVariableAssignment') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Rubinius::AST::VariableAssignment'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Rubinius::AST::VariableAssignment'))
 
   klass.define_method('__class_init__')
 
@@ -3806,7 +3806,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::AST::LocalVariableAssignment::TransformState') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_method('__class_init__')
 
@@ -3825,7 +3825,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::AST::Match') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Rubinius::AST::Node'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Rubinius::AST::Node'))
 
   klass.define_method('__class_init__')
 
@@ -3846,7 +3846,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::AST::Match2') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Rubinius::AST::Node'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Rubinius::AST::Node'))
 
   klass.define_method('__class_init__')
 
@@ -3871,7 +3871,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::AST::Match2::TransformState') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_method('__class_init__')
 
@@ -3890,7 +3890,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::AST::Match3') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Rubinius::AST::Node'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Rubinius::AST::Node'))
 
   klass.define_method('__class_init__')
 
@@ -3915,7 +3915,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::AST::Match3::TransformState') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_method('__class_init__')
 
@@ -3934,7 +3934,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::AST::Match::TransformState') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_method('__class_init__')
 
@@ -3953,7 +3953,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::AST::MirrorConstant') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Rubinius::AST::Node'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Rubinius::AST::Node'))
 
   klass.define_method('__class_init__')
 
@@ -3968,7 +3968,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::AST::MirrorConstant::TransformState') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_method('__class_init__')
 
@@ -3987,7 +3987,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::AST::Module') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Rubinius::AST::Node'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Rubinius::AST::Node'))
 
   klass.define_method('__class_init__')
 
@@ -4012,7 +4012,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::AST::Module::TransformState') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_method('__class_init__')
 
@@ -4031,7 +4031,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::AST::ModuleName') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Rubinius::AST::Node'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Rubinius::AST::Node'))
 
   klass.define_method('__class_init__')
 
@@ -4056,7 +4056,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::AST::ModuleName::TransformState') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_method('__class_init__')
 
@@ -4075,7 +4075,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::AST::ModuleScope') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Rubinius::AST::ClosedScope'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Rubinius::AST::ClosedScope'))
 
   klass.define_method('__class_init__')
 
@@ -4092,7 +4092,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::AST::ModuleScope::TransformState') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_method('__class_init__')
 
@@ -4111,7 +4111,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::AST::MultipleAssignment') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Rubinius::AST::Node'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Rubinius::AST::Node'))
 
   klass.define_method('__class_init__')
 
@@ -4171,7 +4171,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::AST::MultipleAssignment::TransformState') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_method('__class_init__')
 
@@ -4190,7 +4190,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::AST::Negate') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Rubinius::AST::Node'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Rubinius::AST::Node'))
 
   klass.define_method('__class_init__')
 
@@ -4215,7 +4215,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::AST::Negate::TransformState') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_method('__class_init__')
 
@@ -4234,7 +4234,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::AST::Next') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Rubinius::AST::Break'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Rubinius::AST::Break'))
 
   klass.define_method('__class_init__')
 
@@ -4251,7 +4251,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::AST::Next::TransformState') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_method('__class_init__')
 
@@ -4270,7 +4270,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::AST::NilLiteral') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Rubinius::AST::Node'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Rubinius::AST::Node'))
 
   klass.define_method('__class_init__')
 
@@ -4295,7 +4295,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::AST::NilLiteral::TransformState') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_method('__class_init__')
 
@@ -4314,7 +4314,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::AST::Node') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_method('__class_init__')
 
@@ -4420,7 +4420,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::AST::Node::TransformState') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_method('__class_init__')
 
@@ -4439,7 +4439,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::AST::Not') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Rubinius::AST::Node'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Rubinius::AST::Node'))
 
   klass.define_method('__class_init__')
 
@@ -4468,7 +4468,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::AST::Not::TransformState') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_method('__class_init__')
 
@@ -4487,7 +4487,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::AST::NthRef') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Rubinius::AST::Node'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Rubinius::AST::Node'))
 
   klass.define_method('__class_init__')
 
@@ -4520,7 +4520,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::AST::NthRef::TransformState') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_method('__class_init__')
 
@@ -4539,7 +4539,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::AST::NumberLiteral') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Rubinius::AST::Node'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Rubinius::AST::Node'))
 
   klass.define_method('__class_init__')
 
@@ -4568,7 +4568,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::AST::NumberLiteral::TransformState') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_method('__class_init__')
 
@@ -4587,7 +4587,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::AST::OpAssign1') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Rubinius::AST::Node'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Rubinius::AST::Node'))
 
   klass.define_method('__class_init__')
 
@@ -4620,7 +4620,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::AST::OpAssign1::TransformState') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_method('__class_init__')
 
@@ -4639,7 +4639,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::AST::OpAssign2') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Rubinius::AST::Node'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Rubinius::AST::Node'))
 
   klass.define_method('__class_init__')
 
@@ -4676,7 +4676,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::AST::OpAssign2::TransformState') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_method('__class_init__')
 
@@ -4695,7 +4695,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::AST::OpAssignAnd') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Rubinius::AST::Node'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Rubinius::AST::Node'))
 
   klass.define_method('__class_init__')
 
@@ -4726,7 +4726,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::AST::OpAssignAnd::TransformState') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_method('__class_init__')
 
@@ -4745,7 +4745,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::AST::OpAssignOr') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Rubinius::AST::OpAssignAnd'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Rubinius::AST::OpAssignAnd'))
 
   klass.define_method('__class_init__')
 
@@ -4762,7 +4762,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::AST::OpAssignOr19') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Rubinius::AST::OpAssignOr'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Rubinius::AST::OpAssignOr'))
 
   klass.define_method('__class_init__')
 
@@ -4777,7 +4777,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::AST::OpAssignOr19::TransformState') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_method('__class_init__')
 
@@ -4796,7 +4796,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::AST::OpAssignOr::TransformState') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_method('__class_init__')
 
@@ -4815,7 +4815,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::AST::Or') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Rubinius::AST::And'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Rubinius::AST::And'))
 
   klass.define_method('__class_init__')
 
@@ -4836,7 +4836,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::AST::Or::TransformState') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_method('__class_init__')
 
@@ -4855,7 +4855,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::AST::PatternArguments') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Rubinius::AST::Node'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Rubinius::AST::Node'))
 
   klass.define_method('__class_init__')
 
@@ -4886,7 +4886,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::AST::PatternArguments::TransformState') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_method('__class_init__')
 
@@ -4905,7 +4905,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::AST::PatternVariable') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Rubinius::AST::Node'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Rubinius::AST::Node'))
 
   klass.define_method('__class_init__')
 
@@ -4932,7 +4932,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::AST::PatternVariable::TransformState') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_method('__class_init__')
 
@@ -4951,7 +4951,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::AST::PostArg') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Rubinius::AST::Node'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Rubinius::AST::Node'))
 
   klass.define_method('__class_init__')
 
@@ -4970,7 +4970,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::AST::PostArg::TransformState') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_method('__class_init__')
 
@@ -4989,7 +4989,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::AST::PreExe') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Rubinius::AST::Node'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Rubinius::AST::Node'))
 
   klass.define_method('__class_init__')
 
@@ -5012,7 +5012,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::AST::PreExe19') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Rubinius::AST::PreExe'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Rubinius::AST::PreExe'))
 
   klass.define_method('__class_init__')
 
@@ -5027,7 +5027,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::AST::PreExe19::TransformState') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_method('__class_init__')
 
@@ -5046,7 +5046,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::AST::PreExe::TransformState') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_method('__class_init__')
 
@@ -5065,7 +5065,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::AST::PushActualArguments') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_method('__class_init__')
 
@@ -5086,7 +5086,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::AST::PushArgs') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Rubinius::AST::Node'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Rubinius::AST::Node'))
 
   klass.define_method('__class_init__')
 
@@ -5111,7 +5111,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::AST::PushArgs::TransformState') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_method('__class_init__')
 
@@ -5130,7 +5130,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::AST::Range') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Rubinius::AST::Node'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Rubinius::AST::Node'))
 
   klass.define_method('__class_init__')
 
@@ -5159,7 +5159,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::AST::Range::TransformState') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_method('__class_init__')
 
@@ -5178,7 +5178,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::AST::RangeExclude') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Rubinius::AST::Range'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Rubinius::AST::Range'))
 
   klass.define_method('__class_init__')
 
@@ -5195,7 +5195,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::AST::RangeExclude::TransformState') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_method('__class_init__')
 
@@ -5214,7 +5214,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::AST::ReceiverCase') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Rubinius::AST::Case'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Rubinius::AST::Case'))
 
   klass.define_method('__class_init__')
 
@@ -5235,7 +5235,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::AST::ReceiverCase::TransformState') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_method('__class_init__')
 
@@ -5254,7 +5254,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::AST::Redo') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Rubinius::AST::Break'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Rubinius::AST::Break'))
 
   klass.define_method('__class_init__')
 
@@ -5271,7 +5271,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::AST::Redo::TransformState') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_method('__class_init__')
 
@@ -5290,7 +5290,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::AST::RegexLiteral') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Rubinius::AST::Node'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Rubinius::AST::Node'))
 
   klass.define_method('__class_init__')
 
@@ -5323,7 +5323,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::AST::RegexLiteral::TransformState') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_method('__class_init__')
 
@@ -5342,7 +5342,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::AST::Rescue') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Rubinius::AST::Node'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Rubinius::AST::Node'))
 
   klass.define_method('__class_init__')
 
@@ -5371,7 +5371,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::AST::Rescue::TransformState') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_method('__class_init__')
 
@@ -5390,7 +5390,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::AST::RescueCondition') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Rubinius::AST::Node'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Rubinius::AST::Node'))
 
   klass.define_method('__class_init__')
 
@@ -5434,7 +5434,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::AST::RescueCondition::TransformState') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_method('__class_init__')
 
@@ -5453,7 +5453,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::AST::RescueSplat') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Rubinius::AST::Node'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Rubinius::AST::Node'))
 
   klass.define_method('__class_init__')
 
@@ -5475,7 +5475,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::AST::RescueSplat::TransformState') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_method('__class_init__')
 
@@ -5494,7 +5494,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::AST::Retry') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Rubinius::AST::Break'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Rubinius::AST::Break'))
 
   klass.define_method('__class_init__')
 
@@ -5511,7 +5511,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::AST::Retry::TransformState') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_method('__class_init__')
 
@@ -5530,7 +5530,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::AST::Return') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Rubinius::AST::Node'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Rubinius::AST::Node'))
 
   klass.define_method('__class_init__')
 
@@ -5552,7 +5552,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::AST::Return::TransformState') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_method('__class_init__')
 
@@ -5571,7 +5571,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::AST::SClass') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Rubinius::AST::Node'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Rubinius::AST::Node'))
 
   klass.define_method('__class_init__')
 
@@ -5592,7 +5592,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::AST::SClass::TransformState') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_method('__class_init__')
 
@@ -5611,7 +5611,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::AST::SClassScope') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Rubinius::AST::ClosedScope'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Rubinius::AST::ClosedScope'))
 
   klass.define_method('__class_init__')
 
@@ -5626,7 +5626,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::AST::SClassScope::TransformState') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_method('__class_init__')
 
@@ -5645,7 +5645,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::AST::SValue') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Rubinius::AST::Node'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Rubinius::AST::Node'))
 
   klass.define_method('__class_init__')
 
@@ -5666,7 +5666,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::AST::SValue::TransformState') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_method('__class_init__')
 
@@ -5685,7 +5685,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::AST::ScopedClassName') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Rubinius::AST::ClassName'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Rubinius::AST::ClassName'))
 
   klass.define_method('__class_init__')
 
@@ -5706,7 +5706,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::AST::ScopedClassName::TransformState') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_method('__class_init__')
 
@@ -5725,7 +5725,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::AST::ScopedConstant') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Rubinius::AST::Node'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Rubinius::AST::Node'))
 
   klass.define_method('__class_init__')
 
@@ -5775,7 +5775,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::AST::ScopedConstant::TransformState') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_method('__class_init__')
 
@@ -5794,7 +5794,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::AST::ScopedModuleName') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Rubinius::AST::ModuleName'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Rubinius::AST::ModuleName'))
 
   klass.define_method('__class_init__')
 
@@ -5815,7 +5815,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::AST::ScopedModuleName::TransformState') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_method('__class_init__')
 
@@ -5834,7 +5834,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::AST::Script') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Rubinius::AST::Container'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Rubinius::AST::Container'))
 
   klass.define_method('__class_init__')
 
@@ -5851,7 +5851,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::AST::Script::TransformState') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_method('__class_init__')
 
@@ -5870,7 +5870,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::AST::Self') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Rubinius::AST::Node'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Rubinius::AST::Node'))
 
   klass.define_method('__class_init__')
 
@@ -5900,7 +5900,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::AST::Self::TransformState') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_method('__class_init__')
 
@@ -5919,7 +5919,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::AST::Send') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Rubinius::AST::Node'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Rubinius::AST::Node'))
 
   klass.define_method('__class_init__')
 
@@ -5991,7 +5991,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::AST::Send::TransformState') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_method('__class_init__')
 
@@ -6010,7 +6010,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::AST::SendFastCoerceTo') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Rubinius::AST::SendWithArguments'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Rubinius::AST::SendWithArguments'))
 
   klass.define_method('__class_init__')
 
@@ -6033,7 +6033,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::AST::SendFastCoerceTo::TransformState') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_method('__class_init__')
 
@@ -6052,7 +6052,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::AST::SendFastNew') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Rubinius::AST::SendWithArguments'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Rubinius::AST::SendWithArguments'))
 
   klass.define_method('__class_init__')
 
@@ -6083,7 +6083,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::AST::SendFastNew::TransformState') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_method('__class_init__')
 
@@ -6102,7 +6102,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::AST::SendKernelMethod') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Rubinius::AST::SendWithArguments'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Rubinius::AST::SendWithArguments'))
 
   klass.define_method('__class_init__')
 
@@ -6141,7 +6141,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::AST::SendKernelMethod::TransformState') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_method('__class_init__')
 
@@ -6160,7 +6160,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::AST::SendPrimitive') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Rubinius::AST::SendWithArguments'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Rubinius::AST::SendWithArguments'))
 
   klass.define_method('__class_init__')
 
@@ -6183,7 +6183,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::AST::SendPrimitive::TransformState') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_method('__class_init__')
 
@@ -6202,7 +6202,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::AST::SendPrivately') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Rubinius::AST::Send'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Rubinius::AST::Send'))
 
   klass.define_method('__class_init__')
 
@@ -6231,7 +6231,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::AST::SendPrivately::TransformState') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_method('__class_init__')
 
@@ -6250,7 +6250,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::AST::SendWithArguments') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Rubinius::AST::Send'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Rubinius::AST::Send'))
 
   klass.define_method('__class_init__')
 
@@ -6277,7 +6277,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::AST::SendWithArguments::TransformState') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_method('__class_init__')
 
@@ -6296,7 +6296,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::AST::SingleBlockArg') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Rubinius::AST::SendWithArguments'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Rubinius::AST::SendWithArguments'))
 
   klass.define_method('__class_init__')
 
@@ -6319,7 +6319,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::AST::SingleBlockArg::TransformState') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_method('__class_init__')
 
@@ -6338,7 +6338,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::AST::Snippet') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Rubinius::AST::Container'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Rubinius::AST::Container'))
 
   klass.define_method('__class_init__')
 
@@ -6355,7 +6355,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::AST::Snippet::TransformState') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_method('__class_init__')
 
@@ -6374,7 +6374,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::AST::SplatArray') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Rubinius::AST::SplatAssignment'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Rubinius::AST::SplatAssignment'))
 
   klass.define_method('__class_init__')
 
@@ -6391,7 +6391,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::AST::SplatArray::TransformState') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_method('__class_init__')
 
@@ -6410,7 +6410,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::AST::SplatAssignment') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Rubinius::AST::Node'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Rubinius::AST::Node'))
 
   klass.define_method('__class_init__')
 
@@ -6431,7 +6431,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::AST::SplatAssignment::TransformState') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_method('__class_init__')
 
@@ -6450,7 +6450,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::AST::SplatValue') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Rubinius::AST::Node'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Rubinius::AST::Node'))
 
   klass.define_method('__class_init__')
 
@@ -6471,7 +6471,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::AST::SplatValue::TransformState') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_method('__class_init__')
 
@@ -6490,7 +6490,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::AST::SplatWhen') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Rubinius::AST::Node'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Rubinius::AST::Node'))
 
   klass.define_method('__class_init__')
 
@@ -6519,7 +6519,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::AST::SplatWhen::TransformState') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_method('__class_init__')
 
@@ -6538,7 +6538,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::AST::SplatWrapped') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Rubinius::AST::SplatAssignment'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Rubinius::AST::SplatAssignment'))
 
   klass.define_method('__class_init__')
 
@@ -6555,7 +6555,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::AST::SplatWrapped::TransformState') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_method('__class_init__')
 
@@ -6574,7 +6574,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::AST::State') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_method('__class_init__')
 
@@ -6657,7 +6657,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::AST::StringLiteral') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Rubinius::AST::Node'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Rubinius::AST::Node'))
 
   klass.define_method('__class_init__')
 
@@ -6686,7 +6686,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::AST::StringLiteral::TransformState') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_method('__class_init__')
 
@@ -6705,7 +6705,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::AST::Super') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Rubinius::AST::SendWithArguments'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Rubinius::AST::SendWithArguments'))
 
   klass.define_method('__class_init__')
 
@@ -6738,7 +6738,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::AST::Super::TransformState') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_method('__class_init__')
 
@@ -6757,7 +6757,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::AST::SymbolLiteral') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Rubinius::AST::Node'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Rubinius::AST::Node'))
 
   klass.define_method('__class_init__')
 
@@ -6786,7 +6786,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::AST::SymbolLiteral::TransformState') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_method('__class_init__')
 
@@ -6805,7 +6805,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::AST::ToArray') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Rubinius::AST::Node'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Rubinius::AST::Node'))
 
   klass.define_method('__class_init__')
 
@@ -6826,7 +6826,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::AST::ToArray::TransformState') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_method('__class_init__')
 
@@ -6845,7 +6845,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::AST::ToString') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Rubinius::AST::Node'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Rubinius::AST::Node'))
 
   klass.define_method('__class_init__')
 
@@ -6875,7 +6875,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::AST::ToString::TransformState') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_method('__class_init__')
 
@@ -6894,7 +6894,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::AST::ToplevelClassName') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Rubinius::AST::ClassName'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Rubinius::AST::ClassName'))
 
   klass.define_method('__class_init__')
 
@@ -6911,7 +6911,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::AST::ToplevelClassName::TransformState') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_method('__class_init__')
 
@@ -6930,7 +6930,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::AST::ToplevelConstant') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Rubinius::AST::Node'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Rubinius::AST::Node'))
 
   klass.define_method('__class_init__')
 
@@ -6975,7 +6975,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::AST::ToplevelConstant::TransformState') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_method('__class_init__')
 
@@ -6994,7 +6994,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::AST::ToplevelModuleName') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Rubinius::AST::ModuleName'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Rubinius::AST::ModuleName'))
 
   klass.define_method('__class_init__')
 
@@ -7011,7 +7011,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::AST::ToplevelModuleName::TransformState') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_method('__class_init__')
 
@@ -7058,7 +7058,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::AST::TrueLiteral') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Rubinius::AST::Node'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Rubinius::AST::Node'))
 
   klass.define_method('__class_init__')
 
@@ -7083,7 +7083,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::AST::TrueLiteral::TransformState') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_method('__class_init__')
 
@@ -7102,7 +7102,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::AST::TypeConstant') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Rubinius::AST::Node'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Rubinius::AST::Node'))
 
   klass.define_method('__class_init__')
 
@@ -7117,7 +7117,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::AST::TypeConstant::TransformState') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_method('__class_init__')
 
@@ -7136,7 +7136,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::AST::Undef') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Rubinius::AST::Node'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Rubinius::AST::Node'))
 
   klass.define_method('__class_init__')
 
@@ -7157,7 +7157,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::AST::Undef::TransformState') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_method('__class_init__')
 
@@ -7176,7 +7176,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::AST::Until') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Rubinius::AST::While'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Rubinius::AST::While'))
 
   klass.define_method('__class_init__')
 
@@ -7197,7 +7197,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::AST::Until::TransformState') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_method('__class_init__')
 
@@ -7216,7 +7216,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::AST::VAlias') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Rubinius::AST::Alias'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Rubinius::AST::Alias'))
 
   klass.define_method('__class_init__')
 
@@ -7233,7 +7233,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::AST::VAlias::TransformState') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_method('__class_init__')
 
@@ -7252,7 +7252,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::AST::VariableAccess') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Rubinius::AST::Node'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Rubinius::AST::Node'))
 
   klass.define_method('__class_init__')
 
@@ -7272,7 +7272,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::AST::VariableAccess::TransformState') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_method('__class_init__')
 
@@ -7291,7 +7291,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::AST::VariableAssignment') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Rubinius::AST::Node'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Rubinius::AST::Node'))
 
   klass.define_method('__class_init__')
 
@@ -7316,7 +7316,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::AST::VariableAssignment::TransformState') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_method('__class_init__')
 
@@ -7335,7 +7335,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::AST::When') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Rubinius::AST::Node'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Rubinius::AST::Node'))
 
   klass.define_method('__class_init__')
 
@@ -7379,7 +7379,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::AST::When::TransformState') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_method('__class_init__')
 
@@ -7398,7 +7398,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::AST::While') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Rubinius::AST::Node'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Rubinius::AST::Node'))
 
   klass.define_method('__class_init__')
 
@@ -7445,7 +7445,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::AST::While::TransformState') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_method('__class_init__')
 
@@ -7464,7 +7464,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::AST::Yield') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Rubinius::AST::SendWithArguments'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Rubinius::AST::SendWithArguments'))
 
   klass.define_method('__class_init__')
 
@@ -7493,7 +7493,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::AST::Yield::TransformState') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_method('__class_init__')
 
@@ -7512,7 +7512,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::AST::ZSuper') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Rubinius::AST::Super'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Rubinius::AST::Super'))
 
   klass.define_method('__class_init__')
 
@@ -7529,7 +7529,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::AST::ZSuper::TransformState') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_method('__class_init__')
 
@@ -7548,7 +7548,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::AccessVariable') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Rubinius::Executable'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Rubinius::Executable'))
 
   klass.define_method('__class_init__')
 
@@ -7578,7 +7578,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::AgentRegistry') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_method('__class_init__')
 
@@ -7622,7 +7622,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::Alias') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Rubinius::Executable'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Rubinius::Executable'))
 
   klass.define_method('__class_init__')
 
@@ -7639,7 +7639,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::AssertionError') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Rubinius::VMException'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Rubinius::VMException'))
 end
 
 ##
@@ -7656,7 +7656,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::AtomicReference') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_method('__class_init__')
 
@@ -7722,7 +7722,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::Backtrace') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_method('__class_init__')
 
@@ -7806,7 +7806,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::Backtrace::SortedElement') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_method('__class_init__')
 
@@ -7830,7 +7830,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::BlockEnvironment') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_method('__class_init__')
 
@@ -7919,7 +7919,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::BlockEnvironment::AsMethod') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Rubinius::Executable'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Rubinius::Executable'))
 
   klass.define_method('__class_init__')
 
@@ -7960,7 +7960,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::ByteArray') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_method('__class_init__')
 
@@ -8201,7 +8201,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::CallUnit') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_method('__class_init__')
 
@@ -8237,7 +8237,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::CallUnitAdapter') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_method('__class_init__')
 
@@ -8252,7 +8252,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::Channel') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_method('__class_init__')
 
@@ -8289,7 +8289,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::Character') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('String'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('String'))
 
   klass.define_method('__allocate__')
 
@@ -8320,7 +8320,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::Character::Complexifier') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_method('__class_init__')
 
@@ -8353,7 +8353,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::Character::Rationalizer') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_method('__class_init__')
 
@@ -8370,7 +8370,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::CodeLoader') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_method('__class_init__')
 
@@ -8546,7 +8546,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::CodeLoader::RequireRequest') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_method('__class_init__')
 
@@ -8579,7 +8579,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::CompactLookupTable') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Rubinius::Tuple'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Rubinius::Tuple'))
 
   klass.define_method('__class_init__')
 
@@ -8609,7 +8609,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::CompactLookupTable::SortedElement') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_method('__class_init__')
 
@@ -8633,7 +8633,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::CompileError') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('RuntimeError'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('RuntimeError'))
 end
 
 ##
@@ -8642,7 +8642,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::CompiledCode') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Rubinius::Executable'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Rubinius::Executable'))
 
   klass.define_method('__class_init__')
 
@@ -8819,7 +8819,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::CompiledCode::Instruction') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_method('__class_init__')
 
@@ -8850,7 +8850,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::CompiledCode::Instruction::Association') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_method('__class_init__')
 
@@ -8867,7 +8867,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::CompiledCode::Instruction::Location') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_method('__class_init__')
 
@@ -8900,7 +8900,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::CompiledCode::Script') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_method('__class_init__')
 
@@ -8943,7 +8943,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::CompiledFile') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_method('__class_init__')
 
@@ -8980,7 +8980,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::CompiledFile::Marshal') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_method('__class_init__')
 
@@ -8999,7 +8999,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::Compiler') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_method('__class_init__')
 
@@ -9095,7 +9095,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::Compiler::ASTPrinter') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Rubinius::Compiler::Printer'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Rubinius::Compiler::Printer'))
 
   klass.define_method('__class_init__')
 
@@ -9108,7 +9108,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::Compiler::Encoder') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Rubinius::Compiler::Stage'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Rubinius::Compiler::Stage'))
 
   klass.define_method('__class_init__')
 
@@ -9121,7 +9121,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::Compiler::EvalLocalReference') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_method('__class_init__')
 
@@ -9144,7 +9144,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::Compiler::EvalLocalVariable') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_method('__class_init__')
 
@@ -9161,7 +9161,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::Compiler::EvalParser') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Rubinius::Compiler::StringParser'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Rubinius::Compiler::StringParser'))
 
   klass.define_method('__class_init__')
 
@@ -9174,7 +9174,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::Compiler::FileParser') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Rubinius::Compiler::Parser'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Rubinius::Compiler::Parser'))
 
   klass.define_method('__class_init__')
 
@@ -9192,7 +9192,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::Compiler::Generator') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Rubinius::Compiler::Stage'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Rubinius::Compiler::Stage'))
 
   klass.define_method('__class_init__')
 
@@ -9209,7 +9209,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::Compiler::LRUCache') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_method('__class_init__')
 
@@ -9237,7 +9237,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::Compiler::LRUCache::Entry') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_method('__class_init__')
 
@@ -9278,7 +9278,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::Compiler::LocalReference') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_method('__class_init__')
 
@@ -9299,7 +9299,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::Compiler::LocalVariable') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_method('__class_init__')
 
@@ -9334,7 +9334,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::Compiler::MethodPrinter') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Rubinius::Compiler::Printer'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Rubinius::Compiler::Printer'))
 
   klass.define_method('__class_init__')
 
@@ -9385,7 +9385,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::Compiler::NestedLocalReference') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_method('__class_init__')
 
@@ -9410,7 +9410,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::Compiler::NestedLocalVariable') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_method('__class_init__')
 
@@ -9429,7 +9429,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::Compiler::Packager') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Rubinius::Compiler::Stage'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Rubinius::Compiler::Stage'))
 
   klass.define_method('__class_init__')
 
@@ -9446,7 +9446,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::Compiler::Parser') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Rubinius::Compiler::Stage'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Rubinius::Compiler::Stage'))
 
   klass.define_method('__class_init__')
 
@@ -9487,7 +9487,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::Compiler::Printer') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Rubinius::Compiler::Stage'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Rubinius::Compiler::Stage'))
 
   klass.define_method('__class_init__')
 end
@@ -9541,7 +9541,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::Compiler::SexpPrinter') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Rubinius::Compiler::Printer'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Rubinius::Compiler::Printer'))
 
   klass.define_method('__class_init__')
 
@@ -9554,7 +9554,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::Compiler::Stage') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_method('__class_init__')
 
@@ -9612,7 +9612,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::Compiler::StringParser') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Rubinius::Compiler::Parser'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Rubinius::Compiler::Parser'))
 
   klass.define_method('__class_init__')
 
@@ -9631,7 +9631,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::Compiler::Writer') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Rubinius::Compiler::Stage'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Rubinius::Compiler::Stage'))
 
   klass.define_method('__class_init__')
 
@@ -9660,7 +9660,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::Configuration') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_method('__class_init__')
 
@@ -9691,7 +9691,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::ConstantScope') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_method('__class_init__')
 
@@ -9788,7 +9788,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::DelegatedMethod') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Rubinius::Executable'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Rubinius::Executable'))
 
   klass.define_method('__class_init__')
 
@@ -9856,7 +9856,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::EnvironmentVariables') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_method('__class_init__')
 
@@ -10001,7 +10001,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::EnvironmentVariables::SortedElement') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_method('__class_init__')
 
@@ -10025,7 +10025,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::Executable') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_method('__class_init__')
 
@@ -10111,7 +10111,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::FFI::DynamicLibrary') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_method('__class_init__')
 
@@ -10169,7 +10169,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::FFI::DynamicLibrary::Symbol') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Rubinius::FFI::Pointer'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Rubinius::FFI::Pointer'))
 
   klass.define_method('__class_init__')
 
@@ -10228,7 +10228,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::FFI::Enum') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_method('__class_init__')
 
@@ -10264,7 +10264,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::FFI::Function') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Rubinius::FFI::Pointer'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Rubinius::FFI::Pointer'))
 
   klass.define_method('__class_init__')
 
@@ -10422,7 +10422,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::FFI::MemoryPointer') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Rubinius::FFI::Pointer'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Rubinius::FFI::Pointer'))
 
   klass.define_method('__class_init__')
 
@@ -10507,7 +10507,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::FFI::NotFoundError') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('RuntimeError'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('RuntimeError'))
 end
 
 ##
@@ -10824,7 +10824,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::FFI::Platform::POSIX::TimeVal') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Rubinius::FFI::Struct'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Rubinius::FFI::Struct'))
 
   klass.define_method('__class_init__')
 end
@@ -10835,7 +10835,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::FFI::Platform::POSIX::TimeVal::InlineArray') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_method('__class_init__')
 
@@ -10868,7 +10868,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::FFI::Platform::POSIX::TimeVal::InlineCharArray') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Rubinius::FFI::Struct::InlineArray'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Rubinius::FFI::Struct::InlineArray'))
 
   klass.define_method('__class_init__')
 
@@ -10885,7 +10885,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::FFI::Pointer') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_method('__class_init__')
 
@@ -11880,7 +11880,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::FFI::Struct') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_method('__class_init__')
 
@@ -11954,7 +11954,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::FFI::Struct::InlineArray') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_method('__class_init__')
 
@@ -11987,7 +11987,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::FFI::Struct::InlineArray::SortedElement') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_method('__class_init__')
 
@@ -12011,7 +12011,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::FFI::Struct::InlineCharArray') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Rubinius::FFI::Struct::InlineArray'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Rubinius::FFI::Struct::InlineArray'))
 
   klass.define_method('__class_init__')
 
@@ -12028,7 +12028,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::FFI::Struct::InlineCharArray::SortedElement') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_method('__class_init__')
 
@@ -12204,7 +12204,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::FFI::Type') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_method('__class_init__')
 end
@@ -12215,7 +12215,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::FFI::Type::Array') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_method('__class_init__')
 
@@ -12238,7 +12238,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::FFI::Type::StructByValue') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_method('__class_init__')
 
@@ -12263,7 +12263,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::FFI::TypeError') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('RuntimeError'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('RuntimeError'))
 end
 
 ##
@@ -12280,7 +12280,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::FFI::Union') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Rubinius::FFI::Struct'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Rubinius::FFI::Struct'))
 end
 
 ##
@@ -12289,7 +12289,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::FFI::Union::InlineArray') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_method('__class_init__')
 
@@ -12322,7 +12322,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::FFI::Union::InlineCharArray') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Rubinius::FFI::Struct::InlineArray'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Rubinius::FFI::Struct::InlineArray'))
 
   klass.define_method('__class_init__')
 
@@ -12339,7 +12339,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::Fiber') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_method('__class_init__')
 
@@ -12399,7 +12399,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::Generator') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_method('__class_init__')
 
@@ -12657,7 +12657,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::Generator::BasicBlock') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_method('__class_init__')
 
@@ -12715,7 +12715,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::Generator::Label') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_method('__class_init__')
 
@@ -13083,7 +13083,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::GlobalCacheEntry') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 end
 
 ##
@@ -13092,7 +13092,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::GlobalVariables') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_method('__class_init__')
 
@@ -13181,7 +13181,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::Hook') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_method('__class_init__')
 
@@ -13206,7 +13206,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::IdentityMap') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_method('__class_init__')
 
@@ -13257,7 +13257,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::IncludedModule') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Module'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Module'))
 
   klass.define_method('__class_init__')
 
@@ -13292,7 +13292,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::InstructionDecoder') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_method('__class_init__')
 
@@ -13314,7 +13314,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::InstructionSequence') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_method('__class_init__')
 
@@ -13346,7 +13346,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::InstructionSet') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_method('[]') do |method|
     method.define_argument('name_or_id')
@@ -13371,7 +13371,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::InstructionSet::InvalidOpCode') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('RuntimeError'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('RuntimeError'))
 end
 
 ##
@@ -13380,7 +13380,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::InstructionSet::OpCode') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_method('__class_init__')
 
@@ -13425,7 +13425,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::Internal') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Exception'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Exception'))
 end
 
 ##
@@ -13434,7 +13434,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::InvalidBytecode') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Rubinius::Internal'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Rubinius::Internal'))
 
   klass.define_method('__class_init__')
 
@@ -13451,7 +13451,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::InvalidRBC') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('RuntimeError'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('RuntimeError'))
 end
 
 ##
@@ -13524,7 +13524,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::LRUCache') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_method('__class_init__')
 
@@ -13556,7 +13556,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::LRUCache::Entry') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_method('__class_init__')
 
@@ -13602,7 +13602,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::List') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 end
 
 ##
@@ -13611,7 +13611,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::List::Node') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 end
 
 ##
@@ -13620,7 +13620,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::LoadedFeatures') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Array'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Array'))
 
   klass.define_method('__class_init__')
 
@@ -13664,7 +13664,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::LoadedFeatures::SortedElement') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_method('__class_init__')
 
@@ -13688,7 +13688,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::LoadedFeatures::ValueGenerator') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_method('__class_init__')
 
@@ -13709,7 +13709,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::Loader') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_method('__class_init__')
 
@@ -13806,7 +13806,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::Location') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_method('__class_init__')
 
@@ -13855,7 +13855,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::Location::Missing') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_method('__class_init__')
 
@@ -13884,7 +13884,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::LookupTable') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_method('__class_init__')
 
@@ -13955,7 +13955,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::LookupTable::Bucket') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_method('__class_init__')
 
@@ -13972,7 +13972,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::LookupTable::SortedElement') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_method('__class_init__')
 
@@ -13996,7 +13996,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::Melbourne') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_method('__class_init__')
 
@@ -14644,7 +14644,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::Melbourne19') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Rubinius::Melbourne'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Rubinius::Melbourne'))
 
   klass.define_method('__class_init__')
 
@@ -14741,7 +14741,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::Melbourne20') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Rubinius::Melbourne19'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Rubinius::Melbourne19'))
 end
 
 ##
@@ -14774,7 +14774,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::MethodTable') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_method('__class_init__')
 
@@ -14853,7 +14853,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::MethodTable::Bucket') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_method('__class_init__')
 
@@ -14882,7 +14882,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::MethodTable::SortedElement') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_method('__class_init__')
 
@@ -14906,7 +14906,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::Mirror') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_method('__class_init__')
 
@@ -14933,7 +14933,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::Mirror::Object') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Rubinius::Mirror'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Rubinius::Mirror'))
 
   klass.define_method('__class_init__')
 end
@@ -14944,7 +14944,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::Mirror::String') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Rubinius::Mirror'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Rubinius::Mirror'))
 
   klass.define_method('__class_init__')
 
@@ -14996,7 +14996,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::MissingMethod') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Rubinius::Executable'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Rubinius::Executable'))
 
   klass.define_method('__class_init__')
 
@@ -15035,7 +15035,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::NativeFunction') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Rubinius::Executable'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Rubinius::Executable'))
 
   klass.define_method('__class_init__')
 
@@ -15054,7 +15054,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::NativeMethod') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Rubinius::Executable'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Rubinius::Executable'))
 
   klass.define_method('__class_init__')
 
@@ -15120,7 +15120,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::ObjectBoundsExceededError') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Rubinius::VMException'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Rubinius::VMException'))
 end
 
 ##
@@ -15129,7 +15129,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::Options') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_method('__class_init__')
 
@@ -15216,7 +15216,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::Options::Option') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_method('__class_init__')
 
@@ -15245,7 +15245,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::Options::OptionError') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Exception'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Exception'))
 end
 
 ##
@@ -15254,7 +15254,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::Options::ParseError') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Exception'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Exception'))
 end
 
 ##
@@ -15303,7 +15303,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::Randomizer') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_method('__class_init__')
 
@@ -15453,7 +15453,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::Splitter') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_method('__class_init__')
 
@@ -15482,7 +15482,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::Sprinter') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_method('__class_init__')
 
@@ -15566,7 +15566,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::Sprinter::Builder') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_method('__class_init__')
 
@@ -15636,7 +15636,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::Sprinter::Builder::Atom') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_method('__class_init__')
 
@@ -15716,7 +15716,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::Sprinter::Builder::CharAtom') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Rubinius::Sprinter::Builder::Atom'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Rubinius::Sprinter::Builder::Atom'))
 
   klass.define_method('__class_init__')
 
@@ -15729,7 +15729,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::Sprinter::Builder::ExtIntegerAtom') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Rubinius::Sprinter::Builder::Atom'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Rubinius::Sprinter::Builder::Atom'))
 
   klass.define_method('__class_init__')
 
@@ -15746,7 +15746,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::Sprinter::Builder::ExtIntegerAtomU') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Rubinius::Sprinter::Builder::ExtIntegerAtom'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Rubinius::Sprinter::Builder::ExtIntegerAtom'))
 
   klass.define_method('__class_init__')
 
@@ -15761,7 +15761,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::Sprinter::Builder::FloatAtom') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Rubinius::Sprinter::Builder::Atom'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Rubinius::Sprinter::Builder::Atom'))
 
   klass.define_method('__class_init__')
 
@@ -15774,7 +15774,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::Sprinter::Builder::InspectAtom') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Rubinius::Sprinter::Builder::StringAtom'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Rubinius::Sprinter::Builder::StringAtom'))
 
   klass.define_method('__class_init__')
 
@@ -15787,7 +15787,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::Sprinter::Builder::IntegerAtom') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Rubinius::Sprinter::Builder::Atom'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Rubinius::Sprinter::Builder::Atom'))
 
   klass.define_method('__class_init__')
 
@@ -15800,7 +15800,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::Sprinter::Builder::LiteralAtom') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Rubinius::Sprinter::Builder::Atom'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Rubinius::Sprinter::Builder::Atom'))
 
   klass.define_method('__class_init__')
 
@@ -15841,7 +15841,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::Sprinter::Builder::StringAtom') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Rubinius::Sprinter::Builder::Atom'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Rubinius::Sprinter::Builder::Atom'))
 
   klass.define_method('__class_init__')
 
@@ -15991,7 +15991,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::ThreadState') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 end
 
 ##
@@ -16018,7 +16018,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::Thunk') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_method('__class_init__')
 
@@ -16059,7 +16059,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::Tuple') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_method('[]') do |method|
     method.define_rest_argument('args')
@@ -16190,7 +16190,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::Tuple::SortedElement') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_method('__class_init__')
 
@@ -16457,7 +16457,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::VM') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_method('__class_init__')
 
@@ -16509,7 +16509,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::VM::JITInfo') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_method('__class_init__')
 
@@ -16544,7 +16544,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::VMException') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Exception'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Exception'))
 end
 
 ##
@@ -16553,7 +16553,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Rubinius::VariableScope') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_method('__class_init__')
 

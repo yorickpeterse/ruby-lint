@@ -132,7 +132,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Psych::BadAlias') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Psych::Exception'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Psych::Exception'))
 end
 
 ##
@@ -141,7 +141,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Psych::Coder') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_method('__class_init__')
 
@@ -261,7 +261,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Psych::Emitter') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Psych::Handler'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Psych::Handler'))
 
   klass.define_method('allocate')
 
@@ -306,7 +306,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Psych::Exception') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('RuntimeError'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('RuntimeError'))
 end
 
 ##
@@ -315,7 +315,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Psych::Handler') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_method('__class_init__')
 
@@ -387,7 +387,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Psych::Handlers::DocumentStream') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Psych::TreeBuilder'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Psych::TreeBuilder'))
 
   klass.define_method('__class_init__')
 
@@ -444,7 +444,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Psych::JSON::Stream') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Psych::Visitors::JSONTree'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Psych::Visitors::JSONTree'))
 
   klass.define_method('__class_init__')
 end
@@ -463,7 +463,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Psych::JSON::Stream::Emitter') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Psych::Stream::Emitter'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Psych::Stream::Emitter'))
 
   klass.define_method('__class_init__')
 end
@@ -474,7 +474,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Psych::JSON::TreeBuilder') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Psych::TreeBuilder'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Psych::TreeBuilder'))
 
   klass.define_method('__class_init__')
 end
@@ -546,7 +546,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Psych::Nodes::Alias') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Psych::Nodes::Node'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Psych::Nodes::Node'))
 
   klass.define_method('__class_init__')
 
@@ -561,7 +561,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Psych::Nodes::Alias::SortedElement') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_method('__class_init__')
 
@@ -585,7 +585,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Psych::Nodes::Document') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Psych::Nodes::Node'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Psych::Nodes::Node'))
 
   klass.define_method('__class_init__')
 
@@ -614,7 +614,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Psych::Nodes::Document::SortedElement') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_method('__class_init__')
 
@@ -638,7 +638,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Psych::Nodes::Mapping') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Psych::Nodes::Node'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Psych::Nodes::Node'))
 
   klass.define_method('__class_init__')
 
@@ -681,7 +681,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Psych::Nodes::Mapping::SortedElement') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_method('__class_init__')
 
@@ -705,7 +705,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Psych::Nodes::Node') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_method('__class_init__')
 
@@ -738,7 +738,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Psych::Nodes::Node::SortedElement') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_method('__class_init__')
 
@@ -762,7 +762,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Psych::Nodes::Scalar') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Psych::Nodes::Node'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Psych::Nodes::Node'))
 
   klass.define_method('__class_init__')
 
@@ -837,7 +837,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Psych::Nodes::Scalar::SortedElement') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_method('__class_init__')
 
@@ -861,7 +861,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Psych::Nodes::Sequence') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Psych::Nodes::Node'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Psych::Nodes::Node'))
 
   klass.define_method('__class_init__')
 
@@ -904,7 +904,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Psych::Nodes::Sequence::SortedElement') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_method('__class_init__')
 
@@ -928,7 +928,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Psych::Nodes::Stream') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Psych::Nodes::Node'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Psych::Nodes::Node'))
 
   klass.define_method('__class_init__')
 
@@ -943,7 +943,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Psych::Nodes::Stream::SortedElement') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_method('__class_init__')
 
@@ -991,7 +991,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Psych::Omap') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Hash'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Hash'))
 end
 
 ##
@@ -1000,7 +1000,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Psych::Omap::Bucket') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_method('__class_init__')
 
@@ -1053,7 +1053,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Psych::Omap::Entries') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_method('[]') do |method|
     method.define_rest_argument('args')
@@ -1184,7 +1184,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Psych::Omap::Iterator') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_method('__class_init__')
 
@@ -1219,7 +1219,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Psych::Omap::SortedElement') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_method('__class_init__')
 
@@ -1243,7 +1243,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Psych::Omap::State') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_method('__class_init__')
 
@@ -1279,7 +1279,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Psych::Parser') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_method('__class_init__')
 
@@ -1302,7 +1302,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Psych::Parser::Mark') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('#<Class:0x16848>'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('#<Class:0x16848>'))
 end
 
 ##
@@ -1311,7 +1311,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Psych::Parser::Mark::Group') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Rubinius::FFI::Struct'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Rubinius::FFI::Struct'))
 
   klass.define_method('__class_init__')
 
@@ -1330,7 +1330,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Psych::Parser::Mark::Passwd') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Rubinius::FFI::Struct'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Rubinius::FFI::Struct'))
 
   klass.define_method('__class_init__')
 
@@ -1363,7 +1363,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Psych::Parser::Mark::SortedElement') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_method('__class_init__')
 
@@ -1387,7 +1387,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Psych::Parser::Mark::Tms') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Struct'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Struct'))
 
   klass.define_method('[]') do |method|
     method.define_rest_argument('args')
@@ -1455,7 +1455,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Psych::PrivateType') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 end
 
 ##
@@ -1464,7 +1464,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Psych::ScalarScanner') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_method('__class_init__')
 
@@ -1499,7 +1499,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Psych::Set') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Hash'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Hash'))
 end
 
 ##
@@ -1508,7 +1508,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Psych::Set::Bucket') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_method('__class_init__')
 
@@ -1561,7 +1561,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Psych::Set::Entries') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_method('[]') do |method|
     method.define_rest_argument('args')
@@ -1692,7 +1692,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Psych::Set::Iterator') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_method('__class_init__')
 
@@ -1727,7 +1727,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Psych::Set::SortedElement') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_method('__class_init__')
 
@@ -1751,7 +1751,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Psych::Set::State') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_method('__class_init__')
 
@@ -1787,7 +1787,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Psych::Stream') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Psych::Visitors::YAMLTree'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Psych::Visitors::YAMLTree'))
 
   klass.define_method('__class_init__')
 end
@@ -1806,7 +1806,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Psych::Stream::Emitter') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Psych::Emitter'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Psych::Emitter'))
 
   klass.define_method('__class_init__')
 
@@ -1837,7 +1837,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Psych::SyntaxError') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('SyntaxError'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('SyntaxError'))
 
   klass.define_method('__class_init__')
 
@@ -1860,7 +1860,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Psych::TreeBuilder') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Psych::Handler'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Psych::Handler'))
 
   klass.define_method('__class_init__')
 
@@ -1938,7 +1938,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Psych::Visitors::DepthFirst') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Psych::Visitors::Visitor'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Psych::Visitors::Visitor'))
 
   klass.define_method('__class_init__')
 end
@@ -1957,7 +1957,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Psych::Visitors::Emitter') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Psych::Visitors::Visitor'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Psych::Visitors::Visitor'))
 
   klass.define_method('__class_init__')
 
@@ -2000,7 +2000,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Psych::Visitors::JSONTree') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Psych::Visitors::YAMLTree'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Psych::Visitors::YAMLTree'))
 
   klass.define_method('__class_init__')
 
@@ -2023,7 +2023,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Psych::Visitors::ToRuby') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Psych::Visitors::Visitor'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Psych::Visitors::Visitor'))
 
   klass.define_method('__class_init__')
 
@@ -2070,7 +2070,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Psych::Visitors::Visitor') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_method('__class_init__')
 
@@ -2093,7 +2093,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Psych::Visitors::YAMLTree') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Psych::Visitors::Visitor'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Psych::Visitors::Visitor'))
 
   klass.define_method('__class_init__')
 

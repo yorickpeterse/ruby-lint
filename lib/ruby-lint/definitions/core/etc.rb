@@ -99,7 +99,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Etc::Group') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Rubinius::FFI::Struct'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Rubinius::FFI::Struct'))
 
   klass.define_method('__class_init__')
 
@@ -118,7 +118,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Etc::Passwd') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Rubinius::FFI::Struct'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Rubinius::FFI::Struct'))
 
   klass.define_method('__class_init__')
 

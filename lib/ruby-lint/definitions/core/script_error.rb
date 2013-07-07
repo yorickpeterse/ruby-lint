@@ -4,5 +4,5 @@
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('ScriptError') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Exception'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Exception'))
 end

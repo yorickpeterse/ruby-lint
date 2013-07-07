@@ -378,7 +378,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Process::Rlimit') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Rubinius::FFI::Struct'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Rubinius::FFI::Struct'))
 
   klass.define_method('__class_init__')
 end
@@ -389,7 +389,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Process::Rlimit::InlineArray') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_method('__class_init__')
 
@@ -422,7 +422,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Process::Rlimit::InlineCharArray') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Rubinius::FFI::Struct::InlineArray'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Rubinius::FFI::Struct::InlineArray'))
 
   klass.define_method('__class_init__')
 
@@ -439,7 +439,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Process::Status') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_method('__class_init__')
 

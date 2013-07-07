@@ -30,7 +30,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Marshal::IOState') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Marshal::State'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Marshal::State'))
 
   klass.define_method('__class_init__')
 
@@ -63,7 +63,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Marshal::State') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_method('__class_init__')
 
@@ -240,7 +240,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Marshal::StringState') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Marshal::State'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Marshal::State'))
 
   klass.define_method('__class_init__')
 

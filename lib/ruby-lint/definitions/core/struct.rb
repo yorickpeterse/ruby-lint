@@ -4,7 +4,7 @@
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Struct') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_method('__class_init__')
 
@@ -91,7 +91,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Struct::Group') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Rubinius::FFI::Struct'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Rubinius::FFI::Struct'))
 
   klass.define_method('__class_init__')
 
@@ -161,7 +161,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Struct::Group::InlineArray') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_method('__class_init__')
 
@@ -194,7 +194,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Struct::Group::InlineCharArray') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Rubinius::FFI::Struct::InlineArray'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Rubinius::FFI::Struct::InlineArray'))
 
   klass.define_method('__class_init__')
 
@@ -211,7 +211,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Struct::Passwd') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Rubinius::FFI::Struct'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Rubinius::FFI::Struct'))
 
   klass.define_method('__class_init__')
 
@@ -236,7 +236,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Struct::Passwd::InlineArray') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_method('__class_init__')
 
@@ -269,7 +269,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Struct::Passwd::InlineCharArray') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Rubinius::FFI::Struct::InlineArray'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Rubinius::FFI::Struct::InlineArray'))
 
   klass.define_method('__class_init__')
 
@@ -286,7 +286,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Struct::SortedElement') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_method('__class_init__')
 
@@ -310,7 +310,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Struct::Tms') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Struct'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Struct'))
 
   klass.define_method('[]') do |method|
     method.define_rest_argument('args')

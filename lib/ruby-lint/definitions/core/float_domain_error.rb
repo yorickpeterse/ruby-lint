@@ -4,5 +4,5 @@
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('FloatDomainError') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('RangeError'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('RangeError'))
 end

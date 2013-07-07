@@ -343,7 +343,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Gem::Builder') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_method('__class_init__')
 
@@ -360,7 +360,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Gem::Cache') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_method('__class_init__')
 
@@ -572,7 +572,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Gem::CommandLineError') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Gem::Exception'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Gem::Exception'))
 end
 
 ##
@@ -581,7 +581,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Gem::ConfigFile') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_method('__class_init__')
 
@@ -705,7 +705,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Gem::Dependency') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_method('__class_init__')
 
@@ -783,7 +783,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Gem::DependencyError') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Gem::Exception'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Gem::Exception'))
 end
 
 ##
@@ -792,7 +792,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Gem::DependencyList') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_method('__class_init__')
 
@@ -866,7 +866,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Gem::DependencyList::Cyclic') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('StandardError'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('StandardError'))
 end
 
 ##
@@ -875,7 +875,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Gem::DependencyList::SortedElement') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_method('__class_init__')
 
@@ -899,7 +899,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Gem::DependencyRemovalException') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Gem::Exception'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Gem::Exception'))
 end
 
 ##
@@ -933,7 +933,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Gem::DocumentError') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Gem::Exception'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Gem::Exception'))
 end
 
 ##
@@ -942,7 +942,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Gem::EndOfYAMLException') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Gem::Exception'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Gem::Exception'))
 end
 
 ##
@@ -951,7 +951,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Gem::Exception') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('RuntimeError'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('RuntimeError'))
 end
 
 ##
@@ -960,7 +960,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Gem::FilePermissionError') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Gem::Exception'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Gem::Exception'))
 
   klass.define_method('__class_init__')
 end
@@ -971,7 +971,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Gem::FormatException') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Gem::Exception'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Gem::Exception'))
 
   klass.define_method('__class_init__')
 
@@ -986,7 +986,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Gem::GemNotFoundException') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Gem::Exception'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Gem::Exception'))
 
   klass.define_method('__class_init__')
 
@@ -1003,7 +1003,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Gem::GemNotInHomeException') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Gem::Exception'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Gem::Exception'))
 
   klass.define_method('__class_init__')
 
@@ -1018,7 +1018,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Gem::GemPathSearcher') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_method('__class_init__')
 
@@ -1098,7 +1098,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Gem::InstallError') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Gem::Exception'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Gem::Exception'))
 end
 
 ##
@@ -1107,7 +1107,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Gem::InvalidSpecificationException') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Gem::Exception'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Gem::Exception'))
 end
 
 ##
@@ -1116,7 +1116,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Gem::LoadError') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('LoadError'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('LoadError'))
 
   klass.define_method('__class_init__')
 
@@ -1135,7 +1135,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Gem::LoadError::InvalidExtensionError') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('LoadError'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('LoadError'))
 end
 
 ##
@@ -1144,7 +1144,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Gem::LoadError::MRIExtensionError') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('LoadError::InvalidExtensionError'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('LoadError::InvalidExtensionError'))
 end
 
 ##
@@ -1161,7 +1161,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Gem::NoAliasYAMLTree') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Psych::Visitors::YAMLTree'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Psych::Visitors::YAMLTree'))
 
   klass.define_method('__class_init__')
 
@@ -1189,7 +1189,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Gem::OperationNotSupportedError') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Gem::Exception'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Gem::Exception'))
 end
 
 ##
@@ -1198,7 +1198,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Gem::PackageTask') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Rake::PackageTask'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Rake::PackageTask'))
 
   klass.define_method('__class_init__')
 
@@ -1413,7 +1413,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Gem::PackageTask::Entry_') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_method('__class_init__')
 
@@ -1943,7 +1943,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Gem::PathSupport') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_method('__class_init__')
 
@@ -1958,7 +1958,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Gem::Platform') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_method('__class_init__')
 
@@ -2053,7 +2053,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Gem::RemoteError') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Gem::Exception'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Gem::Exception'))
 end
 
 ##
@@ -2062,7 +2062,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Gem::RemoteInstallationCancelled') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Gem::Exception'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Gem::Exception'))
 end
 
 ##
@@ -2071,7 +2071,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Gem::RemoteInstallationSkipped') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Gem::Exception'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Gem::Exception'))
 end
 
 ##
@@ -2080,7 +2080,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Gem::RemoteSourceException') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Gem::Exception'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Gem::Exception'))
 end
 
 ##
@@ -2089,7 +2089,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Gem::Requirement') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_method('__class_init__')
 
@@ -2175,7 +2175,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Gem::SourceIndex') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_method('__class_init__')
 
@@ -2387,7 +2387,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Gem::SourceIndex::SortedElement') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_method('__class_init__')
 
@@ -2411,7 +2411,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Gem::SpecFetcher') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_method('__class_init__')
 
@@ -2489,7 +2489,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Gem::Specification') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_method('__class_init__')
 
@@ -3033,7 +3033,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Gem::SyckDefaultKey') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_method('__class_init__')
 
@@ -3046,7 +3046,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Gem::SystemExitException') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('SystemExit'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('SystemExit'))
 
   klass.define_method('__class_init__')
 
@@ -3069,7 +3069,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Gem::VerificationError') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Gem::Exception'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Gem::Exception'))
 end
 
 ##
@@ -3078,7 +3078,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Gem::Version') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_method('__class_init__')
 

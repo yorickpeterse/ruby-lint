@@ -4,7 +4,7 @@
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Regexp') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_method('__class_init__')
 
@@ -250,7 +250,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Regexp::SourceParser') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_method('__class_init__')
 
@@ -296,7 +296,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Regexp::SourceParser::LookAheadGroupPart') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Regexp::SourceParser::Part'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Regexp::SourceParser::Part'))
 
   klass.define_method('__class_init__')
 
@@ -317,7 +317,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Regexp::SourceParser::OptionsGroupPart') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Regexp::SourceParser::Part'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Regexp::SourceParser::Part'))
 
   klass.define_method('__class_init__')
 
@@ -348,7 +348,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Regexp::SourceParser::Part') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_method('__class_init__')
 

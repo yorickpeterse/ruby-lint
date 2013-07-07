@@ -4,7 +4,7 @@
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Encoding') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_method('__class_init__')
 
@@ -462,7 +462,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Encoding::CompatibilityError') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('EncodingError'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('EncodingError'))
 end
 
 ##
@@ -471,7 +471,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Encoding::Converter') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_method('__class_init__')
 
@@ -586,7 +586,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Encoding::Converter::TranscodingPath') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_method('[]') do |method|
     method.define_argument('source')
@@ -683,7 +683,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Encoding::ConverterNotFoundError') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('EncodingError'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('EncodingError'))
 end
 
 ##
@@ -1292,7 +1292,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Encoding::InvalidByteSequenceError') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('EncodingError'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('EncodingError'))
 
   klass.define_method('__class_init__')
 
@@ -1649,7 +1649,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Encoding::Transcoding') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_method('__class_init__')
 
@@ -1838,7 +1838,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Encoding::UndefinedConversionError') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('EncodingError'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('EncodingError'))
 
   klass.define_method('__class_init__')
 

@@ -4,7 +4,7 @@
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('ERB') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_method('__class_init__')
 
@@ -51,7 +51,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('ERB::Compiler') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_method('__class_init__')
 
@@ -98,7 +98,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('ERB::Compiler::Buffer') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_method('__class_init__')
 
@@ -119,7 +119,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('ERB::Compiler::ExplicitScanner') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('ERB::Compiler::Scanner'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('ERB::Compiler::Scanner'))
 
   klass.define_method('__class_init__')
 
@@ -132,7 +132,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('ERB::Compiler::PercentLine') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_method('__class_init__')
 
@@ -149,7 +149,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('ERB::Compiler::Scanner') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_method('__class_init__')
 
@@ -182,7 +182,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('ERB::Compiler::SimpleScanner') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('ERB::Compiler::Scanner'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('ERB::Compiler::Scanner'))
 
   klass.define_method('__class_init__')
 
@@ -195,7 +195,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('ERB::Compiler::SimpleScanner2') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('ERB::Compiler::Scanner'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('ERB::Compiler::Scanner'))
 
   klass.define_method('__class_init__')
 
@@ -208,7 +208,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('ERB::Compiler::TrimScanner') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('ERB::Compiler::Scanner'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('ERB::Compiler::Scanner'))
 
   klass.define_method('__class_init__')
 

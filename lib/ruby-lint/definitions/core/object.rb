@@ -4,7 +4,7 @@
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Object') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('BasicObject'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('BasicObject'))
 
   klass.define_method('__class_init__')
 

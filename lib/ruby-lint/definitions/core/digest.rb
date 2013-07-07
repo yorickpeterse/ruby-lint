@@ -20,7 +20,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Digest::Base') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Digest::Class'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Digest::Class'))
 
   klass.define_method('allocate')
 
@@ -43,7 +43,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Digest::Class') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_method('__class_init__')
 
@@ -117,7 +117,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Digest::SHA2') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Digest::Class'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Digest::Class'))
 
   klass.define_method('__class_init__')
 
@@ -144,7 +144,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Digest::SHA256') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Digest::Base'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Digest::Base'))
 end
 
 ##
@@ -153,7 +153,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Digest::SHA384') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Digest::Base'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Digest::Base'))
 end
 
 ##
@@ -162,5 +162,5 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Digest::SHA512') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Digest::Base'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Digest::Base'))
 end

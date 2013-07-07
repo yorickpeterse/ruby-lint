@@ -4,7 +4,7 @@
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('IO') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_method('__class_init__')
 
@@ -475,7 +475,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('IO::BidirectionalPipe') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('IO'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('IO'))
 
   klass.define_method('__class_init__')
 
@@ -539,7 +539,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('IO::EAGAINWaitReadable') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Errno::EAGAIN'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Errno::EAGAIN'))
 
   klass.define_method('__class_init__')
 end
@@ -566,7 +566,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('IO::EAGAINWaitWritable') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Errno::EAGAIN'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Errno::EAGAIN'))
 
   klass.define_method('__class_init__')
 end
@@ -601,7 +601,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('IO::EachReader') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_method('__class_init__')
 
@@ -690,7 +690,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('IO::InternalBuffer') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_method('__class_init__')
 
@@ -842,7 +842,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('IO::SortedElement') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_method('__class_init__')
 
@@ -866,7 +866,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('IO::StreamCopier') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_method('__class_init__')
 

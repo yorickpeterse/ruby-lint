@@ -4,7 +4,7 @@
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('LoadError') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('ScriptError'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('ScriptError'))
 
   klass.define_method('__class_init__')
 end
@@ -15,7 +15,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('LoadError::InvalidExtensionError') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('LoadError'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('LoadError'))
 end
 
 ##
@@ -24,5 +24,5 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('LoadError::MRIExtensionError') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('LoadError::InvalidExtensionError'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('LoadError::InvalidExtensionError'))
 end

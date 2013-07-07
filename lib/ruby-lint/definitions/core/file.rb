@@ -4,7 +4,7 @@
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('File') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('IO'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('IO'))
 
   klass.define_method('__class_init__')
 
@@ -340,7 +340,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('File::BidirectionalPipe') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('IO'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('IO'))
 
   klass.define_method('__class_init__')
 
@@ -414,7 +414,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('File::EAGAINWaitReadable') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Errno::EAGAIN'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Errno::EAGAIN'))
 
   klass.define_method('__class_init__')
 end
@@ -425,7 +425,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('File::EAGAINWaitWritable') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Errno::EAGAIN'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Errno::EAGAIN'))
 
   klass.define_method('__class_init__')
 end
@@ -444,7 +444,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('File::EachReader') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_method('__class_init__')
 
@@ -533,7 +533,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('File::FileError') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Exception'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Exception'))
 end
 
 ##
@@ -542,7 +542,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('File::InternalBuffer') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_method('__class_init__')
 
@@ -658,7 +658,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('File::NoFileError') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('File::FileError'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('File::FileError'))
 end
 
 ##
@@ -839,7 +839,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('File::PermissionError') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('File::FileError'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('File::FileError'))
 end
 
 ##
@@ -892,7 +892,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('File::SortedElement') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_method('__class_init__')
 
@@ -916,7 +916,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('File::Stat') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_method('__class_init__')
 
@@ -1145,7 +1145,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('File::Stat::Struct') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Rubinius::FFI::Struct'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Rubinius::FFI::Struct'))
 
   klass.define_method('__class_init__')
 end
@@ -1156,7 +1156,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('File::Stat::Struct::InlineArray') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_method('__class_init__')
 
@@ -1189,7 +1189,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('File::Stat::Struct::InlineCharArray') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Rubinius::FFI::Struct::InlineArray'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Rubinius::FFI::Struct::InlineArray'))
 
   klass.define_method('__class_init__')
 
@@ -1206,7 +1206,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('File::StreamCopier') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Object'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
   klass.define_method('__class_init__')
 
@@ -1257,7 +1257,7 @@ end
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('File::UnableToStat') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('File::FileError'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('File::FileError'))
 end
 
 ##

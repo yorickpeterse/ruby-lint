@@ -4,7 +4,7 @@
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('SizedQueue') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.global_constant('Queue'))
+  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Queue'))
 
   klass.define_method('__class_init__')
 
