@@ -1,13 +1,15 @@
 namespace :generate do
   desc 'Generates a set of definitions for a constant'
-  task :definitions, :constant, :directory do |task, args|
+  task :definitions, :constant, :directory, :overwrite do |task, args|
+    args.with_defaults(:overwrite => false)
+
     abort 'You have to specify a constant'  unless args[:constant]
     abort 'You have to specify a directory' unless args[:directory]
 
     generator = RubyLint::DefinitionGenerator.new(
       args[:constant],
       args[:directory],
-      :overwrite => true
+      :overwrite => !!args[:overwrite]
     )
 
     generator.generate
@@ -64,7 +66,8 @@ namespace :generate do
 
       Rake::Task['generate:definitions'].execute(
         :constant  => name,
-        :directory => dir
+        :directory => dir,
+        :overwrite => true
       )
     end
   end

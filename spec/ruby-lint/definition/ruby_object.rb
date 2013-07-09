@@ -76,21 +76,6 @@ describe ruby_object do
     found.type.should == :lvar
   end
 
-  should 'clear all the definitions' do
-    var = ruby_object.new(
-      :type => :lvar,
-      :name => 'number'
-    )
-
-    @object.add(:lvar, var.name, var)
-
-    @object.lookup(:lvar, var.name).nil?.should == false
-
-    @object.clear!
-
-    @object.lookup(:lvar, var.name).nil?.should == true
-  end
-
   should 'set the parent definitions' do
     var1 = ruby_object.new(
       :type  => :lvar,

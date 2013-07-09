@@ -83,10 +83,30 @@ module RubyLint
       #
       # @return [String]
       #
-      PATH_SEPARATOR = '::'
+      PATH_SEPARATOR = '::'.freeze
+
+      ##
+      # Array containing the valid data types that can be stored.
+      #
+      # @return [Array<Symbol>]
+      #
+      VALID_TYPES = [
+        :lvar,
+        :ivar,
+        :cvar,
+        :gvar,
+        :const,
+        :method,
+        :instance_method,
+        :member,
+        :keyword,
+        :arg,
+        :optarg,
+        :restarg,
+        :blockarg
+      ].freeze
 
       attr_reader :update_parents,
-        :column,
         :definitions,
         :members_as_value,
         :name,
@@ -105,15 +125,17 @@ module RubyLint
       # @yieldparam [RubyLint::Definition::RubyObject]
       #
       def initialize(options = {})
-        options = default_options.merge(options)
+        @update_parents   = []
+        @instance_type    = :class
+        @parents          = []
+        @reference_amount = 0
 
         options.each do |key, value|
           instance_variable_set("@#{key}", value)
         end
 
-        @value = nil if members_as_value
-
-        clear!
+        @definitions = Hash.new { |hash, key| hash[key] = {} }
+        @value       = nil if members_as_value
 
         yield self if block_given?
       end
@@ -177,7 +199,7 @@ module RubyLint
           raise TypeError, "Expected RubyObject but got #{value.class}"
         end
 
-        unless definitions.key?(type)
+        unless VALID_TYPES.include?(type)
           raise ArgumentError, ":#{type} is not a valid type of data to add"
         end
 
@@ -389,27 +411,6 @@ module RubyLint
       end
 
       ##
-      # Resets the list of definitions for the current RubyObject instance.
-      #
-      def clear!
-        @definitions = {
-          :lvar            => {},
-          :ivar            => {},
-          :cvar            => {},
-          :gvar            => {},
-          :const           => {},
-          :method          => {},
-          :instance_method => {},
-          :member          => {},
-          :keyword         => {},
-          :arg             => {},
-          :optarg          => {},
-          :restarg         => {},
-          :blockarg        => {}
-        }
-      end
-
-      ##
       # Merges the definitions object `other` into the current one.
       #
       # @param [RubyLint::Definition::RubyObject] other
@@ -463,7 +464,7 @@ module RubyLint
       # @return [TrueClass|FalseClass]
       #
       def used?
-        return @reference_amount > 0
+        return reference_amount > 0
       end
 
       ##
@@ -634,22 +635,6 @@ module RubyLint
       #
       def lookup_parent?(type)
         return LOOKUP_PARENT.include?(type) && !parents.empty?
-      end
-
-      ##
-      # Returns a Hash containing the default options.
-      #
-      # @return [Hash]
-      #
-      def default_options
-        return {
-          :update_parents    => [],
-          :instance_type     => :class,
-          :parents           => [],
-          :receiver          => nil,
-          :reference_amount  => 0,
-          :value             => nil
-        }
       end
 
       ##

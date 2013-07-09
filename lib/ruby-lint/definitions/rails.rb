@@ -1,3 +1,12 @@
-Dir.glob(File.expand_path('../rails/*.rb', __FILE__)) do |path|
-  require(path)
-end
+relative_relative 'rails/action_controller.rb'
+relative_relative 'rails/action_pack.rb'
+relative_relative 'rails/action_mailer.rb'
+relative_relative 'rails/abstract_controller.rb'
+relative_relative 'rails/active_record.rb'
+relative_relative 'rails/arel.rb'
+relative_relative 'rails/action_dispatch.rb'
+relative_relative 'rails/action_view.rb'
+relative_relative 'rails/rails.rb'
+relative_relative 'rails/sprockets.rb'
+relative_relative 'rails/active_support.rb'
+relative_relative 'rails/active_model.rb'
