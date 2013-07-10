@@ -614,14 +614,13 @@ module RubyLint
       #
       def add_child_method(name, type, &block)
         definition = RubyMethod.new(
-          :name        => name,
-          :type        => :method,
-          :method_type => type,
-          :parents     => [self],
+          :name    => name,
+          :type    => type,
+          :parents => [self],
           &block
         )
 
-        add(definition.method_type, definition.name, definition)
+        add(definition.type, definition.name, definition)
 
         return definition
       end

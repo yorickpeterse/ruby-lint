@@ -25,17 +25,12 @@ module RubyLint
     #  @return [RubyLint::Definition::RubyObject] The block argument of a
     #   method definition.
     #
-    # @!attribute [r] method_type
-    #  @return [Symbol] The type of method definition, set to `:method` for
-    #   class methods and `:instance_method` for instance methods.
-    #
     # @!attribute [r] return_value
     #  @return [Mixed] The value that is returned by the method.
     #
     class RubyMethod < RubyObject
       attr_reader :block_argument,
         :arguments,
-        :method_type,
         :optional_arguments,
         :rest_argument,
         :return_value,
