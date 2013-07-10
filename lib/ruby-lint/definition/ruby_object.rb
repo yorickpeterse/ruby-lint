@@ -137,6 +137,8 @@ module RubyLint
         @definitions = Hash.new { |hash, key| hash[key] = {} }
         @value       = nil if members_as_value
 
+        after_initialize if respond_to?(:after_initialize)
+
         yield self if block_given?
       end
 

@@ -37,13 +37,12 @@ module RubyLint
         :visibility
 
       ##
-      # @see RubyLint::Definition::RubyObject#initialize
+      # Called after a new instance is created of this class. This method is
+      # called before calling any supplied blocks.
       #
-      def initialize(*args)
-        @arguments          = []
-        @optional_arguments = []
-
-        super
+      def after_initialize
+        @arguments          ||= []
+        @optional_arguments ||= []
       end
 
       ##
