@@ -482,7 +482,7 @@ module RubyLint
           target     = lookup_constant_path(path[0..-2])
           definition = target.define_constant(path[-1], &block)
         else
-          definition = add_child_definition(name, :const, &block)
+          definition = add_child_definition(:const, name, &block)
         end
 
         definition.add(:keyword, 'self', definition)
@@ -500,7 +500,7 @@ module RubyLint
       # @param [Mixed] value
       #
       def define_global_variable(name, value = nil)
-        return add_child_definition(name, :gvar, value)
+        return add_child_definition(:gvar, name, value)
       end
 
       ##
@@ -513,7 +513,7 @@ module RubyLint
       # @return [RubyLint::Definition::RubyMethod]
       #
       def define_method(name, &block)
-        return add_child_method(name, :method, &block)
+        return add_child_method(:method, name, &block)
       end
 
       ##
@@ -525,7 +525,7 @@ module RubyLint
       # @see RubyLint::Definition::RubyObject#define_method
       #
       def define_instance_method(name, &block)
-        return add_child_method(name, :instance_method, &block)
+        return add_child_method(:instance_method, name, &block)
       end
 
       ##
@@ -588,12 +588,12 @@ module RubyLint
       ##
       # Adds a new child definition to the current definition.
       #
-      # @param [String] name The name of the definition.
       # @param [Symbol] type The definition type.
+      # @param [String] name The name of the definition.
       # @param [Mixed] value
       # @return [RubyLint::Definition::RubyObject]
       #
-      def add_child_definition(name, type, value = nil, &block)
+      def add_child_definition(type, name, value = nil, &block)
         definition = self.class.new(
           :name    => name,
           :type    => type,
@@ -612,7 +612,7 @@ module RubyLint
       #
       # @see RubyLint::Definition::RubyObject#add_child_definition
       #
-      def add_child_method(name, type, &block)
+      def add_child_method(type, name, &block)
         definition = RubyMethod.new(
           :name    => name,
           :type    => type,
