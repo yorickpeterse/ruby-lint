@@ -1,5 +1,4 @@
-doc/build/*
-!doc/build/.gitkeep
+yardoc
 coverage
 
 pkg

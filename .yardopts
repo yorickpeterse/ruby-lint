@@ -1,7 +1,7 @@
 ./lib/ruby-lint/**/*.rb ./lib/ruby-lint.rb
 -m markdown
 -M kramdown
--o ./doc/build
+-o yardoc
 -r ./README.md
 --private
 --protected
