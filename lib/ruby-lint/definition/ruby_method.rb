@@ -109,19 +109,23 @@ module RubyLint
       private
 
       ##
+      # Adds a new argument to the method as well as adding it as a local
+      # variable. Note that although the argument's variable is saved under a
+      # argument key (e.g. `:arg`) the actual definition type is set to
+      # `:lvar`.
+      #
       # @param [Symbol] type The type of argument.
       # @param [String] name The name of the argument.
       #
       # @return [RubyLint::Definition::RubyObject]
       #
       def create_argument(type, name)
-        arg = RubyObject.new(:type => type, :name => name)
-        var = RubyObject.new(:type => :lvar, :name => name)
+        argument = RubyObject.new(:type => :lvar, :name => name)
 
-        add_definition(arg)
-        add_definition(var)
+        add(argument.type, argument.name, argument)
+        add(type, argument.name, argument)
 
-        return arg
+        return argument
       end
     end # RubyMethod
   end # Definition

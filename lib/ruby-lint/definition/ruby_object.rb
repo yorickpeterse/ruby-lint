@@ -76,7 +76,7 @@ module RubyLint
         :ivar,
         :keyword,
         :method
-      ]
+      ].freeze
 
       ##
       # String used to separate segments in a constant path.
@@ -193,7 +193,7 @@ module RubyLint
       # @raise [ArgumentError] Raised when the specified type was invalid.
       #
       def add(type, name, value)
-        type = prepare_type(type)
+        type = type.to_sym
 
         unless value.is_a?(RubyObject)
           raise TypeError, "Expected RubyObject but got #{value.class}"
@@ -397,7 +397,7 @@ module RubyLint
       # @return [Array]
       #
       def list(type)
-        return definitions[prepare_type(type)].values
+        return definitions[type.to_sym].values
       end
 
       ##
@@ -549,7 +549,7 @@ module RubyLint
       # @param [Array] definitions
       #
       def inherits(*definitions)
-        self.parents += definitions
+        self.parents.concat(definitions)
       end
 
       ##
@@ -645,31 +645,7 @@ module RubyLint
       # @return [Array]
       #
       def prepare_lookup(type, name)
-        return prepare_type(type), prepare_name(name)
-      end
-
-      ##
-      # Prepares the name of a definition.
-      #
-      # @param [#to_s] name
-      # @return [String]
-      #
-      def prepare_name(name)
-        name = name.to_s unless name.is_a?(String)
-
-        return name
-      end
-
-      ##
-      # Prepares the data type name.
-      #
-      # @param [#to_sym] type
-      # @return [Symbol]
-      #
-      def prepare_type(type)
-        type = type.to_sym unless type.is_a?(Symbol)
-
-        return type
+        return type.to_sym, name.to_s
       end
     end # RubyObject
   end # Definition

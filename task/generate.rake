@@ -1,8 +1,6 @@
 namespace :generate do
   desc 'Generates a set of definitions for a constant'
   task :definitions, :constant, :directory, :overwrite do |task, args|
-    args.with_defaults(:overwrite => false)
-
     abort 'You have to specify a constant'  unless args[:constant]
     abort 'You have to specify a directory' unless args[:directory]
 

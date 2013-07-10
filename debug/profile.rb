@@ -13,6 +13,6 @@ result.eliminate_methods!([
   /^Parser/
 ])
 
-printer = RubyProf::GraphPrinter.new(result)
+printer = RubyProf::FlatPrinter.new(result)
 
 printer.print(STDOUT)
