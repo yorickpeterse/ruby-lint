@@ -125,14 +125,14 @@ module RubyLint
       # @yieldparam [RubyLint::Definition::RubyObject]
       #
       def initialize(options = {})
-        @update_parents   = []
-        @instance_type    = :class
-        @parents          = []
-        @reference_amount = 0
-
         options.each do |key, value|
           instance_variable_set("@#{key}", value)
         end
+
+        @update_parents   ||= []
+        @instance_type    ||= :class
+        @parents          ||= []
+        @reference_amount ||= 0
 
         @definitions = Hash.new { |hash, key| hash[key] = {} }
         @value       = nil if members_as_value

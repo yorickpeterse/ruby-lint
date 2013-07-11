@@ -1,12 +1,27 @@
 namespace :profile do
-  desc 'Shows basic memory usage'
-  task :memory do
-    sh 'RUBY_PROF_MEASURE_MODE=memory ruby debug/profile.rb 2>&1 | less -R -S'
+  desc 'Runs debug/profile.rb'
+  task :profile do
+    sh 'ruby debug/profile.rb 2>&1 | less -R -S'
   end
 
-  desc 'Shows basic object allocations'
+  desc 'Profiles memory usage'
+  task :memory do
+    ENV['RUBY_PROF_MEASURE_MODE'] = 'memory'
+
+    Rake::Task['profile:profile'].invoke
+  end
+
+  desc 'Profiles object allocations'
   task :allocations do
-    sh 'RUBY_PROF_MEASURE_MODE=allocations ruby debug/profile.rb 2>&1 ' \
-      '| less -R -S'
+    ENV['RUBY_PROF_MEASURE_MODE'] = 'allocations'
+
+    Rake::Task['profile:profile'].invoke
+  end
+
+  desc 'Profiles process time'
+  task :process do
+    ENV['RUBY_PROF_MEASURE_MODE'] = 'process'
+
+    Rake::Task['profile:profile'].invoke
   end
 end
