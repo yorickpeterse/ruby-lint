@@ -57,14 +57,14 @@ module RubyLint
 
       ##
       # Determines the sort order of the current entry. The entry is sorted
-      # based on the filename and the reporting level.
+      # based on the filename and the line.
       #
       # @param [RubyLint::Report::Entry] other The entry to compare with the
       #  current one.
       # @return [Numeric]
       #
       def <=>(other)
-        return (filename <=> other.filename) <=> (other.level <=> level)
+        return (filename <=> other.filename) <=> (other.line <=> line)
       end
     end # Entry
   end # Report
