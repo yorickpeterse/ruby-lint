@@ -10,6 +10,7 @@ Gem::Specification.new do |s|
   s.homepage    = 'https://github.com/yorickpeterse/ruby-lint/'
   s.description = s.summary
   s.executables = ['ruby-lint']
+  s.license     = 'MIT'
 
   s.files = File.read(File.expand_path('../MANIFEST', __FILE__)).split("\n")
 
