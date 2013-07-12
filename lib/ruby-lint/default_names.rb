@@ -13,7 +13,7 @@ RubyLint::Configuration.register_names 'presenters' do |names|
 end
 
 RubyLint::Configuration.register_names 'levels' do |names|
-  RubyLint::Report.levels.each do |level|
+  RubyLint::Report::DEFAULT_LEVELS.each do |level|
     names[level.to_s] = level
   end
 end

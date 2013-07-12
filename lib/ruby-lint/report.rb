@@ -55,40 +55,12 @@ module RubyLint
     #
     # @return [Array]
     #
-    DEFAULT_LEVELS = [:error, :warning, :info]
-
-    ##
-    # Adds a new reporting level to the list of available levels.
-    #
-    # @param [#to_sym] level The reporting level to add.
-    #
-    def self.add_level(level)
-      levels << level.to_sym
-    end
-
-    ##
-    # Deletes a reporting level from the list of available levels. This does
-    # not affect existing instances of this class.
-    #
-    # @param [#to_sym] level The level to delete.
-    #
-    def self.delete_level(level)
-      levels.delete(level.to_sym)
-    end
-
-    ##
-    # Returns a list of the available reporting levels.
-    #
-    # @return [Array]
-    #
-    def self.levels
-      return @levels ||= DEFAULT_LEVELS.dup
-    end
+    DEFAULT_LEVELS = [:error, :warning, :info].freeze
 
     ##
     # @param [Array] levels The reporting levels to enable for this instance.
     #
-    def initialize(levels = self.class.levels)
+    def initialize(levels = DEFAULT_LEVELS)
       @levels  = levels.map(&:to_sym)
       @entries = []
     end

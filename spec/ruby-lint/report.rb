@@ -1,16 +1,6 @@
 require File.expand_path('../../helper', __FILE__)
 
 describe 'RubyLint::Report' do
-  should 'register a custom level' do
-    RubyLint::Report.add_level(:test)
-
-    RubyLint::Report.levels.include?(:test).should == true
-
-    RubyLint::Report.delete_level(:test)
-
-    RubyLint::Report.levels.include?(:test).should == false
-  end
-
   should 'add a message using #add' do
     report = RubyLint::Report.new
 
