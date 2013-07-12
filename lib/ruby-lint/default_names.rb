@@ -1,14 +1,15 @@
 RubyLint::Configuration.register_names 'analysis' do |names|
-  names['argument_amount']     = RubyLint::Analysis::ArgumentAmount
-  names['shadowing_variables'] = RubyLint::Analysis::ShadowingVariables
-  names['undefined_methods']   = RubyLint::Analysis::UndefinedMethods
-  names['undefined_variables'] = RubyLint::Analysis::UndefinedVariables
-  names['unused_variables']    = RubyLint::Analysis::UnusedVariables
+  RubyLint::Analysis.constants.each do |const|
+    next if const == :Base
+
+    names[const.to_s.snake_case] = RubyLint::Analysis.const_get(const)
+  end
 end
 
 RubyLint::Configuration.register_names 'presenters' do |names|
-  names['text'] = RubyLint::Presenter::Text
-  names['json'] = RubyLint::Presenter::JSON
+  RubyLint::Presenter.constants.each do |const|
+    names[const.to_s.snake_case] = RubyLint::Presenter.const_get(const)
+  end
 end
 
 RubyLint::Configuration.register_names 'levels' do |names|
