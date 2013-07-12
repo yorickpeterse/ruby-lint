@@ -1,38 +1,42 @@
 require File.expand_path('../../../helper', __FILE__)
 
 describe RubyLint::Analysis::ConfusingVariables do
-  should 'warn when optionally overriding methods in a statement body' do
+  should 'warn when assigning a variable with the same name as a method' do
     code = <<-CODE
 def number
-  return 10
 end
 
-def another_number
-  unless number
-    number = 20
-  end
-
-  return number
-end
+number = 10
     CODE
 
     report = build_report(code, RubyLint::Analysis::ConfusingVariables)
     entry  = report.entries[0]
 
-    entry.line.should    == 7
-    entry.column.should  == 4
-    entry.message.should =~ /given the statement evaluates to false/
+    entry.line.should    == 4
+    entry.column.should  == 0
+    entry.message.should =~ /variable assignment using the same name/
   end
 
-  should 'not warn for optional overwriting when using the same scope' do
+  should 'not warn when the variable is assigned inside the method itself' do
     code = <<-CODE
 def number
-  return 10
+  number = 10
+end
+    CODE
+
+    report = build_report(code, RubyLint::Analysis::ConfusingVariables)
+
+    report.entries.empty?.should == true
+  end
+
+  should 'not warn when the method is defined in a different scope' do
+    code = <<-CODE
+module Foo
+  def number
+  end
 end
 
-unless number
-  number = 20
-end
+number = 10
     CODE
 
     report = build_report(code, RubyLint::Analysis::ConfusingVariables)
