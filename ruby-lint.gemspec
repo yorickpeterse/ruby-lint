@@ -17,7 +17,7 @@ Gem::Specification.new do |s|
   s.has_rdoc              = 'yard'
   s.required_ruby_version = '>= 1.9.3'
 
-  s.add_dependency 'parser', ['>= 2.0.0.pre1']
+  s.add_dependency 'parser', ['>= 2.0.0.pre2']
   s.add_dependency 'slop'
 
   s.add_development_dependency 'rake'
