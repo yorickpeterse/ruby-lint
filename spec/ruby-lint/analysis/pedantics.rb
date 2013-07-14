@@ -23,6 +23,22 @@ while true do; end
     entries[2].message.should == 'the use of then/do is not needed here'
   end
 
+  should 'work with conditional operators' do
+    code = <<-'CODE'
+1 ? 2 : 3
+    CODE
+    build_report(code, RubyLint::Analysis::Pedantics).entries.length.should == 0
+  end
+
+  should 'work with conditions without begin' do
+    code = <<-'CODE'
+if true
+end
+1 if 1
+    CODE
+    build_report(code, RubyLint::Analysis::Pedantics).entries.length.should == 0
+  end
+
   should 'warn for the use of BEGIN/END' do
     code = <<-CODE
 BEGIN {}
