@@ -27,6 +27,8 @@ module RubyLint
       # @param [RubyLint::AST::Node] node
       #
       def check_begin_token(node)
+        return if node.location.is_a?(::Parser::Source::Map::Ternary)
+        return unless node.location.begin
         if node.location.begin.is?('then') or node.location.begin.is?('do')
           info('the use of then/do is not needed here', node)
         end
