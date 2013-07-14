@@ -18,7 +18,7 @@ The following Ruby implementations/versions are officially supported:
 
 * Ruby 1.9.3 or 2.0 and newer
 * Rubinius head running in 1.9 mode
-* Jruby head running in 1.8 mode
+* Jruby head running in 1.9 mode
 
 Ruby implementations running a 1.8 based version of Ruby are not supported.
 
