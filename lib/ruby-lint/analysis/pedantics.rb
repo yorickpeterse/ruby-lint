@@ -8,7 +8,9 @@ module RubyLint
     class Pedantics < Base
       [:if, :unless, :until, :while].each do |type|
         define_method("on_#{type}") do |node|
-          check_begin_token(node)
+          if node.location.respond_to?(:begin) and node.location.begin
+            check_begin_token(node)
+          end
         end
       end
 

@@ -23,6 +23,26 @@ while true do; end
     entries[2].message.should == 'the use of then/do is not needed here'
   end
 
+  # See https://github.com/YorickPeterse/ruby-lint/issues/32 for the motivation
+  # behind this test.
+  should 'not warn when no do/then identifier is used in a statement' do
+    code = <<-CODE.strip
+if true; end
+
+if foo && bar
+  true
+else
+  false
+end
+
+foo ? true : false
+    CODE
+
+    report = build_report(code, RubyLint::Analysis::Pedantics)
+
+    report.entries.empty?.should == true
+  end
+
   should 'warn for the use of BEGIN/END' do
     code = <<-CODE
 BEGIN {}
