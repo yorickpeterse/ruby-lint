@@ -10,6 +10,7 @@ Rakefile
 bin/ruby-lint
 checksum/.gitkeep
 checksum/ruby-lint-0.0.3.gem.sha512
+checksum/ruby-lint-0.0.4.gem.sha512
 debug/memory_usage.rb
 debug/profile.rb
 doc/.gitkeep
