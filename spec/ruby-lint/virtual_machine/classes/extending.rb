@@ -77,19 +77,24 @@ end
       parents.include?(defs.lookup(:const, 'String')).should == true
     end
 
-    # Ruby only allows classes to inherit from constants.
-    should 'not be able to inherit non constant values' do
+    # This is to ensure that ruby-lint doesn't blow itself up when trying to
+    # use a constant as a parent class that can't be found (e.g. a user defined
+    # class).
+    #
+    # See https://github.com/YorickPeterse/ruby-lint/issues/32 for the
+    # motivation behind this fix/test.
+    should 'inherit Object as a fallback when the parent can not be found' do
       code = <<-CODE
-class MyString < 'foo'
-
+class Foo < Bar
 end
       CODE
 
-      error = should.raise?(TypeError) do
-        build_definitions(code)
-      end
+      defs    = build_definitions(code)
+      parents = defs.lookup(:const, 'Foo').parents
 
-      error.message.should == 'classes can only inherit another class'
+      parents.length.should == 2
+
+      parents.include?(defs.lookup(:const, 'Object')).should == true
     end
 
     should 'inherit from Object when importing String' do

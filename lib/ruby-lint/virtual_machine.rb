@@ -488,7 +488,7 @@ module RubyLint
         parent = evaluate_node(parent_node)
 
         if !parent or !parent.const?
-          raise TypeError, 'classes can only inherit another class'
+          parent = current_scope.lookup(:const, 'Object')
         end
       end
 
