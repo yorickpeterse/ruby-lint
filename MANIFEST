@@ -10,10 +10,12 @@ Rakefile
 bin/ruby-lint
 checksum/.gitkeep
 checksum/ruby-lint-0.0.3.gem.sha512
+debug/memory_usage.rb
+debug/profile.rb
 doc/.gitkeep
 doc/DCO.md
 doc/architecture.md
-doc/build/.gitkeep
+doc/changelog.md
 doc/code_analysis.md
 doc/configuration.md
 doc/contributing.md
@@ -25,6 +27,8 @@ doc/images/flow.png
 lib/ruby-lint.rb
 lib/ruby-lint/analysis/argument_amount.rb
 lib/ruby-lint/analysis/base.rb
+lib/ruby-lint/analysis/confusing_variables.rb
+lib/ruby-lint/analysis/pedantics.rb
 lib/ruby-lint/analysis/shadowing_variables.rb
 lib/ruby-lint/analysis/undefined_methods.rb
 lib/ruby-lint/analysis/undefined_variables.rb
@@ -38,6 +42,7 @@ lib/ruby-lint/cli/base.rb
 lib/ruby-lint/configuration.rb
 lib/ruby-lint/constant_loader.rb
 lib/ruby-lint/default_names.rb
+lib/ruby-lint/definition/constant_proxy.rb
 lib/ruby-lint/definition/ruby_method.rb
 lib/ruby-lint/definition/ruby_object.rb
 lib/ruby-lint/definition_builder/base.rb
@@ -188,7 +193,21 @@ lib/ruby-lint/definitions/core/unmarshalable.rb
 lib/ruby-lint/definitions/core/unsupported_library_error.rb
 lib/ruby-lint/definitions/core/weak_ref.rb
 lib/ruby-lint/definitions/core/zero_division_error.rb
+lib/ruby-lint/definitions/rails.rb
+lib/ruby-lint/definitions/rails/abstract_controller.rb
+lib/ruby-lint/definitions/rails/action_controller.rb
+lib/ruby-lint/definitions/rails/action_dispatch.rb
+lib/ruby-lint/definitions/rails/action_mailer.rb
+lib/ruby-lint/definitions/rails/action_pack.rb
+lib/ruby-lint/definitions/rails/action_view.rb
+lib/ruby-lint/definitions/rails/active_model.rb
+lib/ruby-lint/definitions/rails/active_record.rb
+lib/ruby-lint/definitions/rails/active_support.rb
+lib/ruby-lint/definitions/rails/arel.rb
+lib/ruby-lint/definitions/rails/rails.rb
+lib/ruby-lint/definitions/rails/sprockets.rb
 lib/ruby-lint/extensions/string.rb
+lib/ruby-lint/generated_constant.rb
 lib/ruby-lint/helper/constant_paths.rb
 lib/ruby-lint/inspector.rb
 lib/ruby-lint/iterator.rb
@@ -215,6 +234,8 @@ spec/fixtures/syntax_error.rb
 spec/fixtures/valid.rb
 spec/helper.rb
 spec/ruby-lint/analysis/argument_amount.rb
+spec/ruby-lint/analysis/confusing_variables.rb
+spec/ruby-lint/analysis/pedantics.rb
 spec/ruby-lint/analysis/shadowing_variables.rb
 spec/ruby-lint/analysis/undefined_methods.rb
 spec/ruby-lint/analysis/undefined_variables.rb
@@ -223,6 +244,7 @@ spec/ruby-lint/ast/node.rb
 spec/ruby-lint/cli/analyze.rb
 spec/ruby-lint/cli/ast.rb
 spec/ruby-lint/configuration.rb
+spec/ruby-lint/definition/constant_proxy.rb
 spec/ruby-lint/definition/dsl.rb
 spec/ruby-lint/definition/ruby_method.rb
 spec/ruby-lint/definition/ruby_object.rb
@@ -282,6 +304,7 @@ task/doc.rake
 task/generate.rake
 task/graphviz.rake
 task/manifest.rake
+task/profile.rake
 task/tag.rake
 task/test.rake
 task/todo.rake
