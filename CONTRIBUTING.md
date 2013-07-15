@@ -1,4 +1,3 @@
-# @title Contributing
 # Contributing
 
 Developers wishing to contribute to ruby-lint are required to follow a specific
@@ -13,4 +12,4 @@ more than a few minutes. In case you make a mistake or simply aren't sure about
 something I'll do my best to help you out.
 
 A copy of the DCO mentioned in the above article can be found in the file
-{file:DCO} A copy of the license can be found in the file {file:LICENSE}
+`doc/DCO.md`. A copy of the license can be found in the file `LICENSE`.
