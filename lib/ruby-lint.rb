@@ -29,6 +29,7 @@ require_relative 'ruby-lint/definition/ruby_object'
 require_relative 'ruby-lint/definition/ruby_method'
 require_relative 'ruby-lint/definition/constant_proxy'
 require_relative 'ruby-lint/definitions/core'
+require_relative 'ruby-lint/definitions/global_variables'
 
 require_relative 'ruby-lint/analysis/base'
 require_relative 'ruby-lint/analysis/unused_variables'
