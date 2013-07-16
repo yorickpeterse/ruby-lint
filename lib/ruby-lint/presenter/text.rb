@@ -27,7 +27,13 @@ module RubyLint
         entries = []
 
         report.entries.sort.each do |entry|
-          entries << @format % entry.attributes
+          entries << @format % {
+            :file    => File.basename(entry.file),
+            :level   => entry.level,
+            :line    => entry.line,
+            :column  => entry.column,
+            :message => entry.message
+          }
         end
 
         return entries.join("\n")

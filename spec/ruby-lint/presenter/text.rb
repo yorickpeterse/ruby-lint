@@ -5,10 +5,10 @@ describe RubyLint::Presenter::Text do
     report    = RubyLint::Report.new
     presenter = RubyLint::Presenter::Text.new
 
-    report.error('error message', 1, 1, 'a.rb')
-    report.error('error message 2', 2, 1, 'a.rb')
-    report.warning('warning message', 1, 1, 'b.rb')
-    report.info('info message', 1, 1, 'c.rb')
+    report.error('error message', 1, 1, '/foo/a.rb')
+    report.error('error message 2', 2, 1, '/foo/a.rb')
+    report.warning('warning message', 1, 1, '/foo/b.rb')
+    report.info('info message', 1, 1, '/foo/c.rb')
 
     output = presenter.present(report)
 
