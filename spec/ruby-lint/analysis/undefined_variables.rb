@@ -112,4 +112,20 @@ CODE
 
     report.entries.empty?.should == true
   end
+
+  should 'not add errors for class names' do
+    code = <<-CODE
+class Foo
+end
+
+module Namespace
+  class Bar
+  end
+end
+    CODE
+
+    report = build_report(code, RubyLint::Analysis::UndefinedVariables)
+
+    report.entries.empty?.should == true
+  end
 end

@@ -14,6 +14,10 @@ module RubyLint
 
       attr_reader :definitions, :node, :options
 
+      # Ensures compatibility with code that relies on either one of these
+      # methods. They are the same for definition builders anyway.
+      alias_method :current_scope, :definitions
+
       ##
       # @param [RubyLint::AST::Node] node
       # @param [RubyLint::Definition::RubyObject] definitions

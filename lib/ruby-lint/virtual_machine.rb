@@ -797,6 +797,8 @@ module RubyLint
 
         inherit_definition(definition, current_scope)
       else
+        definition.add_definition(definition)
+
         scope.add_definition(definition)
       end
 

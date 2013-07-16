@@ -17,7 +17,7 @@ module RubyLint
       # @return [RubyLint::Definition::RubyObject|NilClass]
       #
       def resolve_constant_path(node)
-        current = definitions
+        current = current_scope
 
         constant_segments(node).each_with_index do |segment, index|
           found = current.lookup(:const, segment, index == 0)
