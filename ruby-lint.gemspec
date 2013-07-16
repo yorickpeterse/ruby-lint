@@ -33,10 +33,9 @@ using the handle "yorickpeterse".
   s.add_dependency 'slop'
 
   s.add_development_dependency 'rake'
-  s.add_development_dependency 'bacon', ['>= 1.2.0']
+  s.add_development_dependency 'rspec', ['>= 2.14']
   s.add_development_dependency 'yard'
   s.add_development_dependency 'pry-rescue'
-  s.add_development_dependency 'bacon-colored_output'
   s.add_development_dependency 'simplecov'
   s.add_development_dependency 'rubygems-openpgp'
   s.add_development_dependency 'coveralls'

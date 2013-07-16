@@ -2,7 +2,7 @@ require 'simplecov'
 
 SimpleCov.configure do
   root         File.expand_path('../../../', __FILE__)
-  command_name 'bacon'
+  command_name 'rspec'
   project_name 'ruby-lint'
 
   add_group 'Analysis', 'ruby-lint/analysis'
