@@ -757,6 +757,54 @@ module RubyLint
       end
     end
 
+    ##
+    # Processes calls to `alias`. Two types of data can be aliased:
+    #
+    # 1. Methods (using the syntax `alias ALIAS SOURCE`)
+    # 2. Global variables
+    #
+    # This method dispatches the alias process to two possible methods:
+    #
+    # * on_alias_sym: aliasing methods (using symbols)
+    # * on_alias_gvar: aliasing global variables
+    #
+    def on_alias(node)
+      alias_node, source_node = *node
+
+      callback = "on_alias_#{alias_node.type}"
+
+      send(callback, alias_node, source_node) if respond_to?(callback)
+    end
+
+    ##
+    # Aliases a method.
+    #
+    # @param [RubyLint::AST::Node] alias_node
+    # @param [RubyLint::AST::Node] source_node
+    #
+    def on_alias_sym(alias_node, source_node)
+      method_type = current_scope.method_call_type
+      alias_name  = alias_node.name
+      source_name = source_node.name
+      source      = current_scope.lookup(method_type, source_name)
+
+      current_scope.add(method_type, alias_name, source) if source
+    end
+
+    ##
+    # Aliases a global variable.
+    #
+    # @see #on_alias_sym
+    #
+    def on_alias_gvar(alias_node, source_node)
+      alias_name  = alias_node.name
+      source_name = source_node.name
+      source      = current_scope.lookup(:gvar, source_name)
+
+      # Global variables should be added to the root scope.
+      definitions.add(:gvar, alias_name, source) if source
+    end
+
     private
 
     ##

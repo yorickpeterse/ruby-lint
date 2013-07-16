@@ -128,4 +128,11 @@ end
 
     report.entries.empty?.should == true
   end
+
+  should 'not add errors when aliasing global variables' do
+    code   = 'alias $ARGV $*'
+    report = build_report(code, RubyLint::Analysis::UndefinedVariables)
+
+    report.entries.empty?.should == true
+  end
 end
