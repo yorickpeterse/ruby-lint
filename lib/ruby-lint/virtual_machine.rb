@@ -213,13 +213,11 @@ module RubyLint
     # Freezes the VM along with all the instance variables.
     #
     def freeze
+      @associations.freeze
+      @definitions.freeze
+      @scopes.freeze
+
       super
-
-      instance_variables.each do |var|
-        variable = instance_variable_get(var)
-
-        variable.freeze if variable
-      end
     end
 
     ##
