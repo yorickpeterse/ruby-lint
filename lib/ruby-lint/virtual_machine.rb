@@ -110,7 +110,7 @@ module RubyLint
     #
     # @return [Array]
     #
-    ARGUMENT_TYPES = [:arg, :optarg, :restarg, :blockarg]
+    ARGUMENT_TYPES = [:arg, :optarg, :restarg, :blockarg, :kwoptarg]
 
     ##
     # The types of variables to export outside of a method definition.

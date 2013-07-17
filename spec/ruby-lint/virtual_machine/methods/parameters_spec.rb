@@ -73,5 +73,16 @@ end
         method.lookup(type, name).is_a?(ruby_object).should == true
       end
     end
+
+    # Keyword arguments were introduced in Ruby 2.0.
+    specific_ruby_version '2.0' do
+      example 'support keyword arguments' do
+        code   = 'def example(number: 10); end'
+        defs   = build_definitions(code)
+        method = defs.lookup(:instance_method, 'example')
+
+        method.lookup(:lvar, 'number').value.value.should == 10
+      end
+    end
   end
 end

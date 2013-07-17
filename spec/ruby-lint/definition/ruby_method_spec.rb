@@ -75,14 +75,21 @@ describe RubyLint::Definition::RubyObject do
         @method.define_rest_argument('number')
 
         @method.lookup(:restarg, 'number').is_a?(ruby_object).should == true
-        @method.lookup(:lvar, 'number').is_a?(ruby_object).should   == true
+        @method.lookup(:lvar, 'number').is_a?(ruby_object).should    == true
       end
 
       example 'define a block argument' do
         @method.define_block_argument('number')
 
         @method.lookup(:blockarg, 'number').is_a?(ruby_object).should == true
-        @method.lookup(:lvar, 'number').is_a?(ruby_object).should   == true
+        @method.lookup(:lvar, 'number').is_a?(ruby_object).should     == true
+      end
+
+      example 'define a keyword argument' do
+        @method.define_keyword_argument('number')
+
+        @method.lookup(:kwoptarg, 'number').is_a?(ruby_object).should == true
+        @method.lookup(:lvar, 'number').is_a?(ruby_object).should     == true
       end
     end
   end

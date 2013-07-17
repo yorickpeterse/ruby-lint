@@ -25,12 +25,16 @@ module RubyLint
     #  @return [RubyLint::Definition::RubyObject] The block argument of a
     #   method definition.
     #
+    # @!attribute [r] keyword_arguments
+    #  @return [Array] The keyword arguments of the method.
+    #
     # @!attribute [r] return_value
     #  @return [Mixed] The value that is returned by the method.
     #
     class RubyMethod < RubyObject
       attr_reader :block_argument,
         :arguments,
+        :keyword_arguments,
         :optional_arguments,
         :rest_argument,
         :return_value,
@@ -43,6 +47,7 @@ module RubyLint
       def after_initialize
         @arguments          ||= []
         @optional_arguments ||= []
+        @keyword_arguments  ||= []
       end
 
       ##
@@ -71,6 +76,15 @@ module RubyLint
       #
       def define_argument(name)
         @arguments << create_argument(:arg, name)
+      end
+
+      ##
+      # Defines a keyword argument for the method.
+      #
+      # @see RubyLint::Definition::RubyObject#define_argument
+      #
+      def define_keyword_argument(name)
+        @keyword_arguments << create_argument(:kwoptarg, name)
       end
 
       ##

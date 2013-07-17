@@ -101,6 +101,7 @@ module RubyLint
         :member,
         :keyword,
         :arg,
+        :kwoptarg,
         :optarg,
         :restarg,
         :blockarg
