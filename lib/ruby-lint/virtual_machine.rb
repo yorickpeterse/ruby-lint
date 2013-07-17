@@ -758,6 +758,18 @@ module RubyLint
     end
 
     ##
+    # Processes `alias_method` method calls.
+    #
+    # @param [RubyLint::AST::Node] node
+    #
+    def on_send_alias_method(node)
+      alias_node  = node.children[2]
+      source_node = node.children[3]
+
+      on_alias_sym(alias_node, source_node)
+    end
+
+    ##
     # Processes calls to `alias`. Two types of data can be aliased:
     #
     # 1. Methods (using the syntax `alias ALIAS SOURCE`)

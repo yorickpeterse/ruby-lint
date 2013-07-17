@@ -30,6 +30,20 @@ alias :foo :bar
       defs.lookup(:instance_method, 'foo').is_a?(ruby_method).should == true
     end
 
+    example 'alias methods using alias_method' do
+      code = <<-CODE
+def bar
+end
+
+alias_method :foo, :bar
+      CODE
+
+      defs = build_definitions(code)
+
+      defs.lookup(:instance_method, 'bar').is_a?(ruby_method).should == true
+      defs.lookup(:instance_method, 'foo').is_a?(ruby_method).should == true
+    end
+
     example 'alias global variables' do
       code = 'alias $ARGV $*'
       defs = build_definitions(code)
