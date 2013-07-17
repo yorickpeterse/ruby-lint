@@ -1,4 +1,3 @@
-require 'fileutils'
 require 'erb'
 require_relative 'template/scope'
 require_relative 'generated_constant'

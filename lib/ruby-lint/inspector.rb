@@ -123,40 +123,6 @@ module RubyLint
       return constant.respond_to?(:superclass) ? constant.superclass : nil
     end
 
-    ##
-    # Formats the list of methods in a human readable format.
-    #
-    # @param [Array] methods
-    # @return [String]
-    #
-    def format_methods(methods)
-      output  = []
-      longest = 0
-
-      methods.each do |method|
-        longest = method.name.length if method.name.length > longest
-      end
-
-      methods.each do |method|
-        output << "%-#{longest}s: %s" % [
-          method.name,
-          method.parameters.inspect
-        ]
-      end
-
-      return output.join("\n")
-    end
-
-    ##
-    # Formats a list of constants in a human readable format.
-    #
-    # @param [Array] constants
-    # @return [String]
-    #
-    def format_constants(constants)
-      return constants.join("\n")
-    end
-
     private
 
     ##
