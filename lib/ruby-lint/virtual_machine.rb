@@ -216,7 +216,9 @@ module RubyLint
       super
 
       instance_variables.each do |var|
-        instance_variable_get(var).freeze
+        variable = instance_variable_get(var)
+
+        variable.freeze if variable
       end
     end
 
