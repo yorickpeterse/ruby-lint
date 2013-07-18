@@ -69,6 +69,32 @@ you run the following:
 
 For more information specify either the `-h` or `--help` option.
 
+## Example
+
+Given the following code:
+
+    class Person
+      def initialize(name)
+        # oops, not setting @name
+      end
+
+      def greet
+        return "Hello, #{@name}"
+      end
+    end
+
+    user     = Person.new('Alice')
+    greeting = user.greet
+
+    user.greet(:foo)
+
+Analysing this file using ruby-lint (with the default settings) would result in
+the following output:
+
+    test.rb: error: line 7, column 21: undefined instance variable @name
+    test.rb: warning: line 12, column 0: unused local variable greeting
+    test.rb: error: line 14, column 0: wrong number of arguments (expected 0 but got 1)
+
 ## Documentation
 
 * {file:contributing Contributing}
