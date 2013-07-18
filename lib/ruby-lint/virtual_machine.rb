@@ -664,10 +664,23 @@ module RubyLint
 
       execute_callback(callback, node)
 
-      receiver_and_args = value_stack.pop
+      args_length = node.children[2..-1].length
+      values      = value_stack.pop
 
-      if receiver
-        context = receiver_and_args.shift
+      # For now we'll get rid of the arguments since ruby-lint isn't smart
+      # enough yet to process them.
+      values.pop(args_length)
+
+      receiver_definition = values.first
+
+      # If the receiver doesn't exist there's no point in associating a context
+      # with it.
+      if receiver and !receiver_definition
+        return
+      end
+
+      if receiver and receiver_definition
+        context = receiver_definition
       else
         context = current_scope
 
@@ -678,7 +691,7 @@ module RubyLint
 
       # Associate the receiver node with the context so that it becomes
       # easier to retrieve later on.
-      if receiver && context
+      if receiver and context
         associate_node(receiver, context)
       end
 

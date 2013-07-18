@@ -171,4 +171,22 @@ first = second = number.foobar
 
     entry.message.should == 'undefined method foobar on an instance of Fixnum'
   end
+
+  example 'ignore methods calls on other non existing methods' do
+    code   = 'foo.bar'
+    report = build_report(code, RubyLint::Analysis::UndefinedMethods)
+
+    report.entries.length.should == 1
+
+    report.entries[0].message.should == 'undefined method foo'
+  end
+
+  example 'ignore methods calls with arguments on other non existing methods' do
+    code   = 'foo.bar(:baz)'
+    report = build_report(code, RubyLint::Analysis::UndefinedMethods)
+
+    report.entries.length.should == 1
+
+    report.entries[0].message.should == 'undefined method foo'
+  end
 end

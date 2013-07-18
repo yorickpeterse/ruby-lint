@@ -14,4 +14,38 @@ describe RubyLint::VirtualMachine do
     assoc.key?(method).should == true
     assoc[method].should      == defs.lookup(:instance_method, 'foobar')
   end
+
+  describe 'method calls' do
+    example 'should not add associations' do
+      associations = build_associations('foo')
+      nodes        = associations.keys
+
+      nodes.length.should  == 1
+      nodes[0].type.should == :root
+    end
+
+    example 'should not add associations for methods with arguments' do
+      associations = build_associations('foo(:bar)')
+      nodes        = associations.keys
+
+      nodes.length.should  == 1
+      nodes[0].type.should == :root
+    end
+
+    example 'should not add associations for methods called on methods' do
+      associations = build_associations('foo.bar')
+      nodes        = associations.keys
+
+      nodes.length.should  == 1
+      nodes[0].type.should == :root
+    end
+
+    example 'should not add associations for stacked methods with arguments' do
+      associations = build_associations('foo.bar(:baz)')
+      nodes        = associations.keys
+
+      nodes.length.should  == 1
+      nodes[0].type.should == :root
+    end
+  end
 end
