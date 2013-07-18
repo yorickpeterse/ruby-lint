@@ -34,7 +34,7 @@ so as following:
     $ git clone git://github.com/YorickPeterse/ruby-lint.git
     $ cd ruby-lint
     $ bundle install # you can also install the dependencies manually
-    $ rake gem
+    $ rake build
 
 This builds a new version of the Gem and saves it in the pkg/ directory.
 
