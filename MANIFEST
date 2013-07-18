@@ -225,7 +225,6 @@ lib/ruby-lint/template/scope.rb
 lib/ruby-lint/variable_predicates.rb
 lib/ruby-lint/version.rb
 lib/ruby-lint/virtual_machine.rb
-replace.rb
 ruby-lint.gemspec
 spec/fixtures/complex/rails/basic_controller.rb
 spec/fixtures/complex/rcap.rb
