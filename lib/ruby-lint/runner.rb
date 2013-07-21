@@ -39,9 +39,9 @@ module RubyLint
       end
 
       files.each do |file|
-        code = File.read(file)
-        ast  = parser.parse(code, file)
-        vm   = RubyLint::VirtualMachine.new
+        code          = File.read(file)
+        ast, comments = parser.parse(code, file)
+        vm            = RubyLint::VirtualMachine.new(:comments => comments)
 
         vm.run(ast)
 

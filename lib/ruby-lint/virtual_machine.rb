@@ -44,19 +44,33 @@ module RubyLint
   #
   # @!attribute [r] associations
   #  @return [Hash]
+  #
+  # @!attribute [r] comments
+  #  @return [Hash]
+  #
   # @!attribute [r] definitions
   #  @return [RubyLint::Definition::RubyObject]
+  #
   # @!attribute [r] value_stack
   #  @return [RubyLint::NestedStack]
+  #
   # @!attribute [r] variable_stack
   #  @return [RubyLint::NestedStack]
+  #
+  # @!attribute [r] docstring_tags
+  #  @return [RubyLint::Docstring::Mapping]
   #
   class VirtualMachine < Iterator
     include Helper::ConstantPaths
 
-    attr_reader :associations, :definitions, :value_stack, :variable_stack
+    attr_reader :associations,
+      :comments,
+      :definitions,
+      :docstring_tags,
+      :value_stack,
+      :variable_stack
 
-    private :value_stack, :variable_stack
+    private :value_stack, :variable_stack, :docstring_tags
 
     ##
     # Hash containing the definition types to copy when including/extending a
@@ -184,15 +198,17 @@ module RubyLint
     # Called after a new instance of the virtual machine has been created.
     #
     def after_initialize
-      @associations     = {}
-      @definitions      = initial_definitions
-      @scopes           = [@definitions]
-      @in_sclass        = false
-      @value_stack      = NestedStack.new
-      @variable_stack   = NestedStack.new
-      @ignored_nodes    = []
-      @visibility       = :public
+      @associations   = {}
+      @definitions    = initial_definitions
+      @scopes         = [@definitions]
+      @in_sclass      = false
+      @value_stack    = NestedStack.new
+      @variable_stack = NestedStack.new
+      @ignored_nodes  = []
+      @visibility     = :public
+      @comments     ||= {}
 
+      reset_docstring_tags
       reset_method_type
     end
 
@@ -576,6 +592,15 @@ module RubyLint
 
       associate_node(node, definition)
 
+      buffer_docstring_tags(node)
+
+      if docstring_tags and docstring_tags.return_tag
+        assign_return_value_from_tag(
+          docstring_tags.return_tag,
+          definition
+        )
+      end
+
       push_scope(definition)
     end
 
@@ -587,6 +612,8 @@ module RubyLint
     def after_def(node)
       previous = pop_scope
       current  = current_scope
+
+      reset_docstring_tags
 
       EXPORT_VARIABLES.each do |type|
         current.copy(previous, type)
@@ -620,16 +647,19 @@ module RubyLint
       define_method("after_#{type}") do |node|
         value = value_stack.pop.first
         name  = node.children[0].to_s
-        arg   = Definition::RubyObject.new(
-          :type          => type,
+        var   = Definition::RubyObject.new(
+          :type          => :lvar,
           :name          => name,
           :value         => value,
           :instance_type => :instance
         )
 
-        current_scope.add_definition(arg)
+        if docstring_tags and docstring_tags.param_tags[name]
+          update_parents_from_tag(docstring_tags.param_tags[name], var)
+        end
 
-        assign_variable(:lvar, name, value)
+        current_scope.add(type, name, var)
+        current_scope.add_definition(var)
       end
     end
 
@@ -1114,6 +1144,107 @@ module RubyLint
       unless definition.parents.include?(inherit)
         definition.parents << inherit
       end
+    end
+
+    ##
+    # Extracts all the docstring tags from the documentation of the given
+    # node, retrieves the corresponding types and stores them for later use.
+    #
+    # @param [RubyLint::AST::Node] node
+    #
+    def buffer_docstring_tags(node)
+      return unless comments[node]
+
+      parser = Docstring::Parser.new
+      tags   = parser.parse(comments[node].map(&:text))
+
+      @docstring_tags = Docstring::Mapping.new(tags)
+    end
+
+    ##
+    # Resets the docstring tags collection back to its initial value.
+    #
+    def reset_docstring_tags
+      @docstring_tags = nil
+    end
+
+    ##
+    # Updates the parents of a definition according to the types of a `@param`
+    # tag.
+    #
+    # @param [RubyLint::Docstring::ParamTag] tag
+    # @param [RubyLint::Definition::RubyObject] definition
+    #
+    def update_parents_from_tag(tag, definition)
+      extra_parents = definitions_for_types(tag.types)
+
+      definition.parents.concat(extra_parents)
+    end
+
+    ##
+    # Creates an "unknown" definition with the given method in it.
+    #
+    # @param [String] name The name of the method to add.
+    # @return [RubyLint::Definition::RubyObject]
+    #
+    def create_unknown_with_method(name)
+      definition = Definition::RubyObject.new(
+        :name => 'UnknownType',
+        :type => :const
+      )
+
+      definition.send("define_#{@method_type}", name)
+
+      return definition
+    end
+
+    ##
+    # Returns a collection of definitions for a set of YARD types.
+    #
+    # @param [Array] types
+    # @return [Array]
+    #
+    def definitions_for_types(types)
+      definitions = []
+
+      # There are basically two type signatures: either the name(s) of a
+      # constant or a method in the form of `#method_name`.
+      types.each do |type|
+        if type[0] == '#'
+          found = create_unknown_with_method(type[1..-1])
+        else
+          found = lookup_type_definition(type)
+        end
+
+        definitions << found if found
+      end
+
+      return definitions
+    end
+
+    ##
+    # Tries to look up the given type/constant in the current scope and falls
+    # back to the global scope if it couldn't be found in the former.
+    #
+    # @param [String] name
+    # @return [RubyLint::Definition::RubyObject]
+    #
+    def lookup_type_definition(name)
+      return current_scope.lookup(:const, name) ||
+        self.class.global_constant(name)
+    end
+
+    ##
+    # @param [RubyLint::Docstring::ReturnTag] tag
+    # @param [RubyLint::Definition::RubyMethod] definition
+    #
+    def assign_return_value_from_tag(tag, definition)
+      definitions = definitions_for_types(tag.types)
+
+      # THINK: currently ruby-lint assumes methods always return a single type
+      # but YARD allows you to specify multiple ones. For now we'll take the
+      # first one but there should be a nicer way to do this.
+      definition.returns(definitions[0]) if definitions[0]
     end
   end # VirtualMachine
 end # RubyLint

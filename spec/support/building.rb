@@ -5,8 +5,8 @@
 # @return [RubyLint::Definition::RubyObject]
 #
 def build_definitions(code)
-  ast = parse(code, false)
-  vm  = RubyLint::VirtualMachine.new
+  ast, comments = parse_with_comments(code)
+  vm            = RubyLint::VirtualMachine.new(:comments => comments)
 
   vm.run(ast)
 
@@ -21,8 +21,8 @@ end
 # @return [RubyLint::Report]
 #
 def build_report(code, iterator)
-  ast = parse(code, false)
-  vm  = RubyLint::VirtualMachine.new
+  ast, comments = parse_with_comments(code)
+  vm            = RubyLint::VirtualMachine.new(:comments => comments)
 
   vm.run(ast)
 
@@ -41,8 +41,8 @@ end
 # @return [Hash]
 #
 def build_associations(code)
-  ast = parse(code, false)
-  vm  = RubyLint::VirtualMachine.new
+  ast, comments = parse_with_comments(code)
+  vm            = RubyLint::VirtualMachine.new(:comments => comments)
 
   vm.run(ast)
 

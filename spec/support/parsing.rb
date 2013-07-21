@@ -8,9 +8,18 @@
 # @return [RubyLint::Node]
 #
 def parse(code, first = true)
-  ast = RubyLint::Parser.new.parse(code)
+  ast, _ = RubyLint::Parser.new.parse(code)
 
   return first ? ast.children[0] : ast
+end
+
+##
+# Parses the block of code and returns both the AST and comments.
+#
+# @see #parse
+#
+def parse_with_comments(code)
+  return RubyLint::Parser.new.parse(code)
 end
 
 ##

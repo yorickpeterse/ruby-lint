@@ -9,6 +9,10 @@ require_relative 'ruby-lint/ast/node'
 require_relative 'ruby-lint/ast/builder'
 require_relative 'ruby-lint/parser'
 require_relative 'ruby-lint/nested_stack'
+require_relative 'ruby-lint/docstring/parser'
+require_relative 'ruby-lint/docstring/param_tag'
+require_relative 'ruby-lint/docstring/return_tag'
+require_relative 'ruby-lint/docstring/mapping'
 
 require_relative 'ruby-lint/helper/constant_paths'
 

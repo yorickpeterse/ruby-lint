@@ -24,21 +24,24 @@ module RubyLint
     end
 
     ##
-    # Parses a block of Ruby code and wraps the resulting AST in a root node.
+    # Parses a block of Ruby code and returns the AST and a mapping of each AST
+    # node and their comments (if there are any). This mapping is returned as a
+    # Hash.
     #
     # @param [String] code
     # @param [String] file
     # @param [Numeric] line
-    # @return [RubyLint::AST::Node]
+    # @return [Array]
     #
     def parse(code, file = '(ruby-lint)', line = 1)
       buffer        = ::Parser::Source::Buffer.new(file, line)
       buffer.source = code
-      ast           = internal_parser.parse(buffer)
+      ast, comments = internal_parser.parse_with_comments(buffer)
+      associator    = ::Parser::Source::Comment::Associator.new(comments, ast)
 
       internal_parser.reset
 
-      return AST::Node.new(:root, [ast])
+      return AST::Node.new(:root, [ast]), associator.associate
     end
   end # Parser
 end # RubyLint
