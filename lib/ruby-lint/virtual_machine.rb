@@ -620,24 +620,6 @@ module RubyLint
       end
     end
 
-    ##
-    # @param [RubyLint::AST::Node] node
-    #
-    def on_args(node)
-      variable_stack.add_stack
-    end
-
-    ##
-    # @param [RubyLint::AST::Node] node
-    #
-    def after_args(node)
-      variables = variable_stack.pop
-
-      variables.each do |variable|
-        current_scope.add_definition(variable)
-      end
-    end
-
     # Creates callbacks for various argument types such as :arg and :optarg.
     ARGUMENT_TYPES.each do |type|
       define_method("on_#{type}") do |node|
