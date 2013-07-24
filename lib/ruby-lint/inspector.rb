@@ -28,7 +28,7 @@ module RubyLint
     end
 
     ##
-    # Returns an Array containing all child constants and their childrne
+    # Returns an Array containing all child constants and their children
     # (recursively).
     #
     # The constants returned by this method are returned as String instances
@@ -92,7 +92,7 @@ module RubyLint
     def inspect_methods
       return [] unless constant.respond_to?(:methods)
 
-      methods = constant.methods(false).map do |name|
+      methods = get_methods.map do |name|
         method_information(:method, name)
       end
 
@@ -107,7 +107,7 @@ module RubyLint
     def inspect_instance_methods
       return [] unless constant.respond_to?(:instance_methods)
 
-      methods = constant.instance_methods(false).map do |name|
+      methods = get_methods(:instance_methods).map do |name|
         method_information(:instance_method, name)
       end
 
@@ -124,6 +124,18 @@ module RubyLint
     end
 
     private
+
+    ##
+    # Gets the methods of the current constant minus those defined in Object.
+    #
+    # @param [Symbol] getter
+    # @return [Array]
+    #
+    def get_methods(getter = :methods)
+      diff = constant.send(getter) - Object.send(getter)
+
+      return diff | constant.send(getter, false)
+    end
 
     ##
     # @param [Class] source

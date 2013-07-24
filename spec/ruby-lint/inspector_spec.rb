@@ -27,6 +27,17 @@ describe RubyLint::Inspector do
     names.include?(:to_s).should == true
   end
 
+  example 'ignore methods defined in Object' do
+    method = double(:fake_method, :name => :tainted?)
+    const  = double(:fake_constant, :methods => [:tainted?], :method => method)
+
+    inspector = RubyLint::Inspector.new(const)
+    methods   = inspector.inspect_methods.map(&:name)
+
+    methods.include?(:frozen?).should  == false
+    methods.include?(:tainted?).should == true
+  end
+
   example 'return the superclass' do
     inspector.inspect_superclass.should == Object
   end
