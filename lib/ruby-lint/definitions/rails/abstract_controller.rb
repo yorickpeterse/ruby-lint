@@ -1,15 +1,46 @@
 # This file was automatically generated, any manual changes will be lost the
 # next time this file is generated.
 #
-# Created:  2013-07-07 17:54:57 +0200
-# Platform: rbx 2.0.0.rc1
+# Created:  2013-07-24 21:53:50 +0200
+# Platform: rbx 2.0.0.n198
 
 RubyLint::VirtualMachine.global_scope.define_constant('AbstractController') do |klass|
   klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
+
+  klass.define_method('autoload_at') do |method|
+    method.define_argument('path')
+  end
+
+  klass.define_method('autoload_under') do |method|
+    method.define_argument('path')
+  end
+
+  klass.define_method('autoloads')
+
+  klass.define_method('eager_autoload')
+
+  klass.define_method('eager_load!')
+
+  klass.define_method('initialize') do |method|
+    method.define_block_argument('block')
+  end
 end
 
 RubyLint::VirtualMachine.global_scope.define_constant('AbstractController::AssetPaths') do |klass|
   klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
+
+  klass.define_method('append_features') do |method|
+    method.define_argument('base')
+  end
+
+  klass.define_method('included') do |method|
+    method.define_optional_argument('base')
+    method.define_block_argument('block')
+  end
+
+  klass.define_method('initialize') do |method|
+    method.define_block_argument('block')
+  end
 end
 
 RubyLint::VirtualMachine.global_scope.define_constant('AbstractController::Base') do |klass|
@@ -25,7 +56,17 @@ RubyLint::VirtualMachine.global_scope.define_constant('AbstractController::Base'
 
   klass.define_method('clear_action_methods!')
 
+  klass.define_method('config')
+
+  klass.define_method('config_accessor') do |method|
+    method.define_rest_argument('names')
+  end
+
+  klass.define_method('configure')
+
   klass.define_method('controller_path')
+
+  klass.define_method('direct_descendants')
 
   klass.define_method('hidden_actions')
 
@@ -48,6 +89,8 @@ RubyLint::VirtualMachine.global_scope.define_constant('AbstractController::Base'
   klass.define_instance_method('available_action?') do |method|
     method.define_argument('action_name')
   end
+
+  klass.define_instance_method('config')
 
   klass.define_instance_method('controller_path')
 
@@ -73,6 +116,19 @@ end
 RubyLint::VirtualMachine.global_scope.define_constant('AbstractController::Callbacks') do |klass|
   klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
+  klass.define_method('append_features') do |method|
+    method.define_argument('base')
+  end
+
+  klass.define_method('included') do |method|
+    method.define_optional_argument('base')
+    method.define_block_argument('block')
+  end
+
+  klass.define_method('initialize') do |method|
+    method.define_block_argument('block')
+  end
+
   klass.define_instance_method('process_action') do |method|
     method.define_rest_argument('args')
   end
@@ -83,6 +139,10 @@ RubyLint::VirtualMachine.global_scope.define_constant('AbstractController::Colle
 
   klass.define_method('generate_method_for_mime') do |method|
     method.define_argument('mime')
+  end
+
+  klass.define_method('initialize') do |method|
+    method.define_block_argument('block')
   end
 
   klass.define_instance_method('atom') do |method|
@@ -198,10 +258,36 @@ end
 
 RubyLint::VirtualMachine.global_scope.define_constant('AbstractController::Helpers') do |klass|
   klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
+
+  klass.define_method('append_features') do |method|
+    method.define_argument('base')
+  end
+
+  klass.define_method('included') do |method|
+    method.define_optional_argument('base')
+    method.define_block_argument('block')
+  end
+
+  klass.define_method('initialize') do |method|
+    method.define_block_argument('block')
+  end
 end
 
 RubyLint::VirtualMachine.global_scope.define_constant('AbstractController::Layouts') do |klass|
   klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
+
+  klass.define_method('append_features') do |method|
+    method.define_argument('base')
+  end
+
+  klass.define_method('included') do |method|
+    method.define_optional_argument('base')
+    method.define_block_argument('block')
+  end
+
+  klass.define_method('initialize') do |method|
+    method.define_block_argument('block')
+  end
 
   klass.define_instance_method('_layout_conditions') do |method|
     method.define_rest_argument('args')
@@ -219,14 +305,44 @@ end
 
 RubyLint::VirtualMachine.global_scope.define_constant('AbstractController::Logger') do |klass|
   klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
+
+  klass.define_method('append_features') do |method|
+    method.define_argument('base')
+  end
+
+  klass.define_method('included') do |method|
+    method.define_optional_argument('base')
+    method.define_block_argument('block')
+  end
+
+  klass.define_method('initialize') do |method|
+    method.define_block_argument('block')
+  end
 end
 
 RubyLint::VirtualMachine.global_scope.define_constant('AbstractController::Railties') do |klass|
   klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
+
+  klass.define_method('initialize') do |method|
+    method.define_block_argument('block')
+  end
 end
 
 RubyLint::VirtualMachine.global_scope.define_constant('AbstractController::Rendering') do |klass|
   klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
+
+  klass.define_method('append_features') do |method|
+    method.define_argument('base')
+  end
+
+  klass.define_method('included') do |method|
+    method.define_optional_argument('base')
+    method.define_block_argument('block')
+  end
+
+  klass.define_method('initialize') do |method|
+    method.define_block_argument('block')
+  end
 
   klass.define_instance_method('_render_template') do |method|
     method.define_argument('options')
@@ -264,6 +380,10 @@ end
 RubyLint::VirtualMachine.global_scope.define_constant('AbstractController::Translation') do |klass|
   klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
+  klass.define_method('initialize') do |method|
+    method.define_block_argument('block')
+  end
+
   klass.define_instance_method('l') do |method|
     method.define_rest_argument('args')
   end
@@ -284,11 +404,37 @@ end
 RubyLint::VirtualMachine.global_scope.define_constant('AbstractController::UrlFor') do |klass|
   klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
 
+  klass.define_method('append_features') do |method|
+    method.define_argument('base')
+  end
+
+  klass.define_method('included') do |method|
+    method.define_optional_argument('base')
+    method.define_block_argument('block')
+  end
+
+  klass.define_method('initialize') do |method|
+    method.define_block_argument('block')
+  end
+
   klass.define_instance_method('_routes')
 end
 
 RubyLint::VirtualMachine.global_scope.define_constant('AbstractController::ViewPaths') do |klass|
   klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
+
+  klass.define_method('append_features') do |method|
+    method.define_argument('base')
+  end
+
+  klass.define_method('included') do |method|
+    method.define_optional_argument('base')
+    method.define_block_argument('block')
+  end
+
+  klass.define_method('initialize') do |method|
+    method.define_block_argument('block')
+  end
 
   klass.define_instance_method('_prefixes')
 
