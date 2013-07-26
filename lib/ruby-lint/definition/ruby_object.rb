@@ -437,6 +437,8 @@ module RubyLint
       #  set to the `source_type` value by default.
       #
       def copy(source, source_type, target_type = source_type)
+        return unless source.definitions.key?(source_type)
+
         source.list(source_type).each do |definition|
           add(target_type, definition.name, definition)
         end
