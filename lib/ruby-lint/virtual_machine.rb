@@ -47,8 +47,7 @@ module RubyLint
   # The following extra options can be set in the constructor:
   #
   # * `:comments`: a Hash containing the comments for various AST nodes.
-  # * `:extra_definitions`: a extra {RubyLint::Definition::RubyObject} object
-  #   that will be added as the parent of the root definition.
+  # * `:extra_definitions`: An Array of extra definitions to inherit from.
   #
   # @!attribute [r] associations
   #  @return [Hash]
