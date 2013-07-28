@@ -6,13 +6,18 @@ module RubyLint
   #
   # @!attribute [r] analysis_classes
   #  @return [Array]
+  #
   # @!attribute [r] report_levels
   #  @return [Array]
+  #
   # @!attribute [r] presenter
   #  @return [Class]
   #
+  # @!attribute [r] directories
+  #  @return [Array]
+  #
   class Configuration
-    attr_reader :analysis_classes, :report_levels, :presenter
+    attr_reader :analysis_classes, :report_levels, :presenter, :directories
 
     ##
     # Returns an Array of locations from which to load configuration files.
@@ -85,6 +90,7 @@ module RubyLint
       @analysis_classes ||= default_analysis_classes
       @report_levels    ||= default_report_levels
       @presenter        ||= default_presenter
+      @directories      ||= default_directories
     end
 
     ##
@@ -97,7 +103,7 @@ module RubyLint
     end
 
     ##
-    # Returns a list of the enabled report levels.
+    # Sets a list of the enabled report levels.
     #
     # @param [Array] given The report levels specified by the user.
     # @return [Array]
@@ -118,7 +124,7 @@ module RubyLint
     end
 
     ##
-    # Returns the presenter to use.
+    # Sets the presenter to use.
     #
     # @param [String] name The friendly name of the presenter as set by the
     #  user.
@@ -136,7 +142,7 @@ module RubyLint
     end
 
     ##
-    # Returns a collection of the analysis constants to use.
+    # Sets a collection of the analysis constants to use.
     #
     # @param [Array] names The analysis names as given by the user.
     # @return [Array]
@@ -154,6 +160,22 @@ module RubyLint
       end
 
       @analysis_classes = classes
+    end
+
+    ##
+    # Sets the directories to scan for external Ruby files using
+    # {RubyLint::FileLoader}.
+    #
+    # @param [Array] directories
+    #
+    def directories=(directories)
+      directories.each do |dir|
+        unless File.directory?(dir)
+          raise ArgumentError, "The directory #{dir} does not exist"
+        end
+      end
+
+      @directories = directories
     end
 
     ##
@@ -177,6 +199,13 @@ module RubyLint
     #
     def default_presenter
       return RubyLint::Presenter::Text
+    end
+
+    ##
+    # @return [Array]
+    #
+    def default_directories
+      return [Dir.pwd]
     end
   end # Configuration
 end # RubyLint

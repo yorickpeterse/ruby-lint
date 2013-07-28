@@ -39,12 +39,11 @@ module RubyLint
       end
 
       files.each do |file|
-        code          = File.read(file)
-        ast, comments = parser.parse(code, file)
+        ast, comments = parse_file(parser, file)
 
-        vm = RubyLint::VirtualMachine.new(:comments => comments)
+        definitions = process_external_files(configuration.directories, ast)
 
-        vm.run(ast)
+        vm = run_vm(ast, comments, definitions)
 
         run_analysis(ast, vm, report)
       end
@@ -55,6 +54,38 @@ module RubyLint
     private
 
     ##
+    # Parses the given file and returns an Array containing all the associated
+    # AST nodes and comments.
+    #
+    # @param [RubyLint::Parser] parser
+    # @param [String] file
+    # @return [Array]
+    #
+    def parse_file(parser, file)
+      return parser.parse(File.read(file), file)
+    end
+
+    ##
+    # Processes external Ruby files using {RubyLint::FileLoader}.
+    #
+    # @param [Array] directories
+    # @param [RubyLint::AST::Node] root_ast
+    # @return [Array]
+    #
+    def process_external_files(directories, root_ast)
+      loader      = FileLoader.new(:directories => directories)
+      definitions = []
+
+      loader.iterate(root_ast)
+
+      loader.nodes.each do |(ast, comments)|
+        definitions << run_vm(ast, comments).definitions
+      end
+
+      return definitions
+    end
+
+    ##
     # @param [Parser::Diagnostic] diagnostic
     # @param [RubyLint::Report] report
     #
@@ -63,6 +94,23 @@ module RubyLint
       buffer = loc.source_buffer
 
       report.error(diagnostic.message, loc.line, loc.column, buffer.name)
+    end
+
+    ##
+    # @param [Array] nodes
+    # @param [Hash] comments
+    # @param [Array] extra_definitions
+    # @return [RubyLint::VirtualMachine]
+    #
+    def run_vm(nodes, comments, extra_definitions = [])
+      vm = RubyLint::VirtualMachine.new(
+        :comments          => comments,
+        :extra_definitions => extra_definitions
+      )
+
+      vm.run(nodes)
+
+      return vm
     end
 
     ##

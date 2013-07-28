@@ -29,4 +29,14 @@ describe RubyLint::Runner do
 
     output.should =~ /unexpected token \$end/
   end
+
+  example 'add errors when using externally defined constants' do
+    files  = [fixture_path('uses_external_invalid.rb')]
+    dirs   = [fixture_path('file_scanner/rails')]
+    config = RubyLint::Configuration.new(:directories => dirs)
+    runner = RubyLint::Runner.new(config)
+    output = runner.analyze(files)
+
+    output.should =~ /undefined method foobar on an instance of User/
+  end
 end

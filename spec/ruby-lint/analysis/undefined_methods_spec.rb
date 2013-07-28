@@ -136,6 +136,30 @@ name.downcasex
     entry.message.should == 'undefined method downcasex on an instance of String'
   end
 
+  example 'take variable assignments and custom classes into account' do
+    code = <<-CODE
+class User
+  def example
+  end
+end
+
+user = User.new
+
+user.example
+user.invalid
+    CODE
+
+    report = build_report(code, RubyLint::Analysis::UndefinedMethods)
+
+    report.entries.length.should == 1
+
+    entry = report.entries[0]
+
+    entry.line.should    == 9
+    entry.column.should  == 0
+    entry.message.should == 'undefined method invalid on an instance of User'
+  end
+
   example 'not add errors when calling a method on an undefined constant' do
     code = 'A.example_method'
 

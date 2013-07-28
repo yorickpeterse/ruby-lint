@@ -29,6 +29,7 @@ require_relative 'ruby-lint/definition_builder/primitive'
 require_relative 'ruby-lint/iterator'
 require_relative 'ruby-lint/virtual_machine'
 require_relative 'ruby-lint/constant_loader'
+require_relative 'ruby-lint/file_loader'
 
 require_relative 'ruby-lint/definition/ruby_object'
 require_relative 'ruby-lint/definition/ruby_method'

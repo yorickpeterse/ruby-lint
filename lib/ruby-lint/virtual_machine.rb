@@ -60,7 +60,7 @@ module RubyLint
   #  @return [RubyLint::Definition::RubyObject]
   #
   # @!attribute [r] extra_definitions
-  #  @return [RubyLint::Definition::RubyObject]
+  #  @return [Array]
   #
   # @!attribute [r] value_stack
   #  @return [RubyLint::NestedStack]
@@ -210,6 +210,9 @@ module RubyLint
     # Called after a new instance of the virtual machine has been created.
     #
     def after_initialize
+      @comments          ||= {}
+      @extra_definitions ||= []
+
       @associations   = {}
       @definitions    = initial_definitions
       @scopes         = [@definitions]
@@ -218,7 +221,6 @@ module RubyLint
       @variable_stack = NestedStack.new
       @ignored_nodes  = []
       @visibility     = :public
-      @comments     ||= {}
 
       reset_docstring_tags
       reset_method_type
@@ -862,9 +864,7 @@ module RubyLint
     # @return [RubyLint::Definition::RubyObject]
     #
     def initial_definitions
-      parents = [RubyLint::VirtualMachine.global_scope]
-
-      parents << extra_definitions if extra_definitions
+      parents = [RubyLint::VirtualMachine.global_scope] + extra_definitions
 
       definitions = Definition::RubyObject.new(
         :name          => 'root',
