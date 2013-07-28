@@ -189,4 +189,11 @@ first = second = number.foobar
 
     report.entries[0].message.should == 'undefined method foo'
   end
+
+  example 'do not add errors for methods defined in Kernel' do
+    code   = 'puts "hello"'
+    report = build_report(code, RubyLint::Analysis::UndefinedMethods)
+
+    report.entries.empty?.should == true
+  end
 end

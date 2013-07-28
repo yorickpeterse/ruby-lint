@@ -42,6 +42,14 @@ module RubyLint
   # {RubyLint::VirtualMachine#associations} with the keys set to the nodes and
   # the values to the corresponding definitions.
   #
+  # ## Options
+  #
+  # The following extra options can be set in the constructor:
+  #
+  # * `:comments`: a Hash containing the comments for various AST nodes.
+  # * `:extra_definitions`: a extra {RubyLint::Definition::RubyObject} object
+  #   that will be added as the parent of the root definition.
+  #
   # @!attribute [r] associations
   #  @return [Hash]
   #
@@ -49,6 +57,9 @@ module RubyLint
   #  @return [Hash]
   #
   # @!attribute [r] definitions
+  #  @return [RubyLint::Definition::RubyObject]
+  #
+  # @!attribute [r] extra_definitions
   #  @return [RubyLint::Definition::RubyObject]
   #
   # @!attribute [r] value_stack
@@ -66,6 +77,7 @@ module RubyLint
     attr_reader :associations,
       :comments,
       :definitions,
+      :extra_definitions,
       :docstring_tags,
       :value_stack,
       :variable_stack
@@ -850,14 +862,16 @@ module RubyLint
     # @return [RubyLint::Definition::RubyObject]
     #
     def initial_definitions
+      parents = [RubyLint::VirtualMachine.global_scope]
+
+      parents << extra_definitions if extra_definitions
+
       definitions = Definition::RubyObject.new(
         :name          => 'root',
         :type          => :root,
-        :parents       => [RubyLint::VirtualMachine.global_constant('Kernel')],
+        :parents       => parents,
         :instance_type => :instance
       )
-
-      definitions.merge(RubyLint::VirtualMachine.global_scope)
 
       definitions.add(:keyword, 'self', definitions)
 

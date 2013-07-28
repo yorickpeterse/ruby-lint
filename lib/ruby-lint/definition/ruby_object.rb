@@ -244,10 +244,15 @@ module RubyLint
         if defines?(type, name)
           found = definitions[type][name]
 
-        # Look up the definition in the parent scope(s) (if any are set).
+        # Look up the definition in the parent scope(s) (if any are set). This
+        # takes the parents themselves also into account.
         elsif lookup_parent?(type) and lookup_parent
           parents.each do |parent|
-            parent_definition = parent.lookup(type, name)
+            if parent.type == type and parent.name == name
+              parent_definition = parent
+            else
+              parent_definition = parent.lookup(type, name)
+            end
 
             if parent_definition
               found = parent_definition
