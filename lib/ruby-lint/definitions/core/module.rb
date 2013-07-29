@@ -10,6 +10,15 @@ RubyLint::VirtualMachine.global_scope.define_constant('Module') do |klass|
 
   klass.define_method('nesting')
 
+  # Define the various attr_* methods. These methods are defined as private
+  # instance methods in Module and thus aren't available to
+  # RubyLint::Inspector.
+  ['attr', 'attr_reader', 'attr_writer', 'attr_accessor'].each do |name|
+    klass.define_method(name) do |method|
+      method.define_rest_argument('attributes')
+    end
+  end
+
   klass.define_instance_method('<') do |method|
     method.define_argument('other')
   end

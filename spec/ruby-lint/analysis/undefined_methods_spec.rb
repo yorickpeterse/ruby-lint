@@ -236,5 +236,17 @@ end
 
       report.entries.empty?.should == true
     end
+
+    example 'do not add errors for #attr_reader' do
+      code = <<-CODE
+class Bar
+  attr_reader :foobar
+end
+      CODE
+
+      report = build_report(code, RubyLint::Analysis::UndefinedMethods)
+
+      report.entries.empty?.should == true
+    end
   end
 end
