@@ -4,10 +4,7 @@
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::VirtualMachine.global_scope.define_constant('Module') do |klass|
-  klass.define_method('__class_init__')
-
   klass.define_method('allocate')
-
   klass.define_method('nesting')
 
   # Define the various attr_* methods. These methods are defined as private

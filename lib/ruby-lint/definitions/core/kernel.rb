@@ -58,6 +58,43 @@ RubyLint::VirtualMachine.global_scope.define_constant('Kernel') do |klass|
     method.define_block_argument('block')
   end
 
+  # ---
+
+  # These methods aren't actually defined in Kernel (but in Module, at least on
+  # MRI) but since they are available as both class and instance methods they
+  # have been added to this module (since it's available in both contexts).
+  ['alias', 'alias_method'].each do |name|
+    klass.define_method(name) do |method|
+      method.define_argument('name')
+      method.define_argument('original')
+    end
+  end
+
+  klass.define_method('class_variable_defined?') do |method|
+    method.define_argument('sym')
+  end
+
+  klass.define_method('class_variable_get') do |method|
+    method.define_argument('sym')
+  end
+
+  klass.define_method('class_variable_set') do |method|
+    method.define_argument('sym')
+    method.define_argument('val')
+  end
+
+  klass.define_method('const_defined?') do |method|
+    method.define_argument('name')
+    method.define_optional_argument('search_parents')
+  end
+
+  klass.define_method('const_set') do |method|
+    method.define_argument('name')
+    method.define_argument('value')
+  end
+
+  # ---
+
   klass.define_method('binding')
 
   klass.define_method('block_given?')
