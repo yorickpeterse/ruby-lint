@@ -297,208 +297,220 @@ RubyLint::VirtualMachine.global_scope.define_constant('Kernel') do |klass|
     method.define_argument('message')
   end
 
-  klass.define_instance_method('!~') do |method|
+  klass.define_method('!~') do |method|
     method.define_argument('other')
   end
 
-  klass.define_instance_method('<=>') do |method|
+  klass.define_method('<=>') do |method|
     method.define_argument('other')
   end
 
-  klass.define_instance_method('==') do |method|
+  klass.define_method('==') do |method|
     method.define_argument('other')
   end
 
-  klass.define_instance_method('===') do |method|
+  klass.define_method('===') do |method|
     method.define_argument('other')
   end
 
-  klass.define_instance_method('=~') do |method|
+  klass.define_method('=~') do |method|
     method.define_argument('other')
   end
 
-  klass.define_instance_method('__class__')
+  klass.define_method('__class__')
 
-  klass.define_instance_method('__extend__') do |method|
+  klass.define_method('__extend__') do |method|
     method.define_rest_argument('modules')
   end
 
-  klass.define_instance_method('__instance_variable_defined_p__') do |method|
+  klass.define_method('__instance_variable_defined_p__') do |method|
     method.define_argument('name')
   end
 
-  klass.define_instance_method('__instance_variable_get__') do |method|
+  klass.define_method('__instance_variable_get__') do |method|
     method.define_argument('sym')
   end
 
-  klass.define_instance_method('__instance_variable_set__') do |method|
+  klass.define_method('__instance_variable_set__') do |method|
     method.define_argument('sym')
     method.define_argument('value')
   end
 
-  klass.define_instance_method('__instance_variables__')
+  klass.define_method('__instance_variables__')
 
-  klass.define_instance_method('__respond_to_p__') do |method|
+  klass.define_method('__respond_to_p__') do |method|
     method.define_argument('meth')
     method.define_optional_argument('include_private')
   end
 
-  klass.define_instance_method('class')
+  klass.define_method('class')
 
-  klass.define_instance_method('clone')
+  klass.define_method('clone')
 
-  klass.define_instance_method('define_singleton_method') do |method|
+  klass.define_method('define_singleton_method') do |method|
     method.define_rest_argument('args')
     method.define_block_argument('block')
   end
 
-  klass.define_instance_method('display') do |method|
+  klass.define_method('display') do |method|
     method.define_optional_argument('port')
   end
 
-  klass.define_instance_method('dup')
+  klass.define_method('dup')
 
-  klass.define_instance_method('enum_for') do |method|
+  klass.define_method('enum_for') do |method|
     method.define_optional_argument('method')
     method.define_rest_argument('args')
   end
 
-  klass.define_instance_method('eql?') do |method|
+  klass.define_method('eql?') do |method|
     method.define_argument('other')
   end
 
-  klass.define_instance_method('equal?') do |method|
+  klass.define_method('equal?') do |method|
     method.define_argument('other')
   end
 
-  klass.define_instance_method('extend') do |method|
+  klass.define_method('extend') do |method|
     method.define_rest_argument('modules')
   end
 
-  klass.define_instance_method('freeze')
+  klass.define_method('freeze')
 
-  klass.define_instance_method('frozen?')
+  klass.define_method('frozen?')
 
-  klass.define_instance_method('hash')
+  klass.define_method('hash')
 
-  klass.define_instance_method('initialize_clone') do |method|
+  klass.define_method('include') do |method|
+    method.define_rest_argument('mods')
+  end
+
+  klass.define_method('initialize_clone') do |method|
     method.define_argument('other')
   end
 
-  klass.define_instance_method('initialize_dup') do |method|
+  klass.define_method('initialize_dup') do |method|
     method.define_argument('other')
   end
 
-  klass.define_instance_method('inspect')
+  klass.define_method('inspect')
 
-  klass.define_instance_method('instance_of?') do |method|
+  klass.define_method('instance_of?') do |method|
     method.define_argument('cls')
   end
 
-  klass.define_instance_method('instance_variable_defined?') do |method|
+  klass.define_method('instance_variable_defined?') do |method|
     method.define_argument('name')
   end
 
-  klass.define_instance_method('instance_variable_get') do |method|
+  klass.define_method('instance_variable_get') do |method|
     method.define_argument('sym')
   end
 
-  klass.define_instance_method('instance_variable_set') do |method|
+  klass.define_method('instance_variable_set') do |method|
     method.define_argument('sym')
     method.define_argument('value')
   end
 
-  klass.define_instance_method('instance_variables')
+  klass.define_method('instance_variables')
 
-  klass.define_instance_method('is_a?') do |method|
+  klass.define_method('is_a?') do |method|
     method.define_argument('cls')
   end
 
-  klass.define_instance_method('kind_of?') do |method|
+  klass.define_method('kind_of?') do |method|
     method.define_argument('cls')
   end
 
-  klass.define_instance_method('method') do |method|
+  klass.define_method('method') do |method|
     method.define_argument('name')
   end
 
-  klass.define_instance_method('methods') do |method|
+  klass.define_method('methods') do |method|
     method.define_optional_argument('all')
   end
 
-  klass.define_instance_method('nil?')
+  klass.define_method('nil?')
 
-  klass.define_instance_method('object_id')
+  klass.define_method('object_id')
 
-  klass.define_instance_method('private_methods') do |method|
+  klass.define_method('private') do |method|
+    method.define_rest_argument('methods')
+  end
+
+  klass.define_method('public') do |method|
+    method.define_rest_argument('methods')
+  end
+
+  klass.define_method('private_methods') do |method|
     method.define_optional_argument('all')
   end
 
-  klass.define_instance_method('protected_methods') do |method|
+  klass.define_method('protected_methods') do |method|
     method.define_optional_argument('all')
   end
 
-  klass.define_instance_method('public_method') do |method|
+  klass.define_method('public_method') do |method|
     method.define_argument('name')
   end
 
-  klass.define_instance_method('public_methods') do |method|
+  klass.define_method('public_methods') do |method|
     method.define_optional_argument('all')
   end
 
-  klass.define_instance_method('public_send') do |method|
+  klass.define_method('public_send') do |method|
     method.define_argument('message')
     method.define_rest_argument('args')
   end
 
-  klass.define_instance_method('respond_to?') do |method|
+  klass.define_method('respond_to?') do |method|
     method.define_argument('meth')
     method.define_optional_argument('include_private')
   end
 
-  klass.define_instance_method('respond_to_missing?') do |method|
+  klass.define_method('respond_to_missing?') do |method|
     method.define_argument('meth')
     method.define_argument('include')
   end
 
-  klass.define_instance_method('send') do |method|
+  klass.define_method('send') do |method|
     method.define_argument('message')
     method.define_rest_argument('args')
   end
 
-  klass.define_instance_method('singleton_class')
+  klass.define_method('singleton_class')
 
-  klass.define_instance_method('singleton_methods') do |method|
+  klass.define_method('singleton_methods') do |method|
     method.define_optional_argument('all')
   end
 
-  klass.define_instance_method('taint')
+  klass.define_method('taint')
 
-  klass.define_instance_method('tainted?')
+  klass.define_method('tainted?')
 
-  klass.define_instance_method('tap')
+  klass.define_method('tap')
 
-  klass.define_instance_method('to_enum') do |method|
+  klass.define_method('to_enum') do |method|
     method.define_optional_argument('method')
     method.define_rest_argument('args')
   end
 
-  klass.define_instance_method('to_s')
+  klass.define_method('to_s')
 
-  klass.define_instance_method('trust')
+  klass.define_method('trust')
 
-  klass.define_instance_method('untaint')
+  klass.define_method('untaint')
 
-  klass.define_instance_method('untrust')
+  klass.define_method('untrust')
 
-  klass.define_instance_method('untrusted?')
+  klass.define_method('untrusted?')
 end
 
 # Methods defined in Kernel (both class and instance methods) are globally
 # available regardless of whether the code is evaluated in a class or instance
 # context.
 RubyLint::VirtualMachine.global_scope.copy(
-  RubyLint::VirtualMachine.constant_proxy('Kernel'),
+  RubyLint::VirtualMachine.global_constant('Kernel'),
   :method,
   :instance_method
 )

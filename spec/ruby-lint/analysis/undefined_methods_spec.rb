@@ -74,38 +74,38 @@ name
   end
 
   describe 'core Ruby types' do
-    example 'not add errors for calling defined methods on a Fixnum' do
+    example 'do not add errors for calling defined methods on a Fixnum' do
       report = build_report('10.to_s', RubyLint::Analysis::UndefinedMethods)
 
       report.entries.empty?.should == true
     end
 
-    example 'not add errors for calling defined methods on a Float' do
+    example 'do not add errors for calling defined methods on a Float' do
       report = build_report('(10.0).to_s', RubyLint::Analysis::UndefinedMethods)
 
       report.entries.empty?.should == true
     end
 
-    example 'not add errors for calling defined methods on a String' do
+    example 'do not add errors for calling defined methods on a String' do
       report = build_report('"10".to_s', RubyLint::Analysis::UndefinedMethods)
 
       report.entries.empty?.should == true
     end
 
-    example 'not add errors for calling defined methods on a Hash' do
+    example 'do not add errors for calling defined methods on a Hash' do
       report = build_report('{}.to_s', RubyLint::Analysis::UndefinedMethods)
 
       report.entries.empty?.should == true
     end
 
-    example 'not add errors for calling defined methods on an Array' do
+    example 'do not add errors for calling defined methods on an Array' do
       report = build_report('[].to_s', RubyLint::Analysis::UndefinedMethods)
 
       report.entries.empty?.should == true
     end
   end
 
-  example 'not add errors for variables created using blocks' do
+  example 'do not add errors for variables created using blocks' do
     code = <<-CODE
 [10, 20].each do |number|
   number.to_s
@@ -160,7 +160,7 @@ user.invalid
     entry.message.should == 'undefined method invalid on an instance of User'
   end
 
-  example 'not add errors when calling a method on an undefined constant' do
+  example 'do not add errors when calling a method on an undefined constant' do
     code = 'A.example_method'
 
     report = build_report(code, RubyLint::Analysis::UndefinedMethods)
@@ -168,7 +168,7 @@ user.invalid
     report.entries.empty?.should == true
   end
 
-  example 'not add errors for methods called on variables without values' do
+  example 'do not add errors for methods called on variables without values' do
     code = <<-CODE
 def example(number)
   number.to_s
@@ -219,5 +219,22 @@ first = second = number.foobar
     report = build_report(code, RubyLint::Analysis::UndefinedMethods)
 
     report.entries.empty?.should == true
+  end
+
+  context 'core Ruby methods' do
+    example 'do not add errors for #include' do
+      code = <<-CODE
+module Foo
+end
+
+class Bar
+  include Foo
+end
+      CODE
+
+      report = build_report(code, RubyLint::Analysis::UndefinedMethods)
+
+      report.entries.empty?.should == true
+    end
   end
 end
