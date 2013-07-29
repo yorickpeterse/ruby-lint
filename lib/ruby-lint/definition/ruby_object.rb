@@ -326,7 +326,7 @@ module RubyLint
       # @return [Mixed]
       #
       def call(context = self)
-        retval = return_value
+        retval = respond_to?(:return_value) ? return_value : nil
         retval = retval.call(context) if retval.respond_to?(:call)
 
         return retval
