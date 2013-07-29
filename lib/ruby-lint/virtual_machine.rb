@@ -145,13 +145,6 @@ module RubyLint
     EXPORT_VARIABLES = [:ivar, :cvar, :const]
 
     ##
-    # Array containing the directories to use for looking up definition files.
-    #
-    # @return [Array]
-    #
-    LOAD_PATH = [File.expand_path('../definitions/core', __FILE__)]
-
-    ##
     # The available method visibilities.
     #
     # @return [Array]
