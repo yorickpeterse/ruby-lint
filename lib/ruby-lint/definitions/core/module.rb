@@ -10,7 +10,12 @@ RubyLint::VirtualMachine.global_scope.define_constant('Module') do |klass|
   # Define the various attr_* methods. These methods are defined as private
   # instance methods in Module and thus aren't available to
   # RubyLint::Inspector.
-  ['attr', 'attr_reader', 'attr_writer', 'attr_accessor'].each do |name|
+  klass.define_method('attr') do |method|
+    method.define_optional_argument('attribute')
+    method.define_optional_argument('writer')
+  end
+
+  ['attr_reader', 'attr_writer', 'attr_accessor'].each do |name|
     klass.define_method(name) do |method|
       method.define_rest_argument('attributes')
     end

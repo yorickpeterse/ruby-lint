@@ -26,6 +26,10 @@ require_relative 'ruby-lint/definition_builder/ruby_hash'
 require_relative 'ruby-lint/definition_builder/ruby_block'
 require_relative 'ruby-lint/definition_builder/primitive'
 
+require_relative 'ruby-lint/method_call/base'
+require_relative 'ruby-lint/method_call/assign_member'
+require_relative 'ruby-lint/method_call/include'
+
 require_relative 'ruby-lint/iterator'
 require_relative 'ruby-lint/virtual_machine'
 require_relative 'ruby-lint/constant_loader'

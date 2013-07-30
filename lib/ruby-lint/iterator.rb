@@ -35,6 +35,21 @@ module RubyLint
   # integers it processes. After processing an integer it will display three
   # dashes.
   #
+  # ## Skipping Child Nodes
+  #
+  # The `on_*` callbacks can tell the Iterator class to not process any
+  # following child nodes by calling `skip_child_nodes!`:
+  #
+  #     def on_const(node)
+  #       # ...
+  #
+  #       skip_child_nodes!(node)
+  #     end
+  #
+  # Internally this uses `throw` and makes sure to only skip the child nodes of
+  # the specified node (`throw` calls bubble up regardless of `catch` calls,
+  # unlike when using `begin/rescue`).
+  #
   class Iterator
     ##
     # @param [Hash] options Hash containing custom options to set for the
@@ -58,17 +73,29 @@ module RubyLint
       return unless node.is_a?(AST::Node)
 
       before, after = callback_names(node)
+      skip_node     = catch :skip_child_nodes do
+        execute_callback(before, node)
+      end
 
-      execute_callback(before, node)
-
-      node.children.each do |child|
-        iterate(child) if child.is_a?(AST::Node)
+      if skip_node != node
+        node.children.each do |child|
+          iterate(child) if child.is_a?(AST::Node)
+        end
       end
 
       execute_callback(after, node)
     end
 
     protected
+
+    ##
+    # Instructs {#iterate} to not process any child nodes.
+    #
+    # @param [RubyLint::AST::Node] node
+    #
+    def skip_child_nodes!(node)
+      throw :skip_child_nodes, node
+    end
 
     ##
     # Executes the specified callback method if it exists.

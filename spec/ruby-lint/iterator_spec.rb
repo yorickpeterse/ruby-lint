@@ -98,4 +98,39 @@ end
     iterator.options[:method].should == :some_method
     iterator.options[:call].should   == :puts
   end
+
+  example 'skipping child nodes' do
+    code = <<-CODE
+module A
+  class B
+  end
+end
+    CODE
+
+    ast      = parse(code, false)
+    iterator = Class.new(RubyLint::Iterator) do
+      attr_reader :options
+
+      def after_initialize
+        @options = {:module => false, :class => false}
+      end
+
+      def on_module(node)
+        options[:module] = true
+
+        skip_child_nodes!(node)
+      end
+
+      def on_class(node)
+        options[:class] = true
+      end
+    end
+
+    iterator = iterator.new
+
+    iterator.iterate(ast)
+
+    iterator.options[:module].should == true
+    iterator.options[:class].should  == false
+  end
 end

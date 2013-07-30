@@ -84,23 +84,6 @@ module RubyLint
     private :value_stack, :variable_stack, :docstring_tags
 
     ##
-    # Hash containing the definition types to copy when including/extending a
-    # module.
-    #
-    # @return [Hash]
-    #
-    INCLUDE_CALLS = {
-      'include' => {
-        :const           => :const,
-        :instance_method => :instance_method
-      },
-      'extend' => {
-        :const           => :const,
-        :instance_method => :method
-      }
-    }
-
-    ##
     # Hash containing variable assignment types and the corresponding variable
     # reference types.
     #
@@ -121,14 +104,16 @@ module RubyLint
     PRIMITIVES = [:int, :float, :str, :sym]
 
     ##
-    # Remaps the names for `on_send` callback nodes in cases where the original
-    # name of a method could not be used. For example, `on_send_[]=` is
-    # considered to be invalid syntax and thus its mapped to
-    # `on_send_assign_member`.
+    # Returns a Hash containing the method call evaluators to use for `(send)`
+    # nodes.
     #
     # @return [Hash]
     #
-    SEND_MAPPING = {'[]=' => 'assign_member'}
+    SEND_MAPPING = {
+      '[]='     => MethodCall::AssignMember,
+      'include' => MethodCall::Include,
+      'extend'  => MethodCall::Include
+    }
 
     ##
     # Array containing the various argument types of method definitions.
@@ -402,6 +387,10 @@ module RubyLint
     def on_const(node)
       increment_reference_amount(node)
       push_variable_value(node)
+
+      # The root node is also used in such a way that it processes child (=
+      # receiver) constants.
+      skip_child_nodes!(node)
     end
 
     ##
@@ -677,17 +666,9 @@ module RubyLint
       receiver, name, _ = *node
 
       name        = name.to_s
-      mapped_name = SEND_MAPPING.fetch(name, name)
-      callback    = "after_send_#{mapped_name}"
-
-      execute_callback(callback, node)
-
       args_length = node.children[2..-1].length
       values      = value_stack.pop
-
-      # For now we'll get rid of the arguments since ruby-lint isn't smart
-      # enough yet to process them.
-      values.pop(args_length)
+      arguments   = values.pop(args_length)
 
       receiver_definition = values.first
 
@@ -707,6 +688,14 @@ module RubyLint
         context = previous_scope if context.block?
       end
 
+      if SEND_MAPPING[name]
+        evaluator = SEND_MAPPING[name].new(node, self)
+
+        evaluator.evaluate(arguments, context)
+      else
+        execute_callback("after_send_#{name}", node)
+      end
+
       # Associate the receiver node with the context so that it becomes
       # easier to retrieve later on.
       if receiver and context
@@ -720,71 +709,9 @@ module RubyLint
       end
     end
 
-    ##
-    # @param [RubyLint::AST::Node] node
-    #
-    def on_send_include(node)
-      value_stack.add_stack
-    end
-
-    ##
-    # Processes a `include` method call.
-    #
-    # @param [RubyLint::AST::Node] node
-    #
-    def after_send_include(node)
-      copy_types = INCLUDE_CALLS[node.children[1].to_s]
-      scope      = current_scope
-      arguments  = value_stack.pop
-
-      arguments.each do |source|
-        copy_types.each do |from, to|
-          source.list(from).each do |definition|
-            scope.add(to, definition.name, definition)
-          end
-        end
-      end
-    end
-
-    alias_method :on_send_extend, :on_send_include
-    alias_method :after_send_extend, :after_send_include
-
     VISIBILITIES.each do |vis|
       define_method("on_send_#{vis}") do |node|
         @visibility = vis
-      end
-    end
-
-    ##
-    # @param [RubyLint::AST::Node] node
-    #
-    def on_send_assign_member(node)
-      value_stack.add_stack
-    end
-
-    ##
-    # Processes the assignment of an object member (array index or hash key).
-    #
-    # @param [RubyLint::AST::Node] node
-    #
-    def after_send_assign_member(node)
-      array, *indexes, values = value_stack.pop
-      index_values            = []
-
-      if values and values.array?
-        index_values = values.list(:member).map(&:value)
-      elsif values
-        index_values = [values]
-      end
-
-      indexes.each do |index|
-        member = Definition::RubyObject.new(
-          :name  => index.value.to_s,
-          :type  => :member,
-          :value => index_values.shift
-        )
-
-        array.add_definition(member)
       end
     end
 
@@ -846,6 +773,15 @@ module RubyLint
 
       # Global variables should be added to the root scope.
       definitions.add(:gvar, alias_name, source) if source
+    end
+
+    ##
+    # Defines an attribute using `attr`.
+    #
+    # @param [RubyLint::AST::Node] node
+    #
+    def on_send_attr(node)
+
     end
 
     private
