@@ -110,9 +110,10 @@ module RubyLint
     # @return [Hash]
     #
     SEND_MAPPING = {
-      '[]='     => MethodCall::AssignMember,
-      'include' => MethodCall::Include,
-      'extend'  => MethodCall::Include
+      '[]='          => MethodCall::AssignMember,
+      'include'      => MethodCall::Include,
+      'extend'       => MethodCall::Include,
+      'alias_method' => MethodCall::Alias
     }
 
     ##
@@ -692,8 +693,6 @@ module RubyLint
         evaluator = SEND_MAPPING[name].new(node, self)
 
         evaluator.evaluate(arguments, context)
-      else
-        execute_callback("after_send_#{name}", node)
       end
 
       # Associate the receiver node with the context so that it becomes
@@ -716,15 +715,10 @@ module RubyLint
     end
 
     ##
-    # Processes `alias_method` method calls.
-    #
     # @param [RubyLint::AST::Node] node
     #
-    def on_send_alias_method(node)
-      alias_node  = node.children[2]
-      source_node = node.children[3]
-
-      on_alias_sym(alias_node, source_node)
+    def on_alias(node)
+      value_stack.add_stack
     end
 
     ##
@@ -738,50 +732,11 @@ module RubyLint
     # * on_alias_sym: aliasing methods (using symbols)
     # * on_alias_gvar: aliasing global variables
     #
-    def on_alias(node)
-      alias_node, source_node = *node
+    def after_alias(node)
+      arguments = value_stack.pop
+      evaluator = MethodCall::Alias.new(node, self)
 
-      callback = "on_alias_#{alias_node.type}"
-
-      send(callback, alias_node, source_node) if respond_to?(callback)
-    end
-
-    ##
-    # Aliases a method.
-    #
-    # @param [RubyLint::AST::Node] alias_node
-    # @param [RubyLint::AST::Node] source_node
-    #
-    def on_alias_sym(alias_node, source_node)
-      method_type = current_scope.method_call_type
-      alias_name  = alias_node.name
-      source_name = source_node.name
-      source      = current_scope.lookup(method_type, source_name)
-
-      current_scope.add(method_type, alias_name, source) if source
-    end
-
-    ##
-    # Aliases a global variable.
-    #
-    # @see #on_alias_sym
-    #
-    def on_alias_gvar(alias_node, source_node)
-      alias_name  = alias_node.name
-      source_name = source_node.name
-      source      = current_scope.lookup(:gvar, source_name)
-
-      # Global variables should be added to the root scope.
-      definitions.add(:gvar, alias_name, source) if source
-    end
-
-    ##
-    # Defines an attribute using `attr`.
-    #
-    # @param [RubyLint::AST::Node] node
-    #
-    def on_send_attr(node)
-
+      evaluator.evaluate(arguments, current_scope)
     end
 
     private
