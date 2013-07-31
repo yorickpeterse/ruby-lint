@@ -12,6 +12,8 @@ module RubyLint
     def initialize
       builder          = AST::Builder.new
       @internal_parser = ::Parser::CurrentRuby.new(builder)
+
+      internal_parser.diagnostics.all_errors_are_fatal = false
     end
 
     ##
