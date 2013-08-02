@@ -5,14 +5,6 @@ module RubyLint
   #
   module VariablePredicates
     ##
-    # Array containing various Ruby types that are considered to be scalar
-    # values.
-    #
-    # @return [Array]
-    #
-    SCALAR_TYPES = [:int, :float, :str, :sym]
-
-    ##
     # Array containing various predicate methods to create.
     #
     # @return [Array]
@@ -36,7 +28,9 @@ module RubyLint
       :hash   => 'Hash',
       :irange => 'Range',
       :erange => 'Range',
-      :lambda => 'Proc'
+      :lambda => 'Proc',
+      :true   => 'TrueClass',
+      :false  => 'FalseClass'
     }
 
     PREDICATE_METHODS.each do |type|

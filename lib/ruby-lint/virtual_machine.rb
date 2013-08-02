@@ -101,7 +101,7 @@ module RubyLint
     #
     # @return [Array]
     #
-    PRIMITIVES = [:int, :float, :str, :sym]
+    PRIMITIVES = [:int, :float, :str, :sym, :true, :false]
 
     ##
     # Returns a Hash containing the method call evaluators to use for `(send)`
@@ -110,10 +110,14 @@ module RubyLint
     # @return [Hash]
     #
     SEND_MAPPING = {
-      '[]='          => MethodCall::AssignMember,
-      'include'      => MethodCall::Include,
-      'extend'       => MethodCall::Include,
-      'alias_method' => MethodCall::Alias
+      '[]='           => MethodCall::AssignMember,
+      'include'       => MethodCall::Include,
+      'extend'        => MethodCall::Include,
+      'alias_method'  => MethodCall::Alias,
+      'attr'          => MethodCall::Attribute,
+      'attr_reader'   => MethodCall::Attribute,
+      'attr_writer'   => MethodCall::Attribute,
+      'attr_accessor' => MethodCall::Attribute
     }
 
     ##
