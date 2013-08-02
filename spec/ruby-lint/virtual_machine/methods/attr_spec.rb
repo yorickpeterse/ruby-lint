@@ -18,6 +18,11 @@ end
       defs.lookup(:const, 'Example')
         .has_definition?(:ivar, '@number')
         .should == true
+
+      defs.lookup(:const, 'Example')
+        .lookup(:ivar, '@number')
+        .used?
+        .should == true
     end
 
     example 'should define an accessor attribute using #attr' do

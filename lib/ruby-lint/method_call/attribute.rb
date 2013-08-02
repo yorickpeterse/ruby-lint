@@ -88,7 +88,11 @@ module RubyLint
         context.define_instance_method(name)
 
         unless context.has_definition?(:ivar, ivar_name)
-          ivar = Definition::RubyObject.new(:type => :ivar, :name => ivar_name)
+          ivar = Definition::RubyObject.new(
+            :type             => :ivar,
+            :name             => ivar_name,
+            :reference_amount => 1
+          )
 
           context.add_definition(ivar)
         end
