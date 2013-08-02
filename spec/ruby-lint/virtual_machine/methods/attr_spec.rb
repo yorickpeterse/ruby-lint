@@ -14,6 +14,10 @@ end
       defs.lookup(:const, 'Example')
         .has_definition?(:instance_method, 'number')
         .should == true
+
+      defs.lookup(:const, 'Example')
+        .has_definition?(:ivar, '@number')
+        .should == true
     end
 
     example 'should define an accessor attribute using #attr' do
@@ -31,6 +35,10 @@ end
 
       defs.lookup(:const, 'Example')
         .has_definition?(:instance_method, 'number=')
+        .should == true
+
+      defs.lookup(:const, 'Example')
+        .has_definition?(:ivar, '@number')
         .should == true
     end
 
@@ -50,6 +58,10 @@ end
       defs.lookup(:const, 'Example')
         .has_definition?(:instance_method, 'number=')
         .should == false
+
+      defs.lookup(:const, 'Example')
+        .has_definition?(:ivar, '@number')
+        .should == true
     end
 
     example 'should define a write-only attribute using #attr_writer' do
@@ -68,6 +80,10 @@ end
       defs.lookup(:const, 'Example')
         .has_definition?(:instance_method, 'number=')
         .should == true
+
+      defs.lookup(:const, 'Example')
+        .has_definition?(:ivar, '@number')
+        .should == true
     end
 
     example 'should define an accessor attribute using #attr_accessor' do
@@ -85,6 +101,10 @@ end
 
       defs.lookup(:const, 'Example')
         .has_definition?(:instance_method, 'number=')
+        .should == true
+
+      defs.lookup(:const, 'Example')
+        .has_definition?(:ivar, '@number')
         .should == true
     end
   end

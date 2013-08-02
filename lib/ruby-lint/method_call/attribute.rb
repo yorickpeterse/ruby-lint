@@ -11,8 +11,10 @@ module RubyLint
       def evaluate(arguments, context)
         method = "evaluate_#{node.children[1]}"
 
-        send(method, arguments, context) if respond_to?(method)
+        send(method, arguments, context)
       end
+
+      private
 
       ##
       # Evaluates a call to `attr`. The `attr` method can be used in two
@@ -31,7 +33,7 @@ module RubyLint
         end
 
         names.each do |name|
-          context.define_instance_method(name)
+          define_attribute(name, context)
         end
       end
 
@@ -42,7 +44,7 @@ module RubyLint
       #
       def evaluate_attr_reader(arguments, context)
         arguments.each do |arg|
-          context.define_instance_method(arg.value.to_s)
+          define_attribute(arg.value.to_s, context)
         end
       end
 
@@ -53,7 +55,7 @@ module RubyLint
       #
       def evaluate_attr_writer(arguments, context)
         arguments.each do |arg|
-          context.define_instance_method(arg.value.to_s + '=')
+          define_attribute(arg.value.to_s, context, true)
         end
       end
 
@@ -66,8 +68,29 @@ module RubyLint
         arguments.each do |arg|
           name = arg.value.to_s
 
-          context.define_instance_method(name)
-          context.define_instance_method(name + '=')
+          define_attribute(name, context)
+          define_attribute(name, context, true)
+        end
+      end
+
+      ##
+      # @param [String] name
+      # @param [RubyLint::Definition::RubyObject] context
+      # @param [TrueClass|FalseClass] setter
+      #
+      def define_attribute(name, context, setter = false)
+        ivar_name = '@' + name
+
+        if setter
+          name = name + '='
+        end
+
+        context.define_instance_method(name)
+
+        unless context.has_definition?(:ivar, ivar_name)
+          ivar = Definition::RubyObject.new(:type => :ivar, :name => ivar_name)
+
+          context.add_definition(ivar)
         end
       end
     end # Attribute
