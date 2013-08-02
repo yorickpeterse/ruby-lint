@@ -29,5 +29,22 @@ describe RubyLint::VirtualMachine do
         .reference_amount \
         .should == 2
     end
+
+    example 'mark variables created using OR/AND assignments as used' do
+      code = <<-CODE
+number1 = 5
+
+number  ||= 10
+number1 &&= 10
+      CODE
+
+      defs = build_definitions(code)
+
+      number  = defs.lookup(:lvar, 'number')
+      number1 = defs.lookup(:lvar, 'number1')
+
+      number.used?.should  == true
+      number1.used?.should == true
+    end
   end
 end

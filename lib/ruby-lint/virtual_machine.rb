@@ -963,6 +963,8 @@ module RubyLint
     #  will be overwritten.
     #
     def conditional_assignment(variable, value, bool = true)
+      variable.reference_amount += 1
+
       if current_scope.has_definition?(variable.type, variable.name) == bool
         variable.value = value
 
