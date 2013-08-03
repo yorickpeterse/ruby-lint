@@ -9,45 +9,45 @@ module RubyLint
     # @!attribute [r] visibility
     #  @return [Symbol] The method visibility such as `:public`.
     #
-    # @!attribute [r] arguments
-    #  @return [Array] The required/specified arguments of a method definition
-    #   or method call.
-    #
-    # @!attribute [r] optional_arguments
-    #  @return [Array] Array containing the optional arguments of a method
-    #   definition.
-    #
-    # @!attribute [r] rest_argument
-    #  @return [RubyLint::Definition::RubyObject] The rest argument of a
-    #   method definition.
-    #
-    # @!attribute [r] block_argument
-    #  @return [RubyLint::Definition::RubyObject] The block argument of a
-    #   method definition.
-    #
-    # @!attribute [r] keyword_arguments
-    #  @return [Array] The keyword arguments of the method.
-    #
     # @!attribute [r] return_value
     #  @return [Mixed] The value that is returned by the method.
     #
     class RubyMethod < RubyObject
-      attr_reader :block_argument,
-        :arguments,
-        :keyword_arguments,
-        :optional_arguments,
-        :rest_argument,
-        :return_value,
-        :visibility
+      attr_reader :return_value, :visibility
 
       ##
-      # Called after a new instance is created of this class. This method is
-      # called before calling any supplied blocks.
+      # @return [Array]
       #
-      def after_initialize
-        @arguments          ||= []
-        @optional_arguments ||= []
-        @keyword_arguments  ||= []
+      def arguments
+        return list(:arg)
+      end
+
+      ##
+      # @return [RubyLint::Definition::RubyObject]
+      #
+      def block_argument
+        return list(:blockarg).first
+      end
+
+      ##
+      # @return [Array]
+      #
+      def keyword_arguments
+        return list(:kwoptarg)
+      end
+
+      ##
+      # @return [Array]
+      #
+      def optional_arguments
+        return list(:optarg)
+      end
+
+      ##
+      # @return [RubyLint::Definition::RubyObject]
+      #
+      def rest_argument
+        return list(:restarg).first
       end
 
       ##
@@ -75,7 +75,7 @@ module RubyLint
       # @param [String] name The name of the argument.
       #
       def define_argument(name)
-        @arguments << create_argument(:arg, name)
+        create_argument(:arg, name)
       end
 
       ##
@@ -84,7 +84,7 @@ module RubyLint
       # @see RubyLint::Definition::RubyObject#define_argument
       #
       def define_keyword_argument(name)
-        @keyword_arguments << create_argument(:kwoptarg, name)
+        create_argument(:kwoptarg, name)
       end
 
       ##
@@ -93,7 +93,7 @@ module RubyLint
       # @see RubyLint::Definition::RubyObject#define_argument
       #
       def define_optional_argument(name)
-        @optional_arguments << create_argument(:optarg, name)
+        create_argument(:optarg, name)
       end
 
       ##
@@ -102,7 +102,7 @@ module RubyLint
       # @see RubyLint::Definition::RubyObject#define_argument
       #
       def define_rest_argument(name)
-        @rest_argument = create_argument(:restarg, name)
+        create_argument(:restarg, name)
       end
 
       ##
@@ -111,7 +111,7 @@ module RubyLint
       # @see RubyLint::Definition::RubyObject#define_argument
       #
       def define_block_argument(name)
-        @block_argument = create_argument(:blockarg, name)
+        create_argument(:blockarg, name)
       end
 
       private

@@ -81,7 +81,8 @@ end
         defs   = build_definitions(code)
         method = defs.lookup(:instance_method, 'example')
 
-        method.lookup(:lvar, 'number').value.value.should == 10
+        method.lookup(:kwoptarg, 'number').value.value.should == 10
+        method.lookup(:lvar, 'number').value.value.should     == 10
       end
     end
   end
