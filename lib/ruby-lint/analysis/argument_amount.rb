@@ -7,10 +7,20 @@ module RubyLint
     #
     class ArgumentAmount < Base
       ##
+      # Hash that contains method names that should be used for analysis
+      # instead of the ones specified in the keys.
+      #
+      # @return [Hash]
+      #
+      MAP_METHODS = {
+        'new' => [:instance_method, 'initialize']
+      }
+
+      ##
       # @param [RubyLint::Node] node
       #
       def on_send(node)
-        receiver, name, args = *node
+        receiver, name, *args = *node
 
         name  = name.to_s
         scope = current_scope
@@ -23,7 +33,11 @@ module RubyLint
 
         return unless method
 
-        given    = args ? args.children.length : 0
+        if MAP_METHODS[method.name]
+          method = scope.lookup(*MAP_METHODS[method.name])
+        end
+
+        given    = args ? args.length : 0
         min, max = argument_range(method)
 
         unless correct_argument_amount(min, max, given)

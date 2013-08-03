@@ -88,4 +88,30 @@ name.downcase
 
     report.entries.empty?.should == true
   end
+
+  example 'use #initialize for arguments when processing .new' do
+    code = <<-CODE
+class Person
+  def initialize(name)
+  end
+end
+
+Person.new
+Person.new(10, 20)
+    CODE
+
+    report = build_report(code, RubyLint::Analysis::ArgumentAmount)
+
+    report.entries.length.should == 2
+
+    first, second = report.entries
+
+    first.line.should    == 6
+    first.column.should  == 0
+    first.message.should == 'wrong number of arguments (expected 1 but got 0)'
+
+    second.line.should    == 7
+    second.column.should  == 0
+    second.message.should == 'wrong number of arguments (expected 1 but got 2)'
+  end
 end
