@@ -67,7 +67,7 @@ A::B
     entry.message.should == 'undefined constant A::B'
   end
 
-  example 'not depend on the order of variable definitions' do
+  example 'do not depend on the order of variable definitions' do
     code = <<-CODE
 class Person
   def first
@@ -85,14 +85,14 @@ end
     report.entries.empty?.should == true
   end
 
-  example 'not add errors when autoloading constants' do
+  example 'do not add errors when autoloading constants' do
     code   = 'Encoding::BIG5'
     report = build_report(code, RubyLint::Analysis::UndefinedVariables)
 
     report.entries.empty?.should == true
   end
 
-  example 'not error when inheriting data in a block' do
+  example 'do not error when inheriting data in a block' do
     code = <<-CODE
 NUMBER = 10
 
@@ -106,14 +106,14 @@ CODE
     report.entries.empty?.should == true
   end
 
-  example 'not add errors for variable references in string interpolation' do
+  example 'do not add errors for variable references in string interpolation' do
     code   = 'number = 10; "#{number}"'
     report = build_report(code, RubyLint::Analysis::UndefinedVariables)
 
     report.entries.empty?.should == true
   end
 
-  example 'not add errors for class names' do
+  example 'do not add errors for class names' do
     code = <<-CODE
 class Foo
 end
@@ -129,7 +129,7 @@ end
     report.entries.empty?.should == true
   end
 
-  example 'not add errors when aliasing global variables' do
+  example 'do not add errors when aliasing global variables' do
     code   = 'alias $ARGV $*'
     report = build_report(code, RubyLint::Analysis::UndefinedVariables)
 
