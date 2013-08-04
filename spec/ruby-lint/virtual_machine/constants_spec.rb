@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe RubyLint::VirtualMachine do
-  describe 'generic constants' do
+  context 'generic constants' do
     # These tests are put in place to ensure that a class/module can refer to
     # itself without having to look anything up in parent scopes. An example:
     #
