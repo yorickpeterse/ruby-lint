@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe RubyLint::VirtualMachine do
-  describe 'variable assignments' do
+  context 'variable assignments' do
     example 'assign different types of variables' do
       types = {
         'number'   => :lvar,
@@ -80,6 +80,37 @@ d = c
       end
 
       defs.lookup(:lvar, 'foo').value.value.should == 100
+    end
+
+    example 'assign nil to a value' do
+      defs  = build_definitions('variable = nil')
+      value = defs.lookup(:lvar, 'variable').value
+
+      value.type.should            == :nil
+      value.parents[0].name.should == 'NilClass'
+    end
+
+    example 'assign true to a value' do
+      defs  = build_definitions('variable = true')
+      value = defs.lookup(:lvar, 'variable').value
+
+      value.type.should            == :true
+      value.parents[0].name.should == 'TrueClass'
+    end
+
+    example 'assign false to a value' do
+      defs  = build_definitions('variable = false')
+      value = defs.lookup(:lvar, 'variable').value
+
+      value.type.should            == :false
+      value.parents[0].name.should == 'FalseClass'
+    end
+
+    example 'assigning a magic global variable to a variable' do
+      defs  = build_definitions('variable = $1')
+      value = defs.lookup(:lvar, 'variable').value
+
+      value.type.should == :unknown
     end
   end
 end

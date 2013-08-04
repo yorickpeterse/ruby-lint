@@ -9,7 +9,7 @@ module RubyLint
       # @see Base#evaluate
       #
       def evaluate(arguments, context)
-        if arguments[0].gvar?
+        if node.type == :alias and node.children[0].gvar?
           alias_gvar(arguments, context)
         else
           alias_sym(arguments, context)
@@ -34,8 +34,8 @@ module RubyLint
       # @see Base#evaluate
       #
       def alias_gvar(arguments, context)
-        source_name = arguments[0].name
         alias_name  = node.children[0].name
+        source_name = node.children[1].name
         source      = context.lookup(:gvar, source_name)
 
         # Global variables should be added to the root scope.

@@ -30,7 +30,8 @@ module RubyLint
       :erange => 'Range',
       :lambda => 'Proc',
       :true   => 'TrueClass',
-      :false  => 'FalseClass'
+      :false  => 'FalseClass',
+      :nil    => 'NilClass'
     }
 
     PREDICATE_METHODS.each do |type|

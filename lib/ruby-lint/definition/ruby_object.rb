@@ -91,20 +91,21 @@ module RubyLint
       # @return [Array<Symbol>]
       #
       VALID_TYPES = [
-        :lvar,
-        :ivar,
+        :arg,
+        :blockarg,
+        :const,
         :cvar,
         :gvar,
-        :const,
-        :method,
         :instance_method,
-        :member,
+        :ivar,
         :keyword,
-        :arg,
         :kwoptarg,
+        :lvar,
+        :member,
+        :method,
         :optarg,
         :restarg,
-        :blockarg
+        :unknown
       ].freeze
 
       attr_reader :update_parents,
@@ -114,6 +115,15 @@ module RubyLint
         :type
 
       attr_accessor :instance_type, :parents, :reference_amount
+
+      ##
+      # Creates an object that represents an unknown value.
+      #
+      # @return [RubyLint::Definition::RubyObject]
+      #
+      def self.create_unknown
+        return new(:type => :unknown, :name => 'unknown')
+      end
 
       ##
       # @example
@@ -509,7 +519,7 @@ module RubyLint
       # @param [String] name
       # @param [Mixed] value
       #
-      def define_global_variable(name, value = nil)
+      def define_global_variable(name, value = self.class.create_unknown)
         return add_child_definition(:gvar, name, value)
       end
 
@@ -607,7 +617,7 @@ module RubyLint
         definition = self.class.new(
           :name    => name,
           :type    => type,
-          :value   => nil,
+          :value   => value,
           :parents => [self],
           &block
         )

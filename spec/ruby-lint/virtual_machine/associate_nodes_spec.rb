@@ -35,17 +35,25 @@ describe RubyLint::VirtualMachine do
     example 'should not add associations for methods called on methods' do
       associations = build_associations('foo.bar')
       nodes        = associations.keys
+      values       = associations.values
 
-      nodes.length.should  == 1
+      nodes.length.should  == 2
       nodes[0].type.should == :root
+      nodes[1].type.should == :send
+
+      values[1].type.should == :unknown
     end
 
     example 'should not add associations for stacked methods with arguments' do
       associations = build_associations('foo.bar(:baz)')
       nodes        = associations.keys
+      values       = associations.values
 
-      nodes.length.should  == 1
+      nodes.length.should  == 2
       nodes[0].type.should == :root
+      nodes[1].type.should == :send
+
+      values[1].type.should == :unknown
     end
   end
 end

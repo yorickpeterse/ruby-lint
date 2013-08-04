@@ -34,6 +34,16 @@ module RubyLint
       def name
         return const? ? children[-1].to_s : children[0].to_s
       end
+
+      ##
+      # Similar to `#inspect` but formats the value so that it fits on a single
+      # line.
+      #
+      # @return [String]
+      #
+      def inspect_oneline
+        return inspect.gsub(/\s*\n\s*/, ' ')
+      end
     end # Node
   end # AST
 end # RubyLint

@@ -39,4 +39,14 @@ describe RubyLint::Runner do
 
     output.should =~ /undefined method foobar on an instance of User/
   end
+
+  example 'associating nodes with external definitions' do
+    files  = [fixture_path('associating.rb')]
+    dirs   = [fixture_path('../../lib')]
+    config = RubyLint::Configuration.new(:directories => dirs)
+    runner = RubyLint::Runner.new(config)
+    output = runner.analyze(files)
+
+    output.empty?.should == true
+  end
 end

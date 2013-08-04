@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe 'Using return values in assignments' do
-  it 'should assign a return value' do
+  example 'assign a return value' do
     code  = 'word = String.new'
     defs  = build_definitions(code)
     value = defs.lookup(:lvar, 'word').value
@@ -13,7 +13,7 @@ describe 'Using return values in assignments' do
     value.instance?.should == true
   end
 
-  it 'should assign a nil value for a missing return value' do
+  example 'assign a nil value for a missing return value' do
     code = <<-CODE
 def example
 end
@@ -23,10 +23,10 @@ number = example
 
     defs = build_definitions(code)
 
-    defs.lookup(:lvar, 'number').value.nil?.should == true
+    defs.lookup(:lvar, 'number').value.type.should == :unknown
   end
 
-  it 'should assign return values when chaining method calls' do
+  example 'assign return values when chaining method calls' do
     code  = 'word = String.new.initialize.initialize'
     defs  = build_definitions(code)
     value = defs.lookup(:lvar, 'word').value

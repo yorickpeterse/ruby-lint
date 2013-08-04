@@ -47,7 +47,6 @@ module RubyLint
   # The following extra options can be set in the constructor:
   #
   # * `:comments`: a Hash containing the comments for various AST nodes.
-  # * `:extra_definitions`: An Array of extra definitions to inherit from.
   #
   # @!attribute [r] associations
   #  @return [Hash]
@@ -76,7 +75,6 @@ module RubyLint
     attr_reader :associations,
       :comments,
       :definitions,
-      :extra_definitions,
       :docstring_tags,
       :value_stack,
       :variable_stack
@@ -101,7 +99,7 @@ module RubyLint
     #
     # @return [Array]
     #
-    PRIMITIVES = [:int, :float, :str, :sym, :true, :false]
+    PRIMITIVES = [:int, :float, :str, :sym, :true, :false, :nil]
 
     ##
     # Returns a Hash containing the method call evaluators to use for `(send)`
@@ -192,8 +190,7 @@ module RubyLint
     # Called after a new instance of the virtual machine has been created.
     #
     def after_initialize
-      @comments          ||= {}
-      @extra_definitions ||= []
+      @comments ||= {}
 
       @associations   = {}
       @definitions    = initial_definitions
@@ -209,14 +206,19 @@ module RubyLint
     end
 
     ##
-    # Processes the given AST. Constants are autoloaded first.
+    # Processes the given AST or a collection of AST nodes.
     #
     # @see #iterate
+    # @param [Array|RubyLint::AST::Node] ast
     #
     def run(ast)
-      self.class.constant_loader.iterate(ast)
+      ast = [ast] unless ast.is_a?(Array)
 
-      iterate(ast)
+      ast.each do |node|
+        self.class.constant_loader.iterate(node)
+
+        iterate(node)
+      end
 
       freeze
     end
@@ -384,6 +386,17 @@ module RubyLint
         increment_reference_amount(node)
         push_variable_value(node)
       end
+    end
+
+    ##
+    # Called whenever a magic regexp global variable is referenced (e.g. `$1`).
+    #
+    # @param [RubyLint::AST::Node] node
+    #
+    def on_nth_ref(node)
+      var = definitions.lookup(:gvar, "$#{node.children[0]}")
+
+      push_value(var.value)
     end
 
     ##
@@ -677,9 +690,20 @@ module RubyLint
 
       receiver_definition = values.first
 
+      if arguments.length != args_length
+        raise <<-EOF
+Not enough argument definitions for #{node.inspect_oneline}.
+Location: #{node.file} on line #{node.line}, column #{node.column}
+Expected: #{args_length}
+Received: #{arguments.length}
+        EOF
+      end
+
       # If the receiver doesn't exist there's no point in associating a context
       # with it.
       if receiver and !receiver_definition
+        push_unknown_value
+
         return
       end
 
@@ -708,7 +732,9 @@ module RubyLint
       if context and context.method_defined?(name)
         retval = context.call_method(name)
 
-        push_value(retval)
+        retval ? push_value(retval) : push_unknown_value
+      else
+        push_unknown_value
       end
     end
 
@@ -751,12 +777,10 @@ module RubyLint
     # @return [RubyLint::Definition::RubyObject]
     #
     def initial_definitions
-      parents = [RubyLint::VirtualMachine.global_scope] + extra_definitions
-
       definitions = Definition::RubyObject.new(
         :name          => 'root',
         :type          => :root,
-        :parents       => parents,
+        :parents       => [self.class.global_scope],
         :instance_type => :instance
       )
 
@@ -867,6 +891,13 @@ module RubyLint
     #
     def push_value(definition)
       value_stack.push(definition) if definition && !value_stack.empty?
+    end
+
+    ##
+    # Pushes an unknown value object onto the value stack.
+    #
+    def push_unknown_value
+      push_value(Definition::RubyObject.create_unknown)
     end
 
     ##
@@ -987,6 +1018,8 @@ module RubyLint
         definition = current_scope.lookup(node.type, node.name)
       end
 
+      definition = Definition::RubyObject.create_unknown unless definition
+
       return definition
     end
 
@@ -1073,10 +1106,7 @@ module RubyLint
     # @return [RubyLint::Definition::RubyObject]
     #
     def create_unknown_with_method(name)
-      definition = Definition::RubyObject.new(
-        :name => 'UnknownType',
-        :type => :const
-      )
+      definition = Definition::RubyObject.create_unknown
 
       definition.send("define_#{@method_type}", name)
 

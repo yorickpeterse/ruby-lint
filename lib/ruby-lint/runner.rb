@@ -41,9 +41,15 @@ module RubyLint
       files.each do |file|
         ast, comments = parse_file(parser, file)
 
-        definitions = process_external_files(configuration.directories, ast)
+        extra_ast, extra_comments = process_external_files(
+          configuration.directories,
+          ast
+        )
 
-        vm = run_vm(ast, comments, definitions)
+        nodes    = extra_ast + [ast]
+        comments = comments.merge(extra_comments)
+
+        vm = run_vm(nodes, comments)
 
         run_analysis(ast, vm, report)
       end
@@ -66,23 +72,28 @@ module RubyLint
     end
 
     ##
-    # Processes external Ruby files using {RubyLint::FileLoader}.
+    # Processes external Ruby files using {RubyLint::FileLoader}. The return
+    # value is a collection of AST nodes and a Hash containing all the
+    # associated comments.
     #
     # @param [Array] directories
     # @param [RubyLint::AST::Node] root_ast
-    # @return [RubyLint::Definition::RubyObject]
+    # @return [Array]
     #
     def process_external_files(directories, root_ast)
-      loader      = FileLoader.new(:directories => directories)
-      definitions = []
+      loader   = FileLoader.new(:directories => directories)
+      nodes    = []
+      comments = {}
 
       loader.iterate(root_ast)
 
-      loader.nodes.each do |(ast, comments)|
-        definitions << run_vm(ast, comments).definitions
+      loader.nodes.each do |(ast, cmts)|
+        nodes << ast
+
+        comments = comments.merge(cmts)
       end
 
-      return definitions
+      return nodes, comments
     end
 
     ##
@@ -99,14 +110,10 @@ module RubyLint
     ##
     # @param [Array] nodes
     # @param [Hash] comments
-    # @param [Array] extra_definitions
     # @return [RubyLint::VirtualMachine]
     #
-    def run_vm(nodes, comments, extra_definitions = [])
-      vm = RubyLint::VirtualMachine.new(
-        :comments          => comments,
-        :extra_definitions => extra_definitions
-      )
+    def run_vm(nodes, comments)
+      vm = RubyLint::VirtualMachine.new(:comments => comments)
 
       vm.run(nodes)
 
