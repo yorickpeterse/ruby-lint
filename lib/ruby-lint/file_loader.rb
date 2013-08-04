@@ -32,8 +32,11 @@ module RubyLint
     #
     def on_const(node)
       constant_path = constant_segments(node).join('::')
+      files         = file_scanner.scan(constant_path)
 
-      file_scanner.scan(constant_path).each do |path|
+      files.delete(node.file)
+
+      files.each do |path|
         code          = File.read(path)
         ast, comments = parser.parse(code, path)
 
