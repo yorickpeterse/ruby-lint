@@ -33,6 +33,18 @@ end
     block_def.lookup(:lvar, 'number').value.value.should == 10
   end
 
+  example 'blocks should be instances' do
+    code = <<-CODE
+example do
+end
+    CODE
+
+    block = build_associations(code).to_a.last.last
+
+    block.type.should          == :block
+    block.instance_type.should == :instance
+  end
+
   example 'update outer variables modified in the block' do
     code = <<-CODE
 number   = 10
