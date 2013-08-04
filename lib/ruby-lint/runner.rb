@@ -70,7 +70,7 @@ module RubyLint
     #
     # @param [Array] directories
     # @param [RubyLint::AST::Node] root_ast
-    # @return [Array]
+    # @return [RubyLint::Definition::RubyObject]
     #
     def process_external_files(directories, root_ast)
       loader      = FileLoader.new(:directories => directories)
