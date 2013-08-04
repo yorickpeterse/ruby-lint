@@ -58,6 +58,7 @@ Examples:
   on :l=, :levels=, 'The reporting levels to enable', :as => Array
   on :p=, :presenter=, 'The presenter to use', :as => String
   on :a=, :analysis=, 'The analysis classes to use', :as => Array
+  on :b, :benchmark, 'Enables benchmarking mode'
 
   ##
   # Returns an Array containing the file paths that exist. If a non existing
@@ -110,6 +111,7 @@ Examples:
   run do |opts, args|
     abort 'You must specify at least one file to analyze' if args.empty?
 
+    start_time    = Time.now.to_f
     files         = extract_files(args)
     configuration = RubyLint::Configuration.load_from_file
 
@@ -121,5 +123,17 @@ Examples:
     output = runner.analyze(files)
 
     output_destination.puts output unless output.empty?
+
+    exec_time = Time.now.to_f - start_time
+
+    if opts[:benchmark]
+      memory_kb = `ps -o rss= #{Process.pid}`.strip.to_f
+      memory_mb = memory_kb / 1024
+
+      puts unless output.empty?
+
+      puts "Execution time: #{exec_time.round(2)} seconds"
+      puts "Memory usage: #{memory_mb.round(2)} MB (#{memory_kb.round(2)} KB)"
+    end
   end # run do |opts, args|
 end # RubyLint::CLI.options.command
