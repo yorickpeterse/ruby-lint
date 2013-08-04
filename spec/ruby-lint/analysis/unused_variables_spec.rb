@@ -12,7 +12,7 @@ describe RubyLint::Analysis::UnusedVariables do
     entry.message.should == 'unused local variable number'
   end
 
-  example 'not warn for used variables' do
+  example 'do not warn for used variables' do
     code = <<-CODE
 number = 1
 
@@ -35,7 +35,7 @@ number
     entry.message.should == 'unused constant NUMBER'
   end
 
-  example 'not warn for used constants' do
+  example 'do not warn for used constants' do
     code = <<-CODE
 A = 10
 
@@ -85,7 +85,7 @@ end
     entry.message.should == 'unused local variable number'
   end
 
-  example 'not add a warning when assigning a variable to another variable' do
+  example 'do not add a warning when assigning a variable to another variable' do
     code = <<-CODE
 first  = 10
 second = first
@@ -102,13 +102,25 @@ second = first
     entry.message.should == 'unused local variable second'
   end
 
-  example 'not add warnings when defining classes and modules' do
+  example 'do not add warnings when defining classes and modules' do
     code = <<-CODE
 module A
 end
 
 class B
 end
+    CODE
+
+    report = build_report(code, RubyLint::Analysis::UnusedVariables)
+
+    report.entries.empty?.should == true
+  end
+
+  example 'ignore ivars if there is a corresponding method' do
+    code = <<-CODE
+@number = 10
+
+def number; end
     CODE
 
     report = build_report(code, RubyLint::Analysis::UnusedVariables)

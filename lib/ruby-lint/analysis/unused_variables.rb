@@ -15,7 +15,6 @@ module RubyLint
       VARIABLE_TYPES = {
         :lvasgn => 'local variable',
         :gvasgn => 'global variable',
-        :ivasgn => 'instance variable',
         :cvasgn => 'class variable'
       }
 
@@ -28,6 +27,20 @@ module RubyLint
           if variable and !variable.used?
             warning("unused #{label} #{name}", node)
           end
+        end
+      end
+
+      ##
+      # @param [RubyLint::AST::Node] node
+      #
+      def on_ivasgn(node)
+        name        = node.name
+        variable    = current_scope.lookup(:ivar, name)
+        method_type = current_scope.method_call_type
+        getter      = current_scope.lookup(method_type, name[1..-1])
+
+        if variable and !variable.used? and !getter
+          warning("unused instance variable #{name}", node)
         end
       end
 

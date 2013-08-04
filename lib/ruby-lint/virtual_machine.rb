@@ -195,7 +195,6 @@ module RubyLint
       @associations   = {}
       @definitions    = initial_definitions
       @scopes         = [@definitions]
-      @in_sclass      = false
       @value_stack    = NestedStack.new
       @variable_stack = NestedStack.new
       @ignored_nodes  = []
