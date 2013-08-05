@@ -35,9 +35,7 @@ module RubyLint
           return if scope.parents.empty?
         end
 
-        exists = scope.has_definition?(scope.method_call_type, name)
-
-        unless exists
+        unless has_definition?(scope, name)
           message = error_for(name, receiver, scope)
 
           error(message, node)
@@ -45,6 +43,24 @@ module RubyLint
       end
 
       private
+
+      ##
+      # @param [RubyLint::Definition::RubyObject] scope
+      # @param [String] name
+      #
+      def has_definition?(scope, name)
+        exists = scope.has_definition?(scope.method_call_type, name)
+
+        # Due to the way `parser` wraps block nodes (`(block (send) ...)`
+        # opposed to `(send ... (block))`) we'll try to find the method in the
+        # previous scope if we can't find it in the current block scope.
+        if !exists and scope.block?
+          prev   = previous_scope
+          exists = prev.has_definition?(prev.method_call_type, name)
+        end
+
+        return exists
+      end
 
       ##
       # Determines what error message to use for a method call.

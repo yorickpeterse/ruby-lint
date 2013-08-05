@@ -67,6 +67,13 @@ module RubyLint
       end
 
       ##
+      # @return [RubyLint::Definition::RubyObject]
+      #
+      def previous_scope
+        return @scopes[-2]
+      end
+
+      ##
       # Sets the current scope to the definition associated with the given
       # node.
       #

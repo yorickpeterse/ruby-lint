@@ -249,4 +249,23 @@ end
       report.entries.empty?.should == true
     end
   end
+
+  example 'properly handle method lookups in blocks' do
+    code = <<-CODE
+class Foo
+  def baz
+  end
+
+  [10, 20].each do
+    define_method(:example) do
+      baz
+    end
+  end
+end
+    CODE
+
+    report = build_report(code, RubyLint::Analysis::UndefinedMethods)
+
+    report.entries.empty?.should == true
+  end
 end
