@@ -26,7 +26,7 @@ module RubyLint
           :name           => 'block',
           :type           => :block,
           :parents        => parents,
-          :instance_type  => :instance,
+          :instance_type  => current_scope.instance_type,
           :update_parents => [:lvar, :ivar, :cvar, :gvar]
         )
       end

@@ -21,6 +21,13 @@ RubyLint::VirtualMachine.global_scope.define_constant('Module') do |klass|
     end
   end
 
+  klass.define_method('define_method') do |method|
+    method.define_argument('name')
+    method.define_optional_argument('method')
+
+    method.define_block_argument('block')
+  end
+
   klass.define_instance_method('<') do |method|
     method.define_argument('other')
   end

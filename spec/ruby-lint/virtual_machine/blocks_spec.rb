@@ -33,7 +33,7 @@ end
     block_def.lookup(:lvar, 'number').value.value.should == 10
   end
 
-  example 'blocks should be instances' do
+  example 'blocks should be instances by default' do
     code = <<-CODE
 example do
 end
@@ -43,6 +43,20 @@ end
 
     block.type.should          == :block
     block.instance_type.should == :instance
+  end
+
+  example 'blocks should inherit the instance type from the outer scope' do
+    code = <<-CODE
+class A
+  example do
+  end
+end
+    CODE
+
+    block = build_associations(code).to_a.last.last
+
+    block.type.should          == :block
+    block.instance_type.should == :class
   end
 
   example 'update outer variables modified in the block' do
