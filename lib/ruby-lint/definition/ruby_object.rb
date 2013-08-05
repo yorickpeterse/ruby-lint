@@ -258,11 +258,7 @@ module RubyLint
         # takes the parents themselves also into account.
         elsif lookup_parent?(type) and lookup_parent
           parents.each do |parent|
-            if parent.type == type and parent.name == name
-              parent_definition = parent
-            else
-              parent_definition = parent.lookup(type, name)
-            end
+            parent_definition = determine_parent(parent, type, name)
 
             if parent_definition
               found = parent_definition
@@ -603,6 +599,24 @@ module RubyLint
         parents.each do |parent|
           parent.add(type, name, value) if parent.has_definition?(type, name)
         end
+      end
+
+      ##
+      # Determines what parent definition to use.
+      #
+      # @param [RubyLint::Definition::RubyObject] parent
+      # @param [Symbol] type
+      # @param [String] name
+      # @return [RubyLint::Definition::RubyObject]
+      #
+      def determine_parent(parent, type, name)
+        if parent.type == type and parent.name == name
+          parent_definition = parent
+        else
+          parent_definition = parent.lookup(type, name)
+        end
+
+        return parent_definition
       end
 
       ##
