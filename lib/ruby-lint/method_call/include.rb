@@ -23,7 +23,7 @@ module RubyLint
       ##
       # @see Base#evaluate
       #
-      def evaluate(arguments, context)
+      def evaluate(arguments, context, block = nil)
         node_name = node.children[1]
 
         arguments.each do |source|

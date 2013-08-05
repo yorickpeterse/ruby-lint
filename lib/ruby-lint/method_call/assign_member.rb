@@ -11,7 +11,7 @@ module RubyLint
       ##
       # @see Base#evaluate
       #
-      def evaluate(arguments, context)
+      def evaluate(arguments, context, block = nil)
         *members, values = arguments
         member_values    = prepare_values(values)
 

@@ -31,6 +31,7 @@ require_relative 'ruby-lint/method_call/assign_member'
 require_relative 'ruby-lint/method_call/include'
 require_relative 'ruby-lint/method_call/alias'
 require_relative 'ruby-lint/method_call/attribute'
+require_relative 'ruby-lint/method_call/define_method'
 
 require_relative 'ruby-lint/iterator'
 require_relative 'ruby-lint/virtual_machine'

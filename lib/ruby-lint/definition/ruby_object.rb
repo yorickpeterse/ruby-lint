@@ -475,6 +475,14 @@ module RubyLint
       end
 
       ##
+      # Changes the instance type of the current definition to `:instance`. If
+      # you want to return a new definition use {#instance} instead.
+      #
+      def instance!
+        @instance_type = :instance
+      end
+
+      ##
       # Returns `true` if the object was referenced more than once.
       #
       # @return [TrueClass|FalseClass]

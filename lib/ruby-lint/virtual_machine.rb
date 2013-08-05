@@ -115,7 +115,8 @@ module RubyLint
       'attr'          => MethodCall::Attribute,
       'attr_reader'   => MethodCall::Attribute,
       'attr_writer'   => MethodCall::Attribute,
-      'attr_accessor' => MethodCall::Attribute
+      'attr_accessor' => MethodCall::Attribute,
+      'define_method' => MethodCall::DefineMethod
     }
 
     ##
@@ -686,6 +687,7 @@ module RubyLint
       args_length = node.children[2..-1].length
       values      = value_stack.pop
       arguments   = values.pop(args_length)
+      block       = nil
 
       receiver_definition = values.first
 
@@ -713,13 +715,16 @@ Received: #{arguments.length}
 
         # `parser` wraps (block) nodes around (send) calls which is a bit
         # inconvenient
-        context = previous_scope if context.block?
+        if context.block?
+          block   = context
+          context = previous_scope
+        end
       end
 
       if SEND_MAPPING[name]
         evaluator = SEND_MAPPING[name].new(node, self)
 
-        evaluator.evaluate(arguments, context)
+        evaluator.evaluate(arguments, context, block)
       end
 
       # Associate the receiver node with the context so that it becomes

@@ -8,7 +8,7 @@ module RubyLint
       ##
       # @see Base#evaluate
       #
-      def evaluate(arguments, context)
+      def evaluate(arguments, context, block = nil)
         method = "evaluate_#{node.children[1]}"
 
         send(method, arguments, context)

@@ -25,8 +25,9 @@ module RubyLint
       ##
       # @param [Array] arguments
       # @param [RubyLint::Definition::RubyObject] context
+      # @param [RubyLint::Definition::RubyObject] block
       #
-      def evaluate(arguments, context)
+      def evaluate(arguments, context, block = nil)
         raise NotImplementedError, '#evaluate must be implemented'
       end
     end # Base

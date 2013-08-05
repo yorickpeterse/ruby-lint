@@ -8,7 +8,7 @@ module RubyLint
       ##
       # @see Base#evaluate
       #
-      def evaluate(arguments, context)
+      def evaluate(arguments, context, block = nil)
         if node.type == :alias and node.children[0].gvar?
           alias_gvar(arguments, context)
         else
