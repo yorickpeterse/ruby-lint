@@ -81,7 +81,11 @@ module RubyLint
     # @return [Array]
     #
     def process_external_files(directories, root_ast)
-      loader   = FileLoader.new(:directories => directories)
+      loader = FileLoader.new(
+        :directories => directories,
+        :debug       => configuration.debug
+      )
+
       nodes    = []
       comments = {}
 

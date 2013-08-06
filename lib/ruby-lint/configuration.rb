@@ -16,8 +16,12 @@ module RubyLint
   # @!attribute [r] directories
   #  @return [Array]
   #
+  # @!attribute [rw] debug
+  #  @return [TrueClass|FalseClass]
+  #
   class Configuration
     attr_reader :analysis_classes, :report_levels, :presenter, :directories
+    attr_accessor :debug
 
     ##
     # Returns an Array of locations from which to load configuration files.
@@ -79,6 +83,8 @@ module RubyLint
     # @param [Hash] options
     #
     def initialize(options = {})
+      @debug = false
+
       options.each do |key, value|
         setter = "#{key}="
 

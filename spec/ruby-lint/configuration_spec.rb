@@ -17,6 +17,10 @@ describe RubyLint::Configuration do
     example 'set the default analysis classes' do
       @configuration.default_analysis_classes.empty?.should == false
     end
+
+    example 'set the default debug mode' do
+      @configuration.debug.should == false
+    end
   end
 
   describe 'setting options via the constructor' do
@@ -38,6 +42,12 @@ describe RubyLint::Configuration do
       )
 
       conf.analysis_classes.should == [RubyLint::Analysis::UndefinedMethods]
+    end
+
+    example 'set the debug mode' do
+      conf = RubyLint::Configuration.new(:debug => true)
+
+      conf.debug.should == true
     end
   end
 

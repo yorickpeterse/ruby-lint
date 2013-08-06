@@ -59,6 +59,7 @@ Examples:
   on :p=, :presenter=, 'The presenter to use', :as => String
   on :a=, :analysis=, 'The analysis classes to use', :as => Array
   on :b, :benchmark, 'Enables benchmarking mode'
+  on :d, :debug, 'Displays debugging output in STDERR'
 
   ##
   # Returns an Array containing the file paths that exist. If a non existing
@@ -90,7 +91,8 @@ Examples:
     return {
       :levels    => :report_levels=,
       :presenter => :presenter=,
-      :analysis  => :analysis_classes=
+      :analysis  => :analysis_classes=,
+      :debug     => :debug=
     }
   end
 
