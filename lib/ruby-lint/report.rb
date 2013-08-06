@@ -15,28 +15,22 @@ module RubyLint
   # * info
   #
   # Unless other levels are specified when creating an instance these levels
-  # are used for each new instance.
-  #
-  # Adding available levels can be done as following:
-  #
-  #     RubyLint::Report.add_level(:pedantic)
-  #
-  # Retrieving a list of available levels in turn is done as following:
-  #
-  #     RubyLint::Report.levels # => [:error, :warning, :info, :pedantic]
-  #
-  # Each level is a Symbol and will be cased to one automatically.
+  # are used for each new instance. Extra levels can be specified in the
+  # constructor of this class.
   #
   # ## Adding Entries
   #
-  # Adding entries can be done by either calling {RubyLint::Report#add} or a
-  # method for the corresponding reporting level:
+  # Adding entries can be done by either calling {RubyLint::Report#add}:
   #
   #     report = RubyLint::Report.new
   #
-  #     # Both these calls do the same.
-  #     report.add(:info, 'informational message', 1, 2, 'file.rb')
-  #     report.info('informational message', 1, 2, 'file.rb')
+  #     report.add(
+  #       :level   => :info,
+  #       :message => 'informational message',
+  #       :line    => 1,
+  #       :column  => 2,
+  #       :file    => 'file.rb'
+  #     )
   #
   # When using {RubyLint::Report#add} any invalid/disabled reporting levels
   # will be silently ignored. This makes it easier for code to add entries of a
@@ -44,6 +38,7 @@ module RubyLint
   #
   # @!attribute [r] entries
   #  @return [Array] The entries of the report.
+  #
   # @!attribute [r] levels
   #  @return [Array] The enabled levels of the report.
   #
