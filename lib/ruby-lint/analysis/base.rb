@@ -97,29 +97,28 @@ module RubyLint
       ##
       # Adds an error message to the report.
       #
-      # @param [String] message The message to add.
-      # @param [RubyLint::Node] node The node for which to add the message.
+      # @see #add_message
       #
-      def error(message, node)
-        add_message(:error, message, node)
+      def error(*args)
+        add_message(:error, *args)
       end
 
       ##
       # Adds a warning message to the report.
       #
-      # @see RubyLint::Callback#error
+      # @see #add_message
       #
-      def warning(message, node)
-        add_message(:warning, message, node)
+      def warning(*args)
+        add_message(:warning, *args)
       end
 
       ##
       # Adds a regular informational message to the report.
       #
-      # @see RubyLint::Callback#error
+      # @see #add_message
       #
-      def info(message, node)
-        add_message(:info, message, node)
+      def info(*args)
+        add_message(:info, *args)
       end
 
       ##
@@ -128,16 +127,18 @@ module RubyLint
       # @param [Symbol] level
       # @param [String] message
       # @param [String] node
+      # @param [Hash] metadata
       #
-      def add_message(level, message, node)
+      def add_message(level, message, node, metadata = {})
         return unless report
 
         report.add(
-          :level   => level,
-          :message => message,
-          :line    => node.line,
-          :column  => node.column,
-          :file    => node.file
+          :level    => level,
+          :message  => message,
+          :line     => node.line,
+          :column   => node.column,
+          :file     => node.file,
+          :metadata => {:node => node}.merge(metadata)
         )
       end
     end # Base
