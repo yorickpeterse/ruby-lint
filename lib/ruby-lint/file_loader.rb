@@ -42,14 +42,21 @@ module RubyLint
       files.each do |path|
         log_file(path)
 
-        code          = File.read(path)
-        ast, comments = parser.parse(code, path)
+        ast, comments = parse_file(path)
 
-        @nodes << [ast, comments]
+        nodes << [ast, comments]
       end
     end
 
     private
+
+    ##
+    # @param [String] path
+    # @return [Array]
+    #
+    def parse_file(path)
+      return parser.parse(File.read(path), path)
+    end
 
     ##
     # @param [String] path
