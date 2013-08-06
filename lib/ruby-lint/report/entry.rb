@@ -53,6 +53,7 @@ module RubyLint
           :line     => line,
           :column   => column,
           :file     => file,
+          :filename => filename,
           :metadata => metadata
         }
       end

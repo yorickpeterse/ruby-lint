@@ -10,7 +10,8 @@ module RubyLint
       #
       # @return [String]
       #
-      FORMAT = '%{file}: %{level}: line %{line}, column %{column}: %{message}'
+      FORMAT = '%{filename}: %{level}: line %{line}, column %{column}: ' \
+        '%{message}'
 
       ##
       # @param [String] format The format to use for each entry.
@@ -27,13 +28,7 @@ module RubyLint
         entries = []
 
         report.entries.sort.each do |entry|
-          entries << @format % {
-            :file    => File.basename(entry.file),
-            :level   => entry.level,
-            :line    => entry.line,
-            :column  => entry.column,
-            :message => entry.message
-          }
+          entries << @format % entry.attributes
         end
 
         return entries.join("\n")
