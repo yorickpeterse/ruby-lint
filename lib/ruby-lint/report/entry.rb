@@ -6,31 +6,32 @@ module RubyLint
     #
     # @!attribute [r] level
     #  @return [Symbol]
+    #
     # @!attribute [r] message
     #  @return [String]
+    #
     # @!attribute [r] line
     #  @return [Numeric]
+    #
     # @!attribute [r] column
     #  @return [Numeric]
+    #
     # @!attribute [r] file
     #  @return [String]
     #
+    # @!attribute [r] metadata
+    #  @return [Hash]
+    #
     class Entry
-      attr_reader :level, :message, :line, :column, :file
+      attr_reader :level, :message, :line, :column, :file, :metadata
 
       ##
-      # @param [Symbol] level
-      # @param [String] message
-      # @param [Numeric] line
-      # @param [Numeric] column
-      # @param [String] file
+      # @param [Hash] attributes
       #
-      def initialize(level, message, line, column, file)
-        @level   = level
-        @message = message
-        @line    = line
-        @column  = column
-        @file    = file
+      def initialize(attributes = {})
+        attributes.each do |key, value|
+          instance_variable_set("@#{key}", value)
+        end
       end
 
       ##
@@ -47,11 +48,12 @@ module RubyLint
       #
       def attributes
         return {
-          :level   => level,
-          :message => message,
-          :line    => line,
-          :column  => column,
-          :file    => file
+          :level    => level,
+          :message  => message,
+          :line     => line,
+          :column   => column,
+          :file     => file,
+          :metadata => metadata
         }
       end
 

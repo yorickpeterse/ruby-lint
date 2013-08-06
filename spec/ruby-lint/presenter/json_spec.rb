@@ -6,10 +6,37 @@ describe RubyLint::Presenter::JSON do
     report    = RubyLint::Report.new
     presenter = RubyLint::Presenter::JSON.new
 
-    report.error('error message', 1, 1, 'a.rb')
-    report.error('error message 2', 2, 1, 'a.rb')
-    report.warning('warning message', 1, 1, 'b.rb')
-    report.info('info message', 1, 1, 'c.rb')
+    report.add(
+      :level   => :error,
+      :message => 'error message',
+      :line    => 1,
+      :column  => 1,
+      :file    => 'a.rb'
+    )
+
+    report.add(
+      :level   => :error,
+      :message => 'error message 2',
+      :line    => 2,
+      :column  => 1,
+      :file    => 'a.rb'
+    )
+
+    report.add(
+      :level   => :warning,
+      :message => 'warning message',
+      :line    => 1,
+      :column  => 1,
+      :file    => 'b.rb'
+    )
+
+    report.add(
+      :level   => :info,
+      :message => 'info message',
+      :line    => 1,
+      :column  => 1,
+      :file    => 'c.rb'
+    )
 
     output  = presenter.present(report)
     decoded = JSON(output)

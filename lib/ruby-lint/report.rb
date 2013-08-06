@@ -68,17 +68,16 @@ module RubyLint
     ##
     # Adds a new entry to the report.
     #
-    # @param [#to_sym] level
-    # @param [String] message
-    # @param [Numeric] line
-    # @param [Numeric] column
-    # @param [String] file
+    # @param [Hash] attributes
+    # @option attributes [Symbol] :level The level of the message.
     #
-    def add(level, message, line, column, file)
-      level = level.to_sym
+    # @see RubyLint::Report::Entry#initialize
+    #
+    def add(attributes)
+      level = attributes[:level].to_sym
 
       if valid_level?(level)
-        @entries << Entry.new(level, message, line, column, file)
+        entries << Entry.new(attributes)
       end
     end
 
@@ -106,7 +105,7 @@ module RubyLint
     # @return [TrueClass|FalseClass]
     #
     def valid_level?(level)
-      return @levels.include?(level)
+      return levels.include?(level)
     end
   end # Report
 end # RubyLint

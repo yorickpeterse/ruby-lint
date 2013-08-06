@@ -132,7 +132,13 @@ module RubyLint
       def add_message(level, message, node)
         return unless report
 
-        report.add(level, message, node.line, node.column, node.file)
+        report.add(
+          :level   => level,
+          :message => message,
+          :line    => node.line,
+          :column  => node.column,
+          :file    => node.file
+        )
       end
     end # Base
   end # Analysis

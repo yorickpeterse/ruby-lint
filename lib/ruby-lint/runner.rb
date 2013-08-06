@@ -108,7 +108,13 @@ module RubyLint
       loc    = diagnostic.location
       buffer = loc.source_buffer
 
-      report.error(diagnostic.message, loc.line, loc.column, buffer.name)
+      report.add(
+        :level   => :error,
+        :message => diagnostic.message,
+        :line    => loc.line,
+        :column  => loc.column,
+        :file    => buffer.name
+      )
     end
 
     ##

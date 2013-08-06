@@ -3,11 +3,41 @@ require 'spec_helper'
 describe RubyLint::Report::Entry do
   example 'sort a list of entries' do
     entries = [
-      RubyLint::Report::Entry.new(:info, 'info', 2, 1, 'a.rb'),
-      RubyLint::Report::Entry.new(:error, 'error', 1, 1, 'a.rb'),
-      RubyLint::Report::Entry.new(:warning, 'warning', 3, 1, 'a.rb'),
-      RubyLint::Report::Entry.new(:warning, 'warning', 1, 1, 'b.rb'),
-      RubyLint::Report::Entry.new(:error, 'error', 1, 1, 'c.rb'),
+      RubyLint::Report::Entry.new(
+        :level   => :info,
+        :message => 'info',
+        :line    => 2,
+        :column  => 1,
+        :file    => 'a.rb'
+      ),
+      RubyLint::Report::Entry.new(
+        :level   => :error,
+        :message => 'error',
+        :line    => 1,
+        :column  => 1,
+        :file    => 'a.rb'
+      ),
+      RubyLint::Report::Entry.new(
+        :level   => :warning,
+        :message => 'warning',
+        :line    => 3,
+        :column  => 1,
+        :file    => 'a.rb'
+      ),
+      RubyLint::Report::Entry.new(
+        :level   => :warning,
+        :message => 'warning',
+        :line    => 1,
+        :column  => 1,
+        :file    => 'b.rb'
+      ),
+      RubyLint::Report::Entry.new(
+        :level   => :error,
+        :message => 'error',
+        :line    => 1,
+        :column  => 1,
+        :file    => 'c.rb'
+      ),
     ].sort
 
     entries[0].file.should  == 'a.rb'
