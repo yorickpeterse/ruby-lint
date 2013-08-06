@@ -81,23 +81,6 @@ module RubyLint
       end
     end
 
-    ##
-    # Makes it easier to add entries to a report by calling methods such as
-    # `#info` instead of `add(:info, ...)`.
-    #
-    # @param [Symbol] name
-    # @param [Array] args
-    # @param [Proc] block
-    # @raise [NoMethodError] Raised when an invalid method was called.
-    #
-    def method_missing(name, *args, &block)
-      if valid_level?(name)
-        return add(name, *args, &block)
-      else
-        raise NoMethodError, 'undefined method "%s" for %s' % [name, inspect]
-      end
-    end
-
     private
 
     ##
