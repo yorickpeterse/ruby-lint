@@ -9,6 +9,12 @@ RubyLint::VirtualMachine.global_scope.define_constant('BasicObject') do |klass|
     RubyLint::VirtualMachine.constant_proxy('Kernel')
   )
 
+  klass.define_constructors do |method|
+    method.returns do |object|
+      object.instance
+    end
+  end
+
   klass.define_method('__class_init__')
 
   klass.define_instance_method('!')
