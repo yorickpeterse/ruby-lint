@@ -127,9 +127,8 @@ module RubyLint
       # @param [Symbol] level
       # @param [String] message
       # @param [String] node
-      # @param [Hash] metadata
       #
-      def add_message(level, message, node, metadata = {})
+      def add_message(level, message, node)
         return unless report
 
         report.add(
@@ -138,7 +137,7 @@ module RubyLint
           :line     => node.line,
           :column   => node.column,
           :file     => node.file,
-          :metadata => {:node => node}.merge(metadata)
+          :node     => node
         )
       end
     end # Base

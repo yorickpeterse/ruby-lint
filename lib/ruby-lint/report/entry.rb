@@ -19,11 +19,11 @@ module RubyLint
     # @!attribute [r] file
     #  @return [String]
     #
-    # @!attribute [r] metadata
-    #  @return [Hash]
+    # @!attribute [r] node
+    #  @return [RubyLint::AST::Node]
     #
     class Entry
-      attr_reader :level, :message, :line, :column, :file, :metadata
+      attr_reader :level, :message, :line, :column, :file, :node
 
       ##
       # @param [Hash] attributes
@@ -54,7 +54,7 @@ module RubyLint
           :column   => column,
           :file     => file,
           :filename => filename,
-          :metadata => metadata
+          :node     => node
         }
       end
 
