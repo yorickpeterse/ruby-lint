@@ -920,11 +920,14 @@ Received: #{arguments.length}
     # @param [RubyLint::Definition::RubyObject] value
     #
     def assign_variable(type, name, value)
-      variable = Definition::RubyObject.new(
-        :type          => type,
-        :name          => name,
-        :value         => value,
-        :instance_type => :instance
+      existing   = current_scope.lookup(type, name)
+      ref_amount = existing ? existing.reference_amount + 1 : 0
+      variable   = Definition::RubyObject.new(
+        :type             => type,
+        :name             => name,
+        :value            => value,
+        :instance_type    => :instance,
+        :reference_amount => ref_amount
       )
 
       buffer_assignment_value(variable.value)

@@ -46,5 +46,16 @@ number1 &&= 10
       number.used?.should  == true
       number1.used?.should == true
     end
+
+    example 'overwriting a variable should increase the reference amount' do
+      code = <<-CODE
+number = 10
+number = 20
+      CODE
+
+      defs = build_definitions(code)
+
+      defs.lookup(:lvar, 'number').reference_amount.should == 1
+    end
   end
 end
