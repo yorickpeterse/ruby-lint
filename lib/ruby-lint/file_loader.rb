@@ -38,40 +38,52 @@ module RubyLint
     # @param [RubyLint::AST::Node] node
     #
     def on_const(node)
-      constant_path = constant_segments(node).join('::')
+      segments      = constant_segments(node)
+      constant_path = segments.join('::')
       files         = file_scanner.scan(constant_path)
 
-      paths << node.file
+      paths << node.file unless paths.include?(node.file)
 
       files.each do |path|
         next if paths.include?(path)
 
-        log_file(path)
+        debug_message("Processing extra file: #{path}")
 
-        ast, comments = parse_file(path)
-
-        nodes << [ast, comments]
-        paths << path
-
-        iterate(ast)
+        process_file(segments[-1], path)
       end
     end
 
     private
 
     ##
+    # @param [String] constant_name
     # @param [String] path
-    # @return [Array]
     #
-    def parse_file(path)
-      return parser.parse(File.read(path), path)
+    def process_file(constant_name, path)
+      code = File.read(path)
+
+      paths << path
+
+      unless code.include?(constant_name)
+        debug_message(
+          %Q{  Skipping since "#{constant_name}" was not found in this file}
+        )
+
+        return
+      end
+
+      ast, comments = parser.parse(code, path)
+
+      nodes << [ast, comments]
+
+      iterate(ast)
     end
 
     ##
-    # @param [String] path
+    # @param [String] message
     #
-    def log_file(path)
-      STDERR.puts "Parsing extra file: #{path}" if debug
+    def debug_message(message)
+      STDERR.puts(message) if debug
     end
   end # FileLoader
 end # RubyLint
