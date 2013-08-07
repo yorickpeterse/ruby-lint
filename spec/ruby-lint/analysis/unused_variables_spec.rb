@@ -127,4 +127,10 @@ def number; end
 
     report.entries.empty?.should == true
   end
+
+  example 'ignore local variables that start with an underscore' do
+    report = build_report('_number = 10', RubyLint::Analysis::UnusedVariables)
+
+    report.entries.empty?.should == true
+  end
 end

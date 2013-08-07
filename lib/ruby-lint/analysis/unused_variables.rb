@@ -21,11 +21,10 @@ module RubyLint
       VARIABLE_TYPES.each do |type, label|
         define_method("on_#{type}") do |node|
           type     = VirtualMachine::ASSIGNMENT_TYPES[node.type]
-          name     = node.name
-          variable = current_scope.lookup(type, name)
+          variable = current_scope.lookup(type, node.name)
 
-          if variable and !variable.used?
-            warning("unused #{label} #{name}", node)
+          if add_warning?(variable)
+            warning("unused #{label} #{variable.name}", node)
           end
         end
       end
@@ -56,6 +55,16 @@ module RubyLint
         if variable and !variable.used?
           warning("unused constant #{name}", node)
         end
+      end
+
+      private
+
+      ##
+      # @param [RubyLint::Definition::RubyObject] variable
+      # @return [TrueClass|FalseClass]
+      #
+      def add_warning?(variable)
+        return variable && !variable.used? && variable.name[0] != '_'
       end
     end # UnusedVariables
   end # Analysis
