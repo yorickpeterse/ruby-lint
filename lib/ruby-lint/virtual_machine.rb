@@ -804,7 +804,7 @@ Received: #{arguments.length}
       builder    = definition_builder.new(node, current_scope, options)
       definition = builder.build
       scope      = builder.scope
-      existing   = scope.lookup(definition.type, definition.name)
+      existing   = scope.lookup(definition.type, definition.name, false)
 
       if existing
         definition = existing

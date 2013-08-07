@@ -86,6 +86,36 @@ end
         .is_a?(ruby_method) \
         .should == true
     end
+
+    example 'should not pollute modules in a different namespace' do
+      code = <<-CODE
+module Foo
+  module Parser
+  end
+
+  module Bar
+    module Parser
+      def foo
+      end
+    end
+  end
+end
+      CODE
+
+      defs = build_definitions(code)
+
+      first = defs.lookup(:const, 'Foo')
+        .lookup(:const, 'Parser')
+
+      second = defs.lookup(:const, 'Foo')
+        .lookup(:const, 'Bar')
+        .lookup(:const, 'Parser')
+
+      first.should_not == second
+
+      first.lookup(:instance_method, 'foo').is_a?(ruby_object).should  == false
+      second.lookup(:instance_method, 'foo').is_a?(ruby_object).should == true
+    end
   end
 
   describe 'including modules' do
