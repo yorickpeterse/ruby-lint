@@ -797,7 +797,7 @@ Received: #{arguments.length}
     # Defines a new module/class based on the supplied node.
     #
     # @param [RubyLint::Node] node
-    # @param [Class] definition_builder
+    # @param [RubyLint::DefinitionBuilder::Base] definition_builder
     # @param [Hash] options
     #
     def define_module(node, definition_builder, options = {})
