@@ -49,5 +49,17 @@ describe RubyLint::FileLoader do
 
       const.file.should == fixture_path('file_scanner/lib/example/user.rb')
     end
+
+    example 'recursively find dependencies' do
+      loader = RubyLint::FileLoader.new(:directories => [@lib_dir])
+      ast    = parse('Example::Recursive::Source')
+
+      loader.iterate(ast)
+
+      loader.nodes.length.should == 2
+
+      loader.nodes[1][0].children[0].file
+        .should == fixture_path('file_scanner/lib/example/recursive/target.rb')
+    end
   end
 end

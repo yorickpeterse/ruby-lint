@@ -16,10 +16,13 @@ module RubyLint
   # @!attribute [r] debug
   #  @return [TrueClass|FalseClass]
   #
+  # @!attribute [r] paths
+  #  @return [Array]
+  #
   class FileLoader < Iterator
     include Helper::ConstantPaths
 
-    attr_reader :file_scanner, :parser, :nodes, :comments, :debug
+    attr_reader :file_scanner, :parser, :nodes, :comments, :debug, :paths
 
     ##
     # Called after a new instance of this class is created.
@@ -28,6 +31,7 @@ module RubyLint
       @file_scanner = FileScanner.new(@directories)
       @parser       = Parser.new
       @nodes        = []
+      @paths        = []
     end
 
     ##
@@ -37,14 +41,19 @@ module RubyLint
       constant_path = constant_segments(node).join('::')
       files         = file_scanner.scan(constant_path)
 
-      files.delete(node.file)
+      paths << node.file
 
       files.each do |path|
+        next if paths.include?(path)
+
         log_file(path)
 
         ast, comments = parse_file(path)
 
         nodes << [ast, comments]
+        paths << path
+
+        iterate(ast)
       end
     end
 
