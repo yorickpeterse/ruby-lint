@@ -19,9 +19,12 @@ module RubyLint
   # @!attribute [rw] debug
   #  @return [TrueClass|FalseClass]
   #
+  # @!attribute [rw] ignore_paths
+  #  @return [Array]
+  #
   class Configuration
     attr_reader :analysis_classes, :report_levels, :presenter, :directories
-    attr_accessor :debug
+    attr_accessor :debug, :ignore_paths
 
     ##
     # Returns an Array of locations from which to load configuration files.
@@ -97,6 +100,7 @@ module RubyLint
       @report_levels    ||= default_report_levels
       @presenter        ||= default_presenter
       @directories      ||= default_directories
+      @ignore_paths     ||= []
     end
 
     ##

@@ -41,10 +41,7 @@ module RubyLint
       files.each do |file|
         ast, comments = parse_file(parser, file)
 
-        extra_ast, extra_comments = process_external_files(
-          configuration.directories,
-          ast
-        )
+        extra_ast, extra_comments = process_external_files(ast)
 
         nodes    = extra_ast + [ast]
         comments = comments.merge(extra_comments)
@@ -76,14 +73,14 @@ module RubyLint
     # value is a collection of AST nodes and a Hash containing all the
     # associated comments.
     #
-    # @param [Array] directories
     # @param [RubyLint::AST::Node] root_ast
     # @return [Array]
     #
-    def process_external_files(directories, root_ast)
+    def process_external_files(root_ast)
       loader = FileLoader.new(
-        :directories => directories,
-        :debug       => configuration.debug
+        :directories  => configuration.directories,
+        :ignore_paths => configuration.ignore_paths,
+        :debug        => configuration.debug
       )
 
       nodes    = []

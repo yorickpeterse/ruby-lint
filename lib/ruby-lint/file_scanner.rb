@@ -6,18 +6,23 @@ module RubyLint
   # @!attribut [r] directories
   #  @return [Array]
   #
+  # @!attribute [r] ignore
+  #  @return [Array]
+  #
   class FileScanner
-    attr_reader :directories
+    attr_reader :directories, :ignore
 
     ##
-    # @param [#each] directories A collection of base directories to search in.
+    # @param [Array] directories A collection of base directories to search in.
+    # @param [Array] ignore A list of paths to ignore.
     #
-    def initialize(directories = [Dir.pwd])
+    def initialize(directories = [Dir.pwd], ignore = [])
       unless directories.respond_to?(:each)
         raise TypeError, 'Directories must be specified as an Enumerable'
       end
 
       @directories = directories
+      @ignore      = ignore || []
     end
 
     ##
@@ -37,6 +42,12 @@ module RubyLint
       if paths.empty?
         segment = constant_to_dashed_path(constant)
         paths   = Dir.glob(glob_pattern(segment))
+      end
+
+      ignore.each do |pattern|
+        paths.reject! do |path|
+          path.include?(pattern)
+        end
       end
 
       # Ensure that the order is from top-level -> deeply nested files instead

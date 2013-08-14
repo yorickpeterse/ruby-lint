@@ -3,6 +3,13 @@ module RubyLint
   # {RubyLint::FileLoader} iterates over an AST and given a constant node will
   # try to find the corresponding filepath using {RubyLint::FileScanner}.
   #
+  # ## Options
+  #
+  # The following options must be set when creating an instance of this class:
+  #
+  # * `:directories`: the directories to scan for files.
+  # * `:ignore_paths`: a list of paths to ignore when scanning for files.
+  #
   # @!attribute [r] file_scanner
   #  @return [RubyLint::FileScanner]
   #
@@ -28,7 +35,7 @@ module RubyLint
     # Called after a new instance of this class is created.
     #
     def after_initialize
-      @file_scanner = FileScanner.new(@directories)
+      @file_scanner = FileScanner.new(@directories, @ignore_paths)
       @parser       = Parser.new
       @nodes        = []
       @paths        = Set.new

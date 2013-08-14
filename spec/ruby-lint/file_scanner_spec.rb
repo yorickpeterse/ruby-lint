@@ -38,4 +38,10 @@ describe RubyLint::FileScanner do
       fixture_path('file_scanner/rails/app/models/example/user.rb')
     ]
   end
+
+  example 'ignoring directories' do
+    scanner = RubyLint::FileScanner.new([@lib_dir], [@lib_dir])
+
+    scanner.scan('Example::User').empty?.should == true
+  end
 end
