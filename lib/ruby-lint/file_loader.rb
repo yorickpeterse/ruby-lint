@@ -17,7 +17,7 @@ module RubyLint
   #  @return [TrueClass|FalseClass]
   #
   # @!attribute [r] paths
-  #  @return [Array]
+  #  @return [Set]
   #
   class FileLoader < Iterator
     include Helper::ConstantPaths
