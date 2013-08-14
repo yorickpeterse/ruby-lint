@@ -1,6 +1,7 @@
 require 'parser'
 require 'parser/current'
 require 'yaml'
+require 'set'
 
 require_relative 'ruby-lint/extensions/string'
 

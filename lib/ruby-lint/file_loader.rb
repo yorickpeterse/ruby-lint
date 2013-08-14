@@ -31,7 +31,7 @@ module RubyLint
       @file_scanner = FileScanner.new(@directories)
       @parser       = Parser.new
       @nodes        = []
-      @paths        = []
+      @paths        = Set.new
     end
 
     ##
@@ -42,10 +42,12 @@ module RubyLint
       constant_path = segments.join('::')
       files         = file_scanner.scan(constant_path)
 
-      paths << node.file unless paths.include?(node.file)
+      paths << node.file
 
       files.each do |path|
         next if paths.include?(path)
+
+        paths << path
 
         debug_message("Processing extra file: #{path}")
 
@@ -62,8 +64,6 @@ module RubyLint
     def process_file(constant_name, path)
       code = File.read(path)
 
-      paths << path
-
       unless code.include?(constant_name)
         debug_message(
           %Q{  Skipping since "#{constant_name}" was not found in this file}
@@ -74,9 +74,9 @@ module RubyLint
 
       ast, comments = parser.parse(code, path)
 
-      nodes << [ast, comments]
-
       iterate(ast)
+
+      nodes << [ast, comments]
     end
 
     ##

@@ -15,7 +15,7 @@ describe RubyLint::FileLoader do
 
       loader.nodes.empty?.should == false
 
-      const = loader.nodes[0][0].children[0]
+      const = loader.nodes[1][0].children[0]
 
       const.file
         .should == fixture_path('file_scanner/rails/app/models/user.rb')
@@ -29,7 +29,7 @@ describe RubyLint::FileLoader do
 
       loader.nodes.empty?.should == false
 
-      const = loader.nodes[0][0].children[0]
+      const = loader.nodes[1][0].children[0]
 
       const.file
         .should == fixture_path('file_scanner/rails/app/models/example/user.rb')
@@ -56,10 +56,14 @@ describe RubyLint::FileLoader do
 
       loader.iterate(ast)
 
-      loader.nodes.length.should == 2
+      nodes = loader.nodes.map do |pair|
+        pair[0].children[0]
+      end
 
-      loader.nodes[1][0].children[0].file
-        .should == fixture_path('file_scanner/lib/example/recursive/target.rb')
+      nodes.length.should == 2
+
+      File.basename(nodes[0].file).should == 'target.rb'
+      File.basename(nodes[1].file).should == 'source.rb'
     end
   end
 end
