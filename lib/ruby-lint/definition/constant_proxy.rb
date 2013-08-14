@@ -41,6 +41,13 @@ module RubyLint
         end
       end
 
+      ##
+      # @return [String]
+      #
+      def inspect
+        return proxy_definition ? proxy_definition.inspect : super
+      end
+
       private
 
       ##
