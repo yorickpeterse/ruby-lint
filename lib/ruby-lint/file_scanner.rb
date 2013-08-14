@@ -32,6 +32,13 @@ module RubyLint
       segment = constant_to_path(constant)
       paths   = Dir.glob(glob_pattern(segment))
 
+      # Lets see if we can find anything when using dashes for the directory
+      # names instead of underscores.
+      if paths.empty?
+        segment = constant_to_dashed_path(constant)
+        paths   = Dir.glob(glob_pattern(segment))
+      end
+
       # Ensure that the order is from top-level -> deeply nested files instead
       # of a random order.
       paths.sort! do |left, right|
@@ -49,6 +56,17 @@ module RubyLint
     #
     def constant_to_path(constant)
       return constant.gsub('::', '/').snake_case
+    end
+
+    ##
+    # @see #constant_to_path
+    #
+    def constant_to_dashed_path(constant)
+      segments = constant.split('::')
+      last     = segments[-1]
+      path     = segments[0..-2].join('/').snake_case.gsub('_', '-')
+
+      return "#{path}/#{last.snake_case}"
     end
 
     ##
