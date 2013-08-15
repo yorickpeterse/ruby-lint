@@ -4,8 +4,8 @@
 # Created:  2013-07-24 21:53:54 +0200
 # Platform: rbx 2.0.0.n198
 
-RubyLint::VirtualMachine.global_scope.define_constant('ActionDispatch') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
+RubyLint::GlobalScope.definitions.define_constant('ActionDispatch') do |klass|
+  klass.inherits(RubyLint::GlobalScope.constant_proxy('Object'))
 
   klass.define_method('autoload_at') do |method|
     method.define_argument('path')
@@ -38,8 +38,8 @@ RubyLint::VirtualMachine.global_scope.define_constant('ActionDispatch') do |klas
   end
 end
 
-RubyLint::VirtualMachine.global_scope.define_constant('ActionDispatch::Assertions') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
+RubyLint::GlobalScope.definitions.define_constant('ActionDispatch::Assertions') do |klass|
+  klass.inherits(RubyLint::GlobalScope.constant_proxy('Object'))
 
   klass.define_method('append_features') do |method|
     method.define_argument('base')
@@ -152,8 +152,8 @@ RubyLint::VirtualMachine.global_scope.define_constant('ActionDispatch::Assertion
   klass.define_instance_method('with_routing')
 end
 
-RubyLint::VirtualMachine.global_scope.define_constant('ActionDispatch::Callbacks') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
+RubyLint::GlobalScope.definitions.define_constant('ActionDispatch::Callbacks') do |klass|
+  klass.inherits(RubyLint::GlobalScope.constant_proxy('Object'))
 
   klass.define_method('__callback_runner_name') do |method|
     method.define_argument('kind')
@@ -250,24 +250,24 @@ RubyLint::VirtualMachine.global_scope.define_constant('ActionDispatch::Callbacks
   end
 end
 
-RubyLint::VirtualMachine.global_scope.define_constant('ActionDispatch::Cookies') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
+RubyLint::GlobalScope.definitions.define_constant('ActionDispatch::Cookies') do |klass|
+  klass.inherits(RubyLint::GlobalScope.constant_proxy('Object'))
 
   klass.define_instance_method('call') do |method|
     method.define_argument('env')
   end
 end
 
-RubyLint::VirtualMachine.global_scope.define_constant('ActionDispatch::DebugExceptions') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
+RubyLint::GlobalScope.definitions.define_constant('ActionDispatch::DebugExceptions') do |klass|
+  klass.inherits(RubyLint::GlobalScope.constant_proxy('Object'))
 
   klass.define_instance_method('call') do |method|
     method.define_argument('env')
   end
 end
 
-RubyLint::VirtualMachine.global_scope.define_constant('ActionDispatch::ExceptionWrapper') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
+RubyLint::GlobalScope.definitions.define_constant('ActionDispatch::ExceptionWrapper') do |klass|
+  klass.inherits(RubyLint::GlobalScope.constant_proxy('Object'))
 
   klass.define_method('rescue_responses')
 
@@ -318,16 +318,16 @@ RubyLint::VirtualMachine.global_scope.define_constant('ActionDispatch::Exception
   klass.define_instance_method('status_code')
 end
 
-RubyLint::VirtualMachine.global_scope.define_constant('ActionDispatch::Flash') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
+RubyLint::GlobalScope.definitions.define_constant('ActionDispatch::Flash') do |klass|
+  klass.inherits(RubyLint::GlobalScope.constant_proxy('Object'))
 
   klass.define_instance_method('call') do |method|
     method.define_argument('env')
   end
 end
 
-RubyLint::VirtualMachine.global_scope.define_constant('ActionDispatch::Http') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
+RubyLint::GlobalScope.definitions.define_constant('ActionDispatch::Http') do |klass|
+  klass.inherits(RubyLint::GlobalScope.constant_proxy('Object'))
 
   klass.define_method('autoload_at') do |method|
     method.define_argument('path')
@@ -348,8 +348,8 @@ RubyLint::VirtualMachine.global_scope.define_constant('ActionDispatch::Http') do
   end
 end
 
-RubyLint::VirtualMachine.global_scope.define_constant('ActionDispatch::IllegalStateError') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.constant_proxy('StandardError'))
+RubyLint::GlobalScope.definitions.define_constant('ActionDispatch::IllegalStateError') do |klass|
+  klass.inherits(RubyLint::GlobalScope.constant_proxy('StandardError'))
 
   klass.define_method('exception') do |method|
     method.define_rest_argument('args')
@@ -416,16 +416,16 @@ RubyLint::VirtualMachine.global_scope.define_constant('ActionDispatch::IllegalSt
   end
 end
 
-RubyLint::VirtualMachine.global_scope.define_constant('ActionDispatch::Integration') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
+RubyLint::GlobalScope.definitions.define_constant('ActionDispatch::Integration') do |klass|
+  klass.inherits(RubyLint::GlobalScope.constant_proxy('Object'))
 
   klass.define_method('initialize') do |method|
     method.define_block_argument('block')
   end
 end
 
-RubyLint::VirtualMachine.global_scope.define_constant('ActionDispatch::IntegrationTest') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.constant_proxy('ActiveSupport::TestCase'))
+RubyLint::GlobalScope.definitions.define_constant('ActionDispatch::IntegrationTest') do |klass|
+  klass.inherits(RubyLint::GlobalScope.constant_proxy('ActiveSupport::TestCase'))
 
   klass.define_method('__callback_runner_name') do |method|
     method.define_argument('kind')
@@ -1217,16 +1217,16 @@ RubyLint::VirtualMachine.global_scope.define_constant('ActionDispatch::Integrati
   end
 end
 
-RubyLint::VirtualMachine.global_scope.define_constant('ActionDispatch::Journey') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
+RubyLint::GlobalScope.definitions.define_constant('ActionDispatch::Journey') do |klass|
+  klass.inherits(RubyLint::GlobalScope.constant_proxy('Object'))
 
   klass.define_method('initialize') do |method|
     method.define_block_argument('block')
   end
 end
 
-RubyLint::VirtualMachine.global_scope.define_constant('ActionDispatch::MiddlewareStack') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
+RubyLint::GlobalScope.definitions.define_constant('ActionDispatch::MiddlewareStack') do |klass|
+  klass.inherits(RubyLint::GlobalScope.constant_proxy('Object'))
 
   klass.define_instance_method('[]') do |method|
     method.define_argument('i')
@@ -1470,16 +1470,16 @@ RubyLint::VirtualMachine.global_scope.define_constant('ActionDispatch::Middlewar
   end
 end
 
-RubyLint::VirtualMachine.global_scope.define_constant('ActionDispatch::ParamsParser') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
+RubyLint::GlobalScope.definitions.define_constant('ActionDispatch::ParamsParser') do |klass|
+  klass.inherits(RubyLint::GlobalScope.constant_proxy('Object'))
 
   klass.define_instance_method('call') do |method|
     method.define_argument('env')
   end
 end
 
-RubyLint::VirtualMachine.global_scope.define_constant('ActionDispatch::PublicExceptions') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
+RubyLint::GlobalScope.definitions.define_constant('ActionDispatch::PublicExceptions') do |klass|
+  klass.inherits(RubyLint::GlobalScope.constant_proxy('Object'))
 
   klass.define_instance_method('call') do |method|
     method.define_argument('env')
@@ -1490,8 +1490,8 @@ RubyLint::VirtualMachine.global_scope.define_constant('ActionDispatch::PublicExc
   klass.define_instance_method('public_path=')
 end
 
-RubyLint::VirtualMachine.global_scope.define_constant('ActionDispatch::Railtie') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Rails::Railtie'))
+RubyLint::GlobalScope.definitions.define_constant('ActionDispatch::Railtie') do |klass|
+  klass.inherits(RubyLint::GlobalScope.constant_proxy('Rails::Railtie'))
 
   klass.define_method('abstract_railtie?')
 
@@ -1586,8 +1586,8 @@ RubyLint::VirtualMachine.global_scope.define_constant('ActionDispatch::Railtie')
   end
 end
 
-RubyLint::VirtualMachine.global_scope.define_constant('ActionDispatch::Reloader') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
+RubyLint::GlobalScope.definitions.define_constant('ActionDispatch::Reloader') do |klass|
+  klass.inherits(RubyLint::GlobalScope.constant_proxy('Object'))
 
   klass.define_method('__callback_runner_name') do |method|
     method.define_argument('kind')
@@ -1696,8 +1696,8 @@ RubyLint::VirtualMachine.global_scope.define_constant('ActionDispatch::Reloader'
   end
 end
 
-RubyLint::VirtualMachine.global_scope.define_constant('ActionDispatch::RemoteIp') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
+RubyLint::GlobalScope.definitions.define_constant('ActionDispatch::RemoteIp') do |klass|
+  klass.inherits(RubyLint::GlobalScope.constant_proxy('Object'))
 
   klass.define_instance_method('call') do |method|
     method.define_argument('env')
@@ -1708,8 +1708,8 @@ RubyLint::VirtualMachine.global_scope.define_constant('ActionDispatch::RemoteIp'
   klass.define_instance_method('proxies')
 end
 
-RubyLint::VirtualMachine.global_scope.define_constant('ActionDispatch::Request') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Rack::Request'))
+RubyLint::GlobalScope.definitions.define_constant('ActionDispatch::Request') do |klass|
+  klass.inherits(RubyLint::GlobalScope.constant_proxy('Rack::Request'))
 
   klass.define_method('ignore_accept_header')
 
@@ -2050,16 +2050,16 @@ RubyLint::VirtualMachine.global_scope.define_constant('ActionDispatch::Request')
   klass.define_instance_method('xml_http_request?')
 end
 
-RubyLint::VirtualMachine.global_scope.define_constant('ActionDispatch::RequestId') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
+RubyLint::GlobalScope.definitions.define_constant('ActionDispatch::RequestId') do |klass|
+  klass.inherits(RubyLint::GlobalScope.constant_proxy('Object'))
 
   klass.define_instance_method('call') do |method|
     method.define_argument('env')
   end
 end
 
-RubyLint::VirtualMachine.global_scope.define_constant('ActionDispatch::Response') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
+RubyLint::GlobalScope.definitions.define_constant('ActionDispatch::Response') do |klass|
+  klass.inherits(RubyLint::GlobalScope.constant_proxy('Object'))
 
   klass.define_method('default_charset')
 
@@ -2265,16 +2265,16 @@ RubyLint::VirtualMachine.global_scope.define_constant('ActionDispatch::Response'
   klass.define_instance_method('unprocessable?')
 end
 
-RubyLint::VirtualMachine.global_scope.define_constant('ActionDispatch::Routing') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
+RubyLint::GlobalScope.definitions.define_constant('ActionDispatch::Routing') do |klass|
+  klass.inherits(RubyLint::GlobalScope.constant_proxy('Object'))
 
   klass.define_method('initialize') do |method|
     method.define_block_argument('block')
   end
 end
 
-RubyLint::VirtualMachine.global_scope.define_constant('ActionDispatch::SSL') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
+RubyLint::GlobalScope.definitions.define_constant('ActionDispatch::SSL') do |klass|
+  klass.inherits(RubyLint::GlobalScope.constant_proxy('Object'))
 
   klass.define_method('default_hsts_options')
 
@@ -2283,32 +2283,32 @@ RubyLint::VirtualMachine.global_scope.define_constant('ActionDispatch::SSL') do 
   end
 end
 
-RubyLint::VirtualMachine.global_scope.define_constant('ActionDispatch::Session') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
+RubyLint::GlobalScope.definitions.define_constant('ActionDispatch::Session') do |klass|
+  klass.inherits(RubyLint::GlobalScope.constant_proxy('Object'))
 
   klass.define_method('initialize') do |method|
     method.define_block_argument('block')
   end
 end
 
-RubyLint::VirtualMachine.global_scope.define_constant('ActionDispatch::ShowExceptions') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
+RubyLint::GlobalScope.definitions.define_constant('ActionDispatch::ShowExceptions') do |klass|
+  klass.inherits(RubyLint::GlobalScope.constant_proxy('Object'))
 
   klass.define_instance_method('call') do |method|
     method.define_argument('env')
   end
 end
 
-RubyLint::VirtualMachine.global_scope.define_constant('ActionDispatch::Static') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
+RubyLint::GlobalScope.definitions.define_constant('ActionDispatch::Static') do |klass|
+  klass.inherits(RubyLint::GlobalScope.constant_proxy('Object'))
 
   klass.define_instance_method('call') do |method|
     method.define_argument('env')
   end
 end
 
-RubyLint::VirtualMachine.global_scope.define_constant('ActionDispatch::TestProcess') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
+RubyLint::GlobalScope.definitions.define_constant('ActionDispatch::TestProcess') do |klass|
+  klass.inherits(RubyLint::GlobalScope.constant_proxy('Object'))
 
   klass.define_method('initialize') do |method|
     method.define_block_argument('block')
@@ -2333,8 +2333,8 @@ RubyLint::VirtualMachine.global_scope.define_constant('ActionDispatch::TestProce
   klass.define_instance_method('session')
 end
 
-RubyLint::VirtualMachine.global_scope.define_constant('ActionDispatch::TestRequest') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.constant_proxy('ActionDispatch::Request'))
+RubyLint::GlobalScope.definitions.define_constant('ActionDispatch::TestRequest') do |klass|
+  klass.inherits(RubyLint::GlobalScope.constant_proxy('ActionDispatch::Request'))
 
   klass.define_method('ignore_accept_header')
 
@@ -2723,8 +2723,8 @@ RubyLint::VirtualMachine.global_scope.define_constant('ActionDispatch::TestReque
   klass.define_instance_method('xml_http_request?')
 end
 
-RubyLint::VirtualMachine.global_scope.define_constant('ActionDispatch::TestResponse') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.constant_proxy('ActionDispatch::Response'))
+RubyLint::GlobalScope.definitions.define_constant('ActionDispatch::TestResponse') do |klass|
+  klass.inherits(RubyLint::GlobalScope.constant_proxy('ActionDispatch::Response'))
 
   klass.define_method('default_charset')
 

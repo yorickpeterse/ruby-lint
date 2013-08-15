@@ -3,8 +3,8 @@
 # Created:  2013-04-09 14:56:17 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('Encoding') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
+RubyLint::GlobalScope.definitions.define_constant('Encoding') do |klass|
+  klass.inherits(RubyLint::GlobalScope.constant_proxy('Object'))
 
   klass.define_method('__class_init__')
 
@@ -69,7 +69,7 @@ end
 # Created:  2013-04-09 14:56:17 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('Encoding::ANSI_X3_4_1968') do |klass|
+RubyLint::GlobalScope.definitions.define_constant('Encoding::ANSI_X3_4_1968') do |klass|
 end
 
 ##
@@ -77,7 +77,7 @@ end
 # Created:  2013-04-09 14:56:17 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('Encoding::ASCII') do |klass|
+RubyLint::GlobalScope.definitions.define_constant('Encoding::ASCII') do |klass|
 end
 
 ##
@@ -85,7 +85,7 @@ end
 # Created:  2013-04-09 14:56:17 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('Encoding::ASCII_8BIT') do |klass|
+RubyLint::GlobalScope.definitions.define_constant('Encoding::ASCII_8BIT') do |klass|
 end
 
 ##
@@ -93,7 +93,7 @@ end
 # Created:  2013-04-09 14:56:17 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('Encoding::BIG5') do |klass|
+RubyLint::GlobalScope.definitions.define_constant('Encoding::BIG5') do |klass|
 end
 
 ##
@@ -101,7 +101,7 @@ end
 # Created:  2013-04-09 14:56:17 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('Encoding::BIG5_HKSCS') do |klass|
+RubyLint::GlobalScope.definitions.define_constant('Encoding::BIG5_HKSCS') do |klass|
 end
 
 ##
@@ -109,7 +109,7 @@ end
 # Created:  2013-04-09 14:56:17 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('Encoding::BIG5_HKSCS_2008') do |klass|
+RubyLint::GlobalScope.definitions.define_constant('Encoding::BIG5_HKSCS_2008') do |klass|
 end
 
 ##
@@ -117,7 +117,7 @@ end
 # Created:  2013-04-09 14:56:17 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('Encoding::BIG5_UAO') do |klass|
+RubyLint::GlobalScope.definitions.define_constant('Encoding::BIG5_UAO') do |klass|
 end
 
 ##
@@ -125,7 +125,7 @@ end
 # Created:  2013-04-09 14:56:17 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('Encoding::BINARY') do |klass|
+RubyLint::GlobalScope.definitions.define_constant('Encoding::BINARY') do |klass|
 end
 
 ##
@@ -133,7 +133,7 @@ end
 # Created:  2013-04-09 14:56:17 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('Encoding::Big5') do |klass|
+RubyLint::GlobalScope.definitions.define_constant('Encoding::Big5') do |klass|
 end
 
 ##
@@ -141,7 +141,7 @@ end
 # Created:  2013-04-09 14:56:17 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('Encoding::Big5_HKSCS') do |klass|
+RubyLint::GlobalScope.definitions.define_constant('Encoding::Big5_HKSCS') do |klass|
 end
 
 ##
@@ -149,7 +149,7 @@ end
 # Created:  2013-04-09 14:56:17 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('Encoding::Big5_HKSCS_2008') do |klass|
+RubyLint::GlobalScope.definitions.define_constant('Encoding::Big5_HKSCS_2008') do |klass|
 end
 
 ##
@@ -157,7 +157,7 @@ end
 # Created:  2013-04-09 14:56:17 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('Encoding::Big5_UAO') do |klass|
+RubyLint::GlobalScope.definitions.define_constant('Encoding::Big5_UAO') do |klass|
 end
 
 ##
@@ -165,7 +165,7 @@ end
 # Created:  2013-04-09 14:56:17 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('Encoding::CP1250') do |klass|
+RubyLint::GlobalScope.definitions.define_constant('Encoding::CP1250') do |klass|
 end
 
 ##
@@ -173,7 +173,7 @@ end
 # Created:  2013-04-09 14:56:17 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('Encoding::CP1251') do |klass|
+RubyLint::GlobalScope.definitions.define_constant('Encoding::CP1251') do |klass|
 end
 
 ##
@@ -181,7 +181,7 @@ end
 # Created:  2013-04-09 14:56:17 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('Encoding::CP1252') do |klass|
+RubyLint::GlobalScope.definitions.define_constant('Encoding::CP1252') do |klass|
 end
 
 ##
@@ -189,7 +189,7 @@ end
 # Created:  2013-04-09 14:56:17 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('Encoding::CP1253') do |klass|
+RubyLint::GlobalScope.definitions.define_constant('Encoding::CP1253') do |klass|
 end
 
 ##
@@ -197,7 +197,7 @@ end
 # Created:  2013-04-09 14:56:17 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('Encoding::CP1254') do |klass|
+RubyLint::GlobalScope.definitions.define_constant('Encoding::CP1254') do |klass|
 end
 
 ##
@@ -205,7 +205,7 @@ end
 # Created:  2013-04-09 14:56:17 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('Encoding::CP1255') do |klass|
+RubyLint::GlobalScope.definitions.define_constant('Encoding::CP1255') do |klass|
 end
 
 ##
@@ -213,7 +213,7 @@ end
 # Created:  2013-04-09 14:56:17 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('Encoding::CP1256') do |klass|
+RubyLint::GlobalScope.definitions.define_constant('Encoding::CP1256') do |klass|
 end
 
 ##
@@ -221,7 +221,7 @@ end
 # Created:  2013-04-09 14:56:17 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('Encoding::CP1257') do |klass|
+RubyLint::GlobalScope.definitions.define_constant('Encoding::CP1257') do |klass|
 end
 
 ##
@@ -229,7 +229,7 @@ end
 # Created:  2013-04-09 14:56:17 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('Encoding::CP1258') do |klass|
+RubyLint::GlobalScope.definitions.define_constant('Encoding::CP1258') do |klass|
 end
 
 ##
@@ -237,7 +237,7 @@ end
 # Created:  2013-04-09 14:56:17 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('Encoding::CP437') do |klass|
+RubyLint::GlobalScope.definitions.define_constant('Encoding::CP437') do |klass|
 end
 
 ##
@@ -245,7 +245,7 @@ end
 # Created:  2013-04-09 14:56:17 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('Encoding::CP50220') do |klass|
+RubyLint::GlobalScope.definitions.define_constant('Encoding::CP50220') do |klass|
 end
 
 ##
@@ -253,7 +253,7 @@ end
 # Created:  2013-04-09 14:56:17 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('Encoding::CP50221') do |klass|
+RubyLint::GlobalScope.definitions.define_constant('Encoding::CP50221') do |klass|
 end
 
 ##
@@ -261,7 +261,7 @@ end
 # Created:  2013-04-09 14:56:17 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('Encoding::CP51932') do |klass|
+RubyLint::GlobalScope.definitions.define_constant('Encoding::CP51932') do |klass|
 end
 
 ##
@@ -269,7 +269,7 @@ end
 # Created:  2013-04-09 14:56:17 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('Encoding::CP65000') do |klass|
+RubyLint::GlobalScope.definitions.define_constant('Encoding::CP65000') do |klass|
 end
 
 ##
@@ -277,7 +277,7 @@ end
 # Created:  2013-04-09 14:56:17 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('Encoding::CP65001') do |klass|
+RubyLint::GlobalScope.definitions.define_constant('Encoding::CP65001') do |klass|
 end
 
 ##
@@ -285,7 +285,7 @@ end
 # Created:  2013-04-09 14:56:17 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('Encoding::CP737') do |klass|
+RubyLint::GlobalScope.definitions.define_constant('Encoding::CP737') do |klass|
 end
 
 ##
@@ -293,7 +293,7 @@ end
 # Created:  2013-04-09 14:56:17 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('Encoding::CP775') do |klass|
+RubyLint::GlobalScope.definitions.define_constant('Encoding::CP775') do |klass|
 end
 
 ##
@@ -301,7 +301,7 @@ end
 # Created:  2013-04-09 14:56:17 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('Encoding::CP850') do |klass|
+RubyLint::GlobalScope.definitions.define_constant('Encoding::CP850') do |klass|
 end
 
 ##
@@ -309,7 +309,7 @@ end
 # Created:  2013-04-09 14:56:17 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('Encoding::CP852') do |klass|
+RubyLint::GlobalScope.definitions.define_constant('Encoding::CP852') do |klass|
 end
 
 ##
@@ -317,7 +317,7 @@ end
 # Created:  2013-04-09 14:56:17 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('Encoding::CP855') do |klass|
+RubyLint::GlobalScope.definitions.define_constant('Encoding::CP855') do |klass|
 end
 
 ##
@@ -325,7 +325,7 @@ end
 # Created:  2013-04-09 14:56:17 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('Encoding::CP857') do |klass|
+RubyLint::GlobalScope.definitions.define_constant('Encoding::CP857') do |klass|
 end
 
 ##
@@ -333,7 +333,7 @@ end
 # Created:  2013-04-09 14:56:17 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('Encoding::CP860') do |klass|
+RubyLint::GlobalScope.definitions.define_constant('Encoding::CP860') do |klass|
 end
 
 ##
@@ -341,7 +341,7 @@ end
 # Created:  2013-04-09 14:56:17 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('Encoding::CP861') do |klass|
+RubyLint::GlobalScope.definitions.define_constant('Encoding::CP861') do |klass|
 end
 
 ##
@@ -349,7 +349,7 @@ end
 # Created:  2013-04-09 14:56:17 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('Encoding::CP862') do |klass|
+RubyLint::GlobalScope.definitions.define_constant('Encoding::CP862') do |klass|
 end
 
 ##
@@ -357,7 +357,7 @@ end
 # Created:  2013-04-09 14:56:17 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('Encoding::CP863') do |klass|
+RubyLint::GlobalScope.definitions.define_constant('Encoding::CP863') do |klass|
 end
 
 ##
@@ -365,7 +365,7 @@ end
 # Created:  2013-04-09 14:56:17 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('Encoding::CP864') do |klass|
+RubyLint::GlobalScope.definitions.define_constant('Encoding::CP864') do |klass|
 end
 
 ##
@@ -373,7 +373,7 @@ end
 # Created:  2013-04-09 14:56:17 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('Encoding::CP865') do |klass|
+RubyLint::GlobalScope.definitions.define_constant('Encoding::CP865') do |klass|
 end
 
 ##
@@ -381,7 +381,7 @@ end
 # Created:  2013-04-09 14:56:17 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('Encoding::CP866') do |klass|
+RubyLint::GlobalScope.definitions.define_constant('Encoding::CP866') do |klass|
 end
 
 ##
@@ -389,7 +389,7 @@ end
 # Created:  2013-04-09 14:56:17 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('Encoding::CP869') do |klass|
+RubyLint::GlobalScope.definitions.define_constant('Encoding::CP869') do |klass|
 end
 
 ##
@@ -397,7 +397,7 @@ end
 # Created:  2013-04-09 14:56:17 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('Encoding::CP874') do |klass|
+RubyLint::GlobalScope.definitions.define_constant('Encoding::CP874') do |klass|
 end
 
 ##
@@ -405,7 +405,7 @@ end
 # Created:  2013-04-09 14:56:17 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('Encoding::CP878') do |klass|
+RubyLint::GlobalScope.definitions.define_constant('Encoding::CP878') do |klass|
 end
 
 ##
@@ -413,7 +413,7 @@ end
 # Created:  2013-04-09 14:56:17 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('Encoding::CP932') do |klass|
+RubyLint::GlobalScope.definitions.define_constant('Encoding::CP932') do |klass|
 end
 
 ##
@@ -421,7 +421,7 @@ end
 # Created:  2013-04-09 14:56:17 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('Encoding::CP936') do |klass|
+RubyLint::GlobalScope.definitions.define_constant('Encoding::CP936') do |klass|
 end
 
 ##
@@ -429,7 +429,7 @@ end
 # Created:  2013-04-09 14:56:17 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('Encoding::CP949') do |klass|
+RubyLint::GlobalScope.definitions.define_constant('Encoding::CP949') do |klass|
 end
 
 ##
@@ -437,7 +437,7 @@ end
 # Created:  2013-04-09 14:56:17 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('Encoding::CP950') do |klass|
+RubyLint::GlobalScope.definitions.define_constant('Encoding::CP950') do |klass|
 end
 
 ##
@@ -445,7 +445,7 @@ end
 # Created:  2013-04-09 14:56:17 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('Encoding::CP951') do |klass|
+RubyLint::GlobalScope.definitions.define_constant('Encoding::CP951') do |klass|
 end
 
 ##
@@ -453,7 +453,7 @@ end
 # Created:  2013-04-09 14:56:17 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('Encoding::CSWINDOWS31J') do |klass|
+RubyLint::GlobalScope.definitions.define_constant('Encoding::CSWINDOWS31J') do |klass|
 end
 
 ##
@@ -461,8 +461,8 @@ end
 # Created:  2013-04-09 14:56:17 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('Encoding::CompatibilityError') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.constant_proxy('EncodingError'))
+RubyLint::GlobalScope.definitions.define_constant('Encoding::CompatibilityError') do |klass|
+  klass.inherits(RubyLint::GlobalScope.constant_proxy('EncodingError'))
 end
 
 ##
@@ -470,8 +470,8 @@ end
 # Created:  2013-04-09 14:56:17 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('Encoding::Converter') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
+RubyLint::GlobalScope.definitions.define_constant('Encoding::Converter') do |klass|
+  klass.inherits(RubyLint::GlobalScope.constant_proxy('Object'))
 
   klass.define_method('__class_init__')
 
@@ -537,7 +537,7 @@ end
 # Created:  2013-04-09 14:56:17 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('Encoding::Converter::AFTER_OUTPUT') do |klass|
+RubyLint::GlobalScope.definitions.define_constant('Encoding::Converter::AFTER_OUTPUT') do |klass|
 end
 
 ##
@@ -545,7 +545,7 @@ end
 # Created:  2013-04-09 14:56:17 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('Encoding::Converter::CRLF_NEWLINE_DECORATOR') do |klass|
+RubyLint::GlobalScope.definitions.define_constant('Encoding::Converter::CRLF_NEWLINE_DECORATOR') do |klass|
 end
 
 ##
@@ -553,7 +553,7 @@ end
 # Created:  2013-04-09 14:56:17 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('Encoding::Converter::CR_NEWLINE_DECORATOR') do |klass|
+RubyLint::GlobalScope.definitions.define_constant('Encoding::Converter::CR_NEWLINE_DECORATOR') do |klass|
 end
 
 ##
@@ -561,7 +561,7 @@ end
 # Created:  2013-04-09 14:56:17 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('Encoding::Converter::INVALID_MASK') do |klass|
+RubyLint::GlobalScope.definitions.define_constant('Encoding::Converter::INVALID_MASK') do |klass|
 end
 
 ##
@@ -569,7 +569,7 @@ end
 # Created:  2013-04-09 14:56:17 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('Encoding::Converter::INVALID_REPLACE') do |klass|
+RubyLint::GlobalScope.definitions.define_constant('Encoding::Converter::INVALID_REPLACE') do |klass|
 end
 
 ##
@@ -577,7 +577,7 @@ end
 # Created:  2013-04-09 14:56:17 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('Encoding::Converter::PARTIAL_INPUT') do |klass|
+RubyLint::GlobalScope.definitions.define_constant('Encoding::Converter::PARTIAL_INPUT') do |klass|
 end
 
 ##
@@ -585,8 +585,8 @@ end
 # Created:  2013-04-09 14:56:17 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('Encoding::Converter::TranscodingPath') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
+RubyLint::GlobalScope.definitions.define_constant('Encoding::Converter::TranscodingPath') do |klass|
+  klass.inherits(RubyLint::GlobalScope.constant_proxy('Object'))
 
   klass.define_method('[]') do |method|
     method.define_argument('source')
@@ -626,7 +626,7 @@ end
 # Created:  2013-04-09 14:56:17 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('Encoding::Converter::UNDEF_HEX_CHARREF') do |klass|
+RubyLint::GlobalScope.definitions.define_constant('Encoding::Converter::UNDEF_HEX_CHARREF') do |klass|
 end
 
 ##
@@ -634,7 +634,7 @@ end
 # Created:  2013-04-09 14:56:17 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('Encoding::Converter::UNDEF_MASK') do |klass|
+RubyLint::GlobalScope.definitions.define_constant('Encoding::Converter::UNDEF_MASK') do |klass|
 end
 
 ##
@@ -642,7 +642,7 @@ end
 # Created:  2013-04-09 14:56:17 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('Encoding::Converter::UNDEF_REPLACE') do |klass|
+RubyLint::GlobalScope.definitions.define_constant('Encoding::Converter::UNDEF_REPLACE') do |klass|
 end
 
 ##
@@ -650,7 +650,7 @@ end
 # Created:  2013-04-09 14:56:17 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('Encoding::Converter::UNIVERSAL_NEWLINE_DECORATOR') do |klass|
+RubyLint::GlobalScope.definitions.define_constant('Encoding::Converter::UNIVERSAL_NEWLINE_DECORATOR') do |klass|
 end
 
 ##
@@ -658,7 +658,7 @@ end
 # Created:  2013-04-09 14:56:17 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('Encoding::Converter::XML_ATTR_CONTENT_DECORATOR') do |klass|
+RubyLint::GlobalScope.definitions.define_constant('Encoding::Converter::XML_ATTR_CONTENT_DECORATOR') do |klass|
 end
 
 ##
@@ -666,7 +666,7 @@ end
 # Created:  2013-04-09 14:56:17 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('Encoding::Converter::XML_ATTR_QUOTE_DECORATOR') do |klass|
+RubyLint::GlobalScope.definitions.define_constant('Encoding::Converter::XML_ATTR_QUOTE_DECORATOR') do |klass|
 end
 
 ##
@@ -674,7 +674,7 @@ end
 # Created:  2013-04-09 14:56:17 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('Encoding::Converter::XML_TEXT_DECORATOR') do |klass|
+RubyLint::GlobalScope.definitions.define_constant('Encoding::Converter::XML_TEXT_DECORATOR') do |klass|
 end
 
 ##
@@ -682,8 +682,8 @@ end
 # Created:  2013-04-09 14:56:17 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('Encoding::ConverterNotFoundError') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.constant_proxy('EncodingError'))
+RubyLint::GlobalScope.definitions.define_constant('Encoding::ConverterNotFoundError') do |klass|
+  klass.inherits(RubyLint::GlobalScope.constant_proxy('EncodingError'))
 end
 
 ##
@@ -691,7 +691,7 @@ end
 # Created:  2013-04-09 14:56:17 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('Encoding::CsWindows31J') do |klass|
+RubyLint::GlobalScope.definitions.define_constant('Encoding::CsWindows31J') do |klass|
 end
 
 ##
@@ -699,7 +699,7 @@ end
 # Created:  2013-04-09 14:56:17 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('Encoding::EMACS_MULE') do |klass|
+RubyLint::GlobalScope.definitions.define_constant('Encoding::EMACS_MULE') do |klass|
 end
 
 ##
@@ -707,7 +707,7 @@ end
 # Created:  2013-04-09 14:56:17 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('Encoding::EUCCN') do |klass|
+RubyLint::GlobalScope.definitions.define_constant('Encoding::EUCCN') do |klass|
 end
 
 ##
@@ -715,7 +715,7 @@ end
 # Created:  2013-04-09 14:56:17 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('Encoding::EUCJP') do |klass|
+RubyLint::GlobalScope.definitions.define_constant('Encoding::EUCJP') do |klass|
 end
 
 ##
@@ -723,7 +723,7 @@ end
 # Created:  2013-04-09 14:56:17 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('Encoding::EUCJP_MS') do |klass|
+RubyLint::GlobalScope.definitions.define_constant('Encoding::EUCJP_MS') do |klass|
 end
 
 ##
@@ -731,7 +731,7 @@ end
 # Created:  2013-04-09 14:56:17 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('Encoding::EUCKR') do |klass|
+RubyLint::GlobalScope.definitions.define_constant('Encoding::EUCKR') do |klass|
 end
 
 ##
@@ -739,7 +739,7 @@ end
 # Created:  2013-04-09 14:56:17 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('Encoding::EUCTW') do |klass|
+RubyLint::GlobalScope.definitions.define_constant('Encoding::EUCTW') do |klass|
 end
 
 ##
@@ -747,7 +747,7 @@ end
 # Created:  2013-04-09 14:56:17 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('Encoding::EUC_CN') do |klass|
+RubyLint::GlobalScope.definitions.define_constant('Encoding::EUC_CN') do |klass|
 end
 
 ##
@@ -755,7 +755,7 @@ end
 # Created:  2013-04-09 14:56:17 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('Encoding::EUC_JP') do |klass|
+RubyLint::GlobalScope.definitions.define_constant('Encoding::EUC_JP') do |klass|
 end
 
 ##
@@ -763,7 +763,7 @@ end
 # Created:  2013-04-09 14:56:17 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('Encoding::EUC_JP_MS') do |klass|
+RubyLint::GlobalScope.definitions.define_constant('Encoding::EUC_JP_MS') do |klass|
 end
 
 ##
@@ -771,7 +771,7 @@ end
 # Created:  2013-04-09 14:56:17 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('Encoding::EUC_KR') do |klass|
+RubyLint::GlobalScope.definitions.define_constant('Encoding::EUC_KR') do |klass|
 end
 
 ##
@@ -779,7 +779,7 @@ end
 # Created:  2013-04-09 14:56:17 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('Encoding::EUC_TW') do |klass|
+RubyLint::GlobalScope.definitions.define_constant('Encoding::EUC_TW') do |klass|
 end
 
 ##
@@ -787,7 +787,7 @@ end
 # Created:  2013-04-09 14:56:17 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('Encoding::Emacs_Mule') do |klass|
+RubyLint::GlobalScope.definitions.define_constant('Encoding::Emacs_Mule') do |klass|
 end
 
 ##
@@ -795,7 +795,7 @@ end
 # Created:  2013-04-09 14:56:17 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('Encoding::EncodingList') do |klass|
+RubyLint::GlobalScope.definitions.define_constant('Encoding::EncodingList') do |klass|
 end
 
 ##
@@ -803,7 +803,7 @@ end
 # Created:  2013-04-09 14:56:17 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('Encoding::EncodingMap') do |klass|
+RubyLint::GlobalScope.definitions.define_constant('Encoding::EncodingMap') do |klass|
 end
 
 ##
@@ -811,7 +811,7 @@ end
 # Created:  2013-04-09 14:56:17 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('Encoding::EucCN') do |klass|
+RubyLint::GlobalScope.definitions.define_constant('Encoding::EucCN') do |klass|
 end
 
 ##
@@ -819,7 +819,7 @@ end
 # Created:  2013-04-09 14:56:17 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('Encoding::EucJP') do |klass|
+RubyLint::GlobalScope.definitions.define_constant('Encoding::EucJP') do |klass|
 end
 
 ##
@@ -827,7 +827,7 @@ end
 # Created:  2013-04-09 14:56:17 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('Encoding::EucJP_ms') do |klass|
+RubyLint::GlobalScope.definitions.define_constant('Encoding::EucJP_ms') do |klass|
 end
 
 ##
@@ -835,7 +835,7 @@ end
 # Created:  2013-04-09 14:56:17 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('Encoding::EucKR') do |klass|
+RubyLint::GlobalScope.definitions.define_constant('Encoding::EucKR') do |klass|
 end
 
 ##
@@ -843,7 +843,7 @@ end
 # Created:  2013-04-09 14:56:17 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('Encoding::EucTW') do |klass|
+RubyLint::GlobalScope.definitions.define_constant('Encoding::EucTW') do |klass|
 end
 
 ##
@@ -851,7 +851,7 @@ end
 # Created:  2013-04-09 14:56:17 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('Encoding::GB12345') do |klass|
+RubyLint::GlobalScope.definitions.define_constant('Encoding::GB12345') do |klass|
 end
 
 ##
@@ -859,7 +859,7 @@ end
 # Created:  2013-04-09 14:56:17 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('Encoding::GB18030') do |klass|
+RubyLint::GlobalScope.definitions.define_constant('Encoding::GB18030') do |klass|
 end
 
 ##
@@ -867,7 +867,7 @@ end
 # Created:  2013-04-09 14:56:17 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('Encoding::GB1988') do |klass|
+RubyLint::GlobalScope.definitions.define_constant('Encoding::GB1988') do |klass|
 end
 
 ##
@@ -875,7 +875,7 @@ end
 # Created:  2013-04-09 14:56:17 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('Encoding::GB2312') do |klass|
+RubyLint::GlobalScope.definitions.define_constant('Encoding::GB2312') do |klass|
 end
 
 ##
@@ -883,7 +883,7 @@ end
 # Created:  2013-04-09 14:56:17 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('Encoding::GBK') do |klass|
+RubyLint::GlobalScope.definitions.define_constant('Encoding::GBK') do |klass|
 end
 
 ##
@@ -891,7 +891,7 @@ end
 # Created:  2013-04-09 14:56:17 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('Encoding::IBM437') do |klass|
+RubyLint::GlobalScope.definitions.define_constant('Encoding::IBM437') do |klass|
 end
 
 ##
@@ -899,7 +899,7 @@ end
 # Created:  2013-04-09 14:56:17 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('Encoding::IBM737') do |klass|
+RubyLint::GlobalScope.definitions.define_constant('Encoding::IBM737') do |klass|
 end
 
 ##
@@ -907,7 +907,7 @@ end
 # Created:  2013-04-09 14:56:17 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('Encoding::IBM775') do |klass|
+RubyLint::GlobalScope.definitions.define_constant('Encoding::IBM775') do |klass|
 end
 
 ##
@@ -915,7 +915,7 @@ end
 # Created:  2013-04-09 14:56:17 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('Encoding::IBM850') do |klass|
+RubyLint::GlobalScope.definitions.define_constant('Encoding::IBM850') do |klass|
 end
 
 ##
@@ -923,7 +923,7 @@ end
 # Created:  2013-04-09 14:56:17 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('Encoding::IBM852') do |klass|
+RubyLint::GlobalScope.definitions.define_constant('Encoding::IBM852') do |klass|
 end
 
 ##
@@ -931,7 +931,7 @@ end
 # Created:  2013-04-09 14:56:17 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('Encoding::IBM855') do |klass|
+RubyLint::GlobalScope.definitions.define_constant('Encoding::IBM855') do |klass|
 end
 
 ##
@@ -939,7 +939,7 @@ end
 # Created:  2013-04-09 14:56:17 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('Encoding::IBM857') do |klass|
+RubyLint::GlobalScope.definitions.define_constant('Encoding::IBM857') do |klass|
 end
 
 ##
@@ -947,7 +947,7 @@ end
 # Created:  2013-04-09 14:56:17 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('Encoding::IBM860') do |klass|
+RubyLint::GlobalScope.definitions.define_constant('Encoding::IBM860') do |klass|
 end
 
 ##
@@ -955,7 +955,7 @@ end
 # Created:  2013-04-09 14:56:17 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('Encoding::IBM861') do |klass|
+RubyLint::GlobalScope.definitions.define_constant('Encoding::IBM861') do |klass|
 end
 
 ##
@@ -963,7 +963,7 @@ end
 # Created:  2013-04-09 14:56:17 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('Encoding::IBM862') do |klass|
+RubyLint::GlobalScope.definitions.define_constant('Encoding::IBM862') do |klass|
 end
 
 ##
@@ -971,7 +971,7 @@ end
 # Created:  2013-04-09 14:56:17 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('Encoding::IBM863') do |klass|
+RubyLint::GlobalScope.definitions.define_constant('Encoding::IBM863') do |klass|
 end
 
 ##
@@ -979,7 +979,7 @@ end
 # Created:  2013-04-09 14:56:17 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('Encoding::IBM864') do |klass|
+RubyLint::GlobalScope.definitions.define_constant('Encoding::IBM864') do |klass|
 end
 
 ##
@@ -987,7 +987,7 @@ end
 # Created:  2013-04-09 14:56:17 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('Encoding::IBM865') do |klass|
+RubyLint::GlobalScope.definitions.define_constant('Encoding::IBM865') do |klass|
 end
 
 ##
@@ -995,7 +995,7 @@ end
 # Created:  2013-04-09 14:56:17 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('Encoding::IBM866') do |klass|
+RubyLint::GlobalScope.definitions.define_constant('Encoding::IBM866') do |klass|
 end
 
 ##
@@ -1003,7 +1003,7 @@ end
 # Created:  2013-04-09 14:56:17 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('Encoding::IBM869') do |klass|
+RubyLint::GlobalScope.definitions.define_constant('Encoding::IBM869') do |klass|
 end
 
 ##
@@ -1011,7 +1011,7 @@ end
 # Created:  2013-04-09 14:56:17 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('Encoding::ISO2022_JP') do |klass|
+RubyLint::GlobalScope.definitions.define_constant('Encoding::ISO2022_JP') do |klass|
 end
 
 ##
@@ -1019,7 +1019,7 @@ end
 # Created:  2013-04-09 14:56:17 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('Encoding::ISO2022_JP2') do |klass|
+RubyLint::GlobalScope.definitions.define_constant('Encoding::ISO2022_JP2') do |klass|
 end
 
 ##
@@ -1027,7 +1027,7 @@ end
 # Created:  2013-04-09 14:56:17 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('Encoding::ISO8859_1') do |klass|
+RubyLint::GlobalScope.definitions.define_constant('Encoding::ISO8859_1') do |klass|
 end
 
 ##
@@ -1035,7 +1035,7 @@ end
 # Created:  2013-04-09 14:56:17 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('Encoding::ISO8859_10') do |klass|
+RubyLint::GlobalScope.definitions.define_constant('Encoding::ISO8859_10') do |klass|
 end
 
 ##
@@ -1043,7 +1043,7 @@ end
 # Created:  2013-04-09 14:56:17 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('Encoding::ISO8859_11') do |klass|
+RubyLint::GlobalScope.definitions.define_constant('Encoding::ISO8859_11') do |klass|
 end
 
 ##
@@ -1051,7 +1051,7 @@ end
 # Created:  2013-04-09 14:56:17 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('Encoding::ISO8859_13') do |klass|
+RubyLint::GlobalScope.definitions.define_constant('Encoding::ISO8859_13') do |klass|
 end
 
 ##
@@ -1059,7 +1059,7 @@ end
 # Created:  2013-04-09 14:56:17 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('Encoding::ISO8859_14') do |klass|
+RubyLint::GlobalScope.definitions.define_constant('Encoding::ISO8859_14') do |klass|
 end
 
 ##
@@ -1067,7 +1067,7 @@ end
 # Created:  2013-04-09 14:56:17 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('Encoding::ISO8859_15') do |klass|
+RubyLint::GlobalScope.definitions.define_constant('Encoding::ISO8859_15') do |klass|
 end
 
 ##
@@ -1075,7 +1075,7 @@ end
 # Created:  2013-04-09 14:56:17 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('Encoding::ISO8859_16') do |klass|
+RubyLint::GlobalScope.definitions.define_constant('Encoding::ISO8859_16') do |klass|
 end
 
 ##
@@ -1083,7 +1083,7 @@ end
 # Created:  2013-04-09 14:56:17 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('Encoding::ISO8859_2') do |klass|
+RubyLint::GlobalScope.definitions.define_constant('Encoding::ISO8859_2') do |klass|
 end
 
 ##
@@ -1091,7 +1091,7 @@ end
 # Created:  2013-04-09 14:56:17 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('Encoding::ISO8859_3') do |klass|
+RubyLint::GlobalScope.definitions.define_constant('Encoding::ISO8859_3') do |klass|
 end
 
 ##
@@ -1099,7 +1099,7 @@ end
 # Created:  2013-04-09 14:56:17 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('Encoding::ISO8859_4') do |klass|
+RubyLint::GlobalScope.definitions.define_constant('Encoding::ISO8859_4') do |klass|
 end
 
 ##
@@ -1107,7 +1107,7 @@ end
 # Created:  2013-04-09 14:56:17 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('Encoding::ISO8859_5') do |klass|
+RubyLint::GlobalScope.definitions.define_constant('Encoding::ISO8859_5') do |klass|
 end
 
 ##
@@ -1115,7 +1115,7 @@ end
 # Created:  2013-04-09 14:56:17 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('Encoding::ISO8859_6') do |klass|
+RubyLint::GlobalScope.definitions.define_constant('Encoding::ISO8859_6') do |klass|
 end
 
 ##
@@ -1123,7 +1123,7 @@ end
 # Created:  2013-04-09 14:56:17 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('Encoding::ISO8859_7') do |klass|
+RubyLint::GlobalScope.definitions.define_constant('Encoding::ISO8859_7') do |klass|
 end
 
 ##
@@ -1131,7 +1131,7 @@ end
 # Created:  2013-04-09 14:56:17 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('Encoding::ISO8859_8') do |klass|
+RubyLint::GlobalScope.definitions.define_constant('Encoding::ISO8859_8') do |klass|
 end
 
 ##
@@ -1139,7 +1139,7 @@ end
 # Created:  2013-04-09 14:56:18 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('Encoding::ISO8859_9') do |klass|
+RubyLint::GlobalScope.definitions.define_constant('Encoding::ISO8859_9') do |klass|
 end
 
 ##
@@ -1147,7 +1147,7 @@ end
 # Created:  2013-04-09 14:56:18 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('Encoding::ISO_2022_JP') do |klass|
+RubyLint::GlobalScope.definitions.define_constant('Encoding::ISO_2022_JP') do |klass|
 end
 
 ##
@@ -1155,7 +1155,7 @@ end
 # Created:  2013-04-09 14:56:18 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('Encoding::ISO_2022_JP_2') do |klass|
+RubyLint::GlobalScope.definitions.define_constant('Encoding::ISO_2022_JP_2') do |klass|
 end
 
 ##
@@ -1163,7 +1163,7 @@ end
 # Created:  2013-04-09 14:56:18 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('Encoding::ISO_2022_JP_KDDI') do |klass|
+RubyLint::GlobalScope.definitions.define_constant('Encoding::ISO_2022_JP_KDDI') do |klass|
 end
 
 ##
@@ -1171,7 +1171,7 @@ end
 # Created:  2013-04-09 14:56:18 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('Encoding::ISO_8859_1') do |klass|
+RubyLint::GlobalScope.definitions.define_constant('Encoding::ISO_8859_1') do |klass|
 end
 
 ##
@@ -1179,7 +1179,7 @@ end
 # Created:  2013-04-09 14:56:18 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('Encoding::ISO_8859_10') do |klass|
+RubyLint::GlobalScope.definitions.define_constant('Encoding::ISO_8859_10') do |klass|
 end
 
 ##
@@ -1187,7 +1187,7 @@ end
 # Created:  2013-04-09 14:56:18 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('Encoding::ISO_8859_11') do |klass|
+RubyLint::GlobalScope.definitions.define_constant('Encoding::ISO_8859_11') do |klass|
 end
 
 ##
@@ -1195,7 +1195,7 @@ end
 # Created:  2013-04-09 14:56:18 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('Encoding::ISO_8859_13') do |klass|
+RubyLint::GlobalScope.definitions.define_constant('Encoding::ISO_8859_13') do |klass|
 end
 
 ##
@@ -1203,7 +1203,7 @@ end
 # Created:  2013-04-09 14:56:18 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('Encoding::ISO_8859_14') do |klass|
+RubyLint::GlobalScope.definitions.define_constant('Encoding::ISO_8859_14') do |klass|
 end
 
 ##
@@ -1211,7 +1211,7 @@ end
 # Created:  2013-04-09 14:56:18 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('Encoding::ISO_8859_15') do |klass|
+RubyLint::GlobalScope.definitions.define_constant('Encoding::ISO_8859_15') do |klass|
 end
 
 ##
@@ -1219,7 +1219,7 @@ end
 # Created:  2013-04-09 14:56:18 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('Encoding::ISO_8859_16') do |klass|
+RubyLint::GlobalScope.definitions.define_constant('Encoding::ISO_8859_16') do |klass|
 end
 
 ##
@@ -1227,7 +1227,7 @@ end
 # Created:  2013-04-09 14:56:18 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('Encoding::ISO_8859_2') do |klass|
+RubyLint::GlobalScope.definitions.define_constant('Encoding::ISO_8859_2') do |klass|
 end
 
 ##
@@ -1235,7 +1235,7 @@ end
 # Created:  2013-04-09 14:56:18 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('Encoding::ISO_8859_3') do |klass|
+RubyLint::GlobalScope.definitions.define_constant('Encoding::ISO_8859_3') do |klass|
 end
 
 ##
@@ -1243,7 +1243,7 @@ end
 # Created:  2013-04-09 14:56:18 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('Encoding::ISO_8859_4') do |klass|
+RubyLint::GlobalScope.definitions.define_constant('Encoding::ISO_8859_4') do |klass|
 end
 
 ##
@@ -1251,7 +1251,7 @@ end
 # Created:  2013-04-09 14:56:18 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('Encoding::ISO_8859_5') do |klass|
+RubyLint::GlobalScope.definitions.define_constant('Encoding::ISO_8859_5') do |klass|
 end
 
 ##
@@ -1259,7 +1259,7 @@ end
 # Created:  2013-04-09 14:56:18 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('Encoding::ISO_8859_6') do |klass|
+RubyLint::GlobalScope.definitions.define_constant('Encoding::ISO_8859_6') do |klass|
 end
 
 ##
@@ -1267,7 +1267,7 @@ end
 # Created:  2013-04-09 14:56:18 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('Encoding::ISO_8859_7') do |klass|
+RubyLint::GlobalScope.definitions.define_constant('Encoding::ISO_8859_7') do |klass|
 end
 
 ##
@@ -1275,7 +1275,7 @@ end
 # Created:  2013-04-09 14:56:18 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('Encoding::ISO_8859_8') do |klass|
+RubyLint::GlobalScope.definitions.define_constant('Encoding::ISO_8859_8') do |klass|
 end
 
 ##
@@ -1283,7 +1283,7 @@ end
 # Created:  2013-04-09 14:56:18 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('Encoding::ISO_8859_9') do |klass|
+RubyLint::GlobalScope.definitions.define_constant('Encoding::ISO_8859_9') do |klass|
 end
 
 ##
@@ -1291,8 +1291,8 @@ end
 # Created:  2013-04-09 14:56:18 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('Encoding::InvalidByteSequenceError') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.constant_proxy('EncodingError'))
+RubyLint::GlobalScope.definitions.define_constant('Encoding::InvalidByteSequenceError') do |klass|
+  klass.inherits(RubyLint::GlobalScope.constant_proxy('EncodingError'))
 
   klass.define_method('__class_init__')
 
@@ -1320,7 +1320,7 @@ end
 # Created:  2013-04-09 14:56:18 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('Encoding::KOI8_R') do |klass|
+RubyLint::GlobalScope.definitions.define_constant('Encoding::KOI8_R') do |klass|
 end
 
 ##
@@ -1328,7 +1328,7 @@ end
 # Created:  2013-04-09 14:56:18 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('Encoding::KOI8_U') do |klass|
+RubyLint::GlobalScope.definitions.define_constant('Encoding::KOI8_U') do |klass|
 end
 
 ##
@@ -1336,7 +1336,7 @@ end
 # Created:  2013-04-09 14:56:18 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('Encoding::LocaleCharmap') do |klass|
+RubyLint::GlobalScope.definitions.define_constant('Encoding::LocaleCharmap') do |klass|
 end
 
 ##
@@ -1344,7 +1344,7 @@ end
 # Created:  2013-04-09 14:56:18 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('Encoding::MACCENTEURO') do |klass|
+RubyLint::GlobalScope.definitions.define_constant('Encoding::MACCENTEURO') do |klass|
 end
 
 ##
@@ -1352,7 +1352,7 @@ end
 # Created:  2013-04-09 14:56:18 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('Encoding::MACCROATIAN') do |klass|
+RubyLint::GlobalScope.definitions.define_constant('Encoding::MACCROATIAN') do |klass|
 end
 
 ##
@@ -1360,7 +1360,7 @@ end
 # Created:  2013-04-09 14:56:18 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('Encoding::MACCYRILLIC') do |klass|
+RubyLint::GlobalScope.definitions.define_constant('Encoding::MACCYRILLIC') do |klass|
 end
 
 ##
@@ -1368,7 +1368,7 @@ end
 # Created:  2013-04-09 14:56:18 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('Encoding::MACGREEK') do |klass|
+RubyLint::GlobalScope.definitions.define_constant('Encoding::MACGREEK') do |klass|
 end
 
 ##
@@ -1376,7 +1376,7 @@ end
 # Created:  2013-04-09 14:56:18 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('Encoding::MACICELAND') do |klass|
+RubyLint::GlobalScope.definitions.define_constant('Encoding::MACICELAND') do |klass|
 end
 
 ##
@@ -1384,7 +1384,7 @@ end
 # Created:  2013-04-09 14:56:18 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('Encoding::MACJAPAN') do |klass|
+RubyLint::GlobalScope.definitions.define_constant('Encoding::MACJAPAN') do |klass|
 end
 
 ##
@@ -1392,7 +1392,7 @@ end
 # Created:  2013-04-09 14:56:18 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('Encoding::MACJAPANESE') do |klass|
+RubyLint::GlobalScope.definitions.define_constant('Encoding::MACJAPANESE') do |klass|
 end
 
 ##
@@ -1400,7 +1400,7 @@ end
 # Created:  2013-04-09 14:56:18 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('Encoding::MACROMAN') do |klass|
+RubyLint::GlobalScope.definitions.define_constant('Encoding::MACROMAN') do |klass|
 end
 
 ##
@@ -1408,7 +1408,7 @@ end
 # Created:  2013-04-09 14:56:18 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('Encoding::MACROMANIA') do |klass|
+RubyLint::GlobalScope.definitions.define_constant('Encoding::MACROMANIA') do |klass|
 end
 
 ##
@@ -1416,7 +1416,7 @@ end
 # Created:  2013-04-09 14:56:18 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('Encoding::MACTHAI') do |klass|
+RubyLint::GlobalScope.definitions.define_constant('Encoding::MACTHAI') do |klass|
 end
 
 ##
@@ -1424,7 +1424,7 @@ end
 # Created:  2013-04-09 14:56:18 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('Encoding::MACTURKISH') do |klass|
+RubyLint::GlobalScope.definitions.define_constant('Encoding::MACTURKISH') do |klass|
 end
 
 ##
@@ -1432,7 +1432,7 @@ end
 # Created:  2013-04-09 14:56:18 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('Encoding::MACUKRAINE') do |klass|
+RubyLint::GlobalScope.definitions.define_constant('Encoding::MACUKRAINE') do |klass|
 end
 
 ##
@@ -1440,7 +1440,7 @@ end
 # Created:  2013-04-09 14:56:18 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('Encoding::MacCentEuro') do |klass|
+RubyLint::GlobalScope.definitions.define_constant('Encoding::MacCentEuro') do |klass|
 end
 
 ##
@@ -1448,7 +1448,7 @@ end
 # Created:  2013-04-09 14:56:18 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('Encoding::MacCroatian') do |klass|
+RubyLint::GlobalScope.definitions.define_constant('Encoding::MacCroatian') do |klass|
 end
 
 ##
@@ -1456,7 +1456,7 @@ end
 # Created:  2013-04-09 14:56:18 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('Encoding::MacCyrillic') do |klass|
+RubyLint::GlobalScope.definitions.define_constant('Encoding::MacCyrillic') do |klass|
 end
 
 ##
@@ -1464,7 +1464,7 @@ end
 # Created:  2013-04-09 14:56:18 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('Encoding::MacGreek') do |klass|
+RubyLint::GlobalScope.definitions.define_constant('Encoding::MacGreek') do |klass|
 end
 
 ##
@@ -1472,7 +1472,7 @@ end
 # Created:  2013-04-09 14:56:18 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('Encoding::MacIceland') do |klass|
+RubyLint::GlobalScope.definitions.define_constant('Encoding::MacIceland') do |klass|
 end
 
 ##
@@ -1480,7 +1480,7 @@ end
 # Created:  2013-04-09 14:56:18 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('Encoding::MacJapan') do |klass|
+RubyLint::GlobalScope.definitions.define_constant('Encoding::MacJapan') do |klass|
 end
 
 ##
@@ -1488,7 +1488,7 @@ end
 # Created:  2013-04-09 14:56:18 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('Encoding::MacJapanese') do |klass|
+RubyLint::GlobalScope.definitions.define_constant('Encoding::MacJapanese') do |klass|
 end
 
 ##
@@ -1496,7 +1496,7 @@ end
 # Created:  2013-04-09 14:56:18 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('Encoding::MacRoman') do |klass|
+RubyLint::GlobalScope.definitions.define_constant('Encoding::MacRoman') do |klass|
 end
 
 ##
@@ -1504,7 +1504,7 @@ end
 # Created:  2013-04-09 14:56:18 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('Encoding::MacRomania') do |klass|
+RubyLint::GlobalScope.definitions.define_constant('Encoding::MacRomania') do |klass|
 end
 
 ##
@@ -1512,7 +1512,7 @@ end
 # Created:  2013-04-09 14:56:18 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('Encoding::MacThai') do |klass|
+RubyLint::GlobalScope.definitions.define_constant('Encoding::MacThai') do |klass|
 end
 
 ##
@@ -1520,7 +1520,7 @@ end
 # Created:  2013-04-09 14:56:18 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('Encoding::MacTurkish') do |klass|
+RubyLint::GlobalScope.definitions.define_constant('Encoding::MacTurkish') do |klass|
 end
 
 ##
@@ -1528,7 +1528,7 @@ end
 # Created:  2013-04-09 14:56:18 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('Encoding::MacUkraine') do |klass|
+RubyLint::GlobalScope.definitions.define_constant('Encoding::MacUkraine') do |klass|
 end
 
 ##
@@ -1536,7 +1536,7 @@ end
 # Created:  2013-04-09 14:56:18 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('Encoding::PCK') do |klass|
+RubyLint::GlobalScope.definitions.define_constant('Encoding::PCK') do |klass|
 end
 
 ##
@@ -1544,7 +1544,7 @@ end
 # Created:  2013-04-09 14:56:18 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('Encoding::SHIFT_JIS') do |klass|
+RubyLint::GlobalScope.definitions.define_constant('Encoding::SHIFT_JIS') do |klass|
 end
 
 ##
@@ -1552,7 +1552,7 @@ end
 # Created:  2013-04-09 14:56:18 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('Encoding::SJIS') do |klass|
+RubyLint::GlobalScope.definitions.define_constant('Encoding::SJIS') do |klass|
 end
 
 ##
@@ -1560,7 +1560,7 @@ end
 # Created:  2013-04-09 14:56:18 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('Encoding::SJIS_DOCOMO') do |klass|
+RubyLint::GlobalScope.definitions.define_constant('Encoding::SJIS_DOCOMO') do |klass|
 end
 
 ##
@@ -1568,7 +1568,7 @@ end
 # Created:  2013-04-09 14:56:18 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('Encoding::SJIS_DoCoMo') do |klass|
+RubyLint::GlobalScope.definitions.define_constant('Encoding::SJIS_DoCoMo') do |klass|
 end
 
 ##
@@ -1576,7 +1576,7 @@ end
 # Created:  2013-04-09 14:56:18 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('Encoding::SJIS_KDDI') do |klass|
+RubyLint::GlobalScope.definitions.define_constant('Encoding::SJIS_KDDI') do |klass|
 end
 
 ##
@@ -1584,7 +1584,7 @@ end
 # Created:  2013-04-09 14:56:18 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('Encoding::SJIS_SOFTBANK') do |klass|
+RubyLint::GlobalScope.definitions.define_constant('Encoding::SJIS_SOFTBANK') do |klass|
 end
 
 ##
@@ -1592,7 +1592,7 @@ end
 # Created:  2013-04-09 14:56:18 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('Encoding::SJIS_SoftBank') do |klass|
+RubyLint::GlobalScope.definitions.define_constant('Encoding::SJIS_SoftBank') do |klass|
 end
 
 ##
@@ -1600,7 +1600,7 @@ end
 # Created:  2013-04-09 14:56:18 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('Encoding::STATELESS_ISO_2022_JP') do |klass|
+RubyLint::GlobalScope.definitions.define_constant('Encoding::STATELESS_ISO_2022_JP') do |klass|
 end
 
 ##
@@ -1608,7 +1608,7 @@ end
 # Created:  2013-04-09 14:56:18 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('Encoding::STATELESS_ISO_2022_JP_KDDI') do |klass|
+RubyLint::GlobalScope.definitions.define_constant('Encoding::STATELESS_ISO_2022_JP_KDDI') do |klass|
 end
 
 ##
@@ -1616,7 +1616,7 @@ end
 # Created:  2013-04-09 14:56:18 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('Encoding::Shift_JIS') do |klass|
+RubyLint::GlobalScope.definitions.define_constant('Encoding::Shift_JIS') do |klass|
 end
 
 ##
@@ -1624,7 +1624,7 @@ end
 # Created:  2013-04-09 14:56:18 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('Encoding::Stateless_ISO_2022_JP') do |klass|
+RubyLint::GlobalScope.definitions.define_constant('Encoding::Stateless_ISO_2022_JP') do |klass|
 end
 
 ##
@@ -1632,7 +1632,7 @@ end
 # Created:  2013-04-09 14:56:18 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('Encoding::Stateless_ISO_2022_JP_KDDI') do |klass|
+RubyLint::GlobalScope.definitions.define_constant('Encoding::Stateless_ISO_2022_JP_KDDI') do |klass|
 end
 
 ##
@@ -1640,7 +1640,7 @@ end
 # Created:  2013-04-09 14:56:18 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('Encoding::TIS_620') do |klass|
+RubyLint::GlobalScope.definitions.define_constant('Encoding::TIS_620') do |klass|
 end
 
 ##
@@ -1648,8 +1648,8 @@ end
 # Created:  2013-04-09 14:56:18 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('Encoding::Transcoding') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
+RubyLint::GlobalScope.definitions.define_constant('Encoding::Transcoding') do |klass|
+  klass.inherits(RubyLint::GlobalScope.constant_proxy('Object'))
 
   klass.define_method('__class_init__')
 
@@ -1669,7 +1669,7 @@ end
 # Created:  2013-04-09 14:56:18 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('Encoding::TranscodingMap') do |klass|
+RubyLint::GlobalScope.definitions.define_constant('Encoding::TranscodingMap') do |klass|
 end
 
 ##
@@ -1677,7 +1677,7 @@ end
 # Created:  2013-04-09 14:56:18 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('Encoding::UCS_2BE') do |klass|
+RubyLint::GlobalScope.definitions.define_constant('Encoding::UCS_2BE') do |klass|
 end
 
 ##
@@ -1685,7 +1685,7 @@ end
 # Created:  2013-04-09 14:56:18 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('Encoding::UCS_4BE') do |klass|
+RubyLint::GlobalScope.definitions.define_constant('Encoding::UCS_4BE') do |klass|
 end
 
 ##
@@ -1693,7 +1693,7 @@ end
 # Created:  2013-04-09 14:56:18 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('Encoding::UCS_4LE') do |klass|
+RubyLint::GlobalScope.definitions.define_constant('Encoding::UCS_4LE') do |klass|
 end
 
 ##
@@ -1701,7 +1701,7 @@ end
 # Created:  2013-04-09 14:56:18 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('Encoding::US_ASCII') do |klass|
+RubyLint::GlobalScope.definitions.define_constant('Encoding::US_ASCII') do |klass|
 end
 
 ##
@@ -1709,7 +1709,7 @@ end
 # Created:  2013-04-09 14:56:18 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('Encoding::UTF8_DOCOMO') do |klass|
+RubyLint::GlobalScope.definitions.define_constant('Encoding::UTF8_DOCOMO') do |klass|
 end
 
 ##
@@ -1717,7 +1717,7 @@ end
 # Created:  2013-04-09 14:56:18 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('Encoding::UTF8_DoCoMo') do |klass|
+RubyLint::GlobalScope.definitions.define_constant('Encoding::UTF8_DoCoMo') do |klass|
 end
 
 ##
@@ -1725,7 +1725,7 @@ end
 # Created:  2013-04-09 14:56:18 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('Encoding::UTF8_KDDI') do |klass|
+RubyLint::GlobalScope.definitions.define_constant('Encoding::UTF8_KDDI') do |klass|
 end
 
 ##
@@ -1733,7 +1733,7 @@ end
 # Created:  2013-04-09 14:56:18 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('Encoding::UTF8_MAC') do |klass|
+RubyLint::GlobalScope.definitions.define_constant('Encoding::UTF8_MAC') do |klass|
 end
 
 ##
@@ -1741,7 +1741,7 @@ end
 # Created:  2013-04-09 14:56:18 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('Encoding::UTF8_SOFTBANK') do |klass|
+RubyLint::GlobalScope.definitions.define_constant('Encoding::UTF8_SOFTBANK') do |klass|
 end
 
 ##
@@ -1749,7 +1749,7 @@ end
 # Created:  2013-04-09 14:56:18 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('Encoding::UTF8_SoftBank') do |klass|
+RubyLint::GlobalScope.definitions.define_constant('Encoding::UTF8_SoftBank') do |klass|
 end
 
 ##
@@ -1757,7 +1757,7 @@ end
 # Created:  2013-04-09 14:56:18 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('Encoding::UTF_16') do |klass|
+RubyLint::GlobalScope.definitions.define_constant('Encoding::UTF_16') do |klass|
 end
 
 ##
@@ -1765,7 +1765,7 @@ end
 # Created:  2013-04-09 14:56:18 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('Encoding::UTF_16BE') do |klass|
+RubyLint::GlobalScope.definitions.define_constant('Encoding::UTF_16BE') do |klass|
 end
 
 ##
@@ -1773,7 +1773,7 @@ end
 # Created:  2013-04-09 14:56:18 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('Encoding::UTF_16LE') do |klass|
+RubyLint::GlobalScope.definitions.define_constant('Encoding::UTF_16LE') do |klass|
 end
 
 ##
@@ -1781,7 +1781,7 @@ end
 # Created:  2013-04-09 14:56:18 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('Encoding::UTF_32') do |klass|
+RubyLint::GlobalScope.definitions.define_constant('Encoding::UTF_32') do |klass|
 end
 
 ##
@@ -1789,7 +1789,7 @@ end
 # Created:  2013-04-09 14:56:18 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('Encoding::UTF_32BE') do |klass|
+RubyLint::GlobalScope.definitions.define_constant('Encoding::UTF_32BE') do |klass|
 end
 
 ##
@@ -1797,7 +1797,7 @@ end
 # Created:  2013-04-09 14:56:18 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('Encoding::UTF_32LE') do |klass|
+RubyLint::GlobalScope.definitions.define_constant('Encoding::UTF_32LE') do |klass|
 end
 
 ##
@@ -1805,7 +1805,7 @@ end
 # Created:  2013-04-09 14:56:18 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('Encoding::UTF_7') do |klass|
+RubyLint::GlobalScope.definitions.define_constant('Encoding::UTF_7') do |klass|
 end
 
 ##
@@ -1813,7 +1813,7 @@ end
 # Created:  2013-04-09 14:56:18 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('Encoding::UTF_8') do |klass|
+RubyLint::GlobalScope.definitions.define_constant('Encoding::UTF_8') do |klass|
 end
 
 ##
@@ -1821,7 +1821,7 @@ end
 # Created:  2013-04-09 14:56:18 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('Encoding::UTF_8_HFS') do |klass|
+RubyLint::GlobalScope.definitions.define_constant('Encoding::UTF_8_HFS') do |klass|
 end
 
 ##
@@ -1829,7 +1829,7 @@ end
 # Created:  2013-04-09 14:56:18 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('Encoding::UTF_8_MAC') do |klass|
+RubyLint::GlobalScope.definitions.define_constant('Encoding::UTF_8_MAC') do |klass|
 end
 
 ##
@@ -1837,8 +1837,8 @@ end
 # Created:  2013-04-09 14:56:18 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('Encoding::UndefinedConversionError') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.constant_proxy('EncodingError'))
+RubyLint::GlobalScope.definitions.define_constant('Encoding::UndefinedConversionError') do |klass|
+  klass.inherits(RubyLint::GlobalScope.constant_proxy('EncodingError'))
 
   klass.define_method('__class_init__')
 
@@ -1858,7 +1858,7 @@ end
 # Created:  2013-04-09 14:56:18 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('Encoding::WINDOWS_1250') do |klass|
+RubyLint::GlobalScope.definitions.define_constant('Encoding::WINDOWS_1250') do |klass|
 end
 
 ##
@@ -1866,7 +1866,7 @@ end
 # Created:  2013-04-09 14:56:18 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('Encoding::WINDOWS_1251') do |klass|
+RubyLint::GlobalScope.definitions.define_constant('Encoding::WINDOWS_1251') do |klass|
 end
 
 ##
@@ -1874,7 +1874,7 @@ end
 # Created:  2013-04-09 14:56:18 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('Encoding::WINDOWS_1252') do |klass|
+RubyLint::GlobalScope.definitions.define_constant('Encoding::WINDOWS_1252') do |klass|
 end
 
 ##
@@ -1882,7 +1882,7 @@ end
 # Created:  2013-04-09 14:56:18 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('Encoding::WINDOWS_1253') do |klass|
+RubyLint::GlobalScope.definitions.define_constant('Encoding::WINDOWS_1253') do |klass|
 end
 
 ##
@@ -1890,7 +1890,7 @@ end
 # Created:  2013-04-09 14:56:18 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('Encoding::WINDOWS_1254') do |klass|
+RubyLint::GlobalScope.definitions.define_constant('Encoding::WINDOWS_1254') do |klass|
 end
 
 ##
@@ -1898,7 +1898,7 @@ end
 # Created:  2013-04-09 14:56:18 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('Encoding::WINDOWS_1255') do |klass|
+RubyLint::GlobalScope.definitions.define_constant('Encoding::WINDOWS_1255') do |klass|
 end
 
 ##
@@ -1906,7 +1906,7 @@ end
 # Created:  2013-04-09 14:56:18 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('Encoding::WINDOWS_1256') do |klass|
+RubyLint::GlobalScope.definitions.define_constant('Encoding::WINDOWS_1256') do |klass|
 end
 
 ##
@@ -1914,7 +1914,7 @@ end
 # Created:  2013-04-09 14:56:18 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('Encoding::WINDOWS_1257') do |klass|
+RubyLint::GlobalScope.definitions.define_constant('Encoding::WINDOWS_1257') do |klass|
 end
 
 ##
@@ -1922,7 +1922,7 @@ end
 # Created:  2013-04-09 14:56:18 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('Encoding::WINDOWS_1258') do |klass|
+RubyLint::GlobalScope.definitions.define_constant('Encoding::WINDOWS_1258') do |klass|
 end
 
 ##
@@ -1930,7 +1930,7 @@ end
 # Created:  2013-04-09 14:56:18 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('Encoding::WINDOWS_31J') do |klass|
+RubyLint::GlobalScope.definitions.define_constant('Encoding::WINDOWS_31J') do |klass|
 end
 
 ##
@@ -1938,7 +1938,7 @@ end
 # Created:  2013-04-09 14:56:18 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('Encoding::WINDOWS_874') do |klass|
+RubyLint::GlobalScope.definitions.define_constant('Encoding::WINDOWS_874') do |klass|
 end
 
 ##
@@ -1946,7 +1946,7 @@ end
 # Created:  2013-04-09 14:56:18 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('Encoding::Windows_1250') do |klass|
+RubyLint::GlobalScope.definitions.define_constant('Encoding::Windows_1250') do |klass|
 end
 
 ##
@@ -1954,7 +1954,7 @@ end
 # Created:  2013-04-09 14:56:18 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('Encoding::Windows_1251') do |klass|
+RubyLint::GlobalScope.definitions.define_constant('Encoding::Windows_1251') do |klass|
 end
 
 ##
@@ -1962,7 +1962,7 @@ end
 # Created:  2013-04-09 14:56:18 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('Encoding::Windows_1252') do |klass|
+RubyLint::GlobalScope.definitions.define_constant('Encoding::Windows_1252') do |klass|
 end
 
 ##
@@ -1970,7 +1970,7 @@ end
 # Created:  2013-04-09 14:56:18 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('Encoding::Windows_1253') do |klass|
+RubyLint::GlobalScope.definitions.define_constant('Encoding::Windows_1253') do |klass|
 end
 
 ##
@@ -1978,7 +1978,7 @@ end
 # Created:  2013-04-09 14:56:18 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('Encoding::Windows_1254') do |klass|
+RubyLint::GlobalScope.definitions.define_constant('Encoding::Windows_1254') do |klass|
 end
 
 ##
@@ -1986,7 +1986,7 @@ end
 # Created:  2013-04-09 14:56:18 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('Encoding::Windows_1255') do |klass|
+RubyLint::GlobalScope.definitions.define_constant('Encoding::Windows_1255') do |klass|
 end
 
 ##
@@ -1994,7 +1994,7 @@ end
 # Created:  2013-04-09 14:56:18 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('Encoding::Windows_1256') do |klass|
+RubyLint::GlobalScope.definitions.define_constant('Encoding::Windows_1256') do |klass|
 end
 
 ##
@@ -2002,7 +2002,7 @@ end
 # Created:  2013-04-09 14:56:18 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('Encoding::Windows_1257') do |klass|
+RubyLint::GlobalScope.definitions.define_constant('Encoding::Windows_1257') do |klass|
 end
 
 ##
@@ -2010,7 +2010,7 @@ end
 # Created:  2013-04-09 14:56:18 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('Encoding::Windows_1258') do |klass|
+RubyLint::GlobalScope.definitions.define_constant('Encoding::Windows_1258') do |klass|
 end
 
 ##
@@ -2018,7 +2018,7 @@ end
 # Created:  2013-04-09 14:56:18 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('Encoding::Windows_31J') do |klass|
+RubyLint::GlobalScope.definitions.define_constant('Encoding::Windows_31J') do |klass|
 end
 
 ##
@@ -2026,5 +2026,5 @@ end
 # Created:  2013-04-09 14:56:18 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('Encoding::Windows_874') do |klass|
+RubyLint::GlobalScope.definitions.define_constant('Encoding::Windows_874') do |klass|
 end

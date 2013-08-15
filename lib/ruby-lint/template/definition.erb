@@ -5,9 +5,9 @@
 # Platform: <%= RUBY_ENGINE %> <%= Rubinius::VERSION rescue RUBY_VERSION %>
 
 <% @constants.each do |constant| %>
-RubyLint::VirtualMachine.global_scope.define_constant('<%= constant.name %>') do |klass|
+RubyLint::GlobalScope.definitions.define_constant('<%= constant.name %>') do |klass|
   <%- if constant.superclass -%>
-  klass.inherits(RubyLint::VirtualMachine.constant_proxy('<%= constant.superclass %>'))
+  klass.inherits(RubyLint::GlobalScope.constant_proxy('<%= constant.superclass %>'))
   <%- end -%>
 
   <%- constant.methods.each do |type, collection| -%>

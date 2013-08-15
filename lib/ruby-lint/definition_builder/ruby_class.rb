@@ -8,7 +8,7 @@ module RubyLint
       # Called after creating a new instance of the class.
       #
       def after_initialize
-        options[:parent] ||= RubyLint::VirtualMachine.global_constant('Object')
+        options[:parent] ||= GlobalScope.global_constant('Object')
       end
 
       ##

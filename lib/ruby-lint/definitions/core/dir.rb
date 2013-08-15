@@ -3,8 +3,8 @@
 # Created:  2013-04-01 18:33:53 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('Dir') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
+RubyLint::GlobalScope.definitions.define_constant('Dir') do |klass|
+  klass.inherits(RubyLint::GlobalScope.constant_proxy('Object'))
 
   klass.define_method('[]') do |method|
     method.define_rest_argument('patterns')
@@ -115,7 +115,7 @@ end
 # Created:  2013-04-01 18:33:53 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('Dir::FFI') do |klass|
+RubyLint::GlobalScope.definitions.define_constant('Dir::FFI') do |klass|
 
   klass.define_method('__module_init__')
 
@@ -166,7 +166,7 @@ end
 # Created:  2013-04-01 18:33:53 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('Dir::Glob') do |klass|
+RubyLint::GlobalScope.definitions.define_constant('Dir::Glob') do |klass|
 
   klass.define_method('__module_init__')
 
@@ -205,8 +205,8 @@ end
 # Created:  2013-04-01 18:33:53 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('Dir::Glob::ConstantDirectory') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Dir::Glob::Node'))
+RubyLint::GlobalScope.definitions.define_constant('Dir::Glob::ConstantDirectory') do |klass|
+  klass.inherits(RubyLint::GlobalScope.constant_proxy('Dir::Glob::Node'))
 
   klass.define_method('__class_init__')
 
@@ -227,8 +227,8 @@ end
 # Created:  2013-04-01 18:33:53 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('Dir::Glob::ConstantEntry') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Dir::Glob::Node'))
+RubyLint::GlobalScope.definitions.define_constant('Dir::Glob::ConstantEntry') do |klass|
+  klass.inherits(RubyLint::GlobalScope.constant_proxy('Dir::Glob::Node'))
 
   klass.define_method('__class_init__')
 
@@ -249,8 +249,8 @@ end
 # Created:  2013-04-01 18:33:53 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('Dir::Glob::ConstantSuffixEntry') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Dir::Glob::Node'))
+RubyLint::GlobalScope.definitions.define_constant('Dir::Glob::ConstantSuffixEntry') do |klass|
+  klass.inherits(RubyLint::GlobalScope.constant_proxy('Dir::Glob::Node'))
 
   klass.define_method('__class_init__')
 
@@ -272,8 +272,8 @@ end
 # Created:  2013-04-01 18:33:53 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('Dir::Glob::DirectoriesOnly') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Dir::Glob::Node'))
+RubyLint::GlobalScope.definitions.define_constant('Dir::Glob::DirectoriesOnly') do |klass|
+  klass.inherits(RubyLint::GlobalScope.constant_proxy('Dir::Glob::Node'))
 
   klass.define_method('__class_init__')
 
@@ -288,8 +288,8 @@ end
 # Created:  2013-04-01 18:33:53 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('Dir::Glob::DirectoryMatch') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Dir::Glob::Match'))
+RubyLint::GlobalScope.definitions.define_constant('Dir::Glob::DirectoryMatch') do |klass|
+  klass.inherits(RubyLint::GlobalScope.constant_proxy('Dir::Glob::Match'))
 
   klass.define_method('__class_init__')
 
@@ -310,8 +310,8 @@ end
 # Created:  2013-04-01 18:33:53 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('Dir::Glob::EntryMatch') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Dir::Glob::Match'))
+RubyLint::GlobalScope.definitions.define_constant('Dir::Glob::EntryMatch') do |klass|
+  klass.inherits(RubyLint::GlobalScope.constant_proxy('Dir::Glob::Match'))
 
   klass.define_method('__class_init__')
 
@@ -326,8 +326,8 @@ end
 # Created:  2013-04-01 18:33:53 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('Dir::Glob::Environment') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
+RubyLint::GlobalScope.definitions.define_constant('Dir::Glob::Environment') do |klass|
+  klass.inherits(RubyLint::GlobalScope.constant_proxy('Object'))
 
   klass.define_method('__class_init__')
 
@@ -343,8 +343,8 @@ end
 # Created:  2013-04-01 18:33:53 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('Dir::Glob::Match') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Dir::Glob::Node'))
+RubyLint::GlobalScope.definitions.define_constant('Dir::Glob::Match') do |klass|
+  klass.inherits(RubyLint::GlobalScope.constant_proxy('Dir::Glob::Node'))
 
   klass.define_method('__class_init__')
 
@@ -364,8 +364,8 @@ end
 # Created:  2013-04-01 18:33:53 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('Dir::Glob::Node') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
+RubyLint::GlobalScope.definitions.define_constant('Dir::Glob::Node') do |klass|
+  klass.inherits(RubyLint::GlobalScope.constant_proxy('Object'))
 
   klass.define_method('__class_init__')
 
@@ -389,8 +389,8 @@ end
 # Created:  2013-04-01 18:33:53 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('Dir::Glob::RecursiveDirectories') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Dir::Glob::Node'))
+RubyLint::GlobalScope.definitions.define_constant('Dir::Glob::RecursiveDirectories') do |klass|
+  klass.inherits(RubyLint::GlobalScope.constant_proxy('Dir::Glob::Node'))
 
   klass.define_method('__class_init__')
 
@@ -405,8 +405,8 @@ end
 # Created:  2013-04-01 18:33:53 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('Dir::Glob::RootDirectory') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Dir::Glob::Node'))
+RubyLint::GlobalScope.definitions.define_constant('Dir::Glob::RootDirectory') do |klass|
+  klass.inherits(RubyLint::GlobalScope.constant_proxy('Dir::Glob::Node'))
 
   klass.define_method('__class_init__')
 
@@ -421,8 +421,8 @@ end
 # Created:  2013-04-01 18:33:53 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('Dir::Glob::StartRecursiveDirectories') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Dir::Glob::Node'))
+RubyLint::GlobalScope.definitions.define_constant('Dir::Glob::StartRecursiveDirectories') do |klass|
+  klass.inherits(RubyLint::GlobalScope.constant_proxy('Dir::Glob::Node'))
 
   klass.define_method('__class_init__')
 
@@ -437,8 +437,8 @@ end
 # Created:  2013-04-01 18:33:53 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('Dir::Glob::SuffixEntryMatch') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Dir::Glob::Match'))
+RubyLint::GlobalScope.definitions.define_constant('Dir::Glob::SuffixEntryMatch') do |klass|
+  klass.inherits(RubyLint::GlobalScope.constant_proxy('Dir::Glob::Match'))
 
   klass.define_method('__class_init__')
 
@@ -460,7 +460,7 @@ end
 # Created:  2013-04-01 18:33:53 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('Dir::RewindKind') do |klass|
+RubyLint::GlobalScope.definitions.define_constant('Dir::RewindKind') do |klass|
 end
 
 ##
@@ -468,8 +468,8 @@ end
 # Created:  2013-04-01 18:33:53 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('Dir::SortedElement') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
+RubyLint::GlobalScope.definitions.define_constant('Dir::SortedElement') do |klass|
+  klass.inherits(RubyLint::GlobalScope.constant_proxy('Object'))
 
   klass.define_method('__class_init__')
 
@@ -492,5 +492,5 @@ end
 # Created:  2013-04-01 18:33:53 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('Dir::TellKind') do |klass|
+RubyLint::GlobalScope.definitions.define_constant('Dir::TellKind') do |klass|
 end

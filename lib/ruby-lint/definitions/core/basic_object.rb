@@ -3,10 +3,10 @@
 # Created:  2013-03-26 21:43:55 +0100
 # Platform: rubinius 2.0.0.rc1 (1.9.3 cbee9a2d yyyy-mm-dd JI) [x86_64-unknown-linux-gnu]
 #
-RubyLint::VirtualMachine.global_scope.define_constant('BasicObject') do |klass|
+RubyLint::GlobalScope.definitions.define_constant('BasicObject') do |klass|
   klass.inherits(
-    RubyLint::VirtualMachine.constant_proxy('Class'),
-    RubyLint::VirtualMachine.constant_proxy('Kernel')
+    RubyLint::GlobalScope.constant_proxy('Class'),
+    RubyLint::GlobalScope.constant_proxy('Kernel')
   )
 
   klass.define_constructors do |method|

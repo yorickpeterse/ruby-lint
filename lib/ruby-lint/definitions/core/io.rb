@@ -3,8 +3,8 @@
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('IO') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
+RubyLint::GlobalScope.definitions.define_constant('IO') do |klass|
+  klass.inherits(RubyLint::GlobalScope.constant_proxy('Object'))
 
   klass.define_method('__class_init__')
 
@@ -458,7 +458,7 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('IO::APPEND') do |klass|
+RubyLint::GlobalScope.definitions.define_constant('IO::APPEND') do |klass|
 end
 
 ##
@@ -466,7 +466,7 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('IO::BINARY') do |klass|
+RubyLint::GlobalScope.definitions.define_constant('IO::BINARY') do |klass|
 end
 
 ##
@@ -474,8 +474,8 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('IO::BidirectionalPipe') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.constant_proxy('IO'))
+RubyLint::GlobalScope.definitions.define_constant('IO::BidirectionalPipe') do |klass|
+  klass.inherits(RubyLint::GlobalScope.constant_proxy('IO'))
 
   klass.define_method('__class_init__')
 
@@ -530,7 +530,7 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('IO::CREAT') do |klass|
+RubyLint::GlobalScope.definitions.define_constant('IO::CREAT') do |klass|
 end
 
 ##
@@ -538,8 +538,8 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('IO::EAGAINWaitReadable') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Errno::EAGAIN'))
+RubyLint::GlobalScope.definitions.define_constant('IO::EAGAINWaitReadable') do |klass|
+  klass.inherits(RubyLint::GlobalScope.constant_proxy('Errno::EAGAIN'))
 
   klass.define_method('__class_init__')
 end
@@ -549,7 +549,7 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('IO::EAGAINWaitReadable::Errno') do |klass|
+RubyLint::GlobalScope.definitions.define_constant('IO::EAGAINWaitReadable::Errno') do |klass|
 end
 
 ##
@@ -557,7 +557,7 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('IO::EAGAINWaitReadable::Strerror') do |klass|
+RubyLint::GlobalScope.definitions.define_constant('IO::EAGAINWaitReadable::Strerror') do |klass|
 end
 
 ##
@@ -565,8 +565,8 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('IO::EAGAINWaitWritable') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Errno::EAGAIN'))
+RubyLint::GlobalScope.definitions.define_constant('IO::EAGAINWaitWritable') do |klass|
+  klass.inherits(RubyLint::GlobalScope.constant_proxy('Errno::EAGAIN'))
 
   klass.define_method('__class_init__')
 end
@@ -576,7 +576,7 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('IO::EAGAINWaitWritable::Errno') do |klass|
+RubyLint::GlobalScope.definitions.define_constant('IO::EAGAINWaitWritable::Errno') do |klass|
 end
 
 ##
@@ -584,7 +584,7 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('IO::EAGAINWaitWritable::Strerror') do |klass|
+RubyLint::GlobalScope.definitions.define_constant('IO::EAGAINWaitWritable::Strerror') do |klass|
 end
 
 ##
@@ -592,7 +592,7 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('IO::EXCL') do |klass|
+RubyLint::GlobalScope.definitions.define_constant('IO::EXCL') do |klass|
 end
 
 ##
@@ -600,8 +600,8 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('IO::EachReader') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
+RubyLint::GlobalScope.definitions.define_constant('IO::EachReader') do |klass|
+  klass.inherits(RubyLint::GlobalScope.constant_proxy('Object'))
 
   klass.define_method('__class_init__')
 
@@ -630,7 +630,7 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('IO::FFI') do |klass|
+RubyLint::GlobalScope.definitions.define_constant('IO::FFI') do |klass|
 
   klass.define_method('__module_init__')
 
@@ -681,7 +681,7 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('IO::F_GETFL') do |klass|
+RubyLint::GlobalScope.definitions.define_constant('IO::F_GETFL') do |klass|
 end
 
 ##
@@ -689,8 +689,8 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('IO::InternalBuffer') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
+RubyLint::GlobalScope.definitions.define_constant('IO::InternalBuffer') do |klass|
+  klass.inherits(RubyLint::GlobalScope.constant_proxy('Object'))
 
   klass.define_method('__class_init__')
 
@@ -773,7 +773,7 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('IO::LOCK_UN') do |klass|
+RubyLint::GlobalScope.definitions.define_constant('IO::LOCK_UN') do |klass|
 end
 
 ##
@@ -781,7 +781,7 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('IO::NOCTTY') do |klass|
+RubyLint::GlobalScope.definitions.define_constant('IO::NOCTTY') do |klass|
 end
 
 ##
@@ -789,7 +789,7 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('IO::NONBLOCK') do |klass|
+RubyLint::GlobalScope.definitions.define_constant('IO::NONBLOCK') do |klass|
 end
 
 ##
@@ -797,7 +797,7 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('IO::NULL') do |klass|
+RubyLint::GlobalScope.definitions.define_constant('IO::NULL') do |klass|
 end
 
 ##
@@ -805,7 +805,7 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('IO::SEEK_CUR') do |klass|
+RubyLint::GlobalScope.definitions.define_constant('IO::SEEK_CUR') do |klass|
 end
 
 ##
@@ -813,7 +813,7 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('IO::SEEK_END') do |klass|
+RubyLint::GlobalScope.definitions.define_constant('IO::SEEK_END') do |klass|
 end
 
 ##
@@ -821,7 +821,7 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('IO::SYNC') do |klass|
+RubyLint::GlobalScope.definitions.define_constant('IO::SYNC') do |klass|
 end
 
 ##
@@ -829,7 +829,7 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('IO::Socketable') do |klass|
+RubyLint::GlobalScope.definitions.define_constant('IO::Socketable') do |klass|
 
   klass.define_method('__module_init__')
 
@@ -841,8 +841,8 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('IO::SortedElement') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
+RubyLint::GlobalScope.definitions.define_constant('IO::SortedElement') do |klass|
+  klass.inherits(RubyLint::GlobalScope.constant_proxy('Object'))
 
   klass.define_method('__class_init__')
 
@@ -865,8 +865,8 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('IO::StreamCopier') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
+RubyLint::GlobalScope.definitions.define_constant('IO::StreamCopier') do |klass|
+  klass.inherits(RubyLint::GlobalScope.constant_proxy('Object'))
 
   klass.define_method('__class_init__')
 
@@ -894,7 +894,7 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('IO::TRUNC') do |klass|
+RubyLint::GlobalScope.definitions.define_constant('IO::TRUNC') do |klass|
 end
 
 ##
@@ -902,7 +902,7 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('IO::TransferIO') do |klass|
+RubyLint::GlobalScope.definitions.define_constant('IO::TransferIO') do |klass|
 
   klass.define_method('__module_init__')
 
@@ -916,7 +916,7 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('IO::WaitReadable') do |klass|
+RubyLint::GlobalScope.definitions.define_constant('IO::WaitReadable') do |klass|
 end
 
 ##
@@ -924,5 +924,5 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('IO::WaitWritable') do |klass|
+RubyLint::GlobalScope.definitions.define_constant('IO::WaitWritable') do |klass|
 end

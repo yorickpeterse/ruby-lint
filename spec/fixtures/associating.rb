@@ -1,7 +1,7 @@
 module RubyLint
-  class VirtualMachine
+  class GlobalScope
     def self.constant_proxy(name)
-      return Definition::ConstantProxy.new(global_scope, name)
+      return Definition::ConstantProxy.new(definitions, name)
     end
   end
 end

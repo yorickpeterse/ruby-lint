@@ -3,8 +3,8 @@
 # Created:  2013-04-01 18:33:52 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('Array') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
+RubyLint::GlobalScope.definitions.define_constant('Array') do |klass|
+  klass.inherits(RubyLint::GlobalScope.constant_proxy('Object'))
 
   klass.define_method('[]') do |method|
     method.define_rest_argument('args')
@@ -373,8 +373,8 @@ end
 # Created:  2013-04-01 18:33:52 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('Array::SortedElement') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
+RubyLint::GlobalScope.definitions.define_constant('Array::SortedElement') do |klass|
+  klass.inherits(RubyLint::GlobalScope.constant_proxy('Object'))
 
   klass.define_method('__class_init__')
 
@@ -397,8 +397,8 @@ end
 # Created:  2013-04-01 18:33:52 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('Array::ValueGenerator') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
+RubyLint::GlobalScope.definitions.define_constant('Array::ValueGenerator') do |klass|
+  klass.inherits(RubyLint::GlobalScope.constant_proxy('Object'))
 
   klass.define_method('__class_init__')
 

@@ -3,7 +3,7 @@
 # Created:  2013-04-01 18:33:53 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('Digest') do |klass|
+RubyLint::GlobalScope.definitions.define_constant('Digest') do |klass|
 
   klass.define_method('__module_init__')
 
@@ -19,8 +19,8 @@ end
 # Created:  2013-04-01 18:33:53 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('Digest::Base') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Digest::Class'))
+RubyLint::GlobalScope.definitions.define_constant('Digest::Base') do |klass|
+  klass.inherits(RubyLint::GlobalScope.constant_proxy('Digest::Class'))
 
   klass.define_method('allocate')
 
@@ -42,8 +42,8 @@ end
 # Created:  2013-04-01 18:33:53 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('Digest::Class') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
+RubyLint::GlobalScope.definitions.define_constant('Digest::Class') do |klass|
+  klass.inherits(RubyLint::GlobalScope.constant_proxy('Object'))
 
   klass.define_method('__class_init__')
 
@@ -66,7 +66,7 @@ end
 # Created:  2013-04-01 18:33:53 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('Digest::Instance') do |klass|
+RubyLint::GlobalScope.definitions.define_constant('Digest::Instance') do |klass|
 
   klass.define_method('__module_init__')
 
@@ -116,8 +116,8 @@ end
 # Created:  2013-04-01 18:33:53 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('Digest::SHA2') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Digest::Class'))
+RubyLint::GlobalScope.definitions.define_constant('Digest::SHA2') do |klass|
+  klass.inherits(RubyLint::GlobalScope.constant_proxy('Digest::Class'))
 
   klass.define_method('__class_init__')
 
@@ -143,8 +143,8 @@ end
 # Created:  2013-04-01 18:33:53 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('Digest::SHA256') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Digest::Base'))
+RubyLint::GlobalScope.definitions.define_constant('Digest::SHA256') do |klass|
+  klass.inherits(RubyLint::GlobalScope.constant_proxy('Digest::Base'))
 end
 
 ##
@@ -152,8 +152,8 @@ end
 # Created:  2013-04-01 18:33:53 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('Digest::SHA384') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Digest::Base'))
+RubyLint::GlobalScope.definitions.define_constant('Digest::SHA384') do |klass|
+  klass.inherits(RubyLint::GlobalScope.constant_proxy('Digest::Base'))
 end
 
 ##
@@ -161,6 +161,6 @@ end
 # Created:  2013-04-01 18:33:53 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('Digest::SHA512') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Digest::Base'))
+RubyLint::GlobalScope.definitions.define_constant('Digest::SHA512') do |klass|
+  klass.inherits(RubyLint::GlobalScope.constant_proxy('Digest::Base'))
 end

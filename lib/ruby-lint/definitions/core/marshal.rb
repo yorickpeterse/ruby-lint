@@ -3,7 +3,7 @@
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('Marshal') do |klass|
+RubyLint::GlobalScope.definitions.define_constant('Marshal') do |klass|
 
   klass.define_method('__module_init__')
 
@@ -29,8 +29,8 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('Marshal::IOState') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Marshal::State'))
+RubyLint::GlobalScope.definitions.define_constant('Marshal::IOState') do |klass|
+  klass.inherits(RubyLint::GlobalScope.constant_proxy('Marshal::State'))
 
   klass.define_method('__class_init__')
 
@@ -46,7 +46,7 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('Marshal::MAJOR_VERSION') do |klass|
+RubyLint::GlobalScope.definitions.define_constant('Marshal::MAJOR_VERSION') do |klass|
 end
 
 ##
@@ -54,7 +54,7 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('Marshal::MINOR_VERSION') do |klass|
+RubyLint::GlobalScope.definitions.define_constant('Marshal::MINOR_VERSION') do |klass|
 end
 
 ##
@@ -62,8 +62,8 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('Marshal::State') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
+RubyLint::GlobalScope.definitions.define_constant('Marshal::State') do |klass|
+  klass.inherits(RubyLint::GlobalScope.constant_proxy('Object'))
 
   klass.define_method('__class_init__')
 
@@ -239,8 +239,8 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('Marshal::StringState') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Marshal::State'))
+RubyLint::GlobalScope.definitions.define_constant('Marshal::StringState') do |klass|
+  klass.inherits(RubyLint::GlobalScope.constant_proxy('Marshal::State'))
 
   klass.define_method('__class_init__')
 
@@ -262,7 +262,7 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('Marshal::TYPE_ARRAY') do |klass|
+RubyLint::GlobalScope.definitions.define_constant('Marshal::TYPE_ARRAY') do |klass|
 end
 
 ##
@@ -270,7 +270,7 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('Marshal::TYPE_BIGNUM') do |klass|
+RubyLint::GlobalScope.definitions.define_constant('Marshal::TYPE_BIGNUM') do |klass|
 end
 
 ##
@@ -278,7 +278,7 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('Marshal::TYPE_CLASS') do |klass|
+RubyLint::GlobalScope.definitions.define_constant('Marshal::TYPE_CLASS') do |klass|
 end
 
 ##
@@ -286,7 +286,7 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('Marshal::TYPE_DATA') do |klass|
+RubyLint::GlobalScope.definitions.define_constant('Marshal::TYPE_DATA') do |klass|
 end
 
 ##
@@ -294,7 +294,7 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('Marshal::TYPE_EXTENDED') do |klass|
+RubyLint::GlobalScope.definitions.define_constant('Marshal::TYPE_EXTENDED') do |klass|
 end
 
 ##
@@ -302,7 +302,7 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('Marshal::TYPE_FALSE') do |klass|
+RubyLint::GlobalScope.definitions.define_constant('Marshal::TYPE_FALSE') do |klass|
 end
 
 ##
@@ -310,7 +310,7 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('Marshal::TYPE_FIXNUM') do |klass|
+RubyLint::GlobalScope.definitions.define_constant('Marshal::TYPE_FIXNUM') do |klass|
 end
 
 ##
@@ -318,7 +318,7 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('Marshal::TYPE_FLOAT') do |klass|
+RubyLint::GlobalScope.definitions.define_constant('Marshal::TYPE_FLOAT') do |klass|
 end
 
 ##
@@ -326,7 +326,7 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('Marshal::TYPE_HASH') do |klass|
+RubyLint::GlobalScope.definitions.define_constant('Marshal::TYPE_HASH') do |klass|
 end
 
 ##
@@ -334,7 +334,7 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('Marshal::TYPE_HASH_DEF') do |klass|
+RubyLint::GlobalScope.definitions.define_constant('Marshal::TYPE_HASH_DEF') do |klass|
 end
 
 ##
@@ -342,7 +342,7 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('Marshal::TYPE_IVAR') do |klass|
+RubyLint::GlobalScope.definitions.define_constant('Marshal::TYPE_IVAR') do |klass|
 end
 
 ##
@@ -350,7 +350,7 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('Marshal::TYPE_LINK') do |klass|
+RubyLint::GlobalScope.definitions.define_constant('Marshal::TYPE_LINK') do |klass|
 end
 
 ##
@@ -358,7 +358,7 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('Marshal::TYPE_MODULE') do |klass|
+RubyLint::GlobalScope.definitions.define_constant('Marshal::TYPE_MODULE') do |klass|
 end
 
 ##
@@ -366,7 +366,7 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('Marshal::TYPE_MODULE_OLD') do |klass|
+RubyLint::GlobalScope.definitions.define_constant('Marshal::TYPE_MODULE_OLD') do |klass|
 end
 
 ##
@@ -374,7 +374,7 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('Marshal::TYPE_NIL') do |klass|
+RubyLint::GlobalScope.definitions.define_constant('Marshal::TYPE_NIL') do |klass|
 end
 
 ##
@@ -382,7 +382,7 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('Marshal::TYPE_OBJECT') do |klass|
+RubyLint::GlobalScope.definitions.define_constant('Marshal::TYPE_OBJECT') do |klass|
 end
 
 ##
@@ -390,7 +390,7 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('Marshal::TYPE_REGEXP') do |klass|
+RubyLint::GlobalScope.definitions.define_constant('Marshal::TYPE_REGEXP') do |klass|
 end
 
 ##
@@ -398,7 +398,7 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('Marshal::TYPE_STRING') do |klass|
+RubyLint::GlobalScope.definitions.define_constant('Marshal::TYPE_STRING') do |klass|
 end
 
 ##
@@ -406,7 +406,7 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('Marshal::TYPE_STRUCT') do |klass|
+RubyLint::GlobalScope.definitions.define_constant('Marshal::TYPE_STRUCT') do |klass|
 end
 
 ##
@@ -414,7 +414,7 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('Marshal::TYPE_SYMBOL') do |klass|
+RubyLint::GlobalScope.definitions.define_constant('Marshal::TYPE_SYMBOL') do |klass|
 end
 
 ##
@@ -422,7 +422,7 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('Marshal::TYPE_SYMLINK') do |klass|
+RubyLint::GlobalScope.definitions.define_constant('Marshal::TYPE_SYMLINK') do |klass|
 end
 
 ##
@@ -430,7 +430,7 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('Marshal::TYPE_TRUE') do |klass|
+RubyLint::GlobalScope.definitions.define_constant('Marshal::TYPE_TRUE') do |klass|
 end
 
 ##
@@ -438,7 +438,7 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('Marshal::TYPE_UCLASS') do |klass|
+RubyLint::GlobalScope.definitions.define_constant('Marshal::TYPE_UCLASS') do |klass|
 end
 
 ##
@@ -446,7 +446,7 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('Marshal::TYPE_USERDEF') do |klass|
+RubyLint::GlobalScope.definitions.define_constant('Marshal::TYPE_USERDEF') do |klass|
 end
 
 ##
@@ -454,7 +454,7 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('Marshal::TYPE_USRMARSHAL') do |klass|
+RubyLint::GlobalScope.definitions.define_constant('Marshal::TYPE_USRMARSHAL') do |klass|
 end
 
 ##
@@ -462,5 +462,5 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('Marshal::VERSION_STRING') do |klass|
+RubyLint::GlobalScope.definitions.define_constant('Marshal::VERSION_STRING') do |klass|
 end

@@ -4,8 +4,8 @@
 # Created:  2013-07-24 21:54:00 +0200
 # Platform: rbx 2.0.0.n198
 
-RubyLint::VirtualMachine.global_scope.define_constant('ActiveRecord') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
+RubyLint::GlobalScope.definitions.define_constant('ActiveRecord') do |klass|
+  klass.inherits(RubyLint::GlobalScope.constant_proxy('Object'))
 
   klass.define_method('autoload_at') do |method|
     method.define_argument('path')
@@ -28,8 +28,8 @@ RubyLint::VirtualMachine.global_scope.define_constant('ActiveRecord') do |klass|
   klass.define_method('version')
 end
 
-RubyLint::VirtualMachine.global_scope.define_constant('ActiveRecord::ActiveRecordError') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.constant_proxy('StandardError'))
+RubyLint::GlobalScope.definitions.define_constant('ActiveRecord::ActiveRecordError') do |klass|
+  klass.inherits(RubyLint::GlobalScope.constant_proxy('StandardError'))
 
   klass.define_method('exception') do |method|
     method.define_rest_argument('args')
@@ -96,8 +96,8 @@ RubyLint::VirtualMachine.global_scope.define_constant('ActiveRecord::ActiveRecor
   end
 end
 
-RubyLint::VirtualMachine.global_scope.define_constant('ActiveRecord::AdapterNotFound') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.constant_proxy('ActiveRecord::ActiveRecordError'))
+RubyLint::GlobalScope.definitions.define_constant('ActiveRecord::AdapterNotFound') do |klass|
+  klass.inherits(RubyLint::GlobalScope.constant_proxy('ActiveRecord::ActiveRecordError'))
 
   klass.define_method('exception') do |method|
     method.define_rest_argument('args')
@@ -164,8 +164,8 @@ RubyLint::VirtualMachine.global_scope.define_constant('ActiveRecord::AdapterNotF
   end
 end
 
-RubyLint::VirtualMachine.global_scope.define_constant('ActiveRecord::AdapterNotSpecified') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.constant_proxy('ActiveRecord::ActiveRecordError'))
+RubyLint::GlobalScope.definitions.define_constant('ActiveRecord::AdapterNotSpecified') do |klass|
+  klass.inherits(RubyLint::GlobalScope.constant_proxy('ActiveRecord::ActiveRecordError'))
 
   klass.define_method('exception') do |method|
     method.define_rest_argument('args')
@@ -232,8 +232,8 @@ RubyLint::VirtualMachine.global_scope.define_constant('ActiveRecord::AdapterNotS
   end
 end
 
-RubyLint::VirtualMachine.global_scope.define_constant('ActiveRecord::Aggregations') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
+RubyLint::GlobalScope.definitions.define_constant('ActiveRecord::Aggregations') do |klass|
+  klass.inherits(RubyLint::GlobalScope.constant_proxy('Object'))
 
   klass.define_method('append_features') do |method|
     method.define_argument('base')
@@ -251,8 +251,8 @@ RubyLint::VirtualMachine.global_scope.define_constant('ActiveRecord::Aggregation
   klass.define_instance_method('clear_aggregation_cache')
 end
 
-RubyLint::VirtualMachine.global_scope.define_constant('ActiveRecord::AssociationTypeMismatch') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.constant_proxy('ActiveRecord::ActiveRecordError'))
+RubyLint::GlobalScope.definitions.define_constant('ActiveRecord::AssociationTypeMismatch') do |klass|
+  klass.inherits(RubyLint::GlobalScope.constant_proxy('ActiveRecord::ActiveRecordError'))
 
   klass.define_method('exception') do |method|
     method.define_rest_argument('args')
@@ -319,8 +319,8 @@ RubyLint::VirtualMachine.global_scope.define_constant('ActiveRecord::Association
   end
 end
 
-RubyLint::VirtualMachine.global_scope.define_constant('ActiveRecord::Associations') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
+RubyLint::GlobalScope.definitions.define_constant('ActiveRecord::Associations') do |klass|
+  klass.inherits(RubyLint::GlobalScope.constant_proxy('Object'))
 
   klass.define_method('append_features') do |method|
     method.define_argument('base')
@@ -358,8 +358,8 @@ RubyLint::VirtualMachine.global_scope.define_constant('ActiveRecord::Association
   klass.define_instance_method('clear_association_cache')
 end
 
-RubyLint::VirtualMachine.global_scope.define_constant('ActiveRecord::AttributeAssignment') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
+RubyLint::GlobalScope.definitions.define_constant('ActiveRecord::AttributeAssignment') do |klass|
+  klass.inherits(RubyLint::GlobalScope.constant_proxy('Object'))
 
   klass.define_method('append_features') do |method|
     method.define_argument('base')
@@ -387,8 +387,8 @@ RubyLint::VirtualMachine.global_scope.define_constant('ActiveRecord::AttributeAs
   end
 end
 
-RubyLint::VirtualMachine.global_scope.define_constant('ActiveRecord::AttributeAssignmentError') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.constant_proxy('ActiveRecord::ActiveRecordError'))
+RubyLint::GlobalScope.definitions.define_constant('ActiveRecord::AttributeAssignmentError') do |klass|
+  klass.inherits(RubyLint::GlobalScope.constant_proxy('ActiveRecord::ActiveRecordError'))
 
   klass.define_method('exception') do |method|
     method.define_rest_argument('args')
@@ -451,8 +451,8 @@ RubyLint::VirtualMachine.global_scope.define_constant('ActiveRecord::AttributeAs
   end
 end
 
-RubyLint::VirtualMachine.global_scope.define_constant('ActiveRecord::AttributeMethods') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
+RubyLint::GlobalScope.definitions.define_constant('ActiveRecord::AttributeMethods') do |klass|
+  klass.inherits(RubyLint::GlobalScope.constant_proxy('Object'))
 
   klass.define_method('append_features') do |method|
     method.define_argument('base')
@@ -550,8 +550,8 @@ RubyLint::VirtualMachine.global_scope.define_constant('ActiveRecord::AttributeMe
   end
 end
 
-RubyLint::VirtualMachine.global_scope.define_constant('ActiveRecord::AutosaveAssociation') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
+RubyLint::GlobalScope.definitions.define_constant('ActiveRecord::AutosaveAssociation') do |klass|
+  klass.inherits(RubyLint::GlobalScope.constant_proxy('Object'))
 
   klass.define_method('append_features') do |method|
     method.define_argument('base')
@@ -583,8 +583,8 @@ RubyLint::VirtualMachine.global_scope.define_constant('ActiveRecord::AutosaveAss
   end
 end
 
-RubyLint::VirtualMachine.global_scope.define_constant('ActiveRecord::Base') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
+RubyLint::GlobalScope.definitions.define_constant('ActiveRecord::Base') do |klass|
+  klass.inherits(RubyLint::GlobalScope.constant_proxy('Object'))
 
   klass.define_method('__callback_runner_name') do |method|
     method.define_argument('kind')
@@ -2554,8 +2554,8 @@ RubyLint::VirtualMachine.global_scope.define_constant('ActiveRecord::Base') do |
   end
 end
 
-RubyLint::VirtualMachine.global_scope.define_constant('ActiveRecord::Batches') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
+RubyLint::GlobalScope.definitions.define_constant('ActiveRecord::Batches') do |klass|
+  klass.inherits(RubyLint::GlobalScope.constant_proxy('Object'))
 
   klass.define_method('initialize') do |method|
     method.define_block_argument('block')
@@ -2570,8 +2570,8 @@ RubyLint::VirtualMachine.global_scope.define_constant('ActiveRecord::Batches') d
   end
 end
 
-RubyLint::VirtualMachine.global_scope.define_constant('ActiveRecord::Calculations') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
+RubyLint::GlobalScope.definitions.define_constant('ActiveRecord::Calculations') do |klass|
+  klass.inherits(RubyLint::GlobalScope.constant_proxy('Object'))
 
   klass.define_method('initialize') do |method|
     method.define_block_argument('block')
@@ -2614,8 +2614,8 @@ RubyLint::VirtualMachine.global_scope.define_constant('ActiveRecord::Calculation
   end
 end
 
-RubyLint::VirtualMachine.global_scope.define_constant('ActiveRecord::Callbacks') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
+RubyLint::GlobalScope.definitions.define_constant('ActiveRecord::Callbacks') do |klass|
+  klass.inherits(RubyLint::GlobalScope.constant_proxy('Object'))
 
   klass.define_method('append_features') do |method|
     method.define_argument('base')
@@ -2637,16 +2637,16 @@ RubyLint::VirtualMachine.global_scope.define_constant('ActiveRecord::Callbacks')
   end
 end
 
-RubyLint::VirtualMachine.global_scope.define_constant('ActiveRecord::Coders') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
+RubyLint::GlobalScope.definitions.define_constant('ActiveRecord::Coders') do |klass|
+  klass.inherits(RubyLint::GlobalScope.constant_proxy('Object'))
 
   klass.define_method('initialize') do |method|
     method.define_block_argument('block')
   end
 end
 
-RubyLint::VirtualMachine.global_scope.define_constant('ActiveRecord::ConfigurationError') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.constant_proxy('ActiveRecord::ActiveRecordError'))
+RubyLint::GlobalScope.definitions.define_constant('ActiveRecord::ConfigurationError') do |klass|
+  klass.inherits(RubyLint::GlobalScope.constant_proxy('ActiveRecord::ActiveRecordError'))
 
   klass.define_method('exception') do |method|
     method.define_rest_argument('args')
@@ -2713,8 +2713,8 @@ RubyLint::VirtualMachine.global_scope.define_constant('ActiveRecord::Configurati
   end
 end
 
-RubyLint::VirtualMachine.global_scope.define_constant('ActiveRecord::ConnectionAdapters') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
+RubyLint::GlobalScope.definitions.define_constant('ActiveRecord::ConnectionAdapters') do |klass|
+  klass.inherits(RubyLint::GlobalScope.constant_proxy('Object'))
 
   klass.define_method('autoload_at') do |method|
     method.define_argument('path')
@@ -2735,8 +2735,8 @@ RubyLint::VirtualMachine.global_scope.define_constant('ActiveRecord::ConnectionA
   end
 end
 
-RubyLint::VirtualMachine.global_scope.define_constant('ActiveRecord::ConnectionHandling') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
+RubyLint::GlobalScope.definitions.define_constant('ActiveRecord::ConnectionHandling') do |klass|
+  klass.inherits(RubyLint::GlobalScope.constant_proxy('Object'))
 
   klass.define_method('initialize') do |method|
     method.define_block_argument('block')
@@ -2784,8 +2784,8 @@ RubyLint::VirtualMachine.global_scope.define_constant('ActiveRecord::ConnectionH
   klass.define_instance_method('retrieve_connection')
 end
 
-RubyLint::VirtualMachine.global_scope.define_constant('ActiveRecord::ConnectionNotEstablished') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.constant_proxy('ActiveRecord::ActiveRecordError'))
+RubyLint::GlobalScope.definitions.define_constant('ActiveRecord::ConnectionNotEstablished') do |klass|
+  klass.inherits(RubyLint::GlobalScope.constant_proxy('ActiveRecord::ActiveRecordError'))
 
   klass.define_method('exception') do |method|
     method.define_rest_argument('args')
@@ -2852,8 +2852,8 @@ RubyLint::VirtualMachine.global_scope.define_constant('ActiveRecord::ConnectionN
   end
 end
 
-RubyLint::VirtualMachine.global_scope.define_constant('ActiveRecord::ConnectionTimeoutError') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.constant_proxy('ActiveRecord::ConnectionNotEstablished'))
+RubyLint::GlobalScope.definitions.define_constant('ActiveRecord::ConnectionTimeoutError') do |klass|
+  klass.inherits(RubyLint::GlobalScope.constant_proxy('ActiveRecord::ConnectionNotEstablished'))
 
   klass.define_method('exception') do |method|
     method.define_rest_argument('args')
@@ -2920,8 +2920,8 @@ RubyLint::VirtualMachine.global_scope.define_constant('ActiveRecord::ConnectionT
   end
 end
 
-RubyLint::VirtualMachine.global_scope.define_constant('ActiveRecord::Core') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
+RubyLint::GlobalScope.definitions.define_constant('ActiveRecord::Core') do |klass|
+  klass.inherits(RubyLint::GlobalScope.constant_proxy('Object'))
 
   klass.define_method('append_features') do |method|
     method.define_argument('base')
@@ -2987,8 +2987,8 @@ RubyLint::VirtualMachine.global_scope.define_constant('ActiveRecord::Core') do |
   end
 end
 
-RubyLint::VirtualMachine.global_scope.define_constant('ActiveRecord::CounterCache') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
+RubyLint::GlobalScope.definitions.define_constant('ActiveRecord::CounterCache') do |klass|
+  klass.inherits(RubyLint::GlobalScope.constant_proxy('Object'))
 
   klass.define_method('append_features') do |method|
     method.define_argument('base')
@@ -3004,8 +3004,8 @@ RubyLint::VirtualMachine.global_scope.define_constant('ActiveRecord::CounterCach
   end
 end
 
-RubyLint::VirtualMachine.global_scope.define_constant('ActiveRecord::DangerousAttributeError') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.constant_proxy('ActiveRecord::ActiveRecordError'))
+RubyLint::GlobalScope.definitions.define_constant('ActiveRecord::DangerousAttributeError') do |klass|
+  klass.inherits(RubyLint::GlobalScope.constant_proxy('ActiveRecord::ActiveRecordError'))
 
   klass.define_method('exception') do |method|
     method.define_rest_argument('args')
@@ -3072,8 +3072,8 @@ RubyLint::VirtualMachine.global_scope.define_constant('ActiveRecord::DangerousAt
   end
 end
 
-RubyLint::VirtualMachine.global_scope.define_constant('ActiveRecord::Delegation') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
+RubyLint::GlobalScope.definitions.define_constant('ActiveRecord::Delegation') do |klass|
+  klass.inherits(RubyLint::GlobalScope.constant_proxy('Object'))
 
   klass.define_method('append_features') do |method|
     method.define_argument('base')
@@ -3175,8 +3175,8 @@ RubyLint::VirtualMachine.global_scope.define_constant('ActiveRecord::Delegation'
   end
 end
 
-RubyLint::VirtualMachine.global_scope.define_constant('ActiveRecord::DeleteRestrictionError') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.constant_proxy('ActiveRecord::ActiveRecordError'))
+RubyLint::GlobalScope.definitions.define_constant('ActiveRecord::DeleteRestrictionError') do |klass|
+  klass.inherits(RubyLint::GlobalScope.constant_proxy('ActiveRecord::ActiveRecordError'))
 
   klass.define_method('exception') do |method|
     method.define_rest_argument('args')
@@ -3239,8 +3239,8 @@ RubyLint::VirtualMachine.global_scope.define_constant('ActiveRecord::DeleteRestr
   end
 end
 
-RubyLint::VirtualMachine.global_scope.define_constant('ActiveRecord::DeprecatedFinders') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
+RubyLint::GlobalScope.definitions.define_constant('ActiveRecord::DeprecatedFinders') do |klass|
+  klass.inherits(RubyLint::GlobalScope.constant_proxy('Object'))
 
   klass.define_method('initialize') do |method|
     method.define_block_argument('block')
@@ -3276,8 +3276,8 @@ RubyLint::VirtualMachine.global_scope.define_constant('ActiveRecord::DeprecatedF
   end
 end
 
-RubyLint::VirtualMachine.global_scope.define_constant('ActiveRecord::DuplicateMigrationNameError') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.constant_proxy('ActiveRecord::ActiveRecordError'))
+RubyLint::GlobalScope.definitions.define_constant('ActiveRecord::DuplicateMigrationNameError') do |klass|
+  klass.inherits(RubyLint::GlobalScope.constant_proxy('ActiveRecord::ActiveRecordError'))
 
   klass.define_method('exception') do |method|
     method.define_rest_argument('args')
@@ -3340,8 +3340,8 @@ RubyLint::VirtualMachine.global_scope.define_constant('ActiveRecord::DuplicateMi
   end
 end
 
-RubyLint::VirtualMachine.global_scope.define_constant('ActiveRecord::DuplicateMigrationVersionError') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.constant_proxy('ActiveRecord::ActiveRecordError'))
+RubyLint::GlobalScope.definitions.define_constant('ActiveRecord::DuplicateMigrationVersionError') do |klass|
+  klass.inherits(RubyLint::GlobalScope.constant_proxy('ActiveRecord::ActiveRecordError'))
 
   klass.define_method('exception') do |method|
     method.define_rest_argument('args')
@@ -3404,8 +3404,8 @@ RubyLint::VirtualMachine.global_scope.define_constant('ActiveRecord::DuplicateMi
   end
 end
 
-RubyLint::VirtualMachine.global_scope.define_constant('ActiveRecord::DynamicMatchers') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
+RubyLint::GlobalScope.definitions.define_constant('ActiveRecord::DynamicMatchers') do |klass|
+  klass.inherits(RubyLint::GlobalScope.constant_proxy('Object'))
 
   klass.define_method('initialize') do |method|
     method.define_block_argument('block')
@@ -3417,8 +3417,8 @@ RubyLint::VirtualMachine.global_scope.define_constant('ActiveRecord::DynamicMatc
   end
 end
 
-RubyLint::VirtualMachine.global_scope.define_constant('ActiveRecord::EagerLoadPolymorphicError') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.constant_proxy('ActiveRecord::ActiveRecordError'))
+RubyLint::GlobalScope.definitions.define_constant('ActiveRecord::EagerLoadPolymorphicError') do |klass|
+  klass.inherits(RubyLint::GlobalScope.constant_proxy('ActiveRecord::ActiveRecordError'))
 
   klass.define_method('exception') do |method|
     method.define_rest_argument('args')
@@ -3481,8 +3481,8 @@ RubyLint::VirtualMachine.global_scope.define_constant('ActiveRecord::EagerLoadPo
   end
 end
 
-RubyLint::VirtualMachine.global_scope.define_constant('ActiveRecord::Explain') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
+RubyLint::GlobalScope.definitions.define_constant('ActiveRecord::Explain') do |klass|
+  klass.inherits(RubyLint::GlobalScope.constant_proxy('Object'))
 
   klass.define_method('initialize') do |method|
     method.define_block_argument('block')
@@ -3495,8 +3495,8 @@ RubyLint::VirtualMachine.global_scope.define_constant('ActiveRecord::Explain') d
   end
 end
 
-RubyLint::VirtualMachine.global_scope.define_constant('ActiveRecord::ExplainRegistry') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
+RubyLint::GlobalScope.definitions.define_constant('ActiveRecord::ExplainRegistry') do |klass|
+  klass.inherits(RubyLint::GlobalScope.constant_proxy('Object'))
 
   klass.define_method('method_missing') do |method|
     method.define_argument('name')
@@ -3517,8 +3517,8 @@ RubyLint::VirtualMachine.global_scope.define_constant('ActiveRecord::ExplainRegi
   klass.define_instance_method('reset')
 end
 
-RubyLint::VirtualMachine.global_scope.define_constant('ActiveRecord::FinderMethods') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
+RubyLint::GlobalScope.definitions.define_constant('ActiveRecord::FinderMethods') do |klass|
+  klass.inherits(RubyLint::GlobalScope.constant_proxy('Object'))
 
   klass.define_method('initialize') do |method|
     method.define_block_argument('block')
@@ -3606,8 +3606,8 @@ RubyLint::VirtualMachine.global_scope.define_constant('ActiveRecord::FinderMetho
   end
 end
 
-RubyLint::VirtualMachine.global_scope.define_constant('ActiveRecord::HasAndBelongsToManyAssociationForeignKeyNeeded') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.constant_proxy('ActiveRecord::ActiveRecordError'))
+RubyLint::GlobalScope.definitions.define_constant('ActiveRecord::HasAndBelongsToManyAssociationForeignKeyNeeded') do |klass|
+  klass.inherits(RubyLint::GlobalScope.constant_proxy('ActiveRecord::ActiveRecordError'))
 
   klass.define_method('exception') do |method|
     method.define_rest_argument('args')
@@ -3670,8 +3670,8 @@ RubyLint::VirtualMachine.global_scope.define_constant('ActiveRecord::HasAndBelon
   end
 end
 
-RubyLint::VirtualMachine.global_scope.define_constant('ActiveRecord::HasManyThroughAssociationNotFoundError') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.constant_proxy('ActiveRecord::ActiveRecordError'))
+RubyLint::GlobalScope.definitions.define_constant('ActiveRecord::HasManyThroughAssociationNotFoundError') do |klass|
+  klass.inherits(RubyLint::GlobalScope.constant_proxy('ActiveRecord::ActiveRecordError'))
 
   klass.define_method('exception') do |method|
     method.define_rest_argument('args')
@@ -3734,8 +3734,8 @@ RubyLint::VirtualMachine.global_scope.define_constant('ActiveRecord::HasManyThro
   end
 end
 
-RubyLint::VirtualMachine.global_scope.define_constant('ActiveRecord::HasManyThroughAssociationPointlessSourceTypeError') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.constant_proxy('ActiveRecord::ActiveRecordError'))
+RubyLint::GlobalScope.definitions.define_constant('ActiveRecord::HasManyThroughAssociationPointlessSourceTypeError') do |klass|
+  klass.inherits(RubyLint::GlobalScope.constant_proxy('ActiveRecord::ActiveRecordError'))
 
   klass.define_method('exception') do |method|
     method.define_rest_argument('args')
@@ -3798,8 +3798,8 @@ RubyLint::VirtualMachine.global_scope.define_constant('ActiveRecord::HasManyThro
   end
 end
 
-RubyLint::VirtualMachine.global_scope.define_constant('ActiveRecord::HasManyThroughAssociationPolymorphicSourceError') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.constant_proxy('ActiveRecord::ActiveRecordError'))
+RubyLint::GlobalScope.definitions.define_constant('ActiveRecord::HasManyThroughAssociationPolymorphicSourceError') do |klass|
+  klass.inherits(RubyLint::GlobalScope.constant_proxy('ActiveRecord::ActiveRecordError'))
 
   klass.define_method('exception') do |method|
     method.define_rest_argument('args')
@@ -3862,8 +3862,8 @@ RubyLint::VirtualMachine.global_scope.define_constant('ActiveRecord::HasManyThro
   end
 end
 
-RubyLint::VirtualMachine.global_scope.define_constant('ActiveRecord::HasManyThroughAssociationPolymorphicThroughError') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.constant_proxy('ActiveRecord::ActiveRecordError'))
+RubyLint::GlobalScope.definitions.define_constant('ActiveRecord::HasManyThroughAssociationPolymorphicThroughError') do |klass|
+  klass.inherits(RubyLint::GlobalScope.constant_proxy('ActiveRecord::ActiveRecordError'))
 
   klass.define_method('exception') do |method|
     method.define_rest_argument('args')
@@ -3926,8 +3926,8 @@ RubyLint::VirtualMachine.global_scope.define_constant('ActiveRecord::HasManyThro
   end
 end
 
-RubyLint::VirtualMachine.global_scope.define_constant('ActiveRecord::HasManyThroughCantAssociateNewRecords') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.constant_proxy('ActiveRecord::ActiveRecordError'))
+RubyLint::GlobalScope.definitions.define_constant('ActiveRecord::HasManyThroughCantAssociateNewRecords') do |klass|
+  klass.inherits(RubyLint::GlobalScope.constant_proxy('ActiveRecord::ActiveRecordError'))
 
   klass.define_method('exception') do |method|
     method.define_rest_argument('args')
@@ -3990,8 +3990,8 @@ RubyLint::VirtualMachine.global_scope.define_constant('ActiveRecord::HasManyThro
   end
 end
 
-RubyLint::VirtualMachine.global_scope.define_constant('ActiveRecord::HasManyThroughCantAssociateThroughHasOneOrManyReflection') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.constant_proxy('ActiveRecord::ActiveRecordError'))
+RubyLint::GlobalScope.definitions.define_constant('ActiveRecord::HasManyThroughCantAssociateThroughHasOneOrManyReflection') do |klass|
+  klass.inherits(RubyLint::GlobalScope.constant_proxy('ActiveRecord::ActiveRecordError'))
 
   klass.define_method('exception') do |method|
     method.define_rest_argument('args')
@@ -4054,8 +4054,8 @@ RubyLint::VirtualMachine.global_scope.define_constant('ActiveRecord::HasManyThro
   end
 end
 
-RubyLint::VirtualMachine.global_scope.define_constant('ActiveRecord::HasManyThroughCantDissociateNewRecords') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.constant_proxy('ActiveRecord::ActiveRecordError'))
+RubyLint::GlobalScope.definitions.define_constant('ActiveRecord::HasManyThroughCantDissociateNewRecords') do |klass|
+  klass.inherits(RubyLint::GlobalScope.constant_proxy('ActiveRecord::ActiveRecordError'))
 
   klass.define_method('exception') do |method|
     method.define_rest_argument('args')
@@ -4118,8 +4118,8 @@ RubyLint::VirtualMachine.global_scope.define_constant('ActiveRecord::HasManyThro
   end
 end
 
-RubyLint::VirtualMachine.global_scope.define_constant('ActiveRecord::HasManyThroughNestedAssociationsAreReadonly') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.constant_proxy('ActiveRecord::ActiveRecordError'))
+RubyLint::GlobalScope.definitions.define_constant('ActiveRecord::HasManyThroughNestedAssociationsAreReadonly') do |klass|
+  klass.inherits(RubyLint::GlobalScope.constant_proxy('ActiveRecord::ActiveRecordError'))
 
   klass.define_method('exception') do |method|
     method.define_rest_argument('args')
@@ -4182,8 +4182,8 @@ RubyLint::VirtualMachine.global_scope.define_constant('ActiveRecord::HasManyThro
   end
 end
 
-RubyLint::VirtualMachine.global_scope.define_constant('ActiveRecord::HasManyThroughSourceAssociationNotFoundError') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.constant_proxy('ActiveRecord::ActiveRecordError'))
+RubyLint::GlobalScope.definitions.define_constant('ActiveRecord::HasManyThroughSourceAssociationNotFoundError') do |klass|
+  klass.inherits(RubyLint::GlobalScope.constant_proxy('ActiveRecord::ActiveRecordError'))
 
   klass.define_method('exception') do |method|
     method.define_rest_argument('args')
@@ -4246,8 +4246,8 @@ RubyLint::VirtualMachine.global_scope.define_constant('ActiveRecord::HasManyThro
   end
 end
 
-RubyLint::VirtualMachine.global_scope.define_constant('ActiveRecord::HasOneThroughCantAssociateThroughCollection') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.constant_proxy('ActiveRecord::ActiveRecordError'))
+RubyLint::GlobalScope.definitions.define_constant('ActiveRecord::HasOneThroughCantAssociateThroughCollection') do |klass|
+  klass.inherits(RubyLint::GlobalScope.constant_proxy('ActiveRecord::ActiveRecordError'))
 
   klass.define_method('exception') do |method|
     method.define_rest_argument('args')
@@ -4310,8 +4310,8 @@ RubyLint::VirtualMachine.global_scope.define_constant('ActiveRecord::HasOneThrou
   end
 end
 
-RubyLint::VirtualMachine.global_scope.define_constant('ActiveRecord::IllegalMigrationNameError') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.constant_proxy('ActiveRecord::ActiveRecordError'))
+RubyLint::GlobalScope.definitions.define_constant('ActiveRecord::IllegalMigrationNameError') do |klass|
+  klass.inherits(RubyLint::GlobalScope.constant_proxy('ActiveRecord::ActiveRecordError'))
 
   klass.define_method('exception') do |method|
     method.define_rest_argument('args')
@@ -4374,8 +4374,8 @@ RubyLint::VirtualMachine.global_scope.define_constant('ActiveRecord::IllegalMigr
   end
 end
 
-RubyLint::VirtualMachine.global_scope.define_constant('ActiveRecord::ImmutableRelation') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.constant_proxy('ActiveRecord::ActiveRecordError'))
+RubyLint::GlobalScope.definitions.define_constant('ActiveRecord::ImmutableRelation') do |klass|
+  klass.inherits(RubyLint::GlobalScope.constant_proxy('ActiveRecord::ActiveRecordError'))
 
   klass.define_method('exception') do |method|
     method.define_rest_argument('args')
@@ -4442,8 +4442,8 @@ RubyLint::VirtualMachine.global_scope.define_constant('ActiveRecord::ImmutableRe
   end
 end
 
-RubyLint::VirtualMachine.global_scope.define_constant('ActiveRecord::Inheritance') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
+RubyLint::GlobalScope.definitions.define_constant('ActiveRecord::Inheritance') do |klass|
+  klass.inherits(RubyLint::GlobalScope.constant_proxy('Object'))
 
   klass.define_method('append_features') do |method|
     method.define_argument('base')
@@ -4459,8 +4459,8 @@ RubyLint::VirtualMachine.global_scope.define_constant('ActiveRecord::Inheritance
   end
 end
 
-RubyLint::VirtualMachine.global_scope.define_constant('ActiveRecord::Integration') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
+RubyLint::GlobalScope.definitions.define_constant('ActiveRecord::Integration') do |klass|
+  klass.inherits(RubyLint::GlobalScope.constant_proxy('Object'))
 
   klass.define_method('append_features') do |method|
     method.define_argument('base')
@@ -4480,8 +4480,8 @@ RubyLint::VirtualMachine.global_scope.define_constant('ActiveRecord::Integration
   klass.define_instance_method('to_param')
 end
 
-RubyLint::VirtualMachine.global_scope.define_constant('ActiveRecord::InvalidForeignKey') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.constant_proxy('ActiveRecord::WrappedDatabaseException'))
+RubyLint::GlobalScope.definitions.define_constant('ActiveRecord::InvalidForeignKey') do |klass|
+  klass.inherits(RubyLint::GlobalScope.constant_proxy('ActiveRecord::WrappedDatabaseException'))
 
   klass.define_method('exception') do |method|
     method.define_rest_argument('args')
@@ -4546,8 +4546,8 @@ RubyLint::VirtualMachine.global_scope.define_constant('ActiveRecord::InvalidFore
   end
 end
 
-RubyLint::VirtualMachine.global_scope.define_constant('ActiveRecord::InverseOfAssociationNotFoundError') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.constant_proxy('ActiveRecord::ActiveRecordError'))
+RubyLint::GlobalScope.definitions.define_constant('ActiveRecord::InverseOfAssociationNotFoundError') do |klass|
+  klass.inherits(RubyLint::GlobalScope.constant_proxy('ActiveRecord::ActiveRecordError'))
 
   klass.define_method('exception') do |method|
     method.define_rest_argument('args')
@@ -4610,8 +4610,8 @@ RubyLint::VirtualMachine.global_scope.define_constant('ActiveRecord::InverseOfAs
   end
 end
 
-RubyLint::VirtualMachine.global_scope.define_constant('ActiveRecord::IrreversibleMigration') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.constant_proxy('ActiveRecord::ActiveRecordError'))
+RubyLint::GlobalScope.definitions.define_constant('ActiveRecord::IrreversibleMigration') do |klass|
+  klass.inherits(RubyLint::GlobalScope.constant_proxy('ActiveRecord::ActiveRecordError'))
 
   klass.define_method('exception') do |method|
     method.define_rest_argument('args')
@@ -4678,8 +4678,8 @@ RubyLint::VirtualMachine.global_scope.define_constant('ActiveRecord::Irreversibl
   end
 end
 
-RubyLint::VirtualMachine.global_scope.define_constant('ActiveRecord::Locking') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
+RubyLint::GlobalScope.definitions.define_constant('ActiveRecord::Locking') do |klass|
+  klass.inherits(RubyLint::GlobalScope.constant_proxy('Object'))
 
   klass.define_method('autoload_at') do |method|
     method.define_argument('path')
@@ -4700,8 +4700,8 @@ RubyLint::VirtualMachine.global_scope.define_constant('ActiveRecord::Locking') d
   end
 end
 
-RubyLint::VirtualMachine.global_scope.define_constant('ActiveRecord::Migration') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
+RubyLint::GlobalScope.definitions.define_constant('ActiveRecord::Migration') do |klass|
+  klass.inherits(RubyLint::GlobalScope.constant_proxy('Object'))
 
   klass.define_method('check_pending!')
 
@@ -4810,8 +4810,8 @@ RubyLint::VirtualMachine.global_scope.define_constant('ActiveRecord::Migration')
   end
 end
 
-RubyLint::VirtualMachine.global_scope.define_constant('ActiveRecord::MigrationProxy') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.constant_proxy('#<Class:0x22a58>'))
+RubyLint::GlobalScope.definitions.define_constant('ActiveRecord::MigrationProxy') do |klass|
+  klass.inherits(RubyLint::GlobalScope.constant_proxy('#<Class:0x22a58>'))
 
   klass.define_method('[]') do |method|
     method.define_rest_argument('args')
@@ -5079,8 +5079,8 @@ RubyLint::VirtualMachine.global_scope.define_constant('ActiveRecord::MigrationPr
   end
 end
 
-RubyLint::VirtualMachine.global_scope.define_constant('ActiveRecord::Migrator') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
+RubyLint::GlobalScope.definitions.define_constant('ActiveRecord::Migrator') do |klass|
+  klass.inherits(RubyLint::GlobalScope.constant_proxy('Object'))
 
   klass.define_method('current_version')
 
@@ -5166,8 +5166,8 @@ RubyLint::VirtualMachine.global_scope.define_constant('ActiveRecord::Migrator') 
   klass.define_instance_method('runnable')
 end
 
-RubyLint::VirtualMachine.global_scope.define_constant('ActiveRecord::ModelSchema') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
+RubyLint::GlobalScope.definitions.define_constant('ActiveRecord::ModelSchema') do |klass|
+  klass.inherits(RubyLint::GlobalScope.constant_proxy('Object'))
 
   klass.define_method('append_features') do |method|
     method.define_argument('base')
@@ -5183,8 +5183,8 @@ RubyLint::VirtualMachine.global_scope.define_constant('ActiveRecord::ModelSchema
   end
 end
 
-RubyLint::VirtualMachine.global_scope.define_constant('ActiveRecord::MultiparameterAssignmentErrors') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.constant_proxy('ActiveRecord::ActiveRecordError'))
+RubyLint::GlobalScope.definitions.define_constant('ActiveRecord::MultiparameterAssignmentErrors') do |klass|
+  klass.inherits(RubyLint::GlobalScope.constant_proxy('ActiveRecord::ActiveRecordError'))
 
   klass.define_method('exception') do |method|
     method.define_rest_argument('args')
@@ -5249,8 +5249,8 @@ RubyLint::VirtualMachine.global_scope.define_constant('ActiveRecord::Multiparame
   end
 end
 
-RubyLint::VirtualMachine.global_scope.define_constant('ActiveRecord::NestedAttributes') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
+RubyLint::GlobalScope.definitions.define_constant('ActiveRecord::NestedAttributes') do |klass|
+  klass.inherits(RubyLint::GlobalScope.constant_proxy('Object'))
 
   klass.define_method('append_features') do |method|
     method.define_argument('base')
@@ -5268,8 +5268,8 @@ RubyLint::VirtualMachine.global_scope.define_constant('ActiveRecord::NestedAttri
   klass.define_instance_method('_destroy')
 end
 
-RubyLint::VirtualMachine.global_scope.define_constant('ActiveRecord::NullMigration') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.constant_proxy('ActiveRecord::MigrationProxy'))
+RubyLint::GlobalScope.definitions.define_constant('ActiveRecord::NullMigration') do |klass|
+  klass.inherits(RubyLint::GlobalScope.constant_proxy('ActiveRecord::MigrationProxy'))
 
   klass.define_method('[]') do |method|
     method.define_rest_argument('args')
@@ -5537,8 +5537,8 @@ RubyLint::VirtualMachine.global_scope.define_constant('ActiveRecord::NullMigrati
   end
 end
 
-RubyLint::VirtualMachine.global_scope.define_constant('ActiveRecord::NullRelation') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
+RubyLint::GlobalScope.definitions.define_constant('ActiveRecord::NullRelation') do |klass|
+  klass.inherits(RubyLint::GlobalScope.constant_proxy('Object'))
 
   klass.define_method('initialize') do |method|
     method.define_block_argument('block')
@@ -5595,8 +5595,8 @@ RubyLint::VirtualMachine.global_scope.define_constant('ActiveRecord::NullRelatio
   klass.define_instance_method('where_values_hash')
 end
 
-RubyLint::VirtualMachine.global_scope.define_constant('ActiveRecord::PendingMigrationError') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.constant_proxy('ActiveRecord::ActiveRecordError'))
+RubyLint::GlobalScope.definitions.define_constant('ActiveRecord::PendingMigrationError') do |klass|
+  klass.inherits(RubyLint::GlobalScope.constant_proxy('ActiveRecord::ActiveRecordError'))
 
   klass.define_method('exception') do |method|
     method.define_rest_argument('args')
@@ -5659,8 +5659,8 @@ RubyLint::VirtualMachine.global_scope.define_constant('ActiveRecord::PendingMigr
   end
 end
 
-RubyLint::VirtualMachine.global_scope.define_constant('ActiveRecord::Persistence') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
+RubyLint::GlobalScope.definitions.define_constant('ActiveRecord::Persistence') do |klass|
+  klass.inherits(RubyLint::GlobalScope.constant_proxy('Object'))
 
   klass.define_method('append_features') do |method|
     method.define_argument('base')
@@ -5770,8 +5770,8 @@ RubyLint::VirtualMachine.global_scope.define_constant('ActiveRecord::Persistence
   end
 end
 
-RubyLint::VirtualMachine.global_scope.define_constant('ActiveRecord::PredicateBuilder') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
+RubyLint::GlobalScope.definitions.define_constant('ActiveRecord::PredicateBuilder') do |klass|
+  klass.inherits(RubyLint::GlobalScope.constant_proxy('Object'))
 
   klass.define_method('build') do |method|
     method.define_argument('attribute')
@@ -5796,8 +5796,8 @@ RubyLint::VirtualMachine.global_scope.define_constant('ActiveRecord::PredicateBu
   end
 end
 
-RubyLint::VirtualMachine.global_scope.define_constant('ActiveRecord::PreparedStatementInvalid') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.constant_proxy('ActiveRecord::ActiveRecordError'))
+RubyLint::GlobalScope.definitions.define_constant('ActiveRecord::PreparedStatementInvalid') do |klass|
+  klass.inherits(RubyLint::GlobalScope.constant_proxy('ActiveRecord::ActiveRecordError'))
 
   klass.define_method('exception') do |method|
     method.define_rest_argument('args')
@@ -5864,16 +5864,16 @@ RubyLint::VirtualMachine.global_scope.define_constant('ActiveRecord::PreparedSta
   end
 end
 
-RubyLint::VirtualMachine.global_scope.define_constant('ActiveRecord::QueryCache') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
+RubyLint::GlobalScope.definitions.define_constant('ActiveRecord::QueryCache') do |klass|
+  klass.inherits(RubyLint::GlobalScope.constant_proxy('Object'))
 
   klass.define_instance_method('call') do |method|
     method.define_argument('env')
   end
 end
 
-RubyLint::VirtualMachine.global_scope.define_constant('ActiveRecord::QueryMethods') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
+RubyLint::GlobalScope.definitions.define_constant('ActiveRecord::QueryMethods') do |klass|
+  klass.inherits(RubyLint::GlobalScope.constant_proxy('Object'))
 
   klass.define_method('append_features') do |method|
     method.define_argument('base')
@@ -6219,8 +6219,8 @@ RubyLint::VirtualMachine.global_scope.define_constant('ActiveRecord::QueryMethod
   end
 end
 
-RubyLint::VirtualMachine.global_scope.define_constant('ActiveRecord::Querying') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
+RubyLint::GlobalScope.definitions.define_constant('ActiveRecord::Querying') do |klass|
+  klass.inherits(RubyLint::GlobalScope.constant_proxy('Object'))
 
   klass.define_method('initialize') do |method|
     method.define_block_argument('block')
@@ -6516,8 +6516,8 @@ RubyLint::VirtualMachine.global_scope.define_constant('ActiveRecord::Querying') 
   end
 end
 
-RubyLint::VirtualMachine.global_scope.define_constant('ActiveRecord::Railtie') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Rails::Railtie'))
+RubyLint::GlobalScope.definitions.define_constant('ActiveRecord::Railtie') do |klass|
+  klass.inherits(RubyLint::GlobalScope.constant_proxy('Rails::Railtie'))
 
   klass.define_method('abstract_railtie?')
 
@@ -6612,8 +6612,8 @@ RubyLint::VirtualMachine.global_scope.define_constant('ActiveRecord::Railtie') d
   end
 end
 
-RubyLint::VirtualMachine.global_scope.define_constant('ActiveRecord::ReadOnlyAssociation') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.constant_proxy('ActiveRecord::ActiveRecordError'))
+RubyLint::GlobalScope.definitions.define_constant('ActiveRecord::ReadOnlyAssociation') do |klass|
+  klass.inherits(RubyLint::GlobalScope.constant_proxy('ActiveRecord::ActiveRecordError'))
 
   klass.define_method('exception') do |method|
     method.define_rest_argument('args')
@@ -6676,8 +6676,8 @@ RubyLint::VirtualMachine.global_scope.define_constant('ActiveRecord::ReadOnlyAss
   end
 end
 
-RubyLint::VirtualMachine.global_scope.define_constant('ActiveRecord::ReadOnlyRecord') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.constant_proxy('ActiveRecord::ActiveRecordError'))
+RubyLint::GlobalScope.definitions.define_constant('ActiveRecord::ReadOnlyRecord') do |klass|
+  klass.inherits(RubyLint::GlobalScope.constant_proxy('ActiveRecord::ActiveRecordError'))
 
   klass.define_method('exception') do |method|
     method.define_rest_argument('args')
@@ -6744,8 +6744,8 @@ RubyLint::VirtualMachine.global_scope.define_constant('ActiveRecord::ReadOnlyRec
   end
 end
 
-RubyLint::VirtualMachine.global_scope.define_constant('ActiveRecord::ReadonlyAttributes') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
+RubyLint::GlobalScope.definitions.define_constant('ActiveRecord::ReadonlyAttributes') do |klass|
+  klass.inherits(RubyLint::GlobalScope.constant_proxy('Object'))
 
   klass.define_method('append_features') do |method|
     method.define_argument('base')
@@ -6763,8 +6763,8 @@ RubyLint::VirtualMachine.global_scope.define_constant('ActiveRecord::ReadonlyAtt
   klass.define_instance_method('_attr_readonly')
 end
 
-RubyLint::VirtualMachine.global_scope.define_constant('ActiveRecord::RecordNotDestroyed') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.constant_proxy('ActiveRecord::ActiveRecordError'))
+RubyLint::GlobalScope.definitions.define_constant('ActiveRecord::RecordNotDestroyed') do |klass|
+  klass.inherits(RubyLint::GlobalScope.constant_proxy('ActiveRecord::ActiveRecordError'))
 
   klass.define_method('exception') do |method|
     method.define_rest_argument('args')
@@ -6831,8 +6831,8 @@ RubyLint::VirtualMachine.global_scope.define_constant('ActiveRecord::RecordNotDe
   end
 end
 
-RubyLint::VirtualMachine.global_scope.define_constant('ActiveRecord::RecordNotFound') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.constant_proxy('ActiveRecord::ActiveRecordError'))
+RubyLint::GlobalScope.definitions.define_constant('ActiveRecord::RecordNotFound') do |klass|
+  klass.inherits(RubyLint::GlobalScope.constant_proxy('ActiveRecord::ActiveRecordError'))
 
   klass.define_method('exception') do |method|
     method.define_rest_argument('args')
@@ -6899,8 +6899,8 @@ RubyLint::VirtualMachine.global_scope.define_constant('ActiveRecord::RecordNotFo
   end
 end
 
-RubyLint::VirtualMachine.global_scope.define_constant('ActiveRecord::RecordNotSaved') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.constant_proxy('ActiveRecord::ActiveRecordError'))
+RubyLint::GlobalScope.definitions.define_constant('ActiveRecord::RecordNotSaved') do |klass|
+  klass.inherits(RubyLint::GlobalScope.constant_proxy('ActiveRecord::ActiveRecordError'))
 
   klass.define_method('exception') do |method|
     method.define_rest_argument('args')
@@ -6967,8 +6967,8 @@ RubyLint::VirtualMachine.global_scope.define_constant('ActiveRecord::RecordNotSa
   end
 end
 
-RubyLint::VirtualMachine.global_scope.define_constant('ActiveRecord::RecordNotUnique') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.constant_proxy('ActiveRecord::WrappedDatabaseException'))
+RubyLint::GlobalScope.definitions.define_constant('ActiveRecord::RecordNotUnique') do |klass|
+  klass.inherits(RubyLint::GlobalScope.constant_proxy('ActiveRecord::WrappedDatabaseException'))
 
   klass.define_method('exception') do |method|
     method.define_rest_argument('args')
@@ -7033,8 +7033,8 @@ RubyLint::VirtualMachine.global_scope.define_constant('ActiveRecord::RecordNotUn
   end
 end
 
-RubyLint::VirtualMachine.global_scope.define_constant('ActiveRecord::Reflection') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
+RubyLint::GlobalScope.definitions.define_constant('ActiveRecord::Reflection') do |klass|
+  klass.inherits(RubyLint::GlobalScope.constant_proxy('Object'))
 
   klass.define_method('append_features') do |method|
     method.define_argument('base')
@@ -7050,8 +7050,8 @@ RubyLint::VirtualMachine.global_scope.define_constant('ActiveRecord::Reflection'
   end
 end
 
-RubyLint::VirtualMachine.global_scope.define_constant('ActiveRecord::Relation') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
+RubyLint::GlobalScope.definitions.define_constant('ActiveRecord::Relation') do |klass|
+  klass.inherits(RubyLint::GlobalScope.constant_proxy('Object'))
 
   klass.define_instance_method('==') do |method|
     method.define_argument('other')
@@ -7780,8 +7780,8 @@ RubyLint::VirtualMachine.global_scope.define_constant('ActiveRecord::Relation') 
   klass.define_instance_method('with_default_scope')
 end
 
-RubyLint::VirtualMachine.global_scope.define_constant('ActiveRecord::Result') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
+RubyLint::GlobalScope.definitions.define_constant('ActiveRecord::Result') do |klass|
+  klass.inherits(RubyLint::GlobalScope.constant_proxy('Object'))
 
   klass.define_instance_method('[]') do |method|
     method.define_argument('idx')
@@ -7987,8 +7987,8 @@ RubyLint::VirtualMachine.global_scope.define_constant('ActiveRecord::Result') do
   end
 end
 
-RubyLint::VirtualMachine.global_scope.define_constant('ActiveRecord::Rollback') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.constant_proxy('ActiveRecord::ActiveRecordError'))
+RubyLint::GlobalScope.definitions.define_constant('ActiveRecord::Rollback') do |klass|
+  klass.inherits(RubyLint::GlobalScope.constant_proxy('ActiveRecord::ActiveRecordError'))
 
   klass.define_method('exception') do |method|
     method.define_rest_argument('args')
@@ -8055,8 +8055,8 @@ RubyLint::VirtualMachine.global_scope.define_constant('ActiveRecord::Rollback') 
   end
 end
 
-RubyLint::VirtualMachine.global_scope.define_constant('ActiveRecord::RuntimeRegistry') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
+RubyLint::GlobalScope.definitions.define_constant('ActiveRecord::RuntimeRegistry') do |klass|
+  klass.inherits(RubyLint::GlobalScope.constant_proxy('Object'))
 
   klass.define_method('method_missing') do |method|
     method.define_argument('name')
@@ -8077,8 +8077,8 @@ RubyLint::VirtualMachine.global_scope.define_constant('ActiveRecord::RuntimeRegi
   klass.define_instance_method('sql_runtime=')
 end
 
-RubyLint::VirtualMachine.global_scope.define_constant('ActiveRecord::Sanitization') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
+RubyLint::GlobalScope.definitions.define_constant('ActiveRecord::Sanitization') do |klass|
+  klass.inherits(RubyLint::GlobalScope.constant_proxy('Object'))
 
   klass.define_method('append_features') do |method|
     method.define_argument('base')
@@ -8096,8 +8096,8 @@ RubyLint::VirtualMachine.global_scope.define_constant('ActiveRecord::Sanitizatio
   klass.define_instance_method('quoted_id')
 end
 
-RubyLint::VirtualMachine.global_scope.define_constant('ActiveRecord::Schema') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.constant_proxy('ActiveRecord::Migration'))
+RubyLint::GlobalScope.definitions.define_constant('ActiveRecord::Schema') do |klass|
+  klass.inherits(RubyLint::GlobalScope.constant_proxy('ActiveRecord::Migration'))
 
   klass.define_method('check_pending!')
 
@@ -8216,8 +8216,8 @@ RubyLint::VirtualMachine.global_scope.define_constant('ActiveRecord::Schema') do
   end
 end
 
-RubyLint::VirtualMachine.global_scope.define_constant('ActiveRecord::SchemaDumper') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
+RubyLint::GlobalScope.definitions.define_constant('ActiveRecord::SchemaDumper') do |klass|
+  klass.inherits(RubyLint::GlobalScope.constant_proxy('Object'))
 
   klass.define_method('dump') do |method|
     method.define_optional_argument('connection')
@@ -8241,8 +8241,8 @@ RubyLint::VirtualMachine.global_scope.define_constant('ActiveRecord::SchemaDumpe
   end
 end
 
-RubyLint::VirtualMachine.global_scope.define_constant('ActiveRecord::SchemaMigration') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.constant_proxy('ActiveRecord::Base'))
+RubyLint::GlobalScope.definitions.define_constant('ActiveRecord::SchemaMigration') do |klass|
+  klass.inherits(RubyLint::GlobalScope.constant_proxy('ActiveRecord::Base'))
 
   klass.define_method('__callback_runner_name') do |method|
     method.define_argument('kind')
@@ -10222,8 +10222,8 @@ RubyLint::VirtualMachine.global_scope.define_constant('ActiveRecord::SchemaMigra
   end
 end
 
-RubyLint::VirtualMachine.global_scope.define_constant('ActiveRecord::Scoping') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
+RubyLint::GlobalScope.definitions.define_constant('ActiveRecord::Scoping') do |klass|
+  klass.inherits(RubyLint::GlobalScope.constant_proxy('Object'))
 
   klass.define_method('append_features') do |method|
     method.define_argument('base')
@@ -10255,8 +10255,8 @@ RubyLint::VirtualMachine.global_scope.define_constant('ActiveRecord::Scoping') d
   klass.define_instance_method('populate_with_current_scope_attributes')
 end
 
-RubyLint::VirtualMachine.global_scope.define_constant('ActiveRecord::Serialization') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
+RubyLint::GlobalScope.definitions.define_constant('ActiveRecord::Serialization') do |klass|
+  klass.inherits(RubyLint::GlobalScope.constant_proxy('Object'))
 
   klass.define_method('append_features') do |method|
     method.define_argument('base')
@@ -10281,8 +10281,8 @@ RubyLint::VirtualMachine.global_scope.define_constant('ActiveRecord::Serializati
   end
 end
 
-RubyLint::VirtualMachine.global_scope.define_constant('ActiveRecord::SerializationTypeMismatch') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.constant_proxy('ActiveRecord::ActiveRecordError'))
+RubyLint::GlobalScope.definitions.define_constant('ActiveRecord::SerializationTypeMismatch') do |klass|
+  klass.inherits(RubyLint::GlobalScope.constant_proxy('ActiveRecord::ActiveRecordError'))
 
   klass.define_method('exception') do |method|
     method.define_rest_argument('args')
@@ -10349,8 +10349,8 @@ RubyLint::VirtualMachine.global_scope.define_constant('ActiveRecord::Serializati
   end
 end
 
-RubyLint::VirtualMachine.global_scope.define_constant('ActiveRecord::SpawnMethods') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
+RubyLint::GlobalScope.definitions.define_constant('ActiveRecord::SpawnMethods') do |klass|
+  klass.inherits(RubyLint::GlobalScope.constant_proxy('Object'))
 
   klass.define_method('initialize') do |method|
     method.define_block_argument('block')
@@ -10375,8 +10375,8 @@ RubyLint::VirtualMachine.global_scope.define_constant('ActiveRecord::SpawnMethod
   klass.define_instance_method('spawn')
 end
 
-RubyLint::VirtualMachine.global_scope.define_constant('ActiveRecord::StaleObjectError') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.constant_proxy('ActiveRecord::ActiveRecordError'))
+RubyLint::GlobalScope.definitions.define_constant('ActiveRecord::StaleObjectError') do |klass|
+  klass.inherits(RubyLint::GlobalScope.constant_proxy('ActiveRecord::ActiveRecordError'))
 
   klass.define_method('exception') do |method|
     method.define_rest_argument('args')
@@ -10443,14 +10443,14 @@ RubyLint::VirtualMachine.global_scope.define_constant('ActiveRecord::StaleObject
   end
 end
 
-RubyLint::VirtualMachine.global_scope.define_constant('ActiveRecord::StatementCache') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
+RubyLint::GlobalScope.definitions.define_constant('ActiveRecord::StatementCache') do |klass|
+  klass.inherits(RubyLint::GlobalScope.constant_proxy('Object'))
 
   klass.define_instance_method('execute')
 end
 
-RubyLint::VirtualMachine.global_scope.define_constant('ActiveRecord::StatementInvalid') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.constant_proxy('ActiveRecord::ActiveRecordError'))
+RubyLint::GlobalScope.definitions.define_constant('ActiveRecord::StatementInvalid') do |klass|
+  klass.inherits(RubyLint::GlobalScope.constant_proxy('ActiveRecord::ActiveRecordError'))
 
   klass.define_method('exception') do |method|
     method.define_rest_argument('args')
@@ -10515,8 +10515,8 @@ RubyLint::VirtualMachine.global_scope.define_constant('ActiveRecord::StatementIn
   end
 end
 
-RubyLint::VirtualMachine.global_scope.define_constant('ActiveRecord::Store') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
+RubyLint::GlobalScope.definitions.define_constant('ActiveRecord::Store') do |klass|
+  klass.inherits(RubyLint::GlobalScope.constant_proxy('Object'))
 
   klass.define_method('append_features') do |method|
     method.define_argument('base')
@@ -10543,8 +10543,8 @@ RubyLint::VirtualMachine.global_scope.define_constant('ActiveRecord::Store') do 
   end
 end
 
-RubyLint::VirtualMachine.global_scope.define_constant('ActiveRecord::SubclassNotFound') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.constant_proxy('ActiveRecord::ActiveRecordError'))
+RubyLint::GlobalScope.definitions.define_constant('ActiveRecord::SubclassNotFound') do |klass|
+  klass.inherits(RubyLint::GlobalScope.constant_proxy('ActiveRecord::ActiveRecordError'))
 
   klass.define_method('exception') do |method|
     method.define_rest_argument('args')
@@ -10611,8 +10611,8 @@ RubyLint::VirtualMachine.global_scope.define_constant('ActiveRecord::SubclassNot
   end
 end
 
-RubyLint::VirtualMachine.global_scope.define_constant('ActiveRecord::Tasks') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
+RubyLint::GlobalScope.definitions.define_constant('ActiveRecord::Tasks') do |klass|
+  klass.inherits(RubyLint::GlobalScope.constant_proxy('Object'))
 
   klass.define_method('autoload_at') do |method|
     method.define_argument('path')
@@ -10633,8 +10633,8 @@ RubyLint::VirtualMachine.global_scope.define_constant('ActiveRecord::Tasks') do 
   end
 end
 
-RubyLint::VirtualMachine.global_scope.define_constant('ActiveRecord::TestCase') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.constant_proxy('ActiveSupport::TestCase'))
+RubyLint::GlobalScope.definitions.define_constant('ActiveRecord::TestCase') do |klass|
+  klass.inherits(RubyLint::GlobalScope.constant_proxy('ActiveSupport::TestCase'))
 
   klass.define_method('__callback_runner_name') do |method|
     method.define_argument('kind')
@@ -11213,8 +11213,8 @@ RubyLint::VirtualMachine.global_scope.define_constant('ActiveRecord::TestCase') 
   end
 end
 
-RubyLint::VirtualMachine.global_scope.define_constant('ActiveRecord::TestFixtures') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
+RubyLint::GlobalScope.definitions.define_constant('ActiveRecord::TestFixtures') do |klass|
+  klass.inherits(RubyLint::GlobalScope.constant_proxy('Object'))
 
   klass.define_method('append_features') do |method|
     method.define_argument('base')
@@ -11242,8 +11242,8 @@ RubyLint::VirtualMachine.global_scope.define_constant('ActiveRecord::TestFixture
   klass.define_instance_method('teardown_fixtures')
 end
 
-RubyLint::VirtualMachine.global_scope.define_constant('ActiveRecord::ThrowResult') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.constant_proxy('ActiveRecord::ActiveRecordError'))
+RubyLint::GlobalScope.definitions.define_constant('ActiveRecord::ThrowResult') do |klass|
+  klass.inherits(RubyLint::GlobalScope.constant_proxy('ActiveRecord::ActiveRecordError'))
 
   klass.define_method('exception') do |method|
     method.define_rest_argument('args')
@@ -11310,8 +11310,8 @@ RubyLint::VirtualMachine.global_scope.define_constant('ActiveRecord::ThrowResult
   end
 end
 
-RubyLint::VirtualMachine.global_scope.define_constant('ActiveRecord::Timestamp') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
+RubyLint::GlobalScope.definitions.define_constant('ActiveRecord::Timestamp') do |klass|
+  klass.inherits(RubyLint::GlobalScope.constant_proxy('Object'))
 
   klass.define_method('append_features') do |method|
     method.define_argument('base')
@@ -11331,8 +11331,8 @@ RubyLint::VirtualMachine.global_scope.define_constant('ActiveRecord::Timestamp')
   end
 end
 
-RubyLint::VirtualMachine.global_scope.define_constant('ActiveRecord::TransactionIsolationError') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.constant_proxy('ActiveRecord::ActiveRecordError'))
+RubyLint::GlobalScope.definitions.define_constant('ActiveRecord::TransactionIsolationError') do |klass|
+  klass.inherits(RubyLint::GlobalScope.constant_proxy('ActiveRecord::ActiveRecordError'))
 
   klass.define_method('exception') do |method|
     method.define_rest_argument('args')
@@ -11399,8 +11399,8 @@ RubyLint::VirtualMachine.global_scope.define_constant('ActiveRecord::Transaction
   end
 end
 
-RubyLint::VirtualMachine.global_scope.define_constant('ActiveRecord::Transactions') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
+RubyLint::GlobalScope.definitions.define_constant('ActiveRecord::Transactions') do |klass|
+  klass.inherits(RubyLint::GlobalScope.constant_proxy('Object'))
 
   klass.define_method('append_features') do |method|
     method.define_argument('base')
@@ -11459,8 +11459,8 @@ RubyLint::VirtualMachine.global_scope.define_constant('ActiveRecord::Transaction
   klass.define_instance_method('with_transaction_returning_status')
 end
 
-RubyLint::VirtualMachine.global_scope.define_constant('ActiveRecord::Translation') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
+RubyLint::GlobalScope.definitions.define_constant('ActiveRecord::Translation') do |klass|
+  klass.inherits(RubyLint::GlobalScope.constant_proxy('Object'))
 
   klass.define_method('initialize') do |method|
     method.define_block_argument('block')
@@ -11478,8 +11478,8 @@ RubyLint::VirtualMachine.global_scope.define_constant('ActiveRecord::Translation
   klass.define_instance_method('model_name')
 end
 
-RubyLint::VirtualMachine.global_scope.define_constant('ActiveRecord::UnknownAttributeError') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.constant_proxy('NoMethodError'))
+RubyLint::GlobalScope.definitions.define_constant('ActiveRecord::UnknownAttributeError') do |klass|
+  klass.inherits(RubyLint::GlobalScope.constant_proxy('NoMethodError'))
 
   klass.define_method('exception') do |method|
     method.define_rest_argument('args')
@@ -11556,8 +11556,8 @@ RubyLint::VirtualMachine.global_scope.define_constant('ActiveRecord::UnknownAttr
   end
 end
 
-RubyLint::VirtualMachine.global_scope.define_constant('ActiveRecord::UnknownMigrationVersionError') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.constant_proxy('ActiveRecord::ActiveRecordError'))
+RubyLint::GlobalScope.definitions.define_constant('ActiveRecord::UnknownMigrationVersionError') do |klass|
+  klass.inherits(RubyLint::GlobalScope.constant_proxy('ActiveRecord::ActiveRecordError'))
 
   klass.define_method('exception') do |method|
     method.define_rest_argument('args')
@@ -11620,8 +11620,8 @@ RubyLint::VirtualMachine.global_scope.define_constant('ActiveRecord::UnknownMigr
   end
 end
 
-RubyLint::VirtualMachine.global_scope.define_constant('ActiveRecord::UnknownPrimaryKey') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.constant_proxy('ActiveRecord::ActiveRecordError'))
+RubyLint::GlobalScope.definitions.define_constant('ActiveRecord::UnknownPrimaryKey') do |klass|
+  klass.inherits(RubyLint::GlobalScope.constant_proxy('ActiveRecord::ActiveRecordError'))
 
   klass.define_method('exception') do |method|
     method.define_rest_argument('args')
@@ -11686,16 +11686,16 @@ RubyLint::VirtualMachine.global_scope.define_constant('ActiveRecord::UnknownPrim
   end
 end
 
-RubyLint::VirtualMachine.global_scope.define_constant('ActiveRecord::VERSION') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
+RubyLint::GlobalScope.definitions.define_constant('ActiveRecord::VERSION') do |klass|
+  klass.inherits(RubyLint::GlobalScope.constant_proxy('Object'))
 
   klass.define_method('initialize') do |method|
     method.define_block_argument('block')
   end
 end
 
-RubyLint::VirtualMachine.global_scope.define_constant('ActiveRecord::Validations') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
+RubyLint::GlobalScope.definitions.define_constant('ActiveRecord::Validations') do |klass|
+  klass.inherits(RubyLint::GlobalScope.constant_proxy('Object'))
 
   klass.define_method('append_features') do |method|
     method.define_argument('base')
@@ -11727,8 +11727,8 @@ RubyLint::VirtualMachine.global_scope.define_constant('ActiveRecord::Validations
   end
 end
 
-RubyLint::VirtualMachine.global_scope.define_constant('ActiveRecord::WrappedDatabaseException') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.constant_proxy('ActiveRecord::StatementInvalid'))
+RubyLint::GlobalScope.definitions.define_constant('ActiveRecord::WrappedDatabaseException') do |klass|
+  klass.inherits(RubyLint::GlobalScope.constant_proxy('ActiveRecord::StatementInvalid'))
 
   klass.define_method('exception') do |method|
     method.define_rest_argument('args')

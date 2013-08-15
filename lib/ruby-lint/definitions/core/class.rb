@@ -1,5 +1,5 @@
-RubyLint::VirtualMachine.global_scope.define_constant('Class') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Module'))
+RubyLint::GlobalScope.definitions.define_constant('Class') do |klass|
+  klass.inherits(RubyLint::GlobalScope.constant_proxy('Module'))
 
   klass.define_constructors do |method|
     method.define_optional_argument('klass')

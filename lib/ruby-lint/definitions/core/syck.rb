@@ -3,7 +3,7 @@
 # Created:  2013-04-01 18:33:55 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('Syck') do |klass|
+RubyLint::GlobalScope.definitions.define_constant('Syck') do |klass|
 
   klass.define_method('__module_init__')
 end
@@ -13,8 +13,8 @@ end
 # Created:  2013-04-01 18:33:55 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('Syck::DefaultKey') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
+RubyLint::GlobalScope.definitions.define_constant('Syck::DefaultKey') do |klass|
+  klass.inherits(RubyLint::GlobalScope.constant_proxy('Object'))
 
   klass.define_method('__class_init__')
 
@@ -26,5 +26,5 @@ end
 # Created:  2013-04-01 18:33:55 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('Syck::ENGINE') do |klass|
+RubyLint::GlobalScope.definitions.define_constant('Syck::ENGINE') do |klass|
 end

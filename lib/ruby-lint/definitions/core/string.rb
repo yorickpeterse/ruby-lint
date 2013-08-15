@@ -3,8 +3,8 @@
 # Created:  2013-04-01 18:33:55 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('String') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
+RubyLint::GlobalScope.definitions.define_constant('String') do |klass|
+  klass.inherits(RubyLint::GlobalScope.constant_proxy('Object'))
 
   klass.define_method('__allocate__')
 
@@ -563,8 +563,8 @@ end
 # Created:  2013-04-01 18:33:55 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('String::Complexifier') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
+RubyLint::GlobalScope.definitions.define_constant('String::Complexifier') do |klass|
+  klass.inherits(RubyLint::GlobalScope.constant_proxy('Object'))
 
   klass.define_method('__class_init__')
 
@@ -580,7 +580,7 @@ end
 # Created:  2013-04-01 18:33:55 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('String::Complexifier::DENOMINATOR') do |klass|
+RubyLint::GlobalScope.definitions.define_constant('String::Complexifier::DENOMINATOR') do |klass|
 end
 
 ##
@@ -588,7 +588,7 @@ end
 # Created:  2013-04-01 18:33:55 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('String::Complexifier::NUMBER') do |klass|
+RubyLint::GlobalScope.definitions.define_constant('String::Complexifier::NUMBER') do |klass|
 end
 
 ##
@@ -596,7 +596,7 @@ end
 # Created:  2013-04-01 18:33:55 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('String::Complexifier::NUMBERNOS') do |klass|
+RubyLint::GlobalScope.definitions.define_constant('String::Complexifier::NUMBERNOS') do |klass|
 end
 
 ##
@@ -604,7 +604,7 @@ end
 # Created:  2013-04-01 18:33:55 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('String::Complexifier::NUMERATOR') do |klass|
+RubyLint::GlobalScope.definitions.define_constant('String::Complexifier::NUMERATOR') do |klass|
 end
 
 ##
@@ -612,7 +612,7 @@ end
 # Created:  2013-04-01 18:33:55 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('String::Complexifier::PATTERN0') do |klass|
+RubyLint::GlobalScope.definitions.define_constant('String::Complexifier::PATTERN0') do |klass|
 end
 
 ##
@@ -620,7 +620,7 @@ end
 # Created:  2013-04-01 18:33:55 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('String::Complexifier::PATTERN1') do |klass|
+RubyLint::GlobalScope.definitions.define_constant('String::Complexifier::PATTERN1') do |klass|
 end
 
 ##
@@ -628,7 +628,7 @@ end
 # Created:  2013-04-01 18:33:55 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('String::Complexifier::PATTERN2') do |klass|
+RubyLint::GlobalScope.definitions.define_constant('String::Complexifier::PATTERN2') do |klass|
 end
 
 ##
@@ -636,7 +636,7 @@ end
 # Created:  2013-04-01 18:33:55 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('String::Complexifier::SPACE') do |klass|
+RubyLint::GlobalScope.definitions.define_constant('String::Complexifier::SPACE') do |klass|
 end
 
 ##
@@ -644,7 +644,7 @@ end
 # Created:  2013-04-01 18:33:55 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('String::ControlCharacters') do |klass|
+RubyLint::GlobalScope.definitions.define_constant('String::ControlCharacters') do |klass|
 end
 
 ##
@@ -652,7 +652,7 @@ end
 # Created:  2013-04-01 18:33:55 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('String::ControlPrintValue') do |klass|
+RubyLint::GlobalScope.definitions.define_constant('String::ControlPrintValue') do |klass|
 end
 
 ##
@@ -660,8 +660,8 @@ end
 # Created:  2013-04-01 18:33:55 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('String::Rationalizer') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
+RubyLint::GlobalScope.definitions.define_constant('String::Rationalizer') do |klass|
+  klass.inherits(RubyLint::GlobalScope.constant_proxy('Object'))
 
   klass.define_method('__class_init__')
 
@@ -677,7 +677,7 @@ end
 # Created:  2013-04-01 18:33:55 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('String::Rationalizer::DENOMINATOR') do |klass|
+RubyLint::GlobalScope.definitions.define_constant('String::Rationalizer::DENOMINATOR') do |klass|
 end
 
 ##
@@ -685,7 +685,7 @@ end
 # Created:  2013-04-01 18:33:55 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('String::Rationalizer::NUMERATOR') do |klass|
+RubyLint::GlobalScope.definitions.define_constant('String::Rationalizer::NUMERATOR') do |klass|
 end
 
 ##
@@ -693,7 +693,7 @@ end
 # Created:  2013-04-01 18:33:55 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('String::Rationalizer::PATTERN') do |klass|
+RubyLint::GlobalScope.definitions.define_constant('String::Rationalizer::PATTERN') do |klass|
 end
 
 ##
@@ -701,7 +701,7 @@ end
 # Created:  2013-04-01 18:33:55 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('String::Rationalizer::RATIONAL') do |klass|
+RubyLint::GlobalScope.definitions.define_constant('String::Rationalizer::RATIONAL') do |klass|
 end
 
 ##
@@ -709,5 +709,5 @@ end
 # Created:  2013-04-01 18:33:55 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('String::Rationalizer::SPACE') do |klass|
+RubyLint::GlobalScope.definitions.define_constant('String::Rationalizer::SPACE') do |klass|
 end

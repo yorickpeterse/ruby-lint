@@ -34,7 +34,7 @@ module RubyLint
       # @return [Array]
       #
       def parents
-        return [RubyLint::VirtualMachine.global_constant('Array')]
+        return [GlobalScope.global_constant('Array')]
       end
 
       ##

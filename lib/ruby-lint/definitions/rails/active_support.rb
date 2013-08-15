@@ -4,8 +4,8 @@
 # Created:  2013-07-24 21:54:03 +0200
 # Platform: rbx 2.0.0.n198
 
-RubyLint::VirtualMachine.global_scope.define_constant('ActiveSupport') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
+RubyLint::GlobalScope.definitions.define_constant('ActiveSupport') do |klass|
+  klass.inherits(RubyLint::GlobalScope.constant_proxy('Object'))
 
   klass.define_method('autoload_at') do |method|
     method.define_argument('path')
@@ -84,8 +84,8 @@ RubyLint::VirtualMachine.global_scope.define_constant('ActiveSupport') do |klass
   end
 end
 
-RubyLint::VirtualMachine.global_scope.define_constant('ActiveSupport::Autoload') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
+RubyLint::GlobalScope.definitions.define_constant('ActiveSupport::Autoload') do |klass|
+  klass.inherits(RubyLint::GlobalScope.constant_proxy('Object'))
 
   klass.define_method('extended') do |method|
     method.define_argument('base')
@@ -115,8 +115,8 @@ RubyLint::VirtualMachine.global_scope.define_constant('ActiveSupport::Autoload')
   klass.define_instance_method('eager_load!')
 end
 
-RubyLint::VirtualMachine.global_scope.define_constant('ActiveSupport::BacktraceCleaner') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
+RubyLint::GlobalScope.definitions.define_constant('ActiveSupport::BacktraceCleaner') do |klass|
+  klass.inherits(RubyLint::GlobalScope.constant_proxy('Object'))
 
   klass.define_instance_method('add_filter') do |method|
     method.define_block_argument('block')
@@ -141,8 +141,8 @@ RubyLint::VirtualMachine.global_scope.define_constant('ActiveSupport::BacktraceC
   klass.define_instance_method('remove_silencers!')
 end
 
-RubyLint::VirtualMachine.global_scope.define_constant('ActiveSupport::BasicObject') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.constant_proxy('ActiveSupport::ProxyObject'))
+RubyLint::GlobalScope.definitions.define_constant('ActiveSupport::BasicObject') do |klass|
+  klass.inherits(RubyLint::GlobalScope.constant_proxy('ActiveSupport::ProxyObject'))
 
   klass.define_method('inherited') do |method|
     method.define_rest_argument('')
@@ -153,8 +153,8 @@ RubyLint::VirtualMachine.global_scope.define_constant('ActiveSupport::BasicObjec
   end
 end
 
-RubyLint::VirtualMachine.global_scope.define_constant('ActiveSupport::Benchmarkable') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
+RubyLint::GlobalScope.definitions.define_constant('ActiveSupport::Benchmarkable') do |klass|
+  klass.inherits(RubyLint::GlobalScope.constant_proxy('Object'))
 
   klass.define_method('initialize') do |method|
     method.define_block_argument('block')
@@ -168,8 +168,8 @@ RubyLint::VirtualMachine.global_scope.define_constant('ActiveSupport::Benchmarka
   klass.define_instance_method('silence')
 end
 
-RubyLint::VirtualMachine.global_scope.define_constant('ActiveSupport::Cache') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
+RubyLint::GlobalScope.definitions.define_constant('ActiveSupport::Cache') do |klass|
+  klass.inherits(RubyLint::GlobalScope.constant_proxy('Object'))
 
   klass.define_method('expand_cache_key') do |method|
     method.define_argument('key')
@@ -185,8 +185,8 @@ RubyLint::VirtualMachine.global_scope.define_constant('ActiveSupport::Cache') do
   end
 end
 
-RubyLint::VirtualMachine.global_scope.define_constant('ActiveSupport::CachingKeyGenerator') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
+RubyLint::GlobalScope.definitions.define_constant('ActiveSupport::CachingKeyGenerator') do |klass|
+  klass.inherits(RubyLint::GlobalScope.constant_proxy('Object'))
 
   klass.define_instance_method('generate_key') do |method|
     method.define_argument('salt')
@@ -194,8 +194,8 @@ RubyLint::VirtualMachine.global_scope.define_constant('ActiveSupport::CachingKey
   end
 end
 
-RubyLint::VirtualMachine.global_scope.define_constant('ActiveSupport::Callbacks') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
+RubyLint::GlobalScope.definitions.define_constant('ActiveSupport::Callbacks') do |klass|
+  klass.inherits(RubyLint::GlobalScope.constant_proxy('Object'))
 
   klass.define_method('append_features') do |method|
     method.define_argument('base')
@@ -216,8 +216,8 @@ RubyLint::VirtualMachine.global_scope.define_constant('ActiveSupport::Callbacks'
   end
 end
 
-RubyLint::VirtualMachine.global_scope.define_constant('ActiveSupport::Concern') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
+RubyLint::GlobalScope.definitions.define_constant('ActiveSupport::Concern') do |klass|
+  klass.inherits(RubyLint::GlobalScope.constant_proxy('Object'))
 
   klass.define_method('extended') do |method|
     method.define_argument('base')
@@ -237,8 +237,8 @@ RubyLint::VirtualMachine.global_scope.define_constant('ActiveSupport::Concern') 
   end
 end
 
-RubyLint::VirtualMachine.global_scope.define_constant('ActiveSupport::Configurable') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
+RubyLint::GlobalScope.definitions.define_constant('ActiveSupport::Configurable') do |klass|
+  klass.inherits(RubyLint::GlobalScope.constant_proxy('Object'))
 
   klass.define_method('append_features') do |method|
     method.define_argument('base')
@@ -256,8 +256,8 @@ RubyLint::VirtualMachine.global_scope.define_constant('ActiveSupport::Configurab
   klass.define_instance_method('config')
 end
 
-RubyLint::VirtualMachine.global_scope.define_constant('ActiveSupport::Dependencies') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
+RubyLint::GlobalScope.definitions.define_constant('ActiveSupport::Dependencies') do |klass|
+  klass.inherits(RubyLint::GlobalScope.constant_proxy('Object'))
 
   klass.define_method('autoload_module!') do |method|
     method.define_argument('into')
@@ -605,8 +605,8 @@ RubyLint::VirtualMachine.global_scope.define_constant('ActiveSupport::Dependenci
   end
 end
 
-RubyLint::VirtualMachine.global_scope.define_constant('ActiveSupport::Deprecation') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
+RubyLint::GlobalScope.definitions.define_constant('ActiveSupport::Deprecation') do |klass|
+  klass.inherits(RubyLint::GlobalScope.constant_proxy('Object'))
 
   klass.define_method('_load') do |method|
     method.define_argument('str')
@@ -739,8 +739,8 @@ RubyLint::VirtualMachine.global_scope.define_constant('ActiveSupport::Deprecatio
   end
 end
 
-RubyLint::VirtualMachine.global_scope.define_constant('ActiveSupport::DescendantsTracker') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
+RubyLint::GlobalScope.definitions.define_constant('ActiveSupport::DescendantsTracker') do |klass|
+  klass.inherits(RubyLint::GlobalScope.constant_proxy('Object'))
 
   klass.define_method('clear')
 
@@ -770,8 +770,8 @@ RubyLint::VirtualMachine.global_scope.define_constant('ActiveSupport::Descendant
   end
 end
 
-RubyLint::VirtualMachine.global_scope.define_constant('ActiveSupport::Duration') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.constant_proxy('ActiveSupport::ProxyObject'))
+RubyLint::GlobalScope.definitions.define_constant('ActiveSupport::Duration') do |klass|
+  klass.inherits(RubyLint::GlobalScope.constant_proxy('ActiveSupport::ProxyObject'))
 
   klass.define_method('===') do |method|
     method.define_argument('other')
@@ -839,8 +839,8 @@ RubyLint::VirtualMachine.global_scope.define_constant('ActiveSupport::Duration')
   klass.define_instance_method('value=')
 end
 
-RubyLint::VirtualMachine.global_scope.define_constant('ActiveSupport::FileUpdateChecker') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
+RubyLint::GlobalScope.definitions.define_constant('ActiveSupport::FileUpdateChecker') do |klass|
+  klass.inherits(RubyLint::GlobalScope.constant_proxy('Object'))
 
   klass.define_instance_method('execute')
 
@@ -849,8 +849,8 @@ RubyLint::VirtualMachine.global_scope.define_constant('ActiveSupport::FileUpdate
   klass.define_instance_method('updated?')
 end
 
-RubyLint::VirtualMachine.global_scope.define_constant('ActiveSupport::Gzip') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
+RubyLint::GlobalScope.definitions.define_constant('ActiveSupport::Gzip') do |klass|
+  klass.inherits(RubyLint::GlobalScope.constant_proxy('Object'))
 
   klass.define_method('compress') do |method|
     method.define_argument('source')
@@ -867,8 +867,8 @@ RubyLint::VirtualMachine.global_scope.define_constant('ActiveSupport::Gzip') do 
   end
 end
 
-RubyLint::VirtualMachine.global_scope.define_constant('ActiveSupport::HashWithIndifferentAccess') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Hash'))
+RubyLint::GlobalScope.definitions.define_constant('ActiveSupport::HashWithIndifferentAccess') do |klass|
+  klass.inherits(RubyLint::GlobalScope.constant_proxy('Hash'))
 
   klass.define_method('[]') do |method|
     method.define_rest_argument('args')
@@ -1352,8 +1352,8 @@ RubyLint::VirtualMachine.global_scope.define_constant('ActiveSupport::HashWithIn
   end
 end
 
-RubyLint::VirtualMachine.global_scope.define_constant('ActiveSupport::Inflector') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
+RubyLint::GlobalScope.definitions.define_constant('ActiveSupport::Inflector') do |klass|
+  klass.inherits(RubyLint::GlobalScope.constant_proxy('Object'))
 
   klass.define_method('camelize') do |method|
     method.define_argument('term')
@@ -1524,8 +1524,8 @@ RubyLint::VirtualMachine.global_scope.define_constant('ActiveSupport::Inflector'
   end
 end
 
-RubyLint::VirtualMachine.global_scope.define_constant('ActiveSupport::InheritableOptions') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.constant_proxy('ActiveSupport::OrderedOptions'))
+RubyLint::GlobalScope.definitions.define_constant('ActiveSupport::InheritableOptions') do |klass|
+  klass.inherits(RubyLint::GlobalScope.constant_proxy('ActiveSupport::OrderedOptions'))
 
   klass.define_method('[]') do |method|
     method.define_rest_argument('args')
@@ -2000,8 +2000,8 @@ RubyLint::VirtualMachine.global_scope.define_constant('ActiveSupport::Inheritabl
   end
 end
 
-RubyLint::VirtualMachine.global_scope.define_constant('ActiveSupport::JSON') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
+RubyLint::GlobalScope.definitions.define_constant('ActiveSupport::JSON') do |klass|
+  klass.inherits(RubyLint::GlobalScope.constant_proxy('Object'))
 
   klass.define_method('backend')
 
@@ -2036,8 +2036,8 @@ RubyLint::VirtualMachine.global_scope.define_constant('ActiveSupport::JSON') do 
   end
 end
 
-RubyLint::VirtualMachine.global_scope.define_constant('ActiveSupport::KeyGenerator') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
+RubyLint::GlobalScope.definitions.define_constant('ActiveSupport::KeyGenerator') do |klass|
+  klass.inherits(RubyLint::GlobalScope.constant_proxy('Object'))
 
   klass.define_instance_method('generate_key') do |method|
     method.define_argument('salt')
@@ -2045,16 +2045,16 @@ RubyLint::VirtualMachine.global_scope.define_constant('ActiveSupport::KeyGenerat
   end
 end
 
-RubyLint::VirtualMachine.global_scope.define_constant('ActiveSupport::LegacyKeyGenerator') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
+RubyLint::GlobalScope.definitions.define_constant('ActiveSupport::LegacyKeyGenerator') do |klass|
+  klass.inherits(RubyLint::GlobalScope.constant_proxy('Object'))
 
   klass.define_instance_method('generate_key') do |method|
     method.define_argument('salt')
   end
 end
 
-RubyLint::VirtualMachine.global_scope.define_constant('ActiveSupport::LogSubscriber') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.constant_proxy('ActiveSupport::Subscriber'))
+RubyLint::GlobalScope.definitions.define_constant('ActiveSupport::LogSubscriber') do |klass|
+  klass.inherits(RubyLint::GlobalScope.constant_proxy('ActiveSupport::Subscriber'))
 
   klass.define_method('attach_to') do |method|
     method.define_argument('namespace')
@@ -2135,8 +2135,8 @@ RubyLint::VirtualMachine.global_scope.define_constant('ActiveSupport::LogSubscri
   end
 end
 
-RubyLint::VirtualMachine.global_scope.define_constant('ActiveSupport::Logger') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Logger'))
+RubyLint::GlobalScope.definitions.define_constant('ActiveSupport::Logger') do |klass|
+  klass.inherits(RubyLint::GlobalScope.constant_proxy('Logger'))
 
   klass.define_method('broadcast') do |method|
     method.define_argument('logger')
@@ -2237,8 +2237,8 @@ RubyLint::VirtualMachine.global_scope.define_constant('ActiveSupport::Logger') d
   klass.define_instance_method('warn?')
 end
 
-RubyLint::VirtualMachine.global_scope.define_constant('ActiveSupport::MessageEncryptor') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
+RubyLint::GlobalScope.definitions.define_constant('ActiveSupport::MessageEncryptor') do |klass|
+  klass.inherits(RubyLint::GlobalScope.constant_proxy('Object'))
 
   klass.define_instance_method('decrypt_and_verify') do |method|
     method.define_argument('value')
@@ -2249,8 +2249,8 @@ RubyLint::VirtualMachine.global_scope.define_constant('ActiveSupport::MessageEnc
   end
 end
 
-RubyLint::VirtualMachine.global_scope.define_constant('ActiveSupport::MessageVerifier') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
+RubyLint::GlobalScope.definitions.define_constant('ActiveSupport::MessageVerifier') do |klass|
+  klass.inherits(RubyLint::GlobalScope.constant_proxy('Object'))
 
   klass.define_instance_method('generate') do |method|
     method.define_argument('value')
@@ -2261,8 +2261,8 @@ RubyLint::VirtualMachine.global_scope.define_constant('ActiveSupport::MessageVer
   end
 end
 
-RubyLint::VirtualMachine.global_scope.define_constant('ActiveSupport::Multibyte') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
+RubyLint::GlobalScope.definitions.define_constant('ActiveSupport::Multibyte') do |klass|
+  klass.inherits(RubyLint::GlobalScope.constant_proxy('Object'))
 
   klass.define_method('clean') do |method|
     method.define_argument('string')
@@ -2289,8 +2289,8 @@ RubyLint::VirtualMachine.global_scope.define_constant('ActiveSupport::Multibyte'
   end
 end
 
-RubyLint::VirtualMachine.global_scope.define_constant('ActiveSupport::Notifications') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
+RubyLint::GlobalScope.definitions.define_constant('ActiveSupport::Notifications') do |klass|
+  klass.inherits(RubyLint::GlobalScope.constant_proxy('Object'))
 
   klass.define_method('initialize') do |method|
     method.define_block_argument('block')
@@ -2328,8 +2328,8 @@ RubyLint::VirtualMachine.global_scope.define_constant('ActiveSupport::Notificati
   end
 end
 
-RubyLint::VirtualMachine.global_scope.define_constant('ActiveSupport::NumberHelper') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
+RubyLint::GlobalScope.definitions.define_constant('ActiveSupport::NumberHelper') do |klass|
+  klass.inherits(RubyLint::GlobalScope.constant_proxy('Object'))
 
   klass.define_method('initialize') do |method|
     method.define_block_argument('block')
@@ -2406,12 +2406,12 @@ RubyLint::VirtualMachine.global_scope.define_constant('ActiveSupport::NumberHelp
   end
 end
 
-RubyLint::VirtualMachine.global_scope.define_constant('ActiveSupport::OptionMerger') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
+RubyLint::GlobalScope.definitions.define_constant('ActiveSupport::OptionMerger') do |klass|
+  klass.inherits(RubyLint::GlobalScope.constant_proxy('Object'))
 end
 
-RubyLint::VirtualMachine.global_scope.define_constant('ActiveSupport::OrderedHash') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Hash'))
+RubyLint::GlobalScope.definitions.define_constant('ActiveSupport::OrderedHash') do |klass|
+  klass.inherits(RubyLint::GlobalScope.constant_proxy('Hash'))
 
   klass.define_method('[]') do |method|
     method.define_rest_argument('args')
@@ -2881,8 +2881,8 @@ RubyLint::VirtualMachine.global_scope.define_constant('ActiveSupport::OrderedHas
   end
 end
 
-RubyLint::VirtualMachine.global_scope.define_constant('ActiveSupport::OrderedOptions') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Hash'))
+RubyLint::GlobalScope.definitions.define_constant('ActiveSupport::OrderedOptions') do |klass|
+  klass.inherits(RubyLint::GlobalScope.constant_proxy('Hash'))
 
   klass.define_method('[]') do |method|
     method.define_rest_argument('args')
@@ -3360,8 +3360,8 @@ RubyLint::VirtualMachine.global_scope.define_constant('ActiveSupport::OrderedOpt
   end
 end
 
-RubyLint::VirtualMachine.global_scope.define_constant('ActiveSupport::PerThreadRegistry') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
+RubyLint::GlobalScope.definitions.define_constant('ActiveSupport::PerThreadRegistry') do |klass|
+  klass.inherits(RubyLint::GlobalScope.constant_proxy('Object'))
 
   klass.define_method('initialize') do |method|
     method.define_block_argument('block')
@@ -3374,16 +3374,16 @@ RubyLint::VirtualMachine.global_scope.define_constant('ActiveSupport::PerThreadR
   end
 end
 
-RubyLint::VirtualMachine.global_scope.define_constant('ActiveSupport::ProxyObject') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.constant_proxy('BasicObject'))
+RubyLint::GlobalScope.definitions.define_constant('ActiveSupport::ProxyObject') do |klass|
+  klass.inherits(RubyLint::GlobalScope.constant_proxy('BasicObject'))
 
   klass.define_instance_method('raise') do |method|
     method.define_rest_argument('args')
   end
 end
 
-RubyLint::VirtualMachine.global_scope.define_constant('ActiveSupport::Railtie') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Rails::Railtie'))
+RubyLint::GlobalScope.definitions.define_constant('ActiveSupport::Railtie') do |klass|
+  klass.inherits(RubyLint::GlobalScope.constant_proxy('Rails::Railtie'))
 
   klass.define_method('abstract_railtie?')
 
@@ -3478,8 +3478,8 @@ RubyLint::VirtualMachine.global_scope.define_constant('ActiveSupport::Railtie') 
   end
 end
 
-RubyLint::VirtualMachine.global_scope.define_constant('ActiveSupport::Rescuable') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
+RubyLint::GlobalScope.definitions.define_constant('ActiveSupport::Rescuable') do |klass|
+  klass.inherits(RubyLint::GlobalScope.constant_proxy('Object'))
 
   klass.define_method('append_features') do |method|
     method.define_argument('base')
@@ -3503,8 +3503,8 @@ RubyLint::VirtualMachine.global_scope.define_constant('ActiveSupport::Rescuable'
   end
 end
 
-RubyLint::VirtualMachine.global_scope.define_constant('ActiveSupport::SafeBuffer') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.constant_proxy('String'))
+RubyLint::GlobalScope.definitions.define_constant('ActiveSupport::SafeBuffer') do |klass|
+  klass.inherits(RubyLint::GlobalScope.constant_proxy('String'))
 
   klass.define_method('__allocate__')
 
@@ -4256,8 +4256,8 @@ RubyLint::VirtualMachine.global_scope.define_constant('ActiveSupport::SafeBuffer
   klass.define_instance_method('valid_encoding?')
 end
 
-RubyLint::VirtualMachine.global_scope.define_constant('ActiveSupport::StringInquirer') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.constant_proxy('String'))
+RubyLint::GlobalScope.definitions.define_constant('ActiveSupport::StringInquirer') do |klass|
+  klass.inherits(RubyLint::GlobalScope.constant_proxy('String'))
 
   klass.define_method('__allocate__')
 
@@ -4940,8 +4940,8 @@ RubyLint::VirtualMachine.global_scope.define_constant('ActiveSupport::StringInqu
   klass.define_instance_method('valid_encoding?')
 end
 
-RubyLint::VirtualMachine.global_scope.define_constant('ActiveSupport::Subscriber') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
+RubyLint::GlobalScope.definitions.define_constant('ActiveSupport::Subscriber') do |klass|
+  klass.inherits(RubyLint::GlobalScope.constant_proxy('Object'))
 
   klass.define_method('attach_to') do |method|
     method.define_argument('namespace')
@@ -4964,8 +4964,8 @@ RubyLint::VirtualMachine.global_scope.define_constant('ActiveSupport::Subscriber
   end
 end
 
-RubyLint::VirtualMachine.global_scope.define_constant('ActiveSupport::SubscriberQueueRegistry') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
+RubyLint::GlobalScope.definitions.define_constant('ActiveSupport::SubscriberQueueRegistry') do |klass|
+  klass.inherits(RubyLint::GlobalScope.constant_proxy('Object'))
 
   klass.define_method('method_missing') do |method|
     method.define_argument('name')
@@ -4978,8 +4978,8 @@ RubyLint::VirtualMachine.global_scope.define_constant('ActiveSupport::Subscriber
   end
 end
 
-RubyLint::VirtualMachine.global_scope.define_constant('ActiveSupport::TaggedLogging') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
+RubyLint::GlobalScope.definitions.define_constant('ActiveSupport::TaggedLogging') do |klass|
+  klass.inherits(RubyLint::GlobalScope.constant_proxy('Object'))
 
   klass.define_method('initialize') do |method|
     method.define_block_argument('block')
@@ -5011,8 +5011,8 @@ RubyLint::VirtualMachine.global_scope.define_constant('ActiveSupport::TaggedLogg
   end
 end
 
-RubyLint::VirtualMachine.global_scope.define_constant('ActiveSupport::TestCase') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.constant_proxy('MiniTest::Unit::TestCase'))
+RubyLint::GlobalScope.definitions.define_constant('ActiveSupport::TestCase') do |klass|
+  klass.inherits(RubyLint::GlobalScope.constant_proxy('MiniTest::Unit::TestCase'))
 
   klass.define_method('__callback_runner_name') do |method|
     method.define_argument('kind')
@@ -5572,16 +5572,16 @@ RubyLint::VirtualMachine.global_scope.define_constant('ActiveSupport::TestCase')
   end
 end
 
-RubyLint::VirtualMachine.global_scope.define_constant('ActiveSupport::Testing') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
+RubyLint::GlobalScope.definitions.define_constant('ActiveSupport::Testing') do |klass|
+  klass.inherits(RubyLint::GlobalScope.constant_proxy('Object'))
 
   klass.define_method('initialize') do |method|
     method.define_block_argument('block')
   end
 end
 
-RubyLint::VirtualMachine.global_scope.define_constant('ActiveSupport::TimeWithZone') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
+RubyLint::GlobalScope.definitions.define_constant('ActiveSupport::TimeWithZone') do |klass|
+  klass.inherits(RubyLint::GlobalScope.constant_proxy('Object'))
 
   klass.define_method('name')
 
@@ -5791,8 +5791,8 @@ RubyLint::VirtualMachine.global_scope.define_constant('ActiveSupport::TimeWithZo
   klass.define_instance_method('zone')
 end
 
-RubyLint::VirtualMachine.global_scope.define_constant('ActiveSupport::TimeZone') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
+RubyLint::GlobalScope.definitions.define_constant('ActiveSupport::TimeZone') do |klass|
+  klass.inherits(RubyLint::GlobalScope.constant_proxy('Object'))
 
   klass.define_method('[]') do |method|
     method.define_argument('arg')
@@ -5901,22 +5901,22 @@ RubyLint::VirtualMachine.global_scope.define_constant('ActiveSupport::TimeZone')
   end
 end
 
-RubyLint::VirtualMachine.global_scope.define_constant('ActiveSupport::VERSION') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
+RubyLint::GlobalScope.definitions.define_constant('ActiveSupport::VERSION') do |klass|
+  klass.inherits(RubyLint::GlobalScope.constant_proxy('Object'))
 
   klass.define_method('initialize') do |method|
     method.define_block_argument('block')
   end
 end
 
-RubyLint::VirtualMachine.global_scope.define_constant('ActiveSupport::XMLConverter') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
+RubyLint::GlobalScope.definitions.define_constant('ActiveSupport::XMLConverter') do |klass|
+  klass.inherits(RubyLint::GlobalScope.constant_proxy('Object'))
 
   klass.define_instance_method('to_h')
 end
 
-RubyLint::VirtualMachine.global_scope.define_constant('ActiveSupport::XmlMini') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
+RubyLint::GlobalScope.definitions.define_constant('ActiveSupport::XmlMini') do |klass|
+  klass.inherits(RubyLint::GlobalScope.constant_proxy('Object'))
 
   klass.define_method('_dasherize') do |method|
     method.define_argument('key')
@@ -6003,8 +6003,8 @@ RubyLint::VirtualMachine.global_scope.define_constant('ActiveSupport::XmlMini') 
   end
 end
 
-RubyLint::VirtualMachine.global_scope.define_constant('ActiveSupport::XmlMini_REXML') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
+RubyLint::GlobalScope.definitions.define_constant('ActiveSupport::XmlMini_REXML') do |klass|
+  klass.inherits(RubyLint::GlobalScope.constant_proxy('Object'))
 
   klass.define_method('initialize') do |method|
     method.define_block_argument('block')

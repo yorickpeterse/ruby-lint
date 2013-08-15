@@ -3,8 +3,8 @@
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('File') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.constant_proxy('IO'))
+RubyLint::GlobalScope.definitions.define_constant('File') do |klass|
+  klass.inherits(RubyLint::GlobalScope.constant_proxy('IO'))
 
   klass.define_method('__class_init__')
 
@@ -323,7 +323,7 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('File::APPEND') do |klass|
+RubyLint::GlobalScope.definitions.define_constant('File::APPEND') do |klass|
 end
 
 ##
@@ -331,7 +331,7 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('File::BINARY') do |klass|
+RubyLint::GlobalScope.definitions.define_constant('File::BINARY') do |klass|
 end
 
 ##
@@ -339,8 +339,8 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('File::BidirectionalPipe') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.constant_proxy('IO'))
+RubyLint::GlobalScope.definitions.define_constant('File::BidirectionalPipe') do |klass|
+  klass.inherits(RubyLint::GlobalScope.constant_proxy('IO'))
 
   klass.define_method('__class_init__')
 
@@ -395,7 +395,7 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('File::CREAT') do |klass|
+RubyLint::GlobalScope.definitions.define_constant('File::CREAT') do |klass|
 end
 
 ##
@@ -403,7 +403,7 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('File::Constants') do |klass|
+RubyLint::GlobalScope.definitions.define_constant('File::Constants') do |klass|
 
   klass.define_method('__module_init__')
 end
@@ -413,8 +413,8 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('File::EAGAINWaitReadable') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Errno::EAGAIN'))
+RubyLint::GlobalScope.definitions.define_constant('File::EAGAINWaitReadable') do |klass|
+  klass.inherits(RubyLint::GlobalScope.constant_proxy('Errno::EAGAIN'))
 
   klass.define_method('__class_init__')
 end
@@ -424,8 +424,8 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('File::EAGAINWaitWritable') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Errno::EAGAIN'))
+RubyLint::GlobalScope.definitions.define_constant('File::EAGAINWaitWritable') do |klass|
+  klass.inherits(RubyLint::GlobalScope.constant_proxy('Errno::EAGAIN'))
 
   klass.define_method('__class_init__')
 end
@@ -435,7 +435,7 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('File::EXCL') do |klass|
+RubyLint::GlobalScope.definitions.define_constant('File::EXCL') do |klass|
 end
 
 ##
@@ -443,8 +443,8 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('File::EachReader') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
+RubyLint::GlobalScope.definitions.define_constant('File::EachReader') do |klass|
+  klass.inherits(RubyLint::GlobalScope.constant_proxy('Object'))
 
   klass.define_method('__class_init__')
 
@@ -473,7 +473,7 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('File::FFI') do |klass|
+RubyLint::GlobalScope.definitions.define_constant('File::FFI') do |klass|
 
   klass.define_method('__module_init__')
 
@@ -524,7 +524,7 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('File::F_GETFL') do |klass|
+RubyLint::GlobalScope.definitions.define_constant('File::F_GETFL') do |klass|
 end
 
 ##
@@ -532,8 +532,8 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('File::FileError') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Exception'))
+RubyLint::GlobalScope.definitions.define_constant('File::FileError') do |klass|
+  klass.inherits(RubyLint::GlobalScope.constant_proxy('Exception'))
 end
 
 ##
@@ -541,8 +541,8 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('File::InternalBuffer') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
+RubyLint::GlobalScope.definitions.define_constant('File::InternalBuffer') do |klass|
+  klass.inherits(RubyLint::GlobalScope.constant_proxy('Object'))
 
   klass.define_method('__class_init__')
 
@@ -625,7 +625,7 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('File::LOCK_UN') do |klass|
+RubyLint::GlobalScope.definitions.define_constant('File::LOCK_UN') do |klass|
 end
 
 ##
@@ -633,7 +633,7 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('File::NOCTTY') do |klass|
+RubyLint::GlobalScope.definitions.define_constant('File::NOCTTY') do |klass|
 end
 
 ##
@@ -641,7 +641,7 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('File::NONBLOCK') do |klass|
+RubyLint::GlobalScope.definitions.define_constant('File::NONBLOCK') do |klass|
 end
 
 ##
@@ -649,7 +649,7 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('File::NULL') do |klass|
+RubyLint::GlobalScope.definitions.define_constant('File::NULL') do |klass|
 end
 
 ##
@@ -657,8 +657,8 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('File::NoFileError') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.constant_proxy('File::FileError'))
+RubyLint::GlobalScope.definitions.define_constant('File::NoFileError') do |klass|
+  klass.inherits(RubyLint::GlobalScope.constant_proxy('File::FileError'))
 end
 
 ##
@@ -666,7 +666,7 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('File::PATH_SEPARATOR') do |klass|
+RubyLint::GlobalScope.definitions.define_constant('File::PATH_SEPARATOR') do |klass|
 end
 
 ##
@@ -674,7 +674,7 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('File::POSIX') do |klass|
+RubyLint::GlobalScope.definitions.define_constant('File::POSIX') do |klass|
 
   klass.define_method('__module_init__')
 
@@ -838,8 +838,8 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('File::PermissionError') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.constant_proxy('File::FileError'))
+RubyLint::GlobalScope.definitions.define_constant('File::PermissionError') do |klass|
+  klass.inherits(RubyLint::GlobalScope.constant_proxy('File::FileError'))
 end
 
 ##
@@ -847,7 +847,7 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('File::SEEK_CUR') do |klass|
+RubyLint::GlobalScope.definitions.define_constant('File::SEEK_CUR') do |klass|
 end
 
 ##
@@ -855,7 +855,7 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('File::SEEK_END') do |klass|
+RubyLint::GlobalScope.definitions.define_constant('File::SEEK_END') do |klass|
 end
 
 ##
@@ -863,7 +863,7 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('File::SEPARATOR') do |klass|
+RubyLint::GlobalScope.definitions.define_constant('File::SEPARATOR') do |klass|
 end
 
 ##
@@ -871,7 +871,7 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('File::SYNC') do |klass|
+RubyLint::GlobalScope.definitions.define_constant('File::SYNC') do |klass|
 end
 
 ##
@@ -879,7 +879,7 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('File::Socketable') do |klass|
+RubyLint::GlobalScope.definitions.define_constant('File::Socketable') do |klass|
 
   klass.define_method('__module_init__')
 
@@ -891,8 +891,8 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('File::SortedElement') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
+RubyLint::GlobalScope.definitions.define_constant('File::SortedElement') do |klass|
+  klass.inherits(RubyLint::GlobalScope.constant_proxy('Object'))
 
   klass.define_method('__class_init__')
 
@@ -915,8 +915,8 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('File::Stat') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
+RubyLint::GlobalScope.definitions.define_constant('File::Stat') do |klass|
+  klass.inherits(RubyLint::GlobalScope.constant_proxy('Object'))
 
   klass.define_method('__class_init__')
 
@@ -1032,7 +1032,7 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('File::Stat::EXISTS_STRUCT') do |klass|
+RubyLint::GlobalScope.definitions.define_constant('File::Stat::EXISTS_STRUCT') do |klass|
 end
 
 ##
@@ -1040,7 +1040,7 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('File::Stat::S_IFBLK') do |klass|
+RubyLint::GlobalScope.definitions.define_constant('File::Stat::S_IFBLK') do |klass|
 end
 
 ##
@@ -1048,7 +1048,7 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('File::Stat::S_IFCHR') do |klass|
+RubyLint::GlobalScope.definitions.define_constant('File::Stat::S_IFCHR') do |klass|
 end
 
 ##
@@ -1056,7 +1056,7 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('File::Stat::S_IFDIR') do |klass|
+RubyLint::GlobalScope.definitions.define_constant('File::Stat::S_IFDIR') do |klass|
 end
 
 ##
@@ -1064,7 +1064,7 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('File::Stat::S_IFIFO') do |klass|
+RubyLint::GlobalScope.definitions.define_constant('File::Stat::S_IFIFO') do |klass|
 end
 
 ##
@@ -1072,7 +1072,7 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('File::Stat::S_IFLNK') do |klass|
+RubyLint::GlobalScope.definitions.define_constant('File::Stat::S_IFLNK') do |klass|
 end
 
 ##
@@ -1080,7 +1080,7 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('File::Stat::S_IFMT') do |klass|
+RubyLint::GlobalScope.definitions.define_constant('File::Stat::S_IFMT') do |klass|
 end
 
 ##
@@ -1088,7 +1088,7 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('File::Stat::S_IFREG') do |klass|
+RubyLint::GlobalScope.definitions.define_constant('File::Stat::S_IFREG') do |klass|
 end
 
 ##
@@ -1096,7 +1096,7 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('File::Stat::S_IFSOCK') do |klass|
+RubyLint::GlobalScope.definitions.define_constant('File::Stat::S_IFSOCK') do |klass|
 end
 
 ##
@@ -1104,7 +1104,7 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('File::Stat::S_IRGRP') do |klass|
+RubyLint::GlobalScope.definitions.define_constant('File::Stat::S_IRGRP') do |klass|
 end
 
 ##
@@ -1112,7 +1112,7 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('File::Stat::S_IRUGO') do |klass|
+RubyLint::GlobalScope.definitions.define_constant('File::Stat::S_IRUGO') do |klass|
 end
 
 ##
@@ -1120,7 +1120,7 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('File::Stat::S_IWGRP') do |klass|
+RubyLint::GlobalScope.definitions.define_constant('File::Stat::S_IWGRP') do |klass|
 end
 
 ##
@@ -1128,7 +1128,7 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('File::Stat::S_IWUGO') do |klass|
+RubyLint::GlobalScope.definitions.define_constant('File::Stat::S_IWUGO') do |klass|
 end
 
 ##
@@ -1136,7 +1136,7 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('File::Stat::S_IXUGO') do |klass|
+RubyLint::GlobalScope.definitions.define_constant('File::Stat::S_IXUGO') do |klass|
 end
 
 ##
@@ -1144,8 +1144,8 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('File::Stat::Struct') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Rubinius::FFI::Struct'))
+RubyLint::GlobalScope.definitions.define_constant('File::Stat::Struct') do |klass|
+  klass.inherits(RubyLint::GlobalScope.constant_proxy('Rubinius::FFI::Struct'))
 
   klass.define_method('__class_init__')
 end
@@ -1155,8 +1155,8 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('File::Stat::Struct::InlineArray') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
+RubyLint::GlobalScope.definitions.define_constant('File::Stat::Struct::InlineArray') do |klass|
+  klass.inherits(RubyLint::GlobalScope.constant_proxy('Object'))
 
   klass.define_method('__class_init__')
 
@@ -1188,8 +1188,8 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('File::Stat::Struct::InlineCharArray') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Rubinius::FFI::Struct::InlineArray'))
+RubyLint::GlobalScope.definitions.define_constant('File::Stat::Struct::InlineCharArray') do |klass|
+  klass.inherits(RubyLint::GlobalScope.constant_proxy('Rubinius::FFI::Struct::InlineArray'))
 
   klass.define_method('__class_init__')
 
@@ -1205,8 +1205,8 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('File::StreamCopier') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
+RubyLint::GlobalScope.definitions.define_constant('File::StreamCopier') do |klass|
+  klass.inherits(RubyLint::GlobalScope.constant_proxy('Object'))
 
   klass.define_method('__class_init__')
 
@@ -1234,7 +1234,7 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('File::TRUNC') do |klass|
+RubyLint::GlobalScope.definitions.define_constant('File::TRUNC') do |klass|
 end
 
 ##
@@ -1242,7 +1242,7 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('File::TransferIO') do |klass|
+RubyLint::GlobalScope.definitions.define_constant('File::TransferIO') do |klass|
 
   klass.define_method('__module_init__')
 
@@ -1256,8 +1256,8 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('File::UnableToStat') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.constant_proxy('File::FileError'))
+RubyLint::GlobalScope.definitions.define_constant('File::UnableToStat') do |klass|
+  klass.inherits(RubyLint::GlobalScope.constant_proxy('File::FileError'))
 end
 
 ##
@@ -1265,7 +1265,7 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('File::WaitReadable') do |klass|
+RubyLint::GlobalScope.definitions.define_constant('File::WaitReadable') do |klass|
 end
 
 ##
@@ -1273,5 +1273,5 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('File::WaitWritable') do |klass|
+RubyLint::GlobalScope.definitions.define_constant('File::WaitWritable') do |klass|
 end

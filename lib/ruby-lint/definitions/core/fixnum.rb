@@ -3,8 +3,8 @@
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('Fixnum') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Integer'))
+RubyLint::GlobalScope.definitions.define_constant('Fixnum') do |klass|
+  klass.inherits(RubyLint::GlobalScope.constant_proxy('Integer'))
 
   klass.define_method('===') do |method|
     method.define_argument('obj')
@@ -144,7 +144,7 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('Fixnum::MAX') do |klass|
+RubyLint::GlobalScope.definitions.define_constant('Fixnum::MAX') do |klass|
 end
 
 ##
@@ -152,5 +152,5 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('Fixnum::MIN') do |klass|
+RubyLint::GlobalScope.definitions.define_constant('Fixnum::MIN') do |klass|
 end

@@ -4,8 +4,8 @@
 # Created:  2013-07-24 21:54:03 +0200
 # Platform: rbx 2.0.0.n198
 
-RubyLint::VirtualMachine.global_scope.define_constant('Arel') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
+RubyLint::GlobalScope.definitions.define_constant('Arel') do |klass|
+  klass.inherits(RubyLint::GlobalScope.constant_proxy('Object'))
 
   klass.define_method('initialize') do |method|
     method.define_block_argument('block')
@@ -18,8 +18,8 @@ RubyLint::VirtualMachine.global_scope.define_constant('Arel') do |klass|
   klass.define_method('star')
 end
 
-RubyLint::VirtualMachine.global_scope.define_constant('Arel::AliasPredication') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
+RubyLint::GlobalScope.definitions.define_constant('Arel::AliasPredication') do |klass|
+  klass.inherits(RubyLint::GlobalScope.constant_proxy('Object'))
 
   klass.define_method('initialize') do |method|
     method.define_block_argument('block')
@@ -30,8 +30,8 @@ RubyLint::VirtualMachine.global_scope.define_constant('Arel::AliasPredication') 
   end
 end
 
-RubyLint::VirtualMachine.global_scope.define_constant('Arel::Attribute') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.constant_proxy('#<Class:0x22df4>'))
+RubyLint::GlobalScope.definitions.define_constant('Arel::Attribute') do |klass|
+  klass.inherits(RubyLint::GlobalScope.constant_proxy('#<Class:0x22df4>'))
 
   klass.define_method('[]') do |method|
     method.define_rest_argument('args')
@@ -420,8 +420,8 @@ RubyLint::VirtualMachine.global_scope.define_constant('Arel::Attribute') do |kla
   end
 end
 
-RubyLint::VirtualMachine.global_scope.define_constant('Arel::Attributes') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
+RubyLint::GlobalScope.definitions.define_constant('Arel::Attributes') do |klass|
+  klass.inherits(RubyLint::GlobalScope.constant_proxy('Object'))
 
   klass.define_method('for') do |method|
     method.define_argument('column')
@@ -432,16 +432,16 @@ RubyLint::VirtualMachine.global_scope.define_constant('Arel::Attributes') do |kl
   end
 end
 
-RubyLint::VirtualMachine.global_scope.define_constant('Arel::Compatibility') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
+RubyLint::GlobalScope.definitions.define_constant('Arel::Compatibility') do |klass|
+  klass.inherits(RubyLint::GlobalScope.constant_proxy('Object'))
 
   klass.define_method('initialize') do |method|
     method.define_block_argument('block')
   end
 end
 
-RubyLint::VirtualMachine.global_scope.define_constant('Arel::Crud') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
+RubyLint::GlobalScope.definitions.define_constant('Arel::Crud') do |klass|
+  klass.inherits(RubyLint::GlobalScope.constant_proxy('Object'))
 
   klass.define_method('initialize') do |method|
     method.define_block_argument('block')
@@ -470,8 +470,8 @@ RubyLint::VirtualMachine.global_scope.define_constant('Arel::Crud') do |klass|
   end
 end
 
-RubyLint::VirtualMachine.global_scope.define_constant('Arel::DeleteManager') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Arel::TreeManager'))
+RubyLint::GlobalScope.definitions.define_constant('Arel::DeleteManager') do |klass|
+  klass.inherits(RubyLint::GlobalScope.constant_proxy('Arel::TreeManager'))
 
   klass.define_instance_method('ast')
 
@@ -531,8 +531,8 @@ RubyLint::VirtualMachine.global_scope.define_constant('Arel::DeleteManager') do 
   end
 end
 
-RubyLint::VirtualMachine.global_scope.define_constant('Arel::Expression') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
+RubyLint::GlobalScope.definitions.define_constant('Arel::Expression') do |klass|
+  klass.inherits(RubyLint::GlobalScope.constant_proxy('Object'))
 
   klass.define_method('initialize') do |method|
     method.define_block_argument('block')
@@ -543,8 +543,8 @@ RubyLint::VirtualMachine.global_scope.define_constant('Arel::Expression') do |kl
   klass.define_instance_method('desc')
 end
 
-RubyLint::VirtualMachine.global_scope.define_constant('Arel::Expressions') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
+RubyLint::GlobalScope.definitions.define_constant('Arel::Expressions') do |klass|
+  klass.inherits(RubyLint::GlobalScope.constant_proxy('Object'))
 
   klass.define_method('initialize') do |method|
     method.define_block_argument('block')
@@ -567,8 +567,8 @@ RubyLint::VirtualMachine.global_scope.define_constant('Arel::Expressions') do |k
   klass.define_instance_method('sum')
 end
 
-RubyLint::VirtualMachine.global_scope.define_constant('Arel::FactoryMethods') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
+RubyLint::GlobalScope.definitions.define_constant('Arel::FactoryMethods') do |klass|
+  klass.inherits(RubyLint::GlobalScope.constant_proxy('Object'))
 
   klass.define_method('initialize') do |method|
     method.define_block_argument('block')
@@ -610,8 +610,8 @@ RubyLint::VirtualMachine.global_scope.define_constant('Arel::FactoryMethods') do
   end
 end
 
-RubyLint::VirtualMachine.global_scope.define_constant('Arel::InnerJoin') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Arel::Nodes::Join'))
+RubyLint::GlobalScope.definitions.define_constant('Arel::InnerJoin') do |klass|
+  klass.inherits(RubyLint::GlobalScope.constant_proxy('Arel::Nodes::Join'))
 
   klass.define_instance_method('all?')
 
@@ -854,8 +854,8 @@ RubyLint::VirtualMachine.global_scope.define_constant('Arel::InnerJoin') do |kla
   end
 end
 
-RubyLint::VirtualMachine.global_scope.define_constant('Arel::InsertManager') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Arel::TreeManager'))
+RubyLint::GlobalScope.definitions.define_constant('Arel::InsertManager') do |klass|
+  klass.inherits(RubyLint::GlobalScope.constant_proxy('Arel::TreeManager'))
 
   klass.define_instance_method('ast')
 
@@ -926,8 +926,8 @@ RubyLint::VirtualMachine.global_scope.define_constant('Arel::InsertManager') do 
   end
 end
 
-RubyLint::VirtualMachine.global_scope.define_constant('Arel::Math') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
+RubyLint::GlobalScope.definitions.define_constant('Arel::Math') do |klass|
+  klass.inherits(RubyLint::GlobalScope.constant_proxy('Object'))
 
   klass.define_method('initialize') do |method|
     method.define_block_argument('block')
@@ -950,8 +950,8 @@ RubyLint::VirtualMachine.global_scope.define_constant('Arel::Math') do |klass|
   end
 end
 
-RubyLint::VirtualMachine.global_scope.define_constant('Arel::Node') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
+RubyLint::GlobalScope.definitions.define_constant('Arel::Node') do |klass|
+  klass.inherits(RubyLint::GlobalScope.constant_proxy('Object'))
 
   klass.define_instance_method('all?')
 
@@ -1186,16 +1186,16 @@ RubyLint::VirtualMachine.global_scope.define_constant('Arel::Node') do |klass|
   end
 end
 
-RubyLint::VirtualMachine.global_scope.define_constant('Arel::Nodes') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
+RubyLint::GlobalScope.definitions.define_constant('Arel::Nodes') do |klass|
+  klass.inherits(RubyLint::GlobalScope.constant_proxy('Object'))
 
   klass.define_method('initialize') do |method|
     method.define_block_argument('block')
   end
 end
 
-RubyLint::VirtualMachine.global_scope.define_constant('Arel::OrderPredications') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
+RubyLint::GlobalScope.definitions.define_constant('Arel::OrderPredications') do |klass|
+  klass.inherits(RubyLint::GlobalScope.constant_proxy('Object'))
 
   klass.define_method('initialize') do |method|
     method.define_block_argument('block')
@@ -1206,8 +1206,8 @@ RubyLint::VirtualMachine.global_scope.define_constant('Arel::OrderPredications')
   klass.define_instance_method('desc')
 end
 
-RubyLint::VirtualMachine.global_scope.define_constant('Arel::OuterJoin') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Arel::Nodes::Join'))
+RubyLint::GlobalScope.definitions.define_constant('Arel::OuterJoin') do |klass|
+  klass.inherits(RubyLint::GlobalScope.constant_proxy('Arel::Nodes::Join'))
 
   klass.define_instance_method('all?')
 
@@ -1450,8 +1450,8 @@ RubyLint::VirtualMachine.global_scope.define_constant('Arel::OuterJoin') do |kla
   end
 end
 
-RubyLint::VirtualMachine.global_scope.define_constant('Arel::Predications') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
+RubyLint::GlobalScope.definitions.define_constant('Arel::Predications') do |klass|
+  klass.inherits(RubyLint::GlobalScope.constant_proxy('Object'))
 
   klass.define_method('initialize') do |method|
     method.define_block_argument('block')
@@ -1578,8 +1578,8 @@ RubyLint::VirtualMachine.global_scope.define_constant('Arel::Predications') do |
   end
 end
 
-RubyLint::VirtualMachine.global_scope.define_constant('Arel::SelectManager') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Arel::TreeManager'))
+RubyLint::GlobalScope.definitions.define_constant('Arel::SelectManager') do |klass|
+  klass.inherits(RubyLint::GlobalScope.constant_proxy('Arel::TreeManager'))
 
   klass.define_instance_method('as') do |method|
     method.define_argument('other')
@@ -1777,16 +1777,16 @@ RubyLint::VirtualMachine.global_scope.define_constant('Arel::SelectManager') do 
   end
 end
 
-RubyLint::VirtualMachine.global_scope.define_constant('Arel::Sql') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
+RubyLint::GlobalScope.definitions.define_constant('Arel::Sql') do |klass|
+  klass.inherits(RubyLint::GlobalScope.constant_proxy('Object'))
 
   klass.define_method('initialize') do |method|
     method.define_block_argument('block')
   end
 end
 
-RubyLint::VirtualMachine.global_scope.define_constant('Arel::SqlLiteral') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Arel::Nodes::SqlLiteral'))
+RubyLint::GlobalScope.definitions.define_constant('Arel::SqlLiteral') do |klass|
+  klass.inherits(RubyLint::GlobalScope.constant_proxy('Arel::Nodes::SqlLiteral'))
 
   klass.define_method('__allocate__')
 
@@ -2605,8 +2605,8 @@ RubyLint::VirtualMachine.global_scope.define_constant('Arel::SqlLiteral') do |kl
   klass.define_instance_method('valid_encoding?')
 end
 
-RubyLint::VirtualMachine.global_scope.define_constant('Arel::Table') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
+RubyLint::GlobalScope.definitions.define_constant('Arel::Table') do |klass|
+  klass.inherits(RubyLint::GlobalScope.constant_proxy('Object'))
 
   klass.define_method('engine')
 
@@ -2759,8 +2759,8 @@ RubyLint::VirtualMachine.global_scope.define_constant('Arel::Table') do |klass|
   end
 end
 
-RubyLint::VirtualMachine.global_scope.define_constant('Arel::TreeManager') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
+RubyLint::GlobalScope.definitions.define_constant('Arel::TreeManager') do |klass|
+  klass.inherits(RubyLint::GlobalScope.constant_proxy('Object'))
 
   klass.define_instance_method('ast')
 
@@ -2812,8 +2812,8 @@ RubyLint::VirtualMachine.global_scope.define_constant('Arel::TreeManager') do |k
   end
 end
 
-RubyLint::VirtualMachine.global_scope.define_constant('Arel::UpdateManager') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Arel::TreeManager'))
+RubyLint::GlobalScope.definitions.define_constant('Arel::UpdateManager') do |klass|
+  klass.inherits(RubyLint::GlobalScope.constant_proxy('Arel::TreeManager'))
 
   klass.define_instance_method('ast')
 
@@ -2891,8 +2891,8 @@ RubyLint::VirtualMachine.global_scope.define_constant('Arel::UpdateManager') do 
   end
 end
 
-RubyLint::VirtualMachine.global_scope.define_constant('Arel::VERSION') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
+RubyLint::GlobalScope.definitions.define_constant('Arel::VERSION') do |klass|
+  klass.inherits(RubyLint::GlobalScope.constant_proxy('Object'))
 
   klass.define_method('%') do |method|
     method.define_argument('args')
@@ -3527,8 +3527,8 @@ RubyLint::VirtualMachine.global_scope.define_constant('Arel::VERSION') do |klass
   klass.define_method('valid_encoding?')
 end
 
-RubyLint::VirtualMachine.global_scope.define_constant('Arel::Visitors') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
+RubyLint::GlobalScope.definitions.define_constant('Arel::Visitors') do |klass|
+  klass.inherits(RubyLint::GlobalScope.constant_proxy('Object'))
 
   klass.define_method('for') do |method|
     method.define_argument('engine')
@@ -3543,8 +3543,8 @@ RubyLint::VirtualMachine.global_scope.define_constant('Arel::Visitors') do |klas
   end
 end
 
-RubyLint::VirtualMachine.global_scope.define_constant('Arel::WindowPredications') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
+RubyLint::GlobalScope.definitions.define_constant('Arel::WindowPredications') do |klass|
+  klass.inherits(RubyLint::GlobalScope.constant_proxy('Object'))
 
   klass.define_method('initialize') do |method|
     method.define_block_argument('block')

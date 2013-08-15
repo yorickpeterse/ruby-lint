@@ -3,7 +3,7 @@
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('MonitorMixin') do |klass|
+RubyLint::GlobalScope.definitions.define_constant('MonitorMixin') do |klass|
 
   klass.define_method('__module_init__')
 
@@ -31,8 +31,8 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('MonitorMixin::ConditionVariable') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
+RubyLint::GlobalScope.definitions.define_constant('MonitorMixin::ConditionVariable') do |klass|
+  klass.inherits(RubyLint::GlobalScope.constant_proxy('Object'))
 
   klass.define_method('__class_init__')
 
@@ -54,6 +54,6 @@ end
 # Created:  2013-04-01 18:33:54 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('MonitorMixin::ConditionVariable::Timeout') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Exception'))
+RubyLint::GlobalScope.definitions.define_constant('MonitorMixin::ConditionVariable::Timeout') do |klass|
+  klass.inherits(RubyLint::GlobalScope.constant_proxy('Exception'))
 end

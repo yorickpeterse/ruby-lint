@@ -35,6 +35,7 @@ require_relative 'ruby-lint/method_call/attribute'
 require_relative 'ruby-lint/method_call/define_method'
 
 require_relative 'ruby-lint/iterator'
+require_relative 'ruby-lint/global_scope'
 require_relative 'ruby-lint/virtual_machine'
 require_relative 'ruby-lint/constant_loader'
 require_relative 'ruby-lint/file_loader'

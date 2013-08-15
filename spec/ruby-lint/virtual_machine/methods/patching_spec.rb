@@ -3,7 +3,7 @@ require 'spec_helper'
 describe RubyLint::VirtualMachine do
   describe 'patching methods' do
     after do
-      RubyLint::VirtualMachine.global_scope.lookup(:const, 'String') \
+      RubyLint::GlobalScope.definitions.lookup(:const, 'String') \
         .definitions[:method] \
         .delete('foobar')
     end

@@ -4,8 +4,8 @@
 # Created:  2013-07-24 21:53:56 +0200
 # Platform: rbx 2.0.0.n198
 
-RubyLint::VirtualMachine.global_scope.define_constant('ActionView') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
+RubyLint::GlobalScope.definitions.define_constant('ActionView') do |klass|
+  klass.inherits(RubyLint::GlobalScope.constant_proxy('Object'))
 
   klass.define_method('autoload_at') do |method|
     method.define_argument('path')
@@ -26,8 +26,8 @@ RubyLint::VirtualMachine.global_scope.define_constant('ActionView') do |klass|
   end
 end
 
-RubyLint::VirtualMachine.global_scope.define_constant('ActionView::AbstractRenderer') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
+RubyLint::GlobalScope.definitions.define_constant('ActionView::AbstractRenderer') do |klass|
+  klass.inherits(RubyLint::GlobalScope.constant_proxy('Object'))
 
   klass.define_instance_method('extract_details') do |method|
     method.define_argument('options')
@@ -70,8 +70,8 @@ RubyLint::VirtualMachine.global_scope.define_constant('ActionView::AbstractRende
   end
 end
 
-RubyLint::VirtualMachine.global_scope.define_constant('ActionView::ActionViewError') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.constant_proxy('StandardError'))
+RubyLint::GlobalScope.definitions.define_constant('ActionView::ActionViewError') do |klass|
+  klass.inherits(RubyLint::GlobalScope.constant_proxy('StandardError'))
 
   klass.define_method('exception') do |method|
     method.define_rest_argument('args')
@@ -138,8 +138,8 @@ RubyLint::VirtualMachine.global_scope.define_constant('ActionView::ActionViewErr
   end
 end
 
-RubyLint::VirtualMachine.global_scope.define_constant('ActionView::Base') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
+RubyLint::GlobalScope.definitions.define_constant('ActionView::Base') do |klass|
+  klass.inherits(RubyLint::GlobalScope.constant_proxy('Object'))
 
   klass.define_method('_routes')
 
@@ -1493,16 +1493,16 @@ RubyLint::VirtualMachine.global_scope.define_constant('ActionView::Base') do |kl
   end
 end
 
-RubyLint::VirtualMachine.global_scope.define_constant('ActionView::CompiledTemplates') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
+RubyLint::GlobalScope.definitions.define_constant('ActionView::CompiledTemplates') do |klass|
+  klass.inherits(RubyLint::GlobalScope.constant_proxy('Object'))
 
   klass.define_method('initialize') do |method|
     method.define_block_argument('block')
   end
 end
 
-RubyLint::VirtualMachine.global_scope.define_constant('ActionView::Context') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
+RubyLint::GlobalScope.definitions.define_constant('ActionView::Context') do |klass|
+  klass.inherits(RubyLint::GlobalScope.constant_proxy('Object'))
 
   klass.define_method('initialize') do |method|
     method.define_block_argument('block')
@@ -1523,8 +1523,8 @@ RubyLint::VirtualMachine.global_scope.define_constant('ActionView::Context') do 
   klass.define_instance_method('view_flow=')
 end
 
-RubyLint::VirtualMachine.global_scope.define_constant('ActionView::DependencyTracker') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
+RubyLint::GlobalScope.definitions.define_constant('ActionView::DependencyTracker') do |klass|
+  klass.inherits(RubyLint::GlobalScope.constant_proxy('Object'))
 
   klass.define_method('find_dependencies') do |method|
     method.define_argument('name')
@@ -1541,8 +1541,8 @@ RubyLint::VirtualMachine.global_scope.define_constant('ActionView::DependencyTra
   end
 end
 
-RubyLint::VirtualMachine.global_scope.define_constant('ActionView::Digestor') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
+RubyLint::GlobalScope.definitions.define_constant('ActionView::Digestor') do |klass|
+  klass.inherits(RubyLint::GlobalScope.constant_proxy('Object'))
 
   klass.define_method('cache')
 
@@ -1570,8 +1570,8 @@ RubyLint::VirtualMachine.global_scope.define_constant('ActionView::Digestor') do
   klass.define_instance_method('options')
 end
 
-RubyLint::VirtualMachine.global_scope.define_constant('ActionView::ENCODING_FLAG') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
+RubyLint::GlobalScope.definitions.define_constant('ActionView::ENCODING_FLAG') do |klass|
+  klass.inherits(RubyLint::GlobalScope.constant_proxy('Object'))
 
   klass.define_method('%') do |method|
     method.define_argument('args')
@@ -2204,8 +2204,8 @@ RubyLint::VirtualMachine.global_scope.define_constant('ActionView::ENCODING_FLAG
   klass.define_method('valid_encoding?')
 end
 
-RubyLint::VirtualMachine.global_scope.define_constant('ActionView::EncodingError') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.constant_proxy('StandardError'))
+RubyLint::GlobalScope.definitions.define_constant('ActionView::EncodingError') do |klass|
+  klass.inherits(RubyLint::GlobalScope.constant_proxy('StandardError'))
 
   klass.define_method('exception') do |method|
     method.define_rest_argument('args')
@@ -2272,8 +2272,8 @@ RubyLint::VirtualMachine.global_scope.define_constant('ActionView::EncodingError
   end
 end
 
-RubyLint::VirtualMachine.global_scope.define_constant('ActionView::FallbackFileSystemResolver') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.constant_proxy('ActionView::FileSystemResolver'))
+RubyLint::GlobalScope.definitions.define_constant('ActionView::FallbackFileSystemResolver') do |klass|
+  klass.inherits(RubyLint::GlobalScope.constant_proxy('ActionView::FileSystemResolver'))
 
   klass.define_method('caching')
 
@@ -2314,8 +2314,8 @@ RubyLint::VirtualMachine.global_scope.define_constant('ActionView::FallbackFileS
   klass.define_instance_method('to_path')
 end
 
-RubyLint::VirtualMachine.global_scope.define_constant('ActionView::FileSystemResolver') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.constant_proxy('ActionView::PathResolver'))
+RubyLint::GlobalScope.definitions.define_constant('ActionView::FileSystemResolver') do |klass|
+  klass.inherits(RubyLint::GlobalScope.constant_proxy('ActionView::PathResolver'))
 
   klass.define_method('caching')
 
@@ -2360,8 +2360,8 @@ RubyLint::VirtualMachine.global_scope.define_constant('ActionView::FileSystemRes
   klass.define_instance_method('to_s')
 end
 
-RubyLint::VirtualMachine.global_scope.define_constant('ActionView::Helpers') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
+RubyLint::GlobalScope.definitions.define_constant('ActionView::Helpers') do |klass|
+  klass.inherits(RubyLint::GlobalScope.constant_proxy('Object'))
 
   klass.define_method('append_features') do |method|
     method.define_argument('base')
@@ -3102,8 +3102,8 @@ RubyLint::VirtualMachine.global_scope.define_constant('ActionView::Helpers') do 
   end
 end
 
-RubyLint::VirtualMachine.global_scope.define_constant('ActionView::LogSubscriber') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.constant_proxy('ActiveSupport::LogSubscriber'))
+RubyLint::GlobalScope.definitions.define_constant('ActionView::LogSubscriber') do |klass|
+  klass.inherits(RubyLint::GlobalScope.constant_proxy('ActiveSupport::LogSubscriber'))
 
   klass.define_method('attach_to') do |method|
     method.define_argument('namespace')
@@ -3200,8 +3200,8 @@ RubyLint::VirtualMachine.global_scope.define_constant('ActionView::LogSubscriber
   end
 end
 
-RubyLint::VirtualMachine.global_scope.define_constant('ActionView::LookupContext') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
+RubyLint::GlobalScope.definitions.define_constant('ActionView::LookupContext') do |klass|
+  klass.inherits(RubyLint::GlobalScope.constant_proxy('Object'))
 
   klass.define_method('fallbacks')
 
@@ -3354,8 +3354,8 @@ RubyLint::VirtualMachine.global_scope.define_constant('ActionView::LookupContext
   klass.define_instance_method('with_layout_format')
 end
 
-RubyLint::VirtualMachine.global_scope.define_constant('ActionView::MissingRequestError') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.constant_proxy('StandardError'))
+RubyLint::GlobalScope.definitions.define_constant('ActionView::MissingRequestError') do |klass|
+  klass.inherits(RubyLint::GlobalScope.constant_proxy('StandardError'))
 
   klass.define_method('exception') do |method|
     method.define_rest_argument('args')
@@ -3422,8 +3422,8 @@ RubyLint::VirtualMachine.global_scope.define_constant('ActionView::MissingReques
   end
 end
 
-RubyLint::VirtualMachine.global_scope.define_constant('ActionView::MissingTemplate') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.constant_proxy('ActionView::ActionViewError'))
+RubyLint::GlobalScope.definitions.define_constant('ActionView::MissingTemplate') do |klass|
+  klass.inherits(RubyLint::GlobalScope.constant_proxy('ActionView::ActionViewError'))
 
   klass.define_method('exception') do |method|
     method.define_rest_argument('args')
@@ -3488,8 +3488,8 @@ RubyLint::VirtualMachine.global_scope.define_constant('ActionView::MissingTempla
   end
 end
 
-RubyLint::VirtualMachine.global_scope.define_constant('ActionView::ModelNaming') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
+RubyLint::GlobalScope.definitions.define_constant('ActionView::ModelNaming') do |klass|
+  klass.inherits(RubyLint::GlobalScope.constant_proxy('Object'))
 
   klass.define_method('initialize') do |method|
     method.define_block_argument('block')
@@ -3504,8 +3504,8 @@ RubyLint::VirtualMachine.global_scope.define_constant('ActionView::ModelNaming')
   end
 end
 
-RubyLint::VirtualMachine.global_scope.define_constant('ActionView::OptimizedFileSystemResolver') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.constant_proxy('ActionView::FileSystemResolver'))
+RubyLint::GlobalScope.definitions.define_constant('ActionView::OptimizedFileSystemResolver') do |klass|
+  klass.inherits(RubyLint::GlobalScope.constant_proxy('ActionView::FileSystemResolver'))
 
   klass.define_method('caching')
 
@@ -3545,8 +3545,8 @@ RubyLint::VirtualMachine.global_scope.define_constant('ActionView::OptimizedFile
   klass.define_instance_method('to_path')
 end
 
-RubyLint::VirtualMachine.global_scope.define_constant('ActionView::OutputBuffer') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.constant_proxy('ActiveSupport::SafeBuffer'))
+RubyLint::GlobalScope.definitions.define_constant('ActionView::OutputBuffer') do |klass|
+  klass.inherits(RubyLint::GlobalScope.constant_proxy('ActiveSupport::SafeBuffer'))
 
   klass.define_method('__allocate__')
 
@@ -4298,8 +4298,8 @@ RubyLint::VirtualMachine.global_scope.define_constant('ActionView::OutputBuffer'
   klass.define_instance_method('valid_encoding?')
 end
 
-RubyLint::VirtualMachine.global_scope.define_constant('ActionView::OutputFlow') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
+RubyLint::GlobalScope.definitions.define_constant('ActionView::OutputFlow') do |klass|
+  klass.inherits(RubyLint::GlobalScope.constant_proxy('Object'))
 
   klass.define_instance_method('append') do |method|
     method.define_argument('key')
@@ -4323,8 +4323,8 @@ RubyLint::VirtualMachine.global_scope.define_constant('ActionView::OutputFlow') 
   end
 end
 
-RubyLint::VirtualMachine.global_scope.define_constant('ActionView::PartialDigestor') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.constant_proxy('ActionView::Digestor'))
+RubyLint::GlobalScope.definitions.define_constant('ActionView::PartialDigestor') do |klass|
+  klass.inherits(RubyLint::GlobalScope.constant_proxy('ActionView::Digestor'))
 
   klass.define_method('cache')
 
@@ -4354,8 +4354,8 @@ RubyLint::VirtualMachine.global_scope.define_constant('ActionView::PartialDigest
   klass.define_instance_method('partial?')
 end
 
-RubyLint::VirtualMachine.global_scope.define_constant('ActionView::PartialRenderer') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.constant_proxy('ActionView::AbstractRenderer'))
+RubyLint::GlobalScope.definitions.define_constant('ActionView::PartialRenderer') do |klass|
+  klass.inherits(RubyLint::GlobalScope.constant_proxy('ActionView::AbstractRenderer'))
 
   klass.define_instance_method('extract_details') do |method|
     method.define_argument('options')
@@ -4401,8 +4401,8 @@ RubyLint::VirtualMachine.global_scope.define_constant('ActionView::PartialRender
   end
 end
 
-RubyLint::VirtualMachine.global_scope.define_constant('ActionView::PathResolver') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.constant_proxy('ActionView::Resolver'))
+RubyLint::GlobalScope.definitions.define_constant('ActionView::PathResolver') do |klass|
+  klass.inherits(RubyLint::GlobalScope.constant_proxy('ActionView::Resolver'))
 
   klass.define_method('caching')
 
@@ -4435,8 +4435,8 @@ RubyLint::VirtualMachine.global_scope.define_constant('ActionView::PathResolver'
   end
 end
 
-RubyLint::VirtualMachine.global_scope.define_constant('ActionView::PathSet') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
+RubyLint::GlobalScope.definitions.define_constant('ActionView::PathSet') do |klass|
+  klass.inherits(RubyLint::GlobalScope.constant_proxy('Object'))
 
   klass.define_instance_method('+') do |method|
     method.define_argument('array')
@@ -4679,8 +4679,8 @@ RubyLint::VirtualMachine.global_scope.define_constant('ActionView::PathSet') do 
   end
 end
 
-RubyLint::VirtualMachine.global_scope.define_constant('ActionView::Railtie') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Rails::Railtie'))
+RubyLint::GlobalScope.definitions.define_constant('ActionView::Railtie') do |klass|
+  klass.inherits(RubyLint::GlobalScope.constant_proxy('Rails::Railtie'))
 
   klass.define_method('abstract_railtie?')
 
@@ -4775,8 +4775,8 @@ RubyLint::VirtualMachine.global_scope.define_constant('ActionView::Railtie') do 
   end
 end
 
-RubyLint::VirtualMachine.global_scope.define_constant('ActionView::RecordIdentifier') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
+RubyLint::GlobalScope.definitions.define_constant('ActionView::RecordIdentifier') do |klass|
+  klass.inherits(RubyLint::GlobalScope.constant_proxy('Object'))
 
   klass.define_method('convert_to_model') do |method|
     method.define_argument('object')
@@ -4827,8 +4827,8 @@ RubyLint::VirtualMachine.global_scope.define_constant('ActionView::RecordIdentif
   end
 end
 
-RubyLint::VirtualMachine.global_scope.define_constant('ActionView::Renderer') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
+RubyLint::GlobalScope.definitions.define_constant('ActionView::Renderer') do |klass|
+  klass.inherits(RubyLint::GlobalScope.constant_proxy('Object'))
 
   klass.define_instance_method('lookup_context')
 
@@ -4856,8 +4856,8 @@ RubyLint::VirtualMachine.global_scope.define_constant('ActionView::Renderer') do
   end
 end
 
-RubyLint::VirtualMachine.global_scope.define_constant('ActionView::Resolver') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
+RubyLint::GlobalScope.definitions.define_constant('ActionView::Resolver') do |klass|
+  klass.inherits(RubyLint::GlobalScope.constant_proxy('Object'))
 
   klass.define_method('caching')
 
@@ -4890,8 +4890,8 @@ RubyLint::VirtualMachine.global_scope.define_constant('ActionView::Resolver') do
   end
 end
 
-RubyLint::VirtualMachine.global_scope.define_constant('ActionView::RoutingUrlFor') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
+RubyLint::GlobalScope.definitions.define_constant('ActionView::RoutingUrlFor') do |klass|
+  klass.inherits(RubyLint::GlobalScope.constant_proxy('Object'))
 
   klass.define_method('default_url_options=') do |method|
     method.define_argument('obj')
@@ -4958,8 +4958,8 @@ RubyLint::VirtualMachine.global_scope.define_constant('ActionView::RoutingUrlFor
   klass.define_instance_method('url_options')
 end
 
-RubyLint::VirtualMachine.global_scope.define_constant('ActionView::StreamingBuffer') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
+RubyLint::GlobalScope.definitions.define_constant('ActionView::StreamingBuffer') do |klass|
+  klass.inherits(RubyLint::GlobalScope.constant_proxy('Object'))
 
   klass.define_instance_method('<<') do |method|
     method.define_argument('value')
@@ -4986,8 +4986,8 @@ RubyLint::VirtualMachine.global_scope.define_constant('ActionView::StreamingBuff
   end
 end
 
-RubyLint::VirtualMachine.global_scope.define_constant('ActionView::StreamingFlow') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.constant_proxy('ActionView::OutputFlow'))
+RubyLint::GlobalScope.definitions.define_constant('ActionView::StreamingFlow') do |klass|
+  klass.inherits(RubyLint::GlobalScope.constant_proxy('ActionView::OutputFlow'))
 
   klass.define_instance_method('append') do |method|
     method.define_argument('key')
@@ -5011,8 +5011,8 @@ RubyLint::VirtualMachine.global_scope.define_constant('ActionView::StreamingFlow
   end
 end
 
-RubyLint::VirtualMachine.global_scope.define_constant('ActionView::StreamingTemplateRenderer') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.constant_proxy('ActionView::TemplateRenderer'))
+RubyLint::GlobalScope.definitions.define_constant('ActionView::StreamingTemplateRenderer') do |klass|
+  klass.inherits(RubyLint::GlobalScope.constant_proxy('ActionView::TemplateRenderer'))
 
   klass.define_instance_method('determine_template') do |method|
     method.define_argument('options')
@@ -5083,8 +5083,8 @@ RubyLint::VirtualMachine.global_scope.define_constant('ActionView::StreamingTemp
   end
 end
 
-RubyLint::VirtualMachine.global_scope.define_constant('ActionView::Template') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
+RubyLint::GlobalScope.definitions.define_constant('ActionView::Template') do |klass|
+  klass.inherits(RubyLint::GlobalScope.constant_proxy('Object'))
 
   klass.define_method('autoload_at') do |method|
     method.define_argument('path')
@@ -5184,8 +5184,8 @@ RubyLint::VirtualMachine.global_scope.define_constant('ActionView::Template') do
   klass.define_instance_method('virtual_path=')
 end
 
-RubyLint::VirtualMachine.global_scope.define_constant('ActionView::TemplateError') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.constant_proxy('ActionView::ActionViewError'))
+RubyLint::GlobalScope.definitions.define_constant('ActionView::TemplateError') do |klass|
+  klass.inherits(RubyLint::GlobalScope.constant_proxy('ActionView::ActionViewError'))
 
   klass.define_method('exception') do |method|
     method.define_rest_argument('args')
@@ -5267,8 +5267,8 @@ RubyLint::VirtualMachine.global_scope.define_constant('ActionView::TemplateError
   end
 end
 
-RubyLint::VirtualMachine.global_scope.define_constant('ActionView::TemplateRenderer') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.constant_proxy('ActionView::AbstractRenderer'))
+RubyLint::GlobalScope.definitions.define_constant('ActionView::TemplateRenderer') do |klass|
+  klass.inherits(RubyLint::GlobalScope.constant_proxy('ActionView::AbstractRenderer'))
 
   klass.define_instance_method('determine_template') do |method|
     method.define_argument('options')
@@ -5339,8 +5339,8 @@ RubyLint::VirtualMachine.global_scope.define_constant('ActionView::TemplateRende
   end
 end
 
-RubyLint::VirtualMachine.global_scope.define_constant('ActionView::TestCase') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.constant_proxy('ActiveSupport::TestCase'))
+RubyLint::GlobalScope.definitions.define_constant('ActionView::TestCase') do |klass|
+  klass.inherits(RubyLint::GlobalScope.constant_proxy('ActiveSupport::TestCase'))
 
   klass.define_method('__callback_runner_name') do |method|
     method.define_argument('kind')
@@ -7328,8 +7328,8 @@ RubyLint::VirtualMachine.global_scope.define_constant('ActionView::TestCase') do
   end
 end
 
-RubyLint::VirtualMachine.global_scope.define_constant('ActionView::WrongEncodingError') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.constant_proxy('ActionView::EncodingError'))
+RubyLint::GlobalScope.definitions.define_constant('ActionView::WrongEncodingError') do |klass|
+  klass.inherits(RubyLint::GlobalScope.constant_proxy('ActionView::EncodingError'))
 
   klass.define_method('exception') do |method|
     method.define_rest_argument('args')

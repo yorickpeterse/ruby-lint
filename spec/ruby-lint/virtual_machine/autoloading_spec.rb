@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe RubyLint::VirtualMachine do
   after do
-    RubyLint::VirtualMachine.global_scope.definitions[:const].delete('ERB')
+    RubyLint::GlobalScope.definitions.definitions[:const].delete('ERB')
   end
 
   example 'automatically load constants' do
@@ -10,7 +10,7 @@ describe RubyLint::VirtualMachine do
 
     definitions.lookup(:const, 'ERB').is_a?(ruby_object).should == true
 
-    RubyLint::VirtualMachine.global_scope.lookup(:const, 'ERB') \
+    RubyLint::GlobalScope.definitions.lookup(:const, 'ERB') \
       .is_a?(ruby_object) \
       .should == true
   end
@@ -23,7 +23,7 @@ describe RubyLint::VirtualMachine do
       .is_a?(ruby_object) \
       .should == true
 
-    RubyLint::VirtualMachine.global_scope.lookup(:const, 'Enumerable') \
+    RubyLint::GlobalScope.definitions.lookup(:const, 'Enumerable') \
       .lookup(:const, 'Enumerator') \
       .is_a?(ruby_object) \
       .should == true

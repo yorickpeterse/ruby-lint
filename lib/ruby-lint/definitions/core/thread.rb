@@ -3,8 +3,8 @@
 # Created:  2013-04-01 18:33:55 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('Thread') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
+RubyLint::GlobalScope.definitions.define_constant('Thread') do |klass|
+  klass.inherits(RubyLint::GlobalScope.constant_proxy('Object'))
 
   klass.define_method('__class_init__')
 
@@ -188,7 +188,7 @@ end
 # Created:  2013-04-01 18:33:55 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('Thread::Default') do |klass|
+RubyLint::GlobalScope.definitions.define_constant('Thread::Default') do |klass|
 end
 
 ##
@@ -196,8 +196,8 @@ end
 # Created:  2013-04-01 18:33:55 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('Thread::InnerRecursionDetected') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Exception'))
+RubyLint::GlobalScope.definitions.define_constant('Thread::InnerRecursionDetected') do |klass|
+  klass.inherits(RubyLint::GlobalScope.constant_proxy('Exception'))
 end
 
 ##
@@ -205,5 +205,5 @@ end
 # Created:  2013-04-01 18:33:55 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('Thread::MUTEX_FOR_THREAD_EXCLUSIVE') do |klass|
+RubyLint::GlobalScope.definitions.define_constant('Thread::MUTEX_FOR_THREAD_EXCLUSIVE') do |klass|
 end

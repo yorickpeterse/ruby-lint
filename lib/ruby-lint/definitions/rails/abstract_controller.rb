@@ -4,8 +4,8 @@
 # Created:  2013-07-24 21:53:50 +0200
 # Platform: rbx 2.0.0.n198
 
-RubyLint::VirtualMachine.global_scope.define_constant('AbstractController') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
+RubyLint::GlobalScope.definitions.define_constant('AbstractController') do |klass|
+  klass.inherits(RubyLint::GlobalScope.constant_proxy('Object'))
 
   klass.define_method('autoload_at') do |method|
     method.define_argument('path')
@@ -26,8 +26,8 @@ RubyLint::VirtualMachine.global_scope.define_constant('AbstractController') do |
   end
 end
 
-RubyLint::VirtualMachine.global_scope.define_constant('AbstractController::AssetPaths') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
+RubyLint::GlobalScope.definitions.define_constant('AbstractController::AssetPaths') do |klass|
+  klass.inherits(RubyLint::GlobalScope.constant_proxy('Object'))
 
   klass.define_method('append_features') do |method|
     method.define_argument('base')
@@ -43,8 +43,8 @@ RubyLint::VirtualMachine.global_scope.define_constant('AbstractController::Asset
   end
 end
 
-RubyLint::VirtualMachine.global_scope.define_constant('AbstractController::Base') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
+RubyLint::GlobalScope.definitions.define_constant('AbstractController::Base') do |klass|
+  klass.inherits(RubyLint::GlobalScope.constant_proxy('Object'))
 
   klass.define_method('abstract')
 
@@ -113,8 +113,8 @@ RubyLint::VirtualMachine.global_scope.define_constant('AbstractController::Base'
   end
 end
 
-RubyLint::VirtualMachine.global_scope.define_constant('AbstractController::Callbacks') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
+RubyLint::GlobalScope.definitions.define_constant('AbstractController::Callbacks') do |klass|
+  klass.inherits(RubyLint::GlobalScope.constant_proxy('Object'))
 
   klass.define_method('append_features') do |method|
     method.define_argument('base')
@@ -134,8 +134,8 @@ RubyLint::VirtualMachine.global_scope.define_constant('AbstractController::Callb
   end
 end
 
-RubyLint::VirtualMachine.global_scope.define_constant('AbstractController::Collector') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
+RubyLint::GlobalScope.definitions.define_constant('AbstractController::Collector') do |klass|
+  klass.inherits(RubyLint::GlobalScope.constant_proxy('Object'))
 
   klass.define_method('generate_method_for_mime') do |method|
     method.define_argument('mime')
@@ -256,8 +256,8 @@ RubyLint::VirtualMachine.global_scope.define_constant('AbstractController::Colle
   end
 end
 
-RubyLint::VirtualMachine.global_scope.define_constant('AbstractController::Helpers') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
+RubyLint::GlobalScope.definitions.define_constant('AbstractController::Helpers') do |klass|
+  klass.inherits(RubyLint::GlobalScope.constant_proxy('Object'))
 
   klass.define_method('append_features') do |method|
     method.define_argument('base')
@@ -273,8 +273,8 @@ RubyLint::VirtualMachine.global_scope.define_constant('AbstractController::Helpe
   end
 end
 
-RubyLint::VirtualMachine.global_scope.define_constant('AbstractController::Layouts') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
+RubyLint::GlobalScope.definitions.define_constant('AbstractController::Layouts') do |klass|
+  klass.inherits(RubyLint::GlobalScope.constant_proxy('Object'))
 
   klass.define_method('append_features') do |method|
     method.define_argument('base')
@@ -303,8 +303,8 @@ RubyLint::VirtualMachine.global_scope.define_constant('AbstractController::Layou
   klass.define_instance_method('action_has_layout?')
 end
 
-RubyLint::VirtualMachine.global_scope.define_constant('AbstractController::Logger') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
+RubyLint::GlobalScope.definitions.define_constant('AbstractController::Logger') do |klass|
+  klass.inherits(RubyLint::GlobalScope.constant_proxy('Object'))
 
   klass.define_method('append_features') do |method|
     method.define_argument('base')
@@ -320,16 +320,16 @@ RubyLint::VirtualMachine.global_scope.define_constant('AbstractController::Logge
   end
 end
 
-RubyLint::VirtualMachine.global_scope.define_constant('AbstractController::Railties') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
+RubyLint::GlobalScope.definitions.define_constant('AbstractController::Railties') do |klass|
+  klass.inherits(RubyLint::GlobalScope.constant_proxy('Object'))
 
   klass.define_method('initialize') do |method|
     method.define_block_argument('block')
   end
 end
 
-RubyLint::VirtualMachine.global_scope.define_constant('AbstractController::Rendering') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
+RubyLint::GlobalScope.definitions.define_constant('AbstractController::Rendering') do |klass|
+  klass.inherits(RubyLint::GlobalScope.constant_proxy('Object'))
 
   klass.define_method('append_features') do |method|
     method.define_argument('base')
@@ -377,8 +377,8 @@ RubyLint::VirtualMachine.global_scope.define_constant('AbstractController::Rende
   klass.define_instance_method('view_renderer')
 end
 
-RubyLint::VirtualMachine.global_scope.define_constant('AbstractController::Translation') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
+RubyLint::GlobalScope.definitions.define_constant('AbstractController::Translation') do |klass|
+  klass.inherits(RubyLint::GlobalScope.constant_proxy('Object'))
 
   klass.define_method('initialize') do |method|
     method.define_block_argument('block')
@@ -401,8 +401,8 @@ RubyLint::VirtualMachine.global_scope.define_constant('AbstractController::Trans
   end
 end
 
-RubyLint::VirtualMachine.global_scope.define_constant('AbstractController::UrlFor') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
+RubyLint::GlobalScope.definitions.define_constant('AbstractController::UrlFor') do |klass|
+  klass.inherits(RubyLint::GlobalScope.constant_proxy('Object'))
 
   klass.define_method('append_features') do |method|
     method.define_argument('base')
@@ -420,8 +420,8 @@ RubyLint::VirtualMachine.global_scope.define_constant('AbstractController::UrlFo
   klass.define_instance_method('_routes')
 end
 
-RubyLint::VirtualMachine.global_scope.define_constant('AbstractController::ViewPaths') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
+RubyLint::GlobalScope.definitions.define_constant('AbstractController::ViewPaths') do |klass|
+  klass.inherits(RubyLint::GlobalScope.constant_proxy('Object'))
 
   klass.define_method('append_features') do |method|
     method.define_argument('base')

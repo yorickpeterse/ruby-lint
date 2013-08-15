@@ -3,8 +3,8 @@
 # Created:  2013-04-01 18:33:53 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('DateTime') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Date'))
+RubyLint::GlobalScope.definitions.define_constant('DateTime') do |klass|
+  klass.inherits(RubyLint::GlobalScope.constant_proxy('Date'))
 
   klass.define_method('__class_init__')
 
@@ -172,7 +172,7 @@ end
 # Created:  2013-04-01 18:33:53 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('DateTime::ABBR_DAYNAMES') do |klass|
+RubyLint::GlobalScope.definitions.define_constant('DateTime::ABBR_DAYNAMES') do |klass|
 end
 
 ##
@@ -180,7 +180,7 @@ end
 # Created:  2013-04-01 18:33:53 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('DateTime::ABBR_MONTHNAMES') do |klass|
+RubyLint::GlobalScope.definitions.define_constant('DateTime::ABBR_MONTHNAMES') do |klass|
 end
 
 ##
@@ -188,7 +188,7 @@ end
 # Created:  2013-04-01 18:33:53 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('DateTime::DAYNAMES') do |klass|
+RubyLint::GlobalScope.definitions.define_constant('DateTime::DAYNAMES') do |klass|
 end
 
 ##
@@ -196,7 +196,7 @@ end
 # Created:  2013-04-01 18:33:53 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('DateTime::ENGLAND') do |klass|
+RubyLint::GlobalScope.definitions.define_constant('DateTime::ENGLAND') do |klass|
 end
 
 ##
@@ -204,7 +204,7 @@ end
 # Created:  2013-04-01 18:33:53 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('DateTime::Format') do |klass|
+RubyLint::GlobalScope.definitions.define_constant('DateTime::Format') do |klass|
 
   klass.define_method('__module_init__')
 end
@@ -214,7 +214,7 @@ end
 # Created:  2013-04-01 18:33:53 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('DateTime::GREGORIAN') do |klass|
+RubyLint::GlobalScope.definitions.define_constant('DateTime::GREGORIAN') do |klass|
 end
 
 ##
@@ -222,7 +222,7 @@ end
 # Created:  2013-04-01 18:33:53 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('DateTime::HALF_DAYS_IN_DAY') do |klass|
+RubyLint::GlobalScope.definitions.define_constant('DateTime::HALF_DAYS_IN_DAY') do |klass|
 end
 
 ##
@@ -230,7 +230,7 @@ end
 # Created:  2013-04-01 18:33:53 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('DateTime::HOURS_IN_DAY') do |klass|
+RubyLint::GlobalScope.definitions.define_constant('DateTime::HOURS_IN_DAY') do |klass|
 end
 
 ##
@@ -238,7 +238,7 @@ end
 # Created:  2013-04-01 18:33:53 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('DateTime::ITALY') do |klass|
+RubyLint::GlobalScope.definitions.define_constant('DateTime::ITALY') do |klass|
 end
 
 ##
@@ -246,8 +246,8 @@ end
 # Created:  2013-04-01 18:33:53 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('DateTime::Infinity') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Numeric'))
+RubyLint::GlobalScope.definitions.define_constant('DateTime::Infinity') do |klass|
+  klass.inherits(RubyLint::GlobalScope.constant_proxy('Numeric'))
 
   klass.define_method('__class_init__')
 
@@ -281,7 +281,7 @@ end
 # Created:  2013-04-01 18:33:53 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('DateTime::JULIAN') do |klass|
+RubyLint::GlobalScope.definitions.define_constant('DateTime::JULIAN') do |klass|
 end
 
 ##
@@ -289,7 +289,7 @@ end
 # Created:  2013-04-01 18:33:53 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('DateTime::LD_EPOCH_IN_CJD') do |klass|
+RubyLint::GlobalScope.definitions.define_constant('DateTime::LD_EPOCH_IN_CJD') do |klass|
 end
 
 ##
@@ -297,7 +297,7 @@ end
 # Created:  2013-04-01 18:33:53 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('DateTime::MILLISECONDS_IN_DAY') do |klass|
+RubyLint::GlobalScope.definitions.define_constant('DateTime::MILLISECONDS_IN_DAY') do |klass|
 end
 
 ##
@@ -305,7 +305,7 @@ end
 # Created:  2013-04-01 18:33:53 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('DateTime::MILLISECONDS_IN_SECOND') do |klass|
+RubyLint::GlobalScope.definitions.define_constant('DateTime::MILLISECONDS_IN_SECOND') do |klass|
 end
 
 ##
@@ -313,7 +313,7 @@ end
 # Created:  2013-04-01 18:33:53 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('DateTime::MINUTES_IN_DAY') do |klass|
+RubyLint::GlobalScope.definitions.define_constant('DateTime::MINUTES_IN_DAY') do |klass|
 end
 
 ##
@@ -321,7 +321,7 @@ end
 # Created:  2013-04-01 18:33:53 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('DateTime::MJD_EPOCH_IN_AJD') do |klass|
+RubyLint::GlobalScope.definitions.define_constant('DateTime::MJD_EPOCH_IN_AJD') do |klass|
 end
 
 ##
@@ -329,7 +329,7 @@ end
 # Created:  2013-04-01 18:33:53 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('DateTime::MJD_EPOCH_IN_CJD') do |klass|
+RubyLint::GlobalScope.definitions.define_constant('DateTime::MJD_EPOCH_IN_CJD') do |klass|
 end
 
 ##
@@ -337,7 +337,7 @@ end
 # Created:  2013-04-01 18:33:53 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('DateTime::MONTHNAMES') do |klass|
+RubyLint::GlobalScope.definitions.define_constant('DateTime::MONTHNAMES') do |klass|
 end
 
 ##
@@ -345,7 +345,7 @@ end
 # Created:  2013-04-01 18:33:53 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('DateTime::NANOSECONDS_IN_DAY') do |klass|
+RubyLint::GlobalScope.definitions.define_constant('DateTime::NANOSECONDS_IN_DAY') do |klass|
 end
 
 ##
@@ -353,7 +353,7 @@ end
 # Created:  2013-04-01 18:33:53 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('DateTime::NANOSECONDS_IN_SECOND') do |klass|
+RubyLint::GlobalScope.definitions.define_constant('DateTime::NANOSECONDS_IN_SECOND') do |klass|
 end
 
 ##
@@ -361,7 +361,7 @@ end
 # Created:  2013-04-01 18:33:53 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('DateTime::SECONDS_IN_DAY') do |klass|
+RubyLint::GlobalScope.definitions.define_constant('DateTime::SECONDS_IN_DAY') do |klass|
 end
 
 ##
@@ -369,7 +369,7 @@ end
 # Created:  2013-04-01 18:33:53 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('DateTime::UNIX_EPOCH_IN_AJD') do |klass|
+RubyLint::GlobalScope.definitions.define_constant('DateTime::UNIX_EPOCH_IN_AJD') do |klass|
 end
 
 ##
@@ -377,5 +377,5 @@ end
 # Created:  2013-04-01 18:33:53 +0200
 # Platform: rbx 2.0.0.rc1
 #
-RubyLint::VirtualMachine.global_scope.define_constant('DateTime::UNIX_EPOCH_IN_CJD') do |klass|
+RubyLint::GlobalScope.definitions.define_constant('DateTime::UNIX_EPOCH_IN_CJD') do |klass|
 end

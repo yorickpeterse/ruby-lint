@@ -4,8 +4,8 @@
 # Created:  2013-07-24 21:54:04 +0200
 # Platform: rbx 2.0.0.n198
 
-RubyLint::VirtualMachine.global_scope.define_constant('Rails') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
+RubyLint::GlobalScope.definitions.define_constant('Rails') do |klass|
+  klass.inherits(RubyLint::GlobalScope.constant_proxy('Object'))
 
   klass.define_method('application')
 
@@ -48,8 +48,8 @@ RubyLint::VirtualMachine.global_scope.define_constant('Rails') do |klass|
   klass.define_method('version')
 end
 
-RubyLint::VirtualMachine.global_scope.define_constant('Rails::Application') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Rails::Engine'))
+RubyLint::GlobalScope.definitions.define_constant('Rails::Application') do |klass|
+  klass.inherits(RubyLint::GlobalScope.constant_proxy('Rails::Engine'))
 
   klass.define_method('abstract_railtie?')
 
@@ -300,16 +300,16 @@ RubyLint::VirtualMachine.global_scope.define_constant('Rails::Application') do |
   klass.define_instance_method('watchable_args')
 end
 
-RubyLint::VirtualMachine.global_scope.define_constant('Rails::Configuration') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
+RubyLint::GlobalScope.definitions.define_constant('Rails::Configuration') do |klass|
+  klass.inherits(RubyLint::GlobalScope.constant_proxy('Object'))
 
   klass.define_method('initialize') do |method|
     method.define_block_argument('block')
   end
 end
 
-RubyLint::VirtualMachine.global_scope.define_constant('Rails::DeprecatedConstant') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.constant_proxy('ActiveSupport::Deprecation::DeprecatedConstantProxy'))
+RubyLint::GlobalScope.definitions.define_constant('Rails::DeprecatedConstant') do |klass|
+  klass.inherits(RubyLint::GlobalScope.constant_proxy('ActiveSupport::Deprecation::DeprecatedConstantProxy'))
 
   klass.define_method('deprecate') do |method|
     method.define_argument('old')
@@ -317,8 +317,8 @@ RubyLint::VirtualMachine.global_scope.define_constant('Rails::DeprecatedConstant
   end
 end
 
-RubyLint::VirtualMachine.global_scope.define_constant('Rails::Engine') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Rails::Railtie'))
+RubyLint::GlobalScope.definitions.define_constant('Rails::Engine') do |klass|
+  klass.inherits(RubyLint::GlobalScope.constant_proxy('Rails::Railtie'))
 
   klass.define_method('abstract_railtie?')
 
@@ -508,8 +508,8 @@ RubyLint::VirtualMachine.global_scope.define_constant('Rails::Engine') do |klass
   end
 end
 
-RubyLint::VirtualMachine.global_scope.define_constant('Rails::Info') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
+RubyLint::GlobalScope.definitions.define_constant('Rails::Info') do |klass|
+  klass.inherits(RubyLint::GlobalScope.constant_proxy('Object'))
 
   klass.define_method('framework_version') do |method|
     method.define_argument('framework')
@@ -545,8 +545,8 @@ RubyLint::VirtualMachine.global_scope.define_constant('Rails::Info') do |klass|
   end
 end
 
-RubyLint::VirtualMachine.global_scope.define_constant('Rails::InfoController') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.constant_proxy('ActionController::Base'))
+RubyLint::GlobalScope.definitions.define_constant('Rails::InfoController') do |klass|
+  klass.inherits(RubyLint::GlobalScope.constant_proxy('ActionController::Base'))
 
   klass.define_method('__callback_runner_name') do |method|
     method.define_argument('kind')
@@ -1811,8 +1811,8 @@ RubyLint::VirtualMachine.global_scope.define_constant('Rails::InfoController') d
   end
 end
 
-RubyLint::VirtualMachine.global_scope.define_constant('Rails::Initializable') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
+RubyLint::GlobalScope.definitions.define_constant('Rails::Initializable') do |klass|
+  klass.inherits(RubyLint::GlobalScope.constant_proxy('Object'))
 
   klass.define_method('included') do |method|
     method.define_argument('base')
@@ -1830,24 +1830,24 @@ RubyLint::VirtualMachine.global_scope.define_constant('Rails::Initializable') do
   end
 end
 
-RubyLint::VirtualMachine.global_scope.define_constant('Rails::Paths') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
+RubyLint::GlobalScope.definitions.define_constant('Rails::Paths') do |klass|
+  klass.inherits(RubyLint::GlobalScope.constant_proxy('Object'))
 
   klass.define_method('initialize') do |method|
     method.define_block_argument('block')
   end
 end
 
-RubyLint::VirtualMachine.global_scope.define_constant('Rails::Rack') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
+RubyLint::GlobalScope.definitions.define_constant('Rails::Rack') do |klass|
+  klass.inherits(RubyLint::GlobalScope.constant_proxy('Object'))
 
   klass.define_method('initialize') do |method|
     method.define_block_argument('block')
   end
 end
 
-RubyLint::VirtualMachine.global_scope.define_constant('Rails::Railtie') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
+RubyLint::GlobalScope.definitions.define_constant('Rails::Railtie') do |klass|
+  klass.inherits(RubyLint::GlobalScope.constant_proxy('Object'))
 
   klass.define_method('abstract_railtie?')
 
@@ -1928,8 +1928,8 @@ RubyLint::VirtualMachine.global_scope.define_constant('Rails::Railtie') do |klas
   end
 end
 
-RubyLint::VirtualMachine.global_scope.define_constant('Rails::TestUnitRailtie') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Rails::Railtie'))
+RubyLint::GlobalScope.definitions.define_constant('Rails::TestUnitRailtie') do |klass|
+  klass.inherits(RubyLint::GlobalScope.constant_proxy('Rails::Railtie'))
 
   klass.define_method('abstract_railtie?')
 
@@ -2024,16 +2024,16 @@ RubyLint::VirtualMachine.global_scope.define_constant('Rails::TestUnitRailtie') 
   end
 end
 
-RubyLint::VirtualMachine.global_scope.define_constant('Rails::VERSION') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.constant_proxy('Object'))
+RubyLint::GlobalScope.definitions.define_constant('Rails::VERSION') do |klass|
+  klass.inherits(RubyLint::GlobalScope.constant_proxy('Object'))
 
   klass.define_method('initialize') do |method|
     method.define_block_argument('block')
   end
 end
 
-RubyLint::VirtualMachine.global_scope.define_constant('Rails::WelcomeController') do |klass|
-  klass.inherits(RubyLint::VirtualMachine.constant_proxy('ActionController::Base'))
+RubyLint::GlobalScope.definitions.define_constant('Rails::WelcomeController') do |klass|
+  klass.inherits(RubyLint::GlobalScope.constant_proxy('ActionController::Base'))
 
   klass.define_method('__callback_runner_name') do |method|
     method.define_argument('kind')
