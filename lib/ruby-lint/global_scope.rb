@@ -29,6 +29,12 @@ module RubyLint
       return found
     end
 
+    class << self
+      # This allows the ConstantProxy class to use the same code while still
+      # being able to use the global scope as its input.
+      alias_method :lookup_constant_path, :global_constant
+    end
+
     ##
     # Creates a new proxy for a global constant.
     #
@@ -37,7 +43,7 @@ module RubyLint
     # @return [RubyLint::Definition::ConstantProxy]
     #
     def self.constant_proxy(name)
-      return Definition::ConstantProxy.new(definitions, name)
+      return Definition::ConstantProxy.new(self, name)
     end
 
     ##
