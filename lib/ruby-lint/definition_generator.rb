@@ -77,15 +77,24 @@ module RubyLint
           constants << constant
         end
 
-        erb = render_template(template, :constants => constants)
-
-        File.open(filepath, 'w') do |handle|
-          handle.write(erb)
-        end
+        render_template(filepath, template, constants)
       end
     end
 
     private
+
+    ##
+    # @param [String] path
+    # @param [String] template
+    # @param [Array] constants
+    #
+    def render_template(path, template, constants)
+      erb = render_template(template, :constants => constants)
+
+      File.open(path, 'w') do |handle|
+        handle.write(erb)
+      end
+    end
 
     ##
     # Groups constants together based on the top level namespace segment.
