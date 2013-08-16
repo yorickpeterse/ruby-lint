@@ -5,9 +5,11 @@
 # @return [RubyLint::Definition::RubyObject]
 #
 def build_definitions(code)
+  loader        = RubyLint::ConstantLoader.new
   ast, comments = parse_with_comments(code)
   vm            = RubyLint::VirtualMachine.new(:comments => comments)
 
+  loader.iterate(ast)
   vm.run(ast)
 
   return vm.definitions
@@ -21,9 +23,11 @@ end
 # @return [RubyLint::Report]
 #
 def build_report(code, iterator)
+  loader        = RubyLint::ConstantLoader.new
   ast, comments = parse_with_comments(code)
   vm            = RubyLint::VirtualMachine.new(:comments => comments)
 
+  loader.iterate(ast)
   vm.run(ast)
 
   report   = RubyLint::Report.new

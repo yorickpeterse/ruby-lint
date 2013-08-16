@@ -167,11 +167,7 @@ module RubyLint
     def run(ast)
       ast = [ast] unless ast.is_a?(Array)
 
-      ast.each do |node|
-        GlobalScope.constant_loader.iterate(node)
-
-        iterate(node)
-      end
+      ast.each { |node| iterate(node) }
 
       freeze
     end

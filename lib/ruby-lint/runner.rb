@@ -14,7 +14,7 @@ module RubyLint
     # @param [RubyLint::Configuration] configuration
     #
     def initialize(configuration)
-      @configuration = configuration
+      @configuration   = configuration
     end
 
     ##
@@ -46,6 +46,8 @@ module RubyLint
         nodes    = extra_ast + [ast]
         comments = comments.merge(extra_comments)
 
+        autoload_constants(nodes)
+
         vm = run_vm(nodes, comments)
 
         run_analysis(ast, vm, report)
@@ -66,6 +68,15 @@ module RubyLint
     #
     def parse_file(parser, file)
       return parser.parse(File.read(file), file)
+    end
+
+    ##
+    # Automatically loads definitions using {RubyLint::ConstantLoader}.
+    #
+    # @param [Array] nodes
+    #
+    def autoload_constants(nodes)
+      nodes.each { |node| GlobalScope.constant_loader.iterate(node) }
     end
 
     ##
