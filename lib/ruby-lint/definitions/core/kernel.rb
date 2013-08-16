@@ -479,6 +479,10 @@ RubyLint::GlobalScope.definitions.define_constant('Kernel') do |klass|
     method.define_rest_argument('methods')
   end
 
+  klass.define_method('protected') do |method|
+    method.define_rest_argument('methods')
+  end
+
   klass.define_method('private_methods') do |method|
     method.define_optional_argument('all')
   end

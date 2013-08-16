@@ -268,4 +268,16 @@ end
 
     report.entries.empty?.should == true
   end
+
+  example 'do not add errors for private/protected/public' do
+    code = <<-CODE
+private
+protected
+public
+    CODE
+
+    report = build_report(code, RubyLint::Analysis::UndefinedMethods)
+
+    report.entries.empty?.should == true
+  end
 end
