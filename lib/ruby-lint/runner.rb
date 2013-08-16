@@ -39,24 +39,34 @@ module RubyLint
       end
 
       files.each do |file|
-        ast, comments = parse_file(parser, file)
-
-        extra_ast, extra_comments = process_external_files(ast)
-
-        nodes    = extra_ast + [ast]
-        comments = comments.merge(extra_comments)
-
-        autoload_constants(nodes)
-
-        vm = run_vm(nodes, comments)
-
-        run_analysis(ast, vm, report)
+        analyze_file(file, parser, report)
       end
 
       return presenter.present(report)
     end
 
     private
+
+    ##
+    # @param [String] file
+    # @param [RubyLint::Parser] parser
+    # @param [RubyLint::Report] report
+    #
+    def analyze_file(file, parser, report)
+      ast, comments = parse_file(parser, file)
+
+      extra_ast, extra_comments = process_external_files(ast)
+
+      extra_ast.push(ast)
+
+      comments.merge!(extra_comments)
+
+      autoload_constants(extra_ast)
+
+      vm = run_vm(extra_ast, comments)
+
+      run_analysis(ast, vm, report)
+    end
 
     ##
     # Parses the given file and returns an Array containing all the associated
@@ -102,7 +112,7 @@ module RubyLint
       loader.nodes.each do |(ast, cmts)|
         nodes << ast
 
-        comments = comments.merge(cmts)
+        comments.merge!(cmts)
       end
 
       return nodes, comments
@@ -113,15 +123,12 @@ module RubyLint
     # @param [RubyLint::Report] report
     #
     def report_diagnostic(diagnostic, report)
-      loc    = diagnostic.location
-      buffer = loc.source_buffer
-
       report.add(
         :level   => :error,
         :message => diagnostic.message,
-        :line    => loc.line,
-        :column  => loc.column,
-        :file    => buffer.name
+        :line    => diagnostic.location.line,
+        :column  => diagnostic.location.column,
+        :file    => diagnostic.location.source_buffer.name
       )
     end
 
