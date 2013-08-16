@@ -22,20 +22,10 @@ module RubyLint
       def on_send(node)
         receiver, name, *args = *node
 
-        name  = name.to_s
-        scope = current_scope
-
-        if receiver and vm.associations.key?(receiver)
-          scope = vm.associations[receiver]
-        end
-
-        method = scope.lookup(scope.method_call_type, name)
+        scope  = scope_for_receiver(receiver)
+        method = determine_method(scope, name.to_s)
 
         return unless method
-
-        if MAP_METHODS[method.name]
-          method = scope.lookup(*MAP_METHODS[method.name])
-        end
 
         given    = args ? args.length : 0
         min, max = argument_range(method)
@@ -51,6 +41,35 @@ module RubyLint
       end
 
       private
+
+      ##
+      # @param [RubyLint::AST::Node] receiver
+      # @return [RubyLint::Definition::RubyObject]
+      #
+      def scope_for_receiver(receiver)
+        scope = current_scope
+
+        if receiver and vm.associations.key?(receiver)
+          scope = vm.associations[receiver]
+        end
+
+        return scope
+      end
+
+      ##
+      # @param [RubyLint::Definition::RubyObject] scope
+      # @param [String] name
+      # @return [RubyLint::Definition::RubyMethod]
+      #
+      def determine_method(scope, name)
+        method = scope.lookup(scope.method_call_type, name)
+
+        if method and MAP_METHODS[method.name]
+          method = scope.lookup(*MAP_METHODS[method.name])
+        end
+
+        return method
+      end
 
       ##
       # @param [Numeric] min
