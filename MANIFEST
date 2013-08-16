@@ -1,5 +1,5 @@
 .gitignore
-.rubocop.yml
+.ruby-version
 .travis.yml
 .yardopts
 CONTRIBUTING.md
@@ -330,7 +330,6 @@ spec/support/simplecov.rb
 spec/support/versions.rb
 task/build.rake
 task/checksum.rake
-task/cop.rake
 task/coverage.rake
 task/doc.rake
 task/generate.rake
