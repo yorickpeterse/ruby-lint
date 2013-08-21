@@ -89,7 +89,7 @@ module RubyLint
     # @param [Array] constants
     #
     def render_template(path, template, constants)
-      erb = render_template(template, :constants => constants)
+      erb = render_erb(template, :constants => constants)
 
       File.open(path, 'w') do |handle|
         handle.write(erb)
@@ -173,7 +173,7 @@ module RubyLint
     # @param [String] template
     # @param [Hash] variables
     #
-    def render_template(template, variables = {})
+    def render_erb(template, variables = {})
       scope = Template::Scope.new(variables)
       erb   = ERB.new(template, nil, '-').result(scope.get_binding)
 
