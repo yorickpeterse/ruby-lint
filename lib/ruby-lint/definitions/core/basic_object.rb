@@ -17,16 +17,6 @@ RubyLint::GlobalScope.definitions.define_constant('BasicObject') do |klass|
 
   klass.define_method('__class_init__')
 
-  klass.define_instance_method('!')
-
-  klass.define_instance_method('!=') do |method|
-    method.define_argument('other')
-  end
-
-  klass.define_instance_method('==') do |method|
-    method.define_argument('other')
-  end
-
   klass.define_instance_method('__id__')
 
   klass.define_instance_method('__send__') do |method|

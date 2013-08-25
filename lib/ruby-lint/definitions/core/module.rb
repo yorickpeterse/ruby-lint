@@ -54,6 +54,16 @@ RubyLint::GlobalScope.definitions.define_constant('Module') do |klass|
     method.define_argument('other')
   end
 
+  klass.define_instance_method('!')
+
+  klass.define_instance_method('!=') do |method|
+    method.define_argument('other')
+  end
+
+  klass.define_instance_method('==') do |method|
+    method.define_argument('other')
+  end
+
   klass.define_instance_method('__class_variables__')
 
   klass.define_instance_method('__marshal__') do |method|
