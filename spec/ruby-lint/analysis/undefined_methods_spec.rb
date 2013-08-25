@@ -214,11 +214,30 @@ first = second = number.foobar
     report.entries[0].message.should == 'undefined method foo'
   end
 
-  example 'do not add errors for methods defined in Kernel' do
-    code   = 'puts "hello"'
-    report = build_report(code, RubyLint::Analysis::UndefinedMethods)
+  context 'Kernel methods' do
+    example 'do not add errors for methods defined in Kernel' do
+      code   = 'puts "hello"'
+      report = build_report(code, RubyLint::Analysis::UndefinedMethods)
 
-    report.entries.empty?.should == true
+      report.entries.empty?.should == true
+    end
+
+    example 'do not add errors for Kernel methods in an sclass in a module' do
+      code = <<-CODE
+module Foo
+  def self.foo
+  end
+
+  class << self
+    alias_method :foo, :bar
+  end
+end
+      CODE
+
+      report = build_report(code, RubyLint::Analysis::UndefinedMethods)
+
+      report.entries.empty?.should == true
+    end
   end
 
   context 'core Ruby methods' do

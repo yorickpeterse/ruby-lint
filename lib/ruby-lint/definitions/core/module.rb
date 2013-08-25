@@ -4,6 +4,8 @@
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::GlobalScope.definitions.define_constant('Module') do |klass|
+  klass.inherits(RubyLint::GlobalScope.constant_proxy('Kernel'))
+
   klass.define_method('allocate')
   klass.define_method('nesting')
 

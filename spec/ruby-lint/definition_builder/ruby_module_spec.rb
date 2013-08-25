@@ -6,6 +6,7 @@ describe RubyLint::DefinitionBuilder::RubyModule do
       node     = s(:module, s(:const, nil, :A), s(:nil))
       @root    = ruby_object.new(:name => 'root')
       @builder = RubyLint::DefinitionBuilder::RubyModule.new(node, @root)
+      @module  = RubyLint::GlobalScope.global_constant('Module')
     end
 
     example 'return the name of the module' do
@@ -13,7 +14,7 @@ describe RubyLint::DefinitionBuilder::RubyModule do
     end
 
     example 'return the parent definitions' do
-      @builder.build.parents.should == [@root]
+      @builder.build.parents.should == [@module, @root]
     end
 
     example 'return the reference amount' do
@@ -33,6 +34,7 @@ describe RubyLint::DefinitionBuilder::RubyModule do
       @root.define_constant('A')
 
       @builder = RubyLint::DefinitionBuilder::RubyModule.new(node, @root)
+      @module  = RubyLint::GlobalScope.global_constant('Module')
     end
 
     example 'return the name of the module' do
@@ -40,7 +42,7 @@ describe RubyLint::DefinitionBuilder::RubyModule do
     end
 
     example 'return the parent definitions' do
-      @builder.build.parents.should == [@root]
+      @builder.build.parents.should == [@module, @root]
     end
 
     example 'return the scope to define the module in' do
