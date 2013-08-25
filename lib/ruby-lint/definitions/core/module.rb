@@ -280,3 +280,9 @@ RubyLint::GlobalScope.definitions.define_constant('Module') do |klass|
     method.define_argument('url')
   end
 end
+
+RubyLint::GlobalScope.definitions.copy(
+  RubyLint::GlobalScope.global_constant('Module'),
+  :instance_method,
+  :method
+)
