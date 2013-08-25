@@ -10,6 +10,13 @@ RubyLint::GlobalScope.definitions.define_constant('ERB') do |klass|
 
   klass.define_method('version')
 
+  klass.define_instance_method('initialize') do |method|
+    method.define_argument('str')
+    method.define_optional_argument('safe_level')
+    method.define_optional_argument('trim_mode')
+    method.define_optional_argument('eoutvar')
+  end
+
   klass.define_instance_method('def_class') do |method|
     method.define_optional_argument('superklass')
     method.define_optional_argument('methodname')
