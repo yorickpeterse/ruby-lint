@@ -1,3 +1,5 @@
+gem 'parser', '>= 2.0.0.pre6'
+
 require 'parser'
 require 'parser/current'
 require 'yaml'
