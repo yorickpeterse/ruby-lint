@@ -27,9 +27,11 @@ module RubyLint
       # @param [RubyLint::Definition::RubyObject] context
       # @param [RubyLint::Definition::RubyObject] block
       #
+      #:nocov:
       def evaluate(arguments, context, block = nil)
         raise NotImplementedError, '#evaluate must be implemented'
       end
+      #:nocov:
     end # Base
   end # MethodCall
 end # RubyLint
