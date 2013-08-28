@@ -5,6 +5,9 @@ require File.expand_path('../lib/ruby-lint/definition_generator', __FILE__)
 require 'yaml'
 require 'bundler/gem_tasks'
 require 'digest/sha2'
+require 'coveralls/rake/task'
+
+Coveralls::RakeTask.new
 
 GEMSPEC = Gem::Specification.load('ruby-lint.gemspec')
 
