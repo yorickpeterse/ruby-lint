@@ -51,13 +51,6 @@ module RubyLint
       protected
 
       ##
-      # @return [RubyLint::Definition::RubyObject]
-      #
-      def definitions
-        return vm.definitions
-      end
-
-      ##
       # Returns the current scope.
       #
       # @return [RubyLint::Definition::RubyObject]

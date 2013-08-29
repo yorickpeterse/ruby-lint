@@ -18,6 +18,8 @@ module RubyLint
     #
     OPTIONS_HEADER = "\nOptions:\n"
 
+    #:nocov:
+
     ##
     # Returns a String containing a list of names as registered in
     # {RubyLint::Configuration.names}.
@@ -33,8 +35,10 @@ module RubyLint
     ##
     # Starts the CLI.
     #
-    def self.run
-      options.parse
+    # @param [Array] argv
+    #
+    def self.run(argv = ARGV)
+      options.parse(argv)
     end
 
     ##
@@ -93,5 +97,7 @@ module RubyLint
     def self.version_information
       return "ruby-lint v#{VERSION} on #{RUBY_DESCRIPTION}"
     end
+
+    #:nocov:
   end # CLI
 end # RubyLint

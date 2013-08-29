@@ -21,12 +21,6 @@ module RubyLint
         name  = name.to_s
         scope = current_scope
 
-        # Abort if the receiver doesn't exist since it will be handled by other
-        # analysis classes.
-        if receiver and !vm.associations.key?(receiver)
-          return
-        end
-
         if receiver and vm.associations.key?(receiver)
           scope = vm.associations[receiver]
 

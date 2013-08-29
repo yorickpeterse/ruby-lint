@@ -6,6 +6,10 @@ describe RubyLint::FileScanner do
     @lib_dir   = fixture_path('file_scanner/lib')
   end
 
+  example 'raise when a non enumerable argument is given' do
+    lambda { RubyLint::FileScanner.new(10) }.should raise_error(TypeError)
+  end
+
   example 'finding a class' do
     scanner = RubyLint::FileScanner.new([@lib_dir])
     paths   = scanner.scan('Example::User')

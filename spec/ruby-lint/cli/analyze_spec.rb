@@ -11,7 +11,7 @@ describe RubyLint::CLI do
     end
 
     example 'analyze a valid Ruby file' do
-      file = File.expand_path('../../../fixtures/valid.rb', __FILE__)
+      file = fixture_path('valid.rb')
 
       @command.parse([file])
 
@@ -20,12 +20,23 @@ describe RubyLint::CLI do
     end
 
     example 'analyze an invalid Ruby file' do
-      file = File.expand_path('../../../fixtures/invalid.rb', __FILE__)
+      file = fixture_path('invalid.rb')
 
       @command.parse([file])
 
       @output.rewind
       @output.read.should =~ /undefined method foobar/
+    end
+
+    example 'include benchmarking output' do
+      @command.parse(['-b', fixture_path('valid.rb')])
+
+      @output.rewind
+
+      output = @output.read
+
+      output.should =~ /Execution time:/
+      output.should =~ /Memory usage:/
     end
   end
 end

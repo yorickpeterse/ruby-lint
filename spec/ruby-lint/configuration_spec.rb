@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe RubyLint::Configuration do
-  describe 'default options' do
+  context 'default options' do
     before do
       @configuration = RubyLint::Configuration.new
     end
@@ -23,7 +23,41 @@ describe RubyLint::Configuration do
     end
   end
 
-  describe 'setting options via the constructor' do
+  context 'empty and invalid arguments' do
+    before do
+      @configuration = RubyLint::Configuration.new
+    end
+
+    example 'set the report levels' do
+      @configuration.report_levels = []
+
+      @configuration.report_levels
+        .should == @configuration.default_report_levels
+    end
+
+    example 'set an invalid presenter' do
+      blk = lambda { @configuration.presenter = String }
+
+      blk.should raise_error(ArgumentError, /Invalid presenter/)
+    end
+
+    example 'set the analysis classes' do
+      @configuration.analysis_classes = []
+
+      @configuration.analysis_classes
+        .should == @configuration.default_analysis_classes
+    end
+
+    example 'set an invalid directory' do
+      blk = lambda do
+        @configuration.directories = ['idoubtthisdirectoryexists']
+      end
+
+      blk.should raise_error(ArgumentError, /does not exist/)
+    end
+  end
+
+  context 'setting options via the constructor' do
     example 'set the report levels' do
       conf = RubyLint::Configuration.new(:report_levels => ['info'])
 
@@ -51,14 +85,22 @@ describe RubyLint::Configuration do
     end
   end
 
-  describe 'setting options via a configuration file' do
+  context 'setting options via a configuration file' do
     example 'set the options from a YAML file' do
-      paths = [File.expand_path('../../fixtures/config.yml', __FILE__)]
+      paths = [fixture_path('config.yml')]
       conf  = RubyLint::Configuration.load_from_file(paths)
 
       conf.report_levels.should    == [:info]
       conf.analysis_classes.should == [RubyLint::Analysis::UndefinedMethods]
       conf.presenter.should        == RubyLint::Presenter::JSON
+    end
+
+    example 'return a default configuration file' do
+      conf = RubyLint::Configuration.load_from_file([])
+
+      conf.is_a?(RubyLint::Configuration).should == true
+
+      conf.report_levels.should == RubyLint::Report::DEFAULT_LEVELS
     end
   end
 end

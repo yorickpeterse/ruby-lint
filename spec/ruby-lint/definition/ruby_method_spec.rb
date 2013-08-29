@@ -62,6 +62,8 @@ describe RubyLint::Definition::RubyObject do
 
         @method.lookup(:arg, 'number').is_a?(ruby_object).should  == true
         @method.lookup(:lvar, 'number').is_a?(ruby_object).should == true
+
+        @method.arguments[0].is_a?(ruby_object).should == true
       end
 
       example 'define an optional argument' do
@@ -69,6 +71,8 @@ describe RubyLint::Definition::RubyObject do
 
         @method.lookup(:optarg, 'number').is_a?(ruby_object).should == true
         @method.lookup(:lvar, 'number').is_a?(ruby_object).should   == true
+
+        @method.optional_arguments[0].is_a?(ruby_object).should == true
       end
 
       example 'define a rest argument' do
@@ -76,6 +80,8 @@ describe RubyLint::Definition::RubyObject do
 
         @method.lookup(:restarg, 'number').is_a?(ruby_object).should == true
         @method.lookup(:lvar, 'number').is_a?(ruby_object).should    == true
+
+        @method.rest_argument.is_a?(ruby_object).should == true
       end
 
       example 'define a block argument' do
@@ -83,6 +89,8 @@ describe RubyLint::Definition::RubyObject do
 
         @method.lookup(:blockarg, 'number').is_a?(ruby_object).should == true
         @method.lookup(:lvar, 'number').is_a?(ruby_object).should     == true
+
+        @method.block_argument.is_a?(ruby_object).should == true
       end
 
       example 'define a keyword argument' do
@@ -90,6 +98,8 @@ describe RubyLint::Definition::RubyObject do
 
         @method.lookup(:kwoptarg, 'number').is_a?(ruby_object).should == true
         @method.lookup(:lvar, 'number').is_a?(ruby_object).should     == true
+
+        @method.keyword_arguments[0].is_a?(ruby_object).should == true
       end
     end
   end

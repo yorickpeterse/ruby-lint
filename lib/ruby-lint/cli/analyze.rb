@@ -132,10 +132,12 @@ Examples:
       memory_kb = `ps -o rss= #{Process.pid}`.strip.to_f
       memory_mb = memory_kb / 1024
 
-      puts unless output.empty?
+      output_destination.puts unless output.empty?
 
-      puts "Execution time: #{exec_time.round(2)} seconds"
-      puts "Memory usage: #{memory_mb.round(2)} MB (#{memory_kb.round(2)} KB)"
+      output_destination.puts "Execution time: #{exec_time.round(2)} seconds"
+
+      output_destination.puts "Memory usage: #{memory_mb.round(2)} MB " \
+        "(#{memory_kb.round(2)} KB)"
     end
   end # run do |opts, args|
 end # RubyLint::CLI.options.command

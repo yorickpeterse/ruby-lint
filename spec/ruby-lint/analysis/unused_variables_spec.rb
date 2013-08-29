@@ -12,6 +12,15 @@ describe RubyLint::Analysis::UnusedVariables do
     entry.message.should == 'unused local variable number'
   end
 
+  example 'warn for unused instance variables' do
+    report = build_report('@number = 1', RubyLint::Analysis::UnusedVariables)
+    entry = report.entries[0]
+
+    entry.line.should    == 1
+    entry.column.should  == 0
+    entry.message.should == 'unused instance variable @number'
+  end
+
   example 'do not warn for used variables' do
     code = <<-CODE
 number = 1

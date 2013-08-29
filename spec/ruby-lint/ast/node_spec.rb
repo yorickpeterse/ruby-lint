@@ -30,4 +30,10 @@ describe RubyLint::AST::Node do
   example 'check if a node is a constant path' do
     s(:const, s(:const, nil, :A), :B).constant_path?.should == true
   end
+
+  example 'inspect a node using #inspect_oneline' do
+    output = '(const (const nil :A) :B)'
+
+    s(:const, s(:const, nil, :A), :B).inspect_oneline.should == output
+  end
 end

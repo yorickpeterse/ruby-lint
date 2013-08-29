@@ -182,4 +182,16 @@ describe ruby_object do
       array.value[index].value.value.should == value
     end
   end
+
+  example 'merging two definitions' do
+    source = ruby_object.new(:type => :const, :name => 'Source')
+    target = ruby_object.new(:type => :const, :name => 'Target')
+    const  = ruby_object.new(:type => :const, :name => 'Foo')
+
+    source.add_definition(const)
+
+    target.merge(source)
+
+    target.lookup(:const, 'Foo').should == const
+  end
 end

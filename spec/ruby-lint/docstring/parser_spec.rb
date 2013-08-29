@@ -76,5 +76,13 @@ describe RubyLint::Docstring::Parser do
       tag.types.should       == ['Numeric']
       tag.description.should == 'The number.'
     end
+
+    example 'parse a tag with the description' do
+      comments = ['# @return Hello']
+      tag      = parser.parse(comments)[0]
+
+      tag.types.should       == []
+      tag.description.should == 'Hello'
+    end
   end
 end

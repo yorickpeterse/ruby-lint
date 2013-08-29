@@ -40,4 +40,15 @@ describe RubyLint::Definition::ConstantProxy do
 
     proxy.proxy_definition.is_a?(ruby_object).should == true
   end
+
+  example 'delegating #inspect' do
+    proxy = RubyLint::Definition::ConstantProxy.new(
+      RubyLint::GlobalScope,
+      'ObjectSpace'
+    )
+
+    object_space = RubyLint::GlobalScope.global_constant('ObjectSpace')
+
+    proxy.inspect.should == object_space.inspect
+  end
 end
