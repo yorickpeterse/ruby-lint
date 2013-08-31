@@ -3,7 +3,7 @@ module RubyLint
   # {RubyLint::FileScanner} is used for finding a list of files that could
   # potentially define a given Ruby constant (path).
   #
-  # @!attribut [r] directories
+  # @!attribute [r] directories
   #  @return [Array]
   #
   # @!attribute [r] ignore

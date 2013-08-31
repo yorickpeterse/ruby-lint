@@ -13,7 +13,7 @@ module RubyLint
     # @!attribute [r] proxy_name
     #  @return [String]
     #
-    # @!attribut [r] proxy_definition
+    # @!attribute [r] proxy_definition
     #  @return [RubyLint::Definition::RubyObject]
     #
     class ConstantProxy
