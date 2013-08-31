@@ -299,4 +299,22 @@ public
 
     report.entries.empty?.should == true
   end
+
+  example 'use the correct error message for YARD documented arguments' do
+    code = <<-CODE
+##
+# @param [Fixnum|Bignum|Numeric] number
+#
+def double(number)
+  return number.to_foo
+end
+    CODE
+
+    report = build_report(code, RubyLint::Analysis::UndefinedMethods)
+    entry  = report.entries[0]
+
+    entry.line.should    == 5
+    entry.message.should == 'undefined method to_foo on an instance of ' \
+      'Fixnum, Bignum or Numeric'
+  end
 end

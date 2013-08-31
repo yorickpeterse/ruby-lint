@@ -86,7 +86,7 @@ module RubyLint
       # @return [String]
       #
       def receiver_error(name, scope)
-        klass = scope.ruby_class ? scope.ruby_class : scope.name
+        klass = class_names_for_object(scope)
 
         if scope.instance?
           error = "undefined method #{name} on an instance of #{klass}"
@@ -95,6 +95,34 @@ module RubyLint
         end
 
         return error
+      end
+
+      private
+
+      ##
+      # @param [RubyLint::Definition::RubyObject] object
+      # @return [String]
+      #
+      def class_names_for_object(object)
+        if object.parents.empty?
+          klass = object.ruby_class ? object.ruby_class : object.name
+        else
+          klass = name_for_parents(object.parents)
+        end
+
+        return klass
+      end
+
+      ##
+      # @param [Array] parents
+      # @return [String]
+      #
+      def name_for_parents(parents)
+        return parents[0].name if parents.length == 1
+
+        segments = parents[0..-2].map(&:name)
+
+        return segments.join(', ') + " or #{parents[-1].name}"
       end
     end # UndefinedMethods
   end # Analysis
