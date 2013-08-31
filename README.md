@@ -26,15 +26,15 @@ Ruby implementations running a 1.8 based version of Ruby are not supported.
 
 The easiest way to install ruby-lint is to install it from RubyGems:
 
-    $ gem install ruby-lint
+    gem install ruby-lint
 
 If you prefer to install (and build) ruby-lint from the source code you can do
 so as following:
 
-    $ git clone git://github.com/YorickPeterse/ruby-lint.git
-    $ cd ruby-lint
-    $ bundle install # you can also install the dependencies manually
-    $ rake build
+    git clone git://github.com/YorickPeterse/ruby-lint.git
+    cd ruby-lint
+    bundle install # you can also install the dependencies manually
+    rake build
 
 This builds a new version of the Gem and saves it in the pkg/ directory.
 
@@ -45,7 +45,7 @@ distributed as a `.gem` file the Gem is signed using GNUPG (using the
 [rubygems-openpgp][rubygems-openpgp] Gem). If you have this Gem installed it's
 recommended that you install ruby-lint as following:
 
-    $ gem install ruby-lint --verify --trust
+    gem install ruby-lint --verify --trust
 
 Unless you have my GPG public key and have marked it as trusted this process
 will fail. For signing Gems I use the public key **3649F444** registered to
@@ -53,7 +53,7 @@ will fail. For signing Gems I use the public key **3649F444** registered to
 
 You can add this key by running the following command:
 
-    $ gpg --recv-keys 3649F444
+    gpg --recv-keys 3649F444
 
 In case you don't use GPG but still want some form of verification you can use
 the checksums that are located in the "checksum" directory. These checksums are
@@ -65,7 +65,7 @@ command.
 Using ruby-lint from the CLI is very easy. To analyze a set of files
 you run the following:
 
-    $ ruby-lint file1.rb file2.rb
+    ruby-lint file1.rb file2.rb
 
 For more information specify either the `-h` or `--help` option.
 
