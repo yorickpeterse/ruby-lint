@@ -134,7 +134,6 @@ lib/ruby-lint/definitions/core/precision.rb
 lib/ruby-lint/definitions/core/primitive_failure.rb
 lib/ruby-lint/definitions/core/proc.rb
 lib/ruby-lint/definitions/core/process.rb
-lib/ruby-lint/definitions/core/psych.rb
 lib/ruby-lint/definitions/core/queue.rb
 lib/ruby-lint/definitions/core/rake.rb
 lib/ruby-lint/definitions/core/rake_file_utils.rb
@@ -189,6 +188,7 @@ lib/ruby-lint/definitions/core/unbound_method.rb
 lib/ruby-lint/definitions/core/unmarshalable.rb
 lib/ruby-lint/definitions/core/unsupported_library_error.rb
 lib/ruby-lint/definitions/core/weak_ref.rb
+lib/ruby-lint/definitions/core/yaml.rb
 lib/ruby-lint/definitions/core/zero_division_error.rb
 lib/ruby-lint/definitions/global_variables.rb
 lib/ruby-lint/definitions/rails.rb
@@ -255,6 +255,7 @@ spec/fixtures/uses_external_invalid.rb
 spec/fixtures/uses_external_namespace.rb
 spec/fixtures/valid.rb
 spec/ruby-lint/analysis/argument_amount_spec.rb
+spec/ruby-lint/analysis/base_spec.rb
 spec/ruby-lint/analysis/pedantics_spec.rb
 spec/ruby-lint/analysis/shadowing_variables_spec.rb
 spec/ruby-lint/analysis/undefined_methods_spec.rb
@@ -307,6 +308,7 @@ spec/ruby-lint/virtual_machine/constants_spec.rb
 spec/ruby-lint/virtual_machine/for_spec.rb
 spec/ruby-lint/virtual_machine/freeze_spec.rb
 spec/ruby-lint/virtual_machine/global_variables_spec.rb
+spec/ruby-lint/virtual_machine/inherit_kernel_spec.rb
 spec/ruby-lint/virtual_machine/interpolation_spec.rb
 spec/ruby-lint/virtual_machine/methods/attr_spec.rb
 spec/ruby-lint/virtual_machine/methods/define_method_spec.rb
