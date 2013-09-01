@@ -15,8 +15,8 @@ Configuration:
   When this command is executed it will try to load a configuration file in
   one of the following two locations (in this order):
 
-  * $PWD/ruby-lint.rb
-  * ~/.ruby-lint.rb
+  * $PWD/ruby-lint.yml
+  * ~/.ruby-lint.yml
 
   Only the first existing configuration file is loaded.
 
