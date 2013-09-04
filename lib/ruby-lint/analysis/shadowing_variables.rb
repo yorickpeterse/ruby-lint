@@ -17,28 +17,22 @@ module RubyLint
       # @param [RubyLint::AST::Node] node
       #
       def on_block(node)
-        @outer_scope = current_scope
-        @in_block    = true
+        arguments = node.children[1].children
+
+        arguments.each do |arg|
+          validate_argument(arg)
+        end
 
         super
       end
 
-      ##
-      # @param [RubyLint::AST::Node] node
-      #
-      def after_block(node)
-        @in_block    = false
-        @outer_scope = nil
-
-        super
-      end
+      private
 
       ##
       # @param [RubyLint::AST::Node] node
       #
-      def on_arg(node)
-        if @in_block \
-        and @outer_scope.has_definition?(:lvar, node.name)
+      def validate_argument(node)
+        if current_scope.has_definition?(:lvar, node.name)
           warning("shadowing outer local variable #{node.name}", node)
         end
       end
