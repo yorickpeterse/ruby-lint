@@ -7,14 +7,20 @@ module RubyLint
   # @!attribute [r] configuration
   #  @return [RubyLint::Configuration]
   #
+  # @!attribute [r] cache
+  #  @return [RubyLint::Cache]
+  #
   class Runner
-    attr_reader :configuration
+    attr_reader :configuration, :cache
 
     ##
     # @param [RubyLint::Configuration] configuration
     #
     def initialize(configuration)
-      @configuration   = configuration
+      @configuration = configuration
+      @cache         = Cache.new(configuration.cache_directory)
+
+      @cache.create_directory! if configuration.enable_cache
     end
 
     ##
@@ -77,7 +83,9 @@ module RubyLint
     # @return [Array]
     #
     def parse_file(parser, file)
-      return parser.parse(File.read(file), file)
+      ast, comments = parser.parse(File.read(file), file)
+
+      return ast, NodeHash.from_hash(comments)
     end
 
     ##
@@ -98,6 +106,10 @@ module RubyLint
     # @return [Array]
     #
     def process_external_files(root_ast)
+      if cached_values = get_cache(root_ast)
+        return cached_values
+      end
+
       loader = FileLoader.new(
         :directories  => configuration.directories,
         :ignore_paths => configuration.ignore_paths,
@@ -105,15 +117,20 @@ module RubyLint
       )
 
       nodes    = []
-      comments = {}
+      mtimes   = {}
+      comments = NodeHash.new
 
       loader.iterate(root_ast)
 
-      loader.nodes.each do |(ast, cmts)|
+      loader.nodes.each do |(ast, comment_associations)|
         nodes << ast
 
-        comments.merge!(cmts)
+        mtimes[ast.file] = File.mtime(ast.file) if configuration.enable_cache
+
+        comments.merge_hash!(comment_associations)
       end
+
+      set_cache(root_ast, nodes, comments, mtimes)
 
       return nodes, comments
     end
@@ -157,6 +174,45 @@ module RubyLint
         instance = const.new(:vm => vm, :report => report)
         instance.iterate(ast)
       end
+    end
+
+    ##
+    # Checks if the AST node has a cache file and if so returns the nodes and
+    # comments that are cached.
+    #
+    # @param [RubyLint::AST::Node] node
+    # @return [Array]
+    #
+    def get_cache(node)
+      return unless configuration.enable_cache
+
+      cache_name = node.sha1
+
+      if cache.exists?(cache_name)
+        entry = cache.get(cache_name)
+
+        if entry.valid?
+          return entry.nodes, entry.comments
+        else
+          cache.delete(cache_name)
+        end
+      end
+
+      return
+    end
+
+    ##
+    # Caches the values for the given node.
+    #
+    # @param [RubyLint::AST::Node] node
+    # @param [Array] nodes
+    # @param [RubyLint::NodeHash] comments
+    # @param [Hash] mtimes
+    #
+    def set_cache(node, nodes, comments, mtimes)
+      return unless configuration.enable_cache
+
+      cache.set(node.sha1, CacheEntry.new(nodes, comments, mtimes))
     end
   end # Runner
 end # RubyLint

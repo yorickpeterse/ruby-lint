@@ -1,6 +1,10 @@
 require 'rspec'
 require 'stringio'
 require 'redcard'
+require 'tmpdir'
+require 'fileutils'
+require 'tempfile'
+require 'benchmark'
 
 if ENV['COVERAGE']
   require_relative 'support/simplecov'
@@ -9,6 +13,9 @@ end
 if ENV['COVERALLS']
   require_relative 'support/coveralls'
 end
+
+# Disable caching of RubyLint::Runner for all tests.
+ENV['RUBY_LINT_DISABLE_CACHE'] = '1'
 
 require_relative '../lib/ruby-lint'
 require_relative 'support/building'

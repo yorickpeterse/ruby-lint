@@ -61,6 +61,8 @@ Examples:
   on :b, :benchmark, 'Enables benchmarking mode'
   on :d, :debug, 'Displays debugging output in STDERR'
 
+  on :'disable-cache', 'Disables caching of external files'
+
   ##
   # Returns an Array containing the file paths that exist. If a non existing
   # file is encountered `abort` is called.
@@ -110,6 +112,36 @@ Examples:
     @output_destination = destination
   end
 
+  ##
+  # @param [RubyLint::Configuration] configuration
+  # @param [Hash] opts
+  #
+  def configure(configuration, options)
+    option_mapping.each do |key, setter|
+      configuration.send(setter, options[key]) if options[key]
+    end
+
+    if options[:'disable-cache']
+      configuration.enable_cache = false
+    end
+  end
+
+  ##
+  # @param [String] output
+  # @param [Float] exec_time
+  #
+  def show_benchmark_info(output, exec_time)
+    memory_kb = `ps -o rss= #{Process.pid}`.strip.to_f
+    memory_mb = memory_kb / 1024
+
+    output_destination.puts unless output.empty?
+
+    output_destination.puts "Execution time: #{exec_time.round(2)} seconds"
+
+    output_destination.puts "Memory usage: #{memory_mb.round(2)} MB " \
+      "(#{memory_kb.round(2)} KB)"
+  end
+
   run do |opts, args|
     abort 'You must specify at least one file to analyze' if args.empty?
 
@@ -117,27 +149,14 @@ Examples:
     files         = extract_files(args)
     configuration = RubyLint::Configuration.load_from_file
 
-    option_mapping.each do |key, setter|
-      configuration.send(setter, opts[key]) if opts[key]
-    end
+    configure(configuration, opts)
 
-    runner = RubyLint::Runner.new(configuration)
-    output = runner.analyze(files)
+    runner    = RubyLint::Runner.new(configuration)
+    output    = runner.analyze(files)
+    exec_time = Time.now.to_f - start_time
 
     output_destination.puts output unless output.empty?
 
-    exec_time = Time.now.to_f - start_time
-
-    if opts[:benchmark]
-      memory_kb = `ps -o rss= #{Process.pid}`.strip.to_f
-      memory_mb = memory_kb / 1024
-
-      output_destination.puts unless output.empty?
-
-      output_destination.puts "Execution time: #{exec_time.round(2)} seconds"
-
-      output_destination.puts "Memory usage: #{memory_mb.round(2)} MB " \
-        "(#{memory_kb.round(2)} KB)"
-    end
+    show_benchmark_info(output, exec_time) if opts[:benchmark]
   end # run do |opts, args|
 end # RubyLint::CLI.options.command
