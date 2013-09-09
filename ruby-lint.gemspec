@@ -42,4 +42,5 @@ using the handle "yorickpeterse".
   s.add_development_dependency 'json'
   s.add_development_dependency 'kramdown'
   s.add_development_dependency 'redcard'
+  s.add_development_dependency 'gnuplot'
 end
