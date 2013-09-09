@@ -44,6 +44,8 @@ module RubyLint
         paths   = Dir.glob(glob_pattern(segment))
       end
 
+      paths.map! { |path| File.expand_path(path) }
+
       ignore.each do |pattern|
         paths.reject! do |path|
           path.include?(pattern)

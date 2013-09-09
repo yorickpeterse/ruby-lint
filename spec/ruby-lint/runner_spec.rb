@@ -3,6 +3,11 @@ require 'spec_helper'
 describe RubyLint::Runner do
   before do
     @configuration = RubyLint::Configuration.new
+    @cache_dir     = Dir.mktmpdir('ruby-lint')
+  end
+
+  after do
+    FileUtils.rm_rf(@cache_dir)
   end
 
   example 'run analysis on a single file' do
@@ -42,11 +47,27 @@ describe RubyLint::Runner do
 
   example 'associating nodes with external definitions' do
     files  = [fixture_path('associating.rb')]
-    dirs   = [fixture_path('../../lib')]
+    dirs   = [fixture_path('file_scanner/lib/ruby-lint')]
     config = RubyLint::Configuration.new(:directories => dirs)
     runner = RubyLint::Runner.new(config)
     output = runner.analyze(files)
 
     output.empty?.should == true
+  end
+
+  example 'execution time should decrease when caching is enabled' do
+    files  = [fixture_path('uses_external.rb')]
+    dirs   = [fixture_path('file_scanner/rails')]
+    config = RubyLint::Configuration.new(
+      :directories     => dirs,
+      :enable_cache    => true,
+      :cache_directory => @cache_dir
+    )
+
+    runner  = RubyLint::Runner.new(config)
+    initial = Benchmark.measure { runner.analyze(files) }
+    second  = Benchmark.measure { runner.analyze(files) }
+
+    second.real.should <= initial.real
   end
 end

@@ -3,3 +3,4 @@ coverage
 
 pkg
 Gemfile.lock
+.ruby-lint

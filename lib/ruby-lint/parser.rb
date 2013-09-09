@@ -43,7 +43,9 @@ module RubyLint
 
       internal_parser.reset
 
-      return AST::Node.new(:root, [ast]), associator.associate
+      root = AST::Node.new(:root, [ast], :location => ast.location)
+
+      return root, associator.associate
     end
   end # Parser
 end # RubyLint

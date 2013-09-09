@@ -22,9 +22,18 @@ module RubyLint
   # @!attribute [rw] ignore_paths
   #  @return [Array]
   #
+  # @!attribute [rw] enable_cache
+  #  When set to `true` external files and their associated data will be
+  #  cached.
+  #  @return [TrueClass|FalseClass]
+  #
+  # @!attribute [rw] cache_directory
+  #  The path to the directory to use for storing cache files.
+  #  @return [String]
+  #
   class Configuration
     attr_reader :analysis_classes, :report_levels, :presenter, :directories
-    attr_accessor :debug, :ignore_paths
+    attr_accessor :debug, :ignore_paths, :enable_cache, :cache_directory
 
     ##
     # Returns an Array of locations from which to load configuration files.
@@ -86,7 +95,9 @@ module RubyLint
     # @param [Hash] options
     #
     def initialize(options = {})
-      @debug = false
+      @debug           = false
+      @enable_cache    = default_cache_value
+      @cache_directory = default_cache_directory
 
       options.each do |key, value|
         setter = "#{key}="
@@ -216,6 +227,20 @@ module RubyLint
     #
     def default_directories
       return [Dir.pwd]
+    end
+
+    ##
+    # @return [TrueClass|FalseClass]
+    #
+    def default_cache_value
+      return ENV['RUBY_LINT_DISABLE_CACHE'] ? false : true
+    end
+
+    ##
+    # @return [String]
+    #
+    def default_cache_directory
+      return File.join(Dir.pwd, '.ruby-lint')
     end
   end # Configuration
 end # RubyLint
