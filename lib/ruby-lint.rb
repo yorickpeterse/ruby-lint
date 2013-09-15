@@ -1,4 +1,4 @@
-gem 'parser', '>= 2.0.0.pre6'
+gem 'parser', '>= 2.0.0.pre8'
 
 require 'parser'
 require 'parser/current'
