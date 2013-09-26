@@ -1,12 +1,12 @@
 require 'spec_helper'
 
 describe RubyLint::Definition::RubyObject do
-  describe 'method definition DSL' do
+  context 'method definition DSL' do
     before do
       @method = ruby_method.new(:name => 'example', :type => :instance_method)
     end
 
-    describe 'return values' do
+    context 'return values' do
       example 'return a static value' do
         @method.returns(10)
 
@@ -23,7 +23,7 @@ describe RubyLint::Definition::RubyObject do
       end
     end
 
-    describe 'calling methods' do
+    context 'calling methods' do
       before do
         @method.returns(10)
       end
@@ -56,7 +56,7 @@ describe RubyLint::Definition::RubyObject do
       end
     end
 
-    describe 'defining arguments' do
+    context 'defining arguments' do
       example 'define an argument' do
         @method.define_argument('number')
 
