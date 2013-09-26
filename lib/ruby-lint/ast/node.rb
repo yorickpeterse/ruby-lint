@@ -11,21 +11,21 @@ module RubyLint
       # @return [Numeric]
       #
       def line
-        return location.expression.line
+        return location.expression.line if location
       end
 
       ##
       # @return [Numeric]
       #
       def column
-        return location.expression.column
+        return location.expression.column if location
       end
 
       ##
       # @return [String]
       #
       def file
-        return location.expression.source_buffer.name
+        return location.expression.source_buffer.name if location
       end
 
       ##

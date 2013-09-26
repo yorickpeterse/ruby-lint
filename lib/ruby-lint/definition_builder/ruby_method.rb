@@ -62,7 +62,10 @@ module RubyLint
           :parents       => parents,
           :type          => type,
           :instance_type => :instance,
-          :visibility    => options[:visibility]
+          :visibility    => options[:visibility],
+          :line          => node.line,
+          :column        => node.column,
+          :file          => node.file
         )
       end
 

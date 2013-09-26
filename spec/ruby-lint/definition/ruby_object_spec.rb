@@ -194,4 +194,12 @@ describe ruby_object do
 
     target.lookup(:const, 'Foo').should == const
   end
+
+  example 'storing location information in a definition' do
+    obj = ruby_object.new(:line => 10, :column => 2, :file => '(ruby-lint)')
+
+    obj.line.should   == 10
+    obj.column.should == 2
+    obj.file.should   == '(ruby-lint)'
+  end
 end

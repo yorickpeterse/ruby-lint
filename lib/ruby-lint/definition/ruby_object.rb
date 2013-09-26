@@ -59,6 +59,15 @@ module RubyLint
     #   returns a collection of the members instead of the manually defined
     #   value.
     #
+    # @!attribute [r] line
+    #  @return [Numeric] The line number of the definition.
+    #
+    # @!attribute [r] column
+    #  @return [Numeric] The column number of the definition.
+    #
+    # @!attribute [r] file
+    #  @return [String] The file path of the definition.
+    #
     class RubyObject
       include VariablePredicates
 
@@ -109,7 +118,10 @@ module RubyLint
       ].freeze
 
       attr_reader :update_parents,
+        :column,
         :definitions,
+        :file,
+        :line,
         :members_as_value,
         :name,
         :type

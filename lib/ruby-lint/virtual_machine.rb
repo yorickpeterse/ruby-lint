@@ -212,7 +212,7 @@ module RubyLint
         value = assignment_value
       end
 
-      assign_variable(type, name, value)
+      assign_variable(type, name, value, node)
     end
 
     ASSIGNMENT_TYPES.each do |callback, type|
@@ -867,8 +867,9 @@ Received: #{arguments.length}
     # @param [Symbol] type The type of variable.
     # @param [String] name The name of the variable
     # @param [RubyLint::Definition::RubyObject] value
+    # @param [RubyLint::AST::Node] node
     #
-    def assign_variable(type, name, value)
+    def assign_variable(type, name, value, node)
       existing   = current_scope.lookup(type, name)
       ref_amount = existing ? existing.reference_amount + 1 : 0
       variable   = Definition::RubyObject.new(
@@ -876,7 +877,10 @@ Received: #{arguments.length}
         :name             => name,
         :value            => value,
         :instance_type    => :instance,
-        :reference_amount => ref_amount
+        :reference_amount => ref_amount,
+        :line             => node.line,
+        :column           => node.column,
+        :file             => node.file
       )
 
       buffer_assignment_value(variable.value)

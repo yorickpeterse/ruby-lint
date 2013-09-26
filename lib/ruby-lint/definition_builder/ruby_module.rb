@@ -58,7 +58,10 @@ module RubyLint
           :name             => module_name,
           :parents          => parents,
           :reference_amount => 1,
-          :type             => :const
+          :type             => :const,
+          :line             => node.line,
+          :column           => node.column,
+          :file             => node.file
         )
 
         definition.add(:keyword, 'self', definition)
