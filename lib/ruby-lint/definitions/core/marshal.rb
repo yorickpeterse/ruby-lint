@@ -464,3 +464,5 @@ end
 #
 RubyLint::GlobalScope.definitions.define_constant('Marshal::VERSION_STRING') do |klass|
 end
+
+RubyLint::GlobalScope.definitions.lookup(:const, 'Marshal').deep_freeze

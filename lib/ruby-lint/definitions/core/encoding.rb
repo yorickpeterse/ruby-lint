@@ -2028,3 +2028,5 @@ end
 #
 RubyLint::GlobalScope.definitions.define_constant('Encoding::Windows_874') do |klass|
 end
+
+RubyLint::GlobalScope.definitions.lookup(:const, 'Encoding').deep_freeze

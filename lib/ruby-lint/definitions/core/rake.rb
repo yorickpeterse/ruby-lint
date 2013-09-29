@@ -4782,3 +4782,5 @@ end
 RubyLint::GlobalScope.definitions.define_constant('Rake::Win32::Win32HomeError') do |klass|
   klass.inherits(RubyLint::GlobalScope.constant_proxy('RuntimeError'))
 end
+
+RubyLint::GlobalScope.definitions.lookup(:const, 'Rake').deep_freeze

@@ -39,3 +39,5 @@ RubyLint::GlobalScope.definitions.define_constant('ObjectSpace') do |klass|
     method.define_argument('obj')
   end
 end
+
+RubyLint::GlobalScope.definitions.lookup(:const, 'ObjectSpace').deep_freeze

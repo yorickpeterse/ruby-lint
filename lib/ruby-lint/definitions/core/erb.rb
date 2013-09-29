@@ -309,3 +309,5 @@ RubyLint::GlobalScope.definitions.define_constant('ERB::Util') do |klass|
     method.define_argument('s')
   end
 end
+
+RubyLint::GlobalScope.definitions.lookup(:const, 'ERB').deep_freeze

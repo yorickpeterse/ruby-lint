@@ -121,3 +121,5 @@ RubyLint::GlobalScope.definitions.define_constant('Numeric') do |klass|
 
   klass.define_instance_method('zero?')
 end
+
+RubyLint::GlobalScope.definitions.lookup(:const, 'Numeric').deep_freeze

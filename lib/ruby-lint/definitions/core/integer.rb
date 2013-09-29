@@ -98,3 +98,5 @@ RubyLint::GlobalScope.definitions.define_constant('Integer') do |klass|
     method.define_argument('other')
   end
 end
+
+RubyLint::GlobalScope.definitions.lookup(:const, 'Integer').deep_freeze

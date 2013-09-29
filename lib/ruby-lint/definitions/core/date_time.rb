@@ -379,3 +379,5 @@ end
 #
 RubyLint::GlobalScope.definitions.define_constant('DateTime::UNIX_EPOCH_IN_CJD') do |klass|
 end
+
+RubyLint::GlobalScope.definitions.lookup(:const, 'DateTime').deep_freeze

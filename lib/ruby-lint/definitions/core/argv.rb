@@ -5,3 +5,5 @@
 #
 RubyLint::GlobalScope.definitions.define_constant('ARGV') do |klass|
 end
+
+RubyLint::GlobalScope.definitions.lookup(:const, 'ARGV').deep_freeze

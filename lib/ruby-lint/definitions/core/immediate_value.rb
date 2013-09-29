@@ -17,3 +17,5 @@ RubyLint::GlobalScope.definitions.define_constant('ImmediateValue') do |klass|
 
   klass.define_instance_method('tainted?')
 end
+
+RubyLint::GlobalScope.definitions.lookup(:const, 'ImmediateValue').deep_freeze

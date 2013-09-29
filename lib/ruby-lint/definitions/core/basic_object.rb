@@ -40,3 +40,5 @@ RubyLint::GlobalScope.definitions.define_constant('BasicObject') do |klass|
     method.define_block_argument('prc')
   end
 end
+
+RubyLint::GlobalScope.definitions.lookup(:const, 'BasicObject').deep_freeze

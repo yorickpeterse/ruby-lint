@@ -17,3 +17,5 @@ RubyLint::GlobalScope.definitions.define_constant('SystemExit') do |klass|
 
   klass.define_instance_method('success?')
 end
+
+RubyLint::GlobalScope.definitions.lookup(:const, 'SystemExit').deep_freeze

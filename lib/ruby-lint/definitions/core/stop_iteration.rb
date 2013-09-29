@@ -6,3 +6,5 @@
 RubyLint::GlobalScope.definitions.define_constant('StopIteration') do |klass|
   klass.inherits(RubyLint::GlobalScope.constant_proxy('IndexError'))
 end
+
+RubyLint::GlobalScope.definitions.lookup(:const, 'StopIteration').deep_freeze

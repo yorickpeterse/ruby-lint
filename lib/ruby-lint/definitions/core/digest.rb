@@ -164,3 +164,5 @@ end
 RubyLint::GlobalScope.definitions.define_constant('Digest::SHA512') do |klass|
   klass.inherits(RubyLint::GlobalScope.constant_proxy('Digest::Base'))
 end
+
+RubyLint::GlobalScope.definitions.lookup(:const, 'Digest').deep_freeze

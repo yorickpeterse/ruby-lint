@@ -6,3 +6,5 @@
 RubyLint::GlobalScope.definitions.define_constant('Data') do |klass|
   klass.inherits(RubyLint::GlobalScope.constant_proxy('Object'))
 end
+
+RubyLint::GlobalScope.definitions.lookup(:const, 'Data').deep_freeze

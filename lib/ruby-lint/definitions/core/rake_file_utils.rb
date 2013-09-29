@@ -201,3 +201,5 @@ RubyLint::GlobalScope.definitions.define_constant('RakeFileUtils') do |klass|
     method.define_optional_argument('msg')
   end
 end
+
+RubyLint::GlobalScope.definitions.lookup(:const, 'RakeFileUtils').deep_freeze

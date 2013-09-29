@@ -156,3 +156,5 @@ end
 #
 RubyLint::GlobalScope.definitions.define_constant('StringScanner::Version') do |klass|
 end
+
+RubyLint::GlobalScope.definitions.lookup(:const, 'StringScanner').deep_freeze

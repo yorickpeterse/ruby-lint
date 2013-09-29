@@ -3737,3 +3737,4 @@ RubyLint::GlobalScope.definitions.define_constant('Sprockets::YUICompressor') do
   end
 end
 
+RubyLint::GlobalScope.definitions.lookup(:const, 'Sprockets').deep_freeze

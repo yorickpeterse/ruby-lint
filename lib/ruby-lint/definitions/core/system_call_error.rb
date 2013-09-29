@@ -29,3 +29,5 @@ RubyLint::GlobalScope.definitions.define_constant('SystemCallError') do |klass|
     method.define_rest_argument('args')
   end
 end
+
+RubyLint::GlobalScope.definitions.lookup(:const, 'SystemCallError').deep_freeze

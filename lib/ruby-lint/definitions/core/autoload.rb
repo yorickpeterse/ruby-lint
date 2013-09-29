@@ -37,3 +37,5 @@ RubyLint::GlobalScope.definitions.define_constant('Autoload') do |klass|
     method.define_argument('path')
   end
 end
+
+RubyLint::GlobalScope.definitions.lookup(:const, 'Autoload').deep_freeze

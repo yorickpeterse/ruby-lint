@@ -16,3 +16,5 @@ RubyLint::GlobalScope.definitions.define_constant('NoMethodError') do |klass|
 
   klass.define_instance_method('name')
 end
+
+RubyLint::GlobalScope.definitions.lookup(:const, 'NoMethodError').deep_freeze

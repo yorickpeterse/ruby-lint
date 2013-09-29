@@ -166,6 +166,26 @@ module RubyLint
       end
 
       ##
+      # Freezes the definition and all child definitions.
+      #
+      def deep_freeze
+        @definitions.each do |type, collection|
+          collection.each do |name, object|
+            if object != self and !object.frozen?
+              object.deep_freeze
+            end
+          end
+        end
+
+        @definitions.freeze
+        @parents.freeze
+        @update_parents.freeze
+        @value.freeze
+
+        freeze
+      end
+
+      ##
       # Returns the value of the definition. If `members_as_value` is set to
       # `true` the return value is a Hash containing the names and values of
       # each member.
@@ -364,7 +384,7 @@ module RubyLint
       def has_definition?(type, name)
         type, name = prepare_lookup(type, name)
 
-        if definitions[type] and definitions[type][name]
+        if definitions.key?(type) and definitions[type].key?(name)
           return true
 
         elsif lookup_parent?(type)
@@ -409,7 +429,7 @@ module RubyLint
       def defines?(type, name)
         type, name = prepare_lookup(type, name)
 
-        return definitions[type] && definitions[type][name]
+        return definitions.key?(type) && definitions[type].key?(name)
       end
 
       ##
@@ -423,7 +443,9 @@ module RubyLint
       # @return [Array]
       #
       def list(type)
-        return definitions[type.to_sym].values
+        type = type.to_sym
+
+        return definitions.key?(type) ? definitions[type].values : []
       end
 
       ##

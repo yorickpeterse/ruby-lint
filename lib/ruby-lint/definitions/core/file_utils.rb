@@ -1025,3 +1025,5 @@ RubyLint::GlobalScope.definitions.define_constant('FileUtils::Verbose') do |klas
     method.define_optional_argument('options')
   end
 end
+
+RubyLint::GlobalScope.definitions.lookup(:const, 'FileUtils').deep_freeze

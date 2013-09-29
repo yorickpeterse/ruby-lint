@@ -5,3 +5,5 @@
 #
 RubyLint::GlobalScope.definitions.define_constant('RUBY_PLATFORM') do |klass|
 end
+
+RubyLint::GlobalScope.definitions.lookup(:const, 'RUBY_PLATFORM').deep_freeze

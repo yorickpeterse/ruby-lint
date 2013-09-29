@@ -555,3 +555,5 @@ RubyLint::GlobalScope.definitions.copy(
   :method,
   :instance_method
 )
+
+RubyLint::GlobalScope.definitions.lookup(:const, 'Kernel').deep_freeze

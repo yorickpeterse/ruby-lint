@@ -22,3 +22,4 @@ RubyLint::GlobalScope.definitions.define_constant('ActionPack::VERSION') do |kla
   end
 end
 
+RubyLint::GlobalScope.definitions.lookup(:const, 'ActionPack').deep_freeze

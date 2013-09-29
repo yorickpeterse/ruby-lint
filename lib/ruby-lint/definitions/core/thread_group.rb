@@ -20,3 +20,5 @@ RubyLint::GlobalScope.definitions.define_constant('ThreadGroup') do |klass|
     method.define_argument('thread')
   end
 end
+
+RubyLint::GlobalScope.definitions.lookup(:const, 'ThreadGroup').deep_freeze

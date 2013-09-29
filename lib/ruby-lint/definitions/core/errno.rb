@@ -3329,3 +3329,5 @@ end
 #
 RubyLint::GlobalScope.definitions.define_constant('Errno::Mapping') do |klass|
 end
+
+RubyLint::GlobalScope.definitions.lookup(:const, 'Errno').deep_freeze

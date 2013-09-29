@@ -71,3 +71,5 @@ RubyLint::GlobalScope.definitions.define_constant('MatchData') do |klass|
     method.define_rest_argument('indexes')
   end
 end
+
+RubyLint::GlobalScope.definitions.lookup(:const, 'MatchData').deep_freeze

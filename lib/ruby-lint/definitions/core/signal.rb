@@ -35,3 +35,5 @@ end
 #
 RubyLint::GlobalScope.definitions.define_constant('Signal::Numbers') do |klass|
 end
+
+RubyLint::GlobalScope.definitions.lookup(:const, 'Signal').deep_freeze

@@ -11793,3 +11793,4 @@ RubyLint::GlobalScope.definitions.define_constant('ActiveRecord::WrappedDatabase
   end
 end
 
+RubyLint::GlobalScope.definitions.lookup(:const, 'ActiveRecord').deep_freeze

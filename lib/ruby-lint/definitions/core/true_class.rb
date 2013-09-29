@@ -28,3 +28,5 @@ RubyLint::GlobalScope.definitions.define_constant('TrueClass') do |klass|
     method.define_argument('other')
   end
 end
+
+RubyLint::GlobalScope.definitions.lookup(:const, 'TrueClass').deep_freeze

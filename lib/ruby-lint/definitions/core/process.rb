@@ -600,3 +600,5 @@ end
 #
 RubyLint::GlobalScope.definitions.define_constant('Process::WUNTRACED') do |klass|
 end
+
+RubyLint::GlobalScope.definitions.lookup(:const, 'Process').deep_freeze

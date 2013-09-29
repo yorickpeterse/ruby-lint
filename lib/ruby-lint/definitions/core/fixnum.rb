@@ -154,3 +154,5 @@ end
 #
 RubyLint::GlobalScope.definitions.define_constant('Fixnum::MIN') do |klass|
 end
+
+RubyLint::GlobalScope.definitions.lookup(:const, 'Fixnum').deep_freeze

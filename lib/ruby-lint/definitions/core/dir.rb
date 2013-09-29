@@ -494,3 +494,5 @@ end
 #
 RubyLint::GlobalScope.definitions.define_constant('Dir::TellKind') do |klass|
 end
+
+RubyLint::GlobalScope.definitions.lookup(:const, 'Dir').deep_freeze

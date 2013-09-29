@@ -6,3 +6,5 @@
 RubyLint::GlobalScope.definitions.define_constant('NotImplementedError') do |klass|
   klass.inherits(RubyLint::GlobalScope.constant_proxy('ScriptError'))
 end
+
+RubyLint::GlobalScope.definitions.lookup(:const, 'NotImplementedError').deep_freeze

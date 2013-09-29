@@ -17,3 +17,5 @@ RubyLint::GlobalScope.definitions.define_constant('SignalException') do |klass|
 
   klass.define_instance_method('signo')
 end
+
+RubyLint::GlobalScope.definitions.lookup(:const, 'SignalException').deep_freeze

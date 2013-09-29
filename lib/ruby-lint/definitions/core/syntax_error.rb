@@ -42,3 +42,5 @@ RubyLint::GlobalScope.definitions.define_constant('SyntaxError') do |klass|
 
   klass.define_instance_method('reason')
 end
+
+RubyLint::GlobalScope.definitions.lookup(:const, 'SyntaxError').deep_freeze

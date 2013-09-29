@@ -926,3 +926,5 @@ end
 #
 RubyLint::GlobalScope.definitions.define_constant('IO::WaitWritable') do |klass|
 end
+
+RubyLint::GlobalScope.definitions.lookup(:const, 'IO').deep_freeze

@@ -5,3 +5,5 @@
 #
 RubyLint::GlobalScope.definitions.define_constant('RUBY_VERSION') do |klass|
 end
+
+RubyLint::GlobalScope.definitions.lookup(:const, 'RUBY_VERSION').deep_freeze

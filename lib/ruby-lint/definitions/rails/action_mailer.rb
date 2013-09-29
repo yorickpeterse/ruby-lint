@@ -1743,3 +1743,4 @@ RubyLint::GlobalScope.definitions.define_constant('ActionMailer::VERSION') do |k
   end
 end
 
+RubyLint::GlobalScope.definitions.lookup(:const, 'ActionMailer').deep_freeze

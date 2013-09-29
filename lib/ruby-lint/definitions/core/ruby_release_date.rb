@@ -5,3 +5,5 @@
 #
 RubyLint::GlobalScope.definitions.define_constant('RUBY_RELEASE_DATE') do |klass|
 end
+
+RubyLint::GlobalScope.definitions.lookup(:const, 'RUBY_RELEASE_DATE').deep_freeze

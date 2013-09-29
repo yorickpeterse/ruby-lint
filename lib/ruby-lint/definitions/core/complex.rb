@@ -193,3 +193,5 @@ end
 #
 RubyLint::GlobalScope.definitions.define_constant('Complex::I') do |klass|
 end
+
+RubyLint::GlobalScope.definitions.lookup(:const, 'Complex').deep_freeze

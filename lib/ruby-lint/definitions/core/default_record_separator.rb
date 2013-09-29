@@ -5,3 +5,5 @@
 #
 RubyLint::GlobalScope.definitions.define_constant('DEFAULT_RECORD_SEPARATOR') do |klass|
 end
+
+RubyLint::GlobalScope.definitions.lookup(:const, 'DEFAULT_RECORD_SEPARATOR').deep_freeze

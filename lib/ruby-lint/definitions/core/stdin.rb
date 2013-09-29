@@ -6,3 +6,5 @@
 RubyLint::GlobalScope.definitions.define_constant('STDIN') do |klass|
   klass.inherits(RubyLint::GlobalScope.constant_proxy('IO'))
 end
+
+RubyLint::GlobalScope.definitions.lookup(:const, 'STDIN').deep_freeze

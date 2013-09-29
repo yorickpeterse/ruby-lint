@@ -7392,3 +7392,4 @@ RubyLint::GlobalScope.definitions.define_constant('ActionView::WrongEncodingErro
   end
 end
 
+RubyLint::GlobalScope.definitions.lookup(:const, 'ActionView').deep_freeze

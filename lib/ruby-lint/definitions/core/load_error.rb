@@ -26,3 +26,5 @@ end
 RubyLint::GlobalScope.definitions.define_constant('LoadError::MRIExtensionError') do |klass|
   klass.inherits(RubyLint::GlobalScope.constant_proxy('LoadError::InvalidExtensionError'))
 end
+
+RubyLint::GlobalScope.definitions.lookup(:const, 'LoadError').deep_freeze

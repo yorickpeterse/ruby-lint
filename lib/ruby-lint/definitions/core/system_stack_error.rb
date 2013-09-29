@@ -6,3 +6,5 @@
 RubyLint::GlobalScope.definitions.define_constant('SystemStackError') do |klass|
   klass.inherits(RubyLint::GlobalScope.constant_proxy('Exception'))
 end
+
+RubyLint::GlobalScope.definitions.lookup(:const, 'SystemStackError').deep_freeze

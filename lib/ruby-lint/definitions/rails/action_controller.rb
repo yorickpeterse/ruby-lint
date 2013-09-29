@@ -5651,3 +5651,4 @@ RubyLint::GlobalScope.definitions.define_constant('ActionController::UrlGenerati
   end
 end
 
+RubyLint::GlobalScope.definitions.lookup(:const, 'ActionController').deep_freeze

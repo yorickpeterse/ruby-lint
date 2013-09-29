@@ -28,3 +28,5 @@ RubyLint::GlobalScope.definitions.define_constant('FalseClass') do |klass|
     method.define_argument('other')
   end
 end
+
+RubyLint::GlobalScope.definitions.lookup(:const, 'FalseClass').deep_freeze

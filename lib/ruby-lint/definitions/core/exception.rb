@@ -70,3 +70,5 @@ RubyLint::GlobalScope.definitions.define_constant('Exception') do |klass|
 
   klass.define_instance_method('to_yaml_properties')
 end
+
+RubyLint::GlobalScope.definitions.lookup(:const, 'Exception').deep_freeze

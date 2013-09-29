@@ -34,3 +34,5 @@ end
 #
 RubyLint::GlobalScope.definitions.define_constant('RbConfig::MAKEFILE_CONFIG') do |klass|
 end
+
+RubyLint::GlobalScope.definitions.lookup(:const, 'RbConfig').deep_freeze

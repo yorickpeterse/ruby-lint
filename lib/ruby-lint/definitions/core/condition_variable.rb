@@ -17,3 +17,5 @@ RubyLint::GlobalScope.definitions.define_constant('ConditionVariable') do |klass
     method.define_optional_argument('timeout')
   end
 end
+
+RubyLint::GlobalScope.definitions.lookup(:const, 'ConditionVariable').deep_freeze

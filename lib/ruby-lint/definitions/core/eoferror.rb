@@ -6,3 +6,5 @@
 RubyLint::GlobalScope.definitions.define_constant('EOFError') do |klass|
   klass.inherits(RubyLint::GlobalScope.constant_proxy('IOError'))
 end
+
+RubyLint::GlobalScope.definitions.lookup(:const, 'EOFError').deep_freeze

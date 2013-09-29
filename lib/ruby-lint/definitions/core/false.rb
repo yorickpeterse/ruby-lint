@@ -5,3 +5,5 @@
 #
 RubyLint::GlobalScope.definitions.define_constant('FALSE') do |klass|
 end
+
+RubyLint::GlobalScope.definitions.lookup(:const, 'FALSE').deep_freeze

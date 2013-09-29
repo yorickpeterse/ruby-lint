@@ -6019,3 +6019,4 @@ RubyLint::GlobalScope.definitions.define_constant('ActiveSupport::XmlMini_REXML'
   end
 end
 
+RubyLint::GlobalScope.definitions.lookup(:const, 'ActiveSupport').deep_freeze

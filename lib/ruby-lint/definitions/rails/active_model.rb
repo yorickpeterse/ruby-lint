@@ -1578,3 +1578,4 @@ RubyLint::GlobalScope.definitions.define_constant('ActiveModel::Validator') do |
   end
 end
 
+RubyLint::GlobalScope.definitions.lookup(:const, 'ActiveModel').deep_freeze

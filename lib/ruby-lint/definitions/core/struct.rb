@@ -355,3 +355,5 @@ end
 #
 RubyLint::GlobalScope.definitions.define_constant('Struct::Tms::STRUCT_ATTRS') do |klass|
 end
+
+RubyLint::GlobalScope.definitions.lookup(:const, 'Struct').deep_freeze

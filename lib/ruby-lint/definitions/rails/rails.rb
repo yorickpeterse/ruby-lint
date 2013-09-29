@@ -3288,3 +3288,4 @@ RubyLint::GlobalScope.definitions.define_constant('Rails::WelcomeController') do
   end
 end
 
+RubyLint::GlobalScope.definitions.lookup(:const, 'Rails').deep_freeze

@@ -25,7 +25,7 @@ namespace :generate do
     generator = RubyLint::DefinitionGenerator.new(
       Object,
       directory,
-      :ignore    => %w{BasicObject Class GEMSPEC Module},
+      :ignore    => %w{BasicObject Class GEMSPEC Module Kernel},
       :overwrite => !!args[:overwrite]
     )
 

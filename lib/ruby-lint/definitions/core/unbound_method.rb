@@ -49,3 +49,5 @@ RubyLint::GlobalScope.definitions.define_constant('UnboundMethod') do |klass|
 
   klass.define_instance_method('to_s')
 end
+
+RubyLint::GlobalScope.definitions.lookup(:const, 'UnboundMethod').deep_freeze

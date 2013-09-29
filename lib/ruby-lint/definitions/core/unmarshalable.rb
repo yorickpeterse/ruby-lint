@@ -11,3 +11,5 @@ RubyLint::GlobalScope.definitions.define_constant('Unmarshalable') do |klass|
     method.define_argument('ms')
   end
 end
+
+RubyLint::GlobalScope.definitions.lookup(:const, 'Unmarshalable').deep_freeze

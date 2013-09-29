@@ -285,3 +285,5 @@ end
 #
 RubyLint::GlobalScope.definitions.define_constant('StringIO::Undefined') do |klass|
 end
+
+RubyLint::GlobalScope.definitions.lookup(:const, 'StringIO').deep_freeze

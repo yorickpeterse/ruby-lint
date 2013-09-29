@@ -40,3 +40,5 @@ RubyLint::GlobalScope.definitions.define_constant('SizedQueue') do |klass|
     method.define_rest_argument('args')
   end
 end
+
+RubyLint::GlobalScope.definitions.lookup(:const, 'SizedQueue').deep_freeze

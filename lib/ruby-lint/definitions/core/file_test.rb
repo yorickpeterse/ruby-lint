@@ -104,3 +104,5 @@ RubyLint::GlobalScope.definitions.define_constant('FileTest') do |klass|
     method.define_argument('path')
   end
 end
+
+RubyLint::GlobalScope.definitions.lookup(:const, 'FileTest').deep_freeze

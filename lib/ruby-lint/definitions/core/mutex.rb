@@ -30,3 +30,5 @@ RubyLint::GlobalScope.definitions.define_constant('Mutex') do |klass|
 
   klass.define_instance_method('unlock')
 end
+
+RubyLint::GlobalScope.definitions.lookup(:const, 'Mutex').deep_freeze

@@ -19,3 +19,5 @@ RubyLint::GlobalScope.definitions.define_constant('Precision') do |klass|
 
   klass.define_instance_method('prec_i')
 end
+
+RubyLint::GlobalScope.definitions.lookup(:const, 'Precision').deep_freeze

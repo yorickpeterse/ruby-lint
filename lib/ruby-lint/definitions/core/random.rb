@@ -36,3 +36,5 @@ RubyLint::GlobalScope.definitions.define_constant('Random') do |klass|
 
   klass.define_instance_method('seed')
 end
+
+RubyLint::GlobalScope.definitions.lookup(:const, 'Random').deep_freeze

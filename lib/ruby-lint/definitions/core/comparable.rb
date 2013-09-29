@@ -36,3 +36,5 @@ RubyLint::GlobalScope.definitions.define_constant('Comparable') do |klass|
     method.define_argument('max')
   end
 end
+
+RubyLint::GlobalScope.definitions.lookup(:const, 'Comparable').deep_freeze

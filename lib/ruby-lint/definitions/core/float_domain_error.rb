@@ -6,3 +6,5 @@
 RubyLint::GlobalScope.definitions.define_constant('FloatDomainError') do |klass|
   klass.inherits(RubyLint::GlobalScope.constant_proxy('RangeError'))
 end
+
+RubyLint::GlobalScope.definitions.lookup(:const, 'FloatDomainError').deep_freeze

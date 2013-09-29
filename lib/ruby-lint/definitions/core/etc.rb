@@ -136,3 +136,5 @@ RubyLint::GlobalScope.definitions.define_constant('Etc::Passwd') do |klass|
 
   klass.define_instance_method('uid')
 end
+
+RubyLint::GlobalScope.definitions.lookup(:const, 'Etc').deep_freeze

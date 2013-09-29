@@ -686,6 +686,9 @@ Received: #{arguments.length}
         retval = context.call_method(name)
 
         retval ? push_value(retval) : push_unknown_value
+
+        # Track the method call
+        track_method_call(context, name, node)
       else
         push_unknown_value
       end
@@ -1120,6 +1123,38 @@ Received: #{arguments.length}
       # but YARD allows you to specify multiple ones. For now we'll take the
       # first one but there should be a nicer way to do this.
       definition.returns(definitions[0]) if definitions[0]
+    end
+
+    ##
+    # Tracks a method call.
+    #
+    # @param [RubyLint::Definition::RubyMethod] definition
+    # @param [String] name
+    # @param [RubyLint::AST::Node] node
+    #
+    def track_method_call(definition, name, node)
+      method   = definition.lookup(definition.method_call_type, name)
+      current  = current_scope
+      location = {
+        :line   => node.line,
+        :column => node.column,
+        :file   => node.file
+      }
+
+      # Add the call to the current scope if we're dealing with a writable
+      # method definition.
+      if current.respond_to?(:calls) and !current.frozen?
+        current.calls.push(
+          MethodCallInfo.new(location.merge(:definition => method))
+        )
+      end
+
+      # Add the caller to the called method, this allows for inverse lookups.
+      unless method.frozen?
+        method.callers.push(
+          MethodCallInfo.new(location.merge(:definition => definition))
+        )
+      end
     end
   end # VirtualMachine
 end # RubyLint

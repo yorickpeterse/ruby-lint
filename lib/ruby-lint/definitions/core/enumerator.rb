@@ -35,3 +35,5 @@ RubyLint::GlobalScope.definitions.define_constant('Enumerator') do |klass|
     method.define_optional_argument('offset')
   end
 end
+
+RubyLint::GlobalScope.definitions.lookup(:const, 'Enumerator').deep_freeze

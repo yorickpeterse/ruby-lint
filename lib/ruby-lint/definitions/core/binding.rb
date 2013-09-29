@@ -50,3 +50,5 @@ RubyLint::GlobalScope.definitions.define_constant('Binding') do |klass|
 
   klass.define_instance_method('variables=')
 end
+
+RubyLint::GlobalScope.definitions.lookup(:const, 'Binding').deep_freeze

@@ -12,3 +12,5 @@ RubyLint::GlobalScope.definitions.define_constant('Interrupt') do |klass|
     method.define_rest_argument('args')
   end
 end
+
+RubyLint::GlobalScope.definitions.lookup(:const, 'Interrupt').deep_freeze

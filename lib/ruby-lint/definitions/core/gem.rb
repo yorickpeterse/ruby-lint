@@ -3159,3 +3159,5 @@ end
 #
 RubyLint::GlobalScope.definitions.define_constant('Gem::WIN_PATTERNS') do |klass|
 end
+
+RubyLint::GlobalScope.definitions.lookup(:const, 'Gem').deep_freeze

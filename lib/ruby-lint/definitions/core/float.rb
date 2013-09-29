@@ -305,3 +305,5 @@ end
 #
 RubyLint::GlobalScope.definitions.define_constant('Float::ROUNDS') do |klass|
 end
+
+RubyLint::GlobalScope.definitions.lookup(:const, 'Float').deep_freeze

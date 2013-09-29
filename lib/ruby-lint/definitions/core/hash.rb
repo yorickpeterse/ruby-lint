@@ -510,3 +510,5 @@ RubyLint::GlobalScope.definitions.define_constant('Hash::State') do |klass|
 
   klass.define_instance_method('tail=')
 end
+
+RubyLint::GlobalScope.definitions.lookup(:const, 'Hash').deep_freeze

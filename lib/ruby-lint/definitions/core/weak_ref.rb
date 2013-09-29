@@ -40,3 +40,5 @@ end
 RubyLint::GlobalScope.definitions.define_constant('WeakRef::RefError') do |klass|
   klass.inherits(RubyLint::GlobalScope.constant_proxy('RuntimeError'))
 end
+
+RubyLint::GlobalScope.definitions.lookup(:const, 'WeakRef').deep_freeze

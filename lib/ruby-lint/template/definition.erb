@@ -26,3 +26,5 @@ RubyLint::GlobalScope.definitions.define_constant('<%= constant.name %>') do |kl
   <%- end -%>
 end
 <% end %>
+
+RubyLint::GlobalScope.definitions.lookup(:const, '<%= @constants[0].name %>').deep_freeze

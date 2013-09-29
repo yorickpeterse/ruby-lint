@@ -36,8 +36,8 @@ describe RubyLint::VirtualMachine do
     end
 
     example 'assign a value to a constant path' do
-      defs = build_definitions('Kernel::FOO = 10')
-      foo  = defs.lookup(:const, 'Kernel').lookup(:const, 'FOO')
+      defs = build_definitions('module Foo; end; Foo::FOO = 10')
+      foo  = defs.lookup(:const, 'Foo').lookup(:const, 'FOO')
 
       foo.is_a?(ruby_object).should == true
 

@@ -102,3 +102,5 @@ RubyLint::GlobalScope.definitions.define_constant('Range::SortedElement') do |kl
 
   klass.define_instance_method('value')
 end
+
+RubyLint::GlobalScope.definitions.lookup(:const, 'Range').deep_freeze

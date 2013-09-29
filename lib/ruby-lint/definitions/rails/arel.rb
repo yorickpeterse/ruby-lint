@@ -3555,3 +3555,4 @@ RubyLint::GlobalScope.definitions.define_constant('Arel::WindowPredications') do
   end
 end
 
+RubyLint::GlobalScope.definitions.lookup(:const, 'Arel').deep_freeze

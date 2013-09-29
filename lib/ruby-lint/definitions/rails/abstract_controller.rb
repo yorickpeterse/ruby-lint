@@ -479,3 +479,4 @@ RubyLint::GlobalScope.definitions.define_constant('AbstractController::ViewPaths
   end
 end
 
+RubyLint::GlobalScope.definitions.lookup(:const, 'AbstractController').deep_freeze

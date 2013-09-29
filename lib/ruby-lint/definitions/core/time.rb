@@ -231,3 +231,5 @@ end
 #
 RubyLint::GlobalScope.definitions.define_constant('Time::MonthValue') do |klass|
 end
+
+RubyLint::GlobalScope.definitions.lookup(:const, 'Time').deep_freeze

@@ -107,3 +107,5 @@ RubyLint::GlobalScope.definitions.define_constant('Proc') do |klass|
     method.define_block_argument('block')
   end
 end
+
+RubyLint::GlobalScope.definitions.lookup(:const, 'Proc').deep_freeze

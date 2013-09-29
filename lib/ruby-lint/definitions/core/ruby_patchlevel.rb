@@ -5,3 +5,5 @@
 #
 RubyLint::GlobalScope.definitions.define_constant('RUBY_PATCHLEVEL') do |klass|
 end
+
+RubyLint::GlobalScope.definitions.lookup(:const, 'RUBY_PATCHLEVEL').deep_freeze

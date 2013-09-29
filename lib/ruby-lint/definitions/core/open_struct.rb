@@ -47,3 +47,5 @@ end
 #
 RubyLint::GlobalScope.definitions.define_constant('OpenStruct::InspectKey') do |klass|
 end
+
+RubyLint::GlobalScope.definitions.lookup(:const, 'OpenStruct').deep_freeze

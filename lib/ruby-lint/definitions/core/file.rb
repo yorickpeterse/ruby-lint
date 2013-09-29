@@ -1275,3 +1275,5 @@ end
 #
 RubyLint::GlobalScope.definitions.define_constant('File::WaitWritable') do |klass|
 end
+
+RubyLint::GlobalScope.definitions.lookup(:const, 'File').deep_freeze

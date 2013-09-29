@@ -12,8 +12,35 @@ module RubyLint
     # @!attribute [r] return_value
     #  @return [Mixed] The value that is returned by the method.
     #
+    # @!attribute [r] calls
+    #  @return [Array<RubyLint::MethodCallInfo>] The method calls made in the
+    #   body of this method.
+    #
+    # @!attribute [r] callers
+    #  @return [Array<RubyLint::MethodCallInfo>] The methods that called this
+    #   method.
+    #
     class RubyMethod < RubyObject
-      attr_reader :return_value, :visibility
+      attr_reader :calls, :callers, :return_value, :visibility
+
+      ##
+      # Called after a new instance of this class is created.
+      #
+      def after_initialize
+        @calls   = []
+        @callers = []
+      end
+
+      ##
+      # @see RubyLint::Definition::RubyObject#deep_freeze
+      #
+      def deep_freeze
+        calls.freeze
+        callers.freeze
+        return_value.freeze
+
+        super
+      end
 
       ##
       # @return [Array]

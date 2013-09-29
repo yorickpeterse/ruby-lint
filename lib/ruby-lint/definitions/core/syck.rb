@@ -28,3 +28,5 @@ end
 #
 RubyLint::GlobalScope.definitions.define_constant('Syck::ENGINE') do |klass|
 end
+
+RubyLint::GlobalScope.definitions.lookup(:const, 'Syck').deep_freeze

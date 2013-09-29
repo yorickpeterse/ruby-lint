@@ -57,3 +57,5 @@ end
 RubyLint::GlobalScope.definitions.define_constant('MonitorMixin::ConditionVariable::Timeout') do |klass|
   klass.inherits(RubyLint::GlobalScope.constant_proxy('Exception'))
 end
+
+RubyLint::GlobalScope.definitions.lookup(:const, 'MonitorMixin').deep_freeze

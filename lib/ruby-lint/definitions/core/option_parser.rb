@@ -1353,3 +1353,5 @@ end
 #
 RubyLint::GlobalScope.definitions.define_constant('OptionParser::Version') do |klass|
 end
+
+RubyLint::GlobalScope.definitions.lookup(:const, 'OptionParser').deep_freeze

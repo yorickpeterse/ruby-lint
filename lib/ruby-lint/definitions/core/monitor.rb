@@ -37,3 +37,5 @@ RubyLint::GlobalScope.definitions.define_constant('Monitor::ConditionVariable') 
 
   klass.define_instance_method('wait_while')
 end
+
+RubyLint::GlobalScope.definitions.lookup(:const, 'Monitor').deep_freeze

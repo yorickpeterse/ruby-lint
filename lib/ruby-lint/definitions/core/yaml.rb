@@ -2359,3 +2359,4 @@ RubyLint::GlobalScope.definitions.define_constant('YAML::Visitors') do |klass|
   klass.inherits(RubyLint::GlobalScope.constant_proxy('Object'))
 end
 
+RubyLint::GlobalScope.definitions.lookup(:const, 'YAML').deep_freeze

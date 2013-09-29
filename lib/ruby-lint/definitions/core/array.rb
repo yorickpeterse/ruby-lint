@@ -412,3 +412,5 @@ RubyLint::GlobalScope.definitions.define_constant('Array::ValueGenerator') do |k
 
   klass.define_instance_method('rewind')
 end
+
+RubyLint::GlobalScope.definitions.lookup(:const, 'Array').deep_freeze

@@ -42,3 +42,5 @@ RubyLint::GlobalScope.definitions.define_constant('Queue') do |klass|
 
   klass.define_instance_method('size')
 end
+
+RubyLint::GlobalScope.definitions.lookup(:const, 'Queue').deep_freeze

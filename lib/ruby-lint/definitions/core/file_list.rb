@@ -725,3 +725,5 @@ RubyLint::GlobalScope.definitions.define_constant('FileList') do |klass|
     method.define_block_argument('block')
   end
 end
+
+RubyLint::GlobalScope.definitions.lookup(:const, 'FileList').deep_freeze

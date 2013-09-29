@@ -10,3 +10,5 @@ RubyLint::GlobalScope.definitions.define_constant('ArgumentError') do |klass|
 
   klass.define_instance_method('to_s')
 end
+
+RubyLint::GlobalScope.definitions.lookup(:const, 'ArgumentError').deep_freeze

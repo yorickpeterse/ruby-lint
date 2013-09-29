@@ -203,3 +203,5 @@ end
 #
 RubyLint::GlobalScope.definitions.define_constant('Math::PI') do |klass|
 end
+
+RubyLint::GlobalScope.definitions.lookup(:const, 'Math').deep_freeze

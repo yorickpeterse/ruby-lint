@@ -350,3 +350,5 @@ RubyLint::GlobalScope.definitions.define_constant('Enumerable::SortedElement') d
 
   klass.define_instance_method('value')
 end
+
+RubyLint::GlobalScope.definitions.lookup(:const, 'Enumerable').deep_freeze

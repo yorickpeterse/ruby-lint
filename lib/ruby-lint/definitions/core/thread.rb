@@ -207,3 +207,5 @@ end
 #
 RubyLint::GlobalScope.definitions.define_constant('Thread::MUTEX_FOR_THREAD_EXCLUSIVE') do |klass|
 end
+
+RubyLint::GlobalScope.definitions.lookup(:const, 'Thread').deep_freeze

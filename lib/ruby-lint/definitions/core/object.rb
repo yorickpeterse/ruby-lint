@@ -29,3 +29,5 @@ RubyLint::GlobalScope.definitions.define_constant('Object') do |klass|
 
   klass.define_instance_method('to_yaml_properties')
 end
+
+RubyLint::GlobalScope.definitions.lookup(:const, 'Object').deep_freeze

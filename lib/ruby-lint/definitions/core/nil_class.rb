@@ -44,3 +44,5 @@ RubyLint::GlobalScope.definitions.define_constant('NilClass') do |klass|
     method.define_argument('other')
   end
 end
+
+RubyLint::GlobalScope.definitions.lookup(:const, 'NilClass').deep_freeze

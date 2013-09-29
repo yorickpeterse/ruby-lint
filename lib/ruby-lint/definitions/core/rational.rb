@@ -94,3 +94,5 @@ RubyLint::GlobalScope.definitions.define_constant('Rational') do |klass|
 
   klass.define_instance_method('truncate')
 end
+
+RubyLint::GlobalScope.definitions.lookup(:const, 'Rational').deep_freeze

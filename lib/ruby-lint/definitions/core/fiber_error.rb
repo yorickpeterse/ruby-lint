@@ -6,3 +6,5 @@
 RubyLint::GlobalScope.definitions.define_constant('FiberError') do |klass|
   klass.inherits(RubyLint::GlobalScope.constant_proxy('StandardError'))
 end
+
+RubyLint::GlobalScope.definitions.lookup(:const, 'FiberError').deep_freeze

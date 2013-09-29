@@ -6,3 +6,5 @@
 RubyLint::GlobalScope.definitions.define_constant('KeyError') do |klass|
   klass.inherits(RubyLint::GlobalScope.constant_proxy('IndexError'))
 end
+
+RubyLint::GlobalScope.definitions.lookup(:const, 'KeyError').deep_freeze

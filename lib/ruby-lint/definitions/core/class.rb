@@ -21,3 +21,5 @@ RubyLint::GlobalScope.definitions.define_constant('Class') do |klass|
     end
   end
 end
+
+RubyLint::GlobalScope.definitions.lookup(:const, 'Class').deep_freeze

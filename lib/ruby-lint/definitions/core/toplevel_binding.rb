@@ -5,3 +5,5 @@
 #
 RubyLint::GlobalScope.definitions.define_constant('TOPLEVEL_BINDING') do |klass|
 end
+
+RubyLint::GlobalScope.definitions.lookup(:const, 'TOPLEVEL_BINDING').deep_freeze

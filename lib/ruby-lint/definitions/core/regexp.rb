@@ -394,3 +394,5 @@ end
 #
 RubyLint::GlobalScope.definitions.define_constant('Regexp::SourceParser::PossibleOptions') do |klass|
 end
+
+RubyLint::GlobalScope.definitions.lookup(:const, 'Regexp').deep_freeze

@@ -14,3 +14,5 @@ RubyLint::GlobalScope.definitions.define_constant('NameError') do |klass|
 
   klass.define_instance_method('name')
 end
+
+RubyLint::GlobalScope.definitions.lookup(:const, 'NameError').deep_freeze

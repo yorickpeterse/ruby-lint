@@ -704,3 +704,5 @@ end
 #
 RubyLint::GlobalScope.definitions.define_constant('Date::UNIX_EPOCH_IN_CJD') do |klass|
 end
+
+RubyLint::GlobalScope.definitions.lookup(:const, 'Date').deep_freeze

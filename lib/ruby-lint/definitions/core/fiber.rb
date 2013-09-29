@@ -33,3 +33,5 @@ RubyLint::GlobalScope.definitions.define_constant('Fiber') do |klass|
     method.define_rest_argument('args')
   end
 end
+
+RubyLint::GlobalScope.definitions.lookup(:const, 'Fiber').deep_freeze

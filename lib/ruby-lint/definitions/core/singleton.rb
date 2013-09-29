@@ -35,3 +35,5 @@ RubyLint::GlobalScope.definitions.define_constant('Singleton::SingletonClassMeth
 
   klass.define_instance_method('clone')
 end
+
+RubyLint::GlobalScope.definitions.lookup(:const, 'Singleton').deep_freeze

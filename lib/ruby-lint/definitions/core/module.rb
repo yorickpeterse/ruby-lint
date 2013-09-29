@@ -296,3 +296,5 @@ RubyLint::GlobalScope.definitions.copy(
   :instance_method,
   :method
 )
+
+RubyLint::GlobalScope.definitions.lookup(:const, 'Module').deep_freeze

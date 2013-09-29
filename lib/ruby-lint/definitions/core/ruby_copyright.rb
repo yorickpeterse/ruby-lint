@@ -5,3 +5,5 @@
 #
 RubyLint::GlobalScope.definitions.define_constant('RUBY_COPYRIGHT') do |klass|
 end
+
+RubyLint::GlobalScope.definitions.lookup(:const, 'RUBY_COPYRIGHT').deep_freeze

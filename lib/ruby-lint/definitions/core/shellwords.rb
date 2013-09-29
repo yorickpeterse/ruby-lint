@@ -35,3 +35,5 @@ RubyLint::GlobalScope.definitions.define_constant('Shellwords') do |klass|
     method.define_argument('line')
   end
 end
+
+RubyLint::GlobalScope.definitions.lookup(:const, 'Shellwords').deep_freeze

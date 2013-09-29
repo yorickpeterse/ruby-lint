@@ -6,3 +6,5 @@
 RubyLint::GlobalScope.definitions.define_constant('STDERR') do |klass|
   klass.inherits(RubyLint::GlobalScope.constant_proxy('IO'))
 end
+
+RubyLint::GlobalScope.definitions.lookup(:const, 'STDERR').deep_freeze

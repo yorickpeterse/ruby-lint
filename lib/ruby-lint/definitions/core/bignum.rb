@@ -126,3 +126,5 @@ RubyLint::GlobalScope.definitions.define_constant('Bignum') do |klass|
 
   klass.define_instance_method('~')
 end
+
+RubyLint::GlobalScope.definitions.lookup(:const, 'Bignum').deep_freeze

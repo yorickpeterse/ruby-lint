@@ -711,3 +711,5 @@ end
 #
 RubyLint::GlobalScope.definitions.define_constant('String::Rationalizer::SPACE') do |klass|
 end
+
+RubyLint::GlobalScope.definitions.lookup(:const, 'String').deep_freeze

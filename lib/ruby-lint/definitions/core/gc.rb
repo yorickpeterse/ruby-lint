@@ -55,3 +55,5 @@ RubyLint::GlobalScope.definitions.define_constant('GC::Profiler') do |klass|
 
   klass.define_method('total_time')
 end
+
+RubyLint::GlobalScope.definitions.lookup(:const, 'GC').deep_freeze

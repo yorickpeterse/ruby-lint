@@ -2936,3 +2936,4 @@ RubyLint::GlobalScope.definitions.define_constant('ActionDispatch::TestResponse'
   klass.define_instance_method('unprocessable?')
 end
 
+RubyLint::GlobalScope.definitions.lookup(:const, 'ActionDispatch').deep_freeze

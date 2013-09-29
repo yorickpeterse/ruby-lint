@@ -88,3 +88,5 @@ RubyLint::GlobalScope.definitions.define_constant('Symbol') do |klass|
 
   klass.define_instance_method('upcase')
 end
+
+RubyLint::GlobalScope.definitions.lookup(:const, 'Symbol').deep_freeze

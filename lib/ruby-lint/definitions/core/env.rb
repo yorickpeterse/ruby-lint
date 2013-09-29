@@ -5,3 +5,5 @@
 #
 RubyLint::GlobalScope.definitions.define_constant('ENV') do |klass|
 end
+
+RubyLint::GlobalScope.definitions.lookup(:const, 'ENV').deep_freeze

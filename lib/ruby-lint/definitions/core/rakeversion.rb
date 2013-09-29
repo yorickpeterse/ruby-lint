@@ -5,3 +5,5 @@
 #
 RubyLint::GlobalScope.definitions.define_constant('RAKEVERSION') do |klass|
 end
+
+RubyLint::GlobalScope.definitions.lookup(:const, 'RAKEVERSION').deep_freeze

@@ -59,3 +59,5 @@ RubyLint::GlobalScope.definitions.define_constant('Method') do |klass|
 
   klass.define_instance_method('unbind')
 end
+
+RubyLint::GlobalScope.definitions.lookup(:const, 'Method').deep_freeze
