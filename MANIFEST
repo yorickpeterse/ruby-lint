@@ -12,6 +12,7 @@ bin/ruby-lint
 checksum/.gitkeep
 checksum/ruby-lint-0.0.3.gem.sha512
 checksum/ruby-lint-0.0.4.gem.sha512
+checksum/ruby-lint-0.0.5.gem.sha512
 debug/memory_usage.rb
 debug/profile.rb
 doc/.gitkeep
@@ -35,10 +36,13 @@ lib/ruby-lint/analysis/undefined_variables.rb
 lib/ruby-lint/analysis/unused_variables.rb
 lib/ruby-lint/ast/builder.rb
 lib/ruby-lint/ast/node.rb
+lib/ruby-lint/cache.rb
+lib/ruby-lint/cache_entry.rb
 lib/ruby-lint/cli.rb
 lib/ruby-lint/cli/analyze.rb
 lib/ruby-lint/cli/ast.rb
 lib/ruby-lint/cli/base.rb
+lib/ruby-lint/cli/plot.rb
 lib/ruby-lint/configuration.rb
 lib/ruby-lint/constant_loader.rb
 lib/ruby-lint/default_names.rb
@@ -222,7 +226,9 @@ lib/ruby-lint/method_call/attribute.rb
 lib/ruby-lint/method_call/base.rb
 lib/ruby-lint/method_call/define_method.rb
 lib/ruby-lint/method_call/include.rb
+lib/ruby-lint/method_call_info.rb
 lib/ruby-lint/nested_stack.rb
+lib/ruby-lint/node_hash.rb
 lib/ruby-lint/parser.rb
 lib/ruby-lint/presenter/json.rb
 lib/ruby-lint/presenter/text.rb
@@ -244,6 +250,8 @@ spec/fixtures/config.yml
 spec/fixtures/file_scanner/lib/example/recursive/source.rb
 spec/fixtures/file_scanner/lib/example/recursive/target.rb
 spec/fixtures/file_scanner/lib/example/user.rb
+spec/fixtures/file_scanner/lib/ruby-lint/definition/constant_proxy.rb
+spec/fixtures/file_scanner/lib/ruby-lint/global_scope.rb
 spec/fixtures/file_scanner/lib/test-dashes/foo.rb
 spec/fixtures/file_scanner/rails/app/models/example/user.rb
 spec/fixtures/file_scanner/rails/app/models/user.rb
@@ -262,6 +270,8 @@ spec/ruby-lint/analysis/undefined_methods_spec.rb
 spec/ruby-lint/analysis/undefined_variables_spec.rb
 spec/ruby-lint/analysis/unused_variables_spec.rb
 spec/ruby-lint/ast/node_spec.rb
+spec/ruby-lint/cache_entry_spec.rb
+spec/ruby-lint/cache_spec.rb
 spec/ruby-lint/cli/analyze_spec.rb
 spec/ruby-lint/cli/ast_spec.rb
 spec/ruby-lint/configuration_spec.rb
@@ -281,6 +291,7 @@ spec/ruby-lint/file_scanner_spec.rb
 spec/ruby-lint/inspector_spec.rb
 spec/ruby-lint/iterator_spec.rb
 spec/ruby-lint/nested_stack_spec.rb
+spec/ruby-lint/node_hash_spec.rb
 spec/ruby-lint/parser_spec.rb
 spec/ruby-lint/presenter/json_spec.rb
 spec/ruby-lint/presenter/text_spec.rb
@@ -310,6 +321,8 @@ spec/ruby-lint/virtual_machine/freeze_spec.rb
 spec/ruby-lint/virtual_machine/global_variables_spec.rb
 spec/ruby-lint/virtual_machine/inherit_kernel_spec.rb
 spec/ruby-lint/virtual_machine/interpolation_spec.rb
+spec/ruby-lint/virtual_machine/location_spec.rb
+spec/ruby-lint/virtual_machine/method_call_tracking_spec.rb
 spec/ruby-lint/virtual_machine/methods/attr_spec.rb
 spec/ruby-lint/virtual_machine/methods/define_method_spec.rb
 spec/ruby-lint/virtual_machine/methods/defining_spec.rb
