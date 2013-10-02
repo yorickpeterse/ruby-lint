@@ -57,7 +57,24 @@ module RubyLint
         end
       end
 
+      VirtualMachine::ARGUMENT_TYPES.each do |name|
+        define_method("on_#{name}") { |node| verify_argument(node) }
+      end
+
       private
+
+      ##
+      # Adds warnings for unused method arguments.
+      #
+      # @param [RubyLint::AST::Node] node
+      #
+      def verify_argument(node)
+        variable = current_scope.lookup(:lvar, node.name)
+
+        if add_warning?(variable)
+          warning("unused argument #{variable.name}", node)
+        end
+      end
 
       ##
       # @param [RubyLint::Definition::RubyObject] variable

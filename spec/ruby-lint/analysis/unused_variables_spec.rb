@@ -142,4 +142,118 @@ def number; end
 
     report.entries.empty?.should == true
   end
+
+  context 'method arguments' do
+    example 'warn for a unused argument' do
+      code = <<-CODE
+def multiply(number)
+end
+      CODE
+
+      report = build_report(code, RubyLint::Analysis::UnusedVariables)
+      entry  = report.entries[0]
+
+      entry.message.should == 'unused argument number'
+      entry.line.should    == 1
+      entry.column.should  == 13
+    end
+
+    example 'warn for a unused optional argument' do
+      code = <<-CODE
+def multiply(amount = 2)
+end
+      CODE
+
+      report = build_report(code, RubyLint::Analysis::UnusedVariables)
+      entry  = report.entries[0]
+
+      entry.message.should == 'unused argument amount'
+      entry.line.should    == 1
+      entry.column.should  == 13
+    end
+
+    example 'warn for a unused rest argument' do
+      code = <<-CODE
+def multiply(*args)
+end
+      CODE
+
+      report = build_report(code, RubyLint::Analysis::UnusedVariables)
+      entry  = report.entries[0]
+
+      entry.message.should == 'unused argument args'
+      entry.line.should    == 1
+      entry.column.should  == 13
+    end
+
+    example 'warn for a unused block argument' do
+      code = <<-CODE
+def multiply(&block)
+end
+      CODE
+
+      report = build_report(code, RubyLint::Analysis::UnusedVariables)
+      entry  = report.entries[0]
+
+      entry.message.should == 'unused argument block'
+      entry.line.should    == 1
+      entry.column.should  == 13
+    end
+
+    specific_ruby_version '2.0' do
+      example 'warn for a unused keyword argument' do
+        code = <<-CODE
+def multiply(amount: 10)
+end
+        CODE
+
+        report = build_report(code, RubyLint::Analysis::UnusedVariables)
+        entry  = report.entries[0]
+
+        entry.message.should == 'unused argument amount'
+        entry.line.should    == 1
+        entry.column.should  == 13
+      end
+    end
+
+    example 'do not warn for a used argument' do
+      code = <<-CODE
+def multiply(number)
+  return number * 2
+end
+      CODE
+
+      report = build_report(code, RubyLint::Analysis::UnusedVariables)
+
+      report.entries.empty?.should == true
+    end
+  end
+
+  context 'block arguments' do
+    example 'warn for a unused argument' do
+      code = <<-CODE
+[10, 20].each do |number|
+end
+      CODE
+
+      report = build_report(code, RubyLint::Analysis::UnusedVariables)
+      entry  = report.entries[0]
+
+      entry.message.should == 'unused argument number'
+      entry.line.should    == 1
+      entry.column.should  == 18
+    end
+
+    example 'do not warn for a used argument' do
+      code = <<-CODE
+[10, 20].each do |number|
+  number
+end
+      CODE
+
+      report = build_report(code, RubyLint::Analysis::UnusedVariables)
+
+      report.entries.empty?.should == true
+    end
+  end
 end
