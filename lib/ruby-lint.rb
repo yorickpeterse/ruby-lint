@@ -13,7 +13,6 @@ rescue NotImplementedError => error
   Parser::CurrentRuby = Parser::Ruby20
 end
 
-
 require 'yaml'
 require 'set'
 require 'digest/sha1'
