@@ -54,20 +54,4 @@ describe RubyLint::Runner do
 
     output.empty?.should == true
   end
-
-  example 'execution time should decrease when caching is enabled' do
-    files  = [fixture_path('uses_external.rb')]
-    dirs   = [fixture_path('file_scanner/rails')]
-    config = RubyLint::Configuration.new(
-      :directories     => dirs,
-      :enable_cache    => true,
-      :cache_directory => @cache_dir
-    )
-
-    runner  = RubyLint::Runner.new(config)
-    initial = Benchmark.measure { runner.analyze(files) }
-    second  = Benchmark.measure { runner.analyze(files) }
-
-    second.real.should <= initial.real
-  end
 end
