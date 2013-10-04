@@ -195,7 +195,7 @@ module RubyLint
     #
     # @param [RubyLint::AST::Node] node
     #
-    def on_assign(node)
+    def on_assign
       reset_assignment_value
       value_stack.add_stack
     end
@@ -215,7 +215,7 @@ module RubyLint
       assign_variable(type, name, value, node)
     end
 
-    ASSIGNMENT_TYPES.each do |callback, type|
+    ASSIGNMENT_TYPES.each do |callback, _|
       alias_method :"on_#{callback}", :on_assign
       alias_method :"after_#{callback}", :after_assign
     end
@@ -259,7 +259,7 @@ module RubyLint
     ##
     # @param [RubyLint::AST::Node] node
     #
-    def on_masgn(node)
+    def on_masgn
       add_stacks
     end
 
@@ -267,9 +267,7 @@ module RubyLint
     # Processes a mass variable assignment using the stacks created by
     # {#on_masgn}.
     #
-    # @param [RubyLint::AST::Node] node
-    #
-    def after_masgn(node)
+    def after_masgn
       variables = variable_stack.pop
       values    = value_stack.pop.first
       values    = values && values.value ? values.value : []
@@ -284,16 +282,14 @@ module RubyLint
     ##
     # @param [RubyLint::AST::Node] node
     #
-    def on_or_asgn(node)
+    def on_or_asgn
       add_stacks
     end
 
     ##
     # Processes an `or` assignment in the form of `variable ||= value`.
     #
-    # @param [RubyLint::AST::Node] node
-    #
-    def after_or_asgn(node)
+    def after_or_asgn
       variable = variable_stack.pop.first
       value    = value_stack.pop.first
 
@@ -305,7 +301,7 @@ module RubyLint
     ##
     # @param [RubyLint::AST::Node] node
     #
-    def on_and_asgn(node)
+    def on_and_asgn
       add_stacks
     end
 
@@ -314,7 +310,7 @@ module RubyLint
     #
     # @param [RubyLint::AST::Node] node
     #
-    def after_and_asgn(node)
+    def after_and_asgn
       variable = variable_stack.pop.first
       value    = value_stack.pop.first
 
@@ -330,7 +326,7 @@ module RubyLint
 
     # Creates the callback methods for various variable types such as local
     # variables.
-    ASSIGNMENT_TYPES.each do |asgn_name, type|
+    ASSIGNMENT_TYPES.each do |_, type|
       define_method("on_#{type}") do |node|
         increment_reference_amount(node)
         push_variable_value(node)
@@ -361,9 +357,9 @@ module RubyLint
     end
 
     ##
-    # @param [RubyLint::AST::Node] node
+    # Adds a new stack for Array values.
     #
-    def on_array(node)
+    def on_array
       value_stack.add_stack
     end
 
@@ -383,9 +379,9 @@ module RubyLint
     end
 
     ##
-    # @param [RubyLint::AST::Node] node
+    # Adds a new stack for Hash values.
     #
-    def on_hash(node)
+    def on_hash
       value_stack.add_stack
     end
 
@@ -405,18 +401,16 @@ module RubyLint
     end
 
     ##
-    # @param [RubyLint::AST::Node] node
+    # Adds a new value stack for key/value pairs.
     #
-    def on_pair(node)
+    def on_pair
       value_stack.add_stack
     end
 
     ##
-    # Processes a key/value pair.
+    # @see #on_pair
     #
-    # @param [RubyLint::AST::Node] node
-    #
-    def after_pair(node)
+    def after_pair
       key, value = value_stack.pop
 
       return unless key
@@ -431,9 +425,9 @@ module RubyLint
     end
 
     ##
-    # @param [RubyLint::AST::Node] node
+    # Pushes the value of `self` onto the current stack.
     #
-    def on_self(node)
+    def on_self
       push_value(current_scope.lookup(:keyword, 'self'))
     end
 
@@ -447,9 +441,9 @@ module RubyLint
     end
 
     ##
-    # @param [RubyLint::AST::Node] node
+    # Pops the scope created by the module.
     #
-    def after_module(node)
+    def after_module
       pop_scope
     end
 
@@ -474,9 +468,9 @@ module RubyLint
     end
 
     ##
-    # @param [RubyLint::AST::Node] node
+    # Pops the scope created by the class.
     #
-    def after_class(node)
+    def after_class
       pop_scope
     end
 
@@ -495,9 +489,9 @@ module RubyLint
     end
 
     ##
-    # @param [RubyLint::AST::Node] node
+    # Pops the scope created by the block.
     #
-    def after_block(node)
+    def after_block
       pop_scope
     end
 
@@ -521,9 +515,10 @@ module RubyLint
     end
 
     ##
-    # @param [RubyLint::AST::Node] node
+    # Pops the scope created by the `sclass` block and resets the method
+    # definition/send type.
     #
-    def after_sclass(node)
+    def after_sclass
       reset_method_type
       pop_scope
     end
@@ -569,9 +564,7 @@ module RubyLint
     ##
     # Exports various variables to the outer scope of the method definition.
     #
-    # @param [RubyLint::AST::Node] node
-    #
-    def after_def(node)
+    def after_def
       previous = pop_scope
       current  = current_scope
 
@@ -584,7 +577,7 @@ module RubyLint
 
     # Creates callbacks for various argument types such as :arg and :optarg.
     ARGUMENT_TYPES.each do |type|
-      define_method("on_#{type}") do |node|
+      define_method("on_#{type}") do
         value_stack.add_stack
       end
 
@@ -695,15 +688,15 @@ Received: #{arguments.length}
     end
 
     VISIBILITIES.each do |vis|
-      define_method("on_send_#{vis}") do |node|
+      define_method("on_send_#{vis}") do
         @visibility = vis
       end
     end
 
     ##
-    # @param [RubyLint::AST::Node] node
+    # Adds a new value stack for the values of an alias.
     #
-    def on_alias(node)
+    def on_alias
       value_stack.add_stack
     end
 
