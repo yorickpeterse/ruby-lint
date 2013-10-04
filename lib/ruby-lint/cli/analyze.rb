@@ -136,7 +136,7 @@ Examples:
 
     output_destination.puts unless output.empty?
 
-    output_destination.puts "Execution time: #{exec_time.round(2)} seconds"
+    output_destination.puts "Execution time: #{exec_time.round(4)} seconds"
 
     output_destination.puts "Memory usage: #{memory_mb.round(2)} MB " \
       "(#{memory_kb.round(2)} KB)"
