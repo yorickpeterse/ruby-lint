@@ -104,7 +104,13 @@ module RubyLint
     # @param [Array] args Arguments to pass to the callback method.
     #
     def execute_callback(name, *args)
-      send(name, *args) if respond_to?(name)
+      return unless respond_to?(name)
+
+      if method(name).arity == 0
+        send(name)
+      else
+       send(name, *args)
+      end
     end
 
     ##

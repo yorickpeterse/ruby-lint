@@ -133,4 +133,19 @@ end
     iterator.options[:module].should == true
     iterator.options[:class].should  == false
   end
+
+  example 'allow callbacks without arguments' do
+    ast      = parse('10', false)
+    iterator = Class.new(RubyLint::Iterator) do
+      attr_reader :number
+
+      def on_int
+        @number = true
+      end
+    end.new
+
+    iterator.iterate(ast)
+
+    iterator.number.should == true
+  end
 end
