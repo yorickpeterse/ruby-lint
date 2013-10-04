@@ -146,8 +146,9 @@ module RubyLint
         methods.each do |method|
           args = []
 
-          method.parameters.each do |arg|
-            args << {:type => arg_mapping[arg[0]], :name => arg[1]}
+          method.parameters.each_with_index do |arg, index|
+            name = arg[1] || "arg#{index + 1}"
+            args << {:type => arg_mapping[arg[0]], :name => name}
           end
 
           info[type][method.name] = args
