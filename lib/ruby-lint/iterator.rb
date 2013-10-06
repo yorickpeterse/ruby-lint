@@ -50,7 +50,13 @@ module RubyLint
   # the specified node (`throw` calls bubble up regardless of `catch` calls,
   # unlike when using `begin/rescue`).
   #
+  # @!attribute [r] arity_cache Hash containing the amount of arguments for
+  #  each method.
+  #  @return [Hash]
+  #
   class Iterator
+    attr_reader :arity_cache
+
     ##
     # @param [Hash] options Hash containing custom options to set for the
     #  iterator.
@@ -61,6 +67,8 @@ module RubyLint
       end
 
       after_initialize if respond_to?(:after_initialize)
+
+      @arity_cache = {}
     end
 
     ##
@@ -106,10 +114,14 @@ module RubyLint
     def execute_callback(name, *args)
       return unless respond_to?(name)
 
-      if method(name).arity == 0
+      unless arity_cache.key?(name)
+        arity_cache[name] = method(name).arity
+      end
+
+      if arity_cache[name] == 0
         send(name)
       else
-       send(name, *args)
+        send(name, *args)
       end
     end
 
