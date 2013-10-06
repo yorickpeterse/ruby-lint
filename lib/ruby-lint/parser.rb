@@ -39,7 +39,7 @@ module RubyLint
       buffer        = ::Parser::Source::Buffer.new(file, line)
       buffer.source = code
       ast, comments = internal_parser.parse_with_comments(buffer)
-      associator    = ::Parser::Source::Comment::Associator.new(comments, ast)
+      associator    = ::Parser::Source::Comment::Associator.new(ast, comments)
 
       internal_parser.reset
 
