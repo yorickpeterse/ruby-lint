@@ -82,6 +82,13 @@ RubyLint::CLI.options.command :plot do
     cache    = measure_analysis(args[0], opts[:iterations], true)
 
     plot_timings(File.basename(args[0]), no_cache, cache, opts)
+
+    no_cache_avg = no_cache.inject(:+) / no_cache.length
+    cache_avg    = cache.inject(:+) / cache.length
+
+    puts 'Averages:'
+    puts "Cache disabled: #{no_cache_avg} ms"
+    puts "Cache enabled:  #{cache_avg} ms"
   end
 end
 #:nocov:
