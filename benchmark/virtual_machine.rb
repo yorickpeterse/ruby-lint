@@ -1,4 +1,4 @@
-# This benchmarks 500 runs of the VM and outputs them to the console making it
+# This benchmarks N runs of the VM and outputs them to the console making it
 # easy to pass the data to tools such as `ministat`
 # (http://www.freebsd.org/cgi/man.cgi?ministat).
 
