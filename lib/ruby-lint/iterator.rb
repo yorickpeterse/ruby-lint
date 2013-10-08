@@ -80,7 +80,9 @@ module RubyLint
     def iterate(node)
       return unless node.is_a?(AST::Node)
 
-      before, after = callback_names(node)
+      before = :"on_#{node.type}"
+      after  = :"after_#{node.type}"
+
       skip_node     = catch :skip_child_nodes do
         execute_callback(before, node)
       end
@@ -123,16 +125,6 @@ module RubyLint
       else
         send(name, *args)
       end
-    end
-
-    ##
-    # Returns an array containin the callback names for the specified node.
-    #
-    # @param [RubyLint::Node] node
-    # @return [Array]
-    #
-    def callback_names(node)
-      return ["on_#{node.type}", "after_#{node.type}"]
     end
   end # Iterator
 end # RubyLint
