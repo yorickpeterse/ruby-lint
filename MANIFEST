@@ -8,13 +8,12 @@ LICENSE
 MANIFEST
 README.md
 Rakefile
+benchmark/virtual_machine.rb
 bin/ruby-lint
 checksum/.gitkeep
 checksum/ruby-lint-0.0.3.gem.sha512
 checksum/ruby-lint-0.0.4.gem.sha512
 checksum/ruby-lint-0.0.5.gem.sha512
-debug/memory_usage.rb
-debug/profile.rb
 doc/.gitkeep
 doc/DCO.md
 doc/architecture.md
@@ -194,6 +193,7 @@ lib/ruby-lint/definitions/core/unsupported_library_error.rb
 lib/ruby-lint/definitions/core/weak_ref.rb
 lib/ruby-lint/definitions/core/yaml.rb
 lib/ruby-lint/definitions/core/zero_division_error.rb
+lib/ruby-lint/definitions/core/zlib.rb
 lib/ruby-lint/definitions/global_variables.rb
 lib/ruby-lint/definitions/rails.rb
 lib/ruby-lint/definitions/rails/abstract_controller.rb
@@ -240,6 +240,7 @@ lib/ruby-lint/template/scope.rb
 lib/ruby-lint/variable_predicates.rb
 lib/ruby-lint/version.rb
 lib/ruby-lint/virtual_machine.rb
+profiling/virtual_machine.rb
 ruby-lint.gemspec
 ruby-lint.yml
 spec/fixtures/associating.rb
@@ -350,7 +351,6 @@ task/doc.rake
 task/generate.rake
 task/graphviz.rake
 task/manifest.rake
-task/profile.rake
 task/tag.rake
 task/test.rake
 task/todo.rake
