@@ -1,15 +1,17 @@
+# This benchmarks 500 runs of the VM and outputs them to the console making it
+# easy to pass the data to tools such as `ministat`
+# (http://www.freebsd.org/cgi/man.cgi?ministat).
+
 require_relative '../lib/ruby-lint'
 require 'benchmark'
 
 parser = RubyLint::Parser.new
 file   = File.expand_path('../../lib/ruby-lint/virtual_machine.rb', __FILE__)
 ast    = parser.parse(File.read(file), file)
-amount = 500
+amount = 1000
 
-Benchmark.bmbm(40) do |bench|
-  bench.report 'RubyLint::VirtualMachine#run' do
-    amount.times do
-      RubyLint::VirtualMachine.new.run(ast)
-    end
-  end
+amount.times do
+  timing = Benchmark.measure { RubyLint::VirtualMachine.new.run(ast) }
+
+  puts timing.real
 end
