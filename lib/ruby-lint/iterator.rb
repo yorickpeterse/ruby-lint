@@ -80,10 +80,9 @@ module RubyLint
     def iterate(node)
       return unless node.is_a?(AST::Node)
 
-      before = :"on_#{node.type}"
-      after  = :"after_#{node.type}"
-
-      skip_node     = catch :skip_child_nodes do
+      before    = :"on_#{node.type}"
+      after     = :"after_#{node.type}"
+      skip_node = catch :skip_child_nodes do
         execute_callback(before, node)
       end
 
