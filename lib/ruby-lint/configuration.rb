@@ -27,7 +27,7 @@ module RubyLint
   #  cached.
   #  @return [TrueClass|FalseClass]
   #
-  # @!attribute [rw] cache_directory
+  # @!attribute [r] cache_directory
   #  The path to the directory to use for storing cache files.
   #  @return [String]
   #
