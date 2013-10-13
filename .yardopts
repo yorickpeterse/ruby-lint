@@ -7,7 +7,7 @@
 --protected
 --asset ./doc/css/common.css:css/common.css
 --asset ./doc/images:images
---exclude lib/ruby-lint/definitions/core
+--exclude lib/ruby-lint/definitions
 --verbose
 -
 ./doc/*.md

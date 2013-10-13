@@ -33,25 +33,145 @@ fallback.
 
 ## Configuring ruby-lint
 
-Configuration is done using simple YAML files with the following structure:
+Configuration files are simple YAML files. An example of such a configuration
+file is the following:
 
-* `requires`: an Array of files to require before running ruby-lint
-* `report_levels`: an Array of report levels to enable.
-* `analysis_classes`: an Array of the human friendly names of the analysis
-  classes to enable.
-* `presenter`: the human friendly name of the presenter to use.
+    ---
+    directories:
+      - lib
 
-A basic example looks lik the following:
+    ignore_paths:
+      - lib/ruby-lint/definitions
+      - lib/ruby-lint/cli
+
+### requires
+
+The `requires` option can be used to specify a list of Ruby files that should
+be loaded before analysis is performed. The primary use case of this option is
+to load extra definitions that don't come with ruby-lint by default.
+
+Example:
 
     ---
     requires:
-      - ruby-lint/definitions/core/string
-    report_levels:
-      - error
-    analysis_classes:
-      - undefined_methods
-      - undefined_variables
-    presenter: json
+      - ruby-lint/definitions/rails
 
-If no value is given for a certain configuration option the default value(s)
-will be used instead.
+By default this option is left empty.
+
+### report_levels
+
+The `report_levels` option can be used to specify a list of the enabled
+reporting levels. The following levels are currently available:
+
+* info
+* warning
+* error
+
+By default all of these are enabled.
+
+Example:
+
+    ---
+    report_levels:
+      - warning
+      - error
+
+### presenter
+
+The short, human readable name of the presenter to use for displaying the
+analysis results. The following presenters are currently available:
+
+* text
+* json
+
+The default presenter is `text`.
+
+Example:
+
+    ---
+    presenter: text
+
+### analysis_classes
+
+A list of the short, human readable names of the analysis classes to enable.
+The following analysis classes are currently available:
+
+* `argument_amount`
+* `pedantics`
+* `shadowing_variables`
+* `undefined_methods`
+* `undefined_variables`
+* `unused_variables`
+
+By default all of these are enabled.
+
+Example:
+
+    ---
+    analysis_classes:
+      - argument_amount
+      - pedantics
+
+### directories
+
+A list of directories to search in for externally defined constants. By
+default this is set to the current working directory which, for big projects,
+can slow things down.
+
+Example:
+
+    ---
+    directories:
+      - app
+      - lib
+
+### debug
+
+A boolean that indicates that debugging mode should be enabled or disabled, by
+default this is disabled.
+
+Example:
+
+    ---
+    debug: true
+
+### ignore_paths
+
+A list of patterns to apply to the `directories` option to filter out unwanted
+directories. For example, you could use this to search for files in the lib/
+directory but exclude lib/foo/bar:
+
+    ---
+    directories:
+      - lib
+
+    ignore_paths:
+      - lib/foo/bar
+
+Example:
+
+    ---
+    ignore_paths:
+      - lib/ruby-lint/definitions
+
+### enable_cache
+
+A boolean that indicates that caching should be enabled or disabled, by default
+this is enabled. Disabling caching can slow down ruby-lint considerably.
+
+Example:
+
+    ---
+    enable_cache: true
+
+### cache_directory
+
+The directory to store cache files in if caching is enabled. By default this is
+set to `$XDG_CACHE_HOME/ruby-lint` or `$HOME/.cache/ruby-lint` if the former
+variable isn't set. If the cache directory doesn't exist it's created
+automatically.
+
+Example:
+
+    ---
+    cache_directory: ~/ruby-lint
