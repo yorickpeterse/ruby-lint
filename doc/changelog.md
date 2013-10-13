@@ -5,6 +5,47 @@ This document contains a short summary of the various releases of ruby-lint.
 For a full list of commits included in each release see the corresponding Git
 tags (named after the versions).
 
+## 0.9.0 - 2013-10-13
+
+Although the version number increased by quite a bit this release in itself is
+fairly small. Seeing how the ruby-lint internals are slowly becoming more and
+more stable I'd like the version numbers to correspond with that. I'm not
+jumping to 1.0 right away since I do want to make various changes to the
+internals before I release 1.0.
+
+Having said that, this release contains the following:
+
+* Caching of ASTs required for finding externally defined constants.
+* An extra CLI command (`plot`) for plotting analysis timings.
+* Method call tracking.
+* Warnings for unused method/block arguments.
+* Support for Rubinius 2.0.
+
+The two most noteworthy changes are the caching system and support for method
+call tracking, these are highlighted below.
+
+### Caching
+
+In previous releases ruby-lint would re-parse extra files needed (those that
+contain the definitions of referenced constants) every time you'd analyze a
+file. This was rather problematic since [parser][parser] sadly isn't the
+fastest kid on the block. By caching the resulting ASTs performance of the same
+file (assuming it doesn't change between runs) can be increased drastically. If
+the analyzed file or an external one is changed the cache is invalidated
+automatically.
+
+Caching is enabled by default so you don't need to add any extra command-line
+flags or configuration options in your ruby-lint configuration file.
+
+### Method Call Tracking
+
+This new features makes it possible for ruby-lint to keep track of what methods
+are called from another method, both in the direction of caller to callee and
+the other way around. Currently this isn't used yet for any analysis but I have
+some ideas on adding useful analysis using this new feature. Another use case
+for this feature is generating Graphviz call graphs without actually having to
+run the corresponding Ruby source code.
+
 ## 0.0.5 - 2013-09-01
 
 Originally slated for August 1st I decided to push this release back one month
@@ -121,3 +162,4 @@ Various changes to the old parser.
 First public release of ruby-lint.
 
 [yard]: http://yardoc.org/
+[parser]: https://github.com/whitequark/parser
