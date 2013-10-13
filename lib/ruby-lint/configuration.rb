@@ -237,10 +237,19 @@ module RubyLint
     end
 
     ##
+    # The default cache directory to use. Per the XDG specification
+    # (http://standards.freedesktop.org/basedir-spec/basedir-spec-latest.html)
+    # this is set to `$XDG_CACHE_HOME`/`$HOME/.cache` by default.
+    #
     # @return [String]
     #
     def default_cache_directory
-      return File.join(Dir.pwd, '.ruby-lint')
+      root = ENV['XDG_CACHE_HOME'] || File.join(ENV['HOME'], '.cache')
+
+      # ~/.cache might not exist on non Linux systems.
+      Dir.mkdir(root) unless File.directory?(root)
+
+      return File.join(root, 'ruby-lint')
     end
   end # Configuration
 end # RubyLint
