@@ -32,8 +32,10 @@ module RubyLint
   #  @return [String]
   #
   class Configuration
-    attr_reader :analysis_classes, :report_levels, :presenter, :directories
-    attr_accessor :debug, :ignore_paths, :enable_cache, :cache_directory
+    attr_reader :analysis_classes, :report_levels, :presenter, :directories,
+      :cache_directory
+
+    attr_accessor :debug, :ignore_paths, :enable_cache
 
     ##
     # Returns an Array of locations from which to load configuration files.
@@ -97,7 +99,6 @@ module RubyLint
     def initialize(options = {})
       @debug           = false
       @enable_cache    = default_cache_value
-      @cache_directory = default_cache_directory
 
       options.each do |key, value|
         setter = "#{key}="
@@ -112,6 +113,16 @@ module RubyLint
       @presenter        ||= default_presenter
       @directories      ||= default_directories
       @ignore_paths     ||= []
+      @cache_directory  ||= default_cache_directory
+    end
+
+    ##
+    # Expands and sets the path as the cache directory.
+    #
+    # @param [String] path
+    #
+    def cache_directory=(path)
+      @cache_directory = File.expand_path(path)
     end
 
     ##
