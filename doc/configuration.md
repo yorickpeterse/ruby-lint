@@ -83,6 +83,7 @@ analysis results. The following presenters are currently available:
 
 * text
 * json
+* syntastic
 
 The default presenter is `text`.
 

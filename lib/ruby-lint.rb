@@ -79,6 +79,7 @@ require_relative 'ruby-lint/report/entry'
 
 require_relative 'ruby-lint/presenter/text'
 require_relative 'ruby-lint/presenter/json'
+require_relative 'ruby-lint/presenter/syntastic'
 
 require_relative 'ruby-lint/configuration'
 require_relative 'ruby-lint/default_names'
