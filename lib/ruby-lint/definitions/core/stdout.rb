@@ -5,6 +5,7 @@
 #
 RubyLint::GlobalScope.definitions.define_constant('STDOUT') do |klass|
   klass.inherits(RubyLint::GlobalScope.constant_proxy('IO'))
+  klass.instance!
 end
 
 RubyLint::GlobalScope.definitions.lookup(:const, 'STDOUT').deep_freeze
