@@ -14,6 +14,7 @@ checksum/.gitkeep
 checksum/ruby-lint-0.0.3.gem.sha512
 checksum/ruby-lint-0.0.4.gem.sha512
 checksum/ruby-lint-0.0.5.gem.sha512
+checksum/ruby-lint-0.9.0.gem.sha512
 doc/.gitkeep
 doc/DCO.md
 doc/architecture.md
@@ -231,6 +232,7 @@ lib/ruby-lint/nested_stack.rb
 lib/ruby-lint/node_hash.rb
 lib/ruby-lint/parser.rb
 lib/ruby-lint/presenter/json.rb
+lib/ruby-lint/presenter/syntastic.rb
 lib/ruby-lint/presenter/text.rb
 lib/ruby-lint/report.rb
 lib/ruby-lint/report/entry.rb
@@ -284,6 +286,7 @@ spec/ruby-lint/definition_builder/primitive_spec.rb
 spec/ruby-lint/definition_builder/ruby_class_spec.rb
 spec/ruby-lint/definition_builder/ruby_method_spec.rb
 spec/ruby-lint/definition_builder/ruby_module_spec.rb
+spec/ruby-lint/definitions/io_spec.rb
 spec/ruby-lint/docstring/mapping.rb
 spec/ruby-lint/docstring/parser_spec.rb
 spec/ruby-lint/extensions/string_spec.rb
@@ -295,6 +298,7 @@ spec/ruby-lint/nested_stack_spec.rb
 spec/ruby-lint/node_hash_spec.rb
 spec/ruby-lint/parser_spec.rb
 spec/ruby-lint/presenter/json_spec.rb
+spec/ruby-lint/presenter/syntastic_spec.rb
 spec/ruby-lint/presenter/text_spec.rb
 spec/ruby-lint/report/entry_spec.rb
 spec/ruby-lint/report_spec.rb
