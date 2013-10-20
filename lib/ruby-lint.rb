@@ -1,5 +1,7 @@
+gem 'racc', '>= 1.4.10'
 gem 'parser', '>= 2.0.0'
 
+require 'racc'
 require 'parser'
 
 # Try to load the latest parser and fall back to 2.0. This should only occur on

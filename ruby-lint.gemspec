@@ -30,6 +30,7 @@ using the handle "yorickpeterse".
   s.required_ruby_version = '>= 1.9.3'
 
   s.add_dependency 'parser', ['>= 2.0.0']
+  s.add_dependency 'racc', ['>= 1.4.10']
   s.add_dependency 'slop'
 
   s.add_development_dependency 'rake'
