@@ -5,6 +5,21 @@ This document contains a short summary of the various releases of ruby-lint.
 For a full list of commits included in each release see the corresponding Git
 tags (named after the versions).
 
+## 0.9.1 - 2013-10-21
+
+A small release that only includes 3 changes:
+
+1. A presenter specifically designed for [Syntastic][syntastic]
+2. STDOUT/STDERR/STDIN definitions are now treated as instances meaning method
+   calls such as `reopen` are processed correctly.
+3. ruby-lint now enforces the use of the latest Racc version as this version
+   contains various performance improvements that are especially noticeable on
+   Rubinius.
+
+The Syntastic presenter is the most important addition as it allows me to
+finally publish my Syntastic plugin without having to use various Vim hacks to
+make it properly consume ruby-lint output.
+
 ## 0.9.0 - 2013-10-13
 
 Although the version number increased by quite a bit this release in itself is
@@ -163,3 +178,4 @@ First public release of ruby-lint.
 
 [yard]: http://yardoc.org/
 [parser]: https://github.com/whitequark/parser
+[syntastic]: https://github.com/scrooloose/syntastic
