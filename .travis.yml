@@ -4,7 +4,6 @@ script: rake travis
 rvm:
   - 1.9.3
   - 2.0.0
-  - rbx-head
   - rbx-2.1.1
   - jruby-19mode
 
