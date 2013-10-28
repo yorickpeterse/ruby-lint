@@ -54,4 +54,21 @@ describe RubyLint::Runner do
 
     output.empty?.should == true
   end
+
+  example 'conditionally disable analysis classes' do
+    # This analysis class triggers the "undefined method foobar..." error.
+    RubyLint::Analysis::UndefinedMethods.stub(:analyze?) do |ast, vm|
+      # This ensures that the passed arguments are passed in the right order
+      # and of the right type.
+      !(ast.is_a?(RubyLint::AST::Node) && vm.is_a?(RubyLint::VirtualMachine))
+    end
+
+    files  = [fixture_path('uses_external_invalid.rb')]
+    dirs   = [fixture_path('file_scanner/rails')]
+    config = RubyLint::Configuration.new(:directories => dirs)
+    runner = RubyLint::Runner.new(config)
+    output = runner.analyze(files)
+
+    output.empty?.should == true
+  end
 end

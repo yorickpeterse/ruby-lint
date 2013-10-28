@@ -170,7 +170,11 @@ module RubyLint
     # @param [RubyLint::Report] report
     #
     def run_analysis(ast, vm, report)
-      configuration.analysis_classes.each do |const|
+      classes = configuration.analysis_classes.select do |const|
+        const.analyze?(ast, vm)
+      end
+
+      classes.each do |const|
         instance = const.new(:vm => vm, :report => report)
         instance.iterate(ast)
       end

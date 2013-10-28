@@ -8,6 +8,8 @@ example, the callback method `on_string` is used before a `(string)` node is
 processed. For more low level details see the API documentation of
 {RubyLint::Iterator} and {RubyLint::Analysis::Base} (which extends the former).
 
+## Example
+
 For this guide we'll be creating an analysis class that checks for local
 variables written in camelCase. Whenever it finds these variables a warning
 will be added informing the developer that he/she should use snake\_case
@@ -88,3 +90,21 @@ The full code of this exercise looks like the following:
     iterator.iterate(ast)
 
     puts presenter.present(report)
+
+## Conditional Analysis
+
+In some cases you want to use a certain analysis class but only enable it if a
+certain condition is met. In order to do so a analysis class should define a
+class method called `analyze?` that returns a boolean that indicates if the
+class should be used or not. The basic signature of this method can be seen at
+{RubyLint::Analysis::Base.analyze?}.
+
+For example, if you only want to analyze RSpec files:
+
+    class RSpecExample < RubyLint::Analysis::Base
+      def self.analyze?(ast, vm)
+        return ast.file =~ /_spec\.rb$/
+      end
+    end
+
+By default all analysis classes are enabled.

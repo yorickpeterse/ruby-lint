@@ -24,6 +24,18 @@ module RubyLint
       SCOPES = [:root, :block, :class, :def, :module, :sclass]
 
       ##
+      # Returns a boolean that indicates if the analysis class should be used
+      # or not.
+      #
+      # @param [RubyLint::AST::Node] ast
+      # @param [RubyLint::VirtualMachine] vm
+      # @return [TrueClass|FalseClass]
+      #
+      def self.analyze?(ast, vm)
+        return true
+      end
+
+      ##
       # Called after a new instance of this class is created.
       #
       def after_initialize
