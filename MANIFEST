@@ -8,6 +8,7 @@ LICENSE
 MANIFEST
 README.md
 Rakefile
+benchmark/bootup.rb
 benchmark/virtual_machine.rb
 bin/ruby-lint
 checksum/.gitkeep
@@ -15,6 +16,7 @@ checksum/ruby-lint-0.0.3.gem.sha512
 checksum/ruby-lint-0.0.4.gem.sha512
 checksum/ruby-lint-0.0.5.gem.sha512
 checksum/ruby-lint-0.9.0.gem.sha512
+checksum/ruby-lint-0.9.1.gem.sha512
 doc/.gitkeep
 doc/DCO.md
 doc/architecture.md
@@ -36,6 +38,7 @@ lib/ruby-lint/analysis/undefined_variables.rb
 lib/ruby-lint/analysis/unused_variables.rb
 lib/ruby-lint/ast/builder.rb
 lib/ruby-lint/ast/node.rb
+lib/ruby-lint/benchmark/average.rb
 lib/ruby-lint/cache.rb
 lib/ruby-lint/cache_entry.rb
 lib/ruby-lint/cli.rb
