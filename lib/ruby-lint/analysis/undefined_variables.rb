@@ -36,8 +36,9 @@ module RubyLint
       # @param [RubyLint::AST::Node] node
       #
       def on_const(node)
-        variable = resolve_constant_path(node)
-        name     = constant_segments(node).join('::')
+        path     = ConstantPath.new(node)
+        variable = path.resolve(current_scope)
+        name     = path.to_s
 
         error("undefined constant #{name}", node) unless variable
       end

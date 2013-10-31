@@ -10,8 +10,6 @@ module RubyLint
     #  @return [RubyLint::Definition::RubyObject]
     #
     class Base
-      include Helper::ConstantPaths
-
       attr_reader :definitions, :node, :options
 
       # Ensures compatibility with code that relies on either one of these

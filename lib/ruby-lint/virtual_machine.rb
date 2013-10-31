@@ -70,8 +70,6 @@ module RubyLint
   #  @return [RubyLint::Docstring::Mapping]
   #
   class VirtualMachine < Iterator
-    include Helper::ConstantPaths
-
     attr_reader :associations,
       :comments,
       :definitions,
@@ -241,7 +239,7 @@ module RubyLint
       scope  = current_scope
 
       if node.children[0]
-        scope = resolve_constant_path(node.children[0])
+        scope = ConstantPath.new(node.children[0]).resolve(current_scope)
 
         return unless scope
       end
@@ -969,7 +967,7 @@ Received: #{arguments.length}
     #
     def definition_for_node(node)
       if node.const? and node.children[0]
-        definition = resolve_constant_path(node)
+        definition = ConstantPath.new(node).resolve(current_scope)
       else
         definition = current_scope.lookup(node.type, node.name)
       end

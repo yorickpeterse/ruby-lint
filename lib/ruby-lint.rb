@@ -35,7 +35,7 @@ require_relative 'ruby-lint/node_hash'
 require_relative 'ruby-lint/cache'
 require_relative 'ruby-lint/cache_entry'
 
-require_relative 'ruby-lint/helper/constant_paths'
+require_relative 'ruby-lint/constant_path'
 
 require_relative 'ruby-lint/definition_builder/base'
 require_relative 'ruby-lint/definition_builder/ruby_module'

@@ -11,8 +11,6 @@ module RubyLint
     #  @return [RubyLint::VirtualMachine]
     #
     class Base < Iterator
-      include Helper::ConstantPaths
-
       attr_reader :report, :vm
 
       ##

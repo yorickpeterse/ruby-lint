@@ -49,8 +49,9 @@ module RubyLint
       # @param [RubyLint::AST::Node] node
       #
       def on_casgn(node)
-        variable = resolve_constant_path(node)
-        name     = constant_segments(node).join('::')
+        path     = ConstantPath.new(node)
+        variable = path.resolve(current_scope)
+        name     = path.to_s
 
         if variable and !variable.used?
           warning("unused constant #{name}", node)

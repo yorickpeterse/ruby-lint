@@ -28,7 +28,7 @@ module RubyLint
         # name_prefix contains the constant path leading up to the name. For
         # example, if the name is `A::B::C` this node would contain `A::B`.
         if name_prefix
-          found = resolve_constant_path(name_prefix)
+          found = ConstantPath.new(name_prefix).resolve(current_scope)
           scope = found if found
         end
 

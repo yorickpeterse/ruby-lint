@@ -27,8 +27,6 @@ module RubyLint
   #  @return [Set]
   #
   class FileLoader < Iterator
-    include Helper::ConstantPaths
-
     attr_reader :file_scanner, :parser, :nodes, :comments, :debug, :paths
 
     ##
@@ -45,9 +43,10 @@ module RubyLint
     # @param [RubyLint::AST::Node] node
     #
     def on_const(node)
-      segments      = constant_segments(node)
-      constant_path = segments.join('::')
-      files         = file_scanner.scan(constant_path)
+      const_path = ConstantPath.new(node)
+
+      files      = file_scanner.scan(const_path.to_s)
+      last_name  = const_path.constant_segments.last.last
 
       paths << node.file
 
@@ -58,7 +57,7 @@ module RubyLint
 
         debug_message("Processing extra file: #{path}")
 
-        process_file(segments[-1], path)
+        process_file(last_name, path)
       end
     end
 
