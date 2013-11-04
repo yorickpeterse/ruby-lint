@@ -879,6 +879,12 @@ Received: #{arguments.length}
 
       buffer_assignment_value(variable.value)
 
+      # Primarily used by #after_send to support variable assignments as method
+      # call arguments.
+      if value and !value_stack.empty?
+        value_stack.push(value)
+      end
+
       add_variable(variable)
     end
 
