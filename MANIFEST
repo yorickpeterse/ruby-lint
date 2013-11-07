@@ -48,6 +48,7 @@ lib/ruby-lint/cli/base.rb
 lib/ruby-lint/cli/plot.rb
 lib/ruby-lint/configuration.rb
 lib/ruby-lint/constant_loader.rb
+lib/ruby-lint/constant_path.rb
 lib/ruby-lint/default_names.rb
 lib/ruby-lint/definition/constant_proxy.rb
 lib/ruby-lint/definition/ruby_method.rb
@@ -221,7 +222,6 @@ lib/ruby-lint/file_loader.rb
 lib/ruby-lint/file_scanner.rb
 lib/ruby-lint/generated_constant.rb
 lib/ruby-lint/global_scope.rb
-lib/ruby-lint/helper/constant_paths.rb
 lib/ruby-lint/inspector.rb
 lib/ruby-lint/iterator.rb
 lib/ruby-lint/method_call/alias.rb
@@ -281,6 +281,7 @@ spec/ruby-lint/cache_spec.rb
 spec/ruby-lint/cli/analyze_spec.rb
 spec/ruby-lint/cli/ast_spec.rb
 spec/ruby-lint/configuration_spec.rb
+spec/ruby-lint/constant_path.rb
 spec/ruby-lint/definition/constant_proxy_spec.rb
 spec/ruby-lint/definition/dsl_spec.rb
 spec/ruby-lint/definition/ruby_method_spec.rb
@@ -308,6 +309,8 @@ spec/ruby-lint/report_spec.rb
 spec/ruby-lint/runner_spec.rb
 spec/ruby-lint/virtual_machine/alias_spec.rb
 spec/ruby-lint/virtual_machine/assignments/arrays_spec.rb
+spec/ruby-lint/virtual_machine/assignments/assignment_arguments_spec.rb
+spec/ruby-lint/virtual_machine/assignments/constants_spec.rb
 spec/ruby-lint/virtual_machine/assignments/hashes_spec.rb
 spec/ruby-lint/virtual_machine/assignments/optional_spec.rb
 spec/ruby-lint/virtual_machine/assignments/return_values_spec.rb
