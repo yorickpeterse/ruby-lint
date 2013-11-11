@@ -6,6 +6,7 @@
 
 RubyLint::GlobalScope.definitions.define_constant('RUBY_REVISION') do |klass|
   klass.inherits(RubyLint::GlobalScope.constant_proxy('Object'))
+  klass.instance!
 
   klass.define_method('%') do |method|
     method.define_argument('o')
