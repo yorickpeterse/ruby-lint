@@ -1,7 +1,7 @@
 # This file was automatically generated, any manual changes will be lost the
 # next time this file is generated.
 #
-# Created:  2013-11-11 20:49:50 +0100
+# Created:  2013-11-11 21:14:28 +0100
 # Platform: rbx 2.1.1
 
 RubyLint::GlobalScope.definitions.define_constant('Socket') do |klass|
@@ -89,6 +89,12 @@ RubyLint::GlobalScope.definitions.define_constant('Socket') do |klass|
   klass.define_method('getservbyname') do |method|
     method.define_argument('service')
     method.define_optional_argument('proto')
+  end
+
+  klass.define_method('initialize') do |method|
+    method.define_optional_argument('sclass')
+    method.define_optional_argument('name')
+    method.define_optional_argument('under')
   end
 
   klass.define_method('max_open_fd')
@@ -451,6 +457,12 @@ RubyLint::GlobalScope.definitions.define_constant('Socket') do |klass|
   end
 
   klass.define_instance_method('increment_lineno')
+
+  klass.define_instance_method('initialize') do |method|
+    method.define_argument('family')
+    method.define_argument('socket_type')
+    method.define_optional_argument('protocol')
+  end
 
   klass.define_instance_method('inject') do |method|
     method.define_optional_argument('initial')

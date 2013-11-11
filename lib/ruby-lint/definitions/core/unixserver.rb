@@ -1,7 +1,7 @@
 # This file was automatically generated, any manual changes will be lost the
 # next time this file is generated.
 #
-# Created:  2013-11-11 20:49:50 +0100
+# Created:  2013-11-11 21:14:29 +0100
 # Platform: rbx 2.1.1
 
 RubyLint::GlobalScope.definitions.define_constant('UNIXServer') do |klass|
@@ -56,6 +56,12 @@ RubyLint::GlobalScope.definitions.define_constant('UNIXServer') do |klass|
 
   klass.define_method('from_descriptor') do |method|
     method.define_argument('fixnum')
+  end
+
+  klass.define_method('initialize') do |method|
+    method.define_optional_argument('sclass')
+    method.define_optional_argument('name')
+    method.define_optional_argument('under')
   end
 
   klass.define_method('max_open_fd')
@@ -373,6 +379,10 @@ RubyLint::GlobalScope.definitions.define_constant('UNIXServer') do |klass|
   end
 
   klass.define_instance_method('increment_lineno')
+
+  klass.define_instance_method('initialize') do |method|
+    method.define_argument('path')
+  end
 
   klass.define_instance_method('inject') do |method|
     method.define_optional_argument('initial')

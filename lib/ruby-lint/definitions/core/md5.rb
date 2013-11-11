@@ -1,7 +1,7 @@
 # This file was automatically generated, any manual changes will be lost the
 # next time this file is generated.
 #
-# Created:  2013-11-11 20:49:50 +0100
+# Created:  2013-11-11 21:14:28 +0100
 # Platform: rbx 2.1.1
 
 RubyLint::GlobalScope.definitions.define_constant('MD5') do |klass|
@@ -19,6 +19,12 @@ RubyLint::GlobalScope.definitions.define_constant('MD5') do |klass|
   end
 
   klass.define_method('hexdigest')
+
+  klass.define_method('initialize') do |method|
+    method.define_optional_argument('sclass')
+    method.define_optional_argument('name')
+    method.define_optional_argument('under')
+  end
 
   klass.define_method('md5') do |method|
     method.define_rest_argument('args')
@@ -55,6 +61,8 @@ RubyLint::GlobalScope.definitions.define_constant('MD5') do |klass|
   klass.define_instance_method('hexdigest')
 
   klass.define_instance_method('hexdigest!')
+
+  klass.define_instance_method('initialize')
 
   klass.define_instance_method('initialize_copy')
 

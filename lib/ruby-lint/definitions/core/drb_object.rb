@@ -1,7 +1,7 @@
 # This file was automatically generated, any manual changes will be lost the
 # next time this file is generated.
 #
-# Created:  2013-11-11 20:49:50 +0100
+# Created:  2013-11-11 21:14:28 +0100
 # Platform: rbx 2.1.1
 
 RubyLint::GlobalScope.definitions.define_constant('DRbObject') do |klass|
@@ -9,6 +9,12 @@ RubyLint::GlobalScope.definitions.define_constant('DRbObject') do |klass|
 
   klass.define_method('_load') do |method|
     method.define_argument('s')
+  end
+
+  klass.define_method('initialize') do |method|
+    method.define_optional_argument('sclass')
+    method.define_optional_argument('name')
+    method.define_optional_argument('under')
   end
 
   klass.define_method('new_with') do |method|
@@ -46,6 +52,11 @@ RubyLint::GlobalScope.definitions.define_constant('DRbObject') do |klass|
   end
 
   klass.define_instance_method('hash')
+
+  klass.define_instance_method('initialize') do |method|
+    method.define_argument('obj')
+    method.define_optional_argument('uri')
+  end
 
   klass.define_instance_method('method_missing') do |method|
     method.define_argument('msg_id')

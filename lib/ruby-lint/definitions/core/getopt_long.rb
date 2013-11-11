@@ -1,11 +1,17 @@
 # This file was automatically generated, any manual changes will be lost the
 # next time this file is generated.
 #
-# Created:  2013-11-11 20:49:50 +0100
+# Created:  2013-11-11 21:14:28 +0100
 # Platform: rbx 2.1.1
 
 RubyLint::GlobalScope.definitions.define_constant('GetoptLong') do |klass|
   klass.inherits(RubyLint::GlobalScope.constant_proxy('Object'))
+
+  klass.define_method('initialize') do |method|
+    method.define_optional_argument('sclass')
+    method.define_optional_argument('name')
+    method.define_optional_argument('under')
+  end
 
   klass.define_instance_method('each')
 
@@ -20,6 +26,10 @@ RubyLint::GlobalScope.definitions.define_constant('GetoptLong') do |klass|
   klass.define_instance_method('get')
 
   klass.define_instance_method('get_option')
+
+  klass.define_instance_method('initialize') do |method|
+    method.define_rest_argument('arguments')
+  end
 
   klass.define_instance_method('ordering')
 

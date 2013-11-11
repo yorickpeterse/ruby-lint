@@ -1,7 +1,7 @@
 # This file was automatically generated, any manual changes will be lost the
 # next time this file is generated.
 #
-# Created:  2013-11-11 20:49:50 +0100
+# Created:  2013-11-11 21:14:29 +0100
 # Platform: rbx 2.1.1
 
 RubyLint::GlobalScope.definitions.define_constant('Vector') do |klass|
@@ -48,6 +48,12 @@ RubyLint::GlobalScope.definitions.define_constant('Vector') do |klass|
 
   klass.define_method('included') do |method|
     method.define_argument('mod')
+  end
+
+  klass.define_method('initialize') do |method|
+    method.define_optional_argument('sclass')
+    method.define_optional_argument('name')
+    method.define_optional_argument('under')
   end
 
   klass.define_instance_method('*') do |method|
@@ -210,6 +216,10 @@ RubyLint::GlobalScope.definitions.define_constant('Vector') do |klass|
 
   klass.define_instance_method('include?') do |method|
     method.define_argument('obj')
+  end
+
+  klass.define_instance_method('initialize') do |method|
+    method.define_argument('array')
   end
 
   klass.define_instance_method('inject') do |method|
