@@ -17,6 +17,9 @@ namespace :generate do
   task :everything, :overwrite do |task, args|
     args.with_defaults(:overwrite => false)
 
+    # Require the entire stdlib so we can generate the definitions for it.
+    require_relative '../misc/stdlib'
+
     directory = File.expand_path(
       '../../lib/ruby-lint/definitions/core/',
       __FILE__
