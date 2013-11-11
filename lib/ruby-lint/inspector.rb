@@ -137,7 +137,8 @@ module RubyLint
 
       # If the constant manually defines the initialize method (= private)
       # we'll also want to include it.
-      if constant.is_a?(Class) \
+      if getter == :instance_methods \
+      and constant.is_a?(Class) \
       and constant.private_method_defined?(:initialize) \
       and constant.instance_method(:initialize).source_location
         methods = methods | [:initialize]
