@@ -132,9 +132,18 @@ module RubyLint
     # @return [Array]
     #
     def get_methods(getter = :methods)
-      diff = constant.send(getter) - Object.send(getter)
+      diff    = constant.send(getter) - Object.send(getter)
+      methods = diff | constant.send(getter, false)
 
-      return diff | constant.send(getter, false)
+      # If the constant manually defines the initialize method (= private)
+      # we'll also want to include it.
+      if constant.is_a?(Class) \
+      and constant.private_method_defined?(:initialize) \
+      and constant.instance_method(:initialize).source_location
+        methods = methods | [:initialize]
+      end
+
+      return methods
     end
 
     ##
