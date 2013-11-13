@@ -49,6 +49,10 @@ Examples:
   You can also specify multiple files:
 
       $ ruby-lint analyze first_file.rb second_file.rb
+
+  Run analysis on an entire directory:
+
+      $ ruby-lint analyze lib/
   EOF
 
   separator RubyLint::CLI::OPTIONS_HEADER
