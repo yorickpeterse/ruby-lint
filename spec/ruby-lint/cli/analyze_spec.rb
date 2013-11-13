@@ -8,6 +8,11 @@ describe RubyLint::CLI do
       @output  = StringIO.new
 
       @command.output_destination = @output
+
+      # This is a hack to ensure that Slop's internal state is clean before
+      # every test. Without this tests would fail if they were defined after
+      # the benchmark test (due to its use of a switch as the first argument).
+      @command.instance_variable_set(:@trash, [])
     end
 
     example 'analyze a valid Ruby file' do
@@ -37,6 +42,16 @@ describe RubyLint::CLI do
 
       output.should =~ /Execution time:/
       output.should =~ /Memory usage:/
+    end
+
+    example 'run analysis on an entire directory' do
+      @command.parse([fixture_path('deeply')])
+
+      @output.rewind
+
+      output = @output.read
+
+      output.should =~ /undefined method foobar/
     end
   end
 end

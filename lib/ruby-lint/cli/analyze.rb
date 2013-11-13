@@ -78,12 +78,26 @@ Examples:
 
       if File.file?(file)
         existing << file
+
+      elsif File.directory?(file)
+        existing = existing | glob_files(file)
+
       else
-        abort "The file #{file} does not exist"
+        abort "The file/directory #{file} does not exist"
       end
     end
 
     return existing
+  end
+
+  ##
+  # Returns a list of Ruby files in the given directory. This list includes
+  # deeply nested files.
+  #
+  # @return [Array]
+  #
+  def glob_files(directory)
+    return Dir.glob(File.join(directory, '**/*.rb'))
   end
 
   ##
