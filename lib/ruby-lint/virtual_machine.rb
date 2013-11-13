@@ -97,7 +97,17 @@ module RubyLint
     #
     # @return [Array]
     #
-    PRIMITIVES = [:int, :float, :str, :sym, :true, :false, :nil]
+    PRIMITIVES = [
+      :int,
+      :float,
+      :str,
+      :sym,
+      :true,
+      :false,
+      :nil,
+      :erange,
+      :irange
+    ]
 
     ##
     # Returns a Hash containing the method call evaluators to use for `(send)`
