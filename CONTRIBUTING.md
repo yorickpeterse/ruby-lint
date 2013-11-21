@@ -4,22 +4,20 @@ Those that wish to contribute to ruby-lint are more than welcome. However, to
 make the lifes of both me and others easier there are a few things one should
 keep in mind.
 
-The basic set of guidelines is described at
-<http://yorickpeterse.com/articles/contributing-to-my-code/>. The article looks
-a bit daunting but most of what this article describes is already common
-practise in Ruby land. In short:
+The gist of this is as following:
 
-* write tests
-* write documentation using YARD (at the very least arguments and return values
+* Write tests
+* Write documentation using YARD (at the very least arguments and return values
   should be documented)
-* wrap lines at 79 characters per line
+* Wrap lines at 79 characters per line
 * Git commits should have a <= 50 character summary, optionally followed by a
   blank line and a more in depth description of 79 characters per line.
 
-These are the most important bits, the rest is all described in the above
-article. If you have any questions or whatsoever don't hesitate to ask and
-don't worry about making mistakes (e.g. missing some documentation), I'll help
-wherever I can and won't slap you with a large trout.
+More information can be found here:
+<http://yorickpeterse.com/articles/contributing-to-my-code/>. If you have any
+questions or whatsoever don't hesitate to ask and don't worry about making
+mistakes (e.g. missing some documentation), I'll help wherever I can and won't
+slap you with a large trout.
 
 ## Legal
 
