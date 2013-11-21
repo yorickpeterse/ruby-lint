@@ -10,5 +10,7 @@ task :upload_doc => :doc do
   version_dir = File.join(root_dir, RubyLint::VERSION)
 
   sh "scp -r yardoc europa:#{version_dir}"
-  sh "ssh europa ln -s #{version_dir} #{root_dir}/latest"
+
+  sh "ssh europa 'rm #{root_dir}/latest " \
+    "&& ln -s #{version_dir} #{root_dir}/latest'"
 end
