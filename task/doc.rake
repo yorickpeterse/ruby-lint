@@ -11,6 +11,6 @@ task :upload_doc => :doc do
 
   sh "scp -r yardoc europa:#{version_dir}"
 
-  sh "ssh europa 'rm #{root_dir}/latest " \
+  sh "ssh europa 'rm -f #{root_dir}/latest " \
     "&& ln -s #{version_dir} #{root_dir}/latest'"
 end
