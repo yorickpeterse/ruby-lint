@@ -17,6 +17,7 @@ pre.code
 {
     font-size:   13px;
     line-height: 1.4;
+    overflow:    auto;
 }
 
 /**
