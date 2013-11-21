@@ -37,7 +37,6 @@ using the handle "yorickpeterse".
   s.add_development_dependency 'yard'
   s.add_development_dependency 'pry-rescue'
   s.add_development_dependency 'simplecov'
-  s.add_development_dependency 'rubygems-openpgp'
   s.add_development_dependency 'coveralls'
   s.add_development_dependency 'json'
   s.add_development_dependency 'kramdown'

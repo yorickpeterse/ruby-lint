@@ -40,25 +40,18 @@ This builds a new version of the Gem and saves it in the pkg/ directory.
 
 ## Security
 
-To ensure that people can't tamper with the ruby-lint Gem once it's being
-distributed as a `.gem` file the Gem is signed using GNUPG (using the
-[rubygems-openpgp][rubygems-openpgp] Gem). If you have this Gem installed it's
-recommended that you install ruby-lint as following:
+As a basic form of security ruby-lint provides a set of SHA512 checksums for
+every Gem release. These checksums can be found in the `checksum/` directory.
+Although these checksums do not prevent malicious users from tampering with a
+built Gem they can be used for basic integrity verification purposes.
 
-    gem install ruby-lint --verify --trust
+The checksum of a file can be checked using the `sha512sum` command. For
+example:
 
-Unless you have my GPG public key and have marked it as trusted this process
-will fail. For signing Gems I use the public key **3649F444** registered to
-"Yorick Peterse" using Email address <yorickpeterse@gmail.com>.
+    $ sha512sum pkg/ruby-lint-0.9.1.gem
+    10a51f27c455e5743fff7fefe29512cff20116b805bec148e09d4bade1727e3beab7f7f9ee97b020d290773edcb7bd1685858ccad0bbd1a35cc0282c00c760c6  pkg/ruby-lint-0.9.1.gem
 
-You can add this key by running the following command:
-
-    gpg --recv-keys 3649F444
-
-In case you don't use GPG but still want some form of verification you can use
-the checksums that are located in the "checksum" directory. These checksums are
-SHA512 checksums of entire Gem files and can be verified using the `sha512sum`
-command.
+In the past Gems were also signed using PGP, this is no longer the case.
 
 ## Usage
 
@@ -107,5 +100,3 @@ the following output:
 All source code in this repository is licensed under the MIT license unless
 specified otherwise. A copy of this license can be found in the file "LICENSE"
 in the root directory of this repository.
-
-[rubygems-openpgp]: https://github.com/grant-olson/rubygems-openpgp
