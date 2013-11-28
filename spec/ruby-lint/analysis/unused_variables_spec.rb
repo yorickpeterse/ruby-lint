@@ -8,7 +8,7 @@ describe RubyLint::Analysis::UnusedVariables do
     entry.is_a?(RubyLint::Report::Entry).should == true
 
     entry.line.should    == 1
-    entry.column.should  == 0
+    entry.column.should  == 1
     entry.message.should == 'unused local variable number'
   end
 
@@ -17,7 +17,7 @@ describe RubyLint::Analysis::UnusedVariables do
     entry = report.entries[0]
 
     entry.line.should    == 1
-    entry.column.should  == 0
+    entry.column.should  == 1
     entry.message.should == 'unused instance variable @number'
   end
 
@@ -40,7 +40,7 @@ number
     entry.is_a?(RubyLint::Report::Entry).should == true
 
     entry.line.should    == 1
-    entry.column.should  == 0
+    entry.column.should  == 1
     entry.message.should == 'unused constant NUMBER'
   end
 
@@ -73,7 +73,7 @@ A::B = 10
     entry.is_a?(RubyLint::Report::Entry).should == true
 
     entry.line.should    == 4
-    entry.column.should  == 0
+    entry.column.should  == 1
     entry.message.should == 'unused constant A::B'
   end
 
@@ -90,7 +90,7 @@ end
     entry.is_a?(RubyLint::Report::Entry).should == true
 
     entry.line.should    == 2
-    entry.column.should  == 2
+    entry.column.should  == 3
     entry.message.should == 'unused local variable number'
   end
 
@@ -107,7 +107,7 @@ second = first
     entry = report.entries[0]
 
     entry.line.should    == 2
-    entry.column.should  == 0
+    entry.column.should  == 1
     entry.message.should == 'unused local variable second'
   end
 
@@ -155,7 +155,7 @@ end
 
       entry.message.should == 'unused argument number'
       entry.line.should    == 1
-      entry.column.should  == 13
+      entry.column.should  == 14
     end
 
     example 'warn for a unused optional argument' do
@@ -169,7 +169,7 @@ end
 
       entry.message.should == 'unused argument amount'
       entry.line.should    == 1
-      entry.column.should  == 13
+      entry.column.should  == 14
     end
 
     example 'warn for a unused rest argument' do
@@ -183,7 +183,7 @@ end
 
       entry.message.should == 'unused argument args'
       entry.line.should    == 1
-      entry.column.should  == 13
+      entry.column.should  == 14
     end
 
     example 'warn for a unused block argument' do
@@ -197,7 +197,7 @@ end
 
       entry.message.should == 'unused argument block'
       entry.line.should    == 1
-      entry.column.should  == 13
+      entry.column.should  == 14
     end
 
     specific_ruby_version '2.0' do
@@ -212,7 +212,7 @@ end
 
         entry.message.should == 'unused argument amount'
         entry.line.should    == 1
-        entry.column.should  == 13
+        entry.column.should  == 14
       end
     end
 
@@ -241,7 +241,7 @@ end
 
       entry.message.should == 'unused argument number'
       entry.line.should    == 1
-      entry.column.should  == 18
+      entry.column.should  == 19
     end
 
     example 'do not warn for a used argument' do

@@ -18,7 +18,7 @@ module RubyLint
       # @return [Numeric]
       #
       def column
-        return location.expression.column if location
+        return location.expression.column + 1 if location
       end
 
       ##

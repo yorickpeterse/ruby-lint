@@ -16,7 +16,7 @@ end
     entry.is_a?(RubyLint::Report::Entry).should == true
 
     entry.line.should    == 3
-    entry.column.should  == 18
+    entry.column.should  == 19
     entry.message.should == 'shadowing outer local variable number'
   end
 
@@ -53,7 +53,7 @@ end
     entry.is_a?(RubyLint::Report::Entry).should == true
 
     entry.line.should    == 5
-    entry.column.should  == 18
+    entry.column.should  == 19
     entry.message.should == 'shadowing outer local variable number'
   end
 
@@ -77,9 +77,9 @@ end
     first, second = report.entries
 
     first.line.should    == 3
-    first.column.should  == 17
+    first.column.should  == 18
 
     second.line.should    == 7
-    second.column.should  == 17
+    second.column.should  == 18
   end
 end

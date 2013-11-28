@@ -8,7 +8,7 @@ describe RubyLint::Analysis::UndefinedMethods do
     entry.is_a?(RubyLint::Report::Entry).should == true
 
     entry.line.should    == 1
-    entry.column.should  == 0
+    entry.column.should  == 1
     entry.message.should == 'undefined method example_method'
   end
 
@@ -28,7 +28,7 @@ String.example_method
     entry.is_a?(RubyLint::Report::Entry).should == true
 
     entry.line.should    == 6
-    entry.column.should  == 0
+    entry.column.should  == 1
     entry.message.should == 'undefined method example_method on String'
   end
 
@@ -40,7 +40,7 @@ String.example_method
     entry.is_a?(RubyLint::Report::Entry).should == true
 
     entry.line.should    == 1
-    entry.column.should  == 0
+    entry.column.should  == 1
     entry.message.should == 'undefined method example_method ' \
       'on an instance of String'
   end
@@ -69,7 +69,7 @@ name
     entry.is_a?(RubyLint::Report::Entry).should == true
 
     entry.line.should    == 11
-    entry.column.should  == 0
+    entry.column.should  == 1
     entry.message.should == 'undefined method name'
   end
 
@@ -132,7 +132,7 @@ name.downcasex
     entry = report.entries[0]
 
     entry.line.should    == 4
-    entry.column.should  == 0
+    entry.column.should  == 1
     entry.message.should == 'undefined method downcasex on an instance of String'
   end
 
@@ -156,7 +156,7 @@ user.invalid
     entry = report.entries[0]
 
     entry.line.should    == 9
-    entry.column.should  == 0
+    entry.column.should  == 1
     entry.message.should == 'undefined method invalid on an instance of User'
   end
 

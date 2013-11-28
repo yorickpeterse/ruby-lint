@@ -8,7 +8,7 @@ describe RubyLint::Analysis::UndefinedVariables do
     entry.is_a?(RubyLint::Report::Entry).should == true
 
     entry.line.should    == 1
-    entry.column.should  == 0
+    entry.column.should  == 1
     entry.message.should == 'undefined instance variable @number'
   end
 
@@ -19,7 +19,7 @@ describe RubyLint::Analysis::UndefinedVariables do
     entry.is_a?(RubyLint::Report::Entry).should == true
 
     entry.line.should    == 1
-    entry.column.should  == 0
+    entry.column.should  == 1
     entry.message.should == 'undefined class variable @@number'
   end
 
@@ -30,7 +30,7 @@ describe RubyLint::Analysis::UndefinedVariables do
     entry.is_a?(RubyLint::Report::Entry).should == true
 
     entry.line.should    == 1
-    entry.column.should  == 0
+    entry.column.should  == 1
     entry.message.should == 'undefined global variable $number'
   end
 
@@ -41,7 +41,7 @@ describe RubyLint::Analysis::UndefinedVariables do
     entry.is_a?(RubyLint::Report::Entry).should == true
 
     entry.line.should    == 1
-    entry.column.should  == 0
+    entry.column.should  == 1
     entry.message.should == 'undefined constant NUMBER'
   end
 
@@ -63,7 +63,7 @@ A::B
     entry.is_a?(RubyLint::Report::Entry).should == true
 
     entry.line.should    == 8
-    entry.column.should  == 0
+    entry.column.should  == 1
     entry.message.should == 'undefined constant A::B'
   end
 

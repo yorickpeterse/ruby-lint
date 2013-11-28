@@ -144,7 +144,7 @@ module RubyLint
         :level   => :error,
         :message => diagnostic.message,
         :line    => diagnostic.location.line,
-        :column  => diagnostic.location.column,
+        :column  => diagnostic.location.column + 1,
         :file    => diagnostic.location.source_buffer.name
       )
     end

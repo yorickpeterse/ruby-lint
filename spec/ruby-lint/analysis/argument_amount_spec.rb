@@ -15,7 +15,7 @@ example
     entry.is_a?(RubyLint::Report::Entry).should == true
 
     entry.line.should    == 4
-    entry.column.should  == 0
+    entry.column.should  == 1
     entry.message.should == 'wrong number of arguments (expected 2 but got 0)'
   end
 
@@ -33,7 +33,7 @@ example
     entry.is_a?(RubyLint::Report::Entry).should == true
 
     entry.line.should    == 4
-    entry.column.should  == 0
+    entry.column.should  == 1
     entry.message.should == 'wrong number of arguments ' \
       '(expected 2..3 but got 0)'
   end
@@ -52,7 +52,7 @@ example
     entry.is_a?(RubyLint::Report::Entry).should == true
 
     entry.line.should    == 4
-    entry.column.should  == 0
+    entry.column.should  == 1
     entry.message.should == 'wrong number of arguments ' \
       '(expected 2 but got 0)'
   end
@@ -107,11 +107,11 @@ Person.new(10, 20)
     first, second = report.entries
 
     first.line.should    == 6
-    first.column.should  == 0
+    first.column.should  == 1
     first.message.should == 'wrong number of arguments (expected 1 but got 0)'
 
     second.line.should    == 7
-    second.column.should  == 0
+    second.column.should  == 1
     second.message.should == 'wrong number of arguments (expected 1 but got 2)'
   end
 end

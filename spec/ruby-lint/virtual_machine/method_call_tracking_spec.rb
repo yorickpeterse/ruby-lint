@@ -30,10 +30,10 @@ end
 
     example 'track call location information' do
       @third.calls[0].line.should   == 8
-      @third.calls[0].column.should == 2
+      @third.calls[0].column.should == 3
 
       @third.calls[1].line.should   == 9
-      @third.calls[1].column.should == 2
+      @third.calls[1].column.should == 3
     end
 
     example 'track the call definitions' do
@@ -43,10 +43,10 @@ end
 
     example 'track call location information in inverse direction' do
       @first.callers[0].line.should   == 8
-      @first.callers[0].column.should == 2
+      @first.callers[0].column.should == 3
 
       @second.callers[0].line.should   == 9
-      @second.callers[0].column.should == 2
+      @second.callers[0].column.should == 3
     end
 
     example 'track method calls in inverse direction' do

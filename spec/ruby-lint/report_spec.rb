@@ -8,7 +8,7 @@ describe 'RubyLint::Report' do
       :level   => :info,
       :message => 'info message',
       :line    => 1,
-      :column  => 1,
+      :column  => 2,
       :file    => 'file.rb'
     )
 
@@ -19,7 +19,7 @@ describe 'RubyLint::Report' do
     entry.level.should   == :info
     entry.message.should == 'info message'
     entry.line.should    == 1
-    entry.column.should  == 1
+    entry.column.should  == 2
     entry.file.should    == 'file.rb'
   end
 

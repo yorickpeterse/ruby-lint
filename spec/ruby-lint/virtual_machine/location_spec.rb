@@ -13,7 +13,7 @@ end
       obj  = defs.lookup(:const, 'Example')
 
       obj.line.should   == 2
-      obj.column.should == 0
+      obj.column.should == 1
       obj.file.should   == '(ruby-lint)'
     end
 
@@ -28,7 +28,7 @@ end
       obj  = defs.lookup(:const, 'Example')
 
       obj.line.should   == 2
-      obj.column.should == 0
+      obj.column.should == 1
       obj.file.should   == '(ruby-lint)'
     end
 
@@ -43,7 +43,7 @@ end
       obj  = defs.lookup(:instance_method, 'example')
 
       obj.line.should   == 2
-      obj.column.should == 0
+      obj.column.should == 1
       obj.file.should   == '(ruby-lint)'
     end
 
@@ -57,7 +57,7 @@ number = 10
       obj  = defs.lookup(:lvar, 'number')
 
       obj.line.should   == 2
-      obj.column.should == 0
+      obj.column.should == 1
       obj.file.should   == '(ruby-lint)'
     end
   end

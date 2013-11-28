@@ -196,10 +196,10 @@ describe ruby_object do
   end
 
   example 'storing location information in a definition' do
-    obj = ruby_object.new(:line => 10, :column => 2, :file => '(ruby-lint)')
+    obj = ruby_object.new(:line => 10, :column => 3, :file => '(ruby-lint)')
 
     obj.line.should   == 10
-    obj.column.should == 2
+    obj.column.should == 3
     obj.file.should   == '(ruby-lint)'
   end
 
