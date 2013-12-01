@@ -1,4 +1,4 @@
-gem 'parser', '>= 2.0.0'
+gem 'parser', '~> 2.0'
 
 require 'parser'
 
