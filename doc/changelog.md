@@ -5,6 +5,46 @@ This document contains a short summary of the various releases of ruby-lint.
 For a full list of commits included in each release see the corresponding Git
 tags (named after the versions).
 
+## 1.0.0 - 2013-12-01
+
+The first stable release of ruby-lint. The 1.0 series will not introduce any
+breaking API changes. The changes in this particular release are fairly small.
+Initially I wanted to include the ability to skip analysis for certain
+constants but I've decided to hold this off until the next release as I'm not
+yet sure how I envision this feature.
+
+Having said that, this release contains the following noteworthy changes:
+
+* Column numbers now start from 1 instead of 0, something I completely
+  overlooked until now.
+* Performance of `RubyLint::FileScanner#scan` has been improved significantly
+  (more on this below).
+* ruby-lint can now run analysis on an entire directory instead of only
+  operating on individual files.
+* Support for Range instances when building definitions.
+* Various extra stdlib definitions have been added.
+* Support for conditional code analysis (see below).
+
+### FileScanner Performance
+
+The performance of `RubyLint::FileScanner#scan` has been improved
+significantly. In previous versions a call to `Dir.glob` was made every time
+ruby-lint tried to find a constant from the local file system. This process has
+been improved by retrieving all Ruby files at once and caching the results.
+When performing analysis on `lib/ruby-lint/virtual_machine.rb` this change lead
+to a reduction in execution time of about 400 milliseconds.
+
+See <http://git.io/Q5s8Lw> for a more detailed description of this change.
+
+### Conditional Code Analysis
+
+This new feature allows analysis classes themselves to determine whether or not
+they should be used. This can be used to write analysis code that only runs on
+Rspec files for example.
+
+Currently ruby-lint doesn't ship with any analysis classes that use this
+feature but I plan to add these in the future.
+
 ## 0.9.1 - 2013-10-21
 
 A small release that only includes 3 changes:
