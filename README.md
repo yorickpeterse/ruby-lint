@@ -38,21 +38,6 @@ so as following:
 
 This builds a new version of the Gem and saves it in the pkg/ directory.
 
-## Security
-
-As a basic form of security ruby-lint provides a set of SHA512 checksums for
-every Gem release. These checksums can be found in the `checksum/` directory.
-Although these checksums do not prevent malicious users from tampering with a
-built Gem they can be used for basic integrity verification purposes.
-
-The checksum of a file can be checked using the `sha512sum` command. For
-example:
-
-    $ sha512sum pkg/ruby-lint-0.9.1.gem
-    10a51f27c455e5743fff7fefe29512cff20116b805bec148e09d4bade1727e3beab7f7f9ee97b020d290773edcb7bd1685858ccad0bbd1a35cc0282c00c760c6  pkg/ruby-lint-0.9.1.gem
-
-In the past Gems were also signed using PGP, this is no longer the case.
-
 ## Usage
 
 Using ruby-lint from the CLI is very easy. To analyze a set of files
@@ -87,6 +72,21 @@ the following output:
     test.rb: error: line 7, column 22: undefined instance variable @name
     test.rb: warning: line 12, column 1: unused local variable greeting
     test.rb: error: line 14, column 1: wrong number of arguments (expected 0 but got 1)
+
+## Security
+
+As a basic form of security ruby-lint provides a set of SHA512 checksums for
+every Gem release. These checksums can be found in the `checksum/` directory.
+Although these checksums do not prevent malicious users from tampering with a
+built Gem they can be used for basic integrity verification purposes.
+
+The checksum of a file can be checked using the `sha512sum` command. For
+example:
+
+    $ sha512sum pkg/ruby-lint-0.9.1.gem
+    10a51f27c455e5743fff7fefe29512cff20116b805bec148e09d4bade1727e3beab7f7f9ee97b020d290773edcb7bd1685858ccad0bbd1a35cc0282c00c760c6  pkg/ruby-lint-0.9.1.gem
+
+In the past Gems were also signed using PGP, this is no longer the case.
 
 ## Documentation
 
