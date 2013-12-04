@@ -82,7 +82,15 @@ module RubyLint
       # @return [TrueClass|FalseClass]
       #
       def add_warning?(variable)
-        return variable && !variable.used? && variable.name[0] != '_'
+        return variable && !variable.used? && !ignore_variable?(variable.name)
+      end
+
+      ##
+      # @param [String] name
+      # @return [TrueClass|FalseClass]
+      #
+      def ignore_variable?(name)
+        return name[0] == '_' || name.empty?
       end
     end # UnusedVariables
   end # Analysis

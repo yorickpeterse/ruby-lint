@@ -227,6 +227,17 @@ end
 
       report.entries.empty?.should == true
     end
+
+    example 'do not warn for unused anonymous splat arguments' do
+      code = <<-CODE
+def example(*)
+end
+      CODE
+
+      report = build_report(code, RubyLint::Analysis::UnusedVariables)
+
+      report.entries.empty?.should == true
+    end
   end
 
   context 'block arguments' do
