@@ -5,6 +5,8 @@
 #
 RubyLint::GlobalScope.definitions.define_constant('ENV') do |klass|
   klass.inherits(RubyLint::GlobalScope.constant_proxy('Hash'))
+
+  klass.instance!
 end
 
 RubyLint::GlobalScope.definitions.lookup(:const, 'ENV').deep_freeze
