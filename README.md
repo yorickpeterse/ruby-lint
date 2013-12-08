@@ -51,20 +51,22 @@ For more information specify either the `-h` or `--help` option.
 
 Given the following code:
 
-    class Person
-      def initialize(name)
-        # oops, not setting @name
-      end
+```ruby
+class Person
+  def initialize(name)
+    # oops, not setting @name
+  end
 
-      def greet
-        return "Hello, #{@name}"
-      end
-    end
+  def greet
+    return "Hello, #{@name}"
+  end
+end
 
-    user     = Person.new('Alice')
-    greeting = user.greet
+user     = Person.new('Alice')
+greeting = user.greet
 
-    user.greet(:foo)
+user.greet(:foo)
+```
 
 Analysing this file using ruby-lint (with the default settings) would result in
 the following output:
@@ -119,10 +121,10 @@ In the past Gems were also signed using PGP, this is no longer the case.
 
 ## Documentation
 
-* {file:contributing Contributing}
-* {file:architecture Architecture}
-* {file:code\_analysis Code Analysis}
-* {file:configuration Configuration}
+* [Contributing](CONTRIBUTING.md)
+* [Architecture](doc/architecture.md)
+* [Code Analysis](doc/code_analysis.md)
+* [Configuration](doc/configuration.md)
 
 ## License
 
