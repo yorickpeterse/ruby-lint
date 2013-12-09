@@ -1,5 +1,5 @@
 ---
-script: rake travis
+script: bundle exec rake travis
 
 rvm:
   - 1.9.3
