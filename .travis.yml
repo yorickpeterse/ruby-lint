@@ -18,3 +18,5 @@ notifications:
 branches:
   only:
     - master
+
+cache: bundler
