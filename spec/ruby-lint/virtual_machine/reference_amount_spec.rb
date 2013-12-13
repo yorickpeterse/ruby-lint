@@ -57,5 +57,25 @@ number = 20
 
       defs.lookup(:lvar, 'number').reference_amount.should == 1
     end
+
+    example 'track ivar references in parent scopes' do
+      code = <<-CODE
+def first
+  @number = 10
+end
+
+def second
+  @number = 20
+  @number
+end
+      CODE
+
+      defs   = build_definitions(code)
+      first  = defs.lookup(:instance_method, 'first').lookup(:ivar, '@number')
+      second = defs.lookup(:instance_method, 'second').lookup(:ivar, '@number')
+
+      first.reference_amount.should  == 2
+      second.reference_amount.should == 2
+    end
   end
 end

@@ -874,25 +874,34 @@ Received: #{arguments.length}
     # @param [RubyLint::AST::Node] node
     #
     def assign_variable(type, name, value, node)
-      existing   = current_scope.lookup(type, name)
-      ref_amount = existing ? existing.reference_amount + 1 : 0
-      variable   = Definition::RubyObject.new(
-        :type             => type,
-        :name             => name,
-        :value            => value,
-        :instance_type    => :instance,
-        :reference_amount => ref_amount,
-        :line             => node.line,
-        :column           => node.column,
-        :file             => node.file
-      )
+      variable = current_scope.lookup(type, name)
 
-      buffer_assignment_value(variable.value)
+      # If there's already a variable we'll just update it.
+      if variable
+        variable.reference_amount += 1
+
+        # `value` is not for conditional assignments as those are handled
+        # manually.
+        variable.value = value if value
+      else
+        variable = Definition::RubyObject.new(
+          :type             => type,
+          :name             => name,
+          :value            => value,
+          :instance_type    => :instance,
+          :reference_amount => 0,
+          :line             => node.line,
+          :column           => node.column,
+          :file             => node.file
+        )
+      end
+
+      buffer_assignment_value(value)
 
       # Primarily used by #after_send to support variable assignments as method
       # call arguments.
       if value and !value_stack.empty?
-        value_stack.push(value)
+        value_stack.push(variable.value)
       end
 
       add_variable(variable)
