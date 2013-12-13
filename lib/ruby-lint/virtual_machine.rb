@@ -142,6 +142,13 @@ module RubyLint
     EXPORT_VARIABLES = [:ivar, :cvar, :const]
 
     ##
+    # List of variable types that should be assigned in the global scope.
+    #
+    # @return [Array]
+    #
+    ASSIGN_GLOBAL = [:gvar]
+
+    ##
     # The available method visibilities.
     #
     # @return [Array]
@@ -874,7 +881,8 @@ Received: #{arguments.length}
     # @param [RubyLint::AST::Node] node
     #
     def assign_variable(type, name, value, node)
-      variable = current_scope.lookup(type, name)
+      scope    = assignment_scope(type)
+      variable = scope.lookup(type, name)
 
       # If there's already a variable we'll just update it.
       if variable
@@ -904,7 +912,17 @@ Received: #{arguments.length}
         value_stack.push(variable.value)
       end
 
-      add_variable(variable)
+      add_variable(variable, scope)
+    end
+
+    ##
+    # Determines the scope to use for a variable assignment.
+    #
+    # @param [Symbol] type
+    # @return [RubyLint::Definition::RubyObject]
+    #
+    def assignment_scope(type)
+      return ASSIGN_GLOBAL.include?(type) ? definitions : current_scope
     end
 
     ##

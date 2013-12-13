@@ -112,5 +112,19 @@ d = c
 
       value.type.should == :unknown
     end
+
+    example 'global variables should be assigned in the global scope' do
+      code = <<-CODE
+class Foo
+  def foo
+    $bar = 10
+  end
+end
+      CODE
+
+      defs = build_definitions(code)
+
+      defs.lookup(:gvar, '$bar').value.value.should == 10
+    end
   end
 end
