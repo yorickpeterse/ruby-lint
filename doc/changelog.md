@@ -5,6 +5,21 @@ This document contains a short summary of the various releases of ruby-lint.
 For a full list of commits included in each release see the corresponding Git
 tags (named after the versions).
 
+## 1.0.1 - 2013-12-15
+
+A small bugfix release that contains the following changes/fixes:
+
+* Anonymous splat arguments (`def foo(_); end`) are now ignored by the
+  `UnusedVariables` class.
+* Frozen definitions no longer have their members updated, see
+  <https://github.com/YorickPeterse/ruby-lint/issues/75> for more information.
+* ENV is now treated as an instance.
+* When re-assigning a variable the VM now updates the corresponding definition
+  instead of overwriting it. This was added to fix
+  <https://github.com/YorickPeterse/ruby-lint/issues/77>.
+* Global variables are stored in the global scope opposed to the current scope.
+* ARGV is now treated as an instance and extends Array.
+
 ## 1.0.0 - 2013-12-01
 
 The first stable release of ruby-lint. The 1.0 series will not introduce any
