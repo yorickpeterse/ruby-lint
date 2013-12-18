@@ -115,9 +115,9 @@ Example:
 
 ### directories
 
-A list of directories to search in for externally defined constants. By
-default this is set to the current working directory which, for big projects,
-can slow things down.
+A list of directories to search in for externally defined constants. By default
+this is set to `$PWD/app` and `$PWD/lib` (depending on which directories
+exist). For most applications you do not need to change this value.
 
 Example:
 

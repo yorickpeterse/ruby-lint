@@ -10,6 +10,12 @@ describe RubyLint::FileScanner do
     lambda { RubyLint::FileScanner.new(10) }.should raise_error(TypeError)
   end
 
+  example 'set the default directories' do
+    scanner = RubyLint::FileScanner.new
+
+    scanner.directories.empty?.should == false
+  end
+
   example 'finding a class' do
     scanner = RubyLint::FileScanner.new([@lib_dir])
     paths   = scanner.scan('Example::User')

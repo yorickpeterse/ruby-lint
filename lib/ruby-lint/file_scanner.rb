@@ -13,6 +13,14 @@ module RubyLint
     attr_reader :directories, :ignore
 
     ##
+    # Array containing names of directories that (often) contain Ruby source
+    # files.
+    #
+    # @return [Array]
+    #
+    RUBY_DIRECTORIES = %w{app lib}
+
+    ##
     # @param [Array] directories A collection of base directories to search in.
     # @param [Array] ignore A list of paths to ignore.
     #
@@ -121,6 +129,13 @@ module RubyLint
     #
     def glob_pattern(segment)
       return "{#{directories.join(',')}}/**/#{segment}.rb"
+    end
+
+    ##
+    # @return [Array]
+    #
+    def default_directories
+      return RUBY_DIRECTORIES.map { |dir| File.join(Dir.pwd, dir) }
     end
   end # FileScanner
 end # RubyLint
