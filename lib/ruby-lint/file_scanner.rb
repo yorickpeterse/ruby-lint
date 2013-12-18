@@ -21,10 +21,17 @@ module RubyLint
     RUBY_DIRECTORIES = %w{app lib}
 
     ##
+    # @return [Array]
+    #
+    def self.default_directories
+      return RUBY_DIRECTORIES.map { |dir| File.join(Dir.pwd, dir) }
+    end
+
+    ##
     # @param [Array] directories A collection of base directories to search in.
     # @param [Array] ignore A list of paths to ignore.
     #
-    def initialize(directories = [Dir.pwd], ignore = [])
+    def initialize(directories = self.class.default_directories, ignore = [])
       unless directories.respond_to?(:each)
         raise TypeError, 'Directories must be specified as an Enumerable'
       end
@@ -129,13 +136,6 @@ module RubyLint
     #
     def glob_pattern(segment)
       return "{#{directories.join(',')}}/**/#{segment}.rb"
-    end
-
-    ##
-    # @return [Array]
-    #
-    def default_directories
-      return RUBY_DIRECTORIES.map { |dir| File.join(Dir.pwd, dir) }
     end
   end # FileScanner
 end # RubyLint

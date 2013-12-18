@@ -237,7 +237,7 @@ module RubyLint
     # @return [Array]
     #
     def default_directories
-      return [Dir.pwd]
+      return FileScanner.default_directories
     end
 
     ##
