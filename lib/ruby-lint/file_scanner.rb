@@ -26,10 +26,6 @@ module RubyLint
 
       # Hash that will contain the matching file paths for a given constant.
       @constant_paths_cache = {}
-
-      # Globbing all files at once and then comparing those results is faster
-      # than running a Dir.glob for every call to #scan.
-      @glob_cache = Dir.glob("#{directories.join(',')}/**/*.rb")
     end
 
     ##
@@ -41,6 +37,10 @@ module RubyLint
     # @return [Array]
     #
     def scan(constant)
+      # Globbing all files at once and then comparing those results is faster
+      # than running a Dir.glob for every call to #scan.
+      @glob_cache ||= Dir.glob("#{directories.join(',')}/**/*.rb")
+
       unless constant_paths_cached?(constant)
         build_constant_paths_cache(constant)
       end
