@@ -5,6 +5,13 @@ This document contains a short summary of the various releases of ruby-lint.
 For a full list of commits included in each release see the corresponding Git
 tags (named after the versions).
 
+## 1.0.2 - 2013-12-19
+
+This release changes the default file scanner directories from `$PWD` to
+`$PWD/app` and `$PWD/lib` as the former proved to be too much trouble. This
+release also changes the pre-globbing of the file scanner so that it only
+starts looking for files when actually needed.
+
 ## 1.0.1 - 2013-12-15
 
 A small bugfix release that contains the following changes/fixes:
