@@ -24,7 +24,15 @@ module RubyLint
     # @return [Array]
     #
     def self.default_directories
-      return RUBY_DIRECTORIES.map { |dir| File.join(Dir.pwd, dir) }
+      directories = []
+
+      RUBY_DIRECTORIES.each do |dir|
+        path = File.join(Dir.pwd, dir)
+
+        directories << path if File.directory?(path)
+      end
+
+      return directories
     end
 
     ##

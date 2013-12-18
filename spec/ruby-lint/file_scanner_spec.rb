@@ -16,6 +16,13 @@ describe RubyLint::FileScanner do
     scanner.directories.empty?.should == false
   end
 
+  example 'do not include non existing directories' do
+    app     = File.join(Dir.pwd, 'app')
+    scanner = RubyLint::FileScanner.new
+
+    scanner.directories.include?(app).should == false
+  end
+
   example 'finding a class' do
     scanner = RubyLint::FileScanner.new([@lib_dir])
     paths   = scanner.scan('Example::User')
