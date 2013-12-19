@@ -20,7 +20,7 @@ end
         .should == true
     end
 
-    example 'define a class method using `class << self` in the global scope' do
+    example 'define an instance method using `class << self` in the global scope' do
       code = <<-CODE
 class << self
   def example
@@ -30,7 +30,9 @@ end
 
       defs = build_definitions(code)
 
-      defs.lookup(:method, 'example').is_a?(ruby_method).should == true
+      defs.lookup(:instance_method, 'example')
+        .is_a?(ruby_method)
+        .should == true
     end
 
     example 'define a class method using `class << String`' do

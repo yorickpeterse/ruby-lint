@@ -51,17 +51,22 @@ module RubyLint
       # @return [RubyLint::Definition::RubyObject]
       #
       def new_definition(parents)
-        type = options[:type]
+        type          = options[:type]
+        instance_type = :instance
 
-        if has_receiver?
-          type = :method if options[:receiver].class?
+        # FIXME: setting the instance type of a method to a `class` is a bit of
+        # a hack to ensure that class methods cause lookups inside them to be
+        # performed on class level.
+        if has_receiver? and options[:receiver].class?
+          type          = :method
+          instance_type = :class
         end
 
         return Definition::RubyMethod.new(
           :name          => method_name,
           :parents       => parents,
           :type          => type,
-          :instance_type => :instance,
+          :instance_type => instance_type,
           :visibility    => options[:visibility],
           :line          => node.line,
           :column        => node.column,

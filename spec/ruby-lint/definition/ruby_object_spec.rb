@@ -227,4 +227,38 @@ describe ruby_object do
       @method.callers.frozen?.should == true
     end
   end
+
+  context 'defining self' do
+    before do
+      @class    = ruby_object.new(:instance_type => :class)
+      @instance = ruby_object.new(:instance_type => :instance)
+
+      @class.define_self
+      @instance.define_self
+    end
+
+    example 'define instance level self for an instance' do
+      @instance.lookup(:instance_method, 'self')
+        .return_value
+        .should == @instance
+    end
+
+    example 'define class level self for an instance' do
+      @instance.lookup(:method, 'self')
+        .return_value
+        .parents
+        .should == [@instance]
+    end
+
+    example 'define instance level self for a class' do
+      @class.lookup(:instance_method, 'self')
+        .return_value
+        .parents
+        .should == [@class]
+    end
+
+    example 'define class level self for a class' do
+      @class.lookup(:method, 'self').return_value.should == @class
+    end
+  end
 end

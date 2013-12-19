@@ -443,7 +443,10 @@ module RubyLint
     # Pushes the value of `self` onto the current stack.
     #
     def on_self
-      push_value(current_scope.lookup(:keyword, 'self'))
+      scope  = current_scope
+      method = scope.lookup(scope.method_call_type, 'self')
+
+      push_value(method.return_value)
     end
 
     ##
@@ -522,7 +525,7 @@ module RubyLint
     def on_sclass(node)
       parent       = node.children[0]
       definition   = evaluate_node(parent)
-      @method_type = parent.self? ? :method : definition.method_call_type
+      @method_type = definition.method_call_type
 
       associate_node(node, definition)
 
@@ -748,7 +751,7 @@ Received: #{arguments.length}
         :instance_type => :instance
       )
 
-      definitions.add(:keyword, 'self', definitions)
+      definitions.define_self
 
       return definitions
     end

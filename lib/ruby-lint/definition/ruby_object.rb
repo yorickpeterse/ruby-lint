@@ -83,7 +83,6 @@ module RubyLint
         :gvar,
         :instance_method,
         :ivar,
-        :keyword,
         :method
       ].freeze
 
@@ -107,7 +106,6 @@ module RubyLint
         :gvar,
         :instance_method,
         :ivar,
-        :keyword,
         :kwoptarg,
         :lvar,
         :member,
@@ -543,7 +541,7 @@ module RubyLint
           definition = add_child_definition(:const, name, &block)
         end
 
-        definition.add(:keyword, 'self', definition)
+        definition.define_self
 
         return definition
       end
@@ -608,6 +606,28 @@ module RubyLint
       #
       def inherits(*definitions)
         self.parents.concat(definitions)
+      end
+
+      ##
+      # Defines `self` on the current definition as both a class and instance
+      # method.
+      #
+      def define_self
+        if instance?
+          self_instance = self
+          self_class    = instance(:instance_type => :class)
+        else
+          self_instance = self.instance
+          self_class    = self
+        end
+
+        define_method('self') do |method|
+          method.returns(self_class)
+        end
+
+        define_instance_method('self') do |method|
+          method.returns(self_instance)
+        end
       end
 
       ##

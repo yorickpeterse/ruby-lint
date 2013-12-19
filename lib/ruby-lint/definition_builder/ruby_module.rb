@@ -64,7 +64,7 @@ module RubyLint
           :file             => node.file
         )
 
-        definition.add(:keyword, 'self', definition)
+        definition.define_self
 
         return definition
       end
