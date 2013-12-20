@@ -114,4 +114,18 @@ Person.new(10, 20)
     second.column.should  == 1
     second.message.should == 'wrong number of arguments (expected 1 but got 2)'
   end
+
+  example 'ignore block arguments' do
+    code = <<-CODE
+def example; end
+
+block = proc {}
+
+example(&block)
+    CODE
+
+    report = build_report(code, RubyLint::Analysis::ArgumentAmount)
+
+    report.entries.empty?.should == true
+  end
 end

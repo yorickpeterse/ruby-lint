@@ -27,7 +27,7 @@ module RubyLint
 
         return unless method
 
-        given    = args ? args.length : 0
+        given    = argument_amount(args)
         min, max = argument_range(method)
 
         unless correct_argument_amount(min, max, given)
@@ -111,6 +111,14 @@ module RubyLint
         end
 
         return min, max
+      end
+
+      ##
+      # @param [RubyLint::AST::Node] nodes
+      # @return [Fixnum]
+      #
+      def argument_amount(nodes)
+        return nodes.reject { |n| n.type == :block_pass }.length
       end
     end # ArgumentAmount
   end # Analysis
