@@ -10,8 +10,11 @@ module RubyLint
     # @!attribute [r] vm
     #  @return [RubyLint::VirtualMachine]
     #
+    # @!attribute [r] config
+    #  @return [RubyLint::Configuration]
+    #
     class Base < Iterator
-      attr_reader :report, :vm
+      attr_reader :report, :vm, :config
 
       ##
       # Array containing the callback names for which a new scope should be

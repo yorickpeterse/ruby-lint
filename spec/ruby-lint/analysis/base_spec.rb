@@ -10,6 +10,14 @@ describe RubyLint::Analysis::Base do
     blk.should_not raise_error
   end
 
+  example 'allow config objects to be passed in' do
+    vm     = RubyLint::VirtualMachine.new
+    config = RubyLint::Configuration.new
+    base   = RubyLint::Analysis::Base.new(:vm => vm, :config => config)
+
+    base.config.should == config
+  end
+
   example 'enable analysis by default' do
     RubyLint::Analysis::Base.analyze?(double(:ast), double(:vm)).should == true
   end

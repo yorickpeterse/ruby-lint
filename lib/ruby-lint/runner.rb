@@ -175,7 +175,12 @@ module RubyLint
       end
 
       classes.each do |const|
-        instance = const.new(:vm => vm, :report => report)
+        instance = const.new(
+          :vm     => vm,
+          :report => report,
+          :config => configuration
+        )
+
         instance.iterate(ast)
       end
     end
