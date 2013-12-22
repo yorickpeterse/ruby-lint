@@ -39,13 +39,47 @@ module RubyLint
       buffer        = ::Parser::Source::Buffer.new(file, line)
       buffer.source = code
       ast, comments = internal_parser.parse_with_comments(buffer)
-      associator    = ::Parser::Source::Comment::Associator.new(ast, comments)
 
       internal_parser.reset
 
-      root = AST::Node.new(:root, [ast], :location => ast.location)
+      associated = associate_comments(ast, comments)
 
-      return root, associator.associate
+      return create_root_node(ast), associated
+    end
+
+    private
+
+    ##
+    # @param [RubyLint::AST::Node|NilClass] ast
+    # @return [RubyLint::AST::Node]
+    #
+    def create_root_node(ast)
+      if ast
+        children = [ast]
+        location = ast.location
+      # empty input.
+      else
+        children = []
+        location = nil
+      end
+
+      return AST::Node.new(:root, children, :location => location)
+    end
+
+    ##
+    # @param [RubyLint::AST::Node|NilClass] ast
+    # @param [Mixed] comments
+    # @return [Hash]
+    #
+    def associate_comments(ast, comments)
+      if ast
+        associator = ::Parser::Source::Comment::Associator.new(ast, comments)
+        associated = associator.associate
+      else
+        associated = {}
+      end
+
+      return associated
     end
   end # Parser
 end # RubyLint

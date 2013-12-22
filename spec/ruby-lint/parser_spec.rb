@@ -28,4 +28,11 @@ end
     comment.text.should          == '# Hello world'
     comment.location.line.should == 1
   end
+
+  example 'parse an empty file' do
+    ast = parse('', false)
+
+    ast.type.should            == :root
+    ast.children.empty?.should == true
+  end
 end
