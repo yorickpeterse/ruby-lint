@@ -12,17 +12,8 @@ Gem::Specification.new do |s|
   s.executables = ['ruby-lint']
   s.license     = 'MIT'
 
-  s.post_install_message = <<-EOF.strip
-Thanks for installing ruby-lint. Keep in mind that ruby-lint is still a young
-project and as such there will be bugs, false positives and otherwise weird
-behaviour. If you encounter any of these issues please report them (and provide
-some sample code) at the issue tracker:
-
-https://github.com/YorickPeterse/ruby-lint/issues/new
-
-If you have any further questions you can find me on Twitter/Freenode/Github
-using the handle "yorickpeterse".
-  EOF
+  s.post_install_message = 'Please report any issues at: ' \
+    'https://github.com/YorickPeterse/ruby-lint/issues/new'
 
   s.files = File.read(File.expand_path('../MANIFEST', __FILE__)).split("\n")
 
