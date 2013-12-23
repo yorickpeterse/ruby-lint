@@ -21,6 +21,8 @@ checksum/ruby-lint-0.9.1.gem.sha512
 checksum/ruby-lint-1.0.0.gem.sha512
 checksum/ruby-lint-1.0.0.pre.preview1.gem.sha512
 checksum/ruby-lint-1.0.1.gem.sha512
+checksum/ruby-lint-1.0.2.gem.sha512
+checksum/ruby-lint-1.0.3.gem.sha512
 doc/.gitkeep
 doc/DCO.md
 doc/architecture.md
@@ -387,6 +389,8 @@ spec/ruby-lint/definition_builder/ruby_module_spec.rb
 spec/ruby-lint/definitions/argv_spec.rb
 spec/ruby-lint/definitions/env_spec.rb
 spec/ruby-lint/definitions/io_spec.rb
+spec/ruby-lint/definitions/range_spec.rb
+spec/ruby-lint/definitions/string_spec.rb
 spec/ruby-lint/docstring/mapping.rb
 spec/ruby-lint/docstring/parser_spec.rb
 spec/ruby-lint/extensions/string_spec.rb
@@ -440,9 +444,11 @@ spec/ruby-lint/virtual_machine/methods/exporting_spec.rb
 spec/ruby-lint/virtual_machine/methods/parameters_spec.rb
 spec/ruby-lint/virtual_machine/methods/patching_spec.rb
 spec/ruby-lint/virtual_machine/methods/scoping_spec.rb
+spec/ruby-lint/virtual_machine/methods/square_bracket_spec.rb
 spec/ruby-lint/virtual_machine/methods/visibility_spec.rb
 spec/ruby-lint/virtual_machine/modules_spec.rb
 spec/ruby-lint/virtual_machine/reference_amount_spec.rb
+spec/ruby-lint/virtual_machine/self_spec.rb
 spec/ruby-lint/virtual_machine/unused_spec.rb
 spec/spec_helper.rb
 spec/support/building.rb
