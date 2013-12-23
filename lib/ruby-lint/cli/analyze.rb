@@ -130,6 +130,22 @@ Examples:
     @output_destination = destination
   end
 
+  # The stdout and stderr methods mainly exist to make testing a bit easier.
+
+  ##
+  # @return [IO]
+  #
+  def stdout
+    return STDOUT
+  end
+
+  ##
+  # @return [IO]
+  #
+  def stderr
+    return STDERR
+  end
+
   ##
   # @param [RubyLint::Configuration] configuration
   # @param [Hash] opts
@@ -160,6 +176,40 @@ Examples:
       "(#{memory_kb.round(2)} KB)"
   end
 
+  ##
+  # Shows a lump of debugging information before the rest of the output.
+  #
+  # @param [RubyLint::Configuration] config
+  #
+  #:nocov:
+  def debug_header(config)
+    directories = config.directories.map do |dir|
+      File.directory?(dir) ? "#{dir}: exists" : "#{dir}: doesn't exist"
+    end
+
+    directories = directories.empty? ? 'None' : directories.join("\n")
+
+    stderr.puts <<-EOF.strip
+ruby:      #{RUBY_DESCRIPTION}
+ruby-lint: #{RubyLint::VERSION}
+directory: #{Dir.pwd}
+
+Caching:
+
+enabled:   #{config.enable_cache}
+directory: #{config.cache_directory}
+
+Directories:
+
+#{directories}
+
+------
+    EOF
+
+    stderr.puts
+  end
+  #:nocov:
+
   run do |opts, args|
     abort 'You must specify at least one file to analyze' if args.empty?
 
@@ -168,6 +218,8 @@ Examples:
     configuration = RubyLint::Configuration.load_from_file
 
     configure(configuration, opts)
+
+    debug_header(configuration) if configuration.debug
 
     runner    = RubyLint::Runner.new(configuration)
     output    = runner.analyze(files)
