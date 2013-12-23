@@ -55,6 +55,12 @@ describe RubyLint::Configuration do
 
       blk.should raise_error(ArgumentError, /does not exist/)
     end
+
+    example 'setting the directories to nil' do
+      @configuration.directories = nil
+
+      @configuration.directories.should == []
+    end
   end
 
   context 'setting options via the constructor' do

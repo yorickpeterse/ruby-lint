@@ -201,6 +201,8 @@ module RubyLint
     # @param [Array] directories
     #
     def directories=(directories)
+      directories ||= []
+
       directories.each do |dir|
         unless File.directory?(dir)
           raise ArgumentError, "The directory #{dir} does not exist"
