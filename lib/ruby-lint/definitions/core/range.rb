@@ -4,7 +4,10 @@
 # Platform: rbx 2.0.0.rc1
 #
 RubyLint::GlobalScope.definitions.define_constant('Range') do |klass|
-  klass.inherits(RubyLint::GlobalScope.constant_proxy('Object'))
+  klass.inherits(
+    RubyLint::GlobalScope.constant_proxy('Object'),
+    RubyLint::GlobalScope.constant_proxy('Enumerable')
+  )
 
   klass.define_method('__class_init__')
 
