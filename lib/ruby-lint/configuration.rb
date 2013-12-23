@@ -201,15 +201,19 @@ module RubyLint
     # @param [Array] directories
     #
     def directories=(directories)
-      directories ||= []
+      valid = []
 
-      directories.each do |dir|
-        unless File.directory?(dir)
-          raise ArgumentError, "The directory #{dir} does not exist"
+      if directories
+        directories.each do |dir|
+          unless File.directory?(dir)
+            raise ArgumentError, "The directory #{dir} does not exist"
+          end
+
+          valid << File.expand_path(dir)
         end
       end
 
-      @directories = directories
+      @directories = valid
     end
 
     ##

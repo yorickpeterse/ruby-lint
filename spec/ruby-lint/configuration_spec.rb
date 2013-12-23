@@ -91,6 +91,20 @@ describe RubyLint::Configuration do
     end
   end
 
+  context 'setting options directly' do
+    before do
+      @configuration = RubyLint::Configuration.new
+    end
+
+    example 'expand the directories set' do
+      @configuration.directories = ['lib']
+
+      @configuration.directories.should == [
+        File.expand_path('lib')
+      ]
+    end
+  end
+
   context 'setting options via a configuration file' do
     example 'set the options from a YAML file' do
       paths = [fixture_path('config.yml')]
