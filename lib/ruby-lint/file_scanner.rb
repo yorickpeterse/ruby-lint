@@ -60,9 +60,7 @@ module RubyLint
     # @return [Array]
     #
     def scan(constant)
-      # Globbing all files at once and then comparing those results is faster
-      # than running a Dir.glob for every call to #scan.
-      @glob_cache ||= Dir.glob("#{directories.join(',')}/**/*.rb")
+      @glob_cache ||= directories.empty? ? [] : glob_ruby_files
 
       unless constant_paths_cached?(constant)
         build_constant_paths_cache(constant)
@@ -72,6 +70,13 @@ module RubyLint
     end
 
     private
+
+    ##
+    # @return [Array]
+    #
+    def glob_ruby_files
+      return Dir.glob("#{directories.join(',')}/**/*.rb")
+    end
 
     ##
     # Searches all the files that could potentially define the given constant

@@ -61,4 +61,12 @@ describe RubyLint::FileScanner do
 
     scanner.scan('Example::User').empty?.should == true
   end
+
+  example 'do not scan when there are no directories' do
+    scanner = RubyLint::FileScanner.new([])
+
+    scanner.should_not receive(:glob_ruby_files)
+
+    scanner.scan('Foo')
+  end
 end
