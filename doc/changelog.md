@@ -5,6 +5,23 @@ This document contains a short summary of the various releases of ruby-lint.
 For a full list of commits included in each release see the corresponding Git
 tags (named after the versions).
 
+## 1.0.3 - 2013-12-23
+
+* `self` is now defined as a class and instance method to ensure that the right
+  data is used in these two scopes. See
+  `28f604ded884be2e43ef7ce93892a3cade4c93d7` for a more in depth explanation.
+* Block arguments passed to methods are now ignored by the `ArgumentAmount`
+  analysis class.
+* Configuration objects are now passed to analysis classes.
+* ruby-lint can now parse empty Ruby files! Previously this would crash the
+  parser.
+* Range now inherits from Enumerable.
+* The definitions for Array have been re-generated.
+* Fix for searching for Ruby files when no directories were given to the file
+  scanner class. Previously this would cause ruby-lint to start scanning from
+  `/`. See <https://github.com/YorickPeterse/ruby-lint/issues/83> for more
+  information.
+
 ## 1.0.2 - 2013-12-19
 
 This release changes the default file scanner directories from `$PWD` to
