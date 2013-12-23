@@ -1,8 +1,8 @@
 # This file was automatically generated, any manual changes will be lost the
 # next time this file is generated.
 #
-# Created:  2013-11-11 20:16:57 +0100
-# Platform: rbx 2.1.1
+# Created:  2013-12-23 09:38:51 +0100
+# Platform: rbx 2.2.1
 
 RubyLint::GlobalScope.definitions.define_constant('Array') do |klass|
   klass.inherits(RubyLint::GlobalScope.constant_proxy('Object'))
@@ -16,6 +16,8 @@ RubyLint::GlobalScope.definitions.define_constant('Array') do |klass|
   klass.define_method('try_convert') do |method|
     method.define_argument('obj')
   end
+
+  klass.define_method('yaml_tag_subclasses?')
 
   klass.define_instance_method('&') do |method|
     method.define_argument('other')
@@ -217,6 +219,11 @@ RubyLint::GlobalScope.definitions.define_constant('Array') do |klass|
     method.define_optional_argument('obj')
   end
 
+  klass.define_instance_method('initialize') do |method|
+    method.define_optional_argument('size_or_array')
+    method.define_optional_argument('obj')
+  end
+
   klass.define_instance_method('inject') do |method|
     method.define_optional_argument('initial')
     method.define_optional_argument('sym')
@@ -396,6 +403,10 @@ RubyLint::GlobalScope.definitions.define_constant('Array') do |klass|
 
   klass.define_instance_method('start=')
 
+  klass.define_instance_method('taguri')
+
+  klass.define_instance_method('taguri=')
+
   klass.define_instance_method('take') do |method|
     method.define_argument('n')
   end
@@ -415,6 +426,10 @@ RubyLint::GlobalScope.definitions.define_constant('Array') do |klass|
   end
 
   klass.define_instance_method('to_tuple')
+
+  klass.define_instance_method('to_yaml') do |method|
+    method.define_optional_argument('opts')
+  end
 
   klass.define_instance_method('total')
 
@@ -440,6 +455,11 @@ RubyLint::GlobalScope.definitions.define_constant('Array') do |klass|
 
   klass.define_instance_method('with_object') do |method|
     method.define_argument('memo')
+  end
+
+  klass.define_instance_method('yaml_initialize') do |method|
+    method.define_argument('tag')
+    method.define_argument('val')
   end
 
   klass.define_instance_method('zip') do |method|
@@ -534,6 +554,12 @@ RubyLint::GlobalScope.definitions.define_constant('Array::Enumerator') do |klass
 
   klass.define_instance_method('include?') do |method|
     method.define_argument('obj')
+  end
+
+  klass.define_instance_method('initialize') do |method|
+    method.define_optional_argument('receiver_or_size')
+    method.define_optional_argument('method_name')
+    method.define_rest_argument('method_args')
   end
 
   klass.define_instance_method('inject') do |method|
