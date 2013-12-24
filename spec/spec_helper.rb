@@ -4,7 +4,6 @@ require 'redcard'
 require 'tmpdir'
 require 'fileutils'
 require 'tempfile'
-require 'benchmark'
 
 if ENV['COVERAGE']
   require_relative 'support/simplecov'
