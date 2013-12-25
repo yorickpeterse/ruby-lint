@@ -1,17 +1,7 @@
-gem 'parser', '~> 2.0'
+gem 'parser', ['~> 2.1', '>= 2.1.1']
 
 require 'parser'
-
-# Try to load the latest parser and fall back to 2.0. This should only occur on
-# Ruby versions >= 2.1 (e.g. Rubinius HEAD).
-begin
-  require 'parser/current'
-rescue NotImplementedError => error
-  warn "Falling back to Ruby 2.0: #{error.message}"
-
-  require 'parser/ruby20'
-  Parser::CurrentRuby = Parser::Ruby20
-end
+require 'parser/current'
 
 require 'yaml'
 require 'set'
