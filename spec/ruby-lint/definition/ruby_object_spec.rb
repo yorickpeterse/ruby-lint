@@ -107,6 +107,14 @@ describe ruby_object do
     found.name.should == 'example'
   end
 
+  example 'create a shim of a definition' do
+    object = ruby_object.new(:type => :const, :name => 'Foo')
+    shim   = object.shim
+
+    shim.name.should    == object.name
+    shim.parents.should == [object]
+  end
+
   example 'create a RubyObject that represents an instance' do
     object = ruby_object.new(:type => :const, :name => 'String')
 

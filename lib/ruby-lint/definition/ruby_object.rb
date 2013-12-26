@@ -495,10 +495,21 @@ module RubyLint
       # @return [RubyLint::Definition::RubyObject]
       #
       def instance(options = {})
+        return shim(:instance_type => :instance)
+      end
+
+      ##
+      # Creates a new definition that inherits from the current one, acting as
+      # sort of a shim around the original one.
+      #
+      # @param [Hash] options Attributes to set in the new definition.
+      # @return [RubyLint::Definition::RubyObject]
+      #
+      def shim(options = {})
         options = {
           :name          => name,
           :type          => type,
-          :instance_type => :instance,
+          :instance_type => instance_type,
           :value         => value,
           :parents       => [self]
         }.merge(options)
