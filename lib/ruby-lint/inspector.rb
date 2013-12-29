@@ -8,6 +8,7 @@ module RubyLint
   #
   # @!attribute [r] constant
   #  @return [Class]
+  #
   # @!attribute [r] constant_name
   #  @return [String]
   #
@@ -18,70 +19,63 @@ module RubyLint
     # @param [String|Class] constant
     #
     def initialize(constant)
-      @constant_name = constant
+      @constant_name  = constant.to_s
 
       if constant.is_a?(String)
-        constant = resolve_constant(constant)
+        @constant = resolve_constant(constant)
+      else
+        @constant = constant
       end
-
-      @constant = constant
     end
 
     ##
-    # Returns an Array containing all child constants and their children
+    # Returns an Array containing all constants and their child constants
     # (recursively).
-    #
-    # The constants returned by this method are returned as String instances
-    # containing the full path (e.g. `Encoding::BINARY` instead of `BINARY`).
     #
     # @param [Class] source
     # @param [Array] ignore
     # @return [Array<String>]
     #
     def inspect_constants(source = constant, ignore = [])
+      names          = []
       source_name    = source.to_s
-      constants      = []
       have_children  = []
       include_source = source != Object
 
-      if include_source
-        constants << source_name
-        ignore     = ignore + [source.to_s]
+      if include_source and !ignore.include?(source_name)
+        names  << source_name
+        ignore << source_name
       end
 
       source.constants.each do |name|
-        next unless source.const_defined?(name)
+        next if skip_constant?(source, name)
 
-        # FIXME: When using autoload/Rails in some cases this will trigger a
-        # load error. I have no idea why.
+        full_name = include_source ? "#{source_name}::#{name}" : name.to_s
+
+        # In certain cases this code tries to load a constant that apparently
+        # *is* defined but craps out upon error (e.g. Bundler::Specification).
         begin
-          constant = source.const_get(name)
-        rescue LoadError => error
+          constant  = source.const_get(name)
+        rescue Exception => error
           warn error.message
-
           next
         end
 
-        name      = name.to_s
-        full_name = include_source ? "#{source_name}::#{name}" : name
-
-        next if ignore.include?(full_name)
-
-        ignore    << constant
-        constants << full_name
-
-        if process_child_constants?(source, constant)
-          have_children << constant
+        # Skip those that we've already processed.
+        if ignore.include?(full_name) or source == constant
+          next
         end
+
+        names         << full_name
+        ignore        << full_name
+        have_children << constant if process_child_constants?(constant)
       end
 
-      have_children.each do |constant|
-        inspect_constants(constant, ignore).each do |child|
-          constants << child unless constants.include?(child)
-        end
+      have_children.each do |const|
+        names |= inspect_constants(const, ignore)
       end
 
-      return constants
+      return names
     end
 
     ##
@@ -132,15 +126,13 @@ module RubyLint
     # @return [Array]
     #
     def get_methods(getter = :methods)
-      diff    = constant.send(getter) - Object.send(getter)
+      parent  = inspect_superclass || Object
+      diff    = constant.send(getter) - parent.send(getter)
       methods = diff | constant.send(getter, false)
 
       # If the constant manually defines the initialize method (= private)
       # we'll also want to include it.
-      if getter == :instance_methods \
-      and constant.is_a?(Class) \
-      and constant.private_method_defined?(:initialize) \
-      and constant.instance_method(:initialize).source_location
+      if include_initialize?(getter)
         methods = methods | [:initialize]
       end
 
@@ -148,14 +140,43 @@ module RubyLint
     end
 
     ##
-    # @param [Class] source
+    # @param [Symbol] getter
+    # @return [TrueClass|FalseClass]
+    #
+    def include_initialize?(getter)
+      return getter == :instance_methods \
+        && constant.is_a?(Class) \
+        && constant.private_instance_methods(false).include?(:initialize) \
+        && constant.instance_method(:initialize).source_location
+    end
+
+    ##
+    # @param [Module|Class] const
+    # @param [Symbol] child_name
+    # @return [TrueClass|FalseClass]
+    #
+    def skip_constant?(const, child_name)
+      # Module and Class defines the same child constants as Object but in a
+      # recursive manner. This is a bit of a dirty way to prevent this code
+      # from going into an infinite loop.
+      if const == Module or const == Class
+        return true
+      end
+
+      # Config is deprecated and triggers a warning.
+      if const == Object and child_name == :Config
+        return true
+      end
+
+      return !const.const_defined?(child_name)
+    end
+
+    ##
     # @param [Class] constant
     # @return [TrueClass|FalseClass]
     #
-    def process_child_constants?(source, constant)
-      return constant.respond_to?(:consts) \
-        && constant != source \
-        && !constant.constants.empty?
+    def process_child_constants?(constant)
+      return constant.respond_to?(:constants) && !constant.constants.empty?
     end
 
     ##

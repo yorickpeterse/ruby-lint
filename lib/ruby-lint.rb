@@ -26,6 +26,7 @@ require_relative 'ruby-lint/cache'
 require_relative 'ruby-lint/cache_entry'
 
 require_relative 'ruby-lint/constant_path'
+require_relative 'ruby-lint/inspector'
 
 require_relative 'ruby-lint/definition_builder/base'
 require_relative 'ruby-lint/definition_builder/ruby_module'
