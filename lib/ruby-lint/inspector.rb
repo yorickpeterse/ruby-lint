@@ -19,7 +19,7 @@ module RubyLint
     # @param [String|Class] constant
     #
     def initialize(constant)
-      @constant_name  = constant.to_s
+      @constant_name = constant.to_s
 
       if constant.is_a?(String)
         @constant = resolve_constant(constant)
@@ -127,8 +127,8 @@ module RubyLint
     #
     def get_methods(getter = :methods)
       parent  = inspect_superclass || Object
-      diff    = constant.send(getter) - parent.send(getter)
-      methods = diff | constant.send(getter, false)
+      diff    = constant.__send__(getter) - parent.__send__(getter)
+      methods = diff | constant.__send__(getter, false)
 
       # If the constant manually defines the initialize method (= private)
       # we'll also want to include it.
@@ -187,7 +187,7 @@ module RubyLint
     # @return [UnboundMethod]
     #
     def method_information(type, name)
-      return constant.send(type, name)
+      return constant.__send__(type, name)
     end
 
     ##

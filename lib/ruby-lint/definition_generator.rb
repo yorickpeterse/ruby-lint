@@ -1,4 +1,6 @@
 require 'erb'
+
+require_relative 'inspector'
 require_relative 'template/scope'
 require_relative 'generated_constant'
 
@@ -48,7 +50,12 @@ module RubyLint
     # Generates the definitions for every constant.
     #
     def generate
-      constants = inspector.inspect_constants.sort - options[:ignore]
+      constants = inspector.inspect_constants(
+        inspector.constant,
+        options[:ignore].dup
+      )
+
+      constants = constants.sort
 
       group_constants(constants).each do |root, names|
         filepath  = File.join(directory, "#{root.snake_case}.rb")

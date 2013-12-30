@@ -29,6 +29,8 @@ class Integer
 end
       CODE
 
+      pending 'This is currently not yet supported'
+
       defs = build_definitions(code)
       int  = defs.lookup(:const, 'Integer')
 

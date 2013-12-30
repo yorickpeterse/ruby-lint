@@ -17,19 +17,25 @@ namespace :generate do
   task :everything, :overwrite do |task, args|
     args.with_defaults(:overwrite => false)
 
-    # Require the entire stdlib so we can generate the definitions for it.
-    require_relative '../misc/stdlib'
+    require_relative '../gen/stdlib/requires'
 
     directory = File.expand_path(
       '../../lib/ruby-lint/definitions/core/',
       __FILE__
     )
 
+    constants_file = File.expand_path(
+      '../../gen/stdlib/constants.txt',
+      __FILE__
+    )
+
+    allowed   = File.read(constants_file).split("\n")
+    ignore    = Object.constants.map(&:to_s) - allowed
     generator = RubyLint::DefinitionGenerator.new(
       Object,
       directory,
-      :ignore    => %w{BasicObject Class GEMSPEC Module Kernel},
-      :overwrite => !!args[:overwrite]
+      :overwrite => !!args[:overwrite],
+      :ignore    => ignore
     )
 
     generator.generate
