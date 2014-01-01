@@ -21,21 +21,31 @@ end
         .should == true
     end
 
-    example 'update a built-in definition' do
-      code = <<-CODE
-class Integer
-  def foobar
+    context 'updating built-in definitions' do
+      before do
+        code = <<-CODE
+  class Integer
+    def foobar
+    end
   end
-end
-      CODE
+        CODE
 
-      pending 'This is currently not yet supported'
+        defs     = build_definitions(code)
+        @integer = defs.lookup(:const, 'Integer')
+        @fixnum  = defs.lookup(:const, 'Fixnum')
+      end
 
-      defs = build_definitions(code)
-      int  = defs.lookup(:const, 'Integer')
+      example 'include newly defined methods' do
+        @integer.has_definition?(:instance_method, 'foobar').should == true
+      end
 
-      int.has_definition?(:instance_method, 'foobar').should == true
-      int.has_definition?(:instance_method, '%').should      == true
+      example 'include existing methods' do
+        @integer.has_definition?(:instance_method, '%').should == true
+      end
+
+      example 'update definitions that point to the redefined definition' do
+        @fixnum.has_definition?(:instance_method, 'foobar').should == true
+      end
     end
   end
 end
