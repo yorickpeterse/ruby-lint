@@ -6,25 +6,22 @@ module RubyLint
     #
     # @!attribute [r] node
     #  @return [RubyLint::AST::Node]
-    # @!attribute [r] definitions
-    #  @return [RubyLint::Definition::RubyObject]
+    #
+    # @!attribute [r] vm
+    #  @return [RubyLint::VirtualMachine]
     #
     class Base
-      attr_reader :definitions, :node, :options
-
-      # Ensures compatibility with code that relies on either one of these
-      # methods. They are the same for definition builders anyway.
-      alias_method :current_scope, :definitions
+      attr_reader :vm, :node, :options
 
       ##
       # @param [RubyLint::AST::Node] node
-      # @param [RubyLint::Definition::RubyObject] definitions
+      # @param [RubyLint::VirtualMachine] vm
       # @param [Hash] options
       #
-      def initialize(node, definitions, options = {})
-        @node        = node
-        @definitions = definitions
-        @options     = options
+      def initialize(node, vm, options = {})
+        @node    = node
+        @vm      = vm
+        @options = options
 
         after_initialize if respond_to?(:after_initialize)
       end

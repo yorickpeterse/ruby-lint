@@ -13,7 +13,7 @@ module RubyLint
       def build
         mod = RubyLint::GlobalScope.global_constant('Module')
 
-        return new_definition([mod, definitions])
+        return new_definition([mod, vm.current_scope])
       end
 
       ##
@@ -22,13 +22,13 @@ module RubyLint
       # @return [RubyLint::Definition::RubyObject]
       #
       def scope
-        scope       = definitions
+        scope       = vm.current_scope
         name_prefix = node.children[0].children[0]
 
         # name_prefix contains the constant path leading up to the name. For
         # example, if the name is `A::B::C` this node would contain `A::B`.
         if name_prefix
-          found = ConstantPath.new(name_prefix).resolve(current_scope)
+          found = ConstantPath.new(name_prefix).resolve(vm.current_scope)
           scope = found if found
         end
 

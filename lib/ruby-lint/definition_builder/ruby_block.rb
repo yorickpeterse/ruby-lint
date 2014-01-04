@@ -8,9 +8,9 @@ module RubyLint
       # @return [RubyLint::Definition::RubyObject]
       #
       def build
-        definition = new_definition([definitions])
+        definition = new_definition([vm.current_scope])
 
-        definitions.list(:lvar).each do |variable|
+        vm.current_scope.list(:lvar).each do |variable|
           definition.add_definition(variable)
         end
 
@@ -26,7 +26,7 @@ module RubyLint
           :name           => 'block',
           :type           => :block,
           :parents        => parents,
-          :instance_type  => current_scope.instance_type,
+          :instance_type  => vm.current_scope.instance_type,
           :update_parents => [:lvar, :ivar, :cvar, :gvar]
         )
       end

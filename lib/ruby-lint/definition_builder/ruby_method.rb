@@ -28,7 +28,7 @@ module RubyLint
       # @return [RubyLint::Definition::RubyObject]
       #
       def scope
-        scope = definitions
+        scope = vm.current_scope
 
         if has_receiver? and options[:receiver]
           scope = options[:receiver]

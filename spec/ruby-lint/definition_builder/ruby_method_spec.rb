@@ -4,8 +4,8 @@ describe RubyLint::DefinitionBuilder::RubyMethod do
   describe 'defining a method without a receiver' do
     before do
       node     = s(:def, :example, s(:args), s(:nil))
-      @root    = ruby_object.new(:name => 'root', :instance_type => :instance)
-      @builder = RubyLint::DefinitionBuilder::RubyMethod.new(node, @root)
+      @vm      = RubyLint::VirtualMachine.new
+      @builder = RubyLint::DefinitionBuilder::RubyMethod.new(node, @vm)
     end
 
     example 'return the name of the method' do
@@ -17,23 +17,23 @@ describe RubyLint::DefinitionBuilder::RubyMethod do
     end
 
     example 'return the parent definitions' do
-      @builder.build.parents.should == [@root]
+      @builder.build.parents.should == [@vm.current_scope]
     end
 
     example 'return the scope to define the method in' do
-      @builder.scope.should == @root
+      @builder.scope.should == @vm.current_scope
     end
   end
 
   describe 'defining a method with a constant as a receiver' do
     before do
       node    = s(:defs, s(:const, nil, :A), :example, s(:args), s(:nil))
-      @root   = ruby_object.new(:name => 'root', :instance_type => :instance)
-      a_const = @root.define_constant('A')
+      @vm     = RubyLint::VirtualMachine.new
+      a_const = @vm.definitions.define_constant('A')
 
       @builder = RubyLint::DefinitionBuilder::RubyMethod.new(
         node,
-        @root,
+        @vm,
         :receiver => a_const
       )
     end
@@ -43,11 +43,11 @@ describe RubyLint::DefinitionBuilder::RubyMethod do
     end
 
     example 'return the parent definitions' do
-      @builder.build.parents.should == [@root.lookup(:const, 'A')]
+      @builder.build.parents.should == [@vm.definitions.lookup(:const, 'A')]
     end
 
     example 'return the scope to define the method in' do
-      @builder.scope.should == @root.lookup(:const, 'A')
+      @builder.scope.should == @vm.definitions.lookup(:const, 'A')
     end
   end
 end

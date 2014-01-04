@@ -17,7 +17,7 @@ module RubyLint
       # @see RubyLint::DefinitionBuilder::RubyModule#build
       #
       def build
-        return new_definition([options[:parent], definitions])
+        return new_definition([options[:parent], vm.current_scope])
       end
     end # RubyClass
   end # DefinitionBuilder

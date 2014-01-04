@@ -4,8 +4,8 @@ describe RubyLint::DefinitionBuilder::RubyClass do
   describe 'using an implicit parent class' do
     before do
       node     = s(:class, s(:const, nil, :A), nil, s(:nil))
-      @root    = ruby_object.new(:name => 'root')
-      @builder = RubyLint::DefinitionBuilder::RubyClass.new(node, @root)
+      @vm      = RubyLint::VirtualMachine.new
+      @builder = RubyLint::DefinitionBuilder::RubyClass.new(node, @vm)
     end
 
     example 'return the name of the class' do
@@ -30,21 +30,20 @@ describe RubyLint::DefinitionBuilder::RubyClass do
     end
 
     example 'return the scope to define the class in' do
-      @builder.scope.should == @root
+      @builder.scope.should == @vm.current_scope
     end
   end
 
   describe 'using an explicit parent class' do
     before do
-      node  = s(:class, s(:const, nil, :A), s(:const, nil, :B), s(:nil))
-      @root = ruby_object.new(:name => 'root')
-
-      @root.define_constant('B')
+      node   = s(:class, s(:const, nil, :A), s(:const, nil, :B), s(:nil))
+      @vm    = RubyLint::VirtualMachine.new
+      parent = @vm.definitions.define_constant('B')
 
       @builder = RubyLint::DefinitionBuilder::RubyClass.new(
         node,
-        @root,
-        :parent => @root.lookup(:const, 'B')
+        @vm,
+        :parent => parent
       )
     end
 
@@ -62,7 +61,7 @@ describe RubyLint::DefinitionBuilder::RubyClass do
     end
 
     example 'return the scope to define the class in' do
-      @builder.scope.should == @root
+      @builder.scope.should == @vm.current_scope
     end
   end
 
@@ -75,15 +74,15 @@ describe RubyLint::DefinitionBuilder::RubyClass do
         s(:nil)
       )
 
-      @root = ruby_object.new(:name => 'root')
+      @vm = RubyLint::VirtualMachine.new
 
-      @root.define_constant('A')
+      @vm.definitions.define_constant('A')
 
-      d_const = @root.define_constant('C').define_constant('D')
+      d_const = @vm.definitions.define_constant('C').define_constant('D')
 
       @builder = RubyLint::DefinitionBuilder::RubyClass.new(
         node,
-        @root,
+        @vm,
         :parent => d_const
       )
     end
@@ -102,7 +101,7 @@ describe RubyLint::DefinitionBuilder::RubyClass do
     end
 
     example 'return the scope to define the class in' do
-      @builder.scope.should == @root.lookup(:const, 'A')
+      @builder.scope.should == @vm.definitions.lookup(:const, 'A')
     end
   end
 end

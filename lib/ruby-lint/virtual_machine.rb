@@ -386,7 +386,7 @@ module RubyLint
     def after_array(node)
       builder = DefinitionBuilder::RubyArray.new(
         node,
-        current_scope,
+        self,
         :values => value_stack.pop
       )
 
@@ -408,7 +408,7 @@ module RubyLint
     def after_hash(node)
       builder = DefinitionBuilder::RubyHash.new(
         node,
-        current_scope,
+        self,
         :values => value_stack.pop
       )
 
@@ -498,7 +498,7 @@ module RubyLint
     # @param [RubyLint::AST::Node] node
     #
     def on_block(node)
-      builder    = DefinitionBuilder::RubyBlock.new(node, current_scope)
+      builder    = DefinitionBuilder::RubyBlock.new(node, self)
       definition = builder.build
 
       associate_node(node, definition)
@@ -555,7 +555,7 @@ module RubyLint
 
       builder = DefinitionBuilder::RubyMethod.new(
         node,
-        current_scope,
+        self,
         :type       => @method_type,
         :receiver   => receiver,
         :visibility => @visibility
@@ -736,6 +736,21 @@ Received: #{arguments.length}
       evaluator.evaluate(arguments, current_scope)
     end
 
+    ##
+    # @return [RubyLint::Definition::RubyObject]
+    #
+    def current_scope
+      return @scopes.last
+    end
+
+    ##
+    #
+    # @return [RubyLint::Definition::RubyObject]
+    #
+    def previous_scope
+      return @scopes[-2]
+    end
+
     private
 
     ##
@@ -764,7 +779,7 @@ Received: #{arguments.length}
     # @param [Hash] options
     #
     def define_module(node, definition_builder, options = {})
-      builder    = definition_builder.new(node, current_scope, options)
+      builder    = definition_builder.new(node, self, options)
       definition = builder.build
       scope      = builder.scope
       existing   = scope.lookup(definition.type, definition.name, false)
@@ -782,20 +797,6 @@ Received: #{arguments.length}
       associate_node(node, definition)
 
       push_scope(definition)
-    end
-
-    ##
-    # @return [RubyLint::Definition::RubyObject]
-    #
-    def current_scope
-      return @scopes.last
-    end
-
-    ##
-    # @return [RubyLint::Definition::RubyObject]
-    #
-    def previous_scope
-      return @scopes[-2]
     end
 
     ##
@@ -950,7 +951,7 @@ Received: #{arguments.length}
     # @param [Hash] options
     #
     def create_primitive(node, options = {})
-      builder = DefinitionBuilder::Primitive.new(node, current_scope, options)
+      builder = DefinitionBuilder::Primitive.new(node, self, options)
 
       return builder.build
     end
