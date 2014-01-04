@@ -24,10 +24,10 @@ end
     context 'updating built-in definitions' do
       before do
         code = <<-CODE
-  class Integer
-    def foobar
-    end
+class Integer < Numeric
+  def foobar
   end
+end
         CODE
 
         defs     = build_definitions(code)
