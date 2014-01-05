@@ -161,13 +161,14 @@ module RubyLint
     def after_initialize
       @comments ||= {}
 
-      @associations   = {}
-      @definitions    = initial_definitions
-      @scopes         = [@definitions]
-      @value_stack    = NestedStack.new
-      @variable_stack = NestedStack.new
-      @ignored_nodes  = []
-      @visibility     = :public
+      @associations    = {}
+      @definitions     = initial_definitions
+      @constant_loader = ConstantLoader.new(:definitions => @definitions)
+      @scopes          = [@definitions]
+      @value_stack     = NestedStack.new
+      @variable_stack  = NestedStack.new
+      @ignored_nodes   = []
+      @visibility      = :public
 
       reset_docstring_tags
       reset_method_type
@@ -181,6 +182,9 @@ module RubyLint
     #
     def run(ast)
       ast = [ast] unless ast.is_a?(Array)
+
+      # pre-load all the built-in definitions.
+      @constant_loader.iterate(ast)
 
       ast.each { |node| iterate(node) }
 

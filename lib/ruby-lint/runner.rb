@@ -67,8 +67,6 @@ module RubyLint
 
       comments.merge!(extra_comments)
 
-      autoload_constants(extra_ast)
-
       vm = run_vm(extra_ast, comments)
 
       run_analysis(ast, vm, report)
@@ -86,15 +84,6 @@ module RubyLint
       ast, comments = parser.parse(File.read(file), file)
 
       return ast, NodeHash.from_hash(comments)
-    end
-
-    ##
-    # Automatically loads definitions using {RubyLint::ConstantLoader}.
-    #
-    # @param [Array] nodes
-    #
-    def autoload_constants(nodes)
-      nodes.each { |node| GlobalScope.constant_loader.iterate(node) }
     end
 
     ##
