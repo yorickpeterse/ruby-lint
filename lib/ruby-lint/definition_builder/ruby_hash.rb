@@ -23,7 +23,7 @@ module RubyLint
       # @see RubyLint::DefinitionBuilder::RubyArray#parents
       #
       def parents
-        return [GlobalScope.global_constant('Hash')]
+        return [vm.global_constant('Hash')]
       end
 
       ##

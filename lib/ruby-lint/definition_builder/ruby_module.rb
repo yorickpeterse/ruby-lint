@@ -11,7 +11,7 @@ module RubyLint
       # @see #new_definition
       #
       def build
-        mod = RubyLint::GlobalScope.global_constant('Module')
+        mod = vm.global_constant('Module')
 
         return new_definition([mod, vm.current_scope])
       end

@@ -755,6 +755,14 @@ Received: #{arguments.length}
       return @scopes[-2]
     end
 
+    ##
+    # @param [String] name
+    # @return [RubyLint::Definition::RubyObject]
+    #
+    def global_constant(name)
+      return GlobalScope.global_constant(name)
+    end
+
     private
 
     ##
@@ -1150,8 +1158,7 @@ Received: #{arguments.length}
     # @return [RubyLint::Definition::RubyObject]
     #
     def lookup_type_definition(name)
-      return current_scope.lookup(:const, name) ||
-        GlobalScope.global_constant(name)
+      return current_scope.lookup(:const, name) || global_constant(name)
     end
 
     ##

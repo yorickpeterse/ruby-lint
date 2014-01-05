@@ -32,7 +32,7 @@ module RubyLint
 
         raise(ArgumentError, "The type #{type} is invalid") unless ruby_class
 
-        return GlobalScope.global_constant(ruby_class)
+        return vm.global_constant(ruby_class)
       end
     end # Primitive
   end # DefinitionBuilder
