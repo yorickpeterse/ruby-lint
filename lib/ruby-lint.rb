@@ -10,6 +10,7 @@ require 'zlib'
 
 require_relative 'ruby-lint/extensions/string'
 
+require_relative 'ruby-lint/base'
 require_relative 'ruby-lint/variable_predicates'
 require_relative 'ruby-lint/ast/node'
 require_relative 'ruby-lint/ast/builder'
@@ -51,6 +52,7 @@ require_relative 'ruby-lint/constant_loader'
 require_relative 'ruby-lint/file_loader'
 require_relative 'ruby-lint/method_call_info'
 
+require_relative 'ruby-lint/definition/registry'
 require_relative 'ruby-lint/definition/ruby_object'
 require_relative 'ruby-lint/definition/ruby_method'
 require_relative 'ruby-lint/definition/constant_proxy'
