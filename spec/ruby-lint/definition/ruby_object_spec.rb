@@ -269,4 +269,21 @@ describe ruby_object do
       @class.lookup(:method, 'self').return_value.should == @class
     end
   end
+
+  context 'constant proxies' do
+    before do
+      @root  = ruby_object.new(:type => :const, :name => 'Foo')
+      @proxy = @root.constant_proxy('Bar')
+    end
+
+    example 'create a constant proxy' do
+      @proxy.is_a?(RubyLint::Definition::ConstantProxy).should == true
+    end
+
+    example 'point to the definition when it exists' do
+      baz = @root.define_constant('Bar').define_constant('Baz')
+
+      @proxy.lookup(:const, 'Baz').should == baz
+    end
+  end
 end

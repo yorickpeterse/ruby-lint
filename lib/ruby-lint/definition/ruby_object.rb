@@ -620,6 +620,14 @@ module RubyLint
       end
 
       ##
+      # @see {RubyLint::Definition::ConstantProxy#initialize}
+      # @return [RubyLint::Definition::ConstantProxy]
+      #
+      def constant_proxy(name)
+        return ConstantProxy.new(self, name)
+      end
+
+      ##
       # Defines `self` on the current definition as both a class and instance
       # method.
       #
