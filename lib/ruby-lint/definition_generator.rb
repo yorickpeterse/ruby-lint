@@ -78,7 +78,10 @@ module RubyLint
             :name       => current_inspector.constant_name,
             :constant   => current_inspector.constant,
             :methods    => method_information(inspected_methods),
-            :superclass => superclass
+            :superclass => superclass,
+
+            # Kernel is ignored since its included already in core/object.rb
+            :modules    => current_inspector.inspect_modules - [Kernel]
           )
 
           constants << constant
