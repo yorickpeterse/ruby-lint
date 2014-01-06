@@ -1,37 +1,36 @@
-##
-# Constant: Fiber
-# Created:  2013-04-01 18:33:54 +0200
-# Platform: rbx 2.0.0.rc1
+# This file was automatically generated, any manual changes will be lost the
+# next time this file is generated.
 #
-RubyLint::GlobalScope.definitions.define_constant('Fiber') do |klass|
-  klass.inherits(RubyLint::GlobalScope.constant_proxy('Object'))
+# Platform: rbx 2.2.2
 
-  klass.define_method('__class_init__')
+RubyLint.registry.register('Fiber') do |defs|
+  defs.define_constant('Fiber') do |klass|
+    klass.inherits(defs.constant_proxy('Object'))
 
-  klass.define_method('create') do |method|
-    method.define_argument('callable')
-  end
+    klass.define_method('create') do |method|
+      method.define_argument('callable')
+    end
 
-  klass.define_method('current')
+    klass.define_method('current')
 
-  klass.define_method('new') do |method|
-    method.define_optional_argument('size')
-    method.define_block_argument('block')
-  end
+    klass.define_method('new') do |method|
+      method.define_optional_argument('size')
 
-  klass.define_method('yield') do |method|
-    method.define_rest_argument('args')
-  end
+      method.returns { |object| object.instance }
+    end
 
-  klass.define_instance_method('alive?')
+    klass.define_method('yield') do |method|
+      method.define_rest_argument('args')
+    end
 
-  klass.define_instance_method('resume') do |method|
-    method.define_rest_argument('args')
-  end
+    klass.define_instance_method('alive?')
 
-  klass.define_instance_method('transfer') do |method|
-    method.define_rest_argument('args')
+    klass.define_instance_method('resume') do |method|
+      method.define_rest_argument('args')
+    end
+
+    klass.define_instance_method('transfer') do |method|
+      method.define_rest_argument('args')
+    end
   end
 end
-
-RubyLint::GlobalScope.definitions.lookup(:const, 'Fiber').deep_freeze

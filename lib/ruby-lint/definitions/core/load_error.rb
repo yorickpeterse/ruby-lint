@@ -1,30 +1,34 @@
-##
-# Constant: LoadError
-# Created:  2013-04-01 18:33:54 +0200
-# Platform: rbx 2.0.0.rc1
+# This file was automatically generated, any manual changes will be lost the
+# next time this file is generated.
 #
-RubyLint::GlobalScope.definitions.define_constant('LoadError') do |klass|
-  klass.inherits(RubyLint::GlobalScope.constant_proxy('ScriptError'))
+# Platform: rbx 2.2.2
 
-  klass.define_method('__class_init__')
+RubyLint.registry.register('LoadError') do |defs|
+  defs.define_constant('LoadError') do |klass|
+    klass.inherits(defs.constant_proxy('ScriptError'))
+
+    klass.define_instance_method('path')
+
+    klass.define_instance_method('path=')
+  end
+
+  defs.define_constant('LoadError::InvalidExtensionError') do |klass|
+    klass.inherits(defs.constant_proxy('LoadError'))
+
+  end
+
+  defs.define_constant('LoadError::InvalidExtensionError::MRIExtensionError') do |klass|
+    klass.inherits(defs.constant_proxy('LoadError::InvalidExtensionError'))
+
+  end
+
+  defs.define_constant('LoadError::MRIExtensionError') do |klass|
+    klass.inherits(defs.constant_proxy('LoadError::InvalidExtensionError'))
+
+  end
+
+  defs.define_constant('LoadError::MRIExtensionError::InvalidExtensionError') do |klass|
+    klass.inherits(defs.constant_proxy('LoadError'))
+
+  end
 end
-
-##
-# Constant: LoadError::InvalidExtensionError
-# Created:  2013-04-01 18:33:54 +0200
-# Platform: rbx 2.0.0.rc1
-#
-RubyLint::GlobalScope.definitions.define_constant('LoadError::InvalidExtensionError') do |klass|
-  klass.inherits(RubyLint::GlobalScope.constant_proxy('LoadError'))
-end
-
-##
-# Constant: LoadError::MRIExtensionError
-# Created:  2013-04-01 18:33:54 +0200
-# Platform: rbx 2.0.0.rc1
-#
-RubyLint::GlobalScope.definitions.define_constant('LoadError::MRIExtensionError') do |klass|
-  klass.inherits(RubyLint::GlobalScope.constant_proxy('LoadError::InvalidExtensionError'))
-end
-
-RubyLint::GlobalScope.definitions.lookup(:const, 'LoadError').deep_freeze

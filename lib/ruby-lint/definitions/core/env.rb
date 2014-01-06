@@ -1,12 +1,11 @@
-##
-# Constant: ENV
-# Created:  2013-04-01 18:33:53 +0200
-# Platform: rbx 2.0.0.rc1
+# This file was automatically generated, any manual changes will be lost the
+# next time this file is generated.
 #
-RubyLint::GlobalScope.definitions.define_constant('ENV') do |klass|
-  klass.inherits(RubyLint::GlobalScope.constant_proxy('Hash'))
+# Platform: rbx 2.2.2
 
-  klass.instance!
+RubyLint.registry.register('ENV') do |defs|
+  defs.define_constant('ENV') do |klass|
+    klass.inherits(defs.constant_proxy('Hash'))
+    klass.instance!
+  end
 end
-
-RubyLint::GlobalScope.definitions.lookup(:const, 'ENV').deep_freeze

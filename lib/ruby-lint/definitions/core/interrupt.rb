@@ -1,16 +1,16 @@
-##
-# Constant: Interrupt
-# Created:  2013-04-01 18:33:54 +0200
-# Platform: rbx 2.0.0.rc1
+# This file was automatically generated, any manual changes will be lost the
+# next time this file is generated.
 #
-RubyLint::GlobalScope.definitions.define_constant('Interrupt') do |klass|
-  klass.inherits(RubyLint::GlobalScope.constant_proxy('SignalException'))
+# Platform: rbx 2.2.2
 
-  klass.define_method('__class_init__')
+RubyLint.registry.register('Interrupt') do |defs|
+  defs.define_constant('Interrupt') do |klass|
+    klass.inherits(defs.constant_proxy('SignalException'))
 
-  klass.define_instance_method('initialize') do |method|
-    method.define_rest_argument('args')
+    klass.define_instance_method('initialize') do |method|
+      method.define_rest_argument('args')
+
+      method.returns { |object| object.instance }
+    end
   end
 end
-
-RubyLint::GlobalScope.definitions.lookup(:const, 'Interrupt').deep_freeze

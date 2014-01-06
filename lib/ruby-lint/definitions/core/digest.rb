@@ -1,168 +1,184 @@
-##
-# Constant: Digest
-# Created:  2013-04-01 18:33:53 +0200
-# Platform: rbx 2.0.0.rc1
+# This file was automatically generated, any manual changes will be lost the
+# next time this file is generated.
 #
-RubyLint::GlobalScope.definitions.define_constant('Digest') do |klass|
+# Platform: rbx 2.2.2
 
-  klass.define_method('__module_init__')
+RubyLint.registry.register('Digest') do |defs|
+  defs.define_constant('Digest') do |klass|
+    klass.inherits(defs.constant_proxy('Object'))
 
-  klass.define_method('const_missing') do |method|
-    method.define_argument('name')
+    klass.define_method('const_missing') do |method|
+      method.define_argument('name')
+    end
+
+    klass.define_method('hexencode')
+
+    klass.define_method('initialize')
   end
 
-  klass.define_method('hexencode')
-end
+  defs.define_constant('Digest::Base') do |klass|
+    klass.inherits(defs.constant_proxy('Digest::Class'))
 
-##
-# Constant: Digest::Base
-# Created:  2013-04-01 18:33:53 +0200
-# Platform: rbx 2.0.0.rc1
-#
-RubyLint::GlobalScope.definitions.define_constant('Digest::Base') do |klass|
-  klass.inherits(RubyLint::GlobalScope.constant_proxy('Digest::Class'))
+    klass.define_method('allocate')
 
-  klass.define_method('allocate')
+    klass.define_instance_method('<<')
 
-  klass.define_instance_method('<<')
+    klass.define_instance_method('block_length')
 
-  klass.define_instance_method('block_length')
+    klass.define_instance_method('digest_length')
 
-  klass.define_instance_method('digest_length')
+    klass.define_instance_method('initialize_copy')
 
-  klass.define_instance_method('initialize_copy')
+    klass.define_instance_method('reset')
 
-  klass.define_instance_method('reset')
-
-  klass.define_instance_method('update')
-end
-
-##
-# Constant: Digest::Class
-# Created:  2013-04-01 18:33:53 +0200
-# Platform: rbx 2.0.0.rc1
-#
-RubyLint::GlobalScope.definitions.define_constant('Digest::Class') do |klass|
-  klass.inherits(RubyLint::GlobalScope.constant_proxy('Object'))
-
-  klass.define_method('__class_init__')
-
-  klass.define_method('base64digest') do |method|
-    method.define_argument('str')
-    method.define_rest_argument('args')
+    klass.define_instance_method('update')
   end
 
-  klass.define_method('digest')
+  defs.define_constant('Digest::Class') do |klass|
+    klass.inherits(defs.constant_proxy('Object'))
 
-  klass.define_method('file') do |method|
-    method.define_argument('name')
+    klass.define_method('base64digest') do |method|
+      method.define_argument('str')
+      method.define_rest_argument('args')
+    end
+
+    klass.define_method('digest')
+
+    klass.define_method('file') do |method|
+      method.define_argument('name')
+    end
+
+    klass.define_method('hexdigest')
+
+    klass.define_instance_method('<<')
+
+    klass.define_instance_method('base64digest') do |method|
+      method.define_optional_argument('str')
+    end
+
+    klass.define_instance_method('base64digest!')
+
+    klass.define_instance_method('block_length')
+
+    klass.define_instance_method('digest')
+
+    klass.define_instance_method('digest!')
+
+    klass.define_instance_method('digest_length')
+
+    klass.define_instance_method('file') do |method|
+      method.define_argument('name')
+    end
+
+    klass.define_instance_method('hexdigest')
+
+    klass.define_instance_method('hexdigest!')
+
+    klass.define_instance_method('length')
+
+    klass.define_instance_method('new')
+
+    klass.define_instance_method('reset')
+
+    klass.define_instance_method('size')
+
+    klass.define_instance_method('update')
   end
 
-  klass.define_method('hexdigest')
-end
+  defs.define_constant('Digest::Instance') do |klass|
+    klass.inherits(defs.constant_proxy('Object'))
 
-##
-# Constant: Digest::Instance
-# Created:  2013-04-01 18:33:53 +0200
-# Platform: rbx 2.0.0.rc1
-#
-RubyLint::GlobalScope.definitions.define_constant('Digest::Instance') do |klass|
+    klass.define_method('initialize')
 
-  klass.define_method('__module_init__')
+    klass.define_instance_method('<<')
 
-  klass.define_instance_method('<<')
+    klass.define_instance_method('==')
 
-  klass.define_instance_method('==')
+    klass.define_instance_method('base64digest') do |method|
+      method.define_optional_argument('str')
+    end
 
-  klass.define_instance_method('base64digest') do |method|
-    method.define_optional_argument('str')
+    klass.define_instance_method('base64digest!')
+
+    klass.define_instance_method('block_length')
+
+    klass.define_instance_method('digest')
+
+    klass.define_instance_method('digest!')
+
+    klass.define_instance_method('digest_length')
+
+    klass.define_instance_method('file') do |method|
+      method.define_argument('name')
+    end
+
+    klass.define_instance_method('hexdigest')
+
+    klass.define_instance_method('hexdigest!')
+
+    klass.define_instance_method('inspect')
+
+    klass.define_instance_method('length')
+
+    klass.define_instance_method('new')
+
+    klass.define_instance_method('reset')
+
+    klass.define_instance_method('size')
+
+    klass.define_instance_method('to_s')
+
+    klass.define_instance_method('update')
   end
 
-  klass.define_instance_method('base64digest!')
+  defs.define_constant('Digest::MD5') do |klass|
+    klass.inherits(defs.constant_proxy('Digest::Base'))
 
-  klass.define_instance_method('block_length')
-
-  klass.define_instance_method('digest')
-
-  klass.define_instance_method('digest!')
-
-  klass.define_instance_method('digest_length')
-
-  klass.define_instance_method('file') do |method|
-    method.define_argument('name')
   end
 
-  klass.define_instance_method('hexdigest')
+  defs.define_constant('Digest::SHA1') do |klass|
+    klass.inherits(defs.constant_proxy('Digest::Base'))
 
-  klass.define_instance_method('hexdigest!')
-
-  klass.define_instance_method('inspect')
-
-  klass.define_instance_method('length')
-
-  klass.define_instance_method('new')
-
-  klass.define_instance_method('reset')
-
-  klass.define_instance_method('size')
-
-  klass.define_instance_method('to_s')
-
-  klass.define_instance_method('update')
-end
-
-##
-# Constant: Digest::SHA2
-# Created:  2013-04-01 18:33:53 +0200
-# Platform: rbx 2.0.0.rc1
-#
-RubyLint::GlobalScope.definitions.define_constant('Digest::SHA2') do |klass|
-  klass.inherits(RubyLint::GlobalScope.constant_proxy('Digest::Class'))
-
-  klass.define_method('__class_init__')
-
-  klass.define_instance_method('<<') do |method|
-    method.define_argument('str')
   end
 
-  klass.define_instance_method('block_length')
+  defs.define_constant('Digest::SHA2') do |klass|
+    klass.inherits(defs.constant_proxy('Digest::Class'))
 
-  klass.define_instance_method('digest_length')
+    klass.define_instance_method('<<') do |method|
+      method.define_argument('str')
+    end
 
-  klass.define_instance_method('inspect')
+    klass.define_instance_method('block_length')
 
-  klass.define_instance_method('reset')
+    klass.define_instance_method('digest_length')
 
-  klass.define_instance_method('update') do |method|
-    method.define_argument('str')
+    klass.define_instance_method('initialize') do |method|
+      method.define_optional_argument('bitlen')
+
+      method.returns { |object| object.instance }
+    end
+
+    klass.define_instance_method('inspect')
+
+    klass.define_instance_method('reset')
+
+    klass.define_instance_method('update') do |method|
+      method.define_argument('str')
+    end
+  end
+
+  defs.define_constant('Digest::SHA256') do |klass|
+    klass.inherits(defs.constant_proxy('Digest::Base'))
+
+  end
+
+  defs.define_constant('Digest::SHA384') do |klass|
+    klass.inherits(defs.constant_proxy('Digest::Base'))
+
+  end
+
+  defs.define_constant('Digest::SHA512') do |klass|
+    klass.inherits(defs.constant_proxy('Digest::Base'))
+
   end
 end
-
-##
-# Constant: Digest::SHA256
-# Created:  2013-04-01 18:33:53 +0200
-# Platform: rbx 2.0.0.rc1
-#
-RubyLint::GlobalScope.definitions.define_constant('Digest::SHA256') do |klass|
-  klass.inherits(RubyLint::GlobalScope.constant_proxy('Digest::Base'))
-end
-
-##
-# Constant: Digest::SHA384
-# Created:  2013-04-01 18:33:53 +0200
-# Platform: rbx 2.0.0.rc1
-#
-RubyLint::GlobalScope.definitions.define_constant('Digest::SHA384') do |klass|
-  klass.inherits(RubyLint::GlobalScope.constant_proxy('Digest::Base'))
-end
-
-##
-# Constant: Digest::SHA512
-# Created:  2013-04-01 18:33:53 +0200
-# Platform: rbx 2.0.0.rc1
-#
-RubyLint::GlobalScope.definitions.define_constant('Digest::SHA512') do |klass|
-  klass.inherits(RubyLint::GlobalScope.constant_proxy('Digest::Base'))
-end
-
-RubyLint::GlobalScope.definitions.lookup(:const, 'Digest').deep_freeze

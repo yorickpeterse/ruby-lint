@@ -1,10 +1,11 @@
-##
-# Constant: StandardError
-# Created:  2013-04-01 18:33:55 +0200
-# Platform: rbx 2.0.0.rc1
+# This file was automatically generated, any manual changes will be lost the
+# next time this file is generated.
 #
-RubyLint::GlobalScope.definitions.define_constant('StandardError') do |klass|
-  klass.inherits(RubyLint::GlobalScope.constant_proxy('Exception'))
-end
+# Platform: rbx 2.2.2
 
-RubyLint::GlobalScope.definitions.lookup(:const, 'StandardError').deep_freeze
+RubyLint.registry.register('StandardError') do |defs|
+  defs.define_constant('StandardError') do |klass|
+    klass.inherits(defs.constant_proxy('Exception'))
+
+  end
+end

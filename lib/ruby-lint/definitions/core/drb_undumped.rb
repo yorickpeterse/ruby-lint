@@ -1,17 +1,16 @@
 # This file was automatically generated, any manual changes will be lost the
 # next time this file is generated.
 #
-# Created:  2013-11-11 20:49:50 +0100
-# Platform: rbx 2.1.1
+# Platform: rbx 2.2.2
 
-RubyLint::GlobalScope.definitions.define_constant('DRbUndumped') do |klass|
-  klass.inherits(RubyLint::GlobalScope.constant_proxy('Object'))
+RubyLint.registry.register('DRbUndumped') do |defs|
+  defs.define_constant('DRbUndumped') do |klass|
+    klass.inherits(defs.constant_proxy('Object'))
 
-  klass.define_method('initialize')
+    klass.define_method('initialize')
 
-  klass.define_instance_method('_dump') do |method|
-    method.define_argument('dummy')
+    klass.define_instance_method('_dump') do |method|
+      method.define_argument('dummy')
+    end
   end
 end
-
-RubyLint::GlobalScope.definitions.lookup(:const, 'DRbUndumped').deep_freeze

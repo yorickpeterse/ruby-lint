@@ -1,34 +1,32 @@
-##
-# Constant: Mutex
-# Created:  2013-04-01 18:33:54 +0200
-# Platform: rbx 2.0.0.rc1
+# This file was automatically generated, any manual changes will be lost the
+# next time this file is generated.
 #
-RubyLint::GlobalScope.definitions.define_constant('Mutex') do |klass|
-  klass.inherits(RubyLint::GlobalScope.constant_proxy('Object'))
+# Platform: rbx 2.2.2
 
-  klass.define_method('__class_init__')
+RubyLint.registry.register('Mutex') do |defs|
+  defs.define_constant('Mutex') do |klass|
+    klass.inherits(defs.constant_proxy('Object'))
 
-  klass.define_instance_method('initialize')
+    klass.define_instance_method('initialize')
 
-  klass.define_instance_method('lock')
+    klass.define_instance_method('lock')
 
-  klass.define_instance_method('locked?')
+    klass.define_instance_method('locked?')
 
-  klass.define_instance_method('marshal_dump')
+    klass.define_instance_method('marshal_dump')
 
-  klass.define_instance_method('marshal_load') do |method|
-    method.define_argument('bunk')
+    klass.define_instance_method('marshal_load') do |method|
+      method.define_argument('bunk')
+    end
+
+    klass.define_instance_method('sleep') do |method|
+      method.define_optional_argument('duration')
+    end
+
+    klass.define_instance_method('synchronize')
+
+    klass.define_instance_method('try_lock')
+
+    klass.define_instance_method('unlock')
   end
-
-  klass.define_instance_method('sleep') do |method|
-    method.define_optional_argument('duration')
-  end
-
-  klass.define_instance_method('synchronize')
-
-  klass.define_instance_method('try_lock')
-
-  klass.define_instance_method('unlock')
 end
-
-RubyLint::GlobalScope.definitions.lookup(:const, 'Mutex').deep_freeze

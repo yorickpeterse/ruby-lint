@@ -1,14 +1,12 @@
-##
-# Constant: ArgumentError
-# Created:  2013-04-01 18:33:52 +0200
-# Platform: rbx 2.0.0.rc1
+# This file was automatically generated, any manual changes will be lost the
+# next time this file is generated.
 #
-RubyLint::GlobalScope.definitions.define_constant('ArgumentError') do |klass|
-  klass.inherits(RubyLint::GlobalScope.constant_proxy('StandardError'))
+# Platform: rbx 2.2.2
 
-  klass.define_method('__class_init__')
+RubyLint.registry.register('ArgumentError') do |defs|
+  defs.define_constant('ArgumentError') do |klass|
+    klass.inherits(defs.constant_proxy('StandardError'))
 
-  klass.define_instance_method('to_s')
+    klass.define_instance_method('to_s')
+  end
 end
-
-RubyLint::GlobalScope.definitions.lookup(:const, 'ArgumentError').deep_freeze

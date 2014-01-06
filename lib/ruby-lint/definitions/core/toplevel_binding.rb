@@ -1,9 +1,44 @@
-##
-# Constant: TOPLEVEL_BINDING
-# Created:  2013-04-01 18:33:55 +0200
-# Platform: rbx 2.0.0.rc1
+# This file was automatically generated, any manual changes will be lost the
+# next time this file is generated.
 #
-RubyLint::GlobalScope.definitions.define_constant('TOPLEVEL_BINDING') do |klass|
-end
+# Platform: rbx 2.2.2
 
-RubyLint::GlobalScope.definitions.lookup(:const, 'TOPLEVEL_BINDING').deep_freeze
+RubyLint.registry.register('TOPLEVEL_BINDING') do |defs|
+  defs.define_constant('TOPLEVEL_BINDING') do |klass|
+    klass.inherits(defs.constant_proxy('Object'))
+
+    klass.define_method('compiled_code')
+
+    klass.define_method('compiled_code=')
+
+    klass.define_method('constant_scope')
+
+    klass.define_method('constant_scope=')
+
+    klass.define_method('eval') do |method|
+      method.define_argument('expr')
+      method.define_optional_argument('filename')
+      method.define_optional_argument('lineno')
+    end
+
+    klass.define_method('from_proc?')
+
+    klass.define_method('line_number')
+
+    klass.define_method('location')
+
+    klass.define_method('location=')
+
+    klass.define_method('proc_environment')
+
+    klass.define_method('proc_environment=')
+
+    klass.define_method('self')
+
+    klass.define_method('self=')
+
+    klass.define_method('variables')
+
+    klass.define_method('variables=')
+  end
+end

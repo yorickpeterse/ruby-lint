@@ -1,24 +1,46 @@
-##
-# Constant: ThreadGroup
-# Created:  2013-04-01 18:33:55 +0200
-# Platform: rbx 2.0.0.rc1
+# This file was automatically generated, any manual changes will be lost the
+# next time this file is generated.
 #
-RubyLint::GlobalScope.definitions.define_constant('ThreadGroup') do |klass|
-  klass.inherits(RubyLint::GlobalScope.constant_proxy('Object'))
+# Platform: rbx 2.2.2
 
-  klass.define_method('__class_init__')
+RubyLint.registry.register('ThreadGroup') do |defs|
+  defs.define_constant('ThreadGroup') do |klass|
+    klass.inherits(defs.constant_proxy('Object'))
 
-  klass.define_instance_method('add') do |method|
-    method.define_argument('thread')
+    klass.define_instance_method('add') do |method|
+      method.define_argument('thread')
+    end
+
+    klass.define_instance_method('enclose')
+
+    klass.define_instance_method('enclosed?')
+
+    klass.define_instance_method('initialize')
+
+    klass.define_instance_method('list')
+
+    klass.define_instance_method('remove') do |method|
+      method.define_argument('thread')
+    end
   end
 
-  klass.define_instance_method('initialize')
+  defs.define_constant('ThreadGroup::Default') do |klass|
+    klass.inherits(defs.constant_proxy('Object'))
 
-  klass.define_instance_method('list')
+    klass.define_method('add') do |method|
+      method.define_argument('thread')
+    end
 
-  klass.define_instance_method('remove') do |method|
-    method.define_argument('thread')
+    klass.define_method('enclose')
+
+    klass.define_method('enclosed?')
+
+    klass.define_method('initialize')
+
+    klass.define_method('list')
+
+    klass.define_method('remove') do |method|
+      method.define_argument('thread')
+    end
   end
 end
-
-RubyLint::GlobalScope.definitions.lookup(:const, 'ThreadGroup').deep_freeze

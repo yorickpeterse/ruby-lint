@@ -1,44 +1,43 @@
-##
-# Constant: WeakRef
-# Created:  2013-04-01 18:33:55 +0200
-# Platform: rbx 2.0.0.rc1
+# This file was automatically generated, any manual changes will be lost the
+# next time this file is generated.
 #
-RubyLint::GlobalScope.definitions.define_constant('WeakRef') do |klass|
-  klass.inherits(RubyLint::GlobalScope.constant_proxy('BasicObject'))
+# Platform: rbx 2.2.2
 
-  klass.define_method('__class_init__')
+RubyLint.registry.register('WeakRef') do |defs|
+  defs.define_constant('WeakRef') do |klass|
+    klass.inherits(defs.constant_proxy('BasicObject'))
 
-  klass.define_method('new')
+    klass.define_method('new') do |method|
+      method.define_argument('obj')
 
-  klass.define_instance_method('__getobj__')
+      method.returns { |object| object.instance }
+    end
 
-  klass.define_instance_method('__object__')
+    klass.define_method('yaml_tag_subclasses?')
 
-  klass.define_instance_method('__setobj__') do |method|
-    method.define_argument('obj')
+    klass.define_instance_method('__getobj__')
+
+    klass.define_instance_method('__object__')
+
+    klass.define_instance_method('__setobj__') do |method|
+      method.define_argument('obj')
+    end
+
+    klass.define_instance_method('method_missing') do |method|
+      method.define_argument('method')
+      method.define_rest_argument('args')
+    end
+
+    klass.define_instance_method('respond_to_missing?') do |method|
+      method.define_argument('method')
+      method.define_argument('include_private')
+    end
+
+    klass.define_instance_method('weakref_alive?')
   end
 
-  klass.define_instance_method('method_missing') do |method|
-    method.define_argument('method')
-    method.define_rest_argument('args')
-    method.define_block_argument('block')
-  end
+  defs.define_constant('WeakRef::RefError') do |klass|
+    klass.inherits(defs.constant_proxy('RuntimeError'))
 
-  klass.define_instance_method('respond_to_missing?') do |method|
-    method.define_argument('method')
-    method.define_argument('include_private')
   end
-
-  klass.define_instance_method('weakref_alive?')
 end
-
-##
-# Constant: WeakRef::RefError
-# Created:  2013-04-01 18:33:55 +0200
-# Platform: rbx 2.0.0.rc1
-#
-RubyLint::GlobalScope.definitions.define_constant('WeakRef::RefError') do |klass|
-  klass.inherits(RubyLint::GlobalScope.constant_proxy('RuntimeError'))
-end
-
-RubyLint::GlobalScope.definitions.lookup(:const, 'WeakRef').deep_freeze

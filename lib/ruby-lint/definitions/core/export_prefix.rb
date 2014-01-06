@@ -1,23 +1,22 @@
 # This file was automatically generated, any manual changes will be lost the
 # next time this file is generated.
 #
-# Created:  2013-11-11 20:49:50 +0100
-# Platform: rbx 2.1.1
+# Platform: rbx 2.2.2
 
-RubyLint::GlobalScope.definitions.define_constant('EXPORT_PREFIX') do |klass|
-  klass.inherits(RubyLint::GlobalScope.constant_proxy('Object'))
+RubyLint.registry.register('EXPORT_PREFIX') do |defs|
+  defs.define_constant('EXPORT_PREFIX') do |klass|
+    klass.inherits(defs.constant_proxy('Object'))
 
-  klass.define_method('&') do |method|
-    method.define_argument('other')
-  end
+    klass.define_method('&') do |method|
+      method.define_argument('other')
+    end
 
-  klass.define_method('^') do |method|
-    method.define_argument('other')
-  end
+    klass.define_method('^') do |method|
+      method.define_argument('other')
+    end
 
-  klass.define_method('|') do |method|
-    method.define_argument('other')
+    klass.define_method('|') do |method|
+      method.define_argument('other')
+    end
   end
 end
-
-RubyLint::GlobalScope.definitions.lookup(:const, 'EXPORT_PREFIX').deep_freeze

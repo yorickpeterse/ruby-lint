@@ -1,39 +1,40 @@
-##
-# Constant: Shellwords
-# Created:  2013-04-01 18:33:55 +0200
-# Platform: rbx 2.0.0.rc1
+# This file was automatically generated, any manual changes will be lost the
+# next time this file is generated.
 #
-RubyLint::GlobalScope.definitions.define_constant('Shellwords') do |klass|
+# Platform: rbx 2.2.2
 
-  klass.define_method('__module_init__')
+RubyLint.registry.register('Shellwords') do |defs|
+  defs.define_constant('Shellwords') do |klass|
+    klass.inherits(defs.constant_proxy('Object'))
 
-  klass.define_method('escape') do |method|
-    method.define_argument('str')
-  end
+    klass.define_method('escape') do |method|
+      method.define_argument('str')
+    end
 
-  klass.define_method('join') do |method|
-    method.define_argument('array')
-  end
+    klass.define_method('initialize')
 
-  klass.define_method('shellescape') do |method|
-    method.define_argument('str')
-  end
+    klass.define_method('join') do |method|
+      method.define_argument('array')
+    end
 
-  klass.define_method('shelljoin') do |method|
-    method.define_argument('array')
-  end
+    klass.define_method('shellescape') do |method|
+      method.define_argument('str')
+    end
 
-  klass.define_method('shellsplit') do |method|
-    method.define_argument('line')
-  end
+    klass.define_method('shelljoin') do |method|
+      method.define_argument('array')
+    end
 
-  klass.define_method('shellwords') do |method|
-    method.define_argument('line')
-  end
+    klass.define_method('shellsplit') do |method|
+      method.define_argument('line')
+    end
 
-  klass.define_method('split') do |method|
-    method.define_argument('line')
+    klass.define_method('shellwords') do |method|
+      method.define_argument('line')
+    end
+
+    klass.define_method('split') do |method|
+      method.define_argument('line')
+    end
   end
 end
-
-RubyLint::GlobalScope.definitions.lookup(:const, 'Shellwords').deep_freeze

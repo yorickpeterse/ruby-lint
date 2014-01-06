@@ -1,21 +1,21 @@
-##
-# Constant: SystemExit
-# Created:  2013-04-01 18:33:55 +0200
-# Platform: rbx 2.0.0.rc1
+# This file was automatically generated, any manual changes will be lost the
+# next time this file is generated.
 #
-RubyLint::GlobalScope.definitions.define_constant('SystemExit') do |klass|
-  klass.inherits(RubyLint::GlobalScope.constant_proxy('Exception'))
+# Platform: rbx 2.2.2
 
-  klass.define_method('__class_init__')
+RubyLint.registry.register('SystemExit') do |defs|
+  defs.define_constant('SystemExit') do |klass|
+    klass.inherits(defs.constant_proxy('Exception'))
 
-  klass.define_instance_method('initialize') do |method|
-    method.define_optional_argument('first')
-    method.define_rest_argument('args')
+    klass.define_instance_method('initialize') do |method|
+      method.define_optional_argument('first')
+      method.define_rest_argument('args')
+
+      method.returns { |object| object.instance }
+    end
+
+    klass.define_instance_method('status')
+
+    klass.define_instance_method('success?')
   end
-
-  klass.define_instance_method('status')
-
-  klass.define_instance_method('success?')
 end
-
-RubyLint::GlobalScope.definitions.lookup(:const, 'SystemExit').deep_freeze

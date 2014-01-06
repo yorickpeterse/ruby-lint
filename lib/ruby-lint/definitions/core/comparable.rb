@@ -1,40 +1,41 @@
-##
-# Constant: Comparable
-# Created:  2013-04-01 18:33:52 +0200
-# Platform: rbx 2.0.0.rc1
+# This file was automatically generated, any manual changes will be lost the
+# next time this file is generated.
 #
-RubyLint::GlobalScope.definitions.define_constant('Comparable') do |klass|
+# Platform: rbx 2.2.2
 
-  klass.define_method('__module_init__')
+RubyLint.registry.register('Comparable') do |defs|
+  defs.define_constant('Comparable') do |klass|
+    klass.inherits(defs.constant_proxy('Object'))
 
-  klass.define_method('compare_int') do |method|
-    method.define_argument('int')
-  end
+    klass.define_method('compare_int') do |method|
+      method.define_argument('int')
+    end
 
-  klass.define_instance_method('<') do |method|
-    method.define_argument('other')
-  end
+    klass.define_method('initialize')
 
-  klass.define_instance_method('<=') do |method|
-    method.define_argument('other')
-  end
+    klass.define_instance_method('<') do |method|
+      method.define_argument('other')
+    end
 
-  klass.define_instance_method('==') do |method|
-    method.define_argument('other')
-  end
+    klass.define_instance_method('<=') do |method|
+      method.define_argument('other')
+    end
 
-  klass.define_instance_method('>') do |method|
-    method.define_argument('other')
-  end
+    klass.define_instance_method('==') do |method|
+      method.define_argument('other')
+    end
 
-  klass.define_instance_method('>=') do |method|
-    method.define_argument('other')
-  end
+    klass.define_instance_method('>') do |method|
+      method.define_argument('other')
+    end
 
-  klass.define_instance_method('between?') do |method|
-    method.define_argument('min')
-    method.define_argument('max')
+    klass.define_instance_method('>=') do |method|
+      method.define_argument('other')
+    end
+
+    klass.define_instance_method('between?') do |method|
+      method.define_argument('min')
+      method.define_argument('max')
+    end
   end
 end
-
-RubyLint::GlobalScope.definitions.lookup(:const, 'Comparable').deep_freeze

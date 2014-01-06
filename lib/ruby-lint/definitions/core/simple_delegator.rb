@@ -1,37 +1,40 @@
 # This file was automatically generated, any manual changes will be lost the
 # next time this file is generated.
 #
-# Created:  2013-11-11 20:10:55 +0100
-# Platform: rbx 2.1.1
+# Platform: rbx 2.2.2
 
-RubyLint::GlobalScope.definitions.define_constant('SimpleDelegator') do |klass|
-  klass.inherits(RubyLint::GlobalScope.constant_proxy('Delegator'))
+RubyLint.registry.register('SimpleDelegator') do |defs|
+  defs.define_constant('SimpleDelegator') do |klass|
+    klass.inherits(defs.constant_proxy('Delegator'))
 
-  klass.inherits(RubyLint::GlobalScope.constant_proxy('Kernel'))
+    klass.define_instance_method('__getobj__')
 
-  klass.define_method('delegating_block') do |method|
-    method.define_argument('mid')
+    klass.define_instance_method('__setobj__') do |method|
+      method.define_argument('obj')
+    end
   end
 
-  klass.define_method('public_api')
+  defs.define_constant('SimpleDelegator::RUBYGEMS_ACTIVATION_MONITOR') do |klass|
+    klass.inherits(defs.constant_proxy('Object'))
 
-  klass.define_instance_method('__getobj__')
+    klass.define_method('enter')
 
-  klass.define_instance_method('__setobj__') do |method|
-    method.define_argument('obj')
-  end
+    klass.define_method('exit')
 
-  klass.define_instance_method('marshal_dump')
+    klass.define_method('mon_enter')
 
-  klass.define_instance_method('marshal_load') do |method|
-    method.define_argument('data')
-  end
+    klass.define_method('mon_exit')
 
-  klass.define_instance_method('method_missing') do |method|
-    method.define_argument('m')
-    method.define_rest_argument('args')
-    method.define_block_argument('block')
+    klass.define_method('mon_synchronize')
+
+    klass.define_method('mon_try_enter')
+
+    klass.define_method('new_cond')
+
+    klass.define_method('synchronize')
+
+    klass.define_method('try_enter')
+
+    klass.define_method('try_mon_enter')
   end
 end
-
-RubyLint::GlobalScope.definitions.lookup(:const, 'SimpleDelegator').deep_freeze

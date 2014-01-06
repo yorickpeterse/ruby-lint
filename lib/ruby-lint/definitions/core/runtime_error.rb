@@ -1,10 +1,11 @@
-##
-# Constant: RuntimeError
-# Created:  2013-04-01 18:33:55 +0200
-# Platform: rbx 2.0.0.rc1
+# This file was automatically generated, any manual changes will be lost the
+# next time this file is generated.
 #
-RubyLint::GlobalScope.definitions.define_constant('RuntimeError') do |klass|
-  klass.inherits(RubyLint::GlobalScope.constant_proxy('StandardError'))
-end
+# Platform: rbx 2.2.2
 
-RubyLint::GlobalScope.definitions.lookup(:const, 'RuntimeError').deep_freeze
+RubyLint.registry.register('RuntimeError') do |defs|
+  defs.define_constant('RuntimeError') do |klass|
+    klass.inherits(defs.constant_proxy('StandardError'))
+
+  end
+end

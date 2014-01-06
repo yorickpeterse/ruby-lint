@@ -1,10 +1,11 @@
-##
-# Constant: FloatDomainError
-# Created:  2013-04-01 18:33:54 +0200
-# Platform: rbx 2.0.0.rc1
+# This file was automatically generated, any manual changes will be lost the
+# next time this file is generated.
 #
-RubyLint::GlobalScope.definitions.define_constant('FloatDomainError') do |klass|
-  klass.inherits(RubyLint::GlobalScope.constant_proxy('RangeError'))
-end
+# Platform: rbx 2.2.2
 
-RubyLint::GlobalScope.definitions.lookup(:const, 'FloatDomainError').deep_freeze
+RubyLint.registry.register('FloatDomainError') do |defs|
+  defs.define_constant('FloatDomainError') do |klass|
+    klass.inherits(defs.constant_proxy('RangeError'))
+
+  end
+end

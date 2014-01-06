@@ -1,39 +1,36 @@
-##
-# Constant: Singleton
-# Created:  2013-04-01 18:33:55 +0200
-# Platform: rbx 2.0.0.rc1
+# This file was automatically generated, any manual changes will be lost the
+# next time this file is generated.
 #
-RubyLint::GlobalScope.definitions.define_constant('Singleton') do |klass|
+# Platform: rbx 2.2.2
 
-  klass.define_method('__init__') do |method|
-    method.define_argument('klass')
+RubyLint.registry.register('Singleton') do |defs|
+  defs.define_constant('Singleton') do |klass|
+    klass.inherits(defs.constant_proxy('Object'))
+
+    klass.define_method('__init__') do |method|
+      method.define_argument('klass')
+    end
+
+    klass.define_method('initialize')
+
+    klass.define_instance_method('_dump') do |method|
+      method.define_optional_argument('depth')
+    end
+
+    klass.define_instance_method('clone')
+
+    klass.define_instance_method('dup')
   end
 
-  klass.define_method('__module_init__')
+  defs.define_constant('Singleton::SingletonClassMethods') do |klass|
+    klass.inherits(defs.constant_proxy('Object'))
 
-  klass.define_instance_method('_dump') do |method|
-    method.define_optional_argument('depth')
+    klass.define_method('initialize')
+
+    klass.define_instance_method('_load') do |method|
+      method.define_argument('str')
+    end
+
+    klass.define_instance_method('clone')
   end
-
-  klass.define_instance_method('clone')
-
-  klass.define_instance_method('dup')
 end
-
-##
-# Constant: Singleton::SingletonClassMethods
-# Created:  2013-04-01 18:33:55 +0200
-# Platform: rbx 2.0.0.rc1
-#
-RubyLint::GlobalScope.definitions.define_constant('Singleton::SingletonClassMethods') do |klass|
-
-  klass.define_method('__module_init__')
-
-  klass.define_instance_method('_load') do |method|
-    method.define_argument('str')
-  end
-
-  klass.define_instance_method('clone')
-end
-
-RubyLint::GlobalScope.definitions.lookup(:const, 'Singleton').deep_freeze
