@@ -3,7 +3,7 @@ require 'spec_helper'
 describe RubyLint::VirtualMachine do
   # https://github.com/YorickPeterse/ruby-lint/issues/80
   context 'defining square bracket methods' do
-    before do
+    before :all do
       code = <<-CODE
 class Example
   def [](key)

@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe RubyLint::DefinitionBuilder::RubyClass do
   describe 'using an implicit parent class' do
-    before do
+    before :all do
       node     = s(:class, s(:const, nil, :A), nil, s(:nil))
       @vm      = RubyLint::VirtualMachine.new
       @builder = RubyLint::DefinitionBuilder::RubyClass.new(node, @vm)
@@ -35,7 +35,7 @@ describe RubyLint::DefinitionBuilder::RubyClass do
   end
 
   describe 'using an explicit parent class' do
-    before do
+    before :all do
       node   = s(:class, s(:const, nil, :A), s(:const, nil, :B), s(:nil))
       @vm    = RubyLint::VirtualMachine.new
       parent = @vm.definitions.define_constant('B')
@@ -66,7 +66,7 @@ describe RubyLint::DefinitionBuilder::RubyClass do
   end
 
   describe 'using constant paths' do
-    before do
+    before :all do
       node = s(
         :class,
         s(:const, s(:const, nil, :A), :B),

@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe RubyLint::DefinitionBuilder::Primitive do
-  before do
+  before :all do
     @vm = RubyLint::VirtualMachine.new
   end
 

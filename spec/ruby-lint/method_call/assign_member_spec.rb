@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe RubyLint::MethodCall::AssignMember do
-  before do
+  before :all do
     @vm   = RubyLint::VirtualMachine.new
     @node = s(:send,
       s(:const, nil, :ENV), :[]=, s(:str, 'FOO'), s(:str, 'bar')

@@ -22,7 +22,7 @@ end
     end
 
     context 'updating built-in definitions' do
-      before do
+      before :all do
         code = <<-CODE
 class Integer < Numeric
   def foobar

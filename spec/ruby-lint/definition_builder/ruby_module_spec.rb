@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe RubyLint::DefinitionBuilder::RubyModule do
   describe 'building a simple module' do
-    before do
+    before :all do
       node     = s(:module, s(:const, nil, :A), s(:nil))
       @vm      = RubyLint::VirtualMachine.new
       @builder = RubyLint::DefinitionBuilder::RubyModule.new(node, @vm)
@@ -27,7 +27,7 @@ describe RubyLint::DefinitionBuilder::RubyModule do
   end
 
   describe 'using constant paths' do
-    before do
+    before :all do
       node = s(:module, s(:const, s(:const, nil, :A), :B), s(:nil))
       @vm  = RubyLint::VirtualMachine.new
 

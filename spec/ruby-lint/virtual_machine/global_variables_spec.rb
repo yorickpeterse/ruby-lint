@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe RubyLint::VirtualMachine do
   describe 'global variables' do
-    before do
+    before :all do
       @vm   = RubyLint::VirtualMachine.new
       @defs = @vm.definitions
     end

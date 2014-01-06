@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe RubyLint::VirtualMachine do
   describe 'self in instances/classes' do
-    before do
+    before :all do
       code = <<-CODE
 class Example
   def self.class_method

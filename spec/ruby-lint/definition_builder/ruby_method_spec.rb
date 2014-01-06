@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe RubyLint::DefinitionBuilder::RubyMethod do
   describe 'defining a method without a receiver' do
-    before do
+    before :all do
       node     = s(:def, :example, s(:args), s(:nil))
       @vm      = RubyLint::VirtualMachine.new
       @builder = RubyLint::DefinitionBuilder::RubyMethod.new(node, @vm)
@@ -26,7 +26,7 @@ describe RubyLint::DefinitionBuilder::RubyMethod do
   end
 
   describe 'defining a method with a constant as a receiver' do
-    before do
+    before :all do
       node    = s(:defs, s(:const, nil, :A), :example, s(:args), s(:nil))
       @vm     = RubyLint::VirtualMachine.new
       a_const = @vm.definitions.define_constant('A')
