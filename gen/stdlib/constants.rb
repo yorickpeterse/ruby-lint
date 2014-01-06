@@ -15,10 +15,11 @@ end
 __END__
 BasicObject
 Class
-Module
 Kernel
-Rubysl
-RubySL
+Module
+RSS
 Rubinius
 RubyLex
+RubySL
 RubyToken
+Rubysl
