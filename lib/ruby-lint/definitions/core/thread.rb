@@ -1,11 +1,14 @@
 # This file was automatically generated, any manual changes will be lost the
 # next time this file is generated.
 #
-# Platform: rbx 2.2.2
+# Platform: rbx 2.2.3.n364
 
 RubyLint.registry.register('Thread') do |defs|
   defs.define_constant('Thread') do |klass|
     klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
+    klass.inherits(defs.constant_proxy('MakeMakefile'))
+    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
     klass.define_method('abort_on_exception')
 
@@ -184,51 +187,18 @@ RubyLint.registry.register('Thread') do |defs|
   defs.define_constant('Thread::Default') do |klass|
     klass.inherits(defs.constant_proxy('Object'))
 
-    klass.define_method('add') do |method|
-      method.define_argument('thread')
-    end
-
-    klass.define_method('enclose')
-
-    klass.define_method('enclosed?')
-
-    klass.define_method('initialize')
-
-    klass.define_method('list')
-
-    klass.define_method('remove') do |method|
-      method.define_argument('thread')
-    end
   end
 
   defs.define_constant('Thread::InnerRecursionDetected') do |klass|
     klass.inherits(defs.constant_proxy('Exception'))
+    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
+    klass.inherits(defs.constant_proxy('MakeMakefile'))
+    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
   end
 
   defs.define_constant('Thread::MUTEX_FOR_THREAD_EXCLUSIVE') do |klass|
     klass.inherits(defs.constant_proxy('Object'))
 
-    klass.define_method('initialize')
-
-    klass.define_method('lock')
-
-    klass.define_method('locked?')
-
-    klass.define_method('marshal_dump')
-
-    klass.define_method('marshal_load') do |method|
-      method.define_argument('bunk')
-    end
-
-    klass.define_method('sleep') do |method|
-      method.define_optional_argument('duration')
-    end
-
-    klass.define_method('synchronize')
-
-    klass.define_method('try_lock')
-
-    klass.define_method('unlock')
   end
 end

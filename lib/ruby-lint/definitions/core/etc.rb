@@ -1,7 +1,7 @@
 # This file was automatically generated, any manual changes will be lost the
 # next time this file is generated.
 #
-# Platform: rbx 2.2.2
+# Platform: rbx 2.2.3.n364
 
 RubyLint.registry.register('Etc') do |defs|
   defs.define_constant('Etc') do |klass|
@@ -34,8 +34,6 @@ RubyLint.registry.register('Etc') do |defs|
     end
 
     klass.define_method('group')
-
-    klass.define_method('initialize')
 
     klass.define_method('passwd')
 
@@ -80,8 +78,6 @@ RubyLint.registry.register('Etc') do |defs|
       method.define_argument('ret')
     end
 
-    klass.define_method('initialize')
-
     klass.define_method('size_to_type') do |method|
       method.define_argument('size')
     end
@@ -93,6 +89,9 @@ RubyLint.registry.register('Etc') do |defs|
 
   defs.define_constant('Etc::Group') do |klass|
     klass.inherits(defs.constant_proxy('Rubinius::FFI::Struct'))
+    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
+    klass.inherits(defs.constant_proxy('MakeMakefile'))
+    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
     klass.define_instance_method('gid')
 
@@ -105,6 +104,9 @@ RubyLint.registry.register('Etc') do |defs|
 
   defs.define_constant('Etc::Passwd') do |klass|
     klass.inherits(defs.constant_proxy('Rubinius::FFI::Struct'))
+    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
+    klass.inherits(defs.constant_proxy('MakeMakefile'))
+    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
     klass.define_instance_method('dir')
 

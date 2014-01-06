@@ -1,11 +1,12 @@
 # This file was automatically generated, any manual changes will be lost the
 # next time this file is generated.
 #
-# Platform: rbx 2.2.2
+# Platform: rbx 2.2.3.n364
 
 RubyLint.registry.register('Math') do |defs|
   defs.define_constant('Math') do |klass|
     klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Math'))
 
     klass.define_method('acos') do |method|
       method.define_argument('z')
@@ -117,8 +118,6 @@ RubyLint.registry.register('Math') do |defs|
       method.define_argument('x')
       method.define_argument('y')
     end
-
-    klass.define_method('initialize')
 
     klass.define_method('ldexp') do |method|
       method.define_argument('x')

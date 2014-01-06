@@ -1,11 +1,15 @@
 # This file was automatically generated, any manual changes will be lost the
 # next time this file is generated.
 #
-# Platform: rbx 2.2.2
+# Platform: rbx 2.2.3.n364
 
 RubyLint.registry.register('Symbol') do |defs|
   defs.define_constant('Symbol') do |klass|
     klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('ImmediateValue'))
+    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
+    klass.inherits(defs.constant_proxy('MakeMakefile'))
+    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
     klass.define_method('===') do |method|
       method.define_argument('obj')
@@ -47,8 +51,6 @@ RubyLint.registry.register('Symbol') do |defs|
     klass.define_instance_method('casecmp') do |method|
       method.define_argument('other')
     end
-
-    klass.define_instance_method('dclone')
 
     klass.define_instance_method('downcase')
 

@@ -1,7 +1,7 @@
 # This file was automatically generated, any manual changes will be lost the
 # next time this file is generated.
 #
-# Platform: rbx 2.2.2
+# Platform: rbx 2.2.3.n364
 
 RubyLint.registry.register('MonitorMixin') do |defs|
   defs.define_constant('MonitorMixin') do |klass|
@@ -10,8 +10,6 @@ RubyLint.registry.register('MonitorMixin') do |defs|
     klass.define_method('extend_object') do |method|
       method.define_argument('obj')
     end
-
-    klass.define_method('initialize')
 
     klass.define_instance_method('mon_enter')
 
@@ -30,6 +28,9 @@ RubyLint.registry.register('MonitorMixin') do |defs|
 
   defs.define_constant('MonitorMixin::ConditionVariable') do |klass|
     klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
+    klass.inherits(defs.constant_proxy('MakeMakefile'))
+    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
     klass.define_instance_method('broadcast')
 
@@ -52,6 +53,9 @@ RubyLint.registry.register('MonitorMixin') do |defs|
 
   defs.define_constant('MonitorMixin::ConditionVariable::Timeout') do |klass|
     klass.inherits(defs.constant_proxy('Exception'))
+    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
+    klass.inherits(defs.constant_proxy('MakeMakefile'))
+    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
   end
 end

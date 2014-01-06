@@ -1,11 +1,15 @@
 # This file was automatically generated, any manual changes will be lost the
 # next time this file is generated.
 #
-# Platform: rbx 2.2.2
+# Platform: rbx 2.2.3.n364
 
 RubyLint.registry.register('Rational') do |defs|
   defs.define_constant('Rational') do |klass|
     klass.inherits(defs.constant_proxy('Numeric'))
+    klass.inherits(defs.constant_proxy('Comparable'))
+    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
+    klass.inherits(defs.constant_proxy('MakeMakefile'))
+    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
     klass.define_method('yaml_new') do |method|
       method.define_argument('klass')

@@ -1,11 +1,15 @@
 # This file was automatically generated, any manual changes will be lost the
 # next time this file is generated.
 #
-# Platform: rbx 2.2.2
+# Platform: rbx 2.2.3.n364
 
 RubyLint.registry.register('Numeric') do |defs|
   defs.define_constant('Numeric') do |klass|
     klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Comparable'))
+    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
+    klass.inherits(defs.constant_proxy('MakeMakefile'))
+    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
     klass.define_instance_method('%') do |method|
       method.define_argument('other')
@@ -15,23 +19,7 @@ RubyLint.registry.register('Numeric') do |defs|
 
     klass.define_instance_method('-@')
 
-    klass.define_instance_method('<') do |method|
-      method.define_argument('other')
-    end
-
-    klass.define_instance_method('<=') do |method|
-      method.define_argument('other')
-    end
-
     klass.define_instance_method('<=>') do |method|
-      method.define_argument('other')
-    end
-
-    klass.define_instance_method('>') do |method|
-      method.define_argument('other')
-    end
-
-    klass.define_instance_method('>=') do |method|
       method.define_argument('other')
     end
 
@@ -42,11 +30,6 @@ RubyLint.registry.register('Numeric') do |defs|
     klass.define_instance_method('angle')
 
     klass.define_instance_method('arg')
-
-    klass.define_instance_method('between?') do |method|
-      method.define_argument('min')
-      method.define_argument('max')
-    end
 
     klass.define_instance_method('ceil')
 

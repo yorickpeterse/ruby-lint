@@ -1,7 +1,7 @@
 # This file was automatically generated, any manual changes will be lost the
 # next time this file is generated.
 #
-# Platform: rbx 2.2.2
+# Platform: rbx 2.2.3.n364
 
 RubyLint.registry.register('YAML') do |defs|
   defs.define_constant('YAML') do |klass|
@@ -56,8 +56,6 @@ RubyLint.registry.register('YAML') do |defs|
     klass.define_method('emitter')
 
     klass.define_method('generic_parser')
-
-    klass.define_method('initialize')
 
     klass.define_method('load') do |method|
       method.define_argument('io')

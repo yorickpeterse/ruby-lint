@@ -1,11 +1,15 @@
 # This file was automatically generated, any manual changes will be lost the
 # next time this file is generated.
 #
-# Platform: rbx 2.2.2
+# Platform: rbx 2.2.3.n364
 
 RubyLint.registry.register('Complex') do |defs|
   defs.define_constant('Complex') do |klass|
     klass.inherits(defs.constant_proxy('Numeric'))
+    klass.inherits(defs.constant_proxy('Comparable'))
+    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
+    klass.inherits(defs.constant_proxy('MakeMakefile'))
+    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
     klass.define_method('generic?') do |method|
       method.define_argument('other')
@@ -155,116 +159,5 @@ RubyLint.registry.register('Complex') do |defs|
   defs.define_constant('Complex::I') do |klass|
     klass.inherits(defs.constant_proxy('Object'))
 
-    klass.define_method('*') do |method|
-      method.define_argument('other')
-    end
-
-    klass.define_method('**') do |method|
-      method.define_argument('other')
-    end
-
-    klass.define_method('+') do |method|
-      method.define_argument('other')
-    end
-
-    klass.define_method('+@')
-
-    klass.define_method('-') do |method|
-      method.define_argument('other')
-    end
-
-    klass.define_method('-@')
-
-    klass.define_method('/') do |method|
-      method.define_argument('other')
-    end
-
-    klass.define_method('abs')
-
-    klass.define_method('abs2')
-
-    klass.define_method('angle')
-
-    klass.define_method('arg')
-
-    klass.define_method('coerce') do |method|
-      method.define_argument('other')
-    end
-
-    klass.define_method('conj')
-
-    klass.define_method('conjugate')
-
-    klass.define_method('denominator')
-
-    klass.define_method('divide') do |method|
-      method.define_argument('other')
-    end
-
-    klass.define_method('fdiv') do |method|
-      method.define_argument('other')
-    end
-
-    klass.define_method('im')
-
-    klass.define_method('imag')
-
-    klass.define_method('image')
-
-    klass.define_method('imaginary')
-
-    klass.define_method('initialize') do |method|
-      method.define_argument('a')
-      method.define_optional_argument('b')
-    end
-
-    klass.define_method('integer?')
-
-    klass.define_method('magnitude')
-
-    klass.define_method('marshal_load') do |method|
-      method.define_argument('ary')
-    end
-
-    klass.define_method('nonzero?')
-
-    klass.define_method('numerator')
-
-    klass.define_method('phase')
-
-    klass.define_method('polar')
-
-    klass.define_method('quo') do |method|
-      method.define_argument('other')
-    end
-
-    klass.define_method('rationalize') do |method|
-      method.define_optional_argument('eps')
-    end
-
-    klass.define_method('real')
-
-    klass.define_method('real?')
-
-    klass.define_method('rect')
-
-    klass.define_method('rectangular')
-
-    klass.define_method('redo_compare') do |method|
-      method.define_argument('meth')
-      method.define_argument('right')
-    end
-
-    klass.define_method('to_c')
-
-    klass.define_method('to_f')
-
-    klass.define_method('to_i')
-
-    klass.define_method('to_int')
-
-    klass.define_method('to_r')
-
-    klass.define_method('zero?')
   end
 end

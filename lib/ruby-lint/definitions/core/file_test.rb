@@ -1,7 +1,7 @@
 # This file was automatically generated, any manual changes will be lost the
 # next time this file is generated.
 #
-# Platform: rbx 2.2.2
+# Platform: rbx 2.2.3.n364
 
 RubyLint.registry.register('FileTest') do |defs|
   defs.define_constant('FileTest') do |klass|
@@ -47,8 +47,6 @@ RubyLint.registry.register('FileTest') do |defs|
       method.define_argument('a')
       method.define_argument('b')
     end
-
-    klass.define_method('initialize')
 
     klass.define_method('owned?') do |method|
       method.define_argument('path')

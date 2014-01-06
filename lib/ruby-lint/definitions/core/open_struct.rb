@@ -1,11 +1,14 @@
 # This file was automatically generated, any manual changes will be lost the
 # next time this file is generated.
 #
-# Platform: rbx 2.2.2
+# Platform: rbx 2.2.3.n364
 
 RubyLint.registry.register('OpenStruct') do |defs|
   defs.define_constant('OpenStruct') do |klass|
     klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
+    klass.inherits(defs.constant_proxy('MakeMakefile'))
+    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
     klass.define_instance_method('==') do |method|
       method.define_argument('other')
@@ -50,58 +53,5 @@ RubyLint.registry.register('OpenStruct') do |defs|
   defs.define_constant('OpenStruct::InspectKey') do |klass|
     klass.inherits(defs.constant_proxy('Object'))
 
-    klass.define_method('[]') do |method|
-      method.define_argument('index')
-      method.define_optional_argument('other')
-    end
-
-    klass.define_method('capitalize')
-
-    klass.define_method('casecmp') do |method|
-      method.define_argument('other')
-    end
-
-    klass.define_method('downcase')
-
-    klass.define_method('empty?')
-
-    klass.define_method('encoding')
-
-    klass.define_method('id2name')
-
-    klass.define_method('index')
-
-    klass.define_method('intern')
-
-    klass.define_method('is_constant?')
-
-    klass.define_method('is_cvar?')
-
-    klass.define_method('is_ivar?')
-
-    klass.define_method('length')
-
-    klass.define_method('match') do |method|
-      method.define_argument('pattern')
-    end
-
-    klass.define_method('next')
-
-    klass.define_method('size')
-
-    klass.define_method('slice') do |method|
-      method.define_argument('index')
-      method.define_optional_argument('other')
-    end
-
-    klass.define_method('succ')
-
-    klass.define_method('swapcase')
-
-    klass.define_method('to_proc')
-
-    klass.define_method('to_sym')
-
-    klass.define_method('upcase')
   end
 end

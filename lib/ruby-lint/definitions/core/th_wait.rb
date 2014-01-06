@@ -1,44 +1,17 @@
 # This file was automatically generated, any manual changes will be lost the
 # next time this file is generated.
 #
-# Platform: rbx 2.2.2
+# Platform: rbx 2.2.3.n364
 
 RubyLint.registry.register('ThWait') do |defs|
   defs.define_constant('ThWait') do |klass|
     klass.inherits(defs.constant_proxy('Object'))
-
-    klass.define_method('Fail') do |method|
-      method.define_optional_argument('err')
-      method.define_rest_argument('rest')
-    end
-
-    klass.define_method('Raise') do |method|
-      method.define_optional_argument('err')
-      method.define_rest_argument('rest')
-    end
+    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
+    klass.inherits(defs.constant_proxy('MakeMakefile'))
+    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
     klass.define_method('all_waits') do |method|
       method.define_rest_argument('threads')
-    end
-
-    klass.define_method('bind') do |method|
-      method.define_argument('cl')
-    end
-
-    klass.define_method('def_e2message') do |method|
-      method.define_argument('c')
-      method.define_argument('m')
-    end
-
-    klass.define_method('def_exception') do |method|
-      method.define_argument('n')
-      method.define_argument('m')
-      method.define_optional_argument('s')
-    end
-
-    klass.define_method('fail') do |method|
-      method.define_optional_argument('err')
-      method.define_rest_argument('rest')
     end
 
     klass.define_method('included') do |method|

@@ -1,7 +1,7 @@
 # This file was automatically generated, any manual changes will be lost the
 # next time this file is generated.
 #
-# Platform: rbx 2.2.2
+# Platform: rbx 2.2.3.n364
 
 RubyLint.registry.register('GC') do |defs|
   defs.define_constant('GC') do |klass|
@@ -12,8 +12,6 @@ RubyLint.registry.register('GC') do |defs|
     klass.define_method('disable')
 
     klass.define_method('enable')
-
-    klass.define_method('initialize')
 
     klass.define_method('run') do |method|
       method.define_argument('force')
@@ -42,8 +40,6 @@ RubyLint.registry.register('GC') do |defs|
     klass.define_method('enable')
 
     klass.define_method('enabled?')
-
-    klass.define_method('initialize')
 
     klass.define_method('report') do |method|
       method.define_optional_argument('out')

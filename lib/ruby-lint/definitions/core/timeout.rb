@@ -1,7 +1,7 @@
 # This file was automatically generated, any manual changes will be lost the
 # next time this file is generated.
 #
-# Platform: rbx 2.2.2
+# Platform: rbx 2.2.3.n364
 
 RubyLint.registry.register('Timeout') do |defs|
   defs.define_constant('Timeout') do |klass|
@@ -11,8 +11,6 @@ RubyLint.registry.register('Timeout') do |defs|
       method.define_argument('time')
       method.define_argument('exc')
     end
-
-    klass.define_method('initialize')
 
     klass.define_method('timeout') do |method|
       method.define_argument('sec')
@@ -24,11 +22,17 @@ RubyLint.registry.register('Timeout') do |defs|
 
   defs.define_constant('Timeout::Error') do |klass|
     klass.inherits(defs.constant_proxy('RuntimeError'))
+    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
+    klass.inherits(defs.constant_proxy('MakeMakefile'))
+    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
   end
 
   defs.define_constant('Timeout::TimeoutRequest') do |klass|
     klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
+    klass.inherits(defs.constant_proxy('MakeMakefile'))
+    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
     klass.define_instance_method('abort')
 

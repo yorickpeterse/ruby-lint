@@ -1,11 +1,16 @@
 # This file was automatically generated, any manual changes will be lost the
 # next time this file is generated.
 #
-# Platform: rbx 2.2.2
+# Platform: rbx 2.2.3.n364
 
 RubyLint.registry.register('Integer') do |defs|
   defs.define_constant('Integer') do |klass|
     klass.inherits(defs.constant_proxy('Numeric'))
+    klass.inherits(defs.constant_proxy('Precision'))
+    klass.inherits(defs.constant_proxy('Comparable'))
+    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
+    klass.inherits(defs.constant_proxy('MakeMakefile'))
+    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
     klass.define_method('each_prime') do |method|
       method.define_argument('ubound')
@@ -77,14 +82,6 @@ RubyLint.registry.register('Integer') do |defs|
     klass.define_instance_method('odd?')
 
     klass.define_instance_method('ord')
-
-    klass.define_instance_method('prec') do |method|
-      method.define_argument('klass')
-    end
-
-    klass.define_instance_method('prec_f')
-
-    klass.define_instance_method('prec_i')
 
     klass.define_instance_method('pred')
 

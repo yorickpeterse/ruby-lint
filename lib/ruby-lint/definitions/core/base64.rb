@@ -1,7 +1,7 @@
 # This file was automatically generated, any manual changes will be lost the
 # next time this file is generated.
 #
-# Platform: rbx 2.2.2
+# Platform: rbx 2.2.3.n364
 
 RubyLint.registry.register('Base64') do |defs|
   defs.define_constant('Base64') do |klass|
@@ -14,8 +14,6 @@ RubyLint.registry.register('Base64') do |defs|
     klass.define_method('encode64') do |method|
       method.define_argument('bin')
     end
-
-    klass.define_method('initialize')
 
     klass.define_method('strict_decode64') do |method|
       method.define_argument('str')

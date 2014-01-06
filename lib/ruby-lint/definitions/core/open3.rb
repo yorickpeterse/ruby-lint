@@ -1,7 +1,7 @@
 # This file was automatically generated, any manual changes will be lost the
 # next time this file is generated.
 #
-# Platform: rbx 2.2.2
+# Platform: rbx 2.2.3.n364
 
 RubyLint.registry.register('Open3') do |defs|
   defs.define_constant('Open3') do |klass|
@@ -21,8 +21,6 @@ RubyLint.registry.register('Open3') do |defs|
       method.define_rest_argument('cmd')
       method.define_block_argument('block')
     end
-
-    klass.define_method('initialize')
 
     klass.define_method('pipeline') do |method|
       method.define_rest_argument('cmds')

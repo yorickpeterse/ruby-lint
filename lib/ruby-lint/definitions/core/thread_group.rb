@@ -1,11 +1,14 @@
 # This file was automatically generated, any manual changes will be lost the
 # next time this file is generated.
 #
-# Platform: rbx 2.2.2
+# Platform: rbx 2.2.3.n364
 
 RubyLint.registry.register('ThreadGroup') do |defs|
   defs.define_constant('ThreadGroup') do |klass|
     klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
+    klass.inherits(defs.constant_proxy('MakeMakefile'))
+    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
     klass.define_instance_method('add') do |method|
       method.define_argument('thread')
@@ -27,20 +30,5 @@ RubyLint.registry.register('ThreadGroup') do |defs|
   defs.define_constant('ThreadGroup::Default') do |klass|
     klass.inherits(defs.constant_proxy('Object'))
 
-    klass.define_method('add') do |method|
-      method.define_argument('thread')
-    end
-
-    klass.define_method('enclose')
-
-    klass.define_method('enclosed?')
-
-    klass.define_method('initialize')
-
-    klass.define_method('list')
-
-    klass.define_method('remove') do |method|
-      method.define_argument('thread')
-    end
   end
 end

@@ -1,11 +1,13 @@
 # This file was automatically generated, any manual changes will be lost the
 # next time this file is generated.
 #
-# Platform: rbx 2.2.2
+# Platform: rbx 2.2.3.n364
 
 RubyLint.registry.register('Tempfile') do |defs|
   defs.define_constant('Tempfile') do |klass|
-    klass.inherits(defs.constant_proxy('#<Class:0x37888>'))
+    klass.inherits(defs.constant_proxy('#<Class:0x23654>'))
+    klass.inherits(defs.constant_proxy('Dir::Tmpname'))
+    klass.inherits(defs.constant_proxy('Kernel'))
 
     klass.define_method('create') do |method|
       method.define_argument('basename')
@@ -49,29 +51,13 @@ RubyLint.registry.register('Tempfile') do |defs|
   defs.define_constant('Tempfile::RUBYGEMS_ACTIVATION_MONITOR') do |klass|
     klass.inherits(defs.constant_proxy('Object'))
 
-    klass.define_method('enter')
-
-    klass.define_method('exit')
-
-    klass.define_method('mon_enter')
-
-    klass.define_method('mon_exit')
-
-    klass.define_method('mon_synchronize')
-
-    klass.define_method('mon_try_enter')
-
-    klass.define_method('new_cond')
-
-    klass.define_method('synchronize')
-
-    klass.define_method('try_enter')
-
-    klass.define_method('try_mon_enter')
   end
 
   defs.define_constant('Tempfile::Remover') do |klass|
     klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
+    klass.inherits(defs.constant_proxy('MakeMakefile'))
+    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
     klass.define_instance_method('call') do |method|
       method.define_rest_argument('args')

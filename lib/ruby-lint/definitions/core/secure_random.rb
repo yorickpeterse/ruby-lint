@@ -1,7 +1,7 @@
 # This file was automatically generated, any manual changes will be lost the
 # next time this file is generated.
 #
-# Platform: rbx 2.2.2
+# Platform: rbx 2.2.3.n364
 
 RubyLint.registry.register('SecureRandom') do |defs|
   defs.define_constant('SecureRandom') do |klass|
@@ -14,8 +14,6 @@ RubyLint.registry.register('SecureRandom') do |defs|
     klass.define_method('hex') do |method|
       method.define_optional_argument('n')
     end
-
-    klass.define_method('initialize')
 
     klass.define_method('lastWin32ErrorMessage')
 

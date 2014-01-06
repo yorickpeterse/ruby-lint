@@ -1,7 +1,7 @@
 # This file was automatically generated, any manual changes will be lost the
 # next time this file is generated.
 #
-# Platform: rbx 2.2.2
+# Platform: rbx 2.2.3.n364
 
 RubyLint.registry.register('Mutex_m') do |defs|
   defs.define_constant('Mutex_m') do |klass|
@@ -18,8 +18,6 @@ RubyLint.registry.register('Mutex_m') do |defs|
     klass.define_method('extend_object') do |method|
       method.define_argument('obj')
     end
-
-    klass.define_method('initialize')
 
     klass.define_instance_method('mu_extended')
 
