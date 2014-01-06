@@ -109,6 +109,19 @@ module RubyLint
     end
 
     ##
+    # Returns the modules that are included in the constant.
+    #
+    # @return [Array]
+    #
+    def inspect_modules
+      if constant.respond_to?(:included_modules)
+        return constant.included_modules
+      else
+        return []
+      end
+    end
+
+    ##
     # Returns the superclass of the current constant or `nil` if there is none.
     #
     # @return [Mixed]
@@ -117,8 +130,6 @@ module RubyLint
       return constant.respond_to?(:superclass) ? constant.superclass : nil
     end
 
-    private
-
     ##
     # Gets the methods of the current constant minus those defined in Object.
     #
@@ -126,8 +137,10 @@ module RubyLint
     # @return [Array]
     #
     def get_methods(getter = :methods)
-      parent  = inspect_superclass || Object
-      diff    = constant.__send__(getter) - parent.__send__(getter)
+      parent = inspect_superclass || Object
+      diff   = constant.__send__(getter, false) -
+        parent.__send__(getter, false)
+
       methods = diff | constant.__send__(getter, false)
 
       # If the constant manually defines the initialize method (= private)
@@ -138,6 +151,8 @@ module RubyLint
 
       return methods
     end
+
+    private
 
     ##
     # @param [Symbol] getter

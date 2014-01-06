@@ -72,6 +72,18 @@ describe RubyLint::Inspector do
     end
   end
 
+  context 'inspecting included modules' do
+    before :all do
+      klass     = Class.new { include Enumerable }
+      inspector = RubyLint::Inspector.new(klass)
+      @modules  = inspector.inspect_modules
+    end
+
+    example 'include Enumerable' do
+      @modules.include?(Enumerable).should == true
+    end
+  end
+
   context 'inspecting class methods' do
     before :all do
       inspector = RubyLint::Inspector.new(Encoding)
@@ -107,6 +119,23 @@ describe RubyLint::Inspector do
     end
 
     example 'include the instance methods of the source' do
+      @methods.include?(:bar).should == true
+    end
+  end
+
+  context 'exclude methods defined in an included module' do
+    before :all do
+      mod       = Module.new { def foo; end }
+      klass     = Class.new { include(mod); def bar; end }
+      inspector = RubyLint::Inspector.new(klass)
+      @methods  = inspector.inspect_instance_methods.map(&:name)
+    end
+
+    example 'do not include methods from included modules' do
+      @methods.include?(:foo).should == false
+    end
+
+    example 'include methods defined directly in the class' do
       @methods.include?(:bar).should == true
     end
   end
