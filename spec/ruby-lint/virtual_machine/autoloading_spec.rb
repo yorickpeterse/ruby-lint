@@ -8,10 +8,10 @@ describe RubyLint::VirtualMachine do
   end
 
   example 'automatically load constant paths' do
-    definitions = build_definitions('Enumerable::Enumerator')
+    definitions = build_definitions('Encoding::BINARY')
 
-    definitions.lookup(:const, 'Enumerable') \
-      .lookup(:const, 'Enumerator') \
+    definitions.lookup(:const, 'Encoding') \
+      .lookup(:const, 'BINARY') \
       .is_a?(ruby_object) \
       .should == true
   end
