@@ -13,5 +13,9 @@ describe 'ruby-lint definitions' do
     example 'inherit methods from Enumrable' do
       @range.has_definition?(:instance_method, 'map').should == true
     end
+
+    example 'do not define Enumerable methods directly' do
+      @range.defines?(:instance_method, 'map').should == false
+    end
   end
 end
