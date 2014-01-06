@@ -55,7 +55,7 @@ module RubyLint
         # In certain cases this code tries to load a constant that apparently
         # *is* defined but craps out upon error (e.g. Bundler::Specification).
         begin
-          constant  = source.const_get(name)
+          constant = source.const_get(name)
         rescue Exception => error
           warn error.message
           next
@@ -73,6 +73,14 @@ module RubyLint
 
       have_children.each do |const|
         names |= inspect_constants(const, ignore)
+      end
+
+      # Reject every constant that, if we should include the source name, was
+      # not defined under that constant. This applies on for example Rubinius
+      # since `Range::Enumerator` is a constant that points to
+      # `Enumerable::Enumerator`.
+      if include_source
+        names = names.select { |name| name.start_with?(source_name) }
       end
 
       return names

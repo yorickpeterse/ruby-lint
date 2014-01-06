@@ -62,6 +62,21 @@ describe RubyLint::Inspector do
     end
   end
 
+  context 'Ruby implementation shenanigans' do
+    before :all do
+      mod = Module.new { include Enumerable }
+
+      inspector  = RubyLint::Inspector.new(mod)
+      @constants = inspector.inspect_constants
+    end
+
+    # This test was added since Rubinius defines `Range::Enumerator` which is
+    # an alias of `Enumerable::Enumerator`.
+    example 'ignore constants from a different root constant' do
+      @constants.include?('Enumerable::Enumerator').should == false
+    end
+  end
+
   context 'inspecting parent classes' do
     before :all do
       @inspector = RubyLint::Inspector.new(Object)
