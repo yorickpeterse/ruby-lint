@@ -29,26 +29,9 @@ describe RubyLint::Definition::ConstantProxy do
     @proxy.lookup(:const, 'VERSION').is_a?(ruby_object).should == true
   end
 
-  example 'autoload definitions from the global scope' do
-    proxy = RubyLint::Definition::ConstantProxy.new(
-      RubyLint::GlobalScope,
-      'ObjectSpace'
-    )
-
-    proxy.type.should == :const
-    proxy.name.should == 'ObjectSpace'
-
-    proxy.proxy_definition.is_a?(ruby_object).should == true
-  end
-
   example 'delegating #inspect' do
-    proxy = RubyLint::Definition::ConstantProxy.new(
-      RubyLint::GlobalScope,
-      'ObjectSpace'
-    )
+    foo = @source.define_constant('Foo')
 
-    object_space = RubyLint::GlobalScope.global_constant('ObjectSpace')
-
-    proxy.inspect.should == object_space.inspect
+    @proxy.inspect.should == foo.inspect
   end
 end

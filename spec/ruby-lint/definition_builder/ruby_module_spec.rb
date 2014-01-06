@@ -6,7 +6,7 @@ describe RubyLint::DefinitionBuilder::RubyModule do
       node     = s(:module, s(:const, nil, :A), s(:nil))
       @vm      = RubyLint::VirtualMachine.new
       @builder = RubyLint::DefinitionBuilder::RubyModule.new(node, @vm)
-      @module  = RubyLint::GlobalScope.global_constant('Module')
+      @module  = @vm.definitions.lookup(:const, 'Module')
     end
 
     example 'return the name of the module' do
@@ -34,7 +34,7 @@ describe RubyLint::DefinitionBuilder::RubyModule do
       @vm.definitions.define_constant('A')
 
       @builder = RubyLint::DefinitionBuilder::RubyModule.new(node, @vm)
-      @module  = RubyLint::GlobalScope.global_constant('Module')
+      @module  = @vm.definitions.lookup(:const, 'Module')
     end
 
     example 'return the name of the module' do

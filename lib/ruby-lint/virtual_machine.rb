@@ -172,6 +172,8 @@ module RubyLint
 
       reset_docstring_tags
       reset_method_type
+
+      @constant_loader.bootstrap
     end
 
     ##
@@ -184,7 +186,7 @@ module RubyLint
       ast = [ast] unless ast.is_a?(Array)
 
       # pre-load all the built-in definitions.
-      @constant_loader.iterate(ast)
+      @constant_loader.run(ast)
 
       ast.each { |node| iterate(node) }
 
@@ -482,6 +484,7 @@ module RubyLint
         parent = evaluate_node(parent_node)
 
         if !parent or !parent.const?
+          # FIXME: this should use `definitions` instead.
           parent = current_scope.lookup(:const, 'Object')
         end
       end
@@ -760,7 +763,16 @@ Received: #{arguments.length}
     # @return [RubyLint::Definition::RubyObject]
     #
     def global_constant(name)
-      return GlobalScope.global_constant(name)
+      found = definitions.lookup(:const, name)
+
+      # Didn't find it? Lets see if the constant loader knows about it.
+      unless found
+        @constant_loader.load_constant(name)
+
+        found = definitions.lookup(:const, name)
+      end
+
+      return found
     end
 
     private
@@ -774,7 +786,6 @@ Received: #{arguments.length}
       definitions = Definition::RubyObject.new(
         :name          => 'root',
         :type          => :root,
-        :parents       => [GlobalScope.definitions],
         :instance_type => :instance
       )
 

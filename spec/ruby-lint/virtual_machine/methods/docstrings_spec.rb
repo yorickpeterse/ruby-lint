@@ -12,9 +12,10 @@ end
       defs = build_definitions(code)
 
       number  = defs.lookup(:instance_method, 'example').lookup(:lvar, 'number')
-      numeric = RubyLint::GlobalScope.global_constant('Numeric')
+      numeric = defs.lookup(:const, 'Numeric')
 
       number.is_a?(ruby_object).should        == true
+      numeric.is_a?(ruby_object).should       == true
       number.parents.include?(numeric).should == true
     end
 
@@ -39,10 +40,10 @@ def example(number)
 end
       CODE
 
-      float  = RubyLint::GlobalScope.global_constant('Float')
-      fixnum = RubyLint::GlobalScope.global_constant('Fixnum')
-
       defs   = build_definitions(code)
+      float  = defs.lookup(:const, 'Float')
+      fixnum = defs.lookup(:const, 'Fixnum')
+
       number = defs.lookup(:instance_method, 'example').lookup(:lvar, 'number')
 
       number.is_a?(ruby_object).should       == true
@@ -61,7 +62,7 @@ end
 
       defs    = build_definitions(code)
       method  = defs.lookup(:instance_method, 'example')
-      numeric = RubyLint::GlobalScope.global_constant('Numeric')
+      numeric = defs.lookup(:const, 'Numeric')
 
       method.return_value.should == numeric
     end

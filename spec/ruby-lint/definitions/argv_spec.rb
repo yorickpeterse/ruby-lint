@@ -2,8 +2,9 @@ require 'spec_helper'
 
 describe 'ruby-lint definitions' do
   context 'ARGV' do
-    before do
-      @const = RubyLint::GlobalScope.global_constant('ARGV')
+    before :all do
+      root   = load_definitions('ARGV', 'Array')
+      @const = root.lookup(:const, 'ARGV')
     end
 
     example 'treat ARGV as an instance' do

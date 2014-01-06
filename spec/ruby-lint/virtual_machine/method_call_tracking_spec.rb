@@ -53,12 +53,5 @@ end
       @first.callers[0].definition.should  == @third
       @second.callers[0].definition.should == @third
     end
-
-    example 'should not modify read-only definitions' do
-      method = @string.lookup(:method, 'new')
-
-      @third.calls[2].definition.should == method
-      method.callers.empty?.should      == true
-    end
   end
 end

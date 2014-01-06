@@ -1,30 +1,34 @@
 # This file was automatically generated, any manual changes will be lost the
 # next time this file is generated.
 #
-# Created:  <%= Time.new %>
 # Platform: <%= RUBY_ENGINE %> <%= Rubinius::VERSION rescue RUBY_VERSION %>
 
-<% @constants.each do |constant| %>
-RubyLint::GlobalScope.definitions.define_constant('<%= constant.name %>') do |klass|
-  <%- if constant.superclass -%>
-  klass.inherits(RubyLint::GlobalScope.constant_proxy('<%= constant.superclass %>'))
-  <%- end -%>
+RubyLint.registry.register('<%= @constants[0].name %>') do |defs|
+  <%- @constants.each do |constant| -%>
+  defs.define_constant('<%= constant.name %>') do |klass|
+    <%- if constant.superclass -%>
+    klass.inherits(defs.constant_proxy('<%= constant.superclass %>'))
+    <%- end -%>
 
-  <%- constant.methods.each do |type, collection| -%>
-  <%- collection.each do |name, args| -%>
+    <%- constant.methods.each do |type, collection| -%>
+    <%- collection.each do |name, args| -%>
 
-  <%- if args.empty? -%>
-  klass.define_<%= type %>('<%= name %>')
-  <%- else -%>
-  klass.define_<%= type %>('<%= name %>') do |method|
-    <%- args.each do |arg| -%>
-    method.define_<%= arg[:type] %>('<%= arg[:name] %>')
+    <%- if args.empty? -%>
+    klass.define_<%= type %>('<%= name %>')
+    <%- else -%>
+    klass.define_<%= type %>('<%= name %>') do |method|
+      <%- args.each do |arg| -%>
+      method.define_<%= arg[:type] %>('<%= arg[:name] %>')
+      <%- end -%>
+      <%- if return_instance?(type, name) -%>
+
+      method.returns { |object| object.instance }
+      <%- end -%>
+    end
+    <%- end -%>
+    <%- end -%>
     <%- end -%>
   end
-  <%- end -%>
-  <%- end -%>
+
   <%- end -%>
 end
-<% end %>
-
-RubyLint::GlobalScope.definitions.lookup(:const, '<%= @constants[0].name %>').deep_freeze

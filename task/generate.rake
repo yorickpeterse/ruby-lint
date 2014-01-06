@@ -43,39 +43,35 @@ namespace :generate do
 
   desc 'Generates definitions for Rails'
   task :rails do
-    require 'mail'
-    require 'rails/all'
+    require_relative '../gen/rails/requires'
 
-    dir = File.expand_path('../../lib/ruby-lint/definitions/rails', __FILE__)
+    directory = File.expand_path(
+      '../../lib/ruby-lint/definitions/rails',
+      __FILE__
+    )
 
-    constants = [
-      'AbstractController',
-      'ActionController',
-      'ActionDispatch',
-      'ActionMailer',
-      'ActionPack',
-      'ActionView',
-      'ActiveModel',
-      'ActiveRecord',
-      'ActiveSupport',
-      'Arel',
-      'Rails',
-      'Sprockets',
-    ]
+    constants_file = File.expand_path(
+      '../../gen/rails/constants.txt',
+      __FILE__
+    )
 
+    constants = File.read(constants_file).split("\n")
+
+    # Deal with Rails' autoloading nonsense.
     constants.each do |name|
       constant = Object.const_get(name)
 
-      # Deal with Rails' autoloading nonsense.
-      if constant.respond_to?(:eager_load!)
-        constant.eager_load!
-      end
-
-      Rake::Task['generate:definitions'].execute(
-        :constant  => name,
-        :directory => dir,
-        :overwrite => true
-      )
+      constant.eager_load! if constant.respond_to?(:eager_load!)
     end
+
+    ignore    = Object.constants.map(&:to_s) - constants
+    generator = RubyLint::DefinitionGenerator.new(
+      Object,
+      directory,
+      :overwrite => true,
+      :ignore    => ignore
+    )
+
+    generator.generate
   end
 end

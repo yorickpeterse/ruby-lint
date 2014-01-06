@@ -483,7 +483,9 @@ module RubyLint
         return unless source.definitions.key?(source_type)
 
         source.list(source_type).each do |definition|
-          add(target_type, definition.name, definition)
+          unless defines?(target_type, definition.name)
+            add(target_type, definition.name, definition)
+          end
         end
       end
 

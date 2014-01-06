@@ -218,3 +218,4 @@ WeakRef
 XMLRPC
 YAML
 ZeroDivisionError
+Zlib

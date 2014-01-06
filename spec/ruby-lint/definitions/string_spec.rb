@@ -3,7 +3,7 @@ require 'spec_helper'
 describe 'ruby-lint definitions' do
   context 'String' do
     before :all do
-      @string = RubyLint::GlobalScope.global_constant('String')
+      @string = load_definitions('String').lookup(:const, 'String')
     end
 
     example 'define self as a class method' do

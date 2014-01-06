@@ -2,8 +2,9 @@ require 'spec_helper'
 
 describe 'ruby-lint definitions' do
   context 'Fixnum' do
-    before do
-      @fixnum = RubyLint::GlobalScope.global_constant('Fixnum')
+    before :all do
+      root    = load_definitions('Fixnum', 'Integer', 'Numeric')
+      @fixnum = root.lookup(:const, 'Fixnum')
     end
 
     example 'inherit from Integer' do

@@ -15,6 +15,18 @@ module RubyLint
       end
 
       ##
+      # Returns `true` if the method's definition should return an instance of
+      # the container.
+      #
+      # @param [Symbol] type
+      # @param [Symbol] name
+      #
+      def return_instance?(type, name)
+        return (type == :method && name == :new) ||
+          (type == :instance_method && name == :initialize)
+      end
+
+      ##
       # @return [Binding]
       #
       def get_binding

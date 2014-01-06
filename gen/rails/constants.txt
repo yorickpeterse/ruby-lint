@@ -1,0 +1,12 @@
+AbstractController
+ActionController
+ActionDispatch
+ActionMailer
+ActionPack
+ActionView
+ActiveModel
+ActiveRecord
+ActiveSupport
+Arel
+Rails
+Sprockets

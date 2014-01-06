@@ -2,10 +2,12 @@ require 'spec_helper'
 
 describe 'ruby-lint definitions' do
   context 'ENV' do
-    example 'treat ENV as an instance' do
-      const = RubyLint::GlobalScope.global_constant('ENV')
+    before :all do
+      @const = load_definitions('ENV').lookup(:const, 'ENV')
+    end
 
-      const.instance?.should == true
+    example 'treat ENV as an instance' do
+      @const.instance?.should == true
     end
   end
 end

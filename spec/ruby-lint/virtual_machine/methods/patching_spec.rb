@@ -2,12 +2,6 @@ require 'spec_helper'
 
 describe RubyLint::VirtualMachine do
   describe 'patching methods' do
-    after do
-      RubyLint::GlobalScope.definitions.lookup(:const, 'String') \
-        .definitions[:method] \
-        .delete('foobar')
-    end
-
     example 'add a class method to the String class' do
       code = <<-CODE
 class String
