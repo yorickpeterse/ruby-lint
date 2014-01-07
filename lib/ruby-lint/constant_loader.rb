@@ -1,11 +1,14 @@
 module RubyLint
   ##
-  # The ConstantLoader class tries to pre-load various constants in a given
-  # file before the definitions are being built and analysis is performed.
+  # The ConstantLoader is an iterator class (using {RubyLint::Iterator}) that
+  # iterates over an AST and tries to load the corresponding built-in
+  # definitions. For example, if it finds a constant node for the `ERB` class
+  # it will apply the definitions for `ERB` to the ones set in
+  # {RubyLint::ConstantLoader#definitions}.
   #
-  # Note that this pre-loader is rather basic and as such there are chances you
-  # still have to manually require definitions to ensure that they are being
-  # used.
+  # This class also takes care of bootstrapping the target definitions so that
+  # the bare minimum definitions (e.g. Module and Object) are always available.
+  # Global variables are also bootstrapped.
   #
   # @!attribute [r] loaded
   #  @return [Hash] Hash containing the loaded constants.
@@ -15,16 +18,6 @@ module RubyLint
   #
   class ConstantLoader < Iterator
     attr_reader :loaded, :definitions
-
-    ##
-    # List of directories to search for definition files.
-    #
-    # @return [Array]
-    #
-    LOAD_PATH = [
-      File.expand_path('../definitions/core', __FILE__),
-      File.expand_path('../definitions/rails', __FILE__)
-    ]
 
     ##
     # Built-in definitions that should be bootstrapped.
@@ -102,22 +95,13 @@ module RubyLint
     # @param [String] constant
     #
     def load_constant(constant)
-      return if loaded?(constant)
-
-      filename = constant.snake_case + '.rb'
-
-      LOAD_PATH.each do |path|
-        path = File.join(path, filename)
-
-        if File.file?(path)
-          require(path)
-          loaded[constant] = true
-
-          RubyLint.registry.apply(constant, definitions)
-
-          break
-        end
+      if loaded?(constant) or !RubyLint.registry.registered.key?(constant)
+        return
       end
+
+      loaded[constant] = true
+
+      RubyLint.registry.apply(constant, definitions)
     end
   end # ConstantLoader
 end # RubyLint
