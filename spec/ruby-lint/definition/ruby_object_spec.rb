@@ -211,31 +211,6 @@ describe ruby_object do
     obj.file.should   == '(ruby-lint)'
   end
 
-  context 'deep freezing definitions' do
-    before :all do
-      @const  = ruby_object.new(:type => :const, :name => 'Foo')
-      @method = ruby_method.new(:type => :method, :name => 'test')
-
-      @const.add_definition(@method)
-
-      @const.deep_freeze
-    end
-
-    example 'freeze the root constant' do
-      @const.frozen?.should == true
-    end
-
-    example 'freeze the definitions list of the root constant' do
-      @const.definitions.frozen?.should == true
-    end
-
-    example 'freeze child definitions' do
-      @method.frozen?.should         == true
-      @method.calls.frozen?.should   == true
-      @method.callers.frozen?.should == true
-    end
-  end
-
   context 'defining self' do
     before do
       @class    = ruby_object.new(:instance_type => :class)

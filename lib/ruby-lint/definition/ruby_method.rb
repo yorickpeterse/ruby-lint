@@ -32,17 +32,6 @@ module RubyLint
       end
 
       ##
-      # @see RubyLint::Definition::RubyObject#deep_freeze
-      #
-      def deep_freeze
-        calls.freeze
-        callers.freeze
-        return_value.freeze
-
-        super
-      end
-
-      ##
       # @return [Array]
       #
       def arguments

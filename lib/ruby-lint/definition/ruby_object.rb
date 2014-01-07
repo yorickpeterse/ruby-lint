@@ -164,26 +164,6 @@ module RubyLint
       end
 
       ##
-      # Freezes the definition and all child definitions.
-      #
-      def deep_freeze
-        @definitions.each do |type, collection|
-          collection.each do |name, object|
-            if object != self and !object.frozen?
-              object.deep_freeze
-            end
-          end
-        end
-
-        @definitions.freeze
-        @parents.freeze
-        @update_parents.freeze
-        @value.freeze
-
-        freeze
-      end
-
-      ##
       # Returns the value of the definition. If `members_as_value` is set to
       # `true` the return value is a Hash containing the names and values of
       # each member.
