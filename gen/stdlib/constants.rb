@@ -13,8 +13,10 @@ File.open(File.expand_path('../constants.txt', __FILE__), 'w') do |handle|
 end
 
 __END__
+ARGV
 BasicObject
 Class
+ENV
 Kernel
 Module
 RSS
@@ -23,3 +25,6 @@ RubyLex
 RubySL
 RubyToken
 Rubysl
+STDERR
+STDIN
+STDOUT

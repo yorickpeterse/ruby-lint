@@ -1,5 +1,4 @@
 ARGF
-ARGV
 Abbrev
 Addrinfo
 ArgumentError
@@ -41,7 +40,6 @@ DateTime
 Delegator
 Digest
 Dir
-ENV
 EOFError
 ERB
 EXPORT_PREFIX
@@ -155,9 +153,6 @@ Resolv
 RubyVM
 RuntimeError
 SRC_EXT
-STDERR
-STDIN
-STDOUT
 STRING_OR_FAILED_FORMAT
 ScanError
 Scanf
