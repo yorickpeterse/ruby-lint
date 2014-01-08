@@ -605,8 +605,8 @@ module RubyLint
       # @see {RubyLint::Definition::ConstantProxy#initialize}
       # @return [RubyLint::Definition::ConstantProxy]
       #
-      def constant_proxy(name)
-        return ConstantProxy.new(self, name)
+      def constant_proxy(name, registry = nil)
+        return ConstantProxy.new(self, name, registry)
       end
 
       ##
