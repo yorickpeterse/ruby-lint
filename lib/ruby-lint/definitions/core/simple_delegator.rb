@@ -5,7 +5,7 @@
 
 RubyLint.registry.register('SimpleDelegator') do |defs|
   defs.define_constant('SimpleDelegator') do |klass|
-    klass.inherits(defs.constant_proxy('Delegator'))
+    klass.inherits(defs.constant_proxy('Delegator', RubyLint.registry))
 
     klass.define_instance_method('__getobj__')
 
@@ -15,7 +15,7 @@ RubyLint.registry.register('SimpleDelegator') do |defs|
   end
 
   defs.define_constant('SimpleDelegator::RUBYGEMS_ACTIVATION_MONITOR') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 end

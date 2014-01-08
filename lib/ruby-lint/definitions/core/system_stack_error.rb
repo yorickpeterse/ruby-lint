@@ -5,7 +5,7 @@
 
 RubyLint.registry.register('SystemStackError') do |defs|
   defs.define_constant('SystemStackError') do |klass|
-    klass.inherits(defs.constant_proxy('Exception'))
+    klass.inherits(defs.constant_proxy('Exception', RubyLint.registry))
 
   end
 end

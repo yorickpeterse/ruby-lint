@@ -5,7 +5,7 @@
 
 RubyLint.registry.register('NotImplementedError') do |defs|
   defs.define_constant('NotImplementedError') do |klass|
-    klass.inherits(defs.constant_proxy('ScriptError'))
+    klass.inherits(defs.constant_proxy('ScriptError', RubyLint.registry))
 
   end
 end

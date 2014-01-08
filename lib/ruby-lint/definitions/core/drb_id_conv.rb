@@ -5,7 +5,7 @@
 
 RubyLint.registry.register('DRbIdConv') do |defs|
   defs.define_constant('DRbIdConv') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
     klass.define_instance_method('to_id') do |method|
       method.define_argument('obj')

@@ -5,7 +5,7 @@
 
 RubyLint.registry.register('Observable') do |defs|
   defs.define_constant('Observable') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
     klass.define_instance_method('add_observer') do |method|
       method.define_argument('observer')

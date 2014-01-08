@@ -5,8 +5,8 @@
 
 RubyLint.registry.register('PP') do |defs|
   defs.define_constant('PP') do |klass|
-    klass.inherits(defs.constant_proxy('PrettyPrint'))
-    klass.inherits(defs.constant_proxy('PP::PPMethods'))
+    klass.inherits(defs.constant_proxy('PrettyPrint', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('PP::PPMethods', RubyLint.registry))
 
     klass.define_method('mcall') do |method|
       method.define_argument('obj')
@@ -33,7 +33,7 @@ RubyLint.registry.register('PP') do |defs|
   end
 
   defs.define_constant('PP::Breakable') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
     klass.define_instance_method('indent')
 
@@ -56,7 +56,7 @@ RubyLint.registry.register('PP') do |defs|
   end
 
   defs.define_constant('PP::Group') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
     klass.define_instance_method('break')
 
@@ -76,7 +76,7 @@ RubyLint.registry.register('PP') do |defs|
   end
 
   defs.define_constant('PP::GroupQueue') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
     klass.define_instance_method('delete') do |method|
       method.define_argument('group')
@@ -96,7 +96,7 @@ RubyLint.registry.register('PP') do |defs|
   end
 
   defs.define_constant('PP::ObjectMixin') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
     klass.define_instance_method('pretty_print') do |method|
       method.define_argument('q')
@@ -112,7 +112,7 @@ RubyLint.registry.register('PP') do |defs|
   end
 
   defs.define_constant('PP::PPMethods') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
     klass.define_instance_method('check_inspect_key') do |method|
       method.define_argument('id')
@@ -160,43 +160,43 @@ RubyLint.registry.register('PP') do |defs|
   end
 
   defs.define_constant('PP::PPMethods::PointerFormat') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('PP::PPMethods::PointerMask') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('PP::PointerFormat') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('PP::PointerMask') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('PP::SingleLine') do |klass|
-    klass.inherits(defs.constant_proxy('PrettyPrint::SingleLine'))
-    klass.inherits(defs.constant_proxy('PP::PPMethods'))
+    klass.inherits(defs.constant_proxy('PrettyPrint::SingleLine', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('PP::PPMethods', RubyLint.registry))
 
   end
 
   defs.define_constant('PP::SingleLine::PointerFormat') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('PP::SingleLine::PointerMask') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('PP::Text') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
     klass.define_instance_method('add') do |method|
       method.define_argument('obj')

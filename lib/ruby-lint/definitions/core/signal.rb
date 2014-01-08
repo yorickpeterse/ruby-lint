@@ -5,7 +5,7 @@
 
 RubyLint.registry.register('Signal') do |defs|
   defs.define_constant('Signal') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
     klass.define_method('list')
 
@@ -20,12 +20,12 @@ RubyLint.registry.register('Signal') do |defs|
   end
 
   defs.define_constant('Signal::Names') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('Signal::Numbers') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 end

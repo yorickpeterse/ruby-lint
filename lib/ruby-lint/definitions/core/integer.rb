@@ -5,8 +5,8 @@
 
 RubyLint.registry.register('Integer') do |defs|
   defs.define_constant('Integer') do |klass|
-    klass.inherits(defs.constant_proxy('Numeric'))
-    klass.inherits(defs.constant_proxy('Precision'))
+    klass.inherits(defs.constant_proxy('Numeric', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('Precision', RubyLint.registry))
 
     klass.define_method('each_prime') do |method|
       method.define_argument('ubound')

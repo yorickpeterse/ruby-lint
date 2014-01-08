@@ -5,7 +5,7 @@
 
 RubyLint.registry.register('LIBARG') do |defs|
   defs.define_constant('LIBARG') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 end

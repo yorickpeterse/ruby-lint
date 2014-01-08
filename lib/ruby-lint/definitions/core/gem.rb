@@ -5,7 +5,7 @@
 
 RubyLint.registry.register('Gem') do |defs|
   defs.define_constant('Gem') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
     klass.define_method('bin_path') do |method|
       method.define_argument('name')
@@ -279,7 +279,7 @@ RubyLint.registry.register('Gem') do |defs|
   end
 
   defs.define_constant('Gem::BasicSpecification') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
     klass.define_method('default_specifications_dir')
 
@@ -317,14 +317,14 @@ RubyLint.registry.register('Gem') do |defs|
   end
 
   defs.define_constant('Gem::CommandLineError') do |klass|
-    klass.inherits(defs.constant_proxy('Gem::Exception'))
+    klass.inherits(defs.constant_proxy('Gem::Exception', RubyLint.registry))
 
   end
 
   defs.define_constant('Gem::ConfigFile') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
-    klass.inherits(defs.constant_proxy('Gem::UserInteraction'))
-    klass.inherits(defs.constant_proxy('Gem::DefaultUserInteraction'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('Gem::UserInteraction', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('Gem::DefaultUserInteraction', RubyLint.registry))
 
     klass.define_instance_method('==') do |method|
       method.define_argument('other')
@@ -419,58 +419,58 @@ RubyLint.registry.register('Gem') do |defs|
   end
 
   defs.define_constant('Gem::ConfigFile::DEFAULT_BACKTRACE') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('Gem::ConfigFile::DEFAULT_BULK_THRESHOLD') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('Gem::ConfigFile::DEFAULT_UPDATE_SOURCES') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('Gem::ConfigFile::DEFAULT_VERBOSITY') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('Gem::ConfigFile::OPERATING_SYSTEM_DEFAULTS') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('Gem::ConfigFile::PLATFORM_DEFAULTS') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('Gem::ConfigFile::SYSTEM_WIDE_CONFIG_FILE') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('Gem::ConfigFile::YAMLErrors') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('Gem::ConfigMap') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('Gem::ConsoleUI') do |klass|
-    klass.inherits(defs.constant_proxy('Gem::StreamUI'))
+    klass.inherits(defs.constant_proxy('Gem::StreamUI', RubyLint.registry))
 
     klass.define_instance_method('initialize')
   end
 
   defs.define_constant('Gem::ConsoleUI::SilentDownloadReporter') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
     klass.define_instance_method('done')
 
@@ -492,7 +492,7 @@ RubyLint.registry.register('Gem') do |defs|
   end
 
   defs.define_constant('Gem::ConsoleUI::SilentProgressReporter') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
     klass.define_instance_method('count')
 
@@ -513,8 +513,8 @@ RubyLint.registry.register('Gem') do |defs|
   end
 
   defs.define_constant('Gem::ConsoleUI::SimpleProgressReporter') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
-    klass.inherits(defs.constant_proxy('Gem::DefaultUserInteraction'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('Gem::DefaultUserInteraction', RubyLint.registry))
 
     klass.define_instance_method('count')
 
@@ -535,7 +535,7 @@ RubyLint.registry.register('Gem') do |defs|
   end
 
   defs.define_constant('Gem::ConsoleUI::VerboseDownloadReporter') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
     klass.define_instance_method('done')
 
@@ -563,8 +563,8 @@ RubyLint.registry.register('Gem') do |defs|
   end
 
   defs.define_constant('Gem::ConsoleUI::VerboseProgressReporter') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
-    klass.inherits(defs.constant_proxy('Gem::DefaultUserInteraction'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('Gem::DefaultUserInteraction', RubyLint.registry))
 
     klass.define_instance_method('count')
 
@@ -585,12 +585,12 @@ RubyLint.registry.register('Gem') do |defs|
   end
 
   defs.define_constant('Gem::DEFAULT_HOST') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('Gem::DefaultUserInteraction') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
     klass.define_method('ui')
 
@@ -615,7 +615,7 @@ RubyLint.registry.register('Gem') do |defs|
   end
 
   defs.define_constant('Gem::Dependency') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
     klass.define_instance_method('<=>') do |method|
       method.define_argument('other')
@@ -711,19 +711,19 @@ RubyLint.registry.register('Gem') do |defs|
   end
 
   defs.define_constant('Gem::Dependency::TYPES') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('Gem::DependencyError') do |klass|
-    klass.inherits(defs.constant_proxy('Gem::Exception'))
+    klass.inherits(defs.constant_proxy('Gem::Exception', RubyLint.registry))
 
   end
 
   defs.define_constant('Gem::DependencyList') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
-    klass.inherits(defs.constant_proxy('TSort'))
-    klass.inherits(defs.constant_proxy('Enumerable'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('TSort', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('Enumerable', RubyLint.registry))
 
     klass.define_method('from_specs')
 
@@ -788,13 +788,13 @@ RubyLint.registry.register('Gem') do |defs|
   end
 
   defs.define_constant('Gem::DependencyList::Cyclic') do |klass|
-    klass.inherits(defs.constant_proxy('StandardError'))
+    klass.inherits(defs.constant_proxy('StandardError', RubyLint.registry))
 
   end
 
   defs.define_constant('Gem::DependencyList::Enumerator') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
-    klass.inherits(defs.constant_proxy('Enumerable'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('Enumerable', RubyLint.registry))
 
     klass.define_instance_method('each') do |method|
       method.define_rest_argument('args')
@@ -828,7 +828,7 @@ RubyLint.registry.register('Gem') do |defs|
   end
 
   defs.define_constant('Gem::DependencyList::SortedElement') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
     klass.define_instance_method('<=>') do |method|
       method.define_argument('other')
@@ -847,12 +847,12 @@ RubyLint.registry.register('Gem') do |defs|
   end
 
   defs.define_constant('Gem::DependencyRemovalException') do |klass|
-    klass.inherits(defs.constant_proxy('Gem::Exception'))
+    klass.inherits(defs.constant_proxy('Gem::Exception', RubyLint.registry))
 
   end
 
   defs.define_constant('Gem::DependencyResolutionError') do |klass|
-    klass.inherits(defs.constant_proxy('Gem::Exception'))
+    klass.inherits(defs.constant_proxy('Gem::Exception', RubyLint.registry))
 
     klass.define_instance_method('conflict')
 
@@ -866,7 +866,7 @@ RubyLint.registry.register('Gem') do |defs|
   end
 
   defs.define_constant('Gem::DependencyResolver') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
     klass.define_method('compose_sets') do |method|
       method.define_rest_argument('sets')
@@ -914,7 +914,7 @@ RubyLint.registry.register('Gem') do |defs|
   end
 
   defs.define_constant('Gem::DependencyResolver::APISet') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
     klass.define_instance_method('find_all') do |method|
       method.define_argument('req')
@@ -932,7 +932,7 @@ RubyLint.registry.register('Gem') do |defs|
   end
 
   defs.define_constant('Gem::DependencyResolver::APISpecification') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
     klass.define_instance_method('==') do |method|
       method.define_argument('other')
@@ -959,7 +959,7 @@ RubyLint.registry.register('Gem') do |defs|
   end
 
   defs.define_constant('Gem::DependencyResolver::ActivationRequest') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
     klass.define_instance_method('==') do |method|
       method.define_argument('other')
@@ -1003,7 +1003,7 @@ RubyLint.registry.register('Gem') do |defs|
   end
 
   defs.define_constant('Gem::DependencyResolver::ComposedSet') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
     klass.define_instance_method('find_all') do |method|
       method.define_argument('req')
@@ -1021,7 +1021,7 @@ RubyLint.registry.register('Gem') do |defs|
   end
 
   defs.define_constant('Gem::DependencyResolver::CurrentSet') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
     klass.define_instance_method('find_all') do |method|
       method.define_argument('req')
@@ -1033,7 +1033,7 @@ RubyLint.registry.register('Gem') do |defs|
   end
 
   defs.define_constant('Gem::DependencyResolver::DependencyConflict') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
     klass.define_instance_method('activated')
 
@@ -1065,7 +1065,7 @@ RubyLint.registry.register('Gem') do |defs|
   end
 
   defs.define_constant('Gem::DependencyResolver::DependencyRequest') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
     klass.define_instance_method('==') do |method|
       method.define_argument('other')
@@ -1102,7 +1102,7 @@ RubyLint.registry.register('Gem') do |defs|
   end
 
   defs.define_constant('Gem::DependencyResolver::IndexSet') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
     klass.define_instance_method('find_all') do |method|
       method.define_argument('req')
@@ -1123,7 +1123,7 @@ RubyLint.registry.register('Gem') do |defs|
   end
 
   defs.define_constant('Gem::DependencyResolver::IndexSpecification') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
     klass.define_instance_method('dependencies')
 
@@ -1157,7 +1157,7 @@ RubyLint.registry.register('Gem') do |defs|
   end
 
   defs.define_constant('Gem::DependencyResolver::InstalledSpecification') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
     klass.define_instance_method('==') do |method|
       method.define_argument('other')
@@ -1189,7 +1189,7 @@ RubyLint.registry.register('Gem') do |defs|
   end
 
   defs.define_constant('Gem::DependencyResolver::InstallerSet') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
     klass.define_instance_method('always_install')
 
@@ -1238,7 +1238,7 @@ RubyLint.registry.register('Gem') do |defs|
   end
 
   defs.define_constant('Gem::Deprecate') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
     klass.define_method('deprecate') do |method|
       method.define_argument('name')
@@ -1257,22 +1257,22 @@ RubyLint.registry.register('Gem') do |defs|
   end
 
   defs.define_constant('Gem::DocumentError') do |klass|
-    klass.inherits(defs.constant_proxy('Gem::Exception'))
+    klass.inherits(defs.constant_proxy('Gem::Exception', RubyLint.registry))
 
   end
 
   defs.define_constant('Gem::EndOfYAMLException') do |klass|
-    klass.inherits(defs.constant_proxy('Gem::Exception'))
+    klass.inherits(defs.constant_proxy('Gem::Exception', RubyLint.registry))
 
   end
 
   defs.define_constant('Gem::ErrorReason') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('Gem::Exception') do |klass|
-    klass.inherits(defs.constant_proxy('RuntimeError'))
+    klass.inherits(defs.constant_proxy('RuntimeError', RubyLint.registry))
 
     klass.define_instance_method('source_exception')
 
@@ -1280,7 +1280,7 @@ RubyLint.registry.register('Gem') do |defs|
   end
 
   defs.define_constant('Gem::FilePermissionError') do |klass|
-    klass.inherits(defs.constant_proxy('Gem::Exception'))
+    klass.inherits(defs.constant_proxy('Gem::Exception', RubyLint.registry))
 
     klass.define_instance_method('directory')
 
@@ -1292,7 +1292,7 @@ RubyLint.registry.register('Gem') do |defs|
   end
 
   defs.define_constant('Gem::FormatException') do |klass|
-    klass.inherits(defs.constant_proxy('Gem::Exception'))
+    klass.inherits(defs.constant_proxy('Gem::Exception', RubyLint.registry))
 
     klass.define_instance_method('file_path')
 
@@ -1300,22 +1300,22 @@ RubyLint.registry.register('Gem') do |defs|
   end
 
   defs.define_constant('Gem::GEM_DEP_FILES') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('Gem::GEM_PRELUDE_SUCKAGE') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('Gem::GemNotFoundException') do |klass|
-    klass.inherits(defs.constant_proxy('Gem::Exception'))
+    klass.inherits(defs.constant_proxy('Gem::Exception', RubyLint.registry))
 
   end
 
   defs.define_constant('Gem::GemNotInHomeException') do |klass|
-    klass.inherits(defs.constant_proxy('Gem::Exception'))
+    klass.inherits(defs.constant_proxy('Gem::Exception', RubyLint.registry))
 
     klass.define_instance_method('spec')
 
@@ -1323,7 +1323,7 @@ RubyLint.registry.register('Gem') do |defs|
   end
 
   defs.define_constant('Gem::ImpossibleDependenciesError') do |klass|
-    klass.inherits(defs.constant_proxy('Gem::Exception'))
+    klass.inherits(defs.constant_proxy('Gem::Exception', RubyLint.registry))
 
     klass.define_instance_method('build_message')
 
@@ -1342,17 +1342,17 @@ RubyLint.registry.register('Gem') do |defs|
   end
 
   defs.define_constant('Gem::InstallError') do |klass|
-    klass.inherits(defs.constant_proxy('Gem::Exception'))
+    klass.inherits(defs.constant_proxy('Gem::Exception', RubyLint.registry))
 
   end
 
   defs.define_constant('Gem::InvalidSpecificationException') do |klass|
-    klass.inherits(defs.constant_proxy('Gem::Exception'))
+    klass.inherits(defs.constant_proxy('Gem::Exception', RubyLint.registry))
 
   end
 
   defs.define_constant('Gem::LoadError') do |klass|
-    klass.inherits(defs.constant_proxy('LoadError'))
+    klass.inherits(defs.constant_proxy('LoadError', RubyLint.registry))
 
     klass.define_instance_method('name')
 
@@ -1364,27 +1364,27 @@ RubyLint.registry.register('Gem') do |defs|
   end
 
   defs.define_constant('Gem::LoadError::InvalidExtensionError') do |klass|
-    klass.inherits(defs.constant_proxy('LoadError'))
+    klass.inherits(defs.constant_proxy('LoadError', RubyLint.registry))
 
   end
 
   defs.define_constant('Gem::LoadError::MRIExtensionError') do |klass|
-    klass.inherits(defs.constant_proxy('LoadError::InvalidExtensionError'))
+    klass.inherits(defs.constant_proxy('LoadError::InvalidExtensionError', RubyLint.registry))
 
   end
 
   defs.define_constant('Gem::MARSHAL_SPEC_DIR') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('Gem::OperationNotSupportedError') do |klass|
-    klass.inherits(defs.constant_proxy('Gem::Exception'))
+    klass.inherits(defs.constant_proxy('Gem::Exception', RubyLint.registry))
 
   end
 
   defs.define_constant('Gem::PathSupport') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
     klass.define_instance_method('home')
 
@@ -1400,7 +1400,7 @@ RubyLint.registry.register('Gem') do |defs|
   end
 
   defs.define_constant('Gem::Platform') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
     klass.define_method('installable?') do |method|
       method.define_argument('spec')
@@ -1462,32 +1462,32 @@ RubyLint.registry.register('Gem') do |defs|
   end
 
   defs.define_constant('Gem::Platform::CURRENT') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('Gem::Platform::JAVA') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('Gem::Platform::MINGW') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('Gem::Platform::MSWIN') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('Gem::Platform::RUBY') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('Gem::PlatformMismatch') do |klass|
-    klass.inherits(defs.constant_proxy('Gem::ErrorReason'))
+    klass.inherits(defs.constant_proxy('Gem::ErrorReason', RubyLint.registry))
 
     klass.define_instance_method('add_platform') do |method|
       method.define_argument('platform')
@@ -1510,48 +1510,48 @@ RubyLint.registry.register('Gem') do |defs|
   end
 
   defs.define_constant('Gem::REPOSITORY_DEFAULT_GEM_SUBDIRECTORIES') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('Gem::REPOSITORY_SUBDIRECTORIES') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('Gem::RUBYGEMS_DIR') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('Gem::RbConfigPriorities') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('Gem::RemoteError') do |klass|
-    klass.inherits(defs.constant_proxy('Gem::Exception'))
+    klass.inherits(defs.constant_proxy('Gem::Exception', RubyLint.registry))
 
   end
 
   defs.define_constant('Gem::RemoteInstallationCancelled') do |klass|
-    klass.inherits(defs.constant_proxy('Gem::Exception'))
+    klass.inherits(defs.constant_proxy('Gem::Exception', RubyLint.registry))
 
   end
 
   defs.define_constant('Gem::RemoteInstallationSkipped') do |klass|
-    klass.inherits(defs.constant_proxy('Gem::Exception'))
+    klass.inherits(defs.constant_proxy('Gem::Exception', RubyLint.registry))
 
   end
 
   defs.define_constant('Gem::RemoteSourceException') do |klass|
-    klass.inherits(defs.constant_proxy('Gem::Exception'))
+    klass.inherits(defs.constant_proxy('Gem::Exception', RubyLint.registry))
 
   end
 
   defs.define_constant('Gem::RequestSet') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
-    klass.inherits(defs.constant_proxy('TSort'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('TSort', RubyLint.registry))
 
     klass.define_instance_method('always_install')
 
@@ -1619,12 +1619,12 @@ RubyLint.registry.register('Gem') do |defs|
   end
 
   defs.define_constant('Gem::RequestSet::Cyclic') do |klass|
-    klass.inherits(defs.constant_proxy('StandardError'))
+    klass.inherits(defs.constant_proxy('StandardError', RubyLint.registry))
 
   end
 
   defs.define_constant('Gem::RequestSet::GemDepedencyAPI') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
     klass.define_instance_method('gem') do |method|
       method.define_argument('name')
@@ -1658,7 +1658,7 @@ RubyLint.registry.register('Gem') do |defs|
   end
 
   defs.define_constant('Gem::Requirement') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
     klass.define_method('create') do |method|
       method.define_argument('input')
@@ -1733,17 +1733,17 @@ RubyLint.registry.register('Gem') do |defs|
   end
 
   defs.define_constant('Gem::RubyGemsPackageVersion') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('Gem::RubyGemsVersion') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('Gem::SilentUI') do |klass|
-    klass.inherits(defs.constant_proxy('Gem::StreamUI'))
+    klass.inherits(defs.constant_proxy('Gem::StreamUI', RubyLint.registry))
 
     klass.define_instance_method('download_reporter') do |method|
       method.define_rest_argument('args')
@@ -1757,7 +1757,7 @@ RubyLint.registry.register('Gem') do |defs|
   end
 
   defs.define_constant('Gem::SilentUI::SilentDownloadReporter') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
     klass.define_instance_method('done')
 
@@ -1779,7 +1779,7 @@ RubyLint.registry.register('Gem') do |defs|
   end
 
   defs.define_constant('Gem::SilentUI::SilentProgressReporter') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
     klass.define_instance_method('count')
 
@@ -1800,8 +1800,8 @@ RubyLint.registry.register('Gem') do |defs|
   end
 
   defs.define_constant('Gem::SilentUI::SimpleProgressReporter') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
-    klass.inherits(defs.constant_proxy('Gem::DefaultUserInteraction'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('Gem::DefaultUserInteraction', RubyLint.registry))
 
     klass.define_instance_method('count')
 
@@ -1822,7 +1822,7 @@ RubyLint.registry.register('Gem') do |defs|
   end
 
   defs.define_constant('Gem::SilentUI::VerboseDownloadReporter') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
     klass.define_instance_method('done')
 
@@ -1850,8 +1850,8 @@ RubyLint.registry.register('Gem') do |defs|
   end
 
   defs.define_constant('Gem::SilentUI::VerboseProgressReporter') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
-    klass.inherits(defs.constant_proxy('Gem::DefaultUserInteraction'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('Gem::DefaultUserInteraction', RubyLint.registry))
 
     klass.define_instance_method('count')
 
@@ -1872,8 +1872,8 @@ RubyLint.registry.register('Gem') do |defs|
   end
 
   defs.define_constant('Gem::Source') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
-    klass.inherits(defs.constant_proxy('Comparable'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('Comparable', RubyLint.registry))
 
     klass.define_instance_method('<=>') do |method|
       method.define_argument('other')
@@ -1924,12 +1924,12 @@ RubyLint.registry.register('Gem') do |defs|
   end
 
   defs.define_constant('Gem::Source::FILES') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('Gem::Source::Installed') do |klass|
-    klass.inherits(defs.constant_proxy('Gem::Source'))
+    klass.inherits(defs.constant_proxy('Gem::Source', RubyLint.registry))
 
     klass.define_instance_method('<=>') do |method|
       method.define_argument('other')
@@ -1944,12 +1944,12 @@ RubyLint.registry.register('Gem') do |defs|
   end
 
   defs.define_constant('Gem::Source::Installed::FILES') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('Gem::Source::Installed::Local') do |klass|
-    klass.inherits(defs.constant_proxy('Gem::Source'))
+    klass.inherits(defs.constant_proxy('Gem::Source', RubyLint.registry))
 
     klass.define_instance_method('<=>') do |method|
       method.define_argument('other')
@@ -1984,7 +1984,7 @@ RubyLint.registry.register('Gem') do |defs|
   end
 
   defs.define_constant('Gem::Source::Installed::SpecificFile') do |klass|
-    klass.inherits(defs.constant_proxy('Gem::Source'))
+    klass.inherits(defs.constant_proxy('Gem::Source', RubyLint.registry))
 
     klass.define_instance_method('<=>') do |method|
       method.define_argument('other')
@@ -2017,7 +2017,7 @@ RubyLint.registry.register('Gem') do |defs|
   end
 
   defs.define_constant('Gem::Source::Local') do |klass|
-    klass.inherits(defs.constant_proxy('Gem::Source'))
+    klass.inherits(defs.constant_proxy('Gem::Source', RubyLint.registry))
 
     klass.define_instance_method('<=>') do |method|
       method.define_argument('other')
@@ -2052,7 +2052,7 @@ RubyLint.registry.register('Gem') do |defs|
   end
 
   defs.define_constant('Gem::Source::SpecificFile') do |klass|
-    klass.inherits(defs.constant_proxy('Gem::Source'))
+    klass.inherits(defs.constant_proxy('Gem::Source', RubyLint.registry))
 
     klass.define_instance_method('<=>') do |method|
       method.define_argument('other')
@@ -2085,7 +2085,7 @@ RubyLint.registry.register('Gem') do |defs|
   end
 
   defs.define_constant('Gem::SourceFetchProblem') do |klass|
-    klass.inherits(defs.constant_proxy('Gem::ErrorReason'))
+    klass.inherits(defs.constant_proxy('Gem::ErrorReason', RubyLint.registry))
 
     klass.define_instance_method('error')
 
@@ -2104,7 +2104,7 @@ RubyLint.registry.register('Gem') do |defs|
   end
 
   defs.define_constant('Gem::SourceList') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
     klass.define_method('from') do |method|
       method.define_argument('ary')
@@ -2148,10 +2148,10 @@ RubyLint.registry.register('Gem') do |defs|
   end
 
   defs.define_constant('Gem::SpecFetcher') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
-    klass.inherits(defs.constant_proxy('Gem::Text'))
-    klass.inherits(defs.constant_proxy('Gem::UserInteraction'))
-    klass.inherits(defs.constant_proxy('Gem::DefaultUserInteraction'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('Gem::Text', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('Gem::UserInteraction', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('Gem::DefaultUserInteraction', RubyLint.registry))
 
     klass.define_method('fetcher')
 
@@ -2197,7 +2197,7 @@ RubyLint.registry.register('Gem') do |defs|
   end
 
   defs.define_constant('Gem::SpecificGemNotFoundException') do |klass|
-    klass.inherits(defs.constant_proxy('Gem::GemNotFoundException'))
+    klass.inherits(defs.constant_proxy('Gem::GemNotFoundException', RubyLint.registry))
 
     klass.define_instance_method('errors')
 
@@ -2215,9 +2215,9 @@ RubyLint.registry.register('Gem') do |defs|
   end
 
   defs.define_constant('Gem::Specification') do |klass|
-    klass.inherits(defs.constant_proxy('Gem::BasicSpecification'))
-    klass.inherits(defs.constant_proxy('Bundler::MatchPlatform'))
-    klass.inherits(defs.constant_proxy('Bundler::GemHelpers'))
+    klass.inherits(defs.constant_proxy('Gem::BasicSpecification', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('Bundler::MatchPlatform', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('Bundler::GemHelpers', RubyLint.registry))
 
     klass.define_method('_all')
 
@@ -2755,52 +2755,52 @@ RubyLint.registry.register('Gem') do |defs|
   end
 
   defs.define_constant('Gem::Specification::CURRENT_SPECIFICATION_VERSION') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('Gem::Specification::DateTimeFormat') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('Gem::Specification::Dupable') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('Gem::Specification::GENERICS') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('Gem::Specification::GENERIC_CACHE') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('Gem::Specification::MARSHAL_FIELDS') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('Gem::Specification::NONEXISTENT_SPECIFICATION_VERSION') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('Gem::Specification::SPECIFICATION_VERSION_HISTORY') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('Gem::Specification::TODAY') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('Gem::StreamUI') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
     klass.define_instance_method('alert') do |method|
       method.define_argument('statement')
@@ -2878,7 +2878,7 @@ RubyLint.registry.register('Gem') do |defs|
   end
 
   defs.define_constant('Gem::StreamUI::SilentDownloadReporter') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
     klass.define_instance_method('done')
 
@@ -2900,7 +2900,7 @@ RubyLint.registry.register('Gem') do |defs|
   end
 
   defs.define_constant('Gem::StreamUI::SilentProgressReporter') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
     klass.define_instance_method('count')
 
@@ -2921,8 +2921,8 @@ RubyLint.registry.register('Gem') do |defs|
   end
 
   defs.define_constant('Gem::StreamUI::SimpleProgressReporter') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
-    klass.inherits(defs.constant_proxy('Gem::DefaultUserInteraction'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('Gem::DefaultUserInteraction', RubyLint.registry))
 
     klass.define_instance_method('count')
 
@@ -2943,7 +2943,7 @@ RubyLint.registry.register('Gem') do |defs|
   end
 
   defs.define_constant('Gem::StreamUI::VerboseDownloadReporter') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
     klass.define_instance_method('done')
 
@@ -2971,8 +2971,8 @@ RubyLint.registry.register('Gem') do |defs|
   end
 
   defs.define_constant('Gem::StreamUI::VerboseProgressReporter') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
-    klass.inherits(defs.constant_proxy('Gem::DefaultUserInteraction'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('Gem::DefaultUserInteraction', RubyLint.registry))
 
     klass.define_instance_method('count')
 
@@ -2993,7 +2993,7 @@ RubyLint.registry.register('Gem') do |defs|
   end
 
   defs.define_constant('Gem::StubSpecification') do |klass|
-    klass.inherits(defs.constant_proxy('Gem::BasicSpecification'))
+    klass.inherits(defs.constant_proxy('Gem::BasicSpecification', RubyLint.registry))
 
     klass.define_instance_method('activated?')
 
@@ -3017,17 +3017,17 @@ RubyLint.registry.register('Gem') do |defs|
   end
 
   defs.define_constant('Gem::StubSpecification::OPEN_MODE') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('Gem::StubSpecification::PREFIX') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('Gem::StubSpecification::StubLine') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
     klass.define_instance_method('initialize') do |method|
       method.define_argument('data')
@@ -3047,7 +3047,7 @@ RubyLint.registry.register('Gem') do |defs|
   end
 
   defs.define_constant('Gem::SystemExitException') do |klass|
-    klass.inherits(defs.constant_proxy('SystemExit'))
+    klass.inherits(defs.constant_proxy('SystemExit', RubyLint.registry))
 
     klass.define_instance_method('exit_code')
 
@@ -3061,7 +3061,7 @@ RubyLint.registry.register('Gem') do |defs|
   end
 
   defs.define_constant('Gem::UnsatisfiableDepedencyError') do |klass|
-    klass.inherits(defs.constant_proxy('Gem::Exception'))
+    klass.inherits(defs.constant_proxy('Gem::Exception', RubyLint.registry))
 
     klass.define_instance_method('dependency')
 
@@ -3074,7 +3074,7 @@ RubyLint.registry.register('Gem') do |defs|
   end
 
   defs.define_constant('Gem::UnsatisfiableDependencyError') do |klass|
-    klass.inherits(defs.constant_proxy('Gem::Exception'))
+    klass.inherits(defs.constant_proxy('Gem::Exception', RubyLint.registry))
 
     klass.define_instance_method('dependency')
 
@@ -3087,7 +3087,7 @@ RubyLint.registry.register('Gem') do |defs|
   end
 
   defs.define_constant('Gem::UserInteraction') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
     klass.define_instance_method('alert') do |method|
       method.define_rest_argument('args')
@@ -3127,18 +3127,18 @@ RubyLint.registry.register('Gem') do |defs|
   end
 
   defs.define_constant('Gem::VERSION') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('Gem::VerificationError') do |klass|
-    klass.inherits(defs.constant_proxy('Gem::Exception'))
+    klass.inherits(defs.constant_proxy('Gem::Exception', RubyLint.registry))
 
   end
 
   defs.define_constant('Gem::Version') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
-    klass.inherits(defs.constant_proxy('Comparable'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('Comparable', RubyLint.registry))
 
     klass.define_method('correct?') do |method|
       method.define_argument('version')
@@ -3213,12 +3213,12 @@ RubyLint.registry.register('Gem') do |defs|
   end
 
   defs.define_constant('Gem::Version::ANCHORED_VERSION_PATTERN') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('Gem::Version::Requirement') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
     klass.define_method('create') do |method|
       method.define_argument('input')
@@ -3293,12 +3293,12 @@ RubyLint.registry.register('Gem') do |defs|
   end
 
   defs.define_constant('Gem::Version::VERSION_PATTERN') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('Gem::WIN_PATTERNS') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 end

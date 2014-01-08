@@ -5,7 +5,7 @@
 
 RubyLint.registry.register('Profiler__') do |defs|
   defs.define_constant('Profiler__') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
     klass.define_method('options') do |method|
       method.define_argument('opts')

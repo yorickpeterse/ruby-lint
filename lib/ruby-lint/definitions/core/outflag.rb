@@ -5,7 +5,7 @@
 
 RubyLint.registry.register('OUTFLAG') do |defs|
   defs.define_constant('OUTFLAG') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 end

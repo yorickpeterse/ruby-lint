@@ -5,7 +5,7 @@
 
 RubyLint.registry.register('DRb') do |defs|
   defs.define_constant('DRb') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
     klass.define_method('config')
 
@@ -65,7 +65,7 @@ RubyLint.registry.register('DRb') do |defs|
   end
 
   defs.define_constant('DRb::DRbArray') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
     klass.define_method('_load') do |method|
       method.define_argument('s')
@@ -83,17 +83,17 @@ RubyLint.registry.register('DRb') do |defs|
   end
 
   defs.define_constant('DRb::DRbBadScheme') do |klass|
-    klass.inherits(defs.constant_proxy('DRb::DRbError'))
+    klass.inherits(defs.constant_proxy('DRb::DRbError', RubyLint.registry))
 
   end
 
   defs.define_constant('DRb::DRbBadURI') do |klass|
-    klass.inherits(defs.constant_proxy('DRb::DRbError'))
+    klass.inherits(defs.constant_proxy('DRb::DRbError', RubyLint.registry))
 
   end
 
   defs.define_constant('DRb::DRbConn') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
     klass.define_method('open') do |method|
       method.define_argument('remote_uri')
@@ -120,22 +120,22 @@ RubyLint.registry.register('DRb') do |defs|
   end
 
   defs.define_constant('DRb::DRbConn::POOL_SIZE') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('DRb::DRbConnError') do |klass|
-    klass.inherits(defs.constant_proxy('DRb::DRbError'))
+    klass.inherits(defs.constant_proxy('DRb::DRbError', RubyLint.registry))
 
   end
 
   defs.define_constant('DRb::DRbError') do |klass|
-    klass.inherits(defs.constant_proxy('RuntimeError'))
+    klass.inherits(defs.constant_proxy('RuntimeError', RubyLint.registry))
 
   end
 
   defs.define_constant('DRb::DRbIdConv') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
     klass.define_instance_method('to_id') do |method|
       method.define_argument('obj')
@@ -147,7 +147,7 @@ RubyLint.registry.register('DRb') do |defs|
   end
 
   defs.define_constant('DRb::DRbMessage') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
     klass.define_instance_method('dump') do |method|
       method.define_argument('obj')
@@ -188,7 +188,7 @@ RubyLint.registry.register('DRb') do |defs|
   end
 
   defs.define_constant('DRb::DRbObject') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
     klass.define_method('_load') do |method|
       method.define_argument('s')
@@ -258,7 +258,7 @@ RubyLint.registry.register('DRb') do |defs|
   end
 
   defs.define_constant('DRb::DRbProtocol') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
     klass.define_method('add_protocol') do |method|
       method.define_argument('prot')
@@ -289,7 +289,7 @@ RubyLint.registry.register('DRb') do |defs|
   end
 
   defs.define_constant('DRb::DRbRemoteError') do |klass|
-    klass.inherits(defs.constant_proxy('DRb::DRbError'))
+    klass.inherits(defs.constant_proxy('DRb::DRbError', RubyLint.registry))
 
     klass.define_instance_method('initialize') do |method|
       method.define_argument('error')
@@ -301,7 +301,7 @@ RubyLint.registry.register('DRb') do |defs|
   end
 
   defs.define_constant('DRb::DRbServer') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
     klass.define_method('default_acl') do |method|
       method.define_argument('acl')
@@ -380,13 +380,13 @@ RubyLint.registry.register('DRb') do |defs|
   end
 
   defs.define_constant('DRb::DRbServer::INSECURE_METHOD') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('DRb::DRbServer::InvokeMethod') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
-    klass.inherits(defs.constant_proxy('DRb::DRbServer::InvokeMethod18Mixin'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('DRb::DRbServer::InvokeMethod18Mixin', RubyLint.registry))
 
     klass.define_instance_method('initialize') do |method|
       method.define_argument('drb_server')
@@ -399,7 +399,7 @@ RubyLint.registry.register('DRb') do |defs|
   end
 
   defs.define_constant('DRb::DRbServer::InvokeMethod18Mixin') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
     klass.define_instance_method('block_yield') do |method|
       method.define_argument('x')
@@ -409,12 +409,12 @@ RubyLint.registry.register('DRb') do |defs|
   end
 
   defs.define_constant('DRb::DRbServerNotFound') do |klass|
-    klass.inherits(defs.constant_proxy('DRb::DRbError'))
+    klass.inherits(defs.constant_proxy('DRb::DRbError', RubyLint.registry))
 
   end
 
   defs.define_constant('DRb::DRbTCPSocket') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
     klass.define_method('getservername')
 
@@ -484,7 +484,7 @@ RubyLint.registry.register('DRb') do |defs|
   end
 
   defs.define_constant('DRb::DRbURIOption') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
     klass.define_instance_method('==') do |method|
       method.define_argument('other')
@@ -508,7 +508,7 @@ RubyLint.registry.register('DRb') do |defs|
   end
 
   defs.define_constant('DRb::DRbUndumped') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
     klass.define_instance_method('_dump') do |method|
       method.define_argument('dummy')
@@ -516,7 +516,7 @@ RubyLint.registry.register('DRb') do |defs|
   end
 
   defs.define_constant('DRb::DRbUnknown') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
     klass.define_method('_load') do |method|
       method.define_argument('s')
@@ -543,7 +543,7 @@ RubyLint.registry.register('DRb') do |defs|
   end
 
   defs.define_constant('DRb::DRbUnknownError') do |klass|
-    klass.inherits(defs.constant_proxy('DRb::DRbError'))
+    klass.inherits(defs.constant_proxy('DRb::DRbError', RubyLint.registry))
 
     klass.define_method('_load') do |method|
       method.define_argument('s')

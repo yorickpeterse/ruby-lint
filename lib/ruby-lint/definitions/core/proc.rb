@@ -5,8 +5,8 @@
 
 RubyLint.registry.register('Proc') do |defs|
   defs.define_constant('Proc') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
-    klass.inherits(defs.constant_proxy('Unmarshalable'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('Unmarshalable', RubyLint.registry))
 
     klass.define_method('__allocate__')
 

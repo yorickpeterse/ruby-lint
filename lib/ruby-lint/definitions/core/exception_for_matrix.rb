@@ -5,7 +5,7 @@
 
 RubyLint.registry.register('ExceptionForMatrix') do |defs|
   defs.define_constant('ExceptionForMatrix') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
     klass.define_method('included') do |method|
       method.define_argument('mod')
@@ -23,22 +23,22 @@ RubyLint.registry.register('ExceptionForMatrix') do |defs|
   end
 
   defs.define_constant('ExceptionForMatrix::ErrDimensionMismatch') do |klass|
-    klass.inherits(defs.constant_proxy('StandardError'))
+    klass.inherits(defs.constant_proxy('StandardError', RubyLint.registry))
 
   end
 
   defs.define_constant('ExceptionForMatrix::ErrNotRegular') do |klass|
-    klass.inherits(defs.constant_proxy('StandardError'))
+    klass.inherits(defs.constant_proxy('StandardError', RubyLint.registry))
 
   end
 
   defs.define_constant('ExceptionForMatrix::ErrOperationNotDefined') do |klass|
-    klass.inherits(defs.constant_proxy('StandardError'))
+    klass.inherits(defs.constant_proxy('StandardError', RubyLint.registry))
 
   end
 
   defs.define_constant('ExceptionForMatrix::ErrOperationNotImplemented') do |klass|
-    klass.inherits(defs.constant_proxy('StandardError'))
+    klass.inherits(defs.constant_proxy('StandardError', RubyLint.registry))
 
   end
 end

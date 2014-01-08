@@ -5,7 +5,7 @@
 
 RubyLint.registry.register('ObjectSpace') do |defs|
   defs.define_constant('ObjectSpace') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
     klass.define_method('_id2ref') do |method|
       method.define_argument('id')

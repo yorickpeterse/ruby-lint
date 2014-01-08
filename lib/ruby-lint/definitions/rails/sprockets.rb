@@ -5,22 +5,22 @@
 
 RubyLint.registry.register('Sprockets') do |defs|
   defs.define_constant('Sprockets') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('Sprockets::ArgumentError') do |klass|
-    klass.inherits(defs.constant_proxy('Sprockets::Error'))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Blamable'))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
+    klass.inherits(defs.constant_proxy('Sprockets::Error', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Blamable', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object', RubyLint.registry))
 
   end
 
   defs.define_constant('Sprockets::Asset') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object', RubyLint.registry))
 
     klass.define_method('from_hash') do |method|
       method.define_argument('environment')
@@ -116,9 +116,9 @@ RubyLint.registry.register('Sprockets') do |defs|
   end
 
   defs.define_constant('Sprockets::AssetAttributes') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object', RubyLint.registry))
 
     klass.define_instance_method('content_type')
 
@@ -149,16 +149,16 @@ RubyLint.registry.register('Sprockets') do |defs|
   end
 
   defs.define_constant('Sprockets::Base') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
-    klass.inherits(defs.constant_proxy('Sprockets::Caching'))
-    klass.inherits(defs.constant_proxy('Sprockets::Paths'))
-    klass.inherits(defs.constant_proxy('Sprockets::Mime'))
-    klass.inherits(defs.constant_proxy('Sprockets::Processing'))
-    klass.inherits(defs.constant_proxy('Sprockets::Compressing'))
-    klass.inherits(defs.constant_proxy('Sprockets::Engines'))
-    klass.inherits(defs.constant_proxy('Sprockets::Server'))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('Sprockets::Caching', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('Sprockets::Paths', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('Sprockets::Mime', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('Sprockets::Processing', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('Sprockets::Compressing', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('Sprockets::Engines', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('Sprockets::Server', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object', RubyLint.registry))
 
     klass.define_instance_method('[]') do |method|
       method.define_rest_argument('args')
@@ -327,9 +327,9 @@ RubyLint.registry.register('Sprockets') do |defs|
   end
 
   defs.define_constant('Sprockets::BundledAsset') do |klass|
-    klass.inherits(defs.constant_proxy('Sprockets::Asset'))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
+    klass.inherits(defs.constant_proxy('Sprockets::Asset', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object', RubyLint.registry))
 
     klass.define_instance_method('body')
 
@@ -362,14 +362,14 @@ RubyLint.registry.register('Sprockets') do |defs|
   end
 
   defs.define_constant('Sprockets::Cache') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('Sprockets::Cache::FileStore') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object', RubyLint.registry))
 
     klass.define_instance_method('[]') do |method|
       method.define_argument('key')
@@ -388,9 +388,9 @@ RubyLint.registry.register('Sprockets') do |defs|
   end
 
   defs.define_constant('Sprockets::CharsetNormalizer') do |klass|
-    klass.inherits(defs.constant_proxy('Tilt::Template'))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
+    klass.inherits(defs.constant_proxy('Tilt::Template', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object', RubyLint.registry))
 
     klass.define_instance_method('evaluate') do |method|
       method.define_argument('context')
@@ -402,17 +402,17 @@ RubyLint.registry.register('Sprockets') do |defs|
   end
 
   defs.define_constant('Sprockets::CircularDependencyError') do |klass|
-    klass.inherits(defs.constant_proxy('Sprockets::Error'))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Blamable'))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
+    klass.inherits(defs.constant_proxy('Sprockets::Error', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Blamable', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object', RubyLint.registry))
 
   end
 
   defs.define_constant('Sprockets::ClosureCompressor') do |klass|
-    klass.inherits(defs.constant_proxy('Tilt::Template'))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
+    klass.inherits(defs.constant_proxy('Tilt::Template', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object', RubyLint.registry))
 
     klass.define_method('engine_initialized?')
 
@@ -428,7 +428,7 @@ RubyLint.registry.register('Sprockets') do |defs|
   end
 
   defs.define_constant('Sprockets::Compressing') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
     klass.define_instance_method('compressors')
 
@@ -452,17 +452,17 @@ RubyLint.registry.register('Sprockets') do |defs|
   end
 
   defs.define_constant('Sprockets::ContentTypeMismatch') do |klass|
-    klass.inherits(defs.constant_proxy('Sprockets::Error'))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Blamable'))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
+    klass.inherits(defs.constant_proxy('Sprockets::Error', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Blamable', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object', RubyLint.registry))
 
   end
 
   defs.define_constant('Sprockets::Context') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object', RubyLint.registry))
 
     klass.define_instance_method('__LINE__=')
 
@@ -558,9 +558,9 @@ RubyLint.registry.register('Sprockets') do |defs|
   end
 
   defs.define_constant('Sprockets::DirectiveProcessor') do |klass|
-    klass.inherits(defs.constant_proxy('Tilt::Template'))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
+    klass.inherits(defs.constant_proxy('Tilt::Template', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object', RubyLint.registry))
 
     klass.define_instance_method('body')
 
@@ -632,19 +632,19 @@ RubyLint.registry.register('Sprockets') do |defs|
   end
 
   defs.define_constant('Sprockets::DirectiveProcessor::DIRECTIVE_PATTERN') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('Sprockets::DirectiveProcessor::HEADER_PATTERN') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('Sprockets::EcoTemplate') do |klass|
-    klass.inherits(defs.constant_proxy('Tilt::Template'))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
+    klass.inherits(defs.constant_proxy('Tilt::Template', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object', RubyLint.registry))
 
     klass.define_method('engine_initialized?')
 
@@ -660,9 +660,9 @@ RubyLint.registry.register('Sprockets') do |defs|
   end
 
   defs.define_constant('Sprockets::EjsTemplate') do |klass|
-    klass.inherits(defs.constant_proxy('Tilt::Template'))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
+    klass.inherits(defs.constant_proxy('Tilt::Template', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object', RubyLint.registry))
 
     klass.define_method('engine_initialized?')
 
@@ -678,7 +678,7 @@ RubyLint.registry.register('Sprockets') do |defs|
   end
 
   defs.define_constant('Sprockets::EngineError') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
     klass.define_instance_method('message')
 
@@ -688,7 +688,7 @@ RubyLint.registry.register('Sprockets') do |defs|
   end
 
   defs.define_constant('Sprockets::Engines') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
     klass.define_instance_method('engine_extensions')
 
@@ -703,16 +703,16 @@ RubyLint.registry.register('Sprockets') do |defs|
   end
 
   defs.define_constant('Sprockets::Environment') do |klass|
-    klass.inherits(defs.constant_proxy('Sprockets::Base'))
-    klass.inherits(defs.constant_proxy('Sprockets::Caching'))
-    klass.inherits(defs.constant_proxy('Sprockets::Paths'))
-    klass.inherits(defs.constant_proxy('Sprockets::Mime'))
-    klass.inherits(defs.constant_proxy('Sprockets::Processing'))
-    klass.inherits(defs.constant_proxy('Sprockets::Compressing'))
-    klass.inherits(defs.constant_proxy('Sprockets::Engines'))
-    klass.inherits(defs.constant_proxy('Sprockets::Server'))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
+    klass.inherits(defs.constant_proxy('Sprockets::Base', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('Sprockets::Caching', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('Sprockets::Paths', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('Sprockets::Mime', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('Sprockets::Processing', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('Sprockets::Compressing', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('Sprockets::Engines', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('Sprockets::Server', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object', RubyLint.registry))
 
     klass.define_instance_method('expire_index!')
 
@@ -731,32 +731,32 @@ RubyLint.registry.register('Sprockets') do |defs|
   end
 
   defs.define_constant('Sprockets::Error') do |klass|
-    klass.inherits(defs.constant_proxy('StandardError'))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Blamable'))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
+    klass.inherits(defs.constant_proxy('StandardError', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Blamable', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object', RubyLint.registry))
 
   end
 
   defs.define_constant('Sprockets::FileNotFound') do |klass|
-    klass.inherits(defs.constant_proxy('Sprockets::Error'))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Blamable'))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
+    klass.inherits(defs.constant_proxy('Sprockets::Error', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Blamable', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object', RubyLint.registry))
 
   end
 
   defs.define_constant('Sprockets::Index') do |klass|
-    klass.inherits(defs.constant_proxy('Sprockets::Base'))
-    klass.inherits(defs.constant_proxy('Sprockets::Caching'))
-    klass.inherits(defs.constant_proxy('Sprockets::Paths'))
-    klass.inherits(defs.constant_proxy('Sprockets::Mime'))
-    klass.inherits(defs.constant_proxy('Sprockets::Processing'))
-    klass.inherits(defs.constant_proxy('Sprockets::Compressing'))
-    klass.inherits(defs.constant_proxy('Sprockets::Engines'))
-    klass.inherits(defs.constant_proxy('Sprockets::Server'))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
+    klass.inherits(defs.constant_proxy('Sprockets::Base', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('Sprockets::Caching', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('Sprockets::Paths', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('Sprockets::Mime', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('Sprockets::Processing', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('Sprockets::Compressing', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('Sprockets::Engines', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('Sprockets::Server', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object', RubyLint.registry))
 
     klass.define_instance_method('build_asset') do |method|
       method.define_argument('path')
@@ -785,9 +785,9 @@ RubyLint.registry.register('Sprockets') do |defs|
   end
 
   defs.define_constant('Sprockets::JstProcessor') do |klass|
-    klass.inherits(defs.constant_proxy('Tilt::Template'))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
+    klass.inherits(defs.constant_proxy('Tilt::Template', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object', RubyLint.registry))
 
     klass.define_method('default_namespace')
 
@@ -803,9 +803,9 @@ RubyLint.registry.register('Sprockets') do |defs|
   end
 
   defs.define_constant('Sprockets::Manifest') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object', RubyLint.registry))
 
     klass.define_instance_method('assets')
 
@@ -849,7 +849,7 @@ RubyLint.registry.register('Sprockets') do |defs|
   end
 
   defs.define_constant('Sprockets::Mime') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
     klass.define_instance_method('encoding_for_mime_type') do |method|
       method.define_argument('type')
@@ -872,7 +872,7 @@ RubyLint.registry.register('Sprockets') do |defs|
   end
 
   defs.define_constant('Sprockets::Paths') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
     klass.define_instance_method('append_path') do |method|
       method.define_argument('path')
@@ -894,9 +894,9 @@ RubyLint.registry.register('Sprockets') do |defs|
   end
 
   defs.define_constant('Sprockets::ProcessedAsset') do |klass|
-    klass.inherits(defs.constant_proxy('Sprockets::Asset'))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
+    klass.inherits(defs.constant_proxy('Sprockets::Asset', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object', RubyLint.registry))
 
     klass.define_instance_method('dependency_digest')
 
@@ -927,9 +927,9 @@ RubyLint.registry.register('Sprockets') do |defs|
   defs.define_constant('Sprockets::ProcessedAsset::DependencyFile') do |klass|
     klass.inherits(defs.constant_proxy('#<Class:0x2ec50>'))
     klass.inherits(defs.constant_proxy('#<Module:0x2ec54>'))
-    klass.inherits(defs.constant_proxy('Enumerable'))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
+    klass.inherits(defs.constant_proxy('Enumerable', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object', RubyLint.registry))
 
     klass.define_instance_method('eql?') do |method|
       method.define_argument('other')
@@ -947,10 +947,10 @@ RubyLint.registry.register('Sprockets') do |defs|
   end
 
   defs.define_constant('Sprockets::ProcessedAsset::DependencyFile::Enumerator') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
-    klass.inherits(defs.constant_proxy('Enumerable'))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('Enumerable', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object', RubyLint.registry))
 
     klass.define_instance_method('each') do |method|
       method.define_rest_argument('args')
@@ -984,9 +984,9 @@ RubyLint.registry.register('Sprockets') do |defs|
   end
 
   defs.define_constant('Sprockets::ProcessedAsset::DependencyFile::Group') do |klass|
-    klass.inherits(defs.constant_proxy('Rubinius::FFI::Struct'))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
+    klass.inherits(defs.constant_proxy('Rubinius::FFI::Struct', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object', RubyLint.registry))
 
     klass.define_instance_method('gid')
 
@@ -998,9 +998,9 @@ RubyLint.registry.register('Sprockets') do |defs|
   end
 
   defs.define_constant('Sprockets::ProcessedAsset::DependencyFile::Passwd') do |klass|
-    klass.inherits(defs.constant_proxy('Rubinius::FFI::Struct'))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
+    klass.inherits(defs.constant_proxy('Rubinius::FFI::Struct', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object', RubyLint.registry))
 
     klass.define_instance_method('dir')
 
@@ -1018,14 +1018,14 @@ RubyLint.registry.register('Sprockets') do |defs|
   end
 
   defs.define_constant('Sprockets::ProcessedAsset::DependencyFile::STRUCT_ATTRS') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('Sprockets::ProcessedAsset::DependencyFile::SortedElement') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object', RubyLint.registry))
 
     klass.define_instance_method('<=>') do |method|
       method.define_argument('other')
@@ -1044,10 +1044,10 @@ RubyLint.registry.register('Sprockets') do |defs|
   end
 
   defs.define_constant('Sprockets::ProcessedAsset::DependencyFile::Tms') do |klass|
-    klass.inherits(defs.constant_proxy('Struct'))
-    klass.inherits(defs.constant_proxy('Enumerable'))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
+    klass.inherits(defs.constant_proxy('Struct', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('Enumerable', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object', RubyLint.registry))
 
     klass.define_method('[]') do |method|
       method.define_rest_argument('args')
@@ -1096,7 +1096,7 @@ RubyLint.registry.register('Sprockets') do |defs|
   end
 
   defs.define_constant('Sprockets::Processing') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
     klass.define_instance_method('bundle_processors') do |method|
       method.define_optional_argument('mime_type')
@@ -1160,9 +1160,9 @@ RubyLint.registry.register('Sprockets') do |defs|
   end
 
   defs.define_constant('Sprockets::Processor') do |klass|
-    klass.inherits(defs.constant_proxy('Tilt::Template'))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
+    klass.inherits(defs.constant_proxy('Tilt::Template', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object', RubyLint.registry))
 
     klass.define_method('name')
 
@@ -1179,16 +1179,16 @@ RubyLint.registry.register('Sprockets') do |defs|
   end
 
   defs.define_constant('Sprockets::Rails') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('Sprockets::Rails::Helper') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
-    klass.inherits(defs.constant_proxy('ActionView::Helpers::AssetTagHelper'))
-    klass.inherits(defs.constant_proxy('ActionView::Helpers::TagHelper'))
-    klass.inherits(defs.constant_proxy('ActionView::Helpers::CaptureHelper'))
-    klass.inherits(defs.constant_proxy('ActionView::Helpers::AssetUrlHelper'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('ActionView::Helpers::AssetTagHelper', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('ActionView::Helpers::TagHelper', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('ActionView::Helpers::CaptureHelper', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('ActionView::Helpers::AssetUrlHelper', RubyLint.registry))
 
     klass.define_method('extended') do |method|
       method.define_argument('obj')
@@ -1230,51 +1230,51 @@ RubyLint.registry.register('Sprockets') do |defs|
   end
 
   defs.define_constant('Sprockets::Rails::Helper::ASSET_EXTENSIONS') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('Sprockets::Rails::Helper::ASSET_PUBLIC_DIRECTORIES') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('Sprockets::Rails::Helper::BOOLEAN_ATTRIBUTES') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('Sprockets::Rails::Helper::PRE_CONTENT_STRINGS') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('Sprockets::Rails::Helper::URI_REGEXP') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('Sprockets::Rails::Helper::VIEW_ACCESSORS') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('Sprockets::Railtie') do |klass|
-    klass.inherits(defs.constant_proxy('Rails::Railtie'))
-    klass.inherits(defs.constant_proxy('Rails::Railtie::Configurable'))
-    klass.inherits(defs.constant_proxy('Rails::Initializable'))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
+    klass.inherits(defs.constant_proxy('Rails::Railtie', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('Rails::Railtie::Configurable', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('Rails::Initializable', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object', RubyLint.registry))
 
   end
 
   defs.define_constant('Sprockets::Railtie::ABSTRACT_RAILTIES') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('Sprockets::Railtie::ClassMethods') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
     klass.define_instance_method('config') do |method|
       method.define_rest_argument('args')
@@ -1302,12 +1302,12 @@ RubyLint.registry.register('Sprockets') do |defs|
   end
 
   defs.define_constant('Sprockets::Railtie::Collection') do |klass|
-    klass.inherits(defs.constant_proxy('Array'))
-    klass.inherits(defs.constant_proxy('TSort'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Array'))
-    klass.inherits(defs.constant_proxy('Enumerable'))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
+    klass.inherits(defs.constant_proxy('Array', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('TSort', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Array', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('Enumerable', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object', RubyLint.registry))
 
     klass.define_instance_method('+') do |method|
       method.define_argument('other')
@@ -1322,14 +1322,14 @@ RubyLint.registry.register('Sprockets') do |defs|
   end
 
   defs.define_constant('Sprockets::Railtie::Configurable') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('Sprockets::Railtie::Configuration') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object', RubyLint.registry))
 
     klass.define_method('eager_load_namespaces')
 
@@ -1373,9 +1373,9 @@ RubyLint.registry.register('Sprockets') do |defs|
   end
 
   defs.define_constant('Sprockets::Railtie::Initializer') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object', RubyLint.registry))
 
     klass.define_instance_method('after')
 
@@ -1408,16 +1408,16 @@ RubyLint.registry.register('Sprockets') do |defs|
   end
 
   defs.define_constant('Sprockets::Railtie::LOOSE_APP_ASSETS') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('Sprockets::Railtie::OrderedOptions') do |klass|
-    klass.inherits(defs.constant_proxy('ActiveSupport::OrderedOptions'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Hash'))
-    klass.inherits(defs.constant_proxy('Enumerable'))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
+    klass.inherits(defs.constant_proxy('ActiveSupport::OrderedOptions', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Hash', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('Enumerable', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object', RubyLint.registry))
 
     klass.define_instance_method('configure') do |method|
       method.define_block_argument('block')
@@ -1425,9 +1425,9 @@ RubyLint.registry.register('Sprockets') do |defs|
   end
 
   defs.define_constant('Sprockets::Railtie::OrderedOptions::Bucket') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object', RubyLint.registry))
 
     klass.define_instance_method('delete') do |method|
       method.define_argument('key')
@@ -1475,10 +1475,10 @@ RubyLint.registry.register('Sprockets') do |defs|
   end
 
   defs.define_constant('Sprockets::Railtie::OrderedOptions::Entries') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
-    klass.inherits(defs.constant_proxy('Enumerable'))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('Enumerable', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object', RubyLint.registry))
 
     klass.define_method('[]') do |method|
       method.define_rest_argument('args')
@@ -1604,10 +1604,10 @@ RubyLint.registry.register('Sprockets') do |defs|
   end
 
   defs.define_constant('Sprockets::Railtie::OrderedOptions::Enumerator') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
-    klass.inherits(defs.constant_proxy('Enumerable'))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('Enumerable', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object', RubyLint.registry))
 
     klass.define_instance_method('each') do |method|
       method.define_rest_argument('args')
@@ -1641,9 +1641,9 @@ RubyLint.registry.register('Sprockets') do |defs|
   end
 
   defs.define_constant('Sprockets::Railtie::OrderedOptions::Iterator') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object', RubyLint.registry))
 
     klass.define_instance_method('initialize') do |method|
       method.define_argument('state')
@@ -1657,19 +1657,19 @@ RubyLint.registry.register('Sprockets') do |defs|
   end
 
   defs.define_constant('Sprockets::Railtie::OrderedOptions::MAX_ENTRIES') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('Sprockets::Railtie::OrderedOptions::MIN_SIZE') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('Sprockets::Railtie::OrderedOptions::SortedElement') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object', RubyLint.registry))
 
     klass.define_instance_method('<=>') do |method|
       method.define_argument('other')
@@ -1688,9 +1688,9 @@ RubyLint.registry.register('Sprockets') do |defs|
   end
 
   defs.define_constant('Sprockets::Railtie::OrderedOptions::State') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object', RubyLint.registry))
 
     klass.define_method('from') do |method|
       method.define_argument('state')
@@ -1719,9 +1719,9 @@ RubyLint.registry.register('Sprockets') do |defs|
   end
 
   defs.define_constant('Sprockets::SafetyColons') do |klass|
-    klass.inherits(defs.constant_proxy('Tilt::Template'))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
+    klass.inherits(defs.constant_proxy('Tilt::Template', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object', RubyLint.registry))
 
     klass.define_instance_method('evaluate') do |method|
       method.define_argument('context')
@@ -1733,9 +1733,9 @@ RubyLint.registry.register('Sprockets') do |defs|
   end
 
   defs.define_constant('Sprockets::SassCompressor') do |klass|
-    klass.inherits(defs.constant_proxy('Tilt::Template'))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
+    klass.inherits(defs.constant_proxy('Tilt::Template', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object', RubyLint.registry))
 
     klass.define_method('engine_initialized?')
 
@@ -1751,9 +1751,9 @@ RubyLint.registry.register('Sprockets') do |defs|
   end
 
   defs.define_constant('Sprockets::SassTemplate') do |klass|
-    klass.inherits(defs.constant_proxy('Tilt::Template'))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
+    klass.inherits(defs.constant_proxy('Tilt::Template', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object', RubyLint.registry))
 
     klass.define_method('engine_initialized?')
 
@@ -1771,17 +1771,17 @@ RubyLint.registry.register('Sprockets') do |defs|
   end
 
   defs.define_constant('Sprockets::ScssTemplate') do |klass|
-    klass.inherits(defs.constant_proxy('Sprockets::SassTemplate'))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
+    klass.inherits(defs.constant_proxy('Sprockets::SassTemplate', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object', RubyLint.registry))
 
     klass.define_instance_method('syntax')
   end
 
   defs.define_constant('Sprockets::StaticAsset') do |klass|
-    klass.inherits(defs.constant_proxy('Sprockets::Asset'))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
+    klass.inherits(defs.constant_proxy('Sprockets::Asset', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object', RubyLint.registry))
 
     klass.define_instance_method('source')
 
@@ -1794,9 +1794,9 @@ RubyLint.registry.register('Sprockets') do |defs|
   end
 
   defs.define_constant('Sprockets::UglifierCompressor') do |klass|
-    klass.inherits(defs.constant_proxy('Tilt::Template'))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
+    klass.inherits(defs.constant_proxy('Tilt::Template', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object', RubyLint.registry))
 
     klass.define_method('engine_initialized?')
 
@@ -1812,7 +1812,7 @@ RubyLint.registry.register('Sprockets') do |defs|
   end
 
   defs.define_constant('Sprockets::Utils') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
     klass.define_method('normalize_extension') do |method|
       method.define_argument('extension')
@@ -1825,19 +1825,19 @@ RubyLint.registry.register('Sprockets') do |defs|
   end
 
   defs.define_constant('Sprockets::Utils::UTF8_BOM_PATTERN') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('Sprockets::VERSION') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('Sprockets::YUICompressor') do |klass|
-    klass.inherits(defs.constant_proxy('Tilt::Template'))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
+    klass.inherits(defs.constant_proxy('Tilt::Template', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object', RubyLint.registry))
 
     klass.define_method('engine_initialized?')
 

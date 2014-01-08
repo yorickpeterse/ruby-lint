@@ -5,7 +5,7 @@
 
 RubyLint.registry.register('Pathname') do |defs|
   defs.define_constant('Pathname') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
     klass.define_method('getwd')
 
@@ -291,22 +291,22 @@ RubyLint.registry.register('Pathname') do |defs|
   end
 
   defs.define_constant('Pathname::SAME_PATHS') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('Pathname::SEPARATOR_LIST') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('Pathname::SEPARATOR_PAT') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('Pathname::TO_PATH') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 end

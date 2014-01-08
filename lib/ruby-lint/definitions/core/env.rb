@@ -5,7 +5,7 @@
 
 RubyLint.registry.register('ENV') do |defs|
   defs.define_constant('ENV') do |klass|
-    klass.inherits(defs.constant_proxy('Hash'))
+    klass.inherits(defs.constant_proxy('Hash', RubyLint.registry))
     klass.instance!
   end
 end

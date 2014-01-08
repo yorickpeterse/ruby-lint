@@ -5,7 +5,7 @@
 
 RubyLint.registry.register('Open3') do |defs|
   defs.define_constant('Open3') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
     klass.define_method('capture2') do |method|
       method.define_rest_argument('cmd')

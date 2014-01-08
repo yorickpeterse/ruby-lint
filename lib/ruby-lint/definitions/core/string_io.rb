@@ -5,10 +5,10 @@
 
 RubyLint.registry.register('StringIO') do |defs|
   defs.define_constant('StringIO') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
-    klass.inherits(defs.constant_proxy('IO::Readable'))
-    klass.inherits(defs.constant_proxy('IO::Writable'))
-    klass.inherits(defs.constant_proxy('Enumerable'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('IO::Readable', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('IO::Writable', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('Enumerable', RubyLint.registry))
 
     klass.define_method('open') do |method|
       method.define_rest_argument('args')
@@ -256,7 +256,7 @@ RubyLint.registry.register('StringIO') do |defs|
   end
 
   defs.define_constant('StringIO::Data') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
     klass.define_instance_method('encoding')
 
@@ -282,8 +282,8 @@ RubyLint.registry.register('StringIO') do |defs|
   end
 
   defs.define_constant('StringIO::Enumerator') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
-    klass.inherits(defs.constant_proxy('Enumerable'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('Enumerable', RubyLint.registry))
 
     klass.define_instance_method('each') do |method|
       method.define_rest_argument('args')
@@ -317,7 +317,7 @@ RubyLint.registry.register('StringIO') do |defs|
   end
 
   defs.define_constant('StringIO::SortedElement') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
     klass.define_instance_method('<=>') do |method|
       method.define_argument('other')
@@ -336,7 +336,7 @@ RubyLint.registry.register('StringIO') do |defs|
   end
 
   defs.define_constant('StringIO::Undefined') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 end

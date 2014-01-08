@@ -5,12 +5,12 @@
 
 RubyLint.registry.register('Scanf') do |defs|
   defs.define_constant('Scanf') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('Scanf::FormatSpecifier') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
     klass.define_instance_method('conversion')
 
@@ -44,7 +44,7 @@ RubyLint.registry.register('Scanf') do |defs|
   end
 
   defs.define_constant('Scanf::FormatString') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
     klass.define_instance_method('initialize') do |method|
       method.define_argument('str')
@@ -78,12 +78,12 @@ RubyLint.registry.register('Scanf') do |defs|
   end
 
   defs.define_constant('Scanf::FormatString::REGEX') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('Scanf::FormatString::SPECIFIERS') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 end

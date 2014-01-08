@@ -5,7 +5,7 @@
 
 RubyLint.registry.register('SortedSet') do |defs|
   defs.define_constant('SortedSet') do |klass|
-    klass.inherits(defs.constant_proxy('Set'))
+    klass.inherits(defs.constant_proxy('Set', RubyLint.registry))
 
     klass.define_method('[]') do |method|
       method.define_rest_argument('ary')
@@ -22,8 +22,8 @@ RubyLint.registry.register('SortedSet') do |defs|
   end
 
   defs.define_constant('SortedSet::Enumerator') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
-    klass.inherits(defs.constant_proxy('Enumerable'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('Enumerable', RubyLint.registry))
 
     klass.define_instance_method('each') do |method|
       method.define_rest_argument('args')
@@ -57,12 +57,12 @@ RubyLint.registry.register('SortedSet') do |defs|
   end
 
   defs.define_constant('SortedSet::InspectKey') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('SortedSet::SortedElement') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
     klass.define_instance_method('<=>') do |method|
       method.define_argument('other')

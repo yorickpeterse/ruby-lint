@@ -5,7 +5,7 @@
 
 RubyLint.registry.register('Singleton') do |defs|
   defs.define_constant('Singleton') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
     klass.define_method('__init__') do |method|
       method.define_argument('klass')
@@ -21,7 +21,7 @@ RubyLint.registry.register('Singleton') do |defs|
   end
 
   defs.define_constant('Singleton::SingletonClassMethods') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
     klass.define_instance_method('_load') do |method|
       method.define_argument('str')

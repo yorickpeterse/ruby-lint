@@ -5,7 +5,7 @@
 
 RubyLint.registry.register('Etc') do |defs|
   defs.define_constant('Etc') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
     klass.define_method('endgrent')
 
@@ -43,7 +43,7 @@ RubyLint.registry.register('Etc') do |defs|
   end
 
   defs.define_constant('Etc::FFI') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
     klass.define_method('add_typedef') do |method|
       method.define_argument('current')
@@ -88,7 +88,7 @@ RubyLint.registry.register('Etc') do |defs|
   end
 
   defs.define_constant('Etc::Group') do |klass|
-    klass.inherits(defs.constant_proxy('Rubinius::FFI::Struct'))
+    klass.inherits(defs.constant_proxy('Rubinius::FFI::Struct', RubyLint.registry))
 
     klass.define_instance_method('gid')
 
@@ -100,7 +100,7 @@ RubyLint.registry.register('Etc') do |defs|
   end
 
   defs.define_constant('Etc::Passwd') do |klass|
-    klass.inherits(defs.constant_proxy('Rubinius::FFI::Struct'))
+    klass.inherits(defs.constant_proxy('Rubinius::FFI::Struct', RubyLint.registry))
 
     klass.define_instance_method('dir')
 

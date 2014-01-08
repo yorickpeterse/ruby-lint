@@ -5,7 +5,7 @@
 
 RubyLint.registry.register('FileUtils') do |defs|
   defs.define_constant('FileUtils') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
     klass.define_method('cd') do |method|
       method.define_argument('dir')
@@ -286,7 +286,7 @@ RubyLint.registry.register('FileUtils') do |defs|
   end
 
   defs.define_constant('FileUtils::DryRun') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
     klass.define_method('cd') do |method|
       method.define_rest_argument('arg1')
@@ -466,8 +466,8 @@ RubyLint.registry.register('FileUtils') do |defs|
   end
 
   defs.define_constant('FileUtils::Entry_') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
-    klass.inherits(defs.constant_proxy('FileUtils::StreamUtils_'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('FileUtils::StreamUtils_', RubyLint.registry))
 
     klass.define_instance_method('blockdev?')
 
@@ -557,42 +557,42 @@ RubyLint.registry.register('FileUtils') do |defs|
   end
 
   defs.define_constant('FileUtils::Entry_::DIRECTORY_TERM') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('FileUtils::Entry_::SYSCASE') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('FileUtils::Entry_::S_IF_DOOR') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('FileUtils::LN_SUPPORTED') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('FileUtils::LOW_METHODS') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('FileUtils::LowMethods') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('FileUtils::METHODS') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('FileUtils::NoWrite') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
     klass.define_method('cd') do |method|
       method.define_rest_argument('arg1')
@@ -772,22 +772,22 @@ RubyLint.registry.register('FileUtils') do |defs|
   end
 
   defs.define_constant('FileUtils::OPT_TABLE') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('FileUtils::RUBY') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('FileUtils::StreamUtils_') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('FileUtils::Verbose') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
     klass.define_method('cd') do |method|
       method.define_rest_argument('args')
@@ -980,7 +980,7 @@ RubyLint.registry.register('FileUtils') do |defs|
   end
 
   defs.define_constant('FileUtils::Verbose::DryRun') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
     klass.define_method('cd') do |method|
       method.define_rest_argument('arg1')
@@ -1160,8 +1160,8 @@ RubyLint.registry.register('FileUtils') do |defs|
   end
 
   defs.define_constant('FileUtils::Verbose::Entry_') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
-    klass.inherits(defs.constant_proxy('FileUtils::StreamUtils_'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('FileUtils::StreamUtils_', RubyLint.registry))
 
     klass.define_instance_method('blockdev?')
 
@@ -1251,27 +1251,27 @@ RubyLint.registry.register('FileUtils') do |defs|
   end
 
   defs.define_constant('FileUtils::Verbose::LN_SUPPORTED') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('FileUtils::Verbose::LOW_METHODS') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('FileUtils::Verbose::LowMethods') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('FileUtils::Verbose::METHODS') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('FileUtils::Verbose::NoWrite') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
     klass.define_method('cd') do |method|
       method.define_rest_argument('arg1')
@@ -1451,17 +1451,17 @@ RubyLint.registry.register('FileUtils') do |defs|
   end
 
   defs.define_constant('FileUtils::Verbose::OPT_TABLE') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('FileUtils::Verbose::RUBY') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('FileUtils::Verbose::StreamUtils_') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 end

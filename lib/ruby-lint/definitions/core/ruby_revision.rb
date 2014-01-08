@@ -5,7 +5,7 @@
 
 RubyLint.registry.register('RUBY_REVISION') do |defs|
   defs.define_constant('RUBY_REVISION') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 end

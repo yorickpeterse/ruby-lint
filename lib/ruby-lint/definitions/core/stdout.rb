@@ -5,7 +5,7 @@
 
 RubyLint.registry.register('STDOUT') do |defs|
   defs.define_constant('STDOUT') do |klass|
-    klass.inherits(defs.constant_proxy('IO'))
+    klass.inherits(defs.constant_proxy('IO', RubyLint.registry))
     klass.instance!
   end
 end

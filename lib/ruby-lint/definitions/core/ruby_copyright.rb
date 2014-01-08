@@ -5,7 +5,7 @@
 
 RubyLint.registry.register('RUBY_COPYRIGHT') do |defs|
   defs.define_constant('RUBY_COPYRIGHT') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 end

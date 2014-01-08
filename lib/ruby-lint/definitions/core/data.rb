@@ -5,7 +5,7 @@
 
 RubyLint.registry.register('Data') do |defs|
   defs.define_constant('Data') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 end

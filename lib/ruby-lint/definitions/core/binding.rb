@@ -5,7 +5,7 @@
 
 RubyLint.registry.register('Binding') do |defs|
   defs.define_constant('Binding') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
     klass.define_method('self_context') do |method|
       method.define_argument('recv')

@@ -5,7 +5,7 @@
 
 RubyLint.registry.register('Fiber') do |defs|
   defs.define_constant('Fiber') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
     klass.define_method('create') do |method|
       method.define_argument('callable')

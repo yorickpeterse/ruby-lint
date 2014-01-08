@@ -5,7 +5,7 @@
 
 RubyLint.registry.register('ThWait') do |defs|
   defs.define_constant('ThWait') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
     klass.define_method('all_waits') do |method|
       method.define_rest_argument('threads')

@@ -5,7 +5,7 @@
 
 RubyLint.registry.register('Find') do |defs|
   defs.define_constant('Find') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
     klass.define_method('find') do |method|
       method.define_rest_argument('paths')

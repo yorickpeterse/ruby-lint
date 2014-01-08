@@ -5,8 +5,8 @@
 
 RubyLint.registry.register('Range') do |defs|
   defs.define_constant('Range') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
-    klass.inherits(defs.constant_proxy('Enumerable'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('Enumerable', RubyLint.registry))
 
     klass.define_method('yaml_new') do |method|
       method.define_argument('klass')
@@ -100,8 +100,8 @@ RubyLint.registry.register('Range') do |defs|
   end
 
   defs.define_constant('Range::Enumerator') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
-    klass.inherits(defs.constant_proxy('Enumerable'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('Enumerable', RubyLint.registry))
 
     klass.define_instance_method('each') do |method|
       method.define_rest_argument('args')
@@ -135,7 +135,7 @@ RubyLint.registry.register('Range') do |defs|
   end
 
   defs.define_constant('Range::SortedElement') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
     klass.define_instance_method('<=>') do |method|
       method.define_argument('other')

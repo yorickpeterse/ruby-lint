@@ -5,9 +5,9 @@
 
 RubyLint.registry.register('Float') do |defs|
   defs.define_constant('Float') do |klass|
-    klass.inherits(defs.constant_proxy('Numeric'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Float'))
-    klass.inherits(defs.constant_proxy('Precision'))
+    klass.inherits(defs.constant_proxy('Numeric', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Float', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('Precision', RubyLint.registry))
 
     klass.define_method('induced_from') do |method|
       method.define_argument('obj')
@@ -169,17 +169,17 @@ RubyLint.registry.register('Float') do |defs|
   end
 
   defs.define_constant('Float::DIG') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('Float::EPSILON') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('Float::FFI') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
     klass.define_method('add_typedef') do |method|
       method.define_argument('current')
@@ -224,57 +224,57 @@ RubyLint.registry.register('Float') do |defs|
   end
 
   defs.define_constant('Float::INFINITY') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('Float::MANT_DIG') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('Float::MAX') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('Float::MAX_10_EXP') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('Float::MAX_EXP') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('Float::MIN') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('Float::MIN_10_EXP') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('Float::MIN_EXP') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('Float::NAN') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('Float::RADIX') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('Float::ROUNDS') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 end

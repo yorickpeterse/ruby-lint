@@ -5,7 +5,7 @@
 
 RubyLint.registry.register('IPSocket') do |defs|
   defs.define_constant('IPSocket') do |klass|
-    klass.inherits(defs.constant_proxy('BasicSocket'))
+    klass.inherits(defs.constant_proxy('BasicSocket', RubyLint.registry))
 
     klass.define_method('getaddress') do |method|
       method.define_argument('host')
@@ -31,22 +31,22 @@ RubyLint.registry.register('IPSocket') do |defs|
   end
 
   defs.define_constant('IPSocket::ACCMODE') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('IPSocket::APPEND') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('IPSocket::BINARY') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('IPSocket::BidirectionalPipe') do |klass|
-    klass.inherits(defs.constant_proxy('IO'))
+    klass.inherits(defs.constant_proxy('IO', RubyLint.registry))
 
     klass.define_instance_method('<<') do |method|
       method.define_argument('obj')
@@ -95,29 +95,29 @@ RubyLint.registry.register('IPSocket') do |defs|
   end
 
   defs.define_constant('IPSocket::CREAT') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('IPSocket::EAGAINWaitReadable') do |klass|
-    klass.inherits(defs.constant_proxy('Errno::EAGAIN'))
-    klass.inherits(defs.constant_proxy('IO::WaitReadable'))
+    klass.inherits(defs.constant_proxy('Errno::EAGAIN', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('IO::WaitReadable', RubyLint.registry))
 
   end
 
   defs.define_constant('IPSocket::EAGAINWaitWritable') do |klass|
-    klass.inherits(defs.constant_proxy('Errno::EAGAIN'))
-    klass.inherits(defs.constant_proxy('IO::WaitWritable'))
+    klass.inherits(defs.constant_proxy('Errno::EAGAIN', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('IO::WaitWritable', RubyLint.registry))
 
   end
 
   defs.define_constant('IPSocket::EXCL') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('IPSocket::EachReader') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
     klass.define_instance_method('each')
 
@@ -140,8 +140,8 @@ RubyLint.registry.register('IPSocket') do |defs|
   end
 
   defs.define_constant('IPSocket::Enumerator') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
-    klass.inherits(defs.constant_proxy('Enumerable'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('Enumerable', RubyLint.registry))
 
     klass.define_instance_method('each') do |method|
       method.define_rest_argument('args')
@@ -175,12 +175,12 @@ RubyLint.registry.register('IPSocket') do |defs|
   end
 
   defs.define_constant('IPSocket::FD_CLOEXEC') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('IPSocket::FFI') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
     klass.define_method('add_typedef') do |method|
       method.define_argument('current')
@@ -225,57 +225,57 @@ RubyLint.registry.register('IPSocket') do |defs|
   end
 
   defs.define_constant('IPSocket::FNM_CASEFOLD') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('IPSocket::FNM_DOTMATCH') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('IPSocket::FNM_NOESCAPE') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('IPSocket::FNM_PATHNAME') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('IPSocket::FNM_SYSCASE') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('IPSocket::F_GETFD') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('IPSocket::F_GETFL') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('IPSocket::F_OK') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('IPSocket::F_SETFD') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('IPSocket::F_SETFL') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('IPSocket::InternalBuffer') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
     klass.define_method('allocate')
 
@@ -357,88 +357,88 @@ RubyLint.registry.register('IPSocket') do |defs|
   end
 
   defs.define_constant('IPSocket::LOCK_EX') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('IPSocket::LOCK_NB') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('IPSocket::LOCK_SH') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('IPSocket::LOCK_UN') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('IPSocket::NOCTTY') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('IPSocket::NONBLOCK') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('IPSocket::NULL') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('IPSocket::RDONLY') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('IPSocket::RDWR') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('IPSocket::R_OK') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('IPSocket::Readable') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('IPSocket::SEEK_CUR') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('IPSocket::SEEK_END') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('IPSocket::SEEK_SET') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('IPSocket::SYNC') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('IPSocket::Socketable') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
     klass.define_instance_method('accept')
   end
 
   defs.define_constant('IPSocket::SortedElement') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
     klass.define_instance_method('<=>') do |method|
       method.define_argument('other')
@@ -457,7 +457,7 @@ RubyLint.registry.register('IPSocket') do |defs|
   end
 
   defs.define_constant('IPSocket::StreamCopier') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
     klass.define_instance_method('initialize') do |method|
       method.define_argument('from')
@@ -481,12 +481,12 @@ RubyLint.registry.register('IPSocket') do |defs|
   end
 
   defs.define_constant('IPSocket::TRUNC') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('IPSocket::TransferIO') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
     klass.define_instance_method('recv_fd')
 
@@ -494,32 +494,32 @@ RubyLint.registry.register('IPSocket') do |defs|
   end
 
   defs.define_constant('IPSocket::WRONLY') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('IPSocket::W_OK') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('IPSocket::WaitReadable') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('IPSocket::WaitWritable') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('IPSocket::Writable') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('IPSocket::X_OK') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 end

@@ -5,7 +5,7 @@
 
 RubyLint.registry.register('Forwardable') do |defs|
   defs.define_constant('Forwardable') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
     klass.define_method('debug')
 
@@ -43,12 +43,12 @@ RubyLint.registry.register('Forwardable') do |defs|
   end
 
   defs.define_constant('Forwardable::FILE_REGEXP') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('Forwardable::FORWARDABLE_VERSION') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 end

@@ -5,8 +5,8 @@
 
 RubyLint.registry.register('Symbol') do |defs|
   defs.define_constant('Symbol') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
-    klass.inherits(defs.constant_proxy('ImmediateValue'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('ImmediateValue', RubyLint.registry))
 
     klass.define_method('===') do |method|
       method.define_argument('obj')

@@ -5,7 +5,7 @@
 
 RubyLint.registry.register('OpenStruct') do |defs|
   defs.define_constant('OpenStruct') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
     klass.define_instance_method('==') do |method|
       method.define_argument('other')
@@ -48,7 +48,7 @@ RubyLint.registry.register('OpenStruct') do |defs|
   end
 
   defs.define_constant('OpenStruct::InspectKey') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 end

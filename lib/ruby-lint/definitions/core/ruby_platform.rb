@@ -5,7 +5,7 @@
 
 RubyLint.registry.register('RUBY_PLATFORM') do |defs|
   defs.define_constant('RUBY_PLATFORM') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 end

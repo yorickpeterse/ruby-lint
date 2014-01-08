@@ -5,9 +5,9 @@
 
 RubyLint.registry.register('NilClass') do |defs|
   defs.define_constant('NilClass') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::NilClass'))
-    klass.inherits(defs.constant_proxy('ImmediateValue'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::NilClass', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('ImmediateValue', RubyLint.registry))
 
     klass.define_method('yaml_tag_subclasses?')
 

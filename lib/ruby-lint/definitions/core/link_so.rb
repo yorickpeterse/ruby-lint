@@ -5,7 +5,7 @@
 
 RubyLint.registry.register('LINK_SO') do |defs|
   defs.define_constant('LINK_SO') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 end

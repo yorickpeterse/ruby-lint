@@ -5,7 +5,7 @@
 
 RubyLint.registry.register('NoMethodError') do |defs|
   defs.define_constant('NoMethodError') do |klass|
-    klass.inherits(defs.constant_proxy('NameError'))
+    klass.inherits(defs.constant_proxy('NameError', RubyLint.registry))
 
     klass.define_instance_method('args')
 

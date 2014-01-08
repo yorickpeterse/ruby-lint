@@ -5,7 +5,7 @@
 
 RubyLint.registry.register('SRC_EXT') do |defs|
   defs.define_constant('SRC_EXT') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 end

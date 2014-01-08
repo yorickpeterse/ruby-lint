@@ -5,7 +5,7 @@
 
 RubyLint.registry.register('Mutex_m') do |defs|
   defs.define_constant('Mutex_m') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
     klass.define_method('append_features') do |method|
       method.define_argument('cl')

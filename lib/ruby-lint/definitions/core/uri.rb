@@ -5,7 +5,7 @@
 
 RubyLint.registry.register('URI') do |defs|
   defs.define_constant('URI') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
     klass.define_method('decode_www_form') do |method|
       method.define_argument('str')
@@ -51,42 +51,42 @@ RubyLint.registry.register('URI') do |defs|
   end
 
   defs.define_constant('URI::ABS_PATH') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('URI::ABS_URI') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('URI::ABS_URI_REF') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('URI::BadURIError') do |klass|
-    klass.inherits(defs.constant_proxy('URI::Error'))
+    klass.inherits(defs.constant_proxy('URI::Error', RubyLint.registry))
 
   end
 
   defs.define_constant('URI::DEFAULT_PARSER') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('URI::ESCAPED') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('URI::Error') do |klass|
-    klass.inherits(defs.constant_proxy('StandardError'))
+    klass.inherits(defs.constant_proxy('StandardError', RubyLint.registry))
 
   end
 
   defs.define_constant('URI::Escape') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
     klass.define_instance_method('decode') do |method|
       method.define_rest_argument('arg')
@@ -106,13 +106,13 @@ RubyLint.registry.register('URI') do |defs|
   end
 
   defs.define_constant('URI::FRAGMENT') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('URI::FTP') do |klass|
-    klass.inherits(defs.constant_proxy('URI::Generic'))
-    klass.inherits(defs.constant_proxy('OpenURI::OpenRead'))
+    klass.inherits(defs.constant_proxy('URI::Generic', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('OpenURI::OpenRead', RubyLint.registry))
 
     klass.define_method('build') do |method|
       method.define_argument('args')
@@ -164,9 +164,9 @@ RubyLint.registry.register('URI') do |defs|
   end
 
   defs.define_constant('URI::Generic') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
-    klass.inherits(defs.constant_proxy('URI'))
-    klass.inherits(defs.constant_proxy('URI::REGEXP'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('URI', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('URI::REGEXP', RubyLint.registry))
 
     klass.define_method('build') do |method|
       method.define_argument('args')
@@ -385,18 +385,18 @@ RubyLint.registry.register('URI') do |defs|
   end
 
   defs.define_constant('URI::HOST') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('URI::HTML5ASCIIINCOMPAT') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('URI::HTTP') do |klass|
-    klass.inherits(defs.constant_proxy('URI::Generic'))
-    klass.inherits(defs.constant_proxy('OpenURI::OpenRead'))
+    klass.inherits(defs.constant_proxy('URI::Generic', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('OpenURI::OpenRead', RubyLint.registry))
 
     klass.define_method('build') do |method|
       method.define_argument('args')
@@ -418,57 +418,57 @@ RubyLint.registry.register('URI') do |defs|
   end
 
   defs.define_constant('URI::HTTPS') do |klass|
-    klass.inherits(defs.constant_proxy('URI::HTTP'))
+    klass.inherits(defs.constant_proxy('URI::HTTP', RubyLint.registry))
 
   end
 
   defs.define_constant('URI::HTTPS::ABS_PATH') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('URI::HTTPS::ABS_URI') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('URI::HTTPS::ABS_URI_REF') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('URI::HTTPS::BadURIError') do |klass|
-    klass.inherits(defs.constant_proxy('URI::Error'))
+    klass.inherits(defs.constant_proxy('URI::Error', RubyLint.registry))
 
   end
 
   defs.define_constant('URI::HTTPS::COMPONENT') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('URI::HTTPS::DEFAULT_PARSER') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('URI::HTTPS::DEFAULT_PORT') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('URI::HTTPS::ESCAPED') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('URI::HTTPS::Error') do |klass|
-    klass.inherits(defs.constant_proxy('StandardError'))
+    klass.inherits(defs.constant_proxy('StandardError', RubyLint.registry))
 
   end
 
   defs.define_constant('URI::HTTPS::Escape') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
     klass.define_instance_method('decode') do |method|
       method.define_rest_argument('arg')
@@ -488,13 +488,13 @@ RubyLint.registry.register('URI') do |defs|
   end
 
   defs.define_constant('URI::HTTPS::FRAGMENT') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('URI::HTTPS::FTP') do |klass|
-    klass.inherits(defs.constant_proxy('URI::Generic'))
-    klass.inherits(defs.constant_proxy('OpenURI::OpenRead'))
+    klass.inherits(defs.constant_proxy('URI::Generic', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('OpenURI::OpenRead', RubyLint.registry))
 
     klass.define_method('build') do |method|
       method.define_argument('args')
@@ -546,9 +546,9 @@ RubyLint.registry.register('URI') do |defs|
   end
 
   defs.define_constant('URI::HTTPS::Generic') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
-    klass.inherits(defs.constant_proxy('URI'))
-    klass.inherits(defs.constant_proxy('URI::REGEXP'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('URI', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('URI::REGEXP', RubyLint.registry))
 
     klass.define_method('build') do |method|
       method.define_argument('args')
@@ -767,18 +767,18 @@ RubyLint.registry.register('URI') do |defs|
   end
 
   defs.define_constant('URI::HTTPS::HOST') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('URI::HTTPS::HTML5ASCIIINCOMPAT') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('URI::HTTPS::HTTP') do |klass|
-    klass.inherits(defs.constant_proxy('URI::Generic'))
-    klass.inherits(defs.constant_proxy('OpenURI::OpenRead'))
+    klass.inherits(defs.constant_proxy('URI::Generic', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('OpenURI::OpenRead', RubyLint.registry))
 
     klass.define_method('build') do |method|
       method.define_argument('args')
@@ -800,17 +800,17 @@ RubyLint.registry.register('URI') do |defs|
   end
 
   defs.define_constant('URI::HTTPS::InvalidComponentError') do |klass|
-    klass.inherits(defs.constant_proxy('URI::Error'))
+    klass.inherits(defs.constant_proxy('URI::Error', RubyLint.registry))
 
   end
 
   defs.define_constant('URI::HTTPS::InvalidURIError') do |klass|
-    klass.inherits(defs.constant_proxy('URI::Error'))
+    klass.inherits(defs.constant_proxy('URI::Error', RubyLint.registry))
 
   end
 
   defs.define_constant('URI::HTTPS::LDAP') do |klass|
-    klass.inherits(defs.constant_proxy('URI::Generic'))
+    klass.inherits(defs.constant_proxy('URI::Generic', RubyLint.registry))
 
     klass.define_method('build') do |method|
       method.define_argument('args')
@@ -876,12 +876,12 @@ RubyLint.registry.register('URI') do |defs|
   end
 
   defs.define_constant('URI::HTTPS::LDAPS') do |klass|
-    klass.inherits(defs.constant_proxy('URI::LDAP'))
+    klass.inherits(defs.constant_proxy('URI::LDAP', RubyLint.registry))
 
   end
 
   defs.define_constant('URI::HTTPS::MailTo') do |klass|
-    klass.inherits(defs.constant_proxy('URI::Generic'))
+    klass.inherits(defs.constant_proxy('URI::Generic', RubyLint.registry))
 
     klass.define_method('build') do |method|
       method.define_argument('args')
@@ -921,23 +921,23 @@ RubyLint.registry.register('URI') do |defs|
   end
 
   defs.define_constant('URI::HTTPS::OPAQUE') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('URI::HTTPS::PATTERN') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('URI::HTTPS::PORT') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('URI::HTTPS::Parser') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
-    klass.inherits(defs.constant_proxy('URI::REGEXP'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('URI::REGEXP', RubyLint.registry))
 
     klass.define_instance_method('escape') do |method|
       method.define_argument('str')
@@ -984,72 +984,72 @@ RubyLint.registry.register('URI') do |defs|
   end
 
   defs.define_constant('URI::HTTPS::QUERY') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('URI::HTTPS::REGEXP') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('URI::HTTPS::REGISTRY') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('URI::HTTPS::REL_PATH') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('URI::HTTPS::REL_URI') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('URI::HTTPS::REL_URI_REF') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('URI::HTTPS::SCHEME') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('URI::HTTPS::TBLDECWWWCOMP_') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('URI::HTTPS::TBLENCWWWCOMP_') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('URI::HTTPS::UNSAFE') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('URI::HTTPS::URI_REF') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('URI::HTTPS::USERINFO') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('URI::HTTPS::USE_REGISTRY') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('URI::HTTPS::Util') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
     klass.define_method('make_components_hash') do |method|
       method.define_argument('klass')
@@ -1058,32 +1058,32 @@ RubyLint.registry.register('URI') do |defs|
   end
 
   defs.define_constant('URI::HTTPS::VERSION') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('URI::HTTPS::VERSION_CODE') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('URI::HTTPS::WFKV_') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('URI::InvalidComponentError') do |klass|
-    klass.inherits(defs.constant_proxy('URI::Error'))
+    klass.inherits(defs.constant_proxy('URI::Error', RubyLint.registry))
 
   end
 
   defs.define_constant('URI::InvalidURIError') do |klass|
-    klass.inherits(defs.constant_proxy('URI::Error'))
+    klass.inherits(defs.constant_proxy('URI::Error', RubyLint.registry))
 
   end
 
   defs.define_constant('URI::LDAP') do |klass|
-    klass.inherits(defs.constant_proxy('URI::Generic'))
+    klass.inherits(defs.constant_proxy('URI::Generic', RubyLint.registry))
 
     klass.define_method('build') do |method|
       method.define_argument('args')
@@ -1149,12 +1149,12 @@ RubyLint.registry.register('URI') do |defs|
   end
 
   defs.define_constant('URI::LDAPS') do |klass|
-    klass.inherits(defs.constant_proxy('URI::LDAP'))
+    klass.inherits(defs.constant_proxy('URI::LDAP', RubyLint.registry))
 
   end
 
   defs.define_constant('URI::MailTo') do |klass|
-    klass.inherits(defs.constant_proxy('URI::Generic'))
+    klass.inherits(defs.constant_proxy('URI::Generic', RubyLint.registry))
 
     klass.define_method('build') do |method|
       method.define_argument('args')
@@ -1194,23 +1194,23 @@ RubyLint.registry.register('URI') do |defs|
   end
 
   defs.define_constant('URI::OPAQUE') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('URI::PATTERN') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('URI::PORT') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('URI::Parser') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
-    klass.inherits(defs.constant_proxy('URI::REGEXP'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('URI::REGEXP', RubyLint.registry))
 
     klass.define_instance_method('escape') do |method|
       method.define_argument('str')
@@ -1257,67 +1257,67 @@ RubyLint.registry.register('URI') do |defs|
   end
 
   defs.define_constant('URI::QUERY') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('URI::REGEXP') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('URI::REGISTRY') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('URI::REL_PATH') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('URI::REL_URI') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('URI::REL_URI_REF') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('URI::SCHEME') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('URI::TBLDECWWWCOMP_') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('URI::TBLENCWWWCOMP_') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('URI::UNSAFE') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('URI::URI_REF') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('URI::USERINFO') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('URI::Util') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
     klass.define_method('make_components_hash') do |method|
       method.define_argument('klass')
@@ -1326,17 +1326,17 @@ RubyLint.registry.register('URI') do |defs|
   end
 
   defs.define_constant('URI::VERSION') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('URI::VERSION_CODE') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('URI::WFKV_') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 end

@@ -5,8 +5,8 @@
 
 RubyLint.registry.register('Bignum') do |defs|
   defs.define_constant('Bignum') do |klass|
-    klass.inherits(defs.constant_proxy('Integer'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Bignum'))
+    klass.inherits(defs.constant_proxy('Integer', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Bignum', RubyLint.registry))
 
     klass.define_method('from_float') do |method|
       method.define_argument('value')

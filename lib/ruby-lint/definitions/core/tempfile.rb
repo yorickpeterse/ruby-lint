@@ -6,7 +6,7 @@
 RubyLint.registry.register('Tempfile') do |defs|
   defs.define_constant('Tempfile') do |klass|
     klass.inherits(defs.constant_proxy('#<Class:0x2362c>'))
-    klass.inherits(defs.constant_proxy('Dir::Tmpname'))
+    klass.inherits(defs.constant_proxy('Dir::Tmpname', RubyLint.registry))
 
     klass.define_method('create') do |method|
       method.define_argument('basename')
@@ -48,12 +48,12 @@ RubyLint.registry.register('Tempfile') do |defs|
   end
 
   defs.define_constant('Tempfile::RUBYGEMS_ACTIVATION_MONITOR') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('Tempfile::Remover') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
     klass.define_instance_method('call') do |method|
       method.define_rest_argument('args')

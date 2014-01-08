@@ -5,7 +5,7 @@
 
 RubyLint.registry.register('FileTest') do |defs|
   defs.define_constant('FileTest') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
     klass.define_method('blockdev?') do |method|
       method.define_argument('path')

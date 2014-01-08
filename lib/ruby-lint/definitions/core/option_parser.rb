@@ -5,7 +5,7 @@
 
 RubyLint.registry.register('OptionParser') do |defs|
   defs.define_constant('OptionParser') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
     klass.define_method('accept') do |method|
       method.define_rest_argument('args')
@@ -236,47 +236,47 @@ RubyLint.registry.register('OptionParser') do |defs|
   end
 
   defs.define_constant('OptionParser::Acceptables') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('OptionParser::Acceptables::DecimalInteger') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('OptionParser::Acceptables::DecimalNumeric') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('OptionParser::Acceptables::OctalInteger') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('OptionParser::AmbiguousArgument') do |klass|
-    klass.inherits(defs.constant_proxy('OptionParser::InvalidArgument'))
+    klass.inherits(defs.constant_proxy('OptionParser::InvalidArgument', RubyLint.registry))
 
   end
 
   defs.define_constant('OptionParser::AmbiguousArgument::Reason') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('OptionParser::AmbiguousOption') do |klass|
-    klass.inherits(defs.constant_proxy('OptionParser::ParseError'))
+    klass.inherits(defs.constant_proxy('OptionParser::ParseError', RubyLint.registry))
 
   end
 
   defs.define_constant('OptionParser::AmbiguousOption::Reason') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('OptionParser::Arguable') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
     klass.define_method('extend_object') do |method|
       method.define_argument('obj')
@@ -302,18 +302,18 @@ RubyLint.registry.register('OptionParser') do |defs|
   end
 
   defs.define_constant('OptionParser::ArgumentStyle') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('OptionParser::COMPSYS_HEADER') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('OptionParser::CompletingHash') do |klass|
-    klass.inherits(defs.constant_proxy('Hash'))
-    klass.inherits(defs.constant_proxy('OptionParser::Completion'))
+    klass.inherits(defs.constant_proxy('Hash', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('OptionParser::Completion', RubyLint.registry))
 
     klass.define_instance_method('match') do |method|
       method.define_argument('key')
@@ -321,7 +321,7 @@ RubyLint.registry.register('OptionParser') do |defs|
   end
 
   defs.define_constant('OptionParser::CompletingHash::Bucket') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
     klass.define_instance_method('delete') do |method|
       method.define_argument('key')
@@ -369,8 +369,8 @@ RubyLint.registry.register('OptionParser') do |defs|
   end
 
   defs.define_constant('OptionParser::CompletingHash::Entries') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
-    klass.inherits(defs.constant_proxy('Enumerable'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('Enumerable', RubyLint.registry))
 
     klass.define_method('[]') do |method|
       method.define_rest_argument('args')
@@ -496,8 +496,8 @@ RubyLint.registry.register('OptionParser') do |defs|
   end
 
   defs.define_constant('OptionParser::CompletingHash::Enumerator') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
-    klass.inherits(defs.constant_proxy('Enumerable'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('Enumerable', RubyLint.registry))
 
     klass.define_instance_method('each') do |method|
       method.define_rest_argument('args')
@@ -531,7 +531,7 @@ RubyLint.registry.register('OptionParser') do |defs|
   end
 
   defs.define_constant('OptionParser::CompletingHash::Iterator') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
     klass.define_instance_method('initialize') do |method|
       method.define_argument('state')
@@ -545,17 +545,17 @@ RubyLint.registry.register('OptionParser') do |defs|
   end
 
   defs.define_constant('OptionParser::CompletingHash::MAX_ENTRIES') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('OptionParser::CompletingHash::MIN_SIZE') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('OptionParser::CompletingHash::SortedElement') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
     klass.define_instance_method('<=>') do |method|
       method.define_argument('other')
@@ -574,7 +574,7 @@ RubyLint.registry.register('OptionParser') do |defs|
   end
 
   defs.define_constant('OptionParser::CompletingHash::State') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
     klass.define_method('from') do |method|
       method.define_argument('state')
@@ -603,7 +603,7 @@ RubyLint.registry.register('OptionParser') do |defs|
   end
 
   defs.define_constant('OptionParser::Completion') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
     klass.define_method('candidate') do |method|
       method.define_argument('key')
@@ -637,47 +637,47 @@ RubyLint.registry.register('OptionParser') do |defs|
   end
 
   defs.define_constant('OptionParser::DecimalInteger') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('OptionParser::DecimalNumeric') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('OptionParser::DefaultList') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('OptionParser::InvalidArgument') do |klass|
-    klass.inherits(defs.constant_proxy('OptionParser::ParseError'))
+    klass.inherits(defs.constant_proxy('OptionParser::ParseError', RubyLint.registry))
 
   end
 
   defs.define_constant('OptionParser::InvalidArgument::Reason') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('OptionParser::InvalidOption') do |klass|
-    klass.inherits(defs.constant_proxy('OptionParser::ParseError'))
+    klass.inherits(defs.constant_proxy('OptionParser::ParseError', RubyLint.registry))
 
   end
 
   defs.define_constant('OptionParser::InvalidOption::Reason') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('OptionParser::LastModified') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('OptionParser::List') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
     klass.define_instance_method('accept') do |method|
       method.define_argument('t')
@@ -740,58 +740,58 @@ RubyLint.registry.register('OptionParser') do |defs|
   end
 
   defs.define_constant('OptionParser::MissingArgument') do |klass|
-    klass.inherits(defs.constant_proxy('OptionParser::ParseError'))
+    klass.inherits(defs.constant_proxy('OptionParser::ParseError', RubyLint.registry))
 
   end
 
   defs.define_constant('OptionParser::MissingArgument::Reason') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('OptionParser::NO_ARGUMENT') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('OptionParser::NeedlessArgument') do |klass|
-    klass.inherits(defs.constant_proxy('OptionParser::ParseError'))
+    klass.inherits(defs.constant_proxy('OptionParser::ParseError', RubyLint.registry))
 
   end
 
   defs.define_constant('OptionParser::NeedlessArgument::Reason') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('OptionParser::NoArgument') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('OptionParser::OPTIONAL_ARGUMENT') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('OptionParser::OctalInteger') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('OptionParser::Officious') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('OptionParser::OptionMap') do |klass|
-    klass.inherits(defs.constant_proxy('Hash'))
-    klass.inherits(defs.constant_proxy('OptionParser::Completion'))
+    klass.inherits(defs.constant_proxy('Hash', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('OptionParser::Completion', RubyLint.registry))
 
   end
 
   defs.define_constant('OptionParser::OptionMap::Bucket') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
     klass.define_instance_method('delete') do |method|
       method.define_argument('key')
@@ -839,8 +839,8 @@ RubyLint.registry.register('OptionParser') do |defs|
   end
 
   defs.define_constant('OptionParser::OptionMap::Entries') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
-    klass.inherits(defs.constant_proxy('Enumerable'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('Enumerable', RubyLint.registry))
 
     klass.define_method('[]') do |method|
       method.define_rest_argument('args')
@@ -966,8 +966,8 @@ RubyLint.registry.register('OptionParser') do |defs|
   end
 
   defs.define_constant('OptionParser::OptionMap::Enumerator') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
-    klass.inherits(defs.constant_proxy('Enumerable'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('Enumerable', RubyLint.registry))
 
     klass.define_instance_method('each') do |method|
       method.define_rest_argument('args')
@@ -1001,7 +1001,7 @@ RubyLint.registry.register('OptionParser') do |defs|
   end
 
   defs.define_constant('OptionParser::OptionMap::Iterator') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
     klass.define_instance_method('initialize') do |method|
       method.define_argument('state')
@@ -1015,17 +1015,17 @@ RubyLint.registry.register('OptionParser') do |defs|
   end
 
   defs.define_constant('OptionParser::OptionMap::MAX_ENTRIES') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('OptionParser::OptionMap::MIN_SIZE') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('OptionParser::OptionMap::SortedElement') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
     klass.define_instance_method('<=>') do |method|
       method.define_argument('other')
@@ -1044,7 +1044,7 @@ RubyLint.registry.register('OptionParser') do |defs|
   end
 
   defs.define_constant('OptionParser::OptionMap::State') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
     klass.define_method('from') do |method|
       method.define_argument('state')
@@ -1073,12 +1073,12 @@ RubyLint.registry.register('OptionParser') do |defs|
   end
 
   defs.define_constant('OptionParser::OptionalArgument') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('OptionParser::ParseError') do |klass|
-    klass.inherits(defs.constant_proxy('RuntimeError'))
+    klass.inherits(defs.constant_proxy('RuntimeError', RubyLint.registry))
 
     klass.define_method('filter_backtrace') do |method|
       method.define_argument('array')
@@ -1117,37 +1117,37 @@ RubyLint.registry.register('OptionParser') do |defs|
   end
 
   defs.define_constant('OptionParser::ParseError::Reason') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('OptionParser::RCSID') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('OptionParser::REQUIRED_ARGUMENT') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('OptionParser::Release') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('OptionParser::RequiredArgument') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('OptionParser::SPLAT_PROC') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('OptionParser::Switch') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
     klass.define_method('guess') do |method|
       method.define_argument('arg')
@@ -1211,7 +1211,7 @@ RubyLint.registry.register('OptionParser') do |defs|
   end
 
   defs.define_constant('OptionParser::Switch::NoArgument') do |klass|
-    klass.inherits(defs.constant_proxy('OptionParser::Switch'))
+    klass.inherits(defs.constant_proxy('OptionParser::Switch', RubyLint.registry))
 
     klass.define_method('incompatible_argument_styles') do |method|
       method.define_rest_argument('arg1')
@@ -1226,7 +1226,7 @@ RubyLint.registry.register('OptionParser') do |defs|
   end
 
   defs.define_constant('OptionParser::Switch::OptionalArgument') do |klass|
-    klass.inherits(defs.constant_proxy('OptionParser::Switch'))
+    klass.inherits(defs.constant_proxy('OptionParser::Switch', RubyLint.registry))
 
     klass.define_instance_method('parse') do |method|
       method.define_argument('arg')
@@ -1236,7 +1236,7 @@ RubyLint.registry.register('OptionParser') do |defs|
   end
 
   defs.define_constant('OptionParser::Switch::OptionalArgument::NoArgument') do |klass|
-    klass.inherits(defs.constant_proxy('OptionParser::Switch'))
+    klass.inherits(defs.constant_proxy('OptionParser::Switch', RubyLint.registry))
 
     klass.define_method('incompatible_argument_styles') do |method|
       method.define_rest_argument('arg1')
@@ -1251,7 +1251,7 @@ RubyLint.registry.register('OptionParser') do |defs|
   end
 
   defs.define_constant('OptionParser::Switch::OptionalArgument::PlacedArgument') do |klass|
-    klass.inherits(defs.constant_proxy('OptionParser::Switch'))
+    klass.inherits(defs.constant_proxy('OptionParser::Switch', RubyLint.registry))
 
     klass.define_instance_method('parse') do |method|
       method.define_argument('arg')
@@ -1261,7 +1261,7 @@ RubyLint.registry.register('OptionParser') do |defs|
   end
 
   defs.define_constant('OptionParser::Switch::OptionalArgument::RequiredArgument') do |klass|
-    klass.inherits(defs.constant_proxy('OptionParser::Switch'))
+    klass.inherits(defs.constant_proxy('OptionParser::Switch', RubyLint.registry))
 
     klass.define_instance_method('parse') do |method|
       method.define_argument('arg')
@@ -1270,7 +1270,7 @@ RubyLint.registry.register('OptionParser') do |defs|
   end
 
   defs.define_constant('OptionParser::Switch::PlacedArgument') do |klass|
-    klass.inherits(defs.constant_proxy('OptionParser::Switch'))
+    klass.inherits(defs.constant_proxy('OptionParser::Switch', RubyLint.registry))
 
     klass.define_instance_method('parse') do |method|
       method.define_argument('arg')
@@ -1280,7 +1280,7 @@ RubyLint.registry.register('OptionParser') do |defs|
   end
 
   defs.define_constant('OptionParser::Switch::RequiredArgument') do |klass|
-    klass.inherits(defs.constant_proxy('OptionParser::Switch'))
+    klass.inherits(defs.constant_proxy('OptionParser::Switch', RubyLint.registry))
 
     klass.define_instance_method('parse') do |method|
       method.define_argument('arg')
@@ -1289,7 +1289,7 @@ RubyLint.registry.register('OptionParser') do |defs|
   end
 
   defs.define_constant('OptionParser::Version') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 end

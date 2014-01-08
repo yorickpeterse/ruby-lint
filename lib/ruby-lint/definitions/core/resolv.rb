@@ -5,7 +5,7 @@
 
 RubyLint.registry.register('Resolv') do |defs|
   defs.define_constant('Resolv') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
     klass.define_method('each_address') do |method|
       method.define_argument('name')
@@ -65,12 +65,12 @@ RubyLint.registry.register('Resolv') do |defs|
   end
 
   defs.define_constant('Resolv::AddressRegex') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('Resolv::DNS') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
     klass.define_method('allocate_request_id') do |method|
       method.define_argument('host')
@@ -169,7 +169,7 @@ RubyLint.registry.register('Resolv') do |defs|
   end
 
   defs.define_constant('Resolv::DNS::Config') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
     klass.define_method('default_config_hash') do |method|
       method.define_optional_argument('filename')
@@ -207,32 +207,32 @@ RubyLint.registry.register('Resolv') do |defs|
   end
 
   defs.define_constant('Resolv::DNS::Config::InitialTimeout') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('Resolv::DNS::Config::NXDomain') do |klass|
-    klass.inherits(defs.constant_proxy('Resolv::ResolvError'))
+    klass.inherits(defs.constant_proxy('Resolv::ResolvError', RubyLint.registry))
 
   end
 
   defs.define_constant('Resolv::DNS::Config::OtherResolvError') do |klass|
-    klass.inherits(defs.constant_proxy('Resolv::ResolvError'))
+    klass.inherits(defs.constant_proxy('Resolv::ResolvError', RubyLint.registry))
 
   end
 
   defs.define_constant('Resolv::DNS::DecodeError') do |klass|
-    klass.inherits(defs.constant_proxy('StandardError'))
+    klass.inherits(defs.constant_proxy('StandardError', RubyLint.registry))
 
   end
 
   defs.define_constant('Resolv::DNS::EncodeError') do |klass|
-    klass.inherits(defs.constant_proxy('StandardError'))
+    klass.inherits(defs.constant_proxy('StandardError', RubyLint.registry))
 
   end
 
   defs.define_constant('Resolv::DNS::Label') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
     klass.define_method('split') do |method|
       method.define_argument('arg')
@@ -240,7 +240,7 @@ RubyLint.registry.register('Resolv') do |defs|
   end
 
   defs.define_constant('Resolv::DNS::Label::Str') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
     klass.define_instance_method('==') do |method|
       method.define_argument('other')
@@ -268,7 +268,7 @@ RubyLint.registry.register('Resolv') do |defs|
   end
 
   defs.define_constant('Resolv::DNS::Message') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
     klass.define_method('decode') do |method|
       method.define_argument('m')
@@ -361,7 +361,7 @@ RubyLint.registry.register('Resolv') do |defs|
   end
 
   defs.define_constant('Resolv::DNS::Message::MessageDecoder') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
     klass.define_instance_method('get_bytes') do |method|
       method.define_optional_argument('len')
@@ -399,7 +399,7 @@ RubyLint.registry.register('Resolv') do |defs|
   end
 
   defs.define_constant('Resolv::DNS::Message::MessageEncoder') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
     klass.define_instance_method('initialize')
 
@@ -438,7 +438,7 @@ RubyLint.registry.register('Resolv') do |defs|
   end
 
   defs.define_constant('Resolv::DNS::Name') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
     klass.define_method('create') do |method|
       method.define_argument('arg')
@@ -481,42 +481,42 @@ RubyLint.registry.register('Resolv') do |defs|
   end
 
   defs.define_constant('Resolv::DNS::OpCode') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('Resolv::DNS::OpCode::IQuery') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('Resolv::DNS::OpCode::Notify') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('Resolv::DNS::OpCode::Query') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('Resolv::DNS::OpCode::Status') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('Resolv::DNS::OpCode::Update') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('Resolv::DNS::Port') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('Resolv::DNS::Query') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
     klass.define_method('decode_rdata') do |method|
       method.define_argument('msg')
@@ -528,112 +528,112 @@ RubyLint.registry.register('Resolv') do |defs|
   end
 
   defs.define_constant('Resolv::DNS::RCode') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('Resolv::DNS::RCode::BADALG') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('Resolv::DNS::RCode::BADKEY') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('Resolv::DNS::RCode::BADMODE') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('Resolv::DNS::RCode::BADNAME') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('Resolv::DNS::RCode::BADSIG') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('Resolv::DNS::RCode::BADTIME') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('Resolv::DNS::RCode::BADVERS') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('Resolv::DNS::RCode::FormErr') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('Resolv::DNS::RCode::NXDomain') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('Resolv::DNS::RCode::NXRRSet') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('Resolv::DNS::RCode::NoError') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('Resolv::DNS::RCode::NotAuth') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('Resolv::DNS::RCode::NotImp') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('Resolv::DNS::RCode::NotZone') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('Resolv::DNS::RCode::Refused') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('Resolv::DNS::RCode::ServFail') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('Resolv::DNS::RCode::YXDomain') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('Resolv::DNS::RCode::YXRRSet') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('Resolv::DNS::RequestID') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('Resolv::DNS::RequestIDMutex') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('Resolv::DNS::Requester') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
     klass.define_instance_method('close')
 
@@ -646,7 +646,7 @@ RubyLint.registry.register('Resolv') do |defs|
   end
 
   defs.define_constant('Resolv::DNS::Requester::ConnectedUDP') do |klass|
-    klass.inherits(defs.constant_proxy('Resolv::DNS::Requester'))
+    klass.inherits(defs.constant_proxy('Resolv::DNS::Requester', RubyLint.registry))
 
     klass.define_instance_method('close')
 
@@ -670,12 +670,12 @@ RubyLint.registry.register('Resolv') do |defs|
   end
 
   defs.define_constant('Resolv::DNS::Requester::ConnectedUDP::RequestError') do |klass|
-    klass.inherits(defs.constant_proxy('StandardError'))
+    klass.inherits(defs.constant_proxy('StandardError', RubyLint.registry))
 
   end
 
   defs.define_constant('Resolv::DNS::Requester::ConnectedUDP::Sender') do |klass|
-    klass.inherits(defs.constant_proxy('Resolv::DNS::Requester::Sender'))
+    klass.inherits(defs.constant_proxy('Resolv::DNS::Requester::Sender', RubyLint.registry))
 
     klass.define_instance_method('data')
 
@@ -683,7 +683,7 @@ RubyLint.registry.register('Resolv') do |defs|
   end
 
   defs.define_constant('Resolv::DNS::Requester::ConnectedUDP::TCP') do |klass|
-    klass.inherits(defs.constant_proxy('Resolv::DNS::Requester'))
+    klass.inherits(defs.constant_proxy('Resolv::DNS::Requester', RubyLint.registry))
 
     klass.define_instance_method('close')
 
@@ -707,7 +707,7 @@ RubyLint.registry.register('Resolv') do |defs|
   end
 
   defs.define_constant('Resolv::DNS::Requester::ConnectedUDP::UnconnectedUDP') do |klass|
-    klass.inherits(defs.constant_proxy('Resolv::DNS::Requester'))
+    klass.inherits(defs.constant_proxy('Resolv::DNS::Requester', RubyLint.registry))
 
     klass.define_instance_method('close')
 
@@ -730,12 +730,12 @@ RubyLint.registry.register('Resolv') do |defs|
   end
 
   defs.define_constant('Resolv::DNS::Requester::RequestError') do |klass|
-    klass.inherits(defs.constant_proxy('StandardError'))
+    klass.inherits(defs.constant_proxy('StandardError', RubyLint.registry))
 
   end
 
   defs.define_constant('Resolv::DNS::Requester::Sender') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
     klass.define_instance_method('initialize') do |method|
       method.define_argument('msg')
@@ -747,7 +747,7 @@ RubyLint.registry.register('Resolv') do |defs|
   end
 
   defs.define_constant('Resolv::DNS::Requester::TCP') do |klass|
-    klass.inherits(defs.constant_proxy('Resolv::DNS::Requester'))
+    klass.inherits(defs.constant_proxy('Resolv::DNS::Requester', RubyLint.registry))
 
     klass.define_instance_method('close')
 
@@ -771,7 +771,7 @@ RubyLint.registry.register('Resolv') do |defs|
   end
 
   defs.define_constant('Resolv::DNS::Requester::UnconnectedUDP') do |klass|
-    klass.inherits(defs.constant_proxy('Resolv::DNS::Requester'))
+    klass.inherits(defs.constant_proxy('Resolv::DNS::Requester', RubyLint.registry))
 
     klass.define_instance_method('close')
 
@@ -794,7 +794,7 @@ RubyLint.registry.register('Resolv') do |defs|
   end
 
   defs.define_constant('Resolv::DNS::Resource') do |klass|
-    klass.inherits(defs.constant_proxy('Resolv::DNS::Query'))
+    klass.inherits(defs.constant_proxy('Resolv::DNS::Query', RubyLint.registry))
 
     klass.define_method('decode_rdata') do |method|
       method.define_argument('msg')
@@ -823,32 +823,32 @@ RubyLint.registry.register('Resolv') do |defs|
   end
 
   defs.define_constant('Resolv::DNS::Resource::ANY') do |klass|
-    klass.inherits(defs.constant_proxy('Resolv::DNS::Query'))
+    klass.inherits(defs.constant_proxy('Resolv::DNS::Query', RubyLint.registry))
 
   end
 
   defs.define_constant('Resolv::DNS::Resource::CNAME') do |klass|
-    klass.inherits(defs.constant_proxy('Resolv::DNS::Resource::DomainName'))
+    klass.inherits(defs.constant_proxy('Resolv::DNS::Resource::DomainName', RubyLint.registry))
 
   end
 
   defs.define_constant('Resolv::DNS::Resource::ClassHash') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('Resolv::DNS::Resource::ClassInsensitiveTypes') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('Resolv::DNS::Resource::ClassValue') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('Resolv::DNS::Resource::DomainName') do |klass|
-    klass.inherits(defs.constant_proxy('Resolv::DNS::Resource'))
+    klass.inherits(defs.constant_proxy('Resolv::DNS::Resource', RubyLint.registry))
 
     klass.define_method('decode_rdata') do |method|
       method.define_argument('msg')
@@ -868,7 +868,7 @@ RubyLint.registry.register('Resolv') do |defs|
   end
 
   defs.define_constant('Resolv::DNS::Resource::Generic') do |klass|
-    klass.inherits(defs.constant_proxy('Resolv::DNS::Resource'))
+    klass.inherits(defs.constant_proxy('Resolv::DNS::Resource', RubyLint.registry))
 
     klass.define_method('create') do |method|
       method.define_argument('type_value')
@@ -893,7 +893,7 @@ RubyLint.registry.register('Resolv') do |defs|
   end
 
   defs.define_constant('Resolv::DNS::Resource::HINFO') do |klass|
-    klass.inherits(defs.constant_proxy('Resolv::DNS::Resource'))
+    klass.inherits(defs.constant_proxy('Resolv::DNS::Resource', RubyLint.registry))
 
     klass.define_method('decode_rdata') do |method|
       method.define_argument('msg')
@@ -916,32 +916,32 @@ RubyLint.registry.register('Resolv') do |defs|
   end
 
   defs.define_constant('Resolv::DNS::Resource::HINFO::ANY') do |klass|
-    klass.inherits(defs.constant_proxy('Resolv::DNS::Query'))
+    klass.inherits(defs.constant_proxy('Resolv::DNS::Query', RubyLint.registry))
 
   end
 
   defs.define_constant('Resolv::DNS::Resource::HINFO::CNAME') do |klass|
-    klass.inherits(defs.constant_proxy('Resolv::DNS::Resource::DomainName'))
+    klass.inherits(defs.constant_proxy('Resolv::DNS::Resource::DomainName', RubyLint.registry))
 
   end
 
   defs.define_constant('Resolv::DNS::Resource::HINFO::ClassHash') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('Resolv::DNS::Resource::HINFO::ClassInsensitiveTypes') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('Resolv::DNS::Resource::HINFO::ClassValue') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('Resolv::DNS::Resource::HINFO::DomainName') do |klass|
-    klass.inherits(defs.constant_proxy('Resolv::DNS::Resource'))
+    klass.inherits(defs.constant_proxy('Resolv::DNS::Resource', RubyLint.registry))
 
     klass.define_method('decode_rdata') do |method|
       method.define_argument('msg')
@@ -961,7 +961,7 @@ RubyLint.registry.register('Resolv') do |defs|
   end
 
   defs.define_constant('Resolv::DNS::Resource::HINFO::Generic') do |klass|
-    klass.inherits(defs.constant_proxy('Resolv::DNS::Resource'))
+    klass.inherits(defs.constant_proxy('Resolv::DNS::Resource', RubyLint.registry))
 
     klass.define_method('create') do |method|
       method.define_argument('type_value')
@@ -986,12 +986,12 @@ RubyLint.registry.register('Resolv') do |defs|
   end
 
   defs.define_constant('Resolv::DNS::Resource::HINFO::IN') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('Resolv::DNS::Resource::HINFO::MINFO') do |klass|
-    klass.inherits(defs.constant_proxy('Resolv::DNS::Resource'))
+    klass.inherits(defs.constant_proxy('Resolv::DNS::Resource', RubyLint.registry))
 
     klass.define_method('decode_rdata') do |method|
       method.define_argument('msg')
@@ -1014,7 +1014,7 @@ RubyLint.registry.register('Resolv') do |defs|
   end
 
   defs.define_constant('Resolv::DNS::Resource::HINFO::MX') do |klass|
-    klass.inherits(defs.constant_proxy('Resolv::DNS::Resource'))
+    klass.inherits(defs.constant_proxy('Resolv::DNS::Resource', RubyLint.registry))
 
     klass.define_method('decode_rdata') do |method|
       method.define_argument('msg')
@@ -1037,17 +1037,17 @@ RubyLint.registry.register('Resolv') do |defs|
   end
 
   defs.define_constant('Resolv::DNS::Resource::HINFO::NS') do |klass|
-    klass.inherits(defs.constant_proxy('Resolv::DNS::Resource::DomainName'))
+    klass.inherits(defs.constant_proxy('Resolv::DNS::Resource::DomainName', RubyLint.registry))
 
   end
 
   defs.define_constant('Resolv::DNS::Resource::HINFO::PTR') do |klass|
-    klass.inherits(defs.constant_proxy('Resolv::DNS::Resource::DomainName'))
+    klass.inherits(defs.constant_proxy('Resolv::DNS::Resource::DomainName', RubyLint.registry))
 
   end
 
   defs.define_constant('Resolv::DNS::Resource::HINFO::SOA') do |klass|
-    klass.inherits(defs.constant_proxy('Resolv::DNS::Resource'))
+    klass.inherits(defs.constant_proxy('Resolv::DNS::Resource', RubyLint.registry))
 
     klass.define_method('decode_rdata') do |method|
       method.define_argument('msg')
@@ -1085,7 +1085,7 @@ RubyLint.registry.register('Resolv') do |defs|
   end
 
   defs.define_constant('Resolv::DNS::Resource::HINFO::TXT') do |klass|
-    klass.inherits(defs.constant_proxy('Resolv::DNS::Resource'))
+    klass.inherits(defs.constant_proxy('Resolv::DNS::Resource', RubyLint.registry))
 
     klass.define_method('decode_rdata') do |method|
       method.define_argument('msg')
@@ -1108,17 +1108,17 @@ RubyLint.registry.register('Resolv') do |defs|
   end
 
   defs.define_constant('Resolv::DNS::Resource::HINFO::TypeValue') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('Resolv::DNS::Resource::IN') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('Resolv::DNS::Resource::MINFO') do |klass|
-    klass.inherits(defs.constant_proxy('Resolv::DNS::Resource'))
+    klass.inherits(defs.constant_proxy('Resolv::DNS::Resource', RubyLint.registry))
 
     klass.define_method('decode_rdata') do |method|
       method.define_argument('msg')
@@ -1141,7 +1141,7 @@ RubyLint.registry.register('Resolv') do |defs|
   end
 
   defs.define_constant('Resolv::DNS::Resource::MX') do |klass|
-    klass.inherits(defs.constant_proxy('Resolv::DNS::Resource'))
+    klass.inherits(defs.constant_proxy('Resolv::DNS::Resource', RubyLint.registry))
 
     klass.define_method('decode_rdata') do |method|
       method.define_argument('msg')
@@ -1164,17 +1164,17 @@ RubyLint.registry.register('Resolv') do |defs|
   end
 
   defs.define_constant('Resolv::DNS::Resource::NS') do |klass|
-    klass.inherits(defs.constant_proxy('Resolv::DNS::Resource::DomainName'))
+    klass.inherits(defs.constant_proxy('Resolv::DNS::Resource::DomainName', RubyLint.registry))
 
   end
 
   defs.define_constant('Resolv::DNS::Resource::PTR') do |klass|
-    klass.inherits(defs.constant_proxy('Resolv::DNS::Resource::DomainName'))
+    klass.inherits(defs.constant_proxy('Resolv::DNS::Resource::DomainName', RubyLint.registry))
 
   end
 
   defs.define_constant('Resolv::DNS::Resource::SOA') do |klass|
-    klass.inherits(defs.constant_proxy('Resolv::DNS::Resource'))
+    klass.inherits(defs.constant_proxy('Resolv::DNS::Resource', RubyLint.registry))
 
     klass.define_method('decode_rdata') do |method|
       method.define_argument('msg')
@@ -1212,7 +1212,7 @@ RubyLint.registry.register('Resolv') do |defs|
   end
 
   defs.define_constant('Resolv::DNS::Resource::TXT') do |klass|
-    klass.inherits(defs.constant_proxy('Resolv::DNS::Resource'))
+    klass.inherits(defs.constant_proxy('Resolv::DNS::Resource', RubyLint.registry))
 
     klass.define_method('decode_rdata') do |method|
       method.define_argument('msg')
@@ -1235,17 +1235,17 @@ RubyLint.registry.register('Resolv') do |defs|
   end
 
   defs.define_constant('Resolv::DNS::UDPSize') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('Resolv::DefaultResolver') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('Resolv::Hosts') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
     klass.define_instance_method('each_address') do |method|
       method.define_argument('name')
@@ -1283,12 +1283,12 @@ RubyLint.registry.register('Resolv') do |defs|
   end
 
   defs.define_constant('Resolv::Hosts::DefaultFileName') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('Resolv::IPv4') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
     klass.define_method('create') do |method|
       method.define_argument('arg')
@@ -1320,17 +1320,17 @@ RubyLint.registry.register('Resolv') do |defs|
   end
 
   defs.define_constant('Resolv::IPv4::Regex') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('Resolv::IPv4::Regex256') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('Resolv::IPv6') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
     klass.define_method('create') do |method|
       method.define_argument('arg')
@@ -1362,37 +1362,37 @@ RubyLint.registry.register('Resolv') do |defs|
   end
 
   defs.define_constant('Resolv::IPv6::Regex') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('Resolv::IPv6::Regex_6Hex4Dec') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('Resolv::IPv6::Regex_8Hex') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('Resolv::IPv6::Regex_CompressedHex') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('Resolv::IPv6::Regex_CompressedHex4Dec') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('Resolv::ResolvError') do |klass|
-    klass.inherits(defs.constant_proxy('StandardError'))
+    klass.inherits(defs.constant_proxy('StandardError', RubyLint.registry))
 
   end
 
   defs.define_constant('Resolv::ResolvTimeout') do |klass|
-    klass.inherits(defs.constant_proxy('Timeout::Error'))
+    klass.inherits(defs.constant_proxy('Timeout::Error', RubyLint.registry))
 
   end
 end

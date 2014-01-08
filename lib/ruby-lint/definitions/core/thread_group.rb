@@ -5,7 +5,7 @@
 
 RubyLint.registry.register('ThreadGroup') do |defs|
   defs.define_constant('ThreadGroup') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
     klass.define_instance_method('add') do |method|
       method.define_argument('thread')
@@ -25,7 +25,7 @@ RubyLint.registry.register('ThreadGroup') do |defs|
   end
 
   defs.define_constant('ThreadGroup::Default') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 end

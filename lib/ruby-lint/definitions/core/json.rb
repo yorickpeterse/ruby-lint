@@ -5,7 +5,7 @@
 
 RubyLint.registry.register('JSON') do |defs|
   defs.define_constant('JSON') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
     klass.define_method('[]') do |method|
       method.define_argument('object')
@@ -124,75 +124,75 @@ RubyLint.registry.register('JSON') do |defs|
   end
 
   defs.define_constant('JSON::CircularDatastructure') do |klass|
-    klass.inherits(defs.constant_proxy('JSON::NestingError'))
+    klass.inherits(defs.constant_proxy('JSON::NestingError', RubyLint.registry))
 
   end
 
   defs.define_constant('JSON::Ext') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('JSON::Ext::Generator') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('JSON::Ext::Generator::GeneratorMethods') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('JSON::Ext::Generator::GeneratorMethods::Array') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
     klass.define_instance_method('to_json')
   end
 
   defs.define_constant('JSON::Ext::Generator::GeneratorMethods::Bignum') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
     klass.define_instance_method('to_json')
   end
 
   defs.define_constant('JSON::Ext::Generator::GeneratorMethods::FalseClass') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
     klass.define_instance_method('to_json')
   end
 
   defs.define_constant('JSON::Ext::Generator::GeneratorMethods::Fixnum') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
     klass.define_instance_method('to_json')
   end
 
   defs.define_constant('JSON::Ext::Generator::GeneratorMethods::Float') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
     klass.define_instance_method('to_json')
   end
 
   defs.define_constant('JSON::Ext::Generator::GeneratorMethods::Hash') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
     klass.define_instance_method('to_json')
   end
 
   defs.define_constant('JSON::Ext::Generator::GeneratorMethods::NilClass') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
     klass.define_instance_method('to_json')
   end
 
   defs.define_constant('JSON::Ext::Generator::GeneratorMethods::Object') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
     klass.define_instance_method('to_json')
   end
 
   defs.define_constant('JSON::Ext::Generator::GeneratorMethods::String') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
     klass.define_method('included')
 
@@ -204,19 +204,19 @@ RubyLint.registry.register('JSON') do |defs|
   end
 
   defs.define_constant('JSON::Ext::Generator::GeneratorMethods::String::Extend') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
     klass.define_instance_method('json_create')
   end
 
   defs.define_constant('JSON::Ext::Generator::GeneratorMethods::TrueClass') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
     klass.define_instance_method('to_json')
   end
 
   defs.define_constant('JSON::Ext::Generator::State') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
     klass.define_method('allocate')
 
@@ -286,7 +286,7 @@ RubyLint.registry.register('JSON') do |defs|
   end
 
   defs.define_constant('JSON::Ext::Parser') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
     klass.define_method('allocate')
 
@@ -300,17 +300,17 @@ RubyLint.registry.register('JSON') do |defs|
   end
 
   defs.define_constant('JSON::FAST_STATE_PROTOTYPE') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('JSON::GeneratorError') do |klass|
-    klass.inherits(defs.constant_proxy('JSON::JSONError'))
+    klass.inherits(defs.constant_proxy('JSON::JSONError', RubyLint.registry))
 
   end
 
   defs.define_constant('JSON::GenericObject') do |klass|
-    klass.inherits(defs.constant_proxy('OpenStruct'))
+    klass.inherits(defs.constant_proxy('OpenStruct', RubyLint.registry))
 
     klass.define_method('[]') do |method|
       method.define_rest_argument('args')
@@ -364,17 +364,17 @@ RubyLint.registry.register('JSON') do |defs|
   end
 
   defs.define_constant('JSON::GenericObject::InspectKey') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('JSON::Infinity') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('JSON::JSONError') do |klass|
-    klass.inherits(defs.constant_proxy('StandardError'))
+    klass.inherits(defs.constant_proxy('StandardError', RubyLint.registry))
 
     klass.define_method('wrap') do |method|
       method.define_argument('exception')
@@ -382,37 +382,37 @@ RubyLint.registry.register('JSON') do |defs|
   end
 
   defs.define_constant('JSON::JSON_LOADED') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('JSON::MinusInfinity') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('JSON::MissingUnicodeSupport') do |klass|
-    klass.inherits(defs.constant_proxy('JSON::JSONError'))
+    klass.inherits(defs.constant_proxy('JSON::JSONError', RubyLint.registry))
 
   end
 
   defs.define_constant('JSON::NaN') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('JSON::NestingError') do |klass|
-    klass.inherits(defs.constant_proxy('JSON::ParserError'))
+    klass.inherits(defs.constant_proxy('JSON::ParserError', RubyLint.registry))
 
   end
 
   defs.define_constant('JSON::PRETTY_STATE_PROTOTYPE') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('JSON::Parser') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
     klass.define_method('allocate')
 
@@ -426,17 +426,17 @@ RubyLint.registry.register('JSON') do |defs|
   end
 
   defs.define_constant('JSON::ParserError') do |klass|
-    klass.inherits(defs.constant_proxy('JSON::JSONError'))
+    klass.inherits(defs.constant_proxy('JSON::JSONError', RubyLint.registry))
 
   end
 
   defs.define_constant('JSON::SAFE_STATE_PROTOTYPE') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('JSON::State') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
     klass.define_method('allocate')
 
@@ -506,32 +506,32 @@ RubyLint.registry.register('JSON') do |defs|
   end
 
   defs.define_constant('JSON::UnparserError') do |klass|
-    klass.inherits(defs.constant_proxy('JSON::JSONError'))
+    klass.inherits(defs.constant_proxy('JSON::JSONError', RubyLint.registry))
 
   end
 
   defs.define_constant('JSON::VERSION') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('JSON::VERSION_ARRAY') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('JSON::VERSION_BUILD') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('JSON::VERSION_MAJOR') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('JSON::VERSION_MINOR') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 end

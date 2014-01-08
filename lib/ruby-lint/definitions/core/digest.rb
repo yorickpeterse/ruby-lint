@@ -5,7 +5,7 @@
 
 RubyLint.registry.register('Digest') do |defs|
   defs.define_constant('Digest') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
     klass.define_method('const_missing') do |method|
       method.define_argument('name')
@@ -15,7 +15,7 @@ RubyLint.registry.register('Digest') do |defs|
   end
 
   defs.define_constant('Digest::Base') do |klass|
-    klass.inherits(defs.constant_proxy('Digest::Class'))
+    klass.inherits(defs.constant_proxy('Digest::Class', RubyLint.registry))
 
     klass.define_method('allocate')
 
@@ -33,8 +33,8 @@ RubyLint.registry.register('Digest') do |defs|
   end
 
   defs.define_constant('Digest::Class') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
-    klass.inherits(defs.constant_proxy('Digest::Instance'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('Digest::Instance', RubyLint.registry))
 
     klass.define_method('base64digest') do |method|
       method.define_argument('str')
@@ -51,7 +51,7 @@ RubyLint.registry.register('Digest') do |defs|
   end
 
   defs.define_constant('Digest::Instance') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
     klass.define_instance_method('<<')
 
@@ -95,17 +95,17 @@ RubyLint.registry.register('Digest') do |defs|
   end
 
   defs.define_constant('Digest::MD5') do |klass|
-    klass.inherits(defs.constant_proxy('Digest::Base'))
+    klass.inherits(defs.constant_proxy('Digest::Base', RubyLint.registry))
 
   end
 
   defs.define_constant('Digest::SHA1') do |klass|
-    klass.inherits(defs.constant_proxy('Digest::Base'))
+    klass.inherits(defs.constant_proxy('Digest::Base', RubyLint.registry))
 
   end
 
   defs.define_constant('Digest::SHA2') do |klass|
-    klass.inherits(defs.constant_proxy('Digest::Class'))
+    klass.inherits(defs.constant_proxy('Digest::Class', RubyLint.registry))
 
     klass.define_instance_method('<<') do |method|
       method.define_argument('str')
@@ -131,17 +131,17 @@ RubyLint.registry.register('Digest') do |defs|
   end
 
   defs.define_constant('Digest::SHA256') do |klass|
-    klass.inherits(defs.constant_proxy('Digest::Base'))
+    klass.inherits(defs.constant_proxy('Digest::Base', RubyLint.registry))
 
   end
 
   defs.define_constant('Digest::SHA384') do |klass|
-    klass.inherits(defs.constant_proxy('Digest::Base'))
+    klass.inherits(defs.constant_proxy('Digest::Base', RubyLint.registry))
 
   end
 
   defs.define_constant('Digest::SHA512') do |klass|
-    klass.inherits(defs.constant_proxy('Digest::Base'))
+    klass.inherits(defs.constant_proxy('Digest::Base', RubyLint.registry))
 
   end
 end

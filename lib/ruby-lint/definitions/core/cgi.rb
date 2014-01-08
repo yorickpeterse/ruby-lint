@@ -5,7 +5,7 @@
 
 RubyLint.registry.register('CGI') do |defs|
   defs.define_constant('CGI') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
     klass.define_method('accept_charset')
 
@@ -46,12 +46,12 @@ RubyLint.registry.register('CGI') do |defs|
   end
 
   defs.define_constant('CGI::CR') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('CGI::Cookie') do |klass|
-    klass.inherits(defs.constant_proxy('Array'))
+    klass.inherits(defs.constant_proxy('Array', RubyLint.registry))
 
     klass.define_method('parse') do |method|
       method.define_argument('raw_cookie')
@@ -98,8 +98,8 @@ RubyLint.registry.register('CGI') do |defs|
   end
 
   defs.define_constant('CGI::Cookie::Enumerator') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
-    klass.inherits(defs.constant_proxy('Enumerable'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('Enumerable', RubyLint.registry))
 
     klass.define_instance_method('each') do |method|
       method.define_rest_argument('args')
@@ -133,7 +133,7 @@ RubyLint.registry.register('CGI') do |defs|
   end
 
   defs.define_constant('CGI::Cookie::SortedElement') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
     klass.define_instance_method('<=>') do |method|
       method.define_argument('other')
@@ -152,47 +152,47 @@ RubyLint.registry.register('CGI') do |defs|
   end
 
   defs.define_constant('CGI::EOL') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('CGI::HTTP_STATUS') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('CGI::InvalidEncoding') do |klass|
-    klass.inherits(defs.constant_proxy('Exception'))
+    klass.inherits(defs.constant_proxy('Exception', RubyLint.registry))
 
   end
 
   defs.define_constant('CGI::LF') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('CGI::MAX_MULTIPART_COUNT') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('CGI::MAX_MULTIPART_LENGTH') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('CGI::NEEDS_BINMODE') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('CGI::PATH_SEPARATOR') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('CGI::QueryExtension') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
     klass.define_instance_method('[]') do |method|
       method.define_argument('key')
@@ -296,12 +296,12 @@ RubyLint.registry.register('CGI') do |defs|
   end
 
   defs.define_constant('CGI::REVISION') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('CGI::Util') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
     klass.define_instance_method('escape') do |method|
       method.define_argument('string')
@@ -361,17 +361,17 @@ RubyLint.registry.register('CGI') do |defs|
   end
 
   defs.define_constant('CGI::Util::RFC822_DAYS') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('CGI::Util::RFC822_MONTHS') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('CGI::Util::TABLE_FOR_ESCAPE_HTML__') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 end

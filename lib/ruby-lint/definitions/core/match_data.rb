@@ -5,8 +5,8 @@
 
 RubyLint.registry.register('MatchData') do |defs|
   defs.define_constant('MatchData') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
-    klass.inherits(defs.constant_proxy('Unmarshalable'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('Unmarshalable', RubyLint.registry))
 
     klass.define_instance_method('==') do |method|
       method.define_argument('other')

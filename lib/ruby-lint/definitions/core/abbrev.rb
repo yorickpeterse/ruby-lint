@@ -5,7 +5,7 @@
 
 RubyLint.registry.register('Abbrev') do |defs|
   defs.define_constant('Abbrev') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
     klass.define_method('abbrev') do |method|
       method.define_argument('words')

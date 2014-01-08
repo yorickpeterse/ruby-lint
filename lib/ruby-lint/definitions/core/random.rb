@@ -5,7 +5,7 @@
 
 RubyLint.registry.register('Random') do |defs|
   defs.define_constant('Random') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
     klass.define_method('new_seed')
 

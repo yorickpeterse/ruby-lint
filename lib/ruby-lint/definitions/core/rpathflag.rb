@@ -5,7 +5,7 @@
 
 RubyLint.registry.register('RPATHFLAG') do |defs|
   defs.define_constant('RPATHFLAG') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 end

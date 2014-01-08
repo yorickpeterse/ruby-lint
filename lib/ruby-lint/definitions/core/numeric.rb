@@ -5,8 +5,8 @@
 
 RubyLint.registry.register('Numeric') do |defs|
   defs.define_constant('Numeric') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
-    klass.inherits(defs.constant_proxy('Comparable'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('Comparable', RubyLint.registry))
 
     klass.define_instance_method('%') do |method|
       method.define_argument('other')

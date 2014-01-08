@@ -5,7 +5,7 @@
 
 RubyLint.registry.register('SecureRandom') do |defs|
   defs.define_constant('SecureRandom') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
     klass.define_method('base64') do |method|
       method.define_optional_argument('n')

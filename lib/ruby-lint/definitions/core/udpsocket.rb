@@ -5,7 +5,7 @@
 
 RubyLint.registry.register('UDPSocket') do |defs|
   defs.define_constant('UDPSocket') do |klass|
-    klass.inherits(defs.constant_proxy('IPSocket'))
+    klass.inherits(defs.constant_proxy('IPSocket', RubyLint.registry))
 
     klass.define_instance_method('bind') do |method|
       method.define_argument('host')
@@ -33,22 +33,22 @@ RubyLint.registry.register('UDPSocket') do |defs|
   end
 
   defs.define_constant('UDPSocket::ACCMODE') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('UDPSocket::APPEND') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('UDPSocket::BINARY') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('UDPSocket::BidirectionalPipe') do |klass|
-    klass.inherits(defs.constant_proxy('IO'))
+    klass.inherits(defs.constant_proxy('IO', RubyLint.registry))
 
     klass.define_instance_method('<<') do |method|
       method.define_argument('obj')
@@ -97,29 +97,29 @@ RubyLint.registry.register('UDPSocket') do |defs|
   end
 
   defs.define_constant('UDPSocket::CREAT') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('UDPSocket::EAGAINWaitReadable') do |klass|
-    klass.inherits(defs.constant_proxy('Errno::EAGAIN'))
-    klass.inherits(defs.constant_proxy('IO::WaitReadable'))
+    klass.inherits(defs.constant_proxy('Errno::EAGAIN', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('IO::WaitReadable', RubyLint.registry))
 
   end
 
   defs.define_constant('UDPSocket::EAGAINWaitWritable') do |klass|
-    klass.inherits(defs.constant_proxy('Errno::EAGAIN'))
-    klass.inherits(defs.constant_proxy('IO::WaitWritable'))
+    klass.inherits(defs.constant_proxy('Errno::EAGAIN', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('IO::WaitWritable', RubyLint.registry))
 
   end
 
   defs.define_constant('UDPSocket::EXCL') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('UDPSocket::EachReader') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
     klass.define_instance_method('each')
 
@@ -142,8 +142,8 @@ RubyLint.registry.register('UDPSocket') do |defs|
   end
 
   defs.define_constant('UDPSocket::Enumerator') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
-    klass.inherits(defs.constant_proxy('Enumerable'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('Enumerable', RubyLint.registry))
 
     klass.define_instance_method('each') do |method|
       method.define_rest_argument('args')
@@ -177,12 +177,12 @@ RubyLint.registry.register('UDPSocket') do |defs|
   end
 
   defs.define_constant('UDPSocket::FD_CLOEXEC') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('UDPSocket::FFI') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
     klass.define_method('add_typedef') do |method|
       method.define_argument('current')
@@ -227,57 +227,57 @@ RubyLint.registry.register('UDPSocket') do |defs|
   end
 
   defs.define_constant('UDPSocket::FNM_CASEFOLD') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('UDPSocket::FNM_DOTMATCH') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('UDPSocket::FNM_NOESCAPE') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('UDPSocket::FNM_PATHNAME') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('UDPSocket::FNM_SYSCASE') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('UDPSocket::F_GETFD') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('UDPSocket::F_GETFL') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('UDPSocket::F_OK') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('UDPSocket::F_SETFD') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('UDPSocket::F_SETFL') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('UDPSocket::InternalBuffer') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
     klass.define_method('allocate')
 
@@ -359,88 +359,88 @@ RubyLint.registry.register('UDPSocket') do |defs|
   end
 
   defs.define_constant('UDPSocket::LOCK_EX') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('UDPSocket::LOCK_NB') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('UDPSocket::LOCK_SH') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('UDPSocket::LOCK_UN') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('UDPSocket::NOCTTY') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('UDPSocket::NONBLOCK') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('UDPSocket::NULL') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('UDPSocket::RDONLY') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('UDPSocket::RDWR') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('UDPSocket::R_OK') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('UDPSocket::Readable') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('UDPSocket::SEEK_CUR') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('UDPSocket::SEEK_END') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('UDPSocket::SEEK_SET') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('UDPSocket::SYNC') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('UDPSocket::Socketable') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
     klass.define_instance_method('accept')
   end
 
   defs.define_constant('UDPSocket::SortedElement') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
     klass.define_instance_method('<=>') do |method|
       method.define_argument('other')
@@ -459,7 +459,7 @@ RubyLint.registry.register('UDPSocket') do |defs|
   end
 
   defs.define_constant('UDPSocket::StreamCopier') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
     klass.define_instance_method('initialize') do |method|
       method.define_argument('from')
@@ -483,12 +483,12 @@ RubyLint.registry.register('UDPSocket') do |defs|
   end
 
   defs.define_constant('UDPSocket::TRUNC') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('UDPSocket::TransferIO') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
     klass.define_instance_method('recv_fd')
 
@@ -496,32 +496,32 @@ RubyLint.registry.register('UDPSocket') do |defs|
   end
 
   defs.define_constant('UDPSocket::WRONLY') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('UDPSocket::W_OK') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('UDPSocket::WaitReadable') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('UDPSocket::WaitWritable') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('UDPSocket::Writable') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('UDPSocket::X_OK') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 end

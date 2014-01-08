@@ -5,7 +5,7 @@
 
 RubyLint.registry.register('ThreadsWait') do |defs|
   defs.define_constant('ThreadsWait') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
     klass.define_method('all_waits') do |method|
       method.define_rest_argument('threads')
@@ -53,17 +53,17 @@ RubyLint.registry.register('ThreadsWait') do |defs|
   end
 
   defs.define_constant('ThreadsWait::ErrNoFinishedThread') do |klass|
-    klass.inherits(defs.constant_proxy('StandardError'))
+    klass.inherits(defs.constant_proxy('StandardError', RubyLint.registry))
 
   end
 
   defs.define_constant('ThreadsWait::ErrNoWaitingThread') do |klass|
-    klass.inherits(defs.constant_proxy('StandardError'))
+    klass.inherits(defs.constant_proxy('StandardError', RubyLint.registry))
 
   end
 
   defs.define_constant('ThreadsWait::RCS_ID') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 end

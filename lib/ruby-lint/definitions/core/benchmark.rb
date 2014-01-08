@@ -5,7 +5,7 @@
 
 RubyLint.registry.register('Benchmark') do |defs|
   defs.define_constant('Benchmark') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
     klass.define_method('benchmark') do |method|
       method.define_optional_argument('caption')
@@ -32,22 +32,22 @@ RubyLint.registry.register('Benchmark') do |defs|
   end
 
   defs.define_constant('Benchmark::BENCHMARK_VERSION') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('Benchmark::CAPTION') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('Benchmark::FORMAT') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('Benchmark::Job') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
     klass.define_instance_method('initialize') do |method|
       method.define_argument('width')
@@ -71,7 +71,7 @@ RubyLint.registry.register('Benchmark') do |defs|
   end
 
   defs.define_constant('Benchmark::Report') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
     klass.define_instance_method('initialize') do |method|
       method.define_optional_argument('width')
@@ -96,7 +96,7 @@ RubyLint.registry.register('Benchmark') do |defs|
   end
 
   defs.define_constant('Benchmark::Tms') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
     klass.define_instance_method('*') do |method|
       method.define_argument('x')
@@ -163,12 +163,12 @@ RubyLint.registry.register('Benchmark') do |defs|
   end
 
   defs.define_constant('Benchmark::Tms::CAPTION') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('Benchmark::Tms::FORMAT') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 end

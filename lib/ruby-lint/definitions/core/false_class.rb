@@ -5,9 +5,9 @@
 
 RubyLint.registry.register('FalseClass') do |defs|
   defs.define_constant('FalseClass') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::FalseClass'))
-    klass.inherits(defs.constant_proxy('ImmediateValue'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::FalseClass', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('ImmediateValue', RubyLint.registry))
 
     klass.define_method('yaml_tag_subclasses?')
 

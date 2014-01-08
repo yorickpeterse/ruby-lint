@@ -5,7 +5,7 @@
 
 RubyLint.registry.register('Base64') do |defs|
   defs.define_constant('Base64') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
     klass.define_method('decode64') do |method|
       method.define_argument('str')

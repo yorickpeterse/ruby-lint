@@ -5,8 +5,8 @@
 
 RubyLint.registry.register('Time') do |defs|
   defs.define_constant('Time') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
-    klass.inherits(defs.constant_proxy('Comparable'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('Comparable', RubyLint.registry))
 
     klass.define_method('__construct__') do |method|
       method.define_argument('ms')
@@ -296,17 +296,17 @@ RubyLint.registry.register('Time') do |defs|
   end
 
   defs.define_constant('Time::MonthValue') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('Time::RFC2822_DAY_NAME') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('Time::RFC2822_MONTH_NAME') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 end

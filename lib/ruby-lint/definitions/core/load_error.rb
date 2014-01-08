@@ -5,7 +5,7 @@
 
 RubyLint.registry.register('LoadError') do |defs|
   defs.define_constant('LoadError') do |klass|
-    klass.inherits(defs.constant_proxy('ScriptError'))
+    klass.inherits(defs.constant_proxy('ScriptError', RubyLint.registry))
 
     klass.define_instance_method('path')
 
@@ -13,17 +13,17 @@ RubyLint.registry.register('LoadError') do |defs|
   end
 
   defs.define_constant('LoadError::InvalidExtensionError') do |klass|
-    klass.inherits(defs.constant_proxy('LoadError'))
+    klass.inherits(defs.constant_proxy('LoadError', RubyLint.registry))
 
   end
 
   defs.define_constant('LoadError::InvalidExtensionError::MRIExtensionError') do |klass|
-    klass.inherits(defs.constant_proxy('LoadError::InvalidExtensionError'))
+    klass.inherits(defs.constant_proxy('LoadError::InvalidExtensionError', RubyLint.registry))
 
   end
 
   defs.define_constant('LoadError::MRIExtensionError') do |klass|
-    klass.inherits(defs.constant_proxy('LoadError::InvalidExtensionError'))
+    klass.inherits(defs.constant_proxy('LoadError::InvalidExtensionError', RubyLint.registry))
 
   end
 end

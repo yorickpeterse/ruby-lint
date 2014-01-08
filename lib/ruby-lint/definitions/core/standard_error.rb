@@ -5,7 +5,7 @@
 
 RubyLint.registry.register('StandardError') do |defs|
   defs.define_constant('StandardError') do |klass|
-    klass.inherits(defs.constant_proxy('Exception'))
+    klass.inherits(defs.constant_proxy('Exception', RubyLint.registry))
 
   end
 end

@@ -5,9 +5,9 @@
 
 RubyLint.registry.register('String') do |defs|
   defs.define_constant('String') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::String'))
-    klass.inherits(defs.constant_proxy('Comparable'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::String', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('Comparable', RubyLint.registry))
 
     klass.define_method('__allocate__')
 
@@ -640,17 +640,17 @@ RubyLint.registry.register('String') do |defs|
   end
 
   defs.define_constant('String::ControlCharacters') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('String::ControlPrintValue') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('String::Extend') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
     klass.define_instance_method('json_create')
   end

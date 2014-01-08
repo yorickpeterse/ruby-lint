@@ -5,7 +5,7 @@
 
 RubyLint.registry.register('STDERR') do |defs|
   defs.define_constant('STDERR') do |klass|
-    klass.inherits(defs.constant_proxy('IO'))
+    klass.inherits(defs.constant_proxy('IO', RubyLint.registry))
     klass.instance!
   end
 end

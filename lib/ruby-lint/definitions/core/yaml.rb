@@ -5,7 +5,7 @@
 
 RubyLint.registry.register('YAML') do |defs|
   defs.define_constant('YAML') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
     klass.define_method('add_builtin_type') do |method|
       method.define_argument('type_tag')

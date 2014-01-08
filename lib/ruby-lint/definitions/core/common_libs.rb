@@ -5,7 +5,7 @@
 
 RubyLint.registry.register('COMMON_LIBS') do |defs|
   defs.define_constant('COMMON_LIBS') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 end

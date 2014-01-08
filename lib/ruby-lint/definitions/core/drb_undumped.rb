@@ -5,7 +5,7 @@
 
 RubyLint.registry.register('DRbUndumped') do |defs|
   defs.define_constant('DRbUndumped') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
     klass.define_instance_method('_dump') do |method|
       method.define_argument('dummy')

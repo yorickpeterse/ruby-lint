@@ -5,7 +5,7 @@
 
 RubyLint.registry.register('Interrupt') do |defs|
   defs.define_constant('Interrupt') do |klass|
-    klass.inherits(defs.constant_proxy('SignalException'))
+    klass.inherits(defs.constant_proxy('SignalException', RubyLint.registry))
 
     klass.define_instance_method('initialize') do |method|
       method.define_rest_argument('args')

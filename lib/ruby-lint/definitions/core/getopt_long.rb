@@ -5,7 +5,7 @@
 
 RubyLint.registry.register('GetoptLong') do |defs|
   defs.define_constant('GetoptLong') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
     klass.define_instance_method('each')
 
@@ -54,82 +54,82 @@ RubyLint.registry.register('GetoptLong') do |defs|
   end
 
   defs.define_constant('GetoptLong::ARGUMENT_FLAGS') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('GetoptLong::AmbiguousOption') do |klass|
-    klass.inherits(defs.constant_proxy('GetoptLong::Error'))
+    klass.inherits(defs.constant_proxy('GetoptLong::Error', RubyLint.registry))
 
   end
 
   defs.define_constant('GetoptLong::Error') do |klass|
-    klass.inherits(defs.constant_proxy('StandardError'))
+    klass.inherits(defs.constant_proxy('StandardError', RubyLint.registry))
 
   end
 
   defs.define_constant('GetoptLong::InvalidOption') do |klass|
-    klass.inherits(defs.constant_proxy('GetoptLong::Error'))
+    klass.inherits(defs.constant_proxy('GetoptLong::Error', RubyLint.registry))
 
   end
 
   defs.define_constant('GetoptLong::MissingArgument') do |klass|
-    klass.inherits(defs.constant_proxy('GetoptLong::Error'))
+    klass.inherits(defs.constant_proxy('GetoptLong::Error', RubyLint.registry))
 
   end
 
   defs.define_constant('GetoptLong::NO_ARGUMENT') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('GetoptLong::NeedlessArgument') do |klass|
-    klass.inherits(defs.constant_proxy('GetoptLong::Error'))
+    klass.inherits(defs.constant_proxy('GetoptLong::Error', RubyLint.registry))
 
   end
 
   defs.define_constant('GetoptLong::OPTIONAL_ARGUMENT') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('GetoptLong::ORDERINGS') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('GetoptLong::PERMUTE') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('GetoptLong::REQUIRED_ARGUMENT') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('GetoptLong::REQUIRE_ORDER') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('GetoptLong::RETURN_IN_ORDER') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('GetoptLong::STATUS_STARTED') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('GetoptLong::STATUS_TERMINATED') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('GetoptLong::STATUS_YET') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 end

@@ -5,7 +5,7 @@
 #
 RubyLint.registry.register('Object') do |defs|
   defs.define_constant('Object') do |klass|
-    klass.inherits(defs.constant_proxy('BasicObject'))
+    klass.inherits(defs.constant_proxy('BasicObject', RubyLint.registry))
 
     klass.define_method('__class_init__')
 

@@ -5,9 +5,9 @@
 
 RubyLint.registry.register('UNIXServer') do |defs|
   defs.define_constant('UNIXServer') do |klass|
-    klass.inherits(defs.constant_proxy('UNIXSocket'))
-    klass.inherits(defs.constant_proxy('Socket::ListenAndAccept'))
-    klass.inherits(defs.constant_proxy('IO::Socketable'))
+    klass.inherits(defs.constant_proxy('UNIXSocket', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('Socket::ListenAndAccept', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('IO::Socketable', RubyLint.registry))
 
     klass.define_instance_method('initialize') do |method|
       method.define_argument('path')
@@ -17,22 +17,22 @@ RubyLint.registry.register('UNIXServer') do |defs|
   end
 
   defs.define_constant('UNIXServer::ACCMODE') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('UNIXServer::APPEND') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('UNIXServer::BINARY') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('UNIXServer::BidirectionalPipe') do |klass|
-    klass.inherits(defs.constant_proxy('IO'))
+    klass.inherits(defs.constant_proxy('IO', RubyLint.registry))
 
     klass.define_instance_method('<<') do |method|
       method.define_argument('obj')
@@ -81,29 +81,29 @@ RubyLint.registry.register('UNIXServer') do |defs|
   end
 
   defs.define_constant('UNIXServer::CREAT') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('UNIXServer::EAGAINWaitReadable') do |klass|
-    klass.inherits(defs.constant_proxy('Errno::EAGAIN'))
-    klass.inherits(defs.constant_proxy('IO::WaitReadable'))
+    klass.inherits(defs.constant_proxy('Errno::EAGAIN', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('IO::WaitReadable', RubyLint.registry))
 
   end
 
   defs.define_constant('UNIXServer::EAGAINWaitWritable') do |klass|
-    klass.inherits(defs.constant_proxy('Errno::EAGAIN'))
-    klass.inherits(defs.constant_proxy('IO::WaitWritable'))
+    klass.inherits(defs.constant_proxy('Errno::EAGAIN', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('IO::WaitWritable', RubyLint.registry))
 
   end
 
   defs.define_constant('UNIXServer::EXCL') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('UNIXServer::EachReader') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
     klass.define_instance_method('each')
 
@@ -126,8 +126,8 @@ RubyLint.registry.register('UNIXServer') do |defs|
   end
 
   defs.define_constant('UNIXServer::Enumerator') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
-    klass.inherits(defs.constant_proxy('Enumerable'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('Enumerable', RubyLint.registry))
 
     klass.define_instance_method('each') do |method|
       method.define_rest_argument('args')
@@ -161,12 +161,12 @@ RubyLint.registry.register('UNIXServer') do |defs|
   end
 
   defs.define_constant('UNIXServer::FD_CLOEXEC') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('UNIXServer::FFI') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
     klass.define_method('add_typedef') do |method|
       method.define_argument('current')
@@ -211,57 +211,57 @@ RubyLint.registry.register('UNIXServer') do |defs|
   end
 
   defs.define_constant('UNIXServer::FNM_CASEFOLD') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('UNIXServer::FNM_DOTMATCH') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('UNIXServer::FNM_NOESCAPE') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('UNIXServer::FNM_PATHNAME') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('UNIXServer::FNM_SYSCASE') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('UNIXServer::F_GETFD') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('UNIXServer::F_GETFL') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('UNIXServer::F_OK') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('UNIXServer::F_SETFD') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('UNIXServer::F_SETFL') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('UNIXServer::InternalBuffer') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
     klass.define_method('allocate')
 
@@ -343,88 +343,88 @@ RubyLint.registry.register('UNIXServer') do |defs|
   end
 
   defs.define_constant('UNIXServer::LOCK_EX') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('UNIXServer::LOCK_NB') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('UNIXServer::LOCK_SH') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('UNIXServer::LOCK_UN') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('UNIXServer::NOCTTY') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('UNIXServer::NONBLOCK') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('UNIXServer::NULL') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('UNIXServer::RDONLY') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('UNIXServer::RDWR') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('UNIXServer::R_OK') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('UNIXServer::Readable') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('UNIXServer::SEEK_CUR') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('UNIXServer::SEEK_END') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('UNIXServer::SEEK_SET') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('UNIXServer::SYNC') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('UNIXServer::Socketable') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
     klass.define_instance_method('accept')
   end
 
   defs.define_constant('UNIXServer::SortedElement') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
     klass.define_instance_method('<=>') do |method|
       method.define_argument('other')
@@ -443,7 +443,7 @@ RubyLint.registry.register('UNIXServer') do |defs|
   end
 
   defs.define_constant('UNIXServer::StreamCopier') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
     klass.define_instance_method('initialize') do |method|
       method.define_argument('from')
@@ -467,12 +467,12 @@ RubyLint.registry.register('UNIXServer') do |defs|
   end
 
   defs.define_constant('UNIXServer::TRUNC') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('UNIXServer::TransferIO') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
     klass.define_instance_method('recv_fd')
 
@@ -480,32 +480,32 @@ RubyLint.registry.register('UNIXServer') do |defs|
   end
 
   defs.define_constant('UNIXServer::WRONLY') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('UNIXServer::W_OK') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('UNIXServer::WaitReadable') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('UNIXServer::WaitWritable') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('UNIXServer::Writable') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('UNIXServer::X_OK') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 end

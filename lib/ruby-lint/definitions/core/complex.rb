@@ -5,7 +5,7 @@
 
 RubyLint.registry.register('Complex') do |defs|
   defs.define_constant('Complex') do |klass|
-    klass.inherits(defs.constant_proxy('Numeric'))
+    klass.inherits(defs.constant_proxy('Numeric', RubyLint.registry))
 
     klass.define_method('generic?') do |method|
       method.define_argument('other')
@@ -153,7 +153,7 @@ RubyLint.registry.register('Complex') do |defs|
   end
 
   defs.define_constant('Complex::I') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 end

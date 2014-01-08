@@ -5,7 +5,7 @@
 
 RubyLint.registry.register('Timeout') do |defs|
   defs.define_constant('Timeout') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
     klass.define_method('add_timeout') do |method|
       method.define_argument('time')
@@ -21,12 +21,12 @@ RubyLint.registry.register('Timeout') do |defs|
   end
 
   defs.define_constant('Timeout::Error') do |klass|
-    klass.inherits(defs.constant_proxy('RuntimeError'))
+    klass.inherits(defs.constant_proxy('RuntimeError', RubyLint.registry))
 
   end
 
   defs.define_constant('Timeout::TimeoutRequest') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
     klass.define_instance_method('abort')
 

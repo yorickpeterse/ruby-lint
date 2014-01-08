@@ -5,7 +5,7 @@
 
 RubyLint.registry.register('SizedQueue') do |defs|
   defs.define_constant('SizedQueue') do |klass|
-    klass.inherits(defs.constant_proxy('Queue'))
+    klass.inherits(defs.constant_proxy('Queue', RubyLint.registry))
 
     klass.define_instance_method('<<') do |method|
       method.define_argument('obj')

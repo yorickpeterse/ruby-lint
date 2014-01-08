@@ -5,7 +5,7 @@
 
 RubyLint.registry.register('FloatDomainError') do |defs|
   defs.define_constant('FloatDomainError') do |klass|
-    klass.inherits(defs.constant_proxy('RangeError'))
+    klass.inherits(defs.constant_proxy('RangeError', RubyLint.registry))
 
   end
 end

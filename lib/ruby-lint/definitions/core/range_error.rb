@@ -5,7 +5,7 @@
 
 RubyLint.registry.register('RangeError') do |defs|
   defs.define_constant('RangeError') do |klass|
-    klass.inherits(defs.constant_proxy('StandardError'))
+    klass.inherits(defs.constant_proxy('StandardError', RubyLint.registry))
 
   end
 end

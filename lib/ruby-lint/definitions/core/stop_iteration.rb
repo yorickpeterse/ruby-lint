@@ -5,7 +5,7 @@
 
 RubyLint.registry.register('StopIteration') do |defs|
   defs.define_constant('StopIteration') do |klass|
-    klass.inherits(defs.constant_proxy('IndexError'))
+    klass.inherits(defs.constant_proxy('IndexError', RubyLint.registry))
 
     klass.define_instance_method('result')
   end

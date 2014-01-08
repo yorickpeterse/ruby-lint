@@ -5,7 +5,7 @@
 
 RubyLint.registry.register('SingleForwardable') do |defs|
   defs.define_constant('SingleForwardable') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
     klass.define_instance_method('def_delegator') do |method|
       method.define_argument('accessor')

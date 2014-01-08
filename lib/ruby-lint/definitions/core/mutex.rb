@@ -5,7 +5,7 @@
 
 RubyLint.registry.register('Mutex') do |defs|
   defs.define_constant('Mutex') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
     klass.define_instance_method('initialize')
 

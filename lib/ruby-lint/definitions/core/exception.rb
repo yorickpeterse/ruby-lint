@@ -5,7 +5,7 @@
 
 RubyLint.registry.register('Exception') do |defs|
   defs.define_constant('Exception') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
     klass.define_method('exception') do |method|
       method.define_rest_argument('args')

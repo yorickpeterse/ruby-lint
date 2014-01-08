@@ -5,8 +5,8 @@
 
 RubyLint.registry.register('CSV') do |defs|
   defs.define_constant('CSV') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
-    klass.inherits(defs.constant_proxy('Enumerable'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('Enumerable', RubyLint.registry))
 
     klass.define_method('filter') do |method|
       method.define_rest_argument('args')
@@ -299,33 +299,33 @@ RubyLint.registry.register('CSV') do |defs|
   end
 
   defs.define_constant('CSV::ConverterEncoding') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('CSV::Converters') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('CSV::DEFAULT_OPTIONS') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('CSV::DateMatcher') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('CSV::DateTimeMatcher') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('CSV::Enumerator') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
-    klass.inherits(defs.constant_proxy('Enumerable'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('Enumerable', RubyLint.registry))
 
     klass.define_instance_method('each') do |method|
       method.define_rest_argument('args')
@@ -359,7 +359,7 @@ RubyLint.registry.register('CSV') do |defs|
   end
 
   defs.define_constant('CSV::FieldInfo') do |klass|
-    klass.inherits(defs.constant_proxy('Struct'))
+    klass.inherits(defs.constant_proxy('Struct', RubyLint.registry))
     klass.inherits(defs.constant_proxy('#<Module:0x1f748>'))
 
     klass.define_method('[]') do |method|
@@ -386,8 +386,8 @@ RubyLint.registry.register('CSV') do |defs|
   end
 
   defs.define_constant('CSV::FieldInfo::Enumerator') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
-    klass.inherits(defs.constant_proxy('Enumerable'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('Enumerable', RubyLint.registry))
 
     klass.define_instance_method('each') do |method|
       method.define_rest_argument('args')
@@ -421,7 +421,7 @@ RubyLint.registry.register('CSV') do |defs|
   end
 
   defs.define_constant('CSV::FieldInfo::Group') do |klass|
-    klass.inherits(defs.constant_proxy('Rubinius::FFI::Struct'))
+    klass.inherits(defs.constant_proxy('Rubinius::FFI::Struct', RubyLint.registry))
 
     klass.define_instance_method('gid')
 
@@ -433,7 +433,7 @@ RubyLint.registry.register('CSV') do |defs|
   end
 
   defs.define_constant('CSV::FieldInfo::Passwd') do |klass|
-    klass.inherits(defs.constant_proxy('Rubinius::FFI::Struct'))
+    klass.inherits(defs.constant_proxy('Rubinius::FFI::Struct', RubyLint.registry))
 
     klass.define_instance_method('dir')
 
@@ -451,12 +451,12 @@ RubyLint.registry.register('CSV') do |defs|
   end
 
   defs.define_constant('CSV::FieldInfo::STRUCT_ATTRS') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('CSV::FieldInfo::SortedElement') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
     klass.define_instance_method('<=>') do |method|
       method.define_argument('other')
@@ -475,7 +475,7 @@ RubyLint.registry.register('CSV') do |defs|
   end
 
   defs.define_constant('CSV::FieldInfo::Tms') do |klass|
-    klass.inherits(defs.constant_proxy('Struct'))
+    klass.inherits(defs.constant_proxy('Struct', RubyLint.registry))
 
     klass.define_method('[]') do |method|
       method.define_rest_argument('args')
@@ -524,18 +524,18 @@ RubyLint.registry.register('CSV') do |defs|
   end
 
   defs.define_constant('CSV::HeaderConverters') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('CSV::MalformedCSVError') do |klass|
-    klass.inherits(defs.constant_proxy('RuntimeError'))
+    klass.inherits(defs.constant_proxy('RuntimeError', RubyLint.registry))
 
   end
 
   defs.define_constant('CSV::Row') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
-    klass.inherits(defs.constant_proxy('Enumerable'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('Enumerable', RubyLint.registry))
 
     klass.define_instance_method('<<') do |method|
       method.define_argument('arg')
@@ -663,8 +663,8 @@ RubyLint.registry.register('CSV') do |defs|
   end
 
   defs.define_constant('CSV::Row::Enumerator') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
-    klass.inherits(defs.constant_proxy('Enumerable'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('Enumerable', RubyLint.registry))
 
     klass.define_instance_method('each') do |method|
       method.define_rest_argument('args')
@@ -698,7 +698,7 @@ RubyLint.registry.register('CSV') do |defs|
   end
 
   defs.define_constant('CSV::Row::SortedElement') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
     klass.define_instance_method('<=>') do |method|
       method.define_argument('other')
@@ -717,7 +717,7 @@ RubyLint.registry.register('CSV') do |defs|
   end
 
   defs.define_constant('CSV::SortedElement') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
     klass.define_instance_method('<=>') do |method|
       method.define_argument('other')
@@ -736,8 +736,8 @@ RubyLint.registry.register('CSV') do |defs|
   end
 
   defs.define_constant('CSV::Table') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
-    klass.inherits(defs.constant_proxy('Enumerable'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('Enumerable', RubyLint.registry))
 
     klass.define_instance_method('<<') do |method|
       method.define_argument('row_or_array')
@@ -829,8 +829,8 @@ RubyLint.registry.register('CSV') do |defs|
   end
 
   defs.define_constant('CSV::Table::Enumerator') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
-    klass.inherits(defs.constant_proxy('Enumerable'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('Enumerable', RubyLint.registry))
 
     klass.define_instance_method('each') do |method|
       method.define_rest_argument('args')
@@ -864,7 +864,7 @@ RubyLint.registry.register('CSV') do |defs|
   end
 
   defs.define_constant('CSV::Table::SortedElement') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
     klass.define_instance_method('<=>') do |method|
       method.define_argument('other')
@@ -883,7 +883,7 @@ RubyLint.registry.register('CSV') do |defs|
   end
 
   defs.define_constant('CSV::VERSION') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 end

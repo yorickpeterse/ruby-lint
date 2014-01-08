@@ -5,7 +5,7 @@
 #
 RubyLint.registry.register('Module') do |defs|
   defs.define_constant('Module') do |klass|
-    klass.inherits(defs.constant_proxy('Kernel'))
+    klass.inherits(defs.constant_proxy('Kernel', RubyLint.registry))
 
     klass.define_method('allocate')
     klass.define_method('nesting')

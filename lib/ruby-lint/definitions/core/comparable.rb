@@ -5,7 +5,7 @@
 
 RubyLint.registry.register('Comparable') do |defs|
   defs.define_constant('Comparable') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
     klass.define_method('compare_int') do |method|
       method.define_argument('int')

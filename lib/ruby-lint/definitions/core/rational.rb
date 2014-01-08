@@ -5,7 +5,7 @@
 
 RubyLint.registry.register('Rational') do |defs|
   defs.define_constant('Rational') do |klass|
-    klass.inherits(defs.constant_proxy('Numeric'))
+    klass.inherits(defs.constant_proxy('Numeric', RubyLint.registry))
 
     klass.define_method('yaml_new') do |method|
       method.define_argument('klass')

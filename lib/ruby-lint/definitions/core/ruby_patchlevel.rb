@@ -5,7 +5,7 @@
 
 RubyLint.registry.register('RUBY_PATCHLEVEL') do |defs|
   defs.define_constant('RUBY_PATCHLEVEL') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 end

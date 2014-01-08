@@ -5,7 +5,7 @@
 
 RubyLint.registry.register('SystemExit') do |defs|
   defs.define_constant('SystemExit') do |klass|
-    klass.inherits(defs.constant_proxy('Exception'))
+    klass.inherits(defs.constant_proxy('Exception', RubyLint.registry))
 
     klass.define_instance_method('initialize') do |method|
       method.define_optional_argument('first')

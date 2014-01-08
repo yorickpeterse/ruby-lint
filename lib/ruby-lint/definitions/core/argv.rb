@@ -5,7 +5,7 @@
 
 RubyLint.registry.register('ARGV') do |defs|
   defs.define_constant('ARGV') do |klass|
-    klass.inherits(defs.constant_proxy('Array'))
+    klass.inherits(defs.constant_proxy('Array', RubyLint.registry))
     klass.instance!
   end
 end

@@ -5,7 +5,7 @@
 
 RubyLint.registry.register('WeakRef') do |defs|
   defs.define_constant('WeakRef') do |klass|
-    klass.inherits(defs.constant_proxy('BasicObject'))
+    klass.inherits(defs.constant_proxy('BasicObject', RubyLint.registry))
 
     klass.define_method('new') do |method|
       method.define_argument('obj')
@@ -35,7 +35,7 @@ RubyLint.registry.register('WeakRef') do |defs|
   end
 
   defs.define_constant('WeakRef::RefError') do |klass|
-    klass.inherits(defs.constant_proxy('RuntimeError'))
+    klass.inherits(defs.constant_proxy('RuntimeError', RubyLint.registry))
 
   end
 end

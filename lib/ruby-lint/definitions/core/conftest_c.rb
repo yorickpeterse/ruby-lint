@@ -5,7 +5,7 @@
 
 RubyLint.registry.register('CONFTEST_C') do |defs|
   defs.define_constant('CONFTEST_C') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 end

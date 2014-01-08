@@ -5,7 +5,7 @@
 
 RubyLint.registry.register('ORIG_LIBPATH') do |defs|
   defs.define_constant('ORIG_LIBPATH') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 end

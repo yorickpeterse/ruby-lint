@@ -5,7 +5,7 @@
 
 RubyLint.registry.register('IRB') do |defs|
   defs.define_constant('IRB') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
     klass.define_method('CurrentContext')
 
@@ -60,12 +60,12 @@ RubyLint.registry.register('IRB') do |defs|
   end
 
   defs.define_constant('IRB::Abort') do |klass|
-    klass.inherits(defs.constant_proxy('Exception'))
+    klass.inherits(defs.constant_proxy('Exception', RubyLint.registry))
 
   end
 
   defs.define_constant('IRB::Context') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
     klass.define_instance_method('__inspect__')
 
@@ -254,22 +254,22 @@ RubyLint.registry.register('IRB') do |defs|
   end
 
   defs.define_constant('IRB::Context::IDNAME_IVARS') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('IRB::Context::NOPRINTING_IVARS') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('IRB::Context::NO_INSPECTING_IVARS') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('IRB::ContextExtender') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
     klass.define_method('def_extend_command') do |method|
       method.define_argument('cmd_name')
@@ -281,7 +281,7 @@ RubyLint.registry.register('IRB') do |defs|
   end
 
   defs.define_constant('IRB::DefaultEncodings') do |klass|
-    klass.inherits(defs.constant_proxy('Struct'))
+    klass.inherits(defs.constant_proxy('Struct', RubyLint.registry))
     klass.inherits(defs.constant_proxy('#<Module:0x20be0>'))
 
     klass.define_method('[]') do |method|
@@ -304,8 +304,8 @@ RubyLint.registry.register('IRB') do |defs|
   end
 
   defs.define_constant('IRB::DefaultEncodings::Enumerator') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
-    klass.inherits(defs.constant_proxy('Enumerable'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('Enumerable', RubyLint.registry))
 
     klass.define_instance_method('each') do |method|
       method.define_rest_argument('args')
@@ -339,7 +339,7 @@ RubyLint.registry.register('IRB') do |defs|
   end
 
   defs.define_constant('IRB::DefaultEncodings::Group') do |klass|
-    klass.inherits(defs.constant_proxy('Rubinius::FFI::Struct'))
+    klass.inherits(defs.constant_proxy('Rubinius::FFI::Struct', RubyLint.registry))
 
     klass.define_instance_method('gid')
 
@@ -351,7 +351,7 @@ RubyLint.registry.register('IRB') do |defs|
   end
 
   defs.define_constant('IRB::DefaultEncodings::Passwd') do |klass|
-    klass.inherits(defs.constant_proxy('Rubinius::FFI::Struct'))
+    klass.inherits(defs.constant_proxy('Rubinius::FFI::Struct', RubyLint.registry))
 
     klass.define_instance_method('dir')
 
@@ -369,12 +369,12 @@ RubyLint.registry.register('IRB') do |defs|
   end
 
   defs.define_constant('IRB::DefaultEncodings::STRUCT_ATTRS') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('IRB::DefaultEncodings::SortedElement') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
     klass.define_instance_method('<=>') do |method|
       method.define_argument('other')
@@ -393,7 +393,7 @@ RubyLint.registry.register('IRB') do |defs|
   end
 
   defs.define_constant('IRB::DefaultEncodings::Tms') do |klass|
-    klass.inherits(defs.constant_proxy('Struct'))
+    klass.inherits(defs.constant_proxy('Struct', RubyLint.registry))
 
     klass.define_method('[]') do |method|
       method.define_rest_argument('args')
@@ -442,7 +442,7 @@ RubyLint.registry.register('IRB') do |defs|
   end
 
   defs.define_constant('IRB::ExtendCommandBundle') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
     klass.define_method('def_extend_command') do |method|
       method.define_argument('cmd_name')
@@ -540,27 +540,27 @@ RubyLint.registry.register('IRB') do |defs|
   end
 
   defs.define_constant('IRB::ExtendCommandBundle::NO_OVERRIDE') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('IRB::ExtendCommandBundle::OVERRIDE_ALL') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('IRB::ExtendCommandBundle::OVERRIDE_PRIVATE_ONLY') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('IRB::FEATURE_IOPT_CHANGE_VERSION') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('IRB::FileInputMethod') do |klass|
-    klass.inherits(defs.constant_proxy('IRB::InputMethod'))
+    klass.inherits(defs.constant_proxy('IRB::InputMethod', RubyLint.registry))
 
     klass.define_instance_method('encoding')
 
@@ -578,12 +578,12 @@ RubyLint.registry.register('IRB') do |defs|
   end
 
   defs.define_constant('IRB::IRBRC_EXT') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('IRB::InputMethod') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
     klass.define_instance_method('file_name')
 
@@ -603,7 +603,7 @@ RubyLint.registry.register('IRB') do |defs|
   end
 
   defs.define_constant('IRB::Inspector') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
     klass.define_method('def_inspector') do |method|
       method.define_argument('key')
@@ -630,12 +630,12 @@ RubyLint.registry.register('IRB') do |defs|
   end
 
   defs.define_constant('IRB::Inspector::INSPECTORS') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('IRB::Irb') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
     klass.define_instance_method('context')
 
@@ -689,7 +689,7 @@ RubyLint.registry.register('IRB') do |defs|
   end
 
   defs.define_constant('IRB::Locale') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
     klass.define_instance_method('String') do |method|
       method.define_argument('mes')
@@ -750,17 +750,17 @@ RubyLint.registry.register('IRB') do |defs|
   end
 
   defs.define_constant('IRB::Locale::LOCALE_DIR') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('IRB::Locale::LOCALE_NAME_RE') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('IRB::MagicFile') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
     klass.define_method('open') do |method|
       method.define_argument('path')
@@ -768,7 +768,7 @@ RubyLint.registry.register('IRB') do |defs|
   end
 
   defs.define_constant('IRB::MethodExtender') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
     klass.define_instance_method('def_post_proc') do |method|
       method.define_argument('base_method')
@@ -788,7 +788,7 @@ RubyLint.registry.register('IRB') do |defs|
   end
 
   defs.define_constant('IRB::Notifier') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
     klass.define_method('def_notifier') do |method|
       method.define_optional_argument('prefix')
@@ -811,7 +811,7 @@ RubyLint.registry.register('IRB') do |defs|
   end
 
   defs.define_constant('IRB::Notifier::AbstractNotifier') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
     klass.define_instance_method('exec_if')
 
@@ -854,7 +854,7 @@ RubyLint.registry.register('IRB') do |defs|
   end
 
   defs.define_constant('IRB::Notifier::CompositeNotifier') do |klass|
-    klass.inherits(defs.constant_proxy('IRB::Notifier::AbstractNotifier'))
+    klass.inherits(defs.constant_proxy('IRB::Notifier::AbstractNotifier', RubyLint.registry))
 
     klass.define_instance_method('def_notifier') do |method|
       method.define_argument('level')
@@ -884,23 +884,23 @@ RubyLint.registry.register('IRB') do |defs|
   end
 
   defs.define_constant('IRB::Notifier::D_NOMSG') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('IRB::Notifier::ErrUndefinedNotifier') do |klass|
-    klass.inherits(defs.constant_proxy('StandardError'))
+    klass.inherits(defs.constant_proxy('StandardError', RubyLint.registry))
 
   end
 
   defs.define_constant('IRB::Notifier::ErrUnrecognizedLevel') do |klass|
-    klass.inherits(defs.constant_proxy('StandardError'))
+    klass.inherits(defs.constant_proxy('StandardError', RubyLint.registry))
 
   end
 
   defs.define_constant('IRB::Notifier::LeveledNotifier') do |klass|
-    klass.inherits(defs.constant_proxy('IRB::Notifier::AbstractNotifier'))
-    klass.inherits(defs.constant_proxy('Comparable'))
+    klass.inherits(defs.constant_proxy('IRB::Notifier::AbstractNotifier', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('Comparable', RubyLint.registry))
 
     klass.define_instance_method('<=>') do |method|
       method.define_argument('other')
@@ -920,7 +920,7 @@ RubyLint.registry.register('IRB') do |defs|
   end
 
   defs.define_constant('IRB::Notifier::NoMsgNotifier') do |klass|
-    klass.inherits(defs.constant_proxy('IRB::Notifier::LeveledNotifier'))
+    klass.inherits(defs.constant_proxy('IRB::Notifier::LeveledNotifier', RubyLint.registry))
 
     klass.define_instance_method('initialize')
 
@@ -928,7 +928,7 @@ RubyLint.registry.register('IRB') do |defs|
   end
 
   defs.define_constant('IRB::OutputMethod') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
     klass.define_method('included') do |method|
       method.define_argument('mod')
@@ -977,13 +977,13 @@ RubyLint.registry.register('IRB') do |defs|
   end
 
   defs.define_constant('IRB::OutputMethod::NotImplementedError') do |klass|
-    klass.inherits(defs.constant_proxy('StandardError'))
+    klass.inherits(defs.constant_proxy('StandardError', RubyLint.registry))
 
   end
 
   defs.define_constant('IRB::ReadlineInputMethod') do |klass|
-    klass.inherits(defs.constant_proxy('IRB::InputMethod'))
-    klass.inherits(defs.constant_proxy('Readline'))
+    klass.inherits(defs.constant_proxy('IRB::InputMethod', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('Readline', RubyLint.registry))
 
     klass.define_instance_method('encoding')
 
@@ -1001,13 +1001,13 @@ RubyLint.registry.register('IRB') do |defs|
   end
 
   defs.define_constant('IRB::ReadlineInputMethod::FILENAME_COMPLETION_PROC') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
     klass.define_method('call')
   end
 
   defs.define_constant('IRB::ReadlineInputMethod::HISTORY') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
     klass.define_method('<<')
 
@@ -1037,18 +1037,18 @@ RubyLint.registry.register('IRB') do |defs|
   end
 
   defs.define_constant('IRB::ReadlineInputMethod::USERNAME_COMPLETION_PROC') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
     klass.define_method('call')
   end
 
   defs.define_constant('IRB::ReadlineInputMethod::VERSION') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('IRB::SLex') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
     klass.define_method('included') do |method|
       method.define_argument('mod')
@@ -1105,37 +1105,37 @@ RubyLint.registry.register('IRB') do |defs|
   end
 
   defs.define_constant('IRB::SLex::DOUT') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('IRB::SLex::D_DEBUG') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('IRB::SLex::D_DETAIL') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('IRB::SLex::D_WARN') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('IRB::SLex::ErrNodeAlreadyExists') do |klass|
-    klass.inherits(defs.constant_proxy('StandardError'))
+    klass.inherits(defs.constant_proxy('StandardError', RubyLint.registry))
 
   end
 
   defs.define_constant('IRB::SLex::ErrNodeNothing') do |klass|
-    klass.inherits(defs.constant_proxy('StandardError'))
+    klass.inherits(defs.constant_proxy('StandardError', RubyLint.registry))
 
   end
 
   defs.define_constant('IRB::SLex::Node') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
     klass.define_instance_method('create_subnode') do |method|
       method.define_argument('chrs')
@@ -1175,12 +1175,12 @@ RubyLint.registry.register('IRB') do |defs|
   end
 
   defs.define_constant('IRB::STDIN_FILE_NAME') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('IRB::StdioInputMethod') do |klass|
-    klass.inherits(defs.constant_proxy('IRB::InputMethod'))
+    klass.inherits(defs.constant_proxy('IRB::InputMethod', RubyLint.registry))
 
     klass.define_instance_method('encoding')
 
@@ -1198,7 +1198,7 @@ RubyLint.registry.register('IRB') do |defs|
   end
 
   defs.define_constant('IRB::StdioOutputMethod') do |klass|
-    klass.inherits(defs.constant_proxy('IRB::OutputMethod'))
+    klass.inherits(defs.constant_proxy('IRB::OutputMethod', RubyLint.registry))
 
     klass.define_instance_method('print') do |method|
       method.define_rest_argument('opts')
@@ -1206,12 +1206,12 @@ RubyLint.registry.register('IRB') do |defs|
   end
 
   defs.define_constant('IRB::StdioOutputMethod::NotImplementedError') do |klass|
-    klass.inherits(defs.constant_proxy('StandardError'))
+    klass.inherits(defs.constant_proxy('StandardError', RubyLint.registry))
 
   end
 
   defs.define_constant('IRB::WorkSpace') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
     klass.define_instance_method('binding')
 

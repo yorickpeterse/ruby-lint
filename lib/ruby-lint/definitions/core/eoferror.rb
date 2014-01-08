@@ -5,7 +5,7 @@
 
 RubyLint.registry.register('EOFError') do |defs|
   defs.define_constant('EOFError') do |klass|
-    klass.inherits(defs.constant_proxy('IOError'))
+    klass.inherits(defs.constant_proxy('IOError', RubyLint.registry))
 
   end
 end

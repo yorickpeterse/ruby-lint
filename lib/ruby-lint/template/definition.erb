@@ -7,10 +7,10 @@ RubyLint.registry.register('<%= @constants[0].name %>') do |defs|
   <%- @constants.each do |constant| -%>
   defs.define_constant('<%= constant.name %>') do |klass|
     <%- if constant.superclass -%>
-    klass.inherits(defs.constant_proxy('<%= constant.superclass %>'))
+    klass.inherits(defs.constant_proxy('<%= constant.superclass %>', RubyLint.registry))
     <%- end -%>
     <%- constant.modules.each do |mod| -%>
-    klass.inherits(defs.constant_proxy('<%= mod %>'))
+    klass.inherits(defs.constant_proxy('<%= mod %>'), RubyLint.registry)
     <%- end -%>
 
     <%- constant.methods.each do |type, collection| -%>

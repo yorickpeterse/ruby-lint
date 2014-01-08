@@ -5,27 +5,27 @@
 
 RubyLint.registry.register('ActionMailer') do |defs|
   defs.define_constant('ActionMailer') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
     klass.define_method('version')
   end
 
   defs.define_constant('ActionMailer::Base') do |klass|
-    klass.inherits(defs.constant_proxy('AbstractController::Base'))
-    klass.inherits(defs.constant_proxy('AbstractController::Callbacks'))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Callbacks'))
-    klass.inherits(defs.constant_proxy('AbstractController::AssetPaths'))
-    klass.inherits(defs.constant_proxy('AbstractController::Translation'))
-    klass.inherits(defs.constant_proxy('AbstractController::Helpers'))
-    klass.inherits(defs.constant_proxy('AbstractController::Layouts'))
-    klass.inherits(defs.constant_proxy('AbstractController::Rendering'))
-    klass.inherits(defs.constant_proxy('AbstractController::ViewPaths'))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Benchmarkable'))
-    klass.inherits(defs.constant_proxy('AbstractController::Logger'))
-    klass.inherits(defs.constant_proxy('ActionMailer::DeliveryMethods'))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Configurable'))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
+    klass.inherits(defs.constant_proxy('AbstractController::Base', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('AbstractController::Callbacks', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('ActiveSupport::Callbacks', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('AbstractController::AssetPaths', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('AbstractController::Translation', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('AbstractController::Helpers', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('AbstractController::Layouts', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('AbstractController::Rendering', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('AbstractController::ViewPaths', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('ActiveSupport::Benchmarkable', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('AbstractController::Logger', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('ActionMailer::DeliveryMethods', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('ActiveSupport::Configurable', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object', RubyLint.registry))
 
     klass.define_method('_helper_methods')
 
@@ -433,14 +433,14 @@ RubyLint.registry.register('ActionMailer') do |defs|
   end
 
   defs.define_constant('ActionMailer::Base::CALLBACK_FILTER_TYPES') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('ActionMailer::Base::Callback') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object', RubyLint.registry))
 
     klass.define_instance_method('_update_filter') do |method|
       method.define_argument('filter_options')
@@ -517,11 +517,11 @@ RubyLint.registry.register('ActionMailer') do |defs|
   end
 
   defs.define_constant('ActionMailer::Base::CallbackChain') do |klass|
-    klass.inherits(defs.constant_proxy('Array'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Array'))
-    klass.inherits(defs.constant_proxy('Enumerable'))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
+    klass.inherits(defs.constant_proxy('Array', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Array', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('Enumerable', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object', RubyLint.registry))
 
     klass.define_instance_method('append') do |method|
       method.define_rest_argument('callbacks')
@@ -546,7 +546,7 @@ RubyLint.registry.register('ActionMailer') do |defs|
   end
 
   defs.define_constant('ActionMailer::Base::ClassMethods') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
     klass.define_instance_method('_insert_callbacks') do |method|
       method.define_argument('callbacks')
@@ -687,11 +687,11 @@ RubyLint.registry.register('ActionMailer') do |defs|
   end
 
   defs.define_constant('ActionMailer::Base::Configuration') do |klass|
-    klass.inherits(defs.constant_proxy('ActiveSupport::InheritableOptions'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Hash'))
-    klass.inherits(defs.constant_proxy('Enumerable'))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
+    klass.inherits(defs.constant_proxy('ActiveSupport::InheritableOptions', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Hash', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('Enumerable', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object', RubyLint.registry))
 
     klass.define_method('compile_methods!') do |method|
       method.define_argument('keys')
@@ -701,14 +701,14 @@ RubyLint.registry.register('ActionMailer') do |defs|
   end
 
   defs.define_constant('ActionMailer::Base::DEFAULT_PROTECTED_INSTANCE_VARIABLES') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('ActionMailer::Base::NullMail') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object', RubyLint.registry))
 
     klass.define_instance_method('body')
 
@@ -718,10 +718,10 @@ RubyLint.registry.register('ActionMailer') do |defs|
   end
 
   defs.define_constant('ActionMailer::Collector') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
-    klass.inherits(defs.constant_proxy('AbstractController::Collector'))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('AbstractController::Collector', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object', RubyLint.registry))
 
     klass.define_instance_method('all') do |method|
       method.define_rest_argument('args')
@@ -749,7 +749,7 @@ RubyLint.registry.register('ActionMailer') do |defs|
   end
 
   defs.define_constant('ActionMailer::DeliveryMethods') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
     klass.define_instance_method('wrap_delivery_behavior!') do |method|
       method.define_rest_argument('args')
@@ -757,7 +757,7 @@ RubyLint.registry.register('ActionMailer') do |defs|
   end
 
   defs.define_constant('ActionMailer::DeliveryMethods::ClassMethods') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
     klass.define_instance_method('add_delivery_method') do |method|
       method.define_argument('symbol')
@@ -782,7 +782,7 @@ RubyLint.registry.register('ActionMailer') do |defs|
   end
 
   defs.define_constant('ActionMailer::MailHelper') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
     klass.define_instance_method('attachments')
 
@@ -802,21 +802,21 @@ RubyLint.registry.register('ActionMailer') do |defs|
   end
 
   defs.define_constant('ActionMailer::Railtie') do |klass|
-    klass.inherits(defs.constant_proxy('Rails::Railtie'))
-    klass.inherits(defs.constant_proxy('Rails::Railtie::Configurable'))
-    klass.inherits(defs.constant_proxy('Rails::Initializable'))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
+    klass.inherits(defs.constant_proxy('Rails::Railtie', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('Rails::Railtie::Configurable', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('Rails::Initializable', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object', RubyLint.registry))
 
   end
 
   defs.define_constant('ActionMailer::Railtie::ABSTRACT_RAILTIES') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('ActionMailer::Railtie::ClassMethods') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
     klass.define_instance_method('config') do |method|
       method.define_rest_argument('args')
@@ -844,12 +844,12 @@ RubyLint.registry.register('ActionMailer') do |defs|
   end
 
   defs.define_constant('ActionMailer::Railtie::Collection') do |klass|
-    klass.inherits(defs.constant_proxy('Array'))
-    klass.inherits(defs.constant_proxy('TSort'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Array'))
-    klass.inherits(defs.constant_proxy('Enumerable'))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
+    klass.inherits(defs.constant_proxy('Array', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('TSort', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Array', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('Enumerable', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object', RubyLint.registry))
 
     klass.define_instance_method('+') do |method|
       method.define_argument('other')
@@ -864,14 +864,14 @@ RubyLint.registry.register('ActionMailer') do |defs|
   end
 
   defs.define_constant('ActionMailer::Railtie::Configurable') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('ActionMailer::Railtie::Configuration') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object', RubyLint.registry))
 
     klass.define_method('eager_load_namespaces')
 
@@ -915,9 +915,9 @@ RubyLint.registry.register('ActionMailer') do |defs|
   end
 
   defs.define_constant('ActionMailer::Railtie::Initializer') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object', RubyLint.registry))
 
     klass.define_instance_method('after')
 
@@ -950,21 +950,21 @@ RubyLint.registry.register('ActionMailer') do |defs|
   end
 
   defs.define_constant('ActionMailer::TestCase') do |klass|
-    klass.inherits(defs.constant_proxy('ActiveSupport::TestCase'))
-    klass.inherits(defs.constant_proxy('ActionMailer::TestCase::Behavior'))
-    klass.inherits(defs.constant_proxy('ActionMailer::TestHelper'))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Testing::ConstantLookup'))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Testing::Pending'))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Testing::Deprecation'))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Testing::Assertions'))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Callbacks'))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Testing::SetupAndTeardown'))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Testing::TaggedLogging'))
-    klass.inherits(defs.constant_proxy('MiniTest::Assertions'))
-    klass.inherits(defs.constant_proxy('MiniTest::Unit::Guard'))
-    klass.inherits(defs.constant_proxy('MiniTest::Unit::LifecycleHooks'))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
+    klass.inherits(defs.constant_proxy('ActiveSupport::TestCase', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('ActionMailer::TestCase::Behavior', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('ActionMailer::TestHelper', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('ActiveSupport::Testing::ConstantLookup', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('ActiveSupport::Testing::Pending', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('ActiveSupport::Testing::Deprecation', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('ActiveSupport::Testing::Assertions', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('ActiveSupport::Callbacks', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('ActiveSupport::Testing::SetupAndTeardown', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('ActiveSupport::Testing::TaggedLogging', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('MiniTest::Assertions', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('MiniTest::Unit::Guard', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('MiniTest::Unit::LifecycleHooks', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object', RubyLint.registry))
 
     klass.define_method('_mailer_class')
 
@@ -984,16 +984,16 @@ RubyLint.registry.register('ActionMailer') do |defs|
   end
 
   defs.define_constant('ActionMailer::TestCase::Assertion') do |klass|
-    klass.inherits(defs.constant_proxy('Exception'))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Blamable'))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
+    klass.inherits(defs.constant_proxy('Exception', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Blamable', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object', RubyLint.registry))
 
   end
 
   defs.define_constant('ActionMailer::TestCase::Behavior') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
-    klass.inherits(defs.constant_proxy('ActionMailer::TestHelper'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('ActionMailer::TestHelper', RubyLint.registry))
 
     klass.define_instance_method('initialize_test_deliveries')
 
@@ -1001,7 +1001,7 @@ RubyLint.registry.register('ActionMailer') do |defs|
   end
 
   defs.define_constant('ActionMailer::TestCase::Behavior::ClassMethods') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
     klass.define_instance_method('determine_default_mailer') do |method|
       method.define_argument('name')
@@ -1015,14 +1015,14 @@ RubyLint.registry.register('ActionMailer') do |defs|
   end
 
   defs.define_constant('ActionMailer::TestCase::CALLBACK_FILTER_TYPES') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('ActionMailer::TestCase::Callback') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object', RubyLint.registry))
 
     klass.define_instance_method('_update_filter') do |method|
       method.define_argument('filter_options')
@@ -1099,11 +1099,11 @@ RubyLint.registry.register('ActionMailer') do |defs|
   end
 
   defs.define_constant('ActionMailer::TestCase::CallbackChain') do |klass|
-    klass.inherits(defs.constant_proxy('Array'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Array'))
-    klass.inherits(defs.constant_proxy('Enumerable'))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
+    klass.inherits(defs.constant_proxy('Array', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Array', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('Enumerable', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object', RubyLint.registry))
 
     klass.define_instance_method('append') do |method|
       method.define_rest_argument('callbacks')
@@ -1128,7 +1128,7 @@ RubyLint.registry.register('ActionMailer') do |defs|
   end
 
   defs.define_constant('ActionMailer::TestCase::ClassMethods') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
     klass.define_instance_method('determine_default_mailer') do |method|
       method.define_argument('name')
@@ -1142,18 +1142,18 @@ RubyLint.registry.register('ActionMailer') do |defs|
   end
 
   defs.define_constant('ActionMailer::TestCase::PASSTHROUGH_EXCEPTIONS') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('ActionMailer::TestCase::UNDEFINED') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
     klass.define_method('inspect')
   end
 
   defs.define_constant('ActionMailer::TestHelper') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
     klass.define_instance_method('assert_emails') do |method|
       method.define_argument('number')
@@ -1165,32 +1165,32 @@ RubyLint.registry.register('ActionMailer') do |defs|
   end
 
   defs.define_constant('ActionMailer::VERSION') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('ActionMailer::VERSION::MAJOR') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('ActionMailer::VERSION::MINOR') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('ActionMailer::VERSION::PRE') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('ActionMailer::VERSION::STRING') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('ActionMailer::VERSION::TINY') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 end

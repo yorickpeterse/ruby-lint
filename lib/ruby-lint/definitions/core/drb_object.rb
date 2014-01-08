@@ -5,7 +5,7 @@
 
 RubyLint.registry.register('DRbObject') do |defs|
   defs.define_constant('DRbObject') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
     klass.define_method('_load') do |method|
       method.define_argument('s')

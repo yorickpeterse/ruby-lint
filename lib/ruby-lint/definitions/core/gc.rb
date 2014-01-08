@@ -5,7 +5,7 @@
 
 RubyLint.registry.register('GC') do |defs|
   defs.define_constant('GC') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
     klass.define_method('count')
 
@@ -31,7 +31,7 @@ RubyLint.registry.register('GC') do |defs|
   end
 
   defs.define_constant('GC::Profiler') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
     klass.define_method('clear')
 

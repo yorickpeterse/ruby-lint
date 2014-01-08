@@ -5,7 +5,7 @@
 
 RubyLint.registry.register('Readline') do |defs|
   defs.define_constant('Readline') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
     klass.define_method('basic_quote_characters')
 
@@ -75,13 +75,13 @@ RubyLint.registry.register('Readline') do |defs|
   end
 
   defs.define_constant('Readline::FILENAME_COMPLETION_PROC') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
     klass.define_method('call')
   end
 
   defs.define_constant('Readline::HISTORY') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
     klass.define_method('<<')
 
@@ -111,13 +111,13 @@ RubyLint.registry.register('Readline') do |defs|
   end
 
   defs.define_constant('Readline::USERNAME_COMPLETION_PROC') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
     klass.define_method('call')
   end
 
   defs.define_constant('Readline::VERSION') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 end

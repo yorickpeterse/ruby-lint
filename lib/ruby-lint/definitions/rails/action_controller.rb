@@ -5,7 +5,7 @@
 
 RubyLint.registry.register('ActionController') do |defs|
   defs.define_constant('ActionController') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
     klass.define_method('add_renderer') do |method|
       method.define_argument('key')
@@ -16,18 +16,18 @@ RubyLint.registry.register('ActionController') do |defs|
   end
 
   defs.define_constant('ActionController::ActionControllerError') do |klass|
-    klass.inherits(defs.constant_proxy('StandardError'))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Blamable'))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
+    klass.inherits(defs.constant_proxy('StandardError', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Blamable', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object', RubyLint.registry))
 
   end
 
   defs.define_constant('ActionController::BadRequest') do |klass|
-    klass.inherits(defs.constant_proxy('ActionController::ActionControllerError'))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Blamable'))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
+    klass.inherits(defs.constant_proxy('ActionController::ActionControllerError', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Blamable', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object', RubyLint.registry))
 
     klass.define_instance_method('initialize') do |method|
       method.define_optional_argument('type')
@@ -40,54 +40,54 @@ RubyLint.registry.register('ActionController') do |defs|
   end
 
   defs.define_constant('ActionController::Base') do |klass|
-    klass.inherits(defs.constant_proxy('ActionController::Metal'))
-    klass.inherits(defs.constant_proxy('ActionController::ParamsWrapper'))
-    klass.inherits(defs.constant_proxy('ActionController::Instrumentation'))
-    klass.inherits(defs.constant_proxy('ActionController::Rescue'))
-    klass.inherits(defs.constant_proxy('ActionController::HttpAuthentication::Token::ControllerMethods'))
-    klass.inherits(defs.constant_proxy('ActionController::HttpAuthentication::Digest::ControllerMethods'))
-    klass.inherits(defs.constant_proxy('ActionController::HttpAuthentication::Basic::ControllerMethods'))
-    klass.inherits(defs.constant_proxy('ActionController::RecordIdentifier'))
-    klass.inherits(defs.constant_proxy('ActionController::DataStreaming'))
-    klass.inherits(defs.constant_proxy('ActionController::Streaming'))
-    klass.inherits(defs.constant_proxy('ActionController::ForceSSL'))
-    klass.inherits(defs.constant_proxy('ActionController::RequestForgeryProtection'))
-    klass.inherits(defs.constant_proxy('ActionController::Flash'))
-    klass.inherits(defs.constant_proxy('ActionController::Cookies'))
-    klass.inherits(defs.constant_proxy('ActionController::StrongParameters'))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Rescuable'))
-    klass.inherits(defs.constant_proxy('ActionController::ImplicitRender'))
-    klass.inherits(defs.constant_proxy('ActionController::MimeResponds'))
-    klass.inherits(defs.constant_proxy('ActionController::Caching'))
-    klass.inherits(defs.constant_proxy('ActionController::Caching::Fragments'))
-    klass.inherits(defs.constant_proxy('ActionController::Caching::ConfigMethods'))
-    klass.inherits(defs.constant_proxy('AbstractController::Callbacks'))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Callbacks'))
-    klass.inherits(defs.constant_proxy('ActionController::ConditionalGet'))
-    klass.inherits(defs.constant_proxy('ActionController::Head'))
-    klass.inherits(defs.constant_proxy('ActionController::Renderers::All'))
-    klass.inherits(defs.constant_proxy('ActionController::Renderers'))
-    klass.inherits(defs.constant_proxy('ActionController::Rendering'))
-    klass.inherits(defs.constant_proxy('ActionController::Redirecting'))
-    klass.inherits(defs.constant_proxy('ActionController::RackDelegation'))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Benchmarkable'))
-    klass.inherits(defs.constant_proxy('AbstractController::Logger'))
-    klass.inherits(defs.constant_proxy('ActionController::UrlFor'))
-    klass.inherits(defs.constant_proxy('AbstractController::UrlFor'))
-    klass.inherits(defs.constant_proxy('ActionDispatch::Routing::UrlFor'))
-    klass.inherits(defs.constant_proxy('ActionDispatch::Routing::PolymorphicRoutes'))
-    klass.inherits(defs.constant_proxy('ActionController::ModelNaming'))
-    klass.inherits(defs.constant_proxy('ActionController::HideActions'))
-    klass.inherits(defs.constant_proxy('ActionController::Helpers'))
-    klass.inherits(defs.constant_proxy('AbstractController::Helpers'))
-    klass.inherits(defs.constant_proxy('AbstractController::AssetPaths'))
-    klass.inherits(defs.constant_proxy('AbstractController::Translation'))
-    klass.inherits(defs.constant_proxy('AbstractController::Layouts'))
-    klass.inherits(defs.constant_proxy('AbstractController::Rendering'))
-    klass.inherits(defs.constant_proxy('AbstractController::ViewPaths'))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Configurable'))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
+    klass.inherits(defs.constant_proxy('ActionController::Metal', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('ActionController::ParamsWrapper', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('ActionController::Instrumentation', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('ActionController::Rescue', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('ActionController::HttpAuthentication::Token::ControllerMethods', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('ActionController::HttpAuthentication::Digest::ControllerMethods', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('ActionController::HttpAuthentication::Basic::ControllerMethods', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('ActionController::RecordIdentifier', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('ActionController::DataStreaming', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('ActionController::Streaming', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('ActionController::ForceSSL', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('ActionController::RequestForgeryProtection', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('ActionController::Flash', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('ActionController::Cookies', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('ActionController::StrongParameters', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('ActiveSupport::Rescuable', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('ActionController::ImplicitRender', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('ActionController::MimeResponds', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('ActionController::Caching', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('ActionController::Caching::Fragments', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('ActionController::Caching::ConfigMethods', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('AbstractController::Callbacks', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('ActiveSupport::Callbacks', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('ActionController::ConditionalGet', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('ActionController::Head', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('ActionController::Renderers::All', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('ActionController::Renderers', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('ActionController::Rendering', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('ActionController::Redirecting', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('ActionController::RackDelegation', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('ActiveSupport::Benchmarkable', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('AbstractController::Logger', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('ActionController::UrlFor', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('AbstractController::UrlFor', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('ActionDispatch::Routing::UrlFor', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('ActionDispatch::Routing::PolymorphicRoutes', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('ActionController::ModelNaming', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('ActionController::HideActions', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('ActionController::Helpers', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('AbstractController::Helpers', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('AbstractController::AssetPaths', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('AbstractController::Translation', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('AbstractController::Layouts', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('AbstractController::Rendering', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('AbstractController::ViewPaths', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('ActiveSupport::Configurable', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object', RubyLint.registry))
 
     klass.define_method('_flash_types')
 
@@ -504,24 +504,24 @@ RubyLint.registry.register('ActionController') do |defs|
   end
 
   defs.define_constant('ActionController::Base::ACTION_OPTIONS') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('ActionController::Base::All') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('ActionController::Base::CALLBACK_FILTER_TYPES') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('ActionController::Base::Callback') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object', RubyLint.registry))
 
     klass.define_instance_method('_update_filter') do |method|
       method.define_argument('filter_options')
@@ -598,11 +598,11 @@ RubyLint.registry.register('ActionController') do |defs|
   end
 
   defs.define_constant('ActionController::Base::CallbackChain') do |klass|
-    klass.inherits(defs.constant_proxy('Array'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Array'))
-    klass.inherits(defs.constant_proxy('Enumerable'))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
+    klass.inherits(defs.constant_proxy('Array', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Array', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('Enumerable', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object', RubyLint.registry))
 
     klass.define_instance_method('append') do |method|
       method.define_rest_argument('callbacks')
@@ -627,7 +627,7 @@ RubyLint.registry.register('ActionController') do |defs|
   end
 
   defs.define_constant('ActionController::Base::ClassMethods') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
     klass.define_instance_method('_set_wrapper_options') do |method|
       method.define_argument('options')
@@ -644,10 +644,10 @@ RubyLint.registry.register('ActionController') do |defs|
   end
 
   defs.define_constant('ActionController::Base::Collector') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
-    klass.inherits(defs.constant_proxy('AbstractController::Collector'))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('AbstractController::Collector', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object', RubyLint.registry))
 
     klass.define_instance_method('all') do |method|
       method.define_rest_argument('args')
@@ -686,7 +686,7 @@ RubyLint.registry.register('ActionController') do |defs|
   end
 
   defs.define_constant('ActionController::Base::ConfigMethods') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
     klass.define_instance_method('cache_store')
 
@@ -696,11 +696,11 @@ RubyLint.registry.register('ActionController') do |defs|
   end
 
   defs.define_constant('ActionController::Base::Configuration') do |klass|
-    klass.inherits(defs.constant_proxy('ActiveSupport::InheritableOptions'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Hash'))
-    klass.inherits(defs.constant_proxy('Enumerable'))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
+    klass.inherits(defs.constant_proxy('ActiveSupport::InheritableOptions', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Hash', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('Enumerable', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object', RubyLint.registry))
 
     klass.define_method('compile_methods!') do |method|
       method.define_argument('keys')
@@ -710,29 +710,29 @@ RubyLint.registry.register('ActionController') do |defs|
   end
 
   defs.define_constant('ActionController::Base::DEFAULT_PROTECTED_INSTANCE_VARIABLES') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('ActionController::Base::DEFAULT_SEND_FILE_DISPOSITION') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('ActionController::Base::DEFAULT_SEND_FILE_TYPE') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('ActionController::Base::EXCLUDE_PARAMETERS') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('ActionController::Base::FileBody') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object', RubyLint.registry))
 
     klass.define_instance_method('each')
 
@@ -746,7 +746,7 @@ RubyLint.registry.register('ActionController') do |defs|
   end
 
   defs.define_constant('ActionController::Base::Fragments') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
     klass.define_instance_method('expire_fragment') do |method|
       method.define_argument('key')
@@ -780,27 +780,27 @@ RubyLint.registry.register('ActionController') do |defs|
   end
 
   defs.define_constant('ActionController::Base::INSTANCE_MESSAGE') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('ActionController::Base::MODULES') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('ActionController::Base::MODULE_MESSAGE') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('ActionController::Base::Options') do |klass|
     klass.inherits(defs.constant_proxy('#<Class:0x2e524>'))
-    klass.inherits(defs.constant_proxy('Mutex_m'))
+    klass.inherits(defs.constant_proxy('Mutex_m', RubyLint.registry))
     klass.inherits(defs.constant_proxy('#<Module:0x2e52c>'))
-    klass.inherits(defs.constant_proxy('Enumerable'))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
+    klass.inherits(defs.constant_proxy('Enumerable', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object', RubyLint.registry))
 
     klass.define_method('from_hash') do |method|
       method.define_argument('hash')
@@ -837,29 +837,29 @@ RubyLint.registry.register('ActionController') do |defs|
   end
 
   defs.define_constant('ActionController::Base::ProtectionMethods') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('ActionController::Base::REDIRECT_OPTIONS') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('ActionController::Base::RENDERERS') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('ActionController::Base::URL_OPTIONS') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('ActionController::Caching') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
-    klass.inherits(defs.constant_proxy('ActionController::Caching::Fragments'))
-    klass.inherits(defs.constant_proxy('ActionController::Caching::ConfigMethods'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('ActionController::Caching::Fragments', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('ActionController::Caching::ConfigMethods', RubyLint.registry))
 
     klass.define_instance_method('cache') do |method|
       method.define_argument('key')
@@ -871,7 +871,7 @@ RubyLint.registry.register('ActionController') do |defs|
   end
 
   defs.define_constant('ActionController::Caching::ClassMethods') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
     klass.define_instance_method('view_cache_dependency') do |method|
       method.define_block_argument('dependency')
@@ -879,7 +879,7 @@ RubyLint.registry.register('ActionController') do |defs|
   end
 
   defs.define_constant('ActionController::Caching::ConfigMethods') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
     klass.define_instance_method('cache_store')
 
@@ -889,7 +889,7 @@ RubyLint.registry.register('ActionController') do |defs|
   end
 
   defs.define_constant('ActionController::Caching::Fragments') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
     klass.define_instance_method('expire_fragment') do |method|
       method.define_argument('key')
@@ -923,7 +923,7 @@ RubyLint.registry.register('ActionController') do |defs|
   end
 
   defs.define_constant('ActionController::ConditionalGet') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
     klass.define_instance_method('expires_in') do |method|
       method.define_argument('seconds')
@@ -944,7 +944,7 @@ RubyLint.registry.register('ActionController') do |defs|
   end
 
   defs.define_constant('ActionController::ConditionalGet::ClassMethods') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
     klass.define_instance_method('etag') do |method|
       method.define_block_argument('etagger')
@@ -952,12 +952,12 @@ RubyLint.registry.register('ActionController') do |defs|
   end
 
   defs.define_constant('ActionController::Cookies') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('ActionController::DataStreaming') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
     klass.define_instance_method('send_data') do |method|
       method.define_argument('data')
@@ -971,19 +971,19 @@ RubyLint.registry.register('ActionController') do |defs|
   end
 
   defs.define_constant('ActionController::DataStreaming::DEFAULT_SEND_FILE_DISPOSITION') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('ActionController::DataStreaming::DEFAULT_SEND_FILE_TYPE') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('ActionController::DataStreaming::FileBody') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object', RubyLint.registry))
 
     klass.define_instance_method('each')
 
@@ -997,7 +997,7 @@ RubyLint.registry.register('ActionController') do |defs|
   end
 
   defs.define_constant('ActionController::Flash') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
     klass.define_instance_method('redirect_to') do |method|
       method.define_optional_argument('options')
@@ -1006,7 +1006,7 @@ RubyLint.registry.register('ActionController') do |defs|
   end
 
   defs.define_constant('ActionController::Flash::ClassMethods') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
     klass.define_instance_method('add_flash_types') do |method|
       method.define_rest_argument('types')
@@ -1014,7 +1014,7 @@ RubyLint.registry.register('ActionController') do |defs|
   end
 
   defs.define_constant('ActionController::ForceSSL') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
     klass.define_instance_method('force_ssl_redirect') do |method|
       method.define_optional_argument('host_or_options')
@@ -1022,12 +1022,12 @@ RubyLint.registry.register('ActionController') do |defs|
   end
 
   defs.define_constant('ActionController::ForceSSL::ACTION_OPTIONS') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('ActionController::ForceSSL::ClassMethods') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
     klass.define_instance_method('force_ssl') do |method|
       method.define_optional_argument('options')
@@ -1035,17 +1035,17 @@ RubyLint.registry.register('ActionController') do |defs|
   end
 
   defs.define_constant('ActionController::ForceSSL::REDIRECT_OPTIONS') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('ActionController::ForceSSL::URL_OPTIONS') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('ActionController::Head') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
     klass.define_instance_method('head') do |method|
       method.define_argument('status')
@@ -1054,7 +1054,7 @@ RubyLint.registry.register('ActionController') do |defs|
   end
 
   defs.define_constant('ActionController::Helpers') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
     klass.define_method('helpers_path')
 
@@ -1062,7 +1062,7 @@ RubyLint.registry.register('ActionController') do |defs|
   end
 
   defs.define_constant('ActionController::Helpers::ClassMethods') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
     klass.define_instance_method('all_helpers_from_path') do |method|
       method.define_argument('path')
@@ -1080,12 +1080,12 @@ RubyLint.registry.register('ActionController') do |defs|
   end
 
   defs.define_constant('ActionController::HideActions') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('ActionController::HideActions::ClassMethods') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
     klass.define_instance_method('action_methods')
 
@@ -1099,12 +1099,12 @@ RubyLint.registry.register('ActionController') do |defs|
   end
 
   defs.define_constant('ActionController::HttpAuthentication') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('ActionController::HttpAuthentication::Basic') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
     klass.define_instance_method('authenticate') do |method|
       method.define_argument('request')
@@ -1131,7 +1131,7 @@ RubyLint.registry.register('ActionController') do |defs|
   end
 
   defs.define_constant('ActionController::HttpAuthentication::Basic::ControllerMethods') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
     klass.define_instance_method('authenticate_or_request_with_http_basic') do |method|
       method.define_optional_argument('realm')
@@ -1148,7 +1148,7 @@ RubyLint.registry.register('ActionController') do |defs|
   end
 
   defs.define_constant('ActionController::HttpAuthentication::Basic::ControllerMethods::ClassMethods') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
     klass.define_instance_method('http_basic_authenticate_with') do |method|
       method.define_optional_argument('options')
@@ -1156,7 +1156,7 @@ RubyLint.registry.register('ActionController') do |defs|
   end
 
   defs.define_constant('ActionController::HttpAuthentication::Digest') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
     klass.define_instance_method('authenticate') do |method|
       method.define_argument('request')
@@ -1231,7 +1231,7 @@ RubyLint.registry.register('ActionController') do |defs|
   end
 
   defs.define_constant('ActionController::HttpAuthentication::Digest::ControllerMethods') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
     klass.define_instance_method('authenticate_or_request_with_http_digest') do |method|
       method.define_optional_argument('realm')
@@ -1250,7 +1250,7 @@ RubyLint.registry.register('ActionController') do |defs|
   end
 
   defs.define_constant('ActionController::HttpAuthentication::Token') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
     klass.define_instance_method('authenticate') do |method|
       method.define_argument('controller')
@@ -1289,12 +1289,12 @@ RubyLint.registry.register('ActionController') do |defs|
   end
 
   defs.define_constant('ActionController::HttpAuthentication::Token::AUTHN_PAIR_DELIMITERS') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('ActionController::HttpAuthentication::Token::ControllerMethods') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
     klass.define_instance_method('authenticate_or_request_with_http_token') do |method|
       method.define_optional_argument('realm')
@@ -1311,12 +1311,12 @@ RubyLint.registry.register('ActionController') do |defs|
   end
 
   defs.define_constant('ActionController::HttpAuthentication::Token::TOKEN_REGEX') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('ActionController::ImplicitRender') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
     klass.define_instance_method('default_render') do |method|
       method.define_rest_argument('args')
@@ -1333,7 +1333,7 @@ RubyLint.registry.register('ActionController') do |defs|
   end
 
   defs.define_constant('ActionController::Instrumentation') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
     klass.define_instance_method('process_action') do |method|
       method.define_rest_argument('args')
@@ -1363,7 +1363,7 @@ RubyLint.registry.register('ActionController') do |defs|
   end
 
   defs.define_constant('ActionController::Instrumentation::ClassMethods') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
     klass.define_instance_method('log_process_action') do |method|
       method.define_argument('payload')
@@ -1371,34 +1371,34 @@ RubyLint.registry.register('ActionController') do |defs|
   end
 
   defs.define_constant('ActionController::Integration') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('ActionController::IntegrationTest') do |klass|
-    klass.inherits(defs.constant_proxy('ActiveSupport::TestCase'))
-    klass.inherits(defs.constant_proxy('ActionDispatch::Routing::UrlFor'))
-    klass.inherits(defs.constant_proxy('ActionDispatch::Routing::PolymorphicRoutes'))
-    klass.inherits(defs.constant_proxy('ActionController::ModelNaming'))
-    klass.inherits(defs.constant_proxy('ActionController::TemplateAssertions'))
-    klass.inherits(defs.constant_proxy('ActionDispatch::Integration::Runner'))
-    klass.inherits(defs.constant_proxy('ActionDispatch::Assertions'))
-    klass.inherits(defs.constant_proxy('ActionDispatch::Assertions::TagAssertions'))
-    klass.inherits(defs.constant_proxy('ActionDispatch::Assertions::SelectorAssertions'))
-    klass.inherits(defs.constant_proxy('ActionDispatch::Assertions::RoutingAssertions'))
-    klass.inherits(defs.constant_proxy('ActionDispatch::Assertions::ResponseAssertions'))
-    klass.inherits(defs.constant_proxy('ActionDispatch::Assertions::DomAssertions'))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Testing::Pending'))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Testing::Deprecation'))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Testing::Assertions'))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Callbacks'))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Testing::SetupAndTeardown'))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Testing::TaggedLogging'))
-    klass.inherits(defs.constant_proxy('MiniTest::Assertions'))
-    klass.inherits(defs.constant_proxy('MiniTest::Unit::Guard'))
-    klass.inherits(defs.constant_proxy('MiniTest::Unit::LifecycleHooks'))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
+    klass.inherits(defs.constant_proxy('ActiveSupport::TestCase', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('ActionDispatch::Routing::UrlFor', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('ActionDispatch::Routing::PolymorphicRoutes', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('ActionController::ModelNaming', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('ActionController::TemplateAssertions', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('ActionDispatch::Integration::Runner', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('ActionDispatch::Assertions', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('ActionDispatch::Assertions::TagAssertions', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('ActionDispatch::Assertions::SelectorAssertions', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('ActionDispatch::Assertions::RoutingAssertions', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('ActionDispatch::Assertions::ResponseAssertions', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('ActionDispatch::Assertions::DomAssertions', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('ActiveSupport::Testing::Pending', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('ActiveSupport::Testing::Deprecation', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('ActiveSupport::Testing::Assertions', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('ActiveSupport::Callbacks', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('ActiveSupport::Testing::SetupAndTeardown', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('ActiveSupport::Testing::TaggedLogging', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('MiniTest::Assertions', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('MiniTest::Unit::Guard', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('MiniTest::Unit::LifecycleHooks', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object', RubyLint.registry))
 
     klass.define_method('_setup_callbacks')
 
@@ -1416,15 +1416,15 @@ RubyLint.registry.register('ActionController') do |defs|
   end
 
   defs.define_constant('ActionController::InvalidAuthenticityToken') do |klass|
-    klass.inherits(defs.constant_proxy('ActionController::ActionControllerError'))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Blamable'))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
+    klass.inherits(defs.constant_proxy('ActionController::ActionControllerError', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Blamable', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object', RubyLint.registry))
 
   end
 
   defs.define_constant('ActionController::Live') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
     klass.define_instance_method('log_error') do |method|
       method.define_argument('exception')
@@ -1444,9 +1444,9 @@ RubyLint.registry.register('ActionController') do |defs|
   end
 
   defs.define_constant('ActionController::Live::Buffer') do |klass|
-    klass.inherits(defs.constant_proxy('ActionDispatch::Response::Buffer'))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
+    klass.inherits(defs.constant_proxy('ActionDispatch::Response::Buffer', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object', RubyLint.registry))
 
     klass.define_instance_method('call_on_error')
 
@@ -1470,21 +1470,21 @@ RubyLint.registry.register('ActionController') do |defs|
   end
 
   defs.define_constant('ActionController::Live::Response') do |klass|
-    klass.inherits(defs.constant_proxy('ActionDispatch::Response'))
-    klass.inherits(defs.constant_proxy('MonitorMixin'))
-    klass.inherits(defs.constant_proxy('ActionDispatch::Http::Cache::Response'))
-    klass.inherits(defs.constant_proxy('ActionDispatch::Http::FilterRedirect'))
-    klass.inherits(defs.constant_proxy('Rack::Response::Helpers'))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
+    klass.inherits(defs.constant_proxy('ActionDispatch::Response', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('MonitorMixin', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('ActionDispatch::Http::Cache::Response', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('ActionDispatch::Http::FilterRedirect', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('Rack::Response::Helpers', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object', RubyLint.registry))
 
     klass.define_instance_method('commit!')
   end
 
   defs.define_constant('ActionController::Live::Response::Buffer') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object', RubyLint.registry))
 
     klass.define_instance_method('close')
 
@@ -1507,19 +1507,19 @@ RubyLint.registry.register('ActionController') do |defs|
   end
 
   defs.define_constant('ActionController::Live::Response::CACHE_CONTROL') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('ActionController::Live::Response::CONTENT_TYPE') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('ActionController::Live::Response::ConditionVariable') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object', RubyLint.registry))
 
     klass.define_instance_method('broadcast')
 
@@ -1541,28 +1541,28 @@ RubyLint.registry.register('ActionController') do |defs|
   end
 
   defs.define_constant('ActionController::Live::Response::DEFAULT_CACHE_CONTROL') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('ActionController::Live::Response::EMPTY') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('ActionController::Live::Response::ETAG') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('ActionController::Live::Response::FILTERED') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('ActionController::Live::Response::Header') do |klass|
     klass.inherits(defs.constant_proxy('#<Class:0x2e580>'))
-    klass.inherits(defs.constant_proxy('Kernel'))
+    klass.inherits(defs.constant_proxy('Kernel', RubyLint.registry))
 
     klass.define_instance_method('[]=') do |method|
       method.define_argument('k')
@@ -1584,59 +1584,59 @@ RubyLint.registry.register('ActionController') do |defs|
   end
 
   defs.define_constant('ActionController::Live::Response::Header::RUBYGEMS_ACTIVATION_MONITOR') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('ActionController::Live::Response::LAST_MODIFIED') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('ActionController::Live::Response::LOCATION') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('ActionController::Live::Response::MUST_REVALIDATE') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('ActionController::Live::Response::NO_CACHE') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('ActionController::Live::Response::NO_CONTENT_CODES') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('ActionController::Live::Response::PRIVATE') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('ActionController::Live::Response::PUBLIC') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('ActionController::Live::Response::SET_COOKIE') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('ActionController::Live::Response::SPECIAL_KEYS') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('ActionController::LogSubscriber') do |klass|
-    klass.inherits(defs.constant_proxy('ActiveSupport::LogSubscriber'))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
+    klass.inherits(defs.constant_proxy('ActiveSupport::LogSubscriber', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object', RubyLint.registry))
 
     klass.define_instance_method('exist_fragment?') do |method|
       method.define_argument('event')
@@ -1694,65 +1694,65 @@ RubyLint.registry.register('ActionController') do |defs|
   end
 
   defs.define_constant('ActionController::LogSubscriber::BLACK') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('ActionController::LogSubscriber::BLUE') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('ActionController::LogSubscriber::BOLD') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('ActionController::LogSubscriber::CLEAR') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('ActionController::LogSubscriber::CYAN') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('ActionController::LogSubscriber::GREEN') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('ActionController::LogSubscriber::INTERNAL_PARAMS') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('ActionController::LogSubscriber::MAGENTA') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('ActionController::LogSubscriber::RED') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('ActionController::LogSubscriber::WHITE') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('ActionController::LogSubscriber::YELLOW') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('ActionController::Metal') do |klass|
-    klass.inherits(defs.constant_proxy('AbstractController::Base'))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Configurable'))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
+    klass.inherits(defs.constant_proxy('AbstractController::Base', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('ActiveSupport::Configurable', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object', RubyLint.registry))
 
     klass.define_method('action') do |method|
       method.define_argument('name')
@@ -1858,7 +1858,7 @@ RubyLint.registry.register('ActionController') do |defs|
   end
 
   defs.define_constant('ActionController::Metal::ClassMethods') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
     klass.define_instance_method('config')
 
@@ -1870,11 +1870,11 @@ RubyLint.registry.register('ActionController') do |defs|
   end
 
   defs.define_constant('ActionController::Metal::Configuration') do |klass|
-    klass.inherits(defs.constant_proxy('ActiveSupport::InheritableOptions'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Hash'))
-    klass.inherits(defs.constant_proxy('Enumerable'))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
+    klass.inherits(defs.constant_proxy('ActiveSupport::InheritableOptions', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Hash', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('Enumerable', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object', RubyLint.registry))
 
     klass.define_method('compile_methods!') do |method|
       method.define_argument('keys')
@@ -1884,10 +1884,10 @@ RubyLint.registry.register('ActionController') do |defs|
   end
 
   defs.define_constant('ActionController::MethodNotAllowed') do |klass|
-    klass.inherits(defs.constant_proxy('ActionController::ActionControllerError'))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Blamable'))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
+    klass.inherits(defs.constant_proxy('ActionController::ActionControllerError', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Blamable', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object', RubyLint.registry))
 
     klass.define_instance_method('initialize') do |method|
       method.define_rest_argument('allowed_methods')
@@ -1897,10 +1897,10 @@ RubyLint.registry.register('ActionController') do |defs|
   end
 
   defs.define_constant('ActionController::Middleware') do |klass|
-    klass.inherits(defs.constant_proxy('ActionController::Metal'))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Configurable'))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
+    klass.inherits(defs.constant_proxy('ActionController::Metal', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('ActiveSupport::Configurable', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object', RubyLint.registry))
 
     klass.define_method('build') do |method|
       method.define_rest_argument('args')
@@ -1932,9 +1932,9 @@ RubyLint.registry.register('ActionController') do |defs|
   end
 
   defs.define_constant('ActionController::Middleware::ActionMiddleware') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object', RubyLint.registry))
 
     klass.define_instance_method('call') do |method|
       method.define_argument('env')
@@ -1949,7 +1949,7 @@ RubyLint.registry.register('ActionController') do |defs|
   end
 
   defs.define_constant('ActionController::Middleware::ClassMethods') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
     klass.define_instance_method('config')
 
@@ -1961,11 +1961,11 @@ RubyLint.registry.register('ActionController') do |defs|
   end
 
   defs.define_constant('ActionController::Middleware::Configuration') do |klass|
-    klass.inherits(defs.constant_proxy('ActiveSupport::InheritableOptions'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Hash'))
-    klass.inherits(defs.constant_proxy('Enumerable'))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
+    klass.inherits(defs.constant_proxy('ActiveSupport::InheritableOptions', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Hash', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('Enumerable', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object', RubyLint.registry))
 
     klass.define_method('compile_methods!') do |method|
       method.define_argument('keys')
@@ -1975,10 +1975,10 @@ RubyLint.registry.register('ActionController') do |defs|
   end
 
   defs.define_constant('ActionController::MiddlewareStack') do |klass|
-    klass.inherits(defs.constant_proxy('ActionDispatch::MiddlewareStack'))
-    klass.inherits(defs.constant_proxy('Enumerable'))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
+    klass.inherits(defs.constant_proxy('ActionDispatch::MiddlewareStack', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('Enumerable', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object', RubyLint.registry))
 
     klass.define_instance_method('build') do |method|
       method.define_argument('action')
@@ -1988,10 +1988,10 @@ RubyLint.registry.register('ActionController') do |defs|
   end
 
   defs.define_constant('ActionController::MiddlewareStack::Enumerator') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
-    klass.inherits(defs.constant_proxy('Enumerable'))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('Enumerable', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object', RubyLint.registry))
 
     klass.define_instance_method('each') do |method|
       method.define_rest_argument('args')
@@ -2025,9 +2025,9 @@ RubyLint.registry.register('ActionController') do |defs|
   end
 
   defs.define_constant('ActionController::MiddlewareStack::Middleware') do |klass|
-    klass.inherits(defs.constant_proxy('ActionDispatch::MiddlewareStack::Middleware'))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
+    klass.inherits(defs.constant_proxy('ActionDispatch::MiddlewareStack::Middleware', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object', RubyLint.registry))
 
     klass.define_instance_method('initialize') do |method|
       method.define_argument('klass')
@@ -2043,9 +2043,9 @@ RubyLint.registry.register('ActionController') do |defs|
   end
 
   defs.define_constant('ActionController::MiddlewareStack::SortedElement') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object', RubyLint.registry))
 
     klass.define_instance_method('<=>') do |method|
       method.define_argument('other')
@@ -2064,7 +2064,7 @@ RubyLint.registry.register('ActionController') do |defs|
   end
 
   defs.define_constant('ActionController::MimeResponds') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
     klass.define_instance_method('collect_mimes_from_class_level')
 
@@ -2085,7 +2085,7 @@ RubyLint.registry.register('ActionController') do |defs|
   end
 
   defs.define_constant('ActionController::MimeResponds::ClassMethods') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
     klass.define_instance_method('clear_respond_to')
 
@@ -2095,10 +2095,10 @@ RubyLint.registry.register('ActionController') do |defs|
   end
 
   defs.define_constant('ActionController::MimeResponds::Collector') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
-    klass.inherits(defs.constant_proxy('AbstractController::Collector'))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('AbstractController::Collector', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object', RubyLint.registry))
 
     klass.define_instance_method('all') do |method|
       method.define_rest_argument('args')
@@ -2137,15 +2137,15 @@ RubyLint.registry.register('ActionController') do |defs|
   end
 
   defs.define_constant('ActionController::MissingFile') do |klass|
-    klass.inherits(defs.constant_proxy('ActionController::ActionControllerError'))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Blamable'))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
+    klass.inherits(defs.constant_proxy('ActionController::ActionControllerError', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Blamable', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object', RubyLint.registry))
 
   end
 
   defs.define_constant('ActionController::ModelNaming') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
     klass.define_instance_method('convert_to_model') do |method|
       method.define_argument('object')
@@ -2157,18 +2157,18 @@ RubyLint.registry.register('ActionController') do |defs|
   end
 
   defs.define_constant('ActionController::NotImplemented') do |klass|
-    klass.inherits(defs.constant_proxy('ActionController::MethodNotAllowed'))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Blamable'))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
+    klass.inherits(defs.constant_proxy('ActionController::MethodNotAllowed', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Blamable', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object', RubyLint.registry))
 
   end
 
   defs.define_constant('ActionController::ParameterMissing') do |klass|
-    klass.inherits(defs.constant_proxy('KeyError'))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Blamable'))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
+    klass.inherits(defs.constant_proxy('KeyError', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Blamable', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object', RubyLint.registry))
 
     klass.define_instance_method('initialize') do |method|
       method.define_argument('param')
@@ -2180,11 +2180,11 @@ RubyLint.registry.register('ActionController') do |defs|
   end
 
   defs.define_constant('ActionController::Parameters') do |klass|
-    klass.inherits(defs.constant_proxy('ActiveSupport::HashWithIndifferentAccess'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Hash'))
-    klass.inherits(defs.constant_proxy('Enumerable'))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
+    klass.inherits(defs.constant_proxy('ActiveSupport::HashWithIndifferentAccess', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Hash', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('Enumerable', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object', RubyLint.registry))
 
     klass.define_method('action_on_unpermitted_parameters')
 
@@ -2237,9 +2237,9 @@ RubyLint.registry.register('ActionController') do |defs|
   end
 
   defs.define_constant('ActionController::Parameters::Bucket') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object', RubyLint.registry))
 
     klass.define_instance_method('delete') do |method|
       method.define_argument('key')
@@ -2287,15 +2287,15 @@ RubyLint.registry.register('ActionController') do |defs|
   end
 
   defs.define_constant('ActionController::Parameters::EMPTY_ARRAY') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('ActionController::Parameters::Entries') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
-    klass.inherits(defs.constant_proxy('Enumerable'))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('Enumerable', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object', RubyLint.registry))
 
     klass.define_method('[]') do |method|
       method.define_rest_argument('args')
@@ -2421,10 +2421,10 @@ RubyLint.registry.register('ActionController') do |defs|
   end
 
   defs.define_constant('ActionController::Parameters::Enumerator') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
-    klass.inherits(defs.constant_proxy('Enumerable'))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('Enumerable', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object', RubyLint.registry))
 
     klass.define_instance_method('each') do |method|
       method.define_rest_argument('args')
@@ -2458,9 +2458,9 @@ RubyLint.registry.register('ActionController') do |defs|
   end
 
   defs.define_constant('ActionController::Parameters::Iterator') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object', RubyLint.registry))
 
     klass.define_instance_method('initialize') do |method|
       method.define_argument('state')
@@ -2474,29 +2474,29 @@ RubyLint.registry.register('ActionController') do |defs|
   end
 
   defs.define_constant('ActionController::Parameters::MAX_ENTRIES') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('ActionController::Parameters::MIN_SIZE') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('ActionController::Parameters::NEVER_UNPERMITTED_PARAMS') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('ActionController::Parameters::PERMITTED_SCALAR_TYPES') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('ActionController::Parameters::SortedElement') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object', RubyLint.registry))
 
     klass.define_instance_method('<=>') do |method|
       method.define_argument('other')
@@ -2515,9 +2515,9 @@ RubyLint.registry.register('ActionController') do |defs|
   end
 
   defs.define_constant('ActionController::Parameters::State') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object', RubyLint.registry))
 
     klass.define_method('from') do |method|
       method.define_argument('state')
@@ -2546,7 +2546,7 @@ RubyLint.registry.register('ActionController') do |defs|
   end
 
   defs.define_constant('ActionController::ParamsWrapper') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
     klass.define_instance_method('process_action') do |method|
       method.define_rest_argument('args')
@@ -2554,7 +2554,7 @@ RubyLint.registry.register('ActionController') do |defs|
   end
 
   defs.define_constant('ActionController::ParamsWrapper::ClassMethods') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
     klass.define_instance_method('_set_wrapper_options') do |method|
       method.define_argument('options')
@@ -2571,12 +2571,12 @@ RubyLint.registry.register('ActionController') do |defs|
   end
 
   defs.define_constant('ActionController::ParamsWrapper::EXCLUDE_PARAMETERS') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('ActionController::RackDelegation') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
     klass.define_instance_method('content_type') do |method|
       method.define_rest_argument('args')
@@ -2623,21 +2623,21 @@ RubyLint.registry.register('ActionController') do |defs|
   end
 
   defs.define_constant('ActionController::Railtie') do |klass|
-    klass.inherits(defs.constant_proxy('Rails::Railtie'))
-    klass.inherits(defs.constant_proxy('Rails::Railtie::Configurable'))
-    klass.inherits(defs.constant_proxy('Rails::Initializable'))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
+    klass.inherits(defs.constant_proxy('Rails::Railtie', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('Rails::Railtie::Configurable', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('Rails::Initializable', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object', RubyLint.registry))
 
   end
 
   defs.define_constant('ActionController::Railtie::ABSTRACT_RAILTIES') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('ActionController::Railtie::ClassMethods') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
     klass.define_instance_method('config') do |method|
       method.define_rest_argument('args')
@@ -2665,12 +2665,12 @@ RubyLint.registry.register('ActionController') do |defs|
   end
 
   defs.define_constant('ActionController::Railtie::Collection') do |klass|
-    klass.inherits(defs.constant_proxy('Array'))
-    klass.inherits(defs.constant_proxy('TSort'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Array'))
-    klass.inherits(defs.constant_proxy('Enumerable'))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
+    klass.inherits(defs.constant_proxy('Array', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('TSort', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Array', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('Enumerable', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object', RubyLint.registry))
 
     klass.define_instance_method('+') do |method|
       method.define_argument('other')
@@ -2685,14 +2685,14 @@ RubyLint.registry.register('ActionController') do |defs|
   end
 
   defs.define_constant('ActionController::Railtie::Configurable') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('ActionController::Railtie::Configuration') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object', RubyLint.registry))
 
     klass.define_method('eager_load_namespaces')
 
@@ -2736,9 +2736,9 @@ RubyLint.registry.register('ActionController') do |defs|
   end
 
   defs.define_constant('ActionController::Railtie::Initializer') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object', RubyLint.registry))
 
     klass.define_instance_method('after')
 
@@ -2771,12 +2771,12 @@ RubyLint.registry.register('ActionController') do |defs|
   end
 
   defs.define_constant('ActionController::Railties') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('ActionController::Railties::Helpers') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
     klass.define_instance_method('inherited') do |method|
       method.define_argument('klass')
@@ -2784,7 +2784,7 @@ RubyLint.registry.register('ActionController') do |defs|
   end
 
   defs.define_constant('ActionController::RecordIdentifier') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
     klass.define_method('dom_class') do |method|
       method.define_argument('record')
@@ -2808,20 +2808,20 @@ RubyLint.registry.register('ActionController') do |defs|
   end
 
   defs.define_constant('ActionController::RecordIdentifier::INSTANCE_MESSAGE') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('ActionController::RecordIdentifier::MODULE_MESSAGE') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('ActionController::RedirectBackError') do |klass|
-    klass.inherits(defs.constant_proxy('AbstractController::Error'))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Blamable'))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
+    klass.inherits(defs.constant_proxy('AbstractController::Error', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Blamable', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object', RubyLint.registry))
 
     klass.define_instance_method('initialize') do |method|
       method.define_optional_argument('message')
@@ -2831,12 +2831,12 @@ RubyLint.registry.register('ActionController') do |defs|
   end
 
   defs.define_constant('ActionController::RedirectBackError::DEFAULT_MESSAGE') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('ActionController::Redirecting') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
     klass.define_instance_method('redirect_to') do |method|
       method.define_optional_argument('options')
@@ -2845,15 +2845,15 @@ RubyLint.registry.register('ActionController') do |defs|
   end
 
   defs.define_constant('ActionController::RenderError') do |klass|
-    klass.inherits(defs.constant_proxy('ActionController::ActionControllerError'))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Blamable'))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
+    klass.inherits(defs.constant_proxy('ActionController::ActionControllerError', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Blamable', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object', RubyLint.registry))
 
   end
 
   defs.define_constant('ActionController::Renderers') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
     klass.define_method('add') do |method|
       method.define_argument('key')
@@ -2885,12 +2885,12 @@ RubyLint.registry.register('ActionController') do |defs|
   end
 
   defs.define_constant('ActionController::Renderers::All') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('ActionController::Renderers::ClassMethods') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
     klass.define_instance_method('use_renderer') do |method|
       method.define_rest_argument('args')
@@ -2902,12 +2902,12 @@ RubyLint.registry.register('ActionController') do |defs|
   end
 
   defs.define_constant('ActionController::Renderers::RENDERERS') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('ActionController::Rendering') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
     klass.define_instance_method('process_action') do |method|
       method.define_rest_argument('arg1')
@@ -2927,7 +2927,7 @@ RubyLint.registry.register('ActionController') do |defs|
   end
 
   defs.define_constant('ActionController::RequestForgeryProtection') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
     klass.define_instance_method('form_authenticity_param')
 
@@ -2943,7 +2943,7 @@ RubyLint.registry.register('ActionController') do |defs|
   end
 
   defs.define_constant('ActionController::RequestForgeryProtection::ClassMethods') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
     klass.define_instance_method('protect_from_forgery') do |method|
       method.define_optional_argument('options')
@@ -2951,7 +2951,7 @@ RubyLint.registry.register('ActionController') do |defs|
   end
 
   defs.define_constant('ActionController::Rescue') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
     klass.define_instance_method('rescue_with_handler') do |method|
       method.define_argument('exception')
@@ -2961,9 +2961,9 @@ RubyLint.registry.register('ActionController') do |defs|
   end
 
   defs.define_constant('ActionController::Responder') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object', RubyLint.registry))
 
     klass.define_method('call') do |method|
       method.define_rest_argument('args')
@@ -3074,20 +3074,20 @@ RubyLint.registry.register('ActionController') do |defs|
   end
 
   defs.define_constant('ActionController::Responder::DEFAULT_ACTIONS_FOR_VERBS') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('ActionController::Routing') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('ActionController::RoutingError') do |klass|
-    klass.inherits(defs.constant_proxy('ActionController::ActionControllerError'))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Blamable'))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
+    klass.inherits(defs.constant_proxy('ActionController::ActionControllerError', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Blamable', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object', RubyLint.registry))
 
     klass.define_instance_method('failures')
 
@@ -3100,10 +3100,10 @@ RubyLint.registry.register('ActionController') do |defs|
   end
 
   defs.define_constant('ActionController::SessionOverflowError') do |klass|
-    klass.inherits(defs.constant_proxy('ActionController::ActionControllerError'))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Blamable'))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
+    klass.inherits(defs.constant_proxy('ActionController::ActionControllerError', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Blamable', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object', RubyLint.registry))
 
     klass.define_instance_method('initialize') do |method|
       method.define_optional_argument('message')
@@ -3113,12 +3113,12 @@ RubyLint.registry.register('ActionController') do |defs|
   end
 
   defs.define_constant('ActionController::SessionOverflowError::DEFAULT_MESSAGE') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('ActionController::Streaming') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
     klass.define_instance_method('_process_options') do |method|
       method.define_argument('options')
@@ -3130,7 +3130,7 @@ RubyLint.registry.register('ActionController') do |defs|
   end
 
   defs.define_constant('ActionController::StrongParameters') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
     klass.define_instance_method('params')
 
@@ -3140,7 +3140,7 @@ RubyLint.registry.register('ActionController') do |defs|
   end
 
   defs.define_constant('ActionController::TemplateAssertions') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
     klass.define_instance_method('assert_template') do |method|
       method.define_optional_argument('options')
@@ -3157,28 +3157,28 @@ RubyLint.registry.register('ActionController') do |defs|
   end
 
   defs.define_constant('ActionController::TestCase') do |klass|
-    klass.inherits(defs.constant_proxy('ActiveSupport::TestCase'))
-    klass.inherits(defs.constant_proxy('ActionDispatch::Assertions'))
-    klass.inherits(defs.constant_proxy('ActionDispatch::Assertions::TagAssertions'))
-    klass.inherits(defs.constant_proxy('ActionDispatch::Assertions::SelectorAssertions'))
-    klass.inherits(defs.constant_proxy('ActionDispatch::Assertions::RoutingAssertions'))
-    klass.inherits(defs.constant_proxy('ActionDispatch::Assertions::ResponseAssertions'))
-    klass.inherits(defs.constant_proxy('ActionDispatch::Assertions::DomAssertions'))
-    klass.inherits(defs.constant_proxy('ActionController::TemplateAssertions'))
-    klass.inherits(defs.constant_proxy('ActionController::TestCase::Behavior'))
-    klass.inherits(defs.constant_proxy('ActionDispatch::TestProcess'))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Testing::ConstantLookup'))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Testing::Pending'))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Testing::Deprecation'))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Testing::Assertions'))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Callbacks'))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Testing::SetupAndTeardown'))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Testing::TaggedLogging'))
-    klass.inherits(defs.constant_proxy('MiniTest::Assertions'))
-    klass.inherits(defs.constant_proxy('MiniTest::Unit::Guard'))
-    klass.inherits(defs.constant_proxy('MiniTest::Unit::LifecycleHooks'))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
+    klass.inherits(defs.constant_proxy('ActiveSupport::TestCase', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('ActionDispatch::Assertions', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('ActionDispatch::Assertions::TagAssertions', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('ActionDispatch::Assertions::SelectorAssertions', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('ActionDispatch::Assertions::RoutingAssertions', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('ActionDispatch::Assertions::ResponseAssertions', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('ActionDispatch::Assertions::DomAssertions', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('ActionController::TemplateAssertions', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('ActionController::TestCase::Behavior', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('ActionDispatch::TestProcess', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('ActiveSupport::Testing::ConstantLookup', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('ActiveSupport::Testing::Pending', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('ActiveSupport::Testing::Deprecation', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('ActiveSupport::Testing::Assertions', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('ActiveSupport::Callbacks', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('ActiveSupport::Testing::SetupAndTeardown', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('ActiveSupport::Testing::TaggedLogging', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('MiniTest::Assertions', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('MiniTest::Unit::Guard', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('MiniTest::Unit::LifecycleHooks', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object', RubyLint.registry))
 
     klass.define_method('_controller_class')
 
@@ -3200,16 +3200,16 @@ RubyLint.registry.register('ActionController') do |defs|
   end
 
   defs.define_constant('ActionController::TestCase::Assertion') do |klass|
-    klass.inherits(defs.constant_proxy('Exception'))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Blamable'))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
+    klass.inherits(defs.constant_proxy('Exception', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Blamable', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object', RubyLint.registry))
 
   end
 
   defs.define_constant('ActionController::TestCase::Behavior') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
-    klass.inherits(defs.constant_proxy('ActionDispatch::TestProcess'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('ActionDispatch::TestProcess', RubyLint.registry))
 
     klass.define_instance_method('build_request')
 
@@ -3279,7 +3279,7 @@ RubyLint.registry.register('ActionController') do |defs|
   end
 
   defs.define_constant('ActionController::TestCase::Behavior::ClassMethods') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
     klass.define_instance_method('controller_class')
 
@@ -3301,14 +3301,14 @@ RubyLint.registry.register('ActionController') do |defs|
   end
 
   defs.define_constant('ActionController::TestCase::CALLBACK_FILTER_TYPES') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('ActionController::TestCase::Callback') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object', RubyLint.registry))
 
     klass.define_instance_method('_update_filter') do |method|
       method.define_argument('filter_options')
@@ -3385,11 +3385,11 @@ RubyLint.registry.register('ActionController') do |defs|
   end
 
   defs.define_constant('ActionController::TestCase::CallbackChain') do |klass|
-    klass.inherits(defs.constant_proxy('Array'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Array'))
-    klass.inherits(defs.constant_proxy('Enumerable'))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
+    klass.inherits(defs.constant_proxy('Array', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Array', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('Enumerable', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object', RubyLint.registry))
 
     klass.define_instance_method('append') do |method|
       method.define_rest_argument('callbacks')
@@ -3414,7 +3414,7 @@ RubyLint.registry.register('ActionController') do |defs|
   end
 
   defs.define_constant('ActionController::TestCase::ClassMethods') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
     klass.define_instance_method('controller_class')
 
@@ -3436,7 +3436,7 @@ RubyLint.registry.register('ActionController') do |defs|
   end
 
   defs.define_constant('ActionController::TestCase::DomAssertions') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
     klass.define_instance_method('assert_dom_equal') do |method|
       method.define_argument('expected')
@@ -3452,17 +3452,17 @@ RubyLint.registry.register('ActionController') do |defs|
   end
 
   defs.define_constant('ActionController::TestCase::NO_STRIP') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('ActionController::TestCase::PASSTHROUGH_EXCEPTIONS') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('ActionController::TestCase::RaiseActionExceptions') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
     klass.define_method('included') do |method|
       method.define_argument('base')
@@ -3474,7 +3474,7 @@ RubyLint.registry.register('ActionController') do |defs|
   end
 
   defs.define_constant('ActionController::TestCase::ResponseAssertions') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
     klass.define_instance_method('assert_redirected_to') do |method|
       method.define_optional_argument('options')
@@ -3488,7 +3488,7 @@ RubyLint.registry.register('ActionController') do |defs|
   end
 
   defs.define_constant('ActionController::TestCase::RoutingAssertions') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
     klass.define_instance_method('assert_generates') do |method|
       method.define_argument('expected_path')
@@ -3523,7 +3523,7 @@ RubyLint.registry.register('ActionController') do |defs|
   end
 
   defs.define_constant('ActionController::TestCase::SelectorAssertions') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
     klass.define_instance_method('assert_select') do |method|
       method.define_rest_argument('args')
@@ -3553,7 +3553,7 @@ RubyLint.registry.register('ActionController') do |defs|
   end
 
   defs.define_constant('ActionController::TestCase::TagAssertions') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
     klass.define_instance_method('assert_no_tag') do |method|
       method.define_rest_argument('opts')
@@ -3575,21 +3575,21 @@ RubyLint.registry.register('ActionController') do |defs|
   end
 
   defs.define_constant('ActionController::TestCase::UNDEFINED') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
     klass.define_method('inspect')
   end
 
   defs.define_constant('ActionController::TestRequest') do |klass|
-    klass.inherits(defs.constant_proxy('ActionDispatch::TestRequest'))
-    klass.inherits(defs.constant_proxy('ActionDispatch::Http::URL'))
-    klass.inherits(defs.constant_proxy('ActionDispatch::Http::Upload'))
-    klass.inherits(defs.constant_proxy('ActionDispatch::Http::FilterParameters'))
-    klass.inherits(defs.constant_proxy('ActionDispatch::Http::Parameters'))
-    klass.inherits(defs.constant_proxy('ActionDispatch::Http::MimeNegotiation'))
-    klass.inherits(defs.constant_proxy('ActionDispatch::Http::Cache::Request'))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
+    klass.inherits(defs.constant_proxy('ActionDispatch::TestRequest', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('ActionDispatch::Http::URL', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('ActionDispatch::Http::Upload', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('ActionDispatch::Http::FilterParameters', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('ActionDispatch::Http::Parameters', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('ActionDispatch::Http::MimeNegotiation', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('ActionDispatch::Http::Cache::Request', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object', RubyLint.registry))
 
     klass.define_instance_method('assign_parameters') do |method|
       method.define_argument('routes')
@@ -3608,139 +3608,139 @@ RubyLint.registry.register('ActionController') do |defs|
   end
 
   defs.define_constant('ActionController::TestRequest::BROWSER_LIKE_ACCEPTS') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('ActionController::TestRequest::DEFAULT_ENV') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('ActionController::TestRequest::DEFAULT_PORTS') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('ActionController::TestRequest::ENV_MATCH') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('ActionController::TestRequest::ENV_METHODS') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('ActionController::TestRequest::FORM_DATA_MEDIA_TYPES') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('ActionController::TestRequest::HOST_REGEXP') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('ActionController::TestRequest::HTTP_IF_MODIFIED_SINCE') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('ActionController::TestRequest::HTTP_IF_NONE_MATCH') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('ActionController::TestRequest::HTTP_METHODS') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('ActionController::TestRequest::HTTP_METHOD_LOOKUP') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('ActionController::TestRequest::IP_HOST_REGEXP') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('ActionController::TestRequest::KV_RE') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('ActionController::TestRequest::LOCALHOST') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('ActionController::TestRequest::NULL_ENV_FILTER') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('ActionController::TestRequest::NULL_PARAM_FILTER') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('ActionController::TestRequest::PAIR_RE') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('ActionController::TestRequest::PARSEABLE_DATA_MEDIA_TYPES') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('ActionController::TestRequest::PROTOCOL_REGEXP') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('ActionController::TestRequest::RFC2518') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('ActionController::TestRequest::RFC2616') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('ActionController::TestRequest::RFC3253') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('ActionController::TestRequest::RFC3648') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('ActionController::TestRequest::RFC3744') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('ActionController::TestRequest::RFC5323') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('ActionController::TestRequest::RFC5789') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('ActionController::TestRequest::Session') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object', RubyLint.registry))
 
     klass.define_method('create') do |method|
       method.define_argument('store')
@@ -3821,21 +3821,21 @@ RubyLint.registry.register('ActionController') do |defs|
   end
 
   defs.define_constant('ActionController::TestResponse') do |klass|
-    klass.inherits(defs.constant_proxy('ActionDispatch::TestResponse'))
-    klass.inherits(defs.constant_proxy('MonitorMixin'))
-    klass.inherits(defs.constant_proxy('ActionDispatch::Http::Cache::Response'))
-    klass.inherits(defs.constant_proxy('ActionDispatch::Http::FilterRedirect'))
-    klass.inherits(defs.constant_proxy('Rack::Response::Helpers'))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
+    klass.inherits(defs.constant_proxy('ActionDispatch::TestResponse', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('MonitorMixin', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('ActionDispatch::Http::Cache::Response', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('ActionDispatch::Http::FilterRedirect', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('Rack::Response::Helpers', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object', RubyLint.registry))
 
     klass.define_instance_method('recycle!')
   end
 
   defs.define_constant('ActionController::TestResponse::Buffer') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object', RubyLint.registry))
 
     klass.define_instance_method('close')
 
@@ -3858,19 +3858,19 @@ RubyLint.registry.register('ActionController') do |defs|
   end
 
   defs.define_constant('ActionController::TestResponse::CACHE_CONTROL') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('ActionController::TestResponse::CONTENT_TYPE') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('ActionController::TestResponse::ConditionVariable') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object', RubyLint.registry))
 
     klass.define_instance_method('broadcast')
 
@@ -3892,75 +3892,75 @@ RubyLint.registry.register('ActionController') do |defs|
   end
 
   defs.define_constant('ActionController::TestResponse::DEFAULT_CACHE_CONTROL') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('ActionController::TestResponse::EMPTY') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('ActionController::TestResponse::ETAG') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('ActionController::TestResponse::FILTERED') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('ActionController::TestResponse::LAST_MODIFIED') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('ActionController::TestResponse::LOCATION') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('ActionController::TestResponse::MUST_REVALIDATE') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('ActionController::TestResponse::NO_CACHE') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('ActionController::TestResponse::NO_CONTENT_CODES') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('ActionController::TestResponse::PRIVATE') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('ActionController::TestResponse::PUBLIC') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('ActionController::TestResponse::SET_COOKIE') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('ActionController::TestResponse::SPECIAL_KEYS') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('ActionController::TestSession') do |klass|
-    klass.inherits(defs.constant_proxy('Rack::Session::Abstract::SessionHash'))
-    klass.inherits(defs.constant_proxy('Enumerable'))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
+    klass.inherits(defs.constant_proxy('Rack::Session::Abstract::SessionHash', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('Enumerable', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object', RubyLint.registry))
 
     klass.define_instance_method('destroy')
 
@@ -3978,15 +3978,15 @@ RubyLint.registry.register('ActionController') do |defs|
   end
 
   defs.define_constant('ActionController::TestSession::DEFAULT_OPTIONS') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('ActionController::TestSession::Enumerator') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
-    klass.inherits(defs.constant_proxy('Enumerable'))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('Enumerable', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object', RubyLint.registry))
 
     klass.define_instance_method('each') do |method|
       method.define_rest_argument('args')
@@ -4020,9 +4020,9 @@ RubyLint.registry.register('ActionController') do |defs|
   end
 
   defs.define_constant('ActionController::TestSession::SortedElement') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object', RubyLint.registry))
 
     klass.define_instance_method('<=>') do |method|
       method.define_argument('other')
@@ -4041,7 +4041,7 @@ RubyLint.registry.register('ActionController') do |defs|
   end
 
   defs.define_constant('ActionController::Testing') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
     klass.define_instance_method('headers=') do |method|
       method.define_argument('new_headers')
@@ -4049,13 +4049,13 @@ RubyLint.registry.register('ActionController') do |defs|
   end
 
   defs.define_constant('ActionController::Testing::ClassMethods') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
     klass.define_instance_method('before_filters')
   end
 
   defs.define_constant('ActionController::Testing::Functional') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
     klass.define_instance_method('recycle!')
 
@@ -4065,34 +4065,34 @@ RubyLint.registry.register('ActionController') do |defs|
   end
 
   defs.define_constant('ActionController::UnknownController') do |klass|
-    klass.inherits(defs.constant_proxy('ActionController::ActionControllerError'))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Blamable'))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
+    klass.inherits(defs.constant_proxy('ActionController::ActionControllerError', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Blamable', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object', RubyLint.registry))
 
   end
 
   defs.define_constant('ActionController::UnknownFormat') do |klass|
-    klass.inherits(defs.constant_proxy('ActionController::ActionControllerError'))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Blamable'))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
+    klass.inherits(defs.constant_proxy('ActionController::ActionControllerError', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Blamable', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object', RubyLint.registry))
 
   end
 
   defs.define_constant('ActionController::UnknownHttpMethod') do |klass|
-    klass.inherits(defs.constant_proxy('ActionController::ActionControllerError'))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Blamable'))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
+    klass.inherits(defs.constant_proxy('ActionController::ActionControllerError', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Blamable', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object', RubyLint.registry))
 
   end
 
   defs.define_constant('ActionController::UnpermittedParameters') do |klass|
-    klass.inherits(defs.constant_proxy('IndexError'))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Blamable'))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
+    klass.inherits(defs.constant_proxy('IndexError', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Blamable', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object', RubyLint.registry))
 
     klass.define_instance_method('initialize') do |method|
       method.define_argument('params')
@@ -4104,16 +4104,16 @@ RubyLint.registry.register('ActionController') do |defs|
   end
 
   defs.define_constant('ActionController::UrlFor') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
     klass.define_instance_method('url_options')
   end
 
   defs.define_constant('ActionController::UrlGenerationError') do |klass|
-    klass.inherits(defs.constant_proxy('ActionController::RoutingError'))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Blamable'))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
+    klass.inherits(defs.constant_proxy('ActionController::RoutingError', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Blamable', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object', RubyLint.registry))
 
   end
 end

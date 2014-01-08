@@ -5,7 +5,7 @@
 
 RubyLint.registry.register('MonitorMixin') do |defs|
   defs.define_constant('MonitorMixin') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
     klass.define_method('extend_object') do |method|
       method.define_argument('obj')
@@ -27,7 +27,7 @@ RubyLint.registry.register('MonitorMixin') do |defs|
   end
 
   defs.define_constant('MonitorMixin::ConditionVariable') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
     klass.define_instance_method('broadcast')
 
@@ -49,7 +49,7 @@ RubyLint.registry.register('MonitorMixin') do |defs|
   end
 
   defs.define_constant('MonitorMixin::ConditionVariable::Timeout') do |klass|
-    klass.inherits(defs.constant_proxy('Exception'))
+    klass.inherits(defs.constant_proxy('Exception', RubyLint.registry))
 
   end
 end

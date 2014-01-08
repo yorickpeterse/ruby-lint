@@ -6,8 +6,8 @@
 RubyLint.registry.register('BasicObject') do |defs|
   defs.define_constant('BasicObject') do |klass|
     klass.inherits(
-      defs.constant_proxy('Class'),
-      defs.constant_proxy('Kernel')
+      defs.constant_proxy('Class', RubyLint.registry),
+      defs.constant_proxy('Kernel', RubyLint.registry)
     )
 
     klass.define_constructors do |method|

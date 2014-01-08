@@ -5,7 +5,7 @@
 
 RubyLint.registry.register('OpenURI') do |defs|
   defs.define_constant('OpenURI') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
     klass.define_method('check_options') do |method|
       method.define_argument('options')
@@ -39,7 +39,7 @@ RubyLint.registry.register('OpenURI') do |defs|
   end
 
   defs.define_constant('OpenURI::Buffer') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
     klass.define_instance_method('<<') do |method|
       method.define_argument('str')
@@ -53,12 +53,12 @@ RubyLint.registry.register('OpenURI') do |defs|
   end
 
   defs.define_constant('OpenURI::Buffer::StringMax') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('OpenURI::HTTPError') do |klass|
-    klass.inherits(defs.constant_proxy('StandardError'))
+    klass.inherits(defs.constant_proxy('StandardError', RubyLint.registry))
 
     klass.define_instance_method('initialize') do |method|
       method.define_argument('message')
@@ -71,7 +71,7 @@ RubyLint.registry.register('OpenURI') do |defs|
   end
 
   defs.define_constant('OpenURI::HTTPRedirect') do |klass|
-    klass.inherits(defs.constant_proxy('OpenURI::HTTPError'))
+    klass.inherits(defs.constant_proxy('OpenURI::HTTPError', RubyLint.registry))
 
     klass.define_instance_method('initialize') do |method|
       method.define_argument('message')
@@ -85,7 +85,7 @@ RubyLint.registry.register('OpenURI') do |defs|
   end
 
   defs.define_constant('OpenURI::Meta') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
     klass.define_method('init') do |method|
       method.define_argument('obj')
@@ -121,27 +121,27 @@ RubyLint.registry.register('OpenURI') do |defs|
   end
 
   defs.define_constant('OpenURI::Meta::RE_LWS') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('OpenURI::Meta::RE_PARAMETERS') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('OpenURI::Meta::RE_QUOTED_STRING') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('OpenURI::Meta::RE_TOKEN') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('OpenURI::OpenRead') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
     klass.define_instance_method('open') do |method|
       method.define_rest_argument('rest')
@@ -154,7 +154,7 @@ RubyLint.registry.register('OpenURI') do |defs|
   end
 
   defs.define_constant('OpenURI::Options') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 end

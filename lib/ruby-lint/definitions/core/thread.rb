@@ -5,7 +5,7 @@
 
 RubyLint.registry.register('Thread') do |defs|
   defs.define_constant('Thread') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
     klass.define_method('abort_on_exception')
 
@@ -182,17 +182,17 @@ RubyLint.registry.register('Thread') do |defs|
   end
 
   defs.define_constant('Thread::Default') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('Thread::InnerRecursionDetected') do |klass|
-    klass.inherits(defs.constant_proxy('Exception'))
+    klass.inherits(defs.constant_proxy('Exception', RubyLint.registry))
 
   end
 
   defs.define_constant('Thread::MUTEX_FOR_THREAD_EXCLUSIVE') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 end

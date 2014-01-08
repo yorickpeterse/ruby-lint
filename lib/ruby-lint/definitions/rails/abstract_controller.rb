@@ -5,20 +5,20 @@
 
 RubyLint.registry.register('AbstractController') do |defs|
   defs.define_constant('AbstractController') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('AbstractController::AssetPaths') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('AbstractController::Base') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Configurable'))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('ActiveSupport::Configurable', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object', RubyLint.registry))
 
     klass.define_method('abstract')
 
@@ -76,7 +76,7 @@ RubyLint.registry.register('AbstractController') do |defs|
   end
 
   defs.define_constant('AbstractController::Base::ClassMethods') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
     klass.define_instance_method('config')
 
@@ -88,11 +88,11 @@ RubyLint.registry.register('AbstractController') do |defs|
   end
 
   defs.define_constant('AbstractController::Base::Configuration') do |klass|
-    klass.inherits(defs.constant_proxy('ActiveSupport::InheritableOptions'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Hash'))
-    klass.inherits(defs.constant_proxy('Enumerable'))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
+    klass.inherits(defs.constant_proxy('ActiveSupport::InheritableOptions', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Hash', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('Enumerable', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object', RubyLint.registry))
 
     klass.define_method('compile_methods!') do |method|
       method.define_argument('keys')
@@ -102,7 +102,7 @@ RubyLint.registry.register('AbstractController') do |defs|
   end
 
   defs.define_constant('AbstractController::Callbacks') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
     klass.define_instance_method('process_action') do |method|
       method.define_rest_argument('args')
@@ -110,7 +110,7 @@ RubyLint.registry.register('AbstractController') do |defs|
   end
 
   defs.define_constant('AbstractController::Callbacks::ClassMethods') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
     klass.define_instance_method('_insert_callbacks') do |method|
       method.define_argument('callbacks')
@@ -251,7 +251,7 @@ RubyLint.registry.register('AbstractController') do |defs|
   end
 
   defs.define_constant('AbstractController::Collector') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
     klass.define_method('generate_method_for_mime') do |method|
       method.define_argument('mime')
@@ -369,12 +369,12 @@ RubyLint.registry.register('AbstractController') do |defs|
   end
 
   defs.define_constant('AbstractController::Helpers') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('AbstractController::Helpers::ClassMethods') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
     klass.define_instance_method('clear_helpers')
 
@@ -397,10 +397,10 @@ RubyLint.registry.register('AbstractController') do |defs|
   end
 
   defs.define_constant('AbstractController::Helpers::ClassMethods::MissingHelperError') do |klass|
-    klass.inherits(defs.constant_proxy('LoadError'))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Blamable'))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
+    klass.inherits(defs.constant_proxy('LoadError', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Blamable', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object', RubyLint.registry))
 
     klass.define_instance_method('initialize') do |method|
       method.define_argument('error')
@@ -411,28 +411,28 @@ RubyLint.registry.register('AbstractController') do |defs|
   end
 
   defs.define_constant('AbstractController::Helpers::ClassMethods::MissingHelperError::InvalidExtensionError') do |klass|
-    klass.inherits(defs.constant_proxy('LoadError'))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Blamable'))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
+    klass.inherits(defs.constant_proxy('LoadError', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Blamable', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object', RubyLint.registry))
 
   end
 
   defs.define_constant('AbstractController::Helpers::ClassMethods::MissingHelperError::MRIExtensionError') do |klass|
-    klass.inherits(defs.constant_proxy('LoadError::InvalidExtensionError'))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Blamable'))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
+    klass.inherits(defs.constant_proxy('LoadError::InvalidExtensionError', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Blamable', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object', RubyLint.registry))
 
   end
 
   defs.define_constant('AbstractController::Helpers::ClassMethods::MissingHelperError::REGEXPS') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('AbstractController::Layouts') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
     klass.define_instance_method('_layout_conditions') do |method|
       method.define_rest_argument('args')
@@ -449,7 +449,7 @@ RubyLint.registry.register('AbstractController') do |defs|
   end
 
   defs.define_constant('AbstractController::Layouts::ClassMethods') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
     klass.define_instance_method('_implied_layout_name')
 
@@ -466,22 +466,22 @@ RubyLint.registry.register('AbstractController') do |defs|
   end
 
   defs.define_constant('AbstractController::Layouts::ClassMethods::LayoutConditions') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('AbstractController::Logger') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('AbstractController::Railties') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('AbstractController::Railties::RoutesHelpers') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
     klass.define_method('with') do |method|
       method.define_argument('routes')
@@ -489,7 +489,7 @@ RubyLint.registry.register('AbstractController') do |defs|
   end
 
   defs.define_constant('AbstractController::Rendering') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
     klass.define_instance_method('_render_template') do |method|
       method.define_argument('options')
@@ -525,18 +525,18 @@ RubyLint.registry.register('AbstractController') do |defs|
   end
 
   defs.define_constant('AbstractController::Rendering::ClassMethods') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
     klass.define_instance_method('view_context_class')
   end
 
   defs.define_constant('AbstractController::Rendering::DEFAULT_PROTECTED_INSTANCE_VARIABLES') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('AbstractController::Translation') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
     klass.define_instance_method('l') do |method|
       method.define_rest_argument('args')
@@ -556,13 +556,13 @@ RubyLint.registry.register('AbstractController') do |defs|
   end
 
   defs.define_constant('AbstractController::UrlFor') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
     klass.define_instance_method('_routes')
   end
 
   defs.define_constant('AbstractController::UrlFor::ClassMethods') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
     klass.define_instance_method('_routes')
 
@@ -570,7 +570,7 @@ RubyLint.registry.register('AbstractController') do |defs|
   end
 
   defs.define_constant('AbstractController::ViewPaths') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
     klass.define_instance_method('_prefixes')
 
@@ -616,7 +616,7 @@ RubyLint.registry.register('AbstractController') do |defs|
   end
 
   defs.define_constant('AbstractController::ViewPaths::ClassMethods') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
     klass.define_instance_method('append_view_path') do |method|
       method.define_argument('path')

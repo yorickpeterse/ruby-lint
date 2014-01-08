@@ -5,7 +5,7 @@
 
 RubyLint.registry.register('GServer') do |defs|
   defs.define_constant('GServer') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
     klass.define_method('in_service?') do |method|
       method.define_argument('port')
@@ -86,7 +86,7 @@ RubyLint.registry.register('GServer') do |defs|
   end
 
   defs.define_constant('GServer::DEFAULT_HOST') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 end

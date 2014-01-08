@@ -1,6 +1,6 @@
 RubyLint.registry.register('Class') do |defs|
   defs.define_constant('Class') do |klass|
-    klass.inherits(defs.constant_proxy('Module'))
+    klass.inherits(defs.constant_proxy('Module', RubyLint.registry))
 
     klass.define_constructors do |method|
       method.define_optional_argument('klass')

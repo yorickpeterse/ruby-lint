@@ -5,7 +5,7 @@
 
 RubyLint.registry.register('SignalException') do |defs|
   defs.define_constant('SignalException') do |klass|
-    klass.inherits(defs.constant_proxy('Exception'))
+    klass.inherits(defs.constant_proxy('Exception', RubyLint.registry))
 
     klass.define_instance_method('initialize') do |method|
       method.define_optional_argument('signo')

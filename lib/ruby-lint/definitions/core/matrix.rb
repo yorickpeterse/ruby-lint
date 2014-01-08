@@ -5,10 +5,10 @@
 
 RubyLint.registry.register('Matrix') do |defs|
   defs.define_constant('Matrix') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
-    klass.inherits(defs.constant_proxy('Matrix::CoercionHelper'))
-    klass.inherits(defs.constant_proxy('ExceptionForMatrix'))
-    klass.inherits(defs.constant_proxy('Enumerable'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('Matrix::CoercionHelper', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('ExceptionForMatrix', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('Enumerable', RubyLint.registry))
 
     klass.define_method('I') do |method|
       method.define_argument('n')
@@ -284,7 +284,7 @@ RubyLint.registry.register('Matrix') do |defs|
   end
 
   defs.define_constant('Matrix::CoercionHelper') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
     klass.define_method('coerce_to') do |method|
       method.define_argument('obj')
@@ -298,12 +298,12 @@ RubyLint.registry.register('Matrix') do |defs|
   end
 
   defs.define_constant('Matrix::ConversionHelper') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('Matrix::EigenvalueDecomposition') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
     klass.define_instance_method('d')
 
@@ -333,8 +333,8 @@ RubyLint.registry.register('Matrix') do |defs|
   end
 
   defs.define_constant('Matrix::Enumerator') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
-    klass.inherits(defs.constant_proxy('Enumerable'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('Enumerable', RubyLint.registry))
 
     klass.define_instance_method('each') do |method|
       method.define_rest_argument('args')
@@ -368,28 +368,28 @@ RubyLint.registry.register('Matrix') do |defs|
   end
 
   defs.define_constant('Matrix::ErrDimensionMismatch') do |klass|
-    klass.inherits(defs.constant_proxy('StandardError'))
+    klass.inherits(defs.constant_proxy('StandardError', RubyLint.registry))
 
   end
 
   defs.define_constant('Matrix::ErrNotRegular') do |klass|
-    klass.inherits(defs.constant_proxy('StandardError'))
+    klass.inherits(defs.constant_proxy('StandardError', RubyLint.registry))
 
   end
 
   defs.define_constant('Matrix::ErrOperationNotDefined') do |klass|
-    klass.inherits(defs.constant_proxy('StandardError'))
+    klass.inherits(defs.constant_proxy('StandardError', RubyLint.registry))
 
   end
 
   defs.define_constant('Matrix::ErrOperationNotImplemented') do |klass|
-    klass.inherits(defs.constant_proxy('StandardError'))
+    klass.inherits(defs.constant_proxy('StandardError', RubyLint.registry))
 
   end
 
   defs.define_constant('Matrix::LUPDecomposition') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
-    klass.inherits(defs.constant_proxy('Matrix::ConversionHelper'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('Matrix::ConversionHelper', RubyLint.registry))
 
     klass.define_instance_method('det')
 
@@ -421,14 +421,14 @@ RubyLint.registry.register('Matrix') do |defs|
   end
 
   defs.define_constant('Matrix::SELECTORS') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('Matrix::Scalar') do |klass|
-    klass.inherits(defs.constant_proxy('Numeric'))
-    klass.inherits(defs.constant_proxy('Matrix::CoercionHelper'))
-    klass.inherits(defs.constant_proxy('ExceptionForMatrix'))
+    klass.inherits(defs.constant_proxy('Numeric', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('Matrix::CoercionHelper', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('ExceptionForMatrix', RubyLint.registry))
 
     klass.define_method('included') do |method|
       method.define_argument('mod')
@@ -472,27 +472,27 @@ RubyLint.registry.register('Matrix') do |defs|
   end
 
   defs.define_constant('Matrix::Scalar::ErrDimensionMismatch') do |klass|
-    klass.inherits(defs.constant_proxy('StandardError'))
+    klass.inherits(defs.constant_proxy('StandardError', RubyLint.registry))
 
   end
 
   defs.define_constant('Matrix::Scalar::ErrNotRegular') do |klass|
-    klass.inherits(defs.constant_proxy('StandardError'))
+    klass.inherits(defs.constant_proxy('StandardError', RubyLint.registry))
 
   end
 
   defs.define_constant('Matrix::Scalar::ErrOperationNotDefined') do |klass|
-    klass.inherits(defs.constant_proxy('StandardError'))
+    klass.inherits(defs.constant_proxy('StandardError', RubyLint.registry))
 
   end
 
   defs.define_constant('Matrix::Scalar::ErrOperationNotImplemented') do |klass|
-    klass.inherits(defs.constant_proxy('StandardError'))
+    klass.inherits(defs.constant_proxy('StandardError', RubyLint.registry))
 
   end
 
   defs.define_constant('Matrix::SortedElement') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
     klass.define_instance_method('<=>') do |method|
       method.define_argument('other')

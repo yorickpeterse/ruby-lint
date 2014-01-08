@@ -5,7 +5,7 @@
 
 RubyLint.registry.register('NameError') do |defs|
   defs.define_constant('NameError') do |klass|
-    klass.inherits(defs.constant_proxy('StandardError'))
+    klass.inherits(defs.constant_proxy('StandardError', RubyLint.registry))
 
     klass.define_instance_method('initialize') do |method|
       method.define_rest_argument('args')

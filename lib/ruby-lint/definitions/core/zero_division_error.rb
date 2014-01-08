@@ -5,7 +5,7 @@
 
 RubyLint.registry.register('ZeroDivisionError') do |defs|
   defs.define_constant('ZeroDivisionError') do |klass|
-    klass.inherits(defs.constant_proxy('StandardError'))
+    klass.inherits(defs.constant_proxy('StandardError', RubyLint.registry))
 
   end
 end

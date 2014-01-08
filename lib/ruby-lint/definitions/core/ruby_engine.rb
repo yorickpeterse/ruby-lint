@@ -5,7 +5,7 @@
 
 RubyLint.registry.register('RUBY_ENGINE') do |defs|
   defs.define_constant('RUBY_ENGINE') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 end

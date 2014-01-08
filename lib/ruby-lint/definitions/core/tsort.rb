@@ -5,7 +5,7 @@
 
 RubyLint.registry.register('TSort') do |defs|
   defs.define_constant('TSort') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
     klass.define_instance_method('each_strongly_connected_component')
 
@@ -29,7 +29,7 @@ RubyLint.registry.register('TSort') do |defs|
   end
 
   defs.define_constant('TSort::Cyclic') do |klass|
-    klass.inherits(defs.constant_proxy('StandardError'))
+    klass.inherits(defs.constant_proxy('StandardError', RubyLint.registry))
 
   end
 end

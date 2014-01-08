@@ -5,9 +5,9 @@
 
 RubyLint.registry.register('Fixnum') do |defs|
   defs.define_constant('Fixnum') do |klass|
-    klass.inherits(defs.constant_proxy('Integer'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Fixnum'))
-    klass.inherits(defs.constant_proxy('ImmediateValue'))
+    klass.inherits(defs.constant_proxy('Integer', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Fixnum', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('ImmediateValue', RubyLint.registry))
 
     klass.define_method('===') do |method|
       method.define_argument('obj')
@@ -153,12 +153,12 @@ RubyLint.registry.register('Fixnum') do |defs|
   end
 
   defs.define_constant('Fixnum::MAX') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('Fixnum::MIN') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 end

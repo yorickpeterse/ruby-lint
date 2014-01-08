@@ -5,7 +5,7 @@
 
 RubyLint.registry.register('RbConfig') do |defs|
   defs.define_constant('RbConfig') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
     klass.define_method('expand') do |method|
       method.define_argument('val')
@@ -16,12 +16,12 @@ RubyLint.registry.register('RbConfig') do |defs|
   end
 
   defs.define_constant('RbConfig::CONFIG') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('RbConfig::MAKEFILE_CONFIG') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 end

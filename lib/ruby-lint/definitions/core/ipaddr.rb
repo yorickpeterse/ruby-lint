@@ -5,8 +5,8 @@
 
 RubyLint.registry.register('IPAddr') do |defs|
   defs.define_constant('IPAddr') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
-    klass.inherits(defs.constant_proxy('Comparable'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('Comparable', RubyLint.registry))
 
     klass.define_method('new_ntoh') do |method|
       method.define_argument('addr')
@@ -114,52 +114,52 @@ RubyLint.registry.register('IPAddr') do |defs|
   end
 
   defs.define_constant('IPAddr::AddressFamilyError') do |klass|
-    klass.inherits(defs.constant_proxy('IPAddr::Error'))
+    klass.inherits(defs.constant_proxy('IPAddr::Error', RubyLint.registry))
 
   end
 
   defs.define_constant('IPAddr::Error') do |klass|
-    klass.inherits(defs.constant_proxy('ArgumentError'))
+    klass.inherits(defs.constant_proxy('ArgumentError', RubyLint.registry))
 
   end
 
   defs.define_constant('IPAddr::IN4MASK') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('IPAddr::IN6FORMAT') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('IPAddr::IN6MASK') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('IPAddr::InvalidAddressError') do |klass|
-    klass.inherits(defs.constant_proxy('IPAddr::Error'))
+    klass.inherits(defs.constant_proxy('IPAddr::Error', RubyLint.registry))
 
   end
 
   defs.define_constant('IPAddr::InvalidPrefixError') do |klass|
-    klass.inherits(defs.constant_proxy('IPAddr::InvalidAddressError'))
+    klass.inherits(defs.constant_proxy('IPAddr::InvalidAddressError', RubyLint.registry))
 
   end
 
   defs.define_constant('IPAddr::RE_IPV4ADDRLIKE') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('IPAddr::RE_IPV6ADDRLIKE_COMPRESSED') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('IPAddr::RE_IPV6ADDRLIKE_FULL') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 end

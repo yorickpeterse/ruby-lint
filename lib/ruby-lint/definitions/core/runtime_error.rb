@@ -5,7 +5,7 @@
 
 RubyLint.registry.register('RuntimeError') do |defs|
   defs.define_constant('RuntimeError') do |klass|
-    klass.inherits(defs.constant_proxy('StandardError'))
+    klass.inherits(defs.constant_proxy('StandardError', RubyLint.registry))
 
   end
 end

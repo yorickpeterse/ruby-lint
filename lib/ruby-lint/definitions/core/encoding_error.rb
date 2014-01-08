@@ -5,7 +5,7 @@
 
 RubyLint.registry.register('EncodingError') do |defs|
   defs.define_constant('EncodingError') do |klass|
-    klass.inherits(defs.constant_proxy('StandardError'))
+    klass.inherits(defs.constant_proxy('StandardError', RubyLint.registry))
 
   end
 end

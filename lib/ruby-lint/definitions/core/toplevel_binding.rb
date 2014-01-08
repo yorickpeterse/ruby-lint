@@ -5,7 +5,7 @@
 
 RubyLint.registry.register('TOPLEVEL_BINDING') do |defs|
   defs.define_constant('TOPLEVEL_BINDING') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 end

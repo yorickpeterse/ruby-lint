@@ -5,7 +5,7 @@
 
 RubyLint.registry.register('EXPORT_PREFIX') do |defs|
   defs.define_constant('EXPORT_PREFIX') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 end

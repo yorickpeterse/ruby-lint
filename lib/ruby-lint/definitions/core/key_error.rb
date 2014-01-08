@@ -5,7 +5,7 @@
 
 RubyLint.registry.register('KeyError') do |defs|
   defs.define_constant('KeyError') do |klass|
-    klass.inherits(defs.constant_proxy('IndexError'))
+    klass.inherits(defs.constant_proxy('IndexError', RubyLint.registry))
 
   end
 end

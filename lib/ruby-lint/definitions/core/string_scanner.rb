@@ -5,7 +5,7 @@
 
 RubyLint.registry.register('StringScanner') do |defs|
   defs.define_constant('StringScanner') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
     klass.define_method('must_C_version')
 
@@ -148,12 +148,12 @@ RubyLint.registry.register('StringScanner') do |defs|
   end
 
   defs.define_constant('StringScanner::Id') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('StringScanner::Version') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 end

@@ -5,7 +5,7 @@
 
 RubyLint.registry.register('ConditionVariable') do |defs|
   defs.define_constant('ConditionVariable') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
     klass.define_instance_method('broadcast')
 

@@ -5,7 +5,7 @@
 
 RubyLint.registry.register('ERB') do |defs|
   defs.define_constant('ERB') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
     klass.define_method('version')
 
@@ -58,7 +58,7 @@ RubyLint.registry.register('ERB') do |defs|
   end
 
   defs.define_constant('ERB::Compiler') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
     klass.define_instance_method('add_insert_cmd') do |method|
       method.define_argument('out')
@@ -114,7 +114,7 @@ RubyLint.registry.register('ERB') do |defs|
   end
 
   defs.define_constant('ERB::Compiler::Buffer') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
     klass.define_instance_method('close')
 
@@ -135,13 +135,13 @@ RubyLint.registry.register('ERB') do |defs|
   end
 
   defs.define_constant('ERB::Compiler::ExplicitScanner') do |klass|
-    klass.inherits(defs.constant_proxy('ERB::Compiler::Scanner'))
+    klass.inherits(defs.constant_proxy('ERB::Compiler::Scanner', RubyLint.registry))
 
     klass.define_instance_method('scan')
   end
 
   defs.define_constant('ERB::Compiler::PercentLine') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
     klass.define_instance_method('empty?')
 
@@ -157,7 +157,7 @@ RubyLint.registry.register('ERB') do |defs|
   end
 
   defs.define_constant('ERB::Compiler::Scanner') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
     klass.define_method('default_scanner=') do |method|
       method.define_argument('klass')
@@ -191,19 +191,19 @@ RubyLint.registry.register('ERB') do |defs|
   end
 
   defs.define_constant('ERB::Compiler::SimpleScanner') do |klass|
-    klass.inherits(defs.constant_proxy('ERB::Compiler::Scanner'))
+    klass.inherits(defs.constant_proxy('ERB::Compiler::Scanner', RubyLint.registry))
 
     klass.define_instance_method('scan')
   end
 
   defs.define_constant('ERB::Compiler::SimpleScanner2') do |klass|
-    klass.inherits(defs.constant_proxy('ERB::Compiler::Scanner'))
+    klass.inherits(defs.constant_proxy('ERB::Compiler::Scanner', RubyLint.registry))
 
     klass.define_instance_method('scan')
   end
 
   defs.define_constant('ERB::Compiler::TrimScanner') do |klass|
-    klass.inherits(defs.constant_proxy('ERB::Compiler::Scanner'))
+    klass.inherits(defs.constant_proxy('ERB::Compiler::Scanner', RubyLint.registry))
 
     klass.define_instance_method('explicit_trim_line') do |method|
       method.define_argument('line')
@@ -248,12 +248,12 @@ RubyLint.registry.register('ERB') do |defs|
   end
 
   defs.define_constant('ERB::Compiler::TrimScanner::ERB_STAG') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('ERB::DefMethod') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
     klass.define_method('def_erb_method') do |method|
       method.define_argument('methodname')
@@ -262,12 +262,12 @@ RubyLint.registry.register('ERB') do |defs|
   end
 
   defs.define_constant('ERB::Revision') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('ERB::Util') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
     klass.define_method('h') do |method|
       method.define_argument('s')

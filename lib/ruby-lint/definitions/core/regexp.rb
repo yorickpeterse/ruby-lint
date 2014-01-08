@@ -5,7 +5,7 @@
 
 RubyLint.registry.register('Regexp') do |defs|
   defs.define_constant('Regexp') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
     klass.define_method('allocate')
 
@@ -158,77 +158,77 @@ RubyLint.registry.register('Regexp') do |defs|
   end
 
   defs.define_constant('Regexp::CAPTURE_GROUP') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('Regexp::DONT_CAPTURE_GROUP') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('Regexp::ESCAPE_TABLE') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('Regexp::EXTENDED') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('Regexp::FIXEDENCODING') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('Regexp::IGNORECASE') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('Regexp::KCODE_EUC') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('Regexp::KCODE_MASK') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('Regexp::KCODE_NONE') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('Regexp::KCODE_SJIS') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('Regexp::KCODE_UTF8') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('Regexp::MULTILINE') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('Regexp::NOENCODING') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('Regexp::OPTION_MASK') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('Regexp::SourceParser') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
     klass.define_instance_method('add_part!')
 
@@ -269,18 +269,18 @@ RubyLint.registry.register('Regexp') do |defs|
   end
 
   defs.define_constant('Regexp::SourceParser::LookAheadGroupPart') do |klass|
-    klass.inherits(defs.constant_proxy('Regexp::SourceParser::Part'))
+    klass.inherits(defs.constant_proxy('Regexp::SourceParser::Part', RubyLint.registry))
 
     klass.define_instance_method('to_s')
   end
 
   defs.define_constant('Regexp::SourceParser::LookAheadGroupPart::OPTIONS_MAP') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('Regexp::SourceParser::OptionsGroupPart') do |klass|
-    klass.inherits(defs.constant_proxy('Regexp::SourceParser::Part'))
+    klass.inherits(defs.constant_proxy('Regexp::SourceParser::Part', RubyLint.registry))
 
     klass.define_instance_method('flatten')
 
@@ -296,12 +296,12 @@ RubyLint.registry.register('Regexp') do |defs|
   end
 
   defs.define_constant('Regexp::SourceParser::OptionsGroupPart::OPTIONS_MAP') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('Regexp::SourceParser::Part') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
     klass.define_instance_method('<<') do |method|
       method.define_argument('str')
@@ -333,12 +333,12 @@ RubyLint.registry.register('Regexp') do |defs|
   end
 
   defs.define_constant('Regexp::SourceParser::Part::OPTIONS_MAP') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
   defs.define_constant('Regexp::SourceParser::PossibleOptions') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 end

@@ -5,7 +5,7 @@
 
 RubyLint.registry.register('SystemCallError') do |defs|
   defs.define_constant('SystemCallError') do |klass|
-    klass.inherits(defs.constant_proxy('StandardError'))
+    klass.inherits(defs.constant_proxy('StandardError', RubyLint.registry))
 
     klass.define_method('errno_error') do |method|
       method.define_argument('message')

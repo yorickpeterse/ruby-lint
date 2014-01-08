@@ -5,8 +5,8 @@
 
 RubyLint.registry.register('Monitor') do |defs|
   defs.define_constant('Monitor') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
-    klass.inherits(defs.constant_proxy('MonitorMixin'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('MonitorMixin', RubyLint.registry))
 
     klass.define_instance_method('enter')
 
@@ -16,7 +16,7 @@ RubyLint.registry.register('Monitor') do |defs|
   end
 
   defs.define_constant('Monitor::ConditionVariable') do |klass|
-    klass.inherits(defs.constant_proxy('Object'))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
     klass.define_instance_method('broadcast')
 
