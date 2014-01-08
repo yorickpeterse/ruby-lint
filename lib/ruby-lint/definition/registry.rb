@@ -42,6 +42,16 @@ module RubyLint
       end
 
       ##
+      # Returns `true` if the given constant has been registered.
+      #
+      # @param [String] constant
+      # @return [TrueClass|FalseClass]
+      #
+      def include?(constant)
+        return registered.key?(constant)
+      end
+
+      ##
       # Applies the definitions of a given name to the given
       # {RubyLint::Definition::RubyObject} instance.
       #

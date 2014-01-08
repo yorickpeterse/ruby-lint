@@ -11,9 +11,21 @@ describe RubyLint::Definition::Registry do
     end
 
     example 'register a definition' do
-      @registry.register('String') { |defs| }
+      @registry.register('String') { }
 
       @registry.registered.key?('String').should == true
+    end
+  end
+
+  context 'checking if definitions exist' do
+    example 'check for a non existing definition' do
+      @registry.include?('Foo').should == false
+    end
+
+    example 'check for an existing definition' do
+      @registry.register('Foo') { }
+
+      @registry.include?('Foo').should == true
     end
   end
 
@@ -23,7 +35,7 @@ describe RubyLint::Definition::Registry do
     end
 
     example 'return the definition when it exists' do
-      @registry.register('Foo') { |defs| }
+      @registry.register('Foo') { }
 
       @registry.get('Foo').is_a?(Proc).should == true
     end

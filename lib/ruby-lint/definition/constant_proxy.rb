@@ -13,22 +13,30 @@ module RubyLint
     # @!attribute [r] proxy_name
     #  @return [String]
     #
+    # @!attribute [r] registry
+    #  @return [RubyLint::Definition::Registry]
+    #
     # @!attribute [r] proxy_definition
     #  @return [RubyLint::Definition::RubyObject]
     #
     class ConstantProxy
-      attr_reader :proxy_source, :proxy_name, :proxy_definition
+      attr_reader :proxy_source, :proxy_name, :proxy_definition, :registry
 
       ##
       # @param [RubyLint::Definition::RubyObject] source The source definition
       #  to use for looking up the definition associated with the current
       #  proxy.
+      #
       # @param [String] name The name/constant path of the constant that this
       #  proxy belongs to.
       #
-      def initialize(source, name)
+      # @param [RubyLint::Registry] registry The registry to use when trying
+      #  to autoload a constant.
+      #
+      def initialize(source, name, registry = nil)
         @proxy_source = source
         @proxy_name   = name
+        @registry     = registry
       end
 
       # Pre-define all the methods of the definition, this is faster than
@@ -58,7 +66,38 @@ module RubyLint
       def lookup_proxy_definition
         return if proxy_definition
 
-        @proxy_definition = proxy_source.lookup_constant_path(proxy_name)
+        found = lookup_constant
+        root  = root_constant
+
+        if !found and use_registry?(root)
+          registry.apply(root, proxy_source)
+
+          found = lookup_constant
+        end
+
+        @proxy_definition = found
+      end
+
+      ##
+      # @param [String] constant
+      # @return [TrueClass|FalseClass]
+      #
+      def use_registry?(constant)
+        return registry && registry.include?(constant)
+      end
+
+      ##
+      # @return [String]
+      #
+      def root_constant
+        return proxy_name.split(RubyObject::PATH_SEPARATOR)[0]
+      end
+
+      ##
+      # @return [RubyLint::Definition::RubyObject]
+      #
+      def lookup_constant
+        return proxy_source.lookup_constant_path(proxy_name)
       end
     end # ConstantProxy
   end # Definition
