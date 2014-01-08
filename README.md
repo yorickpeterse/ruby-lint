@@ -16,7 +16,7 @@ instead of focusing on semantics (e.g. the amount of characters per line).
 
 The following Ruby implementations/versions are officially supported:
 
-* MRI 1.9.3 and newer
+* MRI 1.9.3, 2.0 or 2.1
 * Rubinius 2.0 and newer
 * Jruby 1.7 and newer
 
