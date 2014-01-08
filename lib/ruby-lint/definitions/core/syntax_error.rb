@@ -6,9 +6,6 @@
 RubyLint.registry.register('SyntaxError') do |defs|
   defs.define_constant('SyntaxError') do |klass|
     klass.inherits(defs.constant_proxy('ScriptError'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
     klass.define_method('from') do |method|
       method.define_argument('message')

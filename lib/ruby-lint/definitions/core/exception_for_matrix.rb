@@ -24,33 +24,21 @@ RubyLint.registry.register('ExceptionForMatrix') do |defs|
 
   defs.define_constant('ExceptionForMatrix::ErrDimensionMismatch') do |klass|
     klass.inherits(defs.constant_proxy('StandardError'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
   end
 
   defs.define_constant('ExceptionForMatrix::ErrNotRegular') do |klass|
     klass.inherits(defs.constant_proxy('StandardError'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
   end
 
   defs.define_constant('ExceptionForMatrix::ErrOperationNotDefined') do |klass|
     klass.inherits(defs.constant_proxy('StandardError'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
   end
 
   defs.define_constant('ExceptionForMatrix::ErrOperationNotImplemented') do |klass|
     klass.inherits(defs.constant_proxy('StandardError'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
   end
 end

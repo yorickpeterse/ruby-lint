@@ -9,9 +9,6 @@ RubyLint.registry.register('Vector') do |defs|
     klass.inherits(defs.constant_proxy('Matrix::CoercionHelper'))
     klass.inherits(defs.constant_proxy('Enumerable'))
     klass.inherits(defs.constant_proxy('ExceptionForMatrix'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
     klass.define_method('[]') do |method|
       method.define_rest_argument('array')
@@ -149,9 +146,6 @@ RubyLint.registry.register('Vector') do |defs|
   defs.define_constant('Vector::Enumerator') do |klass|
     klass.inherits(defs.constant_proxy('Object'))
     klass.inherits(defs.constant_proxy('Enumerable'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
     klass.define_instance_method('each') do |method|
       method.define_rest_argument('args')
@@ -186,41 +180,26 @@ RubyLint.registry.register('Vector') do |defs|
 
   defs.define_constant('Vector::ErrDimensionMismatch') do |klass|
     klass.inherits(defs.constant_proxy('StandardError'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
   end
 
   defs.define_constant('Vector::ErrNotRegular') do |klass|
     klass.inherits(defs.constant_proxy('StandardError'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
   end
 
   defs.define_constant('Vector::ErrOperationNotDefined') do |klass|
     klass.inherits(defs.constant_proxy('StandardError'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
   end
 
   defs.define_constant('Vector::ErrOperationNotImplemented') do |klass|
     klass.inherits(defs.constant_proxy('StandardError'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
   end
 
   defs.define_constant('Vector::SortedElement') do |klass|
     klass.inherits(defs.constant_proxy('Object'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
     klass.define_instance_method('<=>') do |method|
       method.define_argument('other')
@@ -240,9 +219,6 @@ RubyLint.registry.register('Vector') do |defs|
 
   defs.define_constant('Vector::ZeroVectorError') do |klass|
     klass.inherits(defs.constant_proxy('StandardError'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
   end
 end

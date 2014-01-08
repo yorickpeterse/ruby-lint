@@ -7,12 +7,6 @@ RubyLint.registry.register('File') do |defs|
   defs.define_constant('File') do |klass|
     klass.inherits(defs.constant_proxy('IO'))
     klass.inherits(defs.constant_proxy('Enumerable'))
-    klass.inherits(defs.constant_proxy('Unmarshalable'))
-    klass.inherits(defs.constant_proxy('File::Constants'))
-    klass.inherits(defs.constant_proxy('Enumerable'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
     klass.define_method('absolute_path') do |method|
       method.define_argument('obj')
@@ -360,12 +354,6 @@ RubyLint.registry.register('File') do |defs|
 
   defs.define_constant('File::BidirectionalPipe') do |klass|
     klass.inherits(defs.constant_proxy('IO'))
-    klass.inherits(defs.constant_proxy('Unmarshalable'))
-    klass.inherits(defs.constant_proxy('File::Constants'))
-    klass.inherits(defs.constant_proxy('Enumerable'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
     klass.define_instance_method('<<') do |method|
       method.define_argument('obj')
@@ -591,18 +579,12 @@ RubyLint.registry.register('File') do |defs|
   defs.define_constant('File::EAGAINWaitReadable') do |klass|
     klass.inherits(defs.constant_proxy('Errno::EAGAIN'))
     klass.inherits(defs.constant_proxy('IO::WaitReadable'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
   end
 
   defs.define_constant('File::EAGAINWaitWritable') do |klass|
     klass.inherits(defs.constant_proxy('Errno::EAGAIN'))
     klass.inherits(defs.constant_proxy('IO::WaitWritable'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
   end
 
@@ -613,9 +595,6 @@ RubyLint.registry.register('File') do |defs|
 
   defs.define_constant('File::EachReader') do |klass|
     klass.inherits(defs.constant_proxy('Object'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
     klass.define_instance_method('each')
 
@@ -640,9 +619,6 @@ RubyLint.registry.register('File') do |defs|
   defs.define_constant('File::Enumerator') do |klass|
     klass.inherits(defs.constant_proxy('Object'))
     klass.inherits(defs.constant_proxy('Enumerable'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
     klass.define_instance_method('each') do |method|
       method.define_rest_argument('args')
@@ -777,17 +753,11 @@ RubyLint.registry.register('File') do |defs|
 
   defs.define_constant('File::FileError') do |klass|
     klass.inherits(defs.constant_proxy('Exception'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
   end
 
   defs.define_constant('File::InternalBuffer') do |klass|
     klass.inherits(defs.constant_proxy('Object'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
     klass.define_method('allocate')
 
@@ -905,9 +875,6 @@ RubyLint.registry.register('File') do |defs|
 
   defs.define_constant('File::NoFileError') do |klass|
     klass.inherits(defs.constant_proxy('File::FileError'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
   end
 
@@ -1062,18 +1029,12 @@ RubyLint.registry.register('File') do |defs|
 
   defs.define_constant('File::PermissionError') do |klass|
     klass.inherits(defs.constant_proxy('File::FileError'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
   end
 
   defs.define_constant('File::PrivateDir') do |klass|
     klass.inherits(defs.constant_proxy('Object'))
     klass.inherits(defs.constant_proxy('Enumerable'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
     klass.define_method('[]') do |method|
       method.define_rest_argument('patterns')
@@ -1251,9 +1212,6 @@ RubyLint.registry.register('File') do |defs|
 
   defs.define_constant('File::SortedElement') do |klass|
     klass.inherits(defs.constant_proxy('Object'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
     klass.define_instance_method('<=>') do |method|
       method.define_argument('other')
@@ -1274,9 +1232,6 @@ RubyLint.registry.register('File') do |defs|
   defs.define_constant('File::Stat') do |klass|
     klass.inherits(defs.constant_proxy('Object'))
     klass.inherits(defs.constant_proxy('Comparable'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
     klass.define_method('fstat') do |method|
       method.define_argument('fd')
@@ -1511,9 +1466,6 @@ RubyLint.registry.register('File') do |defs|
 
   defs.define_constant('File::StreamCopier') do |klass|
     klass.inherits(defs.constant_proxy('Object'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
     klass.define_instance_method('initialize') do |method|
       method.define_argument('from')
@@ -1551,9 +1503,6 @@ RubyLint.registry.register('File') do |defs|
 
   defs.define_constant('File::UnableToStat') do |klass|
     klass.inherits(defs.constant_proxy('File::FileError'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
   end
 

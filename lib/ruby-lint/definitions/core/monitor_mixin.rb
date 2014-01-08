@@ -28,9 +28,6 @@ RubyLint.registry.register('MonitorMixin') do |defs|
 
   defs.define_constant('MonitorMixin::ConditionVariable') do |klass|
     klass.inherits(defs.constant_proxy('Object'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
     klass.define_instance_method('broadcast')
 
@@ -53,9 +50,6 @@ RubyLint.registry.register('MonitorMixin') do |defs|
 
   defs.define_constant('MonitorMixin::ConditionVariable::Timeout') do |klass|
     klass.inherits(defs.constant_proxy('Exception'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
   end
 end

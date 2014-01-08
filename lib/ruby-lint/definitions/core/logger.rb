@@ -7,9 +7,6 @@ RubyLint.registry.register('Logger') do |defs|
   defs.define_constant('Logger') do |klass|
     klass.inherits(defs.constant_proxy('Object'))
     klass.inherits(defs.constant_proxy('Logger::Severity'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
     klass.define_instance_method('<<') do |method|
       method.define_argument('msg')
@@ -105,9 +102,6 @@ RubyLint.registry.register('Logger') do |defs|
   defs.define_constant('Logger::Application') do |klass|
     klass.inherits(defs.constant_proxy('Object'))
     klass.inherits(defs.constant_proxy('Logger::Severity'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
     klass.define_instance_method('appname')
 
@@ -188,9 +182,6 @@ RubyLint.registry.register('Logger') do |defs|
 
   defs.define_constant('Logger::Error') do |klass|
     klass.inherits(defs.constant_proxy('RuntimeError'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
   end
 
@@ -201,9 +192,6 @@ RubyLint.registry.register('Logger') do |defs|
 
   defs.define_constant('Logger::Formatter') do |klass|
     klass.inherits(defs.constant_proxy('Object'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
     klass.define_instance_method('call') do |method|
       method.define_argument('severity')
@@ -231,9 +219,6 @@ RubyLint.registry.register('Logger') do |defs|
 
   defs.define_constant('Logger::LogDevice') do |klass|
     klass.inherits(defs.constant_proxy('Object'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
     klass.define_instance_method('close')
 
@@ -256,17 +241,11 @@ RubyLint.registry.register('Logger') do |defs|
   defs.define_constant('Logger::LogDevice::LogDeviceMutex') do |klass|
     klass.inherits(defs.constant_proxy('Object'))
     klass.inherits(defs.constant_proxy('MonitorMixin'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
   end
 
   defs.define_constant('Logger::LogDevice::LogDeviceMutex::ConditionVariable') do |klass|
     klass.inherits(defs.constant_proxy('Object'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
     klass.define_instance_method('broadcast')
 
@@ -339,9 +318,6 @@ RubyLint.registry.register('Logger') do |defs|
 
   defs.define_constant('Logger::ShiftingError') do |klass|
     klass.inherits(defs.constant_proxy('Logger::Error'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
   end
 

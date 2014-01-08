@@ -125,9 +125,6 @@ RubyLint.registry.register('JSON') do |defs|
 
   defs.define_constant('JSON::CircularDatastructure') do |klass|
     klass.inherits(defs.constant_proxy('JSON::NestingError'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
   end
 
@@ -220,9 +217,6 @@ RubyLint.registry.register('JSON') do |defs|
 
   defs.define_constant('JSON::Ext::Generator::State') do |klass|
     klass.inherits(defs.constant_proxy('Object'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
     klass.define_method('allocate')
 
@@ -293,9 +287,6 @@ RubyLint.registry.register('JSON') do |defs|
 
   defs.define_constant('JSON::Ext::Parser') do |klass|
     klass.inherits(defs.constant_proxy('Object'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
     klass.define_method('allocate')
 
@@ -315,17 +306,11 @@ RubyLint.registry.register('JSON') do |defs|
 
   defs.define_constant('JSON::GeneratorError') do |klass|
     klass.inherits(defs.constant_proxy('JSON::JSONError'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
   end
 
   defs.define_constant('JSON::GenericObject') do |klass|
     klass.inherits(defs.constant_proxy('OpenStruct'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
     klass.define_method('[]') do |method|
       method.define_rest_argument('args')
@@ -390,9 +375,6 @@ RubyLint.registry.register('JSON') do |defs|
 
   defs.define_constant('JSON::JSONError') do |klass|
     klass.inherits(defs.constant_proxy('StandardError'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
     klass.define_method('wrap') do |method|
       method.define_argument('exception')
@@ -411,9 +393,6 @@ RubyLint.registry.register('JSON') do |defs|
 
   defs.define_constant('JSON::MissingUnicodeSupport') do |klass|
     klass.inherits(defs.constant_proxy('JSON::JSONError'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
   end
 
@@ -424,9 +403,6 @@ RubyLint.registry.register('JSON') do |defs|
 
   defs.define_constant('JSON::NestingError') do |klass|
     klass.inherits(defs.constant_proxy('JSON::ParserError'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
   end
 
@@ -437,9 +413,6 @@ RubyLint.registry.register('JSON') do |defs|
 
   defs.define_constant('JSON::Parser') do |klass|
     klass.inherits(defs.constant_proxy('Object'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
     klass.define_method('allocate')
 
@@ -454,9 +427,6 @@ RubyLint.registry.register('JSON') do |defs|
 
   defs.define_constant('JSON::ParserError') do |klass|
     klass.inherits(defs.constant_proxy('JSON::JSONError'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
   end
 
@@ -467,9 +437,6 @@ RubyLint.registry.register('JSON') do |defs|
 
   defs.define_constant('JSON::State') do |klass|
     klass.inherits(defs.constant_proxy('Object'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
     klass.define_method('allocate')
 
@@ -540,9 +507,6 @@ RubyLint.registry.register('JSON') do |defs|
 
   defs.define_constant('JSON::UnparserError') do |klass|
     klass.inherits(defs.constant_proxy('JSON::JSONError'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
   end
 

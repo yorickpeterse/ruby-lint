@@ -8,11 +8,6 @@ RubyLint.registry.register('Fixnum') do |defs|
     klass.inherits(defs.constant_proxy('Integer'))
     klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Fixnum'))
     klass.inherits(defs.constant_proxy('ImmediateValue'))
-    klass.inherits(defs.constant_proxy('Precision'))
-    klass.inherits(defs.constant_proxy('Comparable'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
     klass.define_method('===') do |method|
       method.define_argument('obj')

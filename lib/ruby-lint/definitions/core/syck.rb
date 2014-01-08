@@ -7,9 +7,6 @@ RubyLint.registry.register('Syck::BadAlias') do |defs|
   defs.define_constant('Syck::BadAlias') do |klass|
     klass.inherits(defs.constant_proxy('Object'))
     klass.inherits(defs.constant_proxy('Comparable'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
     klass.define_instance_method('<=>')
 
@@ -76,9 +73,6 @@ RubyLint.registry.register('Syck::BadAlias') do |defs|
 
   defs.define_constant('Syck::DefaultKey') do |klass|
     klass.inherits(defs.constant_proxy('Object'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
   end
 
@@ -92,9 +86,6 @@ RubyLint.registry.register('Syck::BadAlias') do |defs|
 
   defs.define_constant('Syck::DomainType') do |klass|
     klass.inherits(defs.constant_proxy('Object'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
     klass.define_method('tag_subclasses?')
 
@@ -210,9 +201,6 @@ RubyLint.registry.register('Syck::BadAlias') do |defs|
 
   defs.define_constant('Syck::Emitter') do |klass|
     klass.inherits(defs.constant_proxy('Object'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
     klass.define_method('allocate')
 
@@ -233,9 +221,6 @@ RubyLint.registry.register('Syck::BadAlias') do |defs|
 
   defs.define_constant('Syck::EngineManager') do |klass|
     klass.inherits(defs.constant_proxy('Object'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
     klass.define_instance_method('initialize')
 
@@ -250,9 +235,6 @@ RubyLint.registry.register('Syck::BadAlias') do |defs|
 
   defs.define_constant('Syck::Error') do |klass|
     klass.inherits(defs.constant_proxy('StandardError'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
   end
 
@@ -269,10 +251,6 @@ RubyLint.registry.register('Syck::BadAlias') do |defs|
 
   defs.define_constant('Syck::Map') do |klass|
     klass.inherits(defs.constant_proxy('Syck::Node'))
-    klass.inherits(defs.constant_proxy('Syck::BaseNode'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
     klass.define_method('allocate')
 
@@ -287,9 +265,6 @@ RubyLint.registry.register('Syck::BadAlias') do |defs|
 
   defs.define_constant('Syck::MergeKey') do |klass|
     klass.inherits(defs.constant_proxy('Object'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
   end
 
@@ -301,9 +276,6 @@ RubyLint.registry.register('Syck::BadAlias') do |defs|
   defs.define_constant('Syck::Node') do |klass|
     klass.inherits(defs.constant_proxy('Object'))
     klass.inherits(defs.constant_proxy('Syck::BaseNode'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
     klass.define_instance_method('emitter')
 
@@ -328,9 +300,6 @@ RubyLint.registry.register('Syck::BadAlias') do |defs|
 
   defs.define_constant('Syck::Object') do |klass|
     klass.inherits(defs.constant_proxy('Object'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
     klass.define_method('tag_subclasses?')
 
@@ -353,11 +322,6 @@ RubyLint.registry.register('Syck::BadAlias') do |defs|
 
   defs.define_constant('Syck::Omap') do |klass|
     klass.inherits(defs.constant_proxy('Array'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Array'))
-    klass.inherits(defs.constant_proxy('Enumerable'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
     klass.define_method('[]') do |method|
       method.define_rest_argument('vals')
@@ -397,9 +361,6 @@ RubyLint.registry.register('Syck::BadAlias') do |defs|
   defs.define_constant('Syck::Omap::Enumerator') do |klass|
     klass.inherits(defs.constant_proxy('Object'))
     klass.inherits(defs.constant_proxy('Enumerable'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
     klass.define_instance_method('each') do |method|
       method.define_rest_argument('args')
@@ -434,9 +395,6 @@ RubyLint.registry.register('Syck::BadAlias') do |defs|
 
   defs.define_constant('Syck::Omap::SortedElement') do |klass|
     klass.inherits(defs.constant_proxy('Object'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
     klass.define_instance_method('<=>') do |method|
       method.define_argument('other')
@@ -456,9 +414,6 @@ RubyLint.registry.register('Syck::BadAlias') do |defs|
 
   defs.define_constant('Syck::Out') do |klass|
     klass.inherits(defs.constant_proxy('Object'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
     klass.define_instance_method('emitter')
 
@@ -480,11 +435,6 @@ RubyLint.registry.register('Syck::BadAlias') do |defs|
 
   defs.define_constant('Syck::Pairs') do |klass|
     klass.inherits(defs.constant_proxy('Array'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Array'))
-    klass.inherits(defs.constant_proxy('Enumerable'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
     klass.define_method('[]') do |method|
       method.define_rest_argument('vals')
@@ -524,9 +474,6 @@ RubyLint.registry.register('Syck::BadAlias') do |defs|
   defs.define_constant('Syck::Pairs::Enumerator') do |klass|
     klass.inherits(defs.constant_proxy('Object'))
     klass.inherits(defs.constant_proxy('Enumerable'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
     klass.define_instance_method('each') do |method|
       method.define_rest_argument('args')
@@ -561,9 +508,6 @@ RubyLint.registry.register('Syck::BadAlias') do |defs|
 
   defs.define_constant('Syck::Pairs::SortedElement') do |klass|
     klass.inherits(defs.constant_proxy('Object'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
     klass.define_instance_method('<=>') do |method|
       method.define_argument('other')
@@ -583,17 +527,11 @@ RubyLint.registry.register('Syck::BadAlias') do |defs|
 
   defs.define_constant('Syck::ParseError') do |klass|
     klass.inherits(defs.constant_proxy('Syck::Error'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
   end
 
   defs.define_constant('Syck::Parser') do |klass|
     klass.inherits(defs.constant_proxy('Object'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
     klass.define_method('allocate')
 
@@ -624,9 +562,6 @@ RubyLint.registry.register('Syck::BadAlias') do |defs|
 
   defs.define_constant('Syck::PrivateType') do |klass|
     klass.inherits(defs.constant_proxy('Object'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
     klass.define_method('tag_subclasses?')
 
@@ -657,9 +592,6 @@ RubyLint.registry.register('Syck::BadAlias') do |defs|
 
   defs.define_constant('Syck::Resolver') do |klass|
     klass.inherits(defs.constant_proxy('Object'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
     klass.define_instance_method('add_type')
 
@@ -692,10 +624,6 @@ RubyLint.registry.register('Syck::BadAlias') do |defs|
 
   defs.define_constant('Syck::Scalar') do |klass|
     klass.inherits(defs.constant_proxy('Syck::Node'))
-    klass.inherits(defs.constant_proxy('Syck::BaseNode'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
     klass.define_method('allocate')
 
@@ -708,10 +636,6 @@ RubyLint.registry.register('Syck::BadAlias') do |defs|
 
   defs.define_constant('Syck::Seq') do |klass|
     klass.inherits(defs.constant_proxy('Syck::Node'))
-    klass.inherits(defs.constant_proxy('Syck::BaseNode'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
     klass.define_method('allocate')
 
@@ -726,11 +650,6 @@ RubyLint.registry.register('Syck::BadAlias') do |defs|
 
   defs.define_constant('Syck::Set') do |klass|
     klass.inherits(defs.constant_proxy('Hash'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Hash'))
-    klass.inherits(defs.constant_proxy('Enumerable'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
     klass.define_method('yaml_tag_subclasses?')
 
@@ -741,9 +660,6 @@ RubyLint.registry.register('Syck::BadAlias') do |defs|
 
   defs.define_constant('Syck::Set::Bucket') do |klass|
     klass.inherits(defs.constant_proxy('Object'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
     klass.define_instance_method('delete') do |method|
       method.define_argument('key')
@@ -793,9 +709,6 @@ RubyLint.registry.register('Syck::BadAlias') do |defs|
   defs.define_constant('Syck::Set::Entries') do |klass|
     klass.inherits(defs.constant_proxy('Object'))
     klass.inherits(defs.constant_proxy('Enumerable'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
     klass.define_method('[]') do |method|
       method.define_rest_argument('args')
@@ -923,9 +836,6 @@ RubyLint.registry.register('Syck::BadAlias') do |defs|
   defs.define_constant('Syck::Set::Enumerator') do |klass|
     klass.inherits(defs.constant_proxy('Object'))
     klass.inherits(defs.constant_proxy('Enumerable'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
     klass.define_instance_method('each') do |method|
       method.define_rest_argument('args')
@@ -960,9 +870,6 @@ RubyLint.registry.register('Syck::BadAlias') do |defs|
 
   defs.define_constant('Syck::Set::Iterator') do |klass|
     klass.inherits(defs.constant_proxy('Object'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
     klass.define_instance_method('initialize') do |method|
       method.define_argument('state')
@@ -987,9 +894,6 @@ RubyLint.registry.register('Syck::BadAlias') do |defs|
 
   defs.define_constant('Syck::Set::SortedElement') do |klass|
     klass.inherits(defs.constant_proxy('Object'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
     klass.define_instance_method('<=>') do |method|
       method.define_argument('other')
@@ -1009,9 +913,6 @@ RubyLint.registry.register('Syck::BadAlias') do |defs|
 
   defs.define_constant('Syck::Set::State') do |klass|
     klass.inherits(defs.constant_proxy('Object'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
     klass.define_method('from') do |method|
       method.define_argument('state')
@@ -1041,11 +942,6 @@ RubyLint.registry.register('Syck::BadAlias') do |defs|
 
   defs.define_constant('Syck::SpecialHash') do |klass|
     klass.inherits(defs.constant_proxy('Hash'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Hash'))
-    klass.inherits(defs.constant_proxy('Enumerable'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
     klass.define_instance_method('default')
 
@@ -1066,9 +962,6 @@ RubyLint.registry.register('Syck::BadAlias') do |defs|
 
   defs.define_constant('Syck::SpecialHash::Bucket') do |klass|
     klass.inherits(defs.constant_proxy('Object'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
     klass.define_instance_method('delete') do |method|
       method.define_argument('key')
@@ -1118,9 +1011,6 @@ RubyLint.registry.register('Syck::BadAlias') do |defs|
   defs.define_constant('Syck::SpecialHash::Entries') do |klass|
     klass.inherits(defs.constant_proxy('Object'))
     klass.inherits(defs.constant_proxy('Enumerable'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
     klass.define_method('[]') do |method|
       method.define_rest_argument('args')
@@ -1248,9 +1138,6 @@ RubyLint.registry.register('Syck::BadAlias') do |defs|
   defs.define_constant('Syck::SpecialHash::Enumerator') do |klass|
     klass.inherits(defs.constant_proxy('Object'))
     klass.inherits(defs.constant_proxy('Enumerable'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
     klass.define_instance_method('each') do |method|
       method.define_rest_argument('args')
@@ -1285,9 +1172,6 @@ RubyLint.registry.register('Syck::BadAlias') do |defs|
 
   defs.define_constant('Syck::SpecialHash::Iterator') do |klass|
     klass.inherits(defs.constant_proxy('Object'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
     klass.define_instance_method('initialize') do |method|
       method.define_argument('state')
@@ -1312,9 +1196,6 @@ RubyLint.registry.register('Syck::BadAlias') do |defs|
 
   defs.define_constant('Syck::SpecialHash::SortedElement') do |klass|
     klass.inherits(defs.constant_proxy('Object'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
     klass.define_instance_method('<=>') do |method|
       method.define_argument('other')
@@ -1334,9 +1215,6 @@ RubyLint.registry.register('Syck::BadAlias') do |defs|
 
   defs.define_constant('Syck::SpecialHash::State') do |klass|
     klass.inherits(defs.constant_proxy('Object'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
     klass.define_method('from') do |method|
       method.define_argument('state')
@@ -1366,9 +1244,6 @@ RubyLint.registry.register('Syck::BadAlias') do |defs|
 
   defs.define_constant('Syck::Stream') do |klass|
     klass.inherits(defs.constant_proxy('Object'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
     klass.define_instance_method('[]') do |method|
       method.define_argument('i')
@@ -1404,9 +1279,6 @@ RubyLint.registry.register('Syck::BadAlias') do |defs|
 
   defs.define_constant('Syck::TypeError') do |klass|
     klass.inherits(defs.constant_proxy('StandardError'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
   end
 

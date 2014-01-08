@@ -78,9 +78,6 @@ RubyLint.registry.register('OpenSSL') do |defs|
 
   defs.define_constant('OpenSSL::ASN1::ASN1Data') do |klass|
     klass.inherits(defs.constant_proxy('Object'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
     klass.define_instance_method('infinite_length')
 
@@ -105,9 +102,6 @@ RubyLint.registry.register('OpenSSL') do |defs|
 
   defs.define_constant('OpenSSL::ASN1::ASN1Error') do |klass|
     klass.inherits(defs.constant_proxy('OpenSSL::OpenSSLError'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
   end
 
@@ -123,9 +117,6 @@ RubyLint.registry.register('OpenSSL') do |defs|
 
   defs.define_constant('OpenSSL::ASN1::BMPString') do |klass|
     klass.inherits(defs.constant_proxy('OpenSSL::ASN1::Primitive'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
   end
 
@@ -136,9 +127,6 @@ RubyLint.registry.register('OpenSSL') do |defs|
 
   defs.define_constant('OpenSSL::ASN1::BitString') do |klass|
     klass.inherits(defs.constant_proxy('OpenSSL::ASN1::Primitive'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
     klass.define_instance_method('unused_bits')
 
@@ -147,9 +135,6 @@ RubyLint.registry.register('OpenSSL') do |defs|
 
   defs.define_constant('OpenSSL::ASN1::Boolean') do |klass|
     klass.inherits(defs.constant_proxy('OpenSSL::ASN1::Primitive'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
   end
 
@@ -161,9 +146,6 @@ RubyLint.registry.register('OpenSSL') do |defs|
   defs.define_constant('OpenSSL::ASN1::Constructive') do |klass|
     klass.inherits(defs.constant_proxy('OpenSSL::ASN1::ASN1Data'))
     klass.inherits(defs.constant_proxy('Enumerable'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
     klass.define_instance_method('each')
 
@@ -179,9 +161,6 @@ RubyLint.registry.register('OpenSSL') do |defs|
   defs.define_constant('OpenSSL::ASN1::Constructive::Enumerator') do |klass|
     klass.inherits(defs.constant_proxy('Object'))
     klass.inherits(defs.constant_proxy('Enumerable'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
     klass.define_instance_method('each') do |method|
       method.define_rest_argument('args')
@@ -216,9 +195,6 @@ RubyLint.registry.register('OpenSSL') do |defs|
 
   defs.define_constant('OpenSSL::ASN1::Constructive::SortedElement') do |klass|
     klass.inherits(defs.constant_proxy('Object'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
     klass.define_instance_method('<=>') do |method|
       method.define_argument('other')
@@ -258,18 +234,12 @@ RubyLint.registry.register('OpenSSL') do |defs|
 
   defs.define_constant('OpenSSL::ASN1::EndOfContent') do |klass|
     klass.inherits(defs.constant_proxy('OpenSSL::ASN1::ASN1Data'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
     klass.define_instance_method('initialize')
   end
 
   defs.define_constant('OpenSSL::ASN1::Enumerated') do |klass|
     klass.inherits(defs.constant_proxy('OpenSSL::ASN1::Primitive'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
   end
 
@@ -290,25 +260,16 @@ RubyLint.registry.register('OpenSSL') do |defs|
 
   defs.define_constant('OpenSSL::ASN1::GeneralString') do |klass|
     klass.inherits(defs.constant_proxy('OpenSSL::ASN1::Primitive'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
   end
 
   defs.define_constant('OpenSSL::ASN1::GeneralizedTime') do |klass|
     klass.inherits(defs.constant_proxy('OpenSSL::ASN1::Primitive'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
   end
 
   defs.define_constant('OpenSSL::ASN1::GraphicString') do |klass|
     klass.inherits(defs.constant_proxy('OpenSSL::ASN1::Primitive'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
   end
 
@@ -319,9 +280,6 @@ RubyLint.registry.register('OpenSSL') do |defs|
 
   defs.define_constant('OpenSSL::ASN1::IA5String') do |klass|
     klass.inherits(defs.constant_proxy('OpenSSL::ASN1::Primitive'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
   end
 
@@ -337,17 +295,11 @@ RubyLint.registry.register('OpenSSL') do |defs|
 
   defs.define_constant('OpenSSL::ASN1::ISO64String') do |klass|
     klass.inherits(defs.constant_proxy('OpenSSL::ASN1::Primitive'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
   end
 
   defs.define_constant('OpenSSL::ASN1::Integer') do |klass|
     klass.inherits(defs.constant_proxy('OpenSSL::ASN1::Primitive'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
   end
 
@@ -363,17 +315,11 @@ RubyLint.registry.register('OpenSSL') do |defs|
 
   defs.define_constant('OpenSSL::ASN1::Null') do |klass|
     klass.inherits(defs.constant_proxy('OpenSSL::ASN1::Primitive'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
   end
 
   defs.define_constant('OpenSSL::ASN1::NumericString') do |klass|
     klass.inherits(defs.constant_proxy('OpenSSL::ASN1::Primitive'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
   end
 
@@ -394,9 +340,6 @@ RubyLint.registry.register('OpenSSL') do |defs|
 
   defs.define_constant('OpenSSL::ASN1::ObjectId') do |klass|
     klass.inherits(defs.constant_proxy('OpenSSL::ASN1::Primitive'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
     klass.define_method('register')
 
@@ -413,9 +356,6 @@ RubyLint.registry.register('OpenSSL') do |defs|
 
   defs.define_constant('OpenSSL::ASN1::OctetString') do |klass|
     klass.inherits(defs.constant_proxy('OpenSSL::ASN1::Primitive'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
   end
 
@@ -426,9 +366,6 @@ RubyLint.registry.register('OpenSSL') do |defs|
 
   defs.define_constant('OpenSSL::ASN1::Primitive') do |klass|
     klass.inherits(defs.constant_proxy('OpenSSL::ASN1::ASN1Data'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
     klass.define_instance_method('initialize')
 
@@ -441,9 +378,6 @@ RubyLint.registry.register('OpenSSL') do |defs|
 
   defs.define_constant('OpenSSL::ASN1::PrintableString') do |klass|
     klass.inherits(defs.constant_proxy('OpenSSL::ASN1::Primitive'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
   end
 
@@ -469,19 +403,12 @@ RubyLint.registry.register('OpenSSL') do |defs|
 
   defs.define_constant('OpenSSL::ASN1::Sequence') do |klass|
     klass.inherits(defs.constant_proxy('OpenSSL::ASN1::Constructive'))
-    klass.inherits(defs.constant_proxy('Enumerable'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
   end
 
   defs.define_constant('OpenSSL::ASN1::Sequence::Enumerator') do |klass|
     klass.inherits(defs.constant_proxy('Object'))
     klass.inherits(defs.constant_proxy('Enumerable'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
     klass.define_instance_method('each') do |method|
       method.define_rest_argument('args')
@@ -516,9 +443,6 @@ RubyLint.registry.register('OpenSSL') do |defs|
 
   defs.define_constant('OpenSSL::ASN1::Sequence::SortedElement') do |klass|
     klass.inherits(defs.constant_proxy('Object'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
     klass.define_instance_method('<=>') do |method|
       method.define_argument('other')
@@ -538,19 +462,12 @@ RubyLint.registry.register('OpenSSL') do |defs|
 
   defs.define_constant('OpenSSL::ASN1::Set') do |klass|
     klass.inherits(defs.constant_proxy('OpenSSL::ASN1::Constructive'))
-    klass.inherits(defs.constant_proxy('Enumerable'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
   end
 
   defs.define_constant('OpenSSL::ASN1::Set::Enumerator') do |klass|
     klass.inherits(defs.constant_proxy('Object'))
     klass.inherits(defs.constant_proxy('Enumerable'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
     klass.define_instance_method('each') do |method|
       method.define_rest_argument('args')
@@ -585,9 +502,6 @@ RubyLint.registry.register('OpenSSL') do |defs|
 
   defs.define_constant('OpenSSL::ASN1::Set::SortedElement') do |klass|
     klass.inherits(defs.constant_proxy('Object'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
     klass.define_instance_method('<=>') do |method|
       method.define_argument('other')
@@ -612,9 +526,6 @@ RubyLint.registry.register('OpenSSL') do |defs|
 
   defs.define_constant('OpenSSL::ASN1::T61String') do |klass|
     klass.inherits(defs.constant_proxy('OpenSSL::ASN1::Primitive'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
   end
 
@@ -635,9 +546,6 @@ RubyLint.registry.register('OpenSSL') do |defs|
 
   defs.define_constant('OpenSSL::ASN1::UTCTime') do |klass|
     klass.inherits(defs.constant_proxy('OpenSSL::ASN1::Primitive'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
   end
 
@@ -648,17 +556,11 @@ RubyLint.registry.register('OpenSSL') do |defs|
 
   defs.define_constant('OpenSSL::ASN1::UTF8String') do |klass|
     klass.inherits(defs.constant_proxy('OpenSSL::ASN1::Primitive'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
   end
 
   defs.define_constant('OpenSSL::ASN1::UniversalString') do |klass|
     klass.inherits(defs.constant_proxy('OpenSSL::ASN1::Primitive'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
   end
 
@@ -669,18 +571,12 @@ RubyLint.registry.register('OpenSSL') do |defs|
 
   defs.define_constant('OpenSSL::ASN1::VideotexString') do |klass|
     klass.inherits(defs.constant_proxy('OpenSSL::ASN1::Primitive'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
   end
 
   defs.define_constant('OpenSSL::BN') do |klass|
     klass.inherits(defs.constant_proxy('Object'))
     klass.inherits(defs.constant_proxy('Comparable'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
     klass.define_method('allocate')
 
@@ -783,15 +679,11 @@ RubyLint.registry.register('OpenSSL') do |defs|
 
   defs.define_constant('OpenSSL::BNError') do |klass|
     klass.inherits(defs.constant_proxy('OpenSSL::OpenSSLError'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
   end
 
   defs.define_constant('OpenSSL::Buffering') do |klass|
     klass.inherits(defs.constant_proxy('Object'))
-    klass.inherits(defs.constant_proxy('Enumerable'))
 
     klass.define_instance_method('<<') do |method|
       method.define_argument('s')
@@ -885,9 +777,6 @@ RubyLint.registry.register('OpenSSL') do |defs|
   defs.define_constant('OpenSSL::Buffering::Enumerator') do |klass|
     klass.inherits(defs.constant_proxy('Object'))
     klass.inherits(defs.constant_proxy('Enumerable'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
     klass.define_instance_method('each') do |method|
       method.define_rest_argument('args')
@@ -922,9 +811,6 @@ RubyLint.registry.register('OpenSSL') do |defs|
 
   defs.define_constant('OpenSSL::Buffering::SortedElement') do |klass|
     klass.inherits(defs.constant_proxy('Object'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
     klass.define_instance_method('<=>') do |method|
       method.define_argument('other')
@@ -944,9 +830,6 @@ RubyLint.registry.register('OpenSSL') do |defs|
 
   defs.define_constant('OpenSSL::Cipher') do |klass|
     klass.inherits(defs.constant_proxy('Object'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
     klass.define_method('allocate')
 
@@ -999,9 +882,6 @@ RubyLint.registry.register('OpenSSL') do |defs|
 
   defs.define_constant('OpenSSL::Cipher::AES') do |klass|
     klass.inherits(defs.constant_proxy('OpenSSL::Cipher'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
     klass.define_instance_method('initialize') do |method|
       method.define_rest_argument('args')
@@ -1012,9 +892,6 @@ RubyLint.registry.register('OpenSSL') do |defs|
 
   defs.define_constant('OpenSSL::Cipher::AES128') do |klass|
     klass.inherits(defs.constant_proxy('OpenSSL::Cipher'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
     klass.define_instance_method('initialize') do |method|
       method.define_argument('mode')
@@ -1025,9 +902,6 @@ RubyLint.registry.register('OpenSSL') do |defs|
 
   defs.define_constant('OpenSSL::Cipher::AES192') do |klass|
     klass.inherits(defs.constant_proxy('OpenSSL::Cipher'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
     klass.define_instance_method('initialize') do |method|
       method.define_argument('mode')
@@ -1038,9 +912,6 @@ RubyLint.registry.register('OpenSSL') do |defs|
 
   defs.define_constant('OpenSSL::Cipher::AES256') do |klass|
     klass.inherits(defs.constant_proxy('OpenSSL::Cipher'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
     klass.define_instance_method('initialize') do |method|
       method.define_argument('mode')
@@ -1051,9 +922,6 @@ RubyLint.registry.register('OpenSSL') do |defs|
 
   defs.define_constant('OpenSSL::Cipher::BF') do |klass|
     klass.inherits(defs.constant_proxy('OpenSSL::Cipher'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
     klass.define_instance_method('initialize') do |method|
       method.define_rest_argument('args')
@@ -1064,9 +932,6 @@ RubyLint.registry.register('OpenSSL') do |defs|
 
   defs.define_constant('OpenSSL::Cipher::CAST5') do |klass|
     klass.inherits(defs.constant_proxy('OpenSSL::Cipher'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
     klass.define_instance_method('initialize') do |method|
       method.define_rest_argument('args')
@@ -1077,9 +942,6 @@ RubyLint.registry.register('OpenSSL') do |defs|
 
   defs.define_constant('OpenSSL::Cipher::CAST5::AES') do |klass|
     klass.inherits(defs.constant_proxy('OpenSSL::Cipher'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
     klass.define_instance_method('initialize') do |method|
       method.define_rest_argument('args')
@@ -1090,9 +952,6 @@ RubyLint.registry.register('OpenSSL') do |defs|
 
   defs.define_constant('OpenSSL::Cipher::CAST5::AES128') do |klass|
     klass.inherits(defs.constant_proxy('OpenSSL::Cipher'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
     klass.define_instance_method('initialize') do |method|
       method.define_argument('mode')
@@ -1103,9 +962,6 @@ RubyLint.registry.register('OpenSSL') do |defs|
 
   defs.define_constant('OpenSSL::Cipher::CAST5::AES192') do |klass|
     klass.inherits(defs.constant_proxy('OpenSSL::Cipher'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
     klass.define_instance_method('initialize') do |method|
       method.define_argument('mode')
@@ -1116,9 +972,6 @@ RubyLint.registry.register('OpenSSL') do |defs|
 
   defs.define_constant('OpenSSL::Cipher::CAST5::AES256') do |klass|
     klass.inherits(defs.constant_proxy('OpenSSL::Cipher'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
     klass.define_instance_method('initialize') do |method|
       method.define_argument('mode')
@@ -1129,9 +982,6 @@ RubyLint.registry.register('OpenSSL') do |defs|
 
   defs.define_constant('OpenSSL::Cipher::CAST5::BF') do |klass|
     klass.inherits(defs.constant_proxy('OpenSSL::Cipher'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
     klass.define_instance_method('initialize') do |method|
       method.define_rest_argument('args')
@@ -1142,25 +992,16 @@ RubyLint.registry.register('OpenSSL') do |defs|
 
   defs.define_constant('OpenSSL::Cipher::CAST5::Cipher') do |klass|
     klass.inherits(defs.constant_proxy('OpenSSL::Cipher'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
   end
 
   defs.define_constant('OpenSSL::Cipher::CAST5::CipherError') do |klass|
     klass.inherits(defs.constant_proxy('OpenSSL::OpenSSLError'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
   end
 
   defs.define_constant('OpenSSL::Cipher::CAST5::DES') do |klass|
     klass.inherits(defs.constant_proxy('OpenSSL::Cipher'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
     klass.define_instance_method('initialize') do |method|
       method.define_rest_argument('args')
@@ -1171,9 +1012,6 @@ RubyLint.registry.register('OpenSSL') do |defs|
 
   defs.define_constant('OpenSSL::Cipher::CAST5::IDEA') do |klass|
     klass.inherits(defs.constant_proxy('OpenSSL::Cipher'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
     klass.define_instance_method('initialize') do |method|
       method.define_rest_argument('args')
@@ -1184,9 +1022,6 @@ RubyLint.registry.register('OpenSSL') do |defs|
 
   defs.define_constant('OpenSSL::Cipher::CAST5::RC2') do |klass|
     klass.inherits(defs.constant_proxy('OpenSSL::Cipher'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
     klass.define_instance_method('initialize') do |method|
       method.define_rest_argument('args')
@@ -1197,9 +1032,6 @@ RubyLint.registry.register('OpenSSL') do |defs|
 
   defs.define_constant('OpenSSL::Cipher::CAST5::RC4') do |klass|
     klass.inherits(defs.constant_proxy('OpenSSL::Cipher'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
     klass.define_instance_method('initialize') do |method|
       method.define_rest_argument('args')
@@ -1210,9 +1042,6 @@ RubyLint.registry.register('OpenSSL') do |defs|
 
   defs.define_constant('OpenSSL::Cipher::CAST5::RC5') do |klass|
     klass.inherits(defs.constant_proxy('OpenSSL::Cipher'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
     klass.define_instance_method('initialize') do |method|
       method.define_rest_argument('args')
@@ -1223,25 +1052,16 @@ RubyLint.registry.register('OpenSSL') do |defs|
 
   defs.define_constant('OpenSSL::Cipher::Cipher') do |klass|
     klass.inherits(defs.constant_proxy('OpenSSL::Cipher'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
   end
 
   defs.define_constant('OpenSSL::Cipher::CipherError') do |klass|
     klass.inherits(defs.constant_proxy('OpenSSL::OpenSSLError'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
   end
 
   defs.define_constant('OpenSSL::Cipher::DES') do |klass|
     klass.inherits(defs.constant_proxy('OpenSSL::Cipher'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
     klass.define_instance_method('initialize') do |method|
       method.define_rest_argument('args')
@@ -1252,9 +1072,6 @@ RubyLint.registry.register('OpenSSL') do |defs|
 
   defs.define_constant('OpenSSL::Cipher::IDEA') do |klass|
     klass.inherits(defs.constant_proxy('OpenSSL::Cipher'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
     klass.define_instance_method('initialize') do |method|
       method.define_rest_argument('args')
@@ -1265,9 +1082,6 @@ RubyLint.registry.register('OpenSSL') do |defs|
 
   defs.define_constant('OpenSSL::Cipher::RC2') do |klass|
     klass.inherits(defs.constant_proxy('OpenSSL::Cipher'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
     klass.define_instance_method('initialize') do |method|
       method.define_rest_argument('args')
@@ -1278,9 +1092,6 @@ RubyLint.registry.register('OpenSSL') do |defs|
 
   defs.define_constant('OpenSSL::Cipher::RC4') do |klass|
     klass.inherits(defs.constant_proxy('OpenSSL::Cipher'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
     klass.define_instance_method('initialize') do |method|
       method.define_rest_argument('args')
@@ -1291,9 +1102,6 @@ RubyLint.registry.register('OpenSSL') do |defs|
 
   defs.define_constant('OpenSSL::Cipher::RC5') do |klass|
     klass.inherits(defs.constant_proxy('OpenSSL::Cipher'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
     klass.define_instance_method('initialize') do |method|
       method.define_rest_argument('args')
@@ -1305,9 +1113,6 @@ RubyLint.registry.register('OpenSSL') do |defs|
   defs.define_constant('OpenSSL::Config') do |klass|
     klass.inherits(defs.constant_proxy('Object'))
     klass.inherits(defs.constant_proxy('Enumerable'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
     klass.define_method('get_key_string') do |method|
       method.define_argument('data')
@@ -1381,9 +1186,6 @@ RubyLint.registry.register('OpenSSL') do |defs|
   defs.define_constant('OpenSSL::Config::Enumerator') do |klass|
     klass.inherits(defs.constant_proxy('Object'))
     klass.inherits(defs.constant_proxy('Enumerable'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
     klass.define_instance_method('each') do |method|
       method.define_rest_argument('args')
@@ -1418,9 +1220,6 @@ RubyLint.registry.register('OpenSSL') do |defs|
 
   defs.define_constant('OpenSSL::Config::SortedElement') do |klass|
     klass.inherits(defs.constant_proxy('Object'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
     klass.define_instance_method('<=>') do |method|
       method.define_argument('other')
@@ -1440,18 +1239,11 @@ RubyLint.registry.register('OpenSSL') do |defs|
 
   defs.define_constant('OpenSSL::ConfigError') do |klass|
     klass.inherits(defs.constant_proxy('OpenSSL::OpenSSLError'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
   end
 
   defs.define_constant('OpenSSL::Digest') do |klass|
     klass.inherits(defs.constant_proxy('Digest::Class'))
-    klass.inherits(defs.constant_proxy('Digest::Instance'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
     klass.define_method('allocate')
 
@@ -1479,10 +1271,6 @@ RubyLint.registry.register('OpenSSL') do |defs|
 
   defs.define_constant('OpenSSL::Digest::DSS') do |klass|
     klass.inherits(defs.constant_proxy('OpenSSL::Digest'))
-    klass.inherits(defs.constant_proxy('Digest::Instance'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
     klass.define_method('digest') do |method|
       method.define_argument('data')
@@ -1501,10 +1289,6 @@ RubyLint.registry.register('OpenSSL') do |defs|
 
   defs.define_constant('OpenSSL::Digest::DSS1') do |klass|
     klass.inherits(defs.constant_proxy('OpenSSL::Digest'))
-    klass.inherits(defs.constant_proxy('Digest::Instance'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
     klass.define_method('digest') do |method|
       method.define_argument('data')
@@ -1523,10 +1307,6 @@ RubyLint.registry.register('OpenSSL') do |defs|
 
   defs.define_constant('OpenSSL::Digest::Digest') do |klass|
     klass.inherits(defs.constant_proxy('OpenSSL::Digest'))
-    klass.inherits(defs.constant_proxy('Digest::Instance'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
     klass.define_instance_method('initialize') do |method|
       method.define_rest_argument('args')
@@ -1537,18 +1317,11 @@ RubyLint.registry.register('OpenSSL') do |defs|
 
   defs.define_constant('OpenSSL::Digest::DigestError') do |klass|
     klass.inherits(defs.constant_proxy('OpenSSL::OpenSSLError'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
   end
 
   defs.define_constant('OpenSSL::Digest::MD2') do |klass|
     klass.inherits(defs.constant_proxy('OpenSSL::Digest'))
-    klass.inherits(defs.constant_proxy('Digest::Instance'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
     klass.define_method('digest') do |method|
       method.define_argument('data')
@@ -1567,10 +1340,237 @@ RubyLint.registry.register('OpenSSL') do |defs|
 
   defs.define_constant('OpenSSL::Digest::MD4') do |klass|
     klass.inherits(defs.constant_proxy('OpenSSL::Digest'))
-    klass.inherits(defs.constant_proxy('Digest::Instance'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
+
+    klass.define_method('digest') do |method|
+      method.define_argument('data')
+    end
+
+    klass.define_method('hexdigest') do |method|
+      method.define_argument('data')
+    end
+
+    klass.define_instance_method('initialize') do |method|
+      method.define_rest_argument('data')
+
+      method.returns { |object| object.instance }
+    end
+  end
+
+  defs.define_constant('OpenSSL::Digest::MD4::DSS') do |klass|
+    klass.inherits(defs.constant_proxy('OpenSSL::Digest'))
+
+    klass.define_method('digest') do |method|
+      method.define_argument('data')
+    end
+
+    klass.define_method('hexdigest') do |method|
+      method.define_argument('data')
+    end
+
+    klass.define_instance_method('initialize') do |method|
+      method.define_rest_argument('data')
+
+      method.returns { |object| object.instance }
+    end
+  end
+
+  defs.define_constant('OpenSSL::Digest::MD4::DSS1') do |klass|
+    klass.inherits(defs.constant_proxy('OpenSSL::Digest'))
+
+    klass.define_method('digest') do |method|
+      method.define_argument('data')
+    end
+
+    klass.define_method('hexdigest') do |method|
+      method.define_argument('data')
+    end
+
+    klass.define_instance_method('initialize') do |method|
+      method.define_rest_argument('data')
+
+      method.returns { |object| object.instance }
+    end
+  end
+
+  defs.define_constant('OpenSSL::Digest::MD4::Digest') do |klass|
+    klass.inherits(defs.constant_proxy('OpenSSL::Digest'))
+
+    klass.define_instance_method('initialize') do |method|
+      method.define_rest_argument('args')
+
+      method.returns { |object| object.instance }
+    end
+  end
+
+  defs.define_constant('OpenSSL::Digest::MD4::DigestError') do |klass|
+    klass.inherits(defs.constant_proxy('OpenSSL::OpenSSLError'))
+
+  end
+
+  defs.define_constant('OpenSSL::Digest::MD4::MD2') do |klass|
+    klass.inherits(defs.constant_proxy('OpenSSL::Digest'))
+
+    klass.define_method('digest') do |method|
+      method.define_argument('data')
+    end
+
+    klass.define_method('hexdigest') do |method|
+      method.define_argument('data')
+    end
+
+    klass.define_instance_method('initialize') do |method|
+      method.define_rest_argument('data')
+
+      method.returns { |object| object.instance }
+    end
+  end
+
+  defs.define_constant('OpenSSL::Digest::MD4::MD5') do |klass|
+    klass.inherits(defs.constant_proxy('OpenSSL::Digest'))
+
+    klass.define_method('digest') do |method|
+      method.define_argument('data')
+    end
+
+    klass.define_method('hexdigest') do |method|
+      method.define_argument('data')
+    end
+
+    klass.define_instance_method('initialize') do |method|
+      method.define_rest_argument('data')
+
+      method.returns { |object| object.instance }
+    end
+  end
+
+  defs.define_constant('OpenSSL::Digest::MD4::MDC2') do |klass|
+    klass.inherits(defs.constant_proxy('OpenSSL::Digest'))
+
+    klass.define_method('digest') do |method|
+      method.define_argument('data')
+    end
+
+    klass.define_method('hexdigest') do |method|
+      method.define_argument('data')
+    end
+
+    klass.define_instance_method('initialize') do |method|
+      method.define_rest_argument('data')
+
+      method.returns { |object| object.instance }
+    end
+  end
+
+  defs.define_constant('OpenSSL::Digest::MD4::RIPEMD160') do |klass|
+    klass.inherits(defs.constant_proxy('OpenSSL::Digest'))
+
+    klass.define_method('digest') do |method|
+      method.define_argument('data')
+    end
+
+    klass.define_method('hexdigest') do |method|
+      method.define_argument('data')
+    end
+
+    klass.define_instance_method('initialize') do |method|
+      method.define_rest_argument('data')
+
+      method.returns { |object| object.instance }
+    end
+  end
+
+  defs.define_constant('OpenSSL::Digest::MD4::SHA') do |klass|
+    klass.inherits(defs.constant_proxy('OpenSSL::Digest'))
+
+    klass.define_method('digest') do |method|
+      method.define_argument('data')
+    end
+
+    klass.define_method('hexdigest') do |method|
+      method.define_argument('data')
+    end
+
+    klass.define_instance_method('initialize') do |method|
+      method.define_rest_argument('data')
+
+      method.returns { |object| object.instance }
+    end
+  end
+
+  defs.define_constant('OpenSSL::Digest::MD4::SHA1') do |klass|
+    klass.inherits(defs.constant_proxy('OpenSSL::Digest'))
+
+    klass.define_method('digest') do |method|
+      method.define_argument('data')
+    end
+
+    klass.define_method('hexdigest') do |method|
+      method.define_argument('data')
+    end
+
+    klass.define_instance_method('initialize') do |method|
+      method.define_rest_argument('data')
+
+      method.returns { |object| object.instance }
+    end
+  end
+
+  defs.define_constant('OpenSSL::Digest::MD4::SHA224') do |klass|
+    klass.inherits(defs.constant_proxy('OpenSSL::Digest'))
+
+    klass.define_method('digest') do |method|
+      method.define_argument('data')
+    end
+
+    klass.define_method('hexdigest') do |method|
+      method.define_argument('data')
+    end
+
+    klass.define_instance_method('initialize') do |method|
+      method.define_rest_argument('data')
+
+      method.returns { |object| object.instance }
+    end
+  end
+
+  defs.define_constant('OpenSSL::Digest::MD4::SHA256') do |klass|
+    klass.inherits(defs.constant_proxy('OpenSSL::Digest'))
+
+    klass.define_method('digest') do |method|
+      method.define_argument('data')
+    end
+
+    klass.define_method('hexdigest') do |method|
+      method.define_argument('data')
+    end
+
+    klass.define_instance_method('initialize') do |method|
+      method.define_rest_argument('data')
+
+      method.returns { |object| object.instance }
+    end
+  end
+
+  defs.define_constant('OpenSSL::Digest::MD4::SHA384') do |klass|
+    klass.inherits(defs.constant_proxy('OpenSSL::Digest'))
+
+    klass.define_method('digest') do |method|
+      method.define_argument('data')
+    end
+
+    klass.define_method('hexdigest') do |method|
+      method.define_argument('data')
+    end
+
+    klass.define_instance_method('initialize') do |method|
+      method.define_rest_argument('data')
+
+      method.returns { |object| object.instance }
+    end
+  end
+
+  defs.define_constant('OpenSSL::Digest::MD4::SHA512') do |klass|
+    klass.inherits(defs.constant_proxy('OpenSSL::Digest'))
 
     klass.define_method('digest') do |method|
       method.define_argument('data')
@@ -1589,296 +1589,6 @@ RubyLint.registry.register('OpenSSL') do |defs|
 
   defs.define_constant('OpenSSL::Digest::MD5') do |klass|
     klass.inherits(defs.constant_proxy('OpenSSL::Digest'))
-    klass.inherits(defs.constant_proxy('Digest::Instance'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
-
-    klass.define_method('digest') do |method|
-      method.define_argument('data')
-    end
-
-    klass.define_method('hexdigest') do |method|
-      method.define_argument('data')
-    end
-
-    klass.define_instance_method('initialize') do |method|
-      method.define_rest_argument('data')
-
-      method.returns { |object| object.instance }
-    end
-  end
-
-  defs.define_constant('OpenSSL::Digest::MD5::DSS') do |klass|
-    klass.inherits(defs.constant_proxy('OpenSSL::Digest'))
-    klass.inherits(defs.constant_proxy('Digest::Instance'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
-
-    klass.define_method('digest') do |method|
-      method.define_argument('data')
-    end
-
-    klass.define_method('hexdigest') do |method|
-      method.define_argument('data')
-    end
-
-    klass.define_instance_method('initialize') do |method|
-      method.define_rest_argument('data')
-
-      method.returns { |object| object.instance }
-    end
-  end
-
-  defs.define_constant('OpenSSL::Digest::MD5::DSS1') do |klass|
-    klass.inherits(defs.constant_proxy('OpenSSL::Digest'))
-    klass.inherits(defs.constant_proxy('Digest::Instance'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
-
-    klass.define_method('digest') do |method|
-      method.define_argument('data')
-    end
-
-    klass.define_method('hexdigest') do |method|
-      method.define_argument('data')
-    end
-
-    klass.define_instance_method('initialize') do |method|
-      method.define_rest_argument('data')
-
-      method.returns { |object| object.instance }
-    end
-  end
-
-  defs.define_constant('OpenSSL::Digest::MD5::Digest') do |klass|
-    klass.inherits(defs.constant_proxy('OpenSSL::Digest'))
-    klass.inherits(defs.constant_proxy('Digest::Instance'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
-
-    klass.define_instance_method('initialize') do |method|
-      method.define_rest_argument('args')
-
-      method.returns { |object| object.instance }
-    end
-  end
-
-  defs.define_constant('OpenSSL::Digest::MD5::DigestError') do |klass|
-    klass.inherits(defs.constant_proxy('OpenSSL::OpenSSLError'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
-
-  end
-
-  defs.define_constant('OpenSSL::Digest::MD5::MD2') do |klass|
-    klass.inherits(defs.constant_proxy('OpenSSL::Digest'))
-    klass.inherits(defs.constant_proxy('Digest::Instance'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
-
-    klass.define_method('digest') do |method|
-      method.define_argument('data')
-    end
-
-    klass.define_method('hexdigest') do |method|
-      method.define_argument('data')
-    end
-
-    klass.define_instance_method('initialize') do |method|
-      method.define_rest_argument('data')
-
-      method.returns { |object| object.instance }
-    end
-  end
-
-  defs.define_constant('OpenSSL::Digest::MD5::MD4') do |klass|
-    klass.inherits(defs.constant_proxy('OpenSSL::Digest'))
-    klass.inherits(defs.constant_proxy('Digest::Instance'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
-
-    klass.define_method('digest') do |method|
-      method.define_argument('data')
-    end
-
-    klass.define_method('hexdigest') do |method|
-      method.define_argument('data')
-    end
-
-    klass.define_instance_method('initialize') do |method|
-      method.define_rest_argument('data')
-
-      method.returns { |object| object.instance }
-    end
-  end
-
-  defs.define_constant('OpenSSL::Digest::MD5::MDC2') do |klass|
-    klass.inherits(defs.constant_proxy('OpenSSL::Digest'))
-    klass.inherits(defs.constant_proxy('Digest::Instance'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
-
-    klass.define_method('digest') do |method|
-      method.define_argument('data')
-    end
-
-    klass.define_method('hexdigest') do |method|
-      method.define_argument('data')
-    end
-
-    klass.define_instance_method('initialize') do |method|
-      method.define_rest_argument('data')
-
-      method.returns { |object| object.instance }
-    end
-  end
-
-  defs.define_constant('OpenSSL::Digest::MD5::RIPEMD160') do |klass|
-    klass.inherits(defs.constant_proxy('OpenSSL::Digest'))
-    klass.inherits(defs.constant_proxy('Digest::Instance'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
-
-    klass.define_method('digest') do |method|
-      method.define_argument('data')
-    end
-
-    klass.define_method('hexdigest') do |method|
-      method.define_argument('data')
-    end
-
-    klass.define_instance_method('initialize') do |method|
-      method.define_rest_argument('data')
-
-      method.returns { |object| object.instance }
-    end
-  end
-
-  defs.define_constant('OpenSSL::Digest::MD5::SHA') do |klass|
-    klass.inherits(defs.constant_proxy('OpenSSL::Digest'))
-    klass.inherits(defs.constant_proxy('Digest::Instance'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
-
-    klass.define_method('digest') do |method|
-      method.define_argument('data')
-    end
-
-    klass.define_method('hexdigest') do |method|
-      method.define_argument('data')
-    end
-
-    klass.define_instance_method('initialize') do |method|
-      method.define_rest_argument('data')
-
-      method.returns { |object| object.instance }
-    end
-  end
-
-  defs.define_constant('OpenSSL::Digest::MD5::SHA1') do |klass|
-    klass.inherits(defs.constant_proxy('OpenSSL::Digest'))
-    klass.inherits(defs.constant_proxy('Digest::Instance'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
-
-    klass.define_method('digest') do |method|
-      method.define_argument('data')
-    end
-
-    klass.define_method('hexdigest') do |method|
-      method.define_argument('data')
-    end
-
-    klass.define_instance_method('initialize') do |method|
-      method.define_rest_argument('data')
-
-      method.returns { |object| object.instance }
-    end
-  end
-
-  defs.define_constant('OpenSSL::Digest::MD5::SHA224') do |klass|
-    klass.inherits(defs.constant_proxy('OpenSSL::Digest'))
-    klass.inherits(defs.constant_proxy('Digest::Instance'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
-
-    klass.define_method('digest') do |method|
-      method.define_argument('data')
-    end
-
-    klass.define_method('hexdigest') do |method|
-      method.define_argument('data')
-    end
-
-    klass.define_instance_method('initialize') do |method|
-      method.define_rest_argument('data')
-
-      method.returns { |object| object.instance }
-    end
-  end
-
-  defs.define_constant('OpenSSL::Digest::MD5::SHA256') do |klass|
-    klass.inherits(defs.constant_proxy('OpenSSL::Digest'))
-    klass.inherits(defs.constant_proxy('Digest::Instance'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
-
-    klass.define_method('digest') do |method|
-      method.define_argument('data')
-    end
-
-    klass.define_method('hexdigest') do |method|
-      method.define_argument('data')
-    end
-
-    klass.define_instance_method('initialize') do |method|
-      method.define_rest_argument('data')
-
-      method.returns { |object| object.instance }
-    end
-  end
-
-  defs.define_constant('OpenSSL::Digest::MD5::SHA384') do |klass|
-    klass.inherits(defs.constant_proxy('OpenSSL::Digest'))
-    klass.inherits(defs.constant_proxy('Digest::Instance'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
-
-    klass.define_method('digest') do |method|
-      method.define_argument('data')
-    end
-
-    klass.define_method('hexdigest') do |method|
-      method.define_argument('data')
-    end
-
-    klass.define_instance_method('initialize') do |method|
-      method.define_rest_argument('data')
-
-      method.returns { |object| object.instance }
-    end
-  end
-
-  defs.define_constant('OpenSSL::Digest::MD5::SHA512') do |klass|
-    klass.inherits(defs.constant_proxy('OpenSSL::Digest'))
-    klass.inherits(defs.constant_proxy('Digest::Instance'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
     klass.define_method('digest') do |method|
       method.define_argument('data')
@@ -1897,10 +1607,6 @@ RubyLint.registry.register('OpenSSL') do |defs|
 
   defs.define_constant('OpenSSL::Digest::MDC2') do |klass|
     klass.inherits(defs.constant_proxy('OpenSSL::Digest'))
-    klass.inherits(defs.constant_proxy('Digest::Instance'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
     klass.define_method('digest') do |method|
       method.define_argument('data')
@@ -1919,10 +1625,6 @@ RubyLint.registry.register('OpenSSL') do |defs|
 
   defs.define_constant('OpenSSL::Digest::RIPEMD160') do |klass|
     klass.inherits(defs.constant_proxy('OpenSSL::Digest'))
-    klass.inherits(defs.constant_proxy('Digest::Instance'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
     klass.define_method('digest') do |method|
       method.define_argument('data')
@@ -1941,10 +1643,6 @@ RubyLint.registry.register('OpenSSL') do |defs|
 
   defs.define_constant('OpenSSL::Digest::SHA') do |klass|
     klass.inherits(defs.constant_proxy('OpenSSL::Digest'))
-    klass.inherits(defs.constant_proxy('Digest::Instance'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
     klass.define_method('digest') do |method|
       method.define_argument('data')
@@ -1963,10 +1661,6 @@ RubyLint.registry.register('OpenSSL') do |defs|
 
   defs.define_constant('OpenSSL::Digest::SHA1') do |klass|
     klass.inherits(defs.constant_proxy('OpenSSL::Digest'))
-    klass.inherits(defs.constant_proxy('Digest::Instance'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
     klass.define_method('digest') do |method|
       method.define_argument('data')
@@ -1985,10 +1679,6 @@ RubyLint.registry.register('OpenSSL') do |defs|
 
   defs.define_constant('OpenSSL::Digest::SHA224') do |klass|
     klass.inherits(defs.constant_proxy('OpenSSL::Digest'))
-    klass.inherits(defs.constant_proxy('Digest::Instance'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
     klass.define_method('digest') do |method|
       method.define_argument('data')
@@ -2007,10 +1697,6 @@ RubyLint.registry.register('OpenSSL') do |defs|
 
   defs.define_constant('OpenSSL::Digest::SHA256') do |klass|
     klass.inherits(defs.constant_proxy('OpenSSL::Digest'))
-    klass.inherits(defs.constant_proxy('Digest::Instance'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
     klass.define_method('digest') do |method|
       method.define_argument('data')
@@ -2029,10 +1715,6 @@ RubyLint.registry.register('OpenSSL') do |defs|
 
   defs.define_constant('OpenSSL::Digest::SHA384') do |klass|
     klass.inherits(defs.constant_proxy('OpenSSL::Digest'))
-    klass.inherits(defs.constant_proxy('Digest::Instance'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
     klass.define_method('digest') do |method|
       method.define_argument('data')
@@ -2051,10 +1733,6 @@ RubyLint.registry.register('OpenSSL') do |defs|
 
   defs.define_constant('OpenSSL::Digest::SHA512') do |klass|
     klass.inherits(defs.constant_proxy('OpenSSL::Digest'))
-    klass.inherits(defs.constant_proxy('Digest::Instance'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
     klass.define_method('digest') do |method|
       method.define_argument('data')
@@ -2073,9 +1751,6 @@ RubyLint.registry.register('OpenSSL') do |defs|
 
   defs.define_constant('OpenSSL::Engine') do |klass|
     klass.inherits(defs.constant_proxy('Object'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
     klass.define_method('allocate')
 
@@ -2112,9 +1787,6 @@ RubyLint.registry.register('OpenSSL') do |defs|
 
   defs.define_constant('OpenSSL::Engine::EngineError') do |klass|
     klass.inherits(defs.constant_proxy('OpenSSL::OpenSSLError'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
   end
 
@@ -2160,9 +1832,6 @@ RubyLint.registry.register('OpenSSL') do |defs|
 
   defs.define_constant('OpenSSL::HMAC') do |klass|
     klass.inherits(defs.constant_proxy('Object'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
     klass.define_method('allocate')
 
@@ -2191,9 +1860,6 @@ RubyLint.registry.register('OpenSSL') do |defs|
 
   defs.define_constant('OpenSSL::HMACError') do |klass|
     klass.inherits(defs.constant_proxy('OpenSSL::OpenSSLError'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
   end
 
@@ -2204,9 +1870,6 @@ RubyLint.registry.register('OpenSSL') do |defs|
 
   defs.define_constant('OpenSSL::Netscape::SPKI') do |klass|
     klass.inherits(defs.constant_proxy('Object'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
     klass.define_method('allocate')
 
@@ -2235,9 +1898,6 @@ RubyLint.registry.register('OpenSSL') do |defs|
 
   defs.define_constant('OpenSSL::Netscape::SPKIError') do |klass|
     klass.inherits(defs.constant_proxy('OpenSSL::OpenSSLError'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
   end
 
@@ -2248,9 +1908,6 @@ RubyLint.registry.register('OpenSSL') do |defs|
 
   defs.define_constant('OpenSSL::OCSP::BasicResponse') do |klass|
     klass.inherits(defs.constant_proxy('Object'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
     klass.define_method('allocate')
 
@@ -2271,9 +1928,6 @@ RubyLint.registry.register('OpenSSL') do |defs|
 
   defs.define_constant('OpenSSL::OCSP::CertificateId') do |klass|
     klass.inherits(defs.constant_proxy('Object'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
     klass.define_method('allocate')
 
@@ -2338,9 +1992,6 @@ RubyLint.registry.register('OpenSSL') do |defs|
 
   defs.define_constant('OpenSSL::OCSP::OCSPError') do |klass|
     klass.inherits(defs.constant_proxy('OpenSSL::OpenSSLError'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
   end
 
@@ -2426,9 +2077,6 @@ RubyLint.registry.register('OpenSSL') do |defs|
 
   defs.define_constant('OpenSSL::OCSP::Request') do |klass|
     klass.inherits(defs.constant_proxy('Object'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
     klass.define_method('allocate')
 
@@ -2451,9 +2099,6 @@ RubyLint.registry.register('OpenSSL') do |defs|
 
   defs.define_constant('OpenSSL::OCSP::Response') do |klass|
     klass.inherits(defs.constant_proxy('Object'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
     klass.define_method('allocate')
 
@@ -2517,17 +2162,11 @@ RubyLint.registry.register('OpenSSL') do |defs|
 
   defs.define_constant('OpenSSL::OpenSSLError') do |klass|
     klass.inherits(defs.constant_proxy('StandardError'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
   end
 
   defs.define_constant('OpenSSL::PKCS12') do |klass|
     klass.inherits(defs.constant_proxy('Object'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
     klass.define_method('allocate')
 
@@ -2546,9 +2185,6 @@ RubyLint.registry.register('OpenSSL') do |defs|
 
   defs.define_constant('OpenSSL::PKCS12::PKCS12Error') do |klass|
     klass.inherits(defs.constant_proxy('OpenSSL::OpenSSLError'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
   end
 
@@ -2562,17 +2198,11 @@ RubyLint.registry.register('OpenSSL') do |defs|
 
   defs.define_constant('OpenSSL::PKCS5::PKCS5Error') do |klass|
     klass.inherits(defs.constant_proxy('OpenSSL::OpenSSLError'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
   end
 
   defs.define_constant('OpenSSL::PKCS7') do |klass|
     klass.inherits(defs.constant_proxy('Object'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
     klass.define_method('allocate')
 
@@ -2688,17 +2318,11 @@ RubyLint.registry.register('OpenSSL') do |defs|
 
   defs.define_constant('OpenSSL::PKCS7::PKCS7Error') do |klass|
     klass.inherits(defs.constant_proxy('OpenSSL::OpenSSLError'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
   end
 
   defs.define_constant('OpenSSL::PKCS7::RecipientInfo') do |klass|
     klass.inherits(defs.constant_proxy('Object'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
     klass.define_method('allocate')
 
@@ -2713,9 +2337,6 @@ RubyLint.registry.register('OpenSSL') do |defs|
 
   defs.define_constant('OpenSSL::PKCS7::Signer') do |klass|
     klass.inherits(defs.constant_proxy('Object'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
     klass.define_method('allocate')
 
@@ -2732,9 +2353,6 @@ RubyLint.registry.register('OpenSSL') do |defs|
 
   defs.define_constant('OpenSSL::PKCS7::SignerInfo') do |klass|
     klass.inherits(defs.constant_proxy('Object'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
     klass.define_method('allocate')
 
@@ -2762,9 +2380,6 @@ RubyLint.registry.register('OpenSSL') do |defs|
 
   defs.define_constant('OpenSSL::PKey::DH') do |klass|
     klass.inherits(defs.constant_proxy('OpenSSL::PKey::PKey'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
     klass.define_method('generate')
 
@@ -2813,17 +2428,11 @@ RubyLint.registry.register('OpenSSL') do |defs|
 
   defs.define_constant('OpenSSL::PKey::DHError') do |klass|
     klass.inherits(defs.constant_proxy('OpenSSL::PKey::PKeyError'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
   end
 
   defs.define_constant('OpenSSL::PKey::DSA') do |klass|
     klass.inherits(defs.constant_proxy('OpenSSL::PKey::PKey'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
     klass.define_method('generate')
 
@@ -2874,17 +2483,11 @@ RubyLint.registry.register('OpenSSL') do |defs|
 
   defs.define_constant('OpenSSL::PKey::DSAError') do |klass|
     klass.inherits(defs.constant_proxy('OpenSSL::PKey::PKeyError'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
   end
 
   defs.define_constant('OpenSSL::PKey::EC') do |klass|
     klass.inherits(defs.constant_proxy('OpenSSL::PKey::PKey'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
     klass.define_method('builtin_curves')
 
@@ -2927,9 +2530,6 @@ RubyLint.registry.register('OpenSSL') do |defs|
 
   defs.define_constant('OpenSSL::PKey::EC::Group') do |klass|
     klass.inherits(defs.constant_proxy('Object'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
     klass.define_method('allocate')
 
@@ -2972,9 +2572,6 @@ RubyLint.registry.register('OpenSSL') do |defs|
 
   defs.define_constant('OpenSSL::PKey::EC::Group::Error') do |klass|
     klass.inherits(defs.constant_proxy('OpenSSL::OpenSSLError'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
   end
 
@@ -2985,9 +2582,6 @@ RubyLint.registry.register('OpenSSL') do |defs|
 
   defs.define_constant('OpenSSL::PKey::EC::Point') do |klass|
     klass.inherits(defs.constant_proxy('Object'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
     klass.define_method('allocate')
 
@@ -3016,25 +2610,16 @@ RubyLint.registry.register('OpenSSL') do |defs|
 
   defs.define_constant('OpenSSL::PKey::EC::Point::Error') do |klass|
     klass.inherits(defs.constant_proxy('OpenSSL::OpenSSLError'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
   end
 
   defs.define_constant('OpenSSL::PKey::ECError') do |klass|
     klass.inherits(defs.constant_proxy('OpenSSL::PKey::PKeyError'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
   end
 
   defs.define_constant('OpenSSL::PKey::PKey') do |klass|
     klass.inherits(defs.constant_proxy('Object'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
     klass.define_method('allocate')
 
@@ -3047,17 +2632,11 @@ RubyLint.registry.register('OpenSSL') do |defs|
 
   defs.define_constant('OpenSSL::PKey::PKeyError') do |klass|
     klass.inherits(defs.constant_proxy('OpenSSL::OpenSSLError'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
   end
 
   defs.define_constant('OpenSSL::PKey::RSA') do |klass|
     klass.inherits(defs.constant_proxy('OpenSSL::PKey::PKey'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
     klass.define_method('generate')
 
@@ -3144,9 +2723,6 @@ RubyLint.registry.register('OpenSSL') do |defs|
 
   defs.define_constant('OpenSSL::PKey::RSAError') do |klass|
     klass.inherits(defs.constant_proxy('OpenSSL::PKey::PKeyError'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
   end
 
@@ -3192,9 +2768,6 @@ RubyLint.registry.register('OpenSSL') do |defs|
 
   defs.define_constant('OpenSSL::Random::RandomError') do |klass|
     klass.inherits(defs.constant_proxy('OpenSSL::OpenSSLError'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
   end
 
@@ -3354,9 +2927,6 @@ RubyLint.registry.register('OpenSSL') do |defs|
 
   defs.define_constant('OpenSSL::SSL::SSLContext') do |klass|
     klass.inherits(defs.constant_proxy('Object'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
     klass.define_method('allocate')
 
@@ -3540,18 +3110,12 @@ RubyLint.registry.register('OpenSSL') do |defs|
 
   defs.define_constant('OpenSSL::SSL::SSLError') do |klass|
     klass.inherits(defs.constant_proxy('OpenSSL::OpenSSLError'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
   end
 
   defs.define_constant('OpenSSL::SSL::SSLServer') do |klass|
     klass.inherits(defs.constant_proxy('Object'))
     klass.inherits(defs.constant_proxy('OpenSSL::SSL::SocketForwarder'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
     klass.define_instance_method('accept')
 
@@ -3585,9 +3149,6 @@ RubyLint.registry.register('OpenSSL') do |defs|
     klass.inherits(defs.constant_proxy('OpenSSL::SSL::SocketForwarder'))
     klass.inherits(defs.constant_proxy('OpenSSL::Buffering'))
     klass.inherits(defs.constant_proxy('Enumerable'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
     klass.define_method('allocate')
 
@@ -3660,9 +3221,6 @@ RubyLint.registry.register('OpenSSL') do |defs|
   defs.define_constant('OpenSSL::SSL::SSLSocket::Enumerator') do |klass|
     klass.inherits(defs.constant_proxy('Object'))
     klass.inherits(defs.constant_proxy('Enumerable'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
     klass.define_instance_method('each') do |method|
       method.define_rest_argument('args')
@@ -3697,9 +3255,6 @@ RubyLint.registry.register('OpenSSL') do |defs|
 
   defs.define_constant('OpenSSL::SSL::SSLSocket::SortedElement') do |klass|
     klass.inherits(defs.constant_proxy('Object'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
     klass.define_instance_method('<=>') do |method|
       method.define_argument('other')
@@ -3719,9 +3274,6 @@ RubyLint.registry.register('OpenSSL') do |defs|
 
   defs.define_constant('OpenSSL::SSL::Session') do |klass|
     klass.inherits(defs.constant_proxy('Object'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
     klass.define_method('allocate')
 
@@ -3748,9 +3300,6 @@ RubyLint.registry.register('OpenSSL') do |defs|
 
   defs.define_constant('OpenSSL::SSL::Session::SessionError') do |klass|
     klass.inherits(defs.constant_proxy('OpenSSL::OpenSSLError'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
   end
 
@@ -3815,9 +3364,6 @@ RubyLint.registry.register('OpenSSL') do |defs|
 
   defs.define_constant('OpenSSL::X509::Attribute') do |klass|
     klass.inherits(defs.constant_proxy('Object'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
     klass.define_method('allocate')
 
@@ -3836,17 +3382,11 @@ RubyLint.registry.register('OpenSSL') do |defs|
 
   defs.define_constant('OpenSSL::X509::AttributeError') do |klass|
     klass.inherits(defs.constant_proxy('OpenSSL::OpenSSLError'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
   end
 
   defs.define_constant('OpenSSL::X509::CRL') do |klass|
     klass.inherits(defs.constant_proxy('Object'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
     klass.define_method('allocate')
 
@@ -3899,17 +3439,11 @@ RubyLint.registry.register('OpenSSL') do |defs|
 
   defs.define_constant('OpenSSL::X509::CRLError') do |klass|
     klass.inherits(defs.constant_proxy('OpenSSL::OpenSSLError'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
   end
 
   defs.define_constant('OpenSSL::X509::Certificate') do |klass|
     klass.inherits(defs.constant_proxy('Object'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
     klass.define_method('allocate')
 
@@ -3972,9 +3506,6 @@ RubyLint.registry.register('OpenSSL') do |defs|
 
   defs.define_constant('OpenSSL::X509::CertificateError') do |klass|
     klass.inherits(defs.constant_proxy('OpenSSL::OpenSSLError'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
   end
 
@@ -4010,9 +3541,6 @@ RubyLint.registry.register('OpenSSL') do |defs|
 
   defs.define_constant('OpenSSL::X509::Extension') do |klass|
     klass.inherits(defs.constant_proxy('Object'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
     klass.define_method('allocate')
 
@@ -4041,17 +3569,11 @@ RubyLint.registry.register('OpenSSL') do |defs|
 
   defs.define_constant('OpenSSL::X509::ExtensionError') do |klass|
     klass.inherits(defs.constant_proxy('OpenSSL::OpenSSLError'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
   end
 
   defs.define_constant('OpenSSL::X509::ExtensionFactory') do |klass|
     klass.inherits(defs.constant_proxy('Object'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
     klass.define_method('allocate')
 
@@ -4099,9 +3621,6 @@ RubyLint.registry.register('OpenSSL') do |defs|
   defs.define_constant('OpenSSL::X509::Name') do |klass|
     klass.inherits(defs.constant_proxy('Object'))
     klass.inherits(defs.constant_proxy('Comparable'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
     klass.define_method('allocate')
 
@@ -4245,9 +3764,6 @@ RubyLint.registry.register('OpenSSL') do |defs|
 
   defs.define_constant('OpenSSL::X509::NameError') do |klass|
     klass.inherits(defs.constant_proxy('OpenSSL::OpenSSLError'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
   end
 
@@ -4293,9 +3809,6 @@ RubyLint.registry.register('OpenSSL') do |defs|
 
   defs.define_constant('OpenSSL::X509::Request') do |klass|
     klass.inherits(defs.constant_proxy('Object'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
     klass.define_method('allocate')
 
@@ -4338,17 +3851,11 @@ RubyLint.registry.register('OpenSSL') do |defs|
 
   defs.define_constant('OpenSSL::X509::RequestError') do |klass|
     klass.inherits(defs.constant_proxy('OpenSSL::OpenSSLError'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
   end
 
   defs.define_constant('OpenSSL::X509::Revoked') do |klass|
     klass.inherits(defs.constant_proxy('Object'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
     klass.define_method('allocate')
 
@@ -4371,17 +3878,11 @@ RubyLint.registry.register('OpenSSL') do |defs|
 
   defs.define_constant('OpenSSL::X509::RevokedError') do |klass|
     klass.inherits(defs.constant_proxy('OpenSSL::OpenSSLError'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
   end
 
   defs.define_constant('OpenSSL::X509::Store') do |klass|
     klass.inherits(defs.constant_proxy('Object'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
     klass.define_method('allocate')
 
@@ -4420,9 +3921,6 @@ RubyLint.registry.register('OpenSSL') do |defs|
 
   defs.define_constant('OpenSSL::X509::StoreContext') do |klass|
     klass.inherits(defs.constant_proxy('Object'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
     klass.define_method('allocate')
 
@@ -4457,9 +3955,6 @@ RubyLint.registry.register('OpenSSL') do |defs|
 
   defs.define_constant('OpenSSL::X509::StoreError') do |klass|
     klass.inherits(defs.constant_proxy('OpenSSL::OpenSSLError'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
   end
 

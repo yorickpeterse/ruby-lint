@@ -6,12 +6,6 @@
 RubyLint.registry.register('DateTime') do |defs|
   defs.define_constant('DateTime') do |klass|
     klass.inherits(defs.constant_proxy('Date'))
-    klass.inherits(defs.constant_proxy('#<Module:0x1fb9c>'))
-    klass.inherits(defs.constant_proxy('Comparable'))
-    klass.inherits(defs.constant_proxy('#<Module:0x1fba0>'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
     klass.define_method('_strptime') do |method|
       method.define_argument('str')
@@ -221,10 +215,6 @@ RubyLint.registry.register('DateTime') do |defs|
 
   defs.define_constant('DateTime::Infinity') do |klass|
     klass.inherits(defs.constant_proxy('Numeric'))
-    klass.inherits(defs.constant_proxy('Comparable'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
     klass.define_instance_method('+@')
 

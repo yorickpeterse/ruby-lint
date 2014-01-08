@@ -6,9 +6,6 @@
 RubyLint.registry.register('DRbObject') do |defs|
   defs.define_constant('DRbObject') do |klass|
     klass.inherits(defs.constant_proxy('Object'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
     klass.define_method('_load') do |method|
       method.define_argument('s')

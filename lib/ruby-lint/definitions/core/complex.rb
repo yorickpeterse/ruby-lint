@@ -6,10 +6,6 @@
 RubyLint.registry.register('Complex') do |defs|
   defs.define_constant('Complex') do |klass|
     klass.inherits(defs.constant_proxy('Numeric'))
-    klass.inherits(defs.constant_proxy('Comparable'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
     klass.define_method('generic?') do |method|
       method.define_argument('other')

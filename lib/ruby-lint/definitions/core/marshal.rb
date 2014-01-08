@@ -26,9 +26,6 @@ RubyLint.registry.register('Marshal') do |defs|
 
   defs.define_constant('Marshal::IOState') do |klass|
     klass.inherits(defs.constant_proxy('Marshal::State'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
     klass.define_instance_method('consume') do |method|
       method.define_argument('bytes')
@@ -49,9 +46,6 @@ RubyLint.registry.register('Marshal') do |defs|
 
   defs.define_constant('Marshal::State') do |klass|
     klass.inherits(defs.constant_proxy('Object'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
     klass.define_instance_method('add_object') do |method|
       method.define_argument('obj')
@@ -228,9 +222,6 @@ RubyLint.registry.register('Marshal') do |defs|
 
   defs.define_constant('Marshal::StringState') do |klass|
     klass.inherits(defs.constant_proxy('Marshal::State'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
     klass.define_instance_method('consume') do |method|
       method.define_argument('bytes')

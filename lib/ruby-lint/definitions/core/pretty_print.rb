@@ -6,9 +6,6 @@
 RubyLint.registry.register('PrettyPrint') do |defs|
   defs.define_constant('PrettyPrint') do |klass|
     klass.inherits(defs.constant_proxy('Object'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
     klass.define_method('format') do |method|
       method.define_optional_argument('output')
@@ -85,9 +82,6 @@ RubyLint.registry.register('PrettyPrint') do |defs|
 
   defs.define_constant('PrettyPrint::Breakable') do |klass|
     klass.inherits(defs.constant_proxy('Object'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
     klass.define_instance_method('indent')
 
@@ -111,9 +105,6 @@ RubyLint.registry.register('PrettyPrint') do |defs|
 
   defs.define_constant('PrettyPrint::Group') do |klass|
     klass.inherits(defs.constant_proxy('Object'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
     klass.define_instance_method('break')
 
@@ -134,9 +125,6 @@ RubyLint.registry.register('PrettyPrint') do |defs|
 
   defs.define_constant('PrettyPrint::GroupQueue') do |klass|
     klass.inherits(defs.constant_proxy('Object'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
     klass.define_instance_method('delete') do |method|
       method.define_argument('group')
@@ -157,9 +145,6 @@ RubyLint.registry.register('PrettyPrint') do |defs|
 
   defs.define_constant('PrettyPrint::SingleLine') do |klass|
     klass.inherits(defs.constant_proxy('Object'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
     klass.define_instance_method('breakable') do |method|
       method.define_optional_argument('sep')
@@ -198,9 +183,6 @@ RubyLint.registry.register('PrettyPrint') do |defs|
 
   defs.define_constant('PrettyPrint::Text') do |klass|
     klass.inherits(defs.constant_proxy('Object'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
     klass.define_instance_method('add') do |method|
       method.define_argument('obj')

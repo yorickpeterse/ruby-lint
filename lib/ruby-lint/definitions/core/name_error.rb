@@ -6,9 +6,6 @@
 RubyLint.registry.register('NameError') do |defs|
   defs.define_constant('NameError') do |klass|
     klass.inherits(defs.constant_proxy('StandardError'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
     klass.define_instance_method('initialize') do |method|
       method.define_rest_argument('args')

@@ -6,9 +6,6 @@
 RubyLint.registry.register('OptionParser') do |defs|
   defs.define_constant('OptionParser') do |klass|
     klass.inherits(defs.constant_proxy('Object'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
     klass.define_method('accept') do |method|
       method.define_rest_argument('args')
@@ -260,9 +257,6 @@ RubyLint.registry.register('OptionParser') do |defs|
 
   defs.define_constant('OptionParser::AmbiguousArgument') do |klass|
     klass.inherits(defs.constant_proxy('OptionParser::InvalidArgument'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
   end
 
@@ -273,9 +267,6 @@ RubyLint.registry.register('OptionParser') do |defs|
 
   defs.define_constant('OptionParser::AmbiguousOption') do |klass|
     klass.inherits(defs.constant_proxy('OptionParser::ParseError'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
   end
 
@@ -323,11 +314,6 @@ RubyLint.registry.register('OptionParser') do |defs|
   defs.define_constant('OptionParser::CompletingHash') do |klass|
     klass.inherits(defs.constant_proxy('Hash'))
     klass.inherits(defs.constant_proxy('OptionParser::Completion'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Hash'))
-    klass.inherits(defs.constant_proxy('Enumerable'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
     klass.define_instance_method('match') do |method|
       method.define_argument('key')
@@ -336,9 +322,6 @@ RubyLint.registry.register('OptionParser') do |defs|
 
   defs.define_constant('OptionParser::CompletingHash::Bucket') do |klass|
     klass.inherits(defs.constant_proxy('Object'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
     klass.define_instance_method('delete') do |method|
       method.define_argument('key')
@@ -388,9 +371,6 @@ RubyLint.registry.register('OptionParser') do |defs|
   defs.define_constant('OptionParser::CompletingHash::Entries') do |klass|
     klass.inherits(defs.constant_proxy('Object'))
     klass.inherits(defs.constant_proxy('Enumerable'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
     klass.define_method('[]') do |method|
       method.define_rest_argument('args')
@@ -518,9 +498,6 @@ RubyLint.registry.register('OptionParser') do |defs|
   defs.define_constant('OptionParser::CompletingHash::Enumerator') do |klass|
     klass.inherits(defs.constant_proxy('Object'))
     klass.inherits(defs.constant_proxy('Enumerable'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
     klass.define_instance_method('each') do |method|
       method.define_rest_argument('args')
@@ -555,9 +532,6 @@ RubyLint.registry.register('OptionParser') do |defs|
 
   defs.define_constant('OptionParser::CompletingHash::Iterator') do |klass|
     klass.inherits(defs.constant_proxy('Object'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
     klass.define_instance_method('initialize') do |method|
       method.define_argument('state')
@@ -582,9 +556,6 @@ RubyLint.registry.register('OptionParser') do |defs|
 
   defs.define_constant('OptionParser::CompletingHash::SortedElement') do |klass|
     klass.inherits(defs.constant_proxy('Object'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
     klass.define_instance_method('<=>') do |method|
       method.define_argument('other')
@@ -604,9 +575,6 @@ RubyLint.registry.register('OptionParser') do |defs|
 
   defs.define_constant('OptionParser::CompletingHash::State') do |klass|
     klass.inherits(defs.constant_proxy('Object'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
     klass.define_method('from') do |method|
       method.define_argument('state')
@@ -685,9 +653,6 @@ RubyLint.registry.register('OptionParser') do |defs|
 
   defs.define_constant('OptionParser::InvalidArgument') do |klass|
     klass.inherits(defs.constant_proxy('OptionParser::ParseError'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
   end
 
@@ -698,9 +663,6 @@ RubyLint.registry.register('OptionParser') do |defs|
 
   defs.define_constant('OptionParser::InvalidOption') do |klass|
     klass.inherits(defs.constant_proxy('OptionParser::ParseError'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
   end
 
@@ -716,9 +678,6 @@ RubyLint.registry.register('OptionParser') do |defs|
 
   defs.define_constant('OptionParser::List') do |klass|
     klass.inherits(defs.constant_proxy('Object'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
     klass.define_instance_method('accept') do |method|
       method.define_argument('t')
@@ -782,9 +741,6 @@ RubyLint.registry.register('OptionParser') do |defs|
 
   defs.define_constant('OptionParser::MissingArgument') do |klass|
     klass.inherits(defs.constant_proxy('OptionParser::ParseError'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
   end
 
@@ -800,9 +756,6 @@ RubyLint.registry.register('OptionParser') do |defs|
 
   defs.define_constant('OptionParser::NeedlessArgument') do |klass|
     klass.inherits(defs.constant_proxy('OptionParser::ParseError'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
   end
 
@@ -834,19 +787,11 @@ RubyLint.registry.register('OptionParser') do |defs|
   defs.define_constant('OptionParser::OptionMap') do |klass|
     klass.inherits(defs.constant_proxy('Hash'))
     klass.inherits(defs.constant_proxy('OptionParser::Completion'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Hash'))
-    klass.inherits(defs.constant_proxy('Enumerable'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
   end
 
   defs.define_constant('OptionParser::OptionMap::Bucket') do |klass|
     klass.inherits(defs.constant_proxy('Object'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
     klass.define_instance_method('delete') do |method|
       method.define_argument('key')
@@ -896,9 +841,6 @@ RubyLint.registry.register('OptionParser') do |defs|
   defs.define_constant('OptionParser::OptionMap::Entries') do |klass|
     klass.inherits(defs.constant_proxy('Object'))
     klass.inherits(defs.constant_proxy('Enumerable'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
     klass.define_method('[]') do |method|
       method.define_rest_argument('args')
@@ -1026,9 +968,6 @@ RubyLint.registry.register('OptionParser') do |defs|
   defs.define_constant('OptionParser::OptionMap::Enumerator') do |klass|
     klass.inherits(defs.constant_proxy('Object'))
     klass.inherits(defs.constant_proxy('Enumerable'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
     klass.define_instance_method('each') do |method|
       method.define_rest_argument('args')
@@ -1063,9 +1002,6 @@ RubyLint.registry.register('OptionParser') do |defs|
 
   defs.define_constant('OptionParser::OptionMap::Iterator') do |klass|
     klass.inherits(defs.constant_proxy('Object'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
     klass.define_instance_method('initialize') do |method|
       method.define_argument('state')
@@ -1090,9 +1026,6 @@ RubyLint.registry.register('OptionParser') do |defs|
 
   defs.define_constant('OptionParser::OptionMap::SortedElement') do |klass|
     klass.inherits(defs.constant_proxy('Object'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
     klass.define_instance_method('<=>') do |method|
       method.define_argument('other')
@@ -1112,9 +1045,6 @@ RubyLint.registry.register('OptionParser') do |defs|
 
   defs.define_constant('OptionParser::OptionMap::State') do |klass|
     klass.inherits(defs.constant_proxy('Object'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
     klass.define_method('from') do |method|
       method.define_argument('state')
@@ -1149,9 +1079,6 @@ RubyLint.registry.register('OptionParser') do |defs|
 
   defs.define_constant('OptionParser::ParseError') do |klass|
     klass.inherits(defs.constant_proxy('RuntimeError'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
     klass.define_method('filter_backtrace') do |method|
       method.define_argument('array')
@@ -1221,9 +1148,6 @@ RubyLint.registry.register('OptionParser') do |defs|
 
   defs.define_constant('OptionParser::Switch') do |klass|
     klass.inherits(defs.constant_proxy('Object'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
     klass.define_method('guess') do |method|
       method.define_argument('arg')
@@ -1288,9 +1212,6 @@ RubyLint.registry.register('OptionParser') do |defs|
 
   defs.define_constant('OptionParser::Switch::NoArgument') do |klass|
     klass.inherits(defs.constant_proxy('OptionParser::Switch'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
     klass.define_method('incompatible_argument_styles') do |method|
       method.define_rest_argument('arg1')
@@ -1306,9 +1227,6 @@ RubyLint.registry.register('OptionParser') do |defs|
 
   defs.define_constant('OptionParser::Switch::OptionalArgument') do |klass|
     klass.inherits(defs.constant_proxy('OptionParser::Switch'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
     klass.define_instance_method('parse') do |method|
       method.define_argument('arg')
@@ -1319,9 +1237,6 @@ RubyLint.registry.register('OptionParser') do |defs|
 
   defs.define_constant('OptionParser::Switch::OptionalArgument::NoArgument') do |klass|
     klass.inherits(defs.constant_proxy('OptionParser::Switch'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
     klass.define_method('incompatible_argument_styles') do |method|
       method.define_rest_argument('arg1')
@@ -1337,9 +1252,6 @@ RubyLint.registry.register('OptionParser') do |defs|
 
   defs.define_constant('OptionParser::Switch::OptionalArgument::PlacedArgument') do |klass|
     klass.inherits(defs.constant_proxy('OptionParser::Switch'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
     klass.define_instance_method('parse') do |method|
       method.define_argument('arg')
@@ -1350,9 +1262,6 @@ RubyLint.registry.register('OptionParser') do |defs|
 
   defs.define_constant('OptionParser::Switch::OptionalArgument::RequiredArgument') do |klass|
     klass.inherits(defs.constant_proxy('OptionParser::Switch'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
     klass.define_instance_method('parse') do |method|
       method.define_argument('arg')
@@ -1362,9 +1271,6 @@ RubyLint.registry.register('OptionParser') do |defs|
 
   defs.define_constant('OptionParser::Switch::PlacedArgument') do |klass|
     klass.inherits(defs.constant_proxy('OptionParser::Switch'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
     klass.define_instance_method('parse') do |method|
       method.define_argument('arg')
@@ -1375,9 +1281,6 @@ RubyLint.registry.register('OptionParser') do |defs|
 
   defs.define_constant('OptionParser::Switch::RequiredArgument') do |klass|
     klass.inherits(defs.constant_proxy('OptionParser::Switch'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
     klass.define_instance_method('parse') do |method|
       method.define_argument('arg')

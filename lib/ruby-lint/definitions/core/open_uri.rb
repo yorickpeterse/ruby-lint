@@ -40,9 +40,6 @@ RubyLint.registry.register('OpenURI') do |defs|
 
   defs.define_constant('OpenURI::Buffer') do |klass|
     klass.inherits(defs.constant_proxy('Object'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
     klass.define_instance_method('<<') do |method|
       method.define_argument('str')
@@ -62,9 +59,6 @@ RubyLint.registry.register('OpenURI') do |defs|
 
   defs.define_constant('OpenURI::HTTPError') do |klass|
     klass.inherits(defs.constant_proxy('StandardError'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
     klass.define_instance_method('initialize') do |method|
       method.define_argument('message')
@@ -78,9 +72,6 @@ RubyLint.registry.register('OpenURI') do |defs|
 
   defs.define_constant('OpenURI::HTTPRedirect') do |klass|
     klass.inherits(defs.constant_proxy('OpenURI::HTTPError'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
     klass.define_instance_method('initialize') do |method|
       method.define_argument('message')

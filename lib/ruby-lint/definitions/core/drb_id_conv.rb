@@ -6,9 +6,6 @@
 RubyLint.registry.register('DRbIdConv') do |defs|
   defs.define_constant('DRbIdConv') do |klass|
     klass.inherits(defs.constant_proxy('Object'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
     klass.define_instance_method('to_id') do |method|
       method.define_argument('obj')

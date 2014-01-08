@@ -6,12 +6,9 @@
 RubyLint.registry.register('Date') do |defs|
   defs.define_constant('Date') do |klass|
     klass.inherits(defs.constant_proxy('Object'))
-    klass.inherits(defs.constant_proxy('#<Module:0x1fb9c>'))
+    klass.inherits(defs.constant_proxy('#<Module:0x1fb70>'))
     klass.inherits(defs.constant_proxy('Comparable'))
-    klass.inherits(defs.constant_proxy('#<Module:0x1fba0>'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
+    klass.inherits(defs.constant_proxy('#<Module:0x1fb78>'))
 
     klass.define_method('_httpdate') do |method|
       method.define_argument('str')
@@ -440,10 +437,6 @@ RubyLint.registry.register('Date') do |defs|
 
   defs.define_constant('Date::Infinity') do |klass|
     klass.inherits(defs.constant_proxy('Numeric'))
-    klass.inherits(defs.constant_proxy('Comparable'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
     klass.define_instance_method('+@')
 

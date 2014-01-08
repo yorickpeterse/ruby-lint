@@ -8,10 +8,6 @@ RubyLint.registry.register('Float') do |defs|
     klass.inherits(defs.constant_proxy('Numeric'))
     klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Float'))
     klass.inherits(defs.constant_proxy('Precision'))
-    klass.inherits(defs.constant_proxy('Comparable'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
     klass.define_method('induced_from') do |method|
       method.define_argument('obj')

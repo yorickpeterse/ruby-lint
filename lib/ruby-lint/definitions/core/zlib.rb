@@ -46,9 +46,6 @@ RubyLint.registry.register('Zlib') do |defs|
 
   defs.define_constant('Zlib::BufError') do |klass|
     klass.inherits(defs.constant_proxy('Zlib::Error'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
   end
 
@@ -69,17 +66,11 @@ RubyLint.registry.register('Zlib') do |defs|
 
   defs.define_constant('Zlib::DataError') do |klass|
     klass.inherits(defs.constant_proxy('Zlib::Error'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
   end
 
   defs.define_constant('Zlib::Deflate') do |klass|
     klass.inherits(defs.constant_proxy('Zlib::ZStream'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
     klass.define_method('allocate')
 
@@ -102,9 +93,6 @@ RubyLint.registry.register('Zlib') do |defs|
 
   defs.define_constant('Zlib::Error') do |klass|
     klass.inherits(defs.constant_proxy('StandardError'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
   end
 
@@ -130,9 +118,6 @@ RubyLint.registry.register('Zlib') do |defs|
 
   defs.define_constant('Zlib::GzipFile') do |klass|
     klass.inherits(defs.constant_proxy('Object'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
     klass.define_method('wrap')
 
@@ -163,17 +148,11 @@ RubyLint.registry.register('Zlib') do |defs|
 
   defs.define_constant('Zlib::GzipFile::CRCError') do |klass|
     klass.inherits(defs.constant_proxy('Zlib::GzipFile::Error'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
   end
 
   defs.define_constant('Zlib::GzipFile::Error') do |klass|
     klass.inherits(defs.constant_proxy('Zlib::Error'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
     klass.define_instance_method('input')
 
@@ -182,26 +161,17 @@ RubyLint.registry.register('Zlib') do |defs|
 
   defs.define_constant('Zlib::GzipFile::LengthError') do |klass|
     klass.inherits(defs.constant_proxy('Zlib::GzipFile::Error'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
   end
 
   defs.define_constant('Zlib::GzipFile::NoFooter') do |klass|
     klass.inherits(defs.constant_proxy('Zlib::GzipFile::Error'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
   end
 
   defs.define_constant('Zlib::GzipReader') do |klass|
     klass.inherits(defs.constant_proxy('Zlib::GzipFile'))
     klass.inherits(defs.constant_proxy('Enumerable'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
     klass.define_method('allocate')
 
@@ -262,18 +232,12 @@ RubyLint.registry.register('Zlib') do |defs|
 
   defs.define_constant('Zlib::GzipReader::CRCError') do |klass|
     klass.inherits(defs.constant_proxy('Zlib::GzipFile::Error'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
   end
 
   defs.define_constant('Zlib::GzipReader::Enumerator') do |klass|
     klass.inherits(defs.constant_proxy('Object'))
     klass.inherits(defs.constant_proxy('Enumerable'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
     klass.define_instance_method('each') do |method|
       method.define_rest_argument('args')
@@ -308,9 +272,6 @@ RubyLint.registry.register('Zlib') do |defs|
 
   defs.define_constant('Zlib::GzipReader::Error') do |klass|
     klass.inherits(defs.constant_proxy('Zlib::Error'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
     klass.define_instance_method('input')
 
@@ -319,25 +280,16 @@ RubyLint.registry.register('Zlib') do |defs|
 
   defs.define_constant('Zlib::GzipReader::LengthError') do |klass|
     klass.inherits(defs.constant_proxy('Zlib::GzipFile::Error'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
   end
 
   defs.define_constant('Zlib::GzipReader::NoFooter') do |klass|
     klass.inherits(defs.constant_proxy('Zlib::GzipFile::Error'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
   end
 
   defs.define_constant('Zlib::GzipReader::SortedElement') do |klass|
     klass.inherits(defs.constant_proxy('Object'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
     klass.define_instance_method('<=>') do |method|
       method.define_argument('other')
@@ -357,9 +309,6 @@ RubyLint.registry.register('Zlib') do |defs|
 
   defs.define_constant('Zlib::GzipWriter') do |klass|
     klass.inherits(defs.constant_proxy('Zlib::GzipFile'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
     klass.define_method('allocate')
 
@@ -394,17 +343,11 @@ RubyLint.registry.register('Zlib') do |defs|
 
   defs.define_constant('Zlib::GzipWriter::CRCError') do |klass|
     klass.inherits(defs.constant_proxy('Zlib::GzipFile::Error'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
   end
 
   defs.define_constant('Zlib::GzipWriter::Error') do |klass|
     klass.inherits(defs.constant_proxy('Zlib::Error'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
     klass.define_instance_method('input')
 
@@ -413,17 +356,11 @@ RubyLint.registry.register('Zlib') do |defs|
 
   defs.define_constant('Zlib::GzipWriter::LengthError') do |klass|
     klass.inherits(defs.constant_proxy('Zlib::GzipFile::Error'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
   end
 
   defs.define_constant('Zlib::GzipWriter::NoFooter') do |klass|
     klass.inherits(defs.constant_proxy('Zlib::GzipFile::Error'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
   end
 
@@ -434,9 +371,6 @@ RubyLint.registry.register('Zlib') do |defs|
 
   defs.define_constant('Zlib::Inflate') do |klass|
     klass.inherits(defs.constant_proxy('Zlib::ZStream'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
     klass.define_method('allocate')
 
@@ -469,9 +403,6 @@ RubyLint.registry.register('Zlib') do |defs|
 
   defs.define_constant('Zlib::MemError') do |klass|
     klass.inherits(defs.constant_proxy('Zlib::Error'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
   end
 
@@ -487,9 +418,6 @@ RubyLint.registry.register('Zlib') do |defs|
 
   defs.define_constant('Zlib::NeedDict') do |klass|
     klass.inherits(defs.constant_proxy('Zlib::Error'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
   end
 
@@ -585,17 +513,11 @@ RubyLint.registry.register('Zlib') do |defs|
 
   defs.define_constant('Zlib::StreamEnd') do |klass|
     klass.inherits(defs.constant_proxy('Zlib::Error'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
   end
 
   defs.define_constant('Zlib::StreamError') do |klass|
     klass.inherits(defs.constant_proxy('Zlib::Error'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
   end
 
@@ -616,9 +538,6 @@ RubyLint.registry.register('Zlib') do |defs|
 
   defs.define_constant('Zlib::VersionError') do |klass|
     klass.inherits(defs.constant_proxy('Zlib::Error'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
   end
 
@@ -629,9 +548,6 @@ RubyLint.registry.register('Zlib') do |defs|
 
   defs.define_constant('Zlib::ZStream') do |klass|
     klass.inherits(defs.constant_proxy('Object'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
     klass.define_instance_method('adler')
 

@@ -5,9 +5,8 @@
 
 RubyLint.registry.register('Tempfile') do |defs|
   defs.define_constant('Tempfile') do |klass|
-    klass.inherits(defs.constant_proxy('#<Class:0x23654>'))
+    klass.inherits(defs.constant_proxy('#<Class:0x2362c>'))
     klass.inherits(defs.constant_proxy('Dir::Tmpname'))
-    klass.inherits(defs.constant_proxy('Kernel'))
 
     klass.define_method('create') do |method|
       method.define_argument('basename')
@@ -55,9 +54,6 @@ RubyLint.registry.register('Tempfile') do |defs|
 
   defs.define_constant('Tempfile::Remover') do |klass|
     klass.inherits(defs.constant_proxy('Object'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
     klass.define_instance_method('call') do |method|
       method.define_rest_argument('args')

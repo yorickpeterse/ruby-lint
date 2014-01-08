@@ -6,9 +6,6 @@
 RubyLint.registry.register('SystemCallError') do |defs|
   defs.define_constant('SystemCallError') do |klass|
     klass.inherits(defs.constant_proxy('StandardError'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
     klass.define_method('errno_error') do |method|
       method.define_argument('message')

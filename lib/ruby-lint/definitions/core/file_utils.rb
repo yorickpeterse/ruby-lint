@@ -6,7 +6,6 @@
 RubyLint.registry.register('FileUtils') do |defs|
   defs.define_constant('FileUtils') do |klass|
     klass.inherits(defs.constant_proxy('Object'))
-    klass.inherits(defs.constant_proxy('FileUtils::StreamUtils_'))
 
     klass.define_method('cd') do |method|
       method.define_argument('dir')
@@ -288,9 +287,6 @@ RubyLint.registry.register('FileUtils') do |defs|
 
   defs.define_constant('FileUtils::DryRun') do |klass|
     klass.inherits(defs.constant_proxy('Object'))
-    klass.inherits(defs.constant_proxy('FileUtils::LowMethods'))
-    klass.inherits(defs.constant_proxy('FileUtils'))
-    klass.inherits(defs.constant_proxy('FileUtils::StreamUtils_'))
 
     klass.define_method('cd') do |method|
       method.define_rest_argument('arg1')
@@ -472,9 +468,6 @@ RubyLint.registry.register('FileUtils') do |defs|
   defs.define_constant('FileUtils::Entry_') do |klass|
     klass.inherits(defs.constant_proxy('Object'))
     klass.inherits(defs.constant_proxy('FileUtils::StreamUtils_'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
     klass.define_instance_method('blockdev?')
 
@@ -600,9 +593,6 @@ RubyLint.registry.register('FileUtils') do |defs|
 
   defs.define_constant('FileUtils::NoWrite') do |klass|
     klass.inherits(defs.constant_proxy('Object'))
-    klass.inherits(defs.constant_proxy('FileUtils::LowMethods'))
-    klass.inherits(defs.constant_proxy('FileUtils'))
-    klass.inherits(defs.constant_proxy('FileUtils::StreamUtils_'))
 
     klass.define_method('cd') do |method|
       method.define_rest_argument('arg1')
@@ -798,8 +788,6 @@ RubyLint.registry.register('FileUtils') do |defs|
 
   defs.define_constant('FileUtils::Verbose') do |klass|
     klass.inherits(defs.constant_proxy('Object'))
-    klass.inherits(defs.constant_proxy('FileUtils'))
-    klass.inherits(defs.constant_proxy('FileUtils::StreamUtils_'))
 
     klass.define_method('cd') do |method|
       method.define_rest_argument('args')
@@ -993,9 +981,6 @@ RubyLint.registry.register('FileUtils') do |defs|
 
   defs.define_constant('FileUtils::Verbose::DryRun') do |klass|
     klass.inherits(defs.constant_proxy('Object'))
-    klass.inherits(defs.constant_proxy('FileUtils::LowMethods'))
-    klass.inherits(defs.constant_proxy('FileUtils'))
-    klass.inherits(defs.constant_proxy('FileUtils::StreamUtils_'))
 
     klass.define_method('cd') do |method|
       method.define_rest_argument('arg1')
@@ -1177,9 +1162,6 @@ RubyLint.registry.register('FileUtils') do |defs|
   defs.define_constant('FileUtils::Verbose::Entry_') do |klass|
     klass.inherits(defs.constant_proxy('Object'))
     klass.inherits(defs.constant_proxy('FileUtils::StreamUtils_'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
     klass.define_instance_method('blockdev?')
 
@@ -1290,9 +1272,6 @@ RubyLint.registry.register('FileUtils') do |defs|
 
   defs.define_constant('FileUtils::Verbose::NoWrite') do |klass|
     klass.inherits(defs.constant_proxy('Object'))
-    klass.inherits(defs.constant_proxy('FileUtils::LowMethods'))
-    klass.inherits(defs.constant_proxy('FileUtils'))
-    klass.inherits(defs.constant_proxy('FileUtils::StreamUtils_'))
 
     klass.define_method('cd') do |method|
       method.define_rest_argument('arg1')

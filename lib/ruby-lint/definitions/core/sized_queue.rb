@@ -6,9 +6,6 @@
 RubyLint.registry.register('SizedQueue') do |defs|
   defs.define_constant('SizedQueue') do |klass|
     klass.inherits(defs.constant_proxy('Queue'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
     klass.define_instance_method('<<') do |method|
       method.define_argument('obj')

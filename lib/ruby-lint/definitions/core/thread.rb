@@ -6,9 +6,6 @@
 RubyLint.registry.register('Thread') do |defs|
   defs.define_constant('Thread') do |klass|
     klass.inherits(defs.constant_proxy('Object'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
     klass.define_method('abort_on_exception')
 
@@ -191,9 +188,6 @@ RubyLint.registry.register('Thread') do |defs|
 
   defs.define_constant('Thread::InnerRecursionDetected') do |klass|
     klass.inherits(defs.constant_proxy('Exception'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
   end
 

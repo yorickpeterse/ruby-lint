@@ -6,9 +6,6 @@
 RubyLint.registry.register('Fiber') do |defs|
   defs.define_constant('Fiber') do |klass|
     klass.inherits(defs.constant_proxy('Object'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
     klass.define_method('create') do |method|
       method.define_argument('callable')

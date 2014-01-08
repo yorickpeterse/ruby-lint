@@ -6,9 +6,6 @@
 RubyLint.registry.register('Encoding') do |defs|
   defs.define_constant('Encoding') do |klass|
     klass.inherits(defs.constant_proxy('Object'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
     klass.define_method('_load') do |method|
       method.define_argument('name')
@@ -313,17 +310,11 @@ RubyLint.registry.register('Encoding') do |defs|
 
   defs.define_constant('Encoding::CompatibilityError') do |klass|
     klass.inherits(defs.constant_proxy('EncodingError'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
   end
 
   defs.define_constant('Encoding::Converter') do |klass|
     klass.inherits(defs.constant_proxy('Object'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
     klass.define_method('allocate')
 
@@ -418,9 +409,6 @@ RubyLint.registry.register('Encoding') do |defs|
 
   defs.define_constant('Encoding::Converter::TranscodingPath') do |klass|
     klass.inherits(defs.constant_proxy('Object'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
     klass.define_method('[]') do |method|
       method.define_argument('source')
@@ -490,9 +478,6 @@ RubyLint.registry.register('Encoding') do |defs|
 
   defs.define_constant('Encoding::ConverterNotFoundError') do |klass|
     klass.inherits(defs.constant_proxy('EncodingError'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
   end
 
@@ -883,9 +868,6 @@ RubyLint.registry.register('Encoding') do |defs|
 
   defs.define_constant('Encoding::InvalidByteSequenceError') do |klass|
     klass.inherits(defs.constant_proxy('EncodingError'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
     klass.define_instance_method('destination_encoding')
 
@@ -1115,9 +1097,6 @@ RubyLint.registry.register('Encoding') do |defs|
 
   defs.define_constant('Encoding::Transcoding') do |klass|
     klass.inherits(defs.constant_proxy('Object'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
     klass.define_instance_method('inspect')
 
@@ -1237,9 +1216,6 @@ RubyLint.registry.register('Encoding') do |defs|
 
   defs.define_constant('Encoding::UndefinedConversionError') do |klass|
     klass.inherits(defs.constant_proxy('EncodingError'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
     klass.define_instance_method('destination_encoding')
 

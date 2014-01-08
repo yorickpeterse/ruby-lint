@@ -35,9 +35,6 @@ RubyLint.registry.register('WEBrick') do |defs|
 
   defs.define_constant('WEBrick::AccessLog::AccessLogError') do |klass|
     klass.inherits(defs.constant_proxy('StandardError'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
   end
 
@@ -68,9 +65,6 @@ RubyLint.registry.register('WEBrick') do |defs|
 
   defs.define_constant('WEBrick::BasicLog') do |klass|
     klass.inherits(defs.constant_proxy('Object'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
     klass.define_instance_method('<<') do |method|
       method.define_argument('obj')
@@ -197,9 +191,6 @@ RubyLint.registry.register('WEBrick') do |defs|
 
   defs.define_constant('WEBrick::Cookie') do |klass|
     klass.inherits(defs.constant_proxy('Object'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
     klass.define_method('parse') do |method|
       method.define_argument('str')
@@ -261,18 +252,12 @@ RubyLint.registry.register('WEBrick') do |defs|
 
   defs.define_constant('WEBrick::Daemon') do |klass|
     klass.inherits(defs.constant_proxy('Object'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
     klass.define_method('start')
   end
 
   defs.define_constant('WEBrick::GenericServer') do |klass|
     klass.inherits(defs.constant_proxy('Object'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
     klass.define_instance_method('[]') do |method|
       method.define_argument('key')
@@ -361,9 +346,6 @@ RubyLint.registry.register('WEBrick') do |defs|
 
   defs.define_constant('WEBrick::HTTPAuth::Authenticator::AuthException') do |klass|
     klass.inherits(defs.constant_proxy('WEBrick::HTTPStatus::ClientError'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
   end
 
@@ -390,9 +372,6 @@ RubyLint.registry.register('WEBrick') do |defs|
   defs.define_constant('WEBrick::HTTPAuth::BasicAuth') do |klass|
     klass.inherits(defs.constant_proxy('Object'))
     klass.inherits(defs.constant_proxy('WEBrick::HTTPAuth::Authenticator'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
     klass.define_method('make_passwd') do |method|
       method.define_argument('realm')
@@ -426,9 +405,6 @@ RubyLint.registry.register('WEBrick') do |defs|
 
   defs.define_constant('WEBrick::HTTPAuth::BasicAuth::AuthException') do |klass|
     klass.inherits(defs.constant_proxy('WEBrick::HTTPStatus::ClientError'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
   end
 
@@ -455,9 +431,6 @@ RubyLint.registry.register('WEBrick') do |defs|
   defs.define_constant('WEBrick::HTTPAuth::DigestAuth') do |klass|
     klass.inherits(defs.constant_proxy('Object'))
     klass.inherits(defs.constant_proxy('WEBrick::HTTPAuth::Authenticator'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
     klass.define_method('make_passwd') do |method|
       method.define_argument('realm')
@@ -490,9 +463,6 @@ RubyLint.registry.register('WEBrick') do |defs|
 
   defs.define_constant('WEBrick::HTTPAuth::DigestAuth::AuthException') do |klass|
     klass.inherits(defs.constant_proxy('WEBrick::HTTPStatus::ClientError'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
   end
 
@@ -513,11 +483,7 @@ RubyLint.registry.register('WEBrick') do |defs|
 
   defs.define_constant('WEBrick::HTTPAuth::DigestAuth::OpaqueInfo') do |klass|
     klass.inherits(defs.constant_proxy('Struct'))
-    klass.inherits(defs.constant_proxy('#<Module:0x23d34>'))
-    klass.inherits(defs.constant_proxy('Enumerable'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
+    klass.inherits(defs.constant_proxy('#<Module:0x23d0c>'))
 
     klass.define_method('[]') do |method|
       method.define_rest_argument('args')
@@ -545,9 +511,6 @@ RubyLint.registry.register('WEBrick') do |defs|
   defs.define_constant('WEBrick::HTTPAuth::DigestAuth::OpaqueInfo::Enumerator') do |klass|
     klass.inherits(defs.constant_proxy('Object'))
     klass.inherits(defs.constant_proxy('Enumerable'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
     klass.define_instance_method('each') do |method|
       method.define_rest_argument('args')
@@ -582,9 +545,6 @@ RubyLint.registry.register('WEBrick') do |defs|
 
   defs.define_constant('WEBrick::HTTPAuth::DigestAuth::OpaqueInfo::Group') do |klass|
     klass.inherits(defs.constant_proxy('Rubinius::FFI::Struct'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
     klass.define_instance_method('gid')
 
@@ -597,9 +557,6 @@ RubyLint.registry.register('WEBrick') do |defs|
 
   defs.define_constant('WEBrick::HTTPAuth::DigestAuth::OpaqueInfo::Passwd') do |klass|
     klass.inherits(defs.constant_proxy('Rubinius::FFI::Struct'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
     klass.define_instance_method('dir')
 
@@ -623,9 +580,6 @@ RubyLint.registry.register('WEBrick') do |defs|
 
   defs.define_constant('WEBrick::HTTPAuth::DigestAuth::OpaqueInfo::SortedElement') do |klass|
     klass.inherits(defs.constant_proxy('Object'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
     klass.define_instance_method('<=>') do |method|
       method.define_argument('other')
@@ -645,10 +599,6 @@ RubyLint.registry.register('WEBrick') do |defs|
 
   defs.define_constant('WEBrick::HTTPAuth::DigestAuth::OpaqueInfo::Tms') do |klass|
     klass.inherits(defs.constant_proxy('Struct'))
-    klass.inherits(defs.constant_proxy('Enumerable'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
     klass.define_method('[]') do |method|
       method.define_rest_argument('args')
@@ -714,9 +664,6 @@ RubyLint.registry.register('WEBrick') do |defs|
   defs.define_constant('WEBrick::HTTPAuth::Htdigest') do |klass|
     klass.inherits(defs.constant_proxy('Object'))
     klass.inherits(defs.constant_proxy('WEBrick::HTTPAuth::UserDB'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
     klass.define_instance_method('delete_passwd') do |method|
       method.define_argument('realm')
@@ -752,9 +699,6 @@ RubyLint.registry.register('WEBrick') do |defs|
 
   defs.define_constant('WEBrick::HTTPAuth::Htgroup') do |klass|
     klass.inherits(defs.constant_proxy('Object'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
     klass.define_instance_method('add') do |method|
       method.define_argument('group')
@@ -781,9 +725,6 @@ RubyLint.registry.register('WEBrick') do |defs|
   defs.define_constant('WEBrick::HTTPAuth::Htpasswd') do |klass|
     klass.inherits(defs.constant_proxy('Object'))
     klass.inherits(defs.constant_proxy('WEBrick::HTTPAuth::UserDB'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
     klass.define_instance_method('delete_passwd') do |method|
       method.define_argument('realm')
@@ -824,9 +765,6 @@ RubyLint.registry.register('WEBrick') do |defs|
 
   defs.define_constant('WEBrick::HTTPAuth::ProxyAuthenticator::AuthException') do |klass|
     klass.inherits(defs.constant_proxy('WEBrick::HTTPStatus::ClientError'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
   end
 
@@ -848,18 +786,11 @@ RubyLint.registry.register('WEBrick') do |defs|
   defs.define_constant('WEBrick::HTTPAuth::ProxyBasicAuth') do |klass|
     klass.inherits(defs.constant_proxy('WEBrick::HTTPAuth::BasicAuth'))
     klass.inherits(defs.constant_proxy('WEBrick::HTTPAuth::ProxyAuthenticator'))
-    klass.inherits(defs.constant_proxy('WEBrick::HTTPAuth::Authenticator'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
   end
 
   defs.define_constant('WEBrick::HTTPAuth::ProxyBasicAuth::AuthException') do |klass|
     klass.inherits(defs.constant_proxy('WEBrick::HTTPStatus::ClientError'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
   end
 
@@ -891,18 +822,11 @@ RubyLint.registry.register('WEBrick') do |defs|
   defs.define_constant('WEBrick::HTTPAuth::ProxyDigestAuth') do |klass|
     klass.inherits(defs.constant_proxy('WEBrick::HTTPAuth::DigestAuth'))
     klass.inherits(defs.constant_proxy('WEBrick::HTTPAuth::ProxyAuthenticator'))
-    klass.inherits(defs.constant_proxy('WEBrick::HTTPAuth::Authenticator'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
   end
 
   defs.define_constant('WEBrick::HTTPAuth::ProxyDigestAuth::AuthException') do |klass|
     klass.inherits(defs.constant_proxy('WEBrick::HTTPStatus::ClientError'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
   end
 
@@ -928,11 +852,7 @@ RubyLint.registry.register('WEBrick') do |defs|
 
   defs.define_constant('WEBrick::HTTPAuth::ProxyDigestAuth::OpaqueInfo') do |klass|
     klass.inherits(defs.constant_proxy('Struct'))
-    klass.inherits(defs.constant_proxy('#<Module:0x23d34>'))
-    klass.inherits(defs.constant_proxy('Enumerable'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
+    klass.inherits(defs.constant_proxy('#<Module:0x23d0c>'))
 
     klass.define_method('[]') do |method|
       method.define_rest_argument('args')
@@ -1000,9 +920,6 @@ RubyLint.registry.register('WEBrick') do |defs|
 
   defs.define_constant('WEBrick::HTTPRequest') do |klass|
     klass.inherits(defs.constant_proxy('Object'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
     klass.define_instance_method('[]') do |method|
       method.define_argument('header_name')
@@ -1120,9 +1037,6 @@ RubyLint.registry.register('WEBrick') do |defs|
 
   defs.define_constant('WEBrick::HTTPResponse') do |klass|
     klass.inherits(defs.constant_proxy('Object'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
     klass.define_instance_method('[]') do |method|
       method.define_argument('field')
@@ -1236,9 +1150,6 @@ RubyLint.registry.register('WEBrick') do |defs|
 
   defs.define_constant('WEBrick::HTTPServer') do |klass|
     klass.inherits(defs.constant_proxy('WEBrick::GenericServer'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
     klass.define_instance_method('access_log') do |method|
       method.define_argument('config')
@@ -1302,9 +1213,6 @@ RubyLint.registry.register('WEBrick') do |defs|
 
   defs.define_constant('WEBrick::HTTPServer::MountTable') do |klass|
     klass.inherits(defs.constant_proxy('Object'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
     klass.define_instance_method('[]') do |method|
       method.define_argument('dir')
@@ -1328,9 +1236,6 @@ RubyLint.registry.register('WEBrick') do |defs|
 
   defs.define_constant('WEBrick::HTTPServerError') do |klass|
     klass.inherits(defs.constant_proxy('WEBrick::ServerError'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
   end
 
@@ -1341,9 +1246,6 @@ RubyLint.registry.register('WEBrick') do |defs|
 
   defs.define_constant('WEBrick::HTTPServlet::AbstractServlet') do |klass|
     klass.inherits(defs.constant_proxy('Object'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
     klass.define_method('get_instance') do |method|
       method.define_argument('server')
@@ -1380,9 +1282,6 @@ RubyLint.registry.register('WEBrick') do |defs|
 
   defs.define_constant('WEBrick::HTTPServlet::CGIHandler') do |klass|
     klass.inherits(defs.constant_proxy('WEBrick::HTTPServlet::AbstractServlet'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
     klass.define_instance_method('do_GET') do |method|
       method.define_argument('req')
@@ -1414,9 +1313,6 @@ RubyLint.registry.register('WEBrick') do |defs|
 
   defs.define_constant('WEBrick::HTTPServlet::DefaultFileHandler') do |klass|
     klass.inherits(defs.constant_proxy('WEBrick::HTTPServlet::AbstractServlet'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
     klass.define_instance_method('do_GET') do |method|
       method.define_argument('req')
@@ -1452,9 +1348,6 @@ RubyLint.registry.register('WEBrick') do |defs|
 
   defs.define_constant('WEBrick::HTTPServlet::ERBHandler') do |klass|
     klass.inherits(defs.constant_proxy('WEBrick::HTTPServlet::AbstractServlet'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
     klass.define_instance_method('do_GET') do |method|
       method.define_argument('req')
@@ -1476,9 +1369,6 @@ RubyLint.registry.register('WEBrick') do |defs|
 
   defs.define_constant('WEBrick::HTTPServlet::FileHandler') do |klass|
     klass.inherits(defs.constant_proxy('WEBrick::HTTPServlet::AbstractServlet'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
     klass.define_method('add_handler') do |method|
       method.define_argument('suffix')
@@ -1526,17 +1416,11 @@ RubyLint.registry.register('WEBrick') do |defs|
 
   defs.define_constant('WEBrick::HTTPServlet::HTTPServletError') do |klass|
     klass.inherits(defs.constant_proxy('StandardError'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
   end
 
   defs.define_constant('WEBrick::HTTPServlet::ProcHandler') do |klass|
     klass.inherits(defs.constant_proxy('WEBrick::HTTPServlet::AbstractServlet'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
     klass.define_instance_method('do_GET') do |method|
       method.define_argument('request')
@@ -1598,33 +1482,21 @@ RubyLint.registry.register('WEBrick') do |defs|
 
   defs.define_constant('WEBrick::HTTPStatus::Accepted') do |klass|
     klass.inherits(defs.constant_proxy('WEBrick::HTTPStatus::Success'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
   end
 
   defs.define_constant('WEBrick::HTTPStatus::BadGateway') do |klass|
     klass.inherits(defs.constant_proxy('WEBrick::HTTPStatus::ServerError'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
   end
 
   defs.define_constant('WEBrick::HTTPStatus::BadRequest') do |klass|
     klass.inherits(defs.constant_proxy('WEBrick::HTTPStatus::ClientError'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
   end
 
   defs.define_constant('WEBrick::HTTPStatus::ClientError') do |klass|
     klass.inherits(defs.constant_proxy('WEBrick::HTTPStatus::Error'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
   end
 
@@ -1635,273 +1507,171 @@ RubyLint.registry.register('WEBrick') do |defs|
 
   defs.define_constant('WEBrick::HTTPStatus::Conflict') do |klass|
     klass.inherits(defs.constant_proxy('WEBrick::HTTPStatus::ClientError'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
   end
 
   defs.define_constant('WEBrick::HTTPStatus::Continue') do |klass|
     klass.inherits(defs.constant_proxy('WEBrick::HTTPStatus::Info'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
   end
 
   defs.define_constant('WEBrick::HTTPStatus::Created') do |klass|
     klass.inherits(defs.constant_proxy('WEBrick::HTTPStatus::Success'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
   end
 
   defs.define_constant('WEBrick::HTTPStatus::EOFError') do |klass|
     klass.inherits(defs.constant_proxy('StandardError'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
   end
 
   defs.define_constant('WEBrick::HTTPStatus::Error') do |klass|
     klass.inherits(defs.constant_proxy('WEBrick::HTTPStatus::Status'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
   end
 
   defs.define_constant('WEBrick::HTTPStatus::ExpectationFailed') do |klass|
     klass.inherits(defs.constant_proxy('WEBrick::HTTPStatus::ClientError'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
   end
 
   defs.define_constant('WEBrick::HTTPStatus::FailedDependency') do |klass|
     klass.inherits(defs.constant_proxy('WEBrick::HTTPStatus::ClientError'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
   end
 
   defs.define_constant('WEBrick::HTTPStatus::Forbidden') do |klass|
     klass.inherits(defs.constant_proxy('WEBrick::HTTPStatus::ClientError'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
   end
 
   defs.define_constant('WEBrick::HTTPStatus::Found') do |klass|
     klass.inherits(defs.constant_proxy('WEBrick::HTTPStatus::Redirect'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
   end
 
   defs.define_constant('WEBrick::HTTPStatus::GatewayTimeout') do |klass|
     klass.inherits(defs.constant_proxy('WEBrick::HTTPStatus::ServerError'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
   end
 
   defs.define_constant('WEBrick::HTTPStatus::Gone') do |klass|
     klass.inherits(defs.constant_proxy('WEBrick::HTTPStatus::ClientError'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
   end
 
   defs.define_constant('WEBrick::HTTPStatus::HTTPVersionNotSupported') do |klass|
     klass.inherits(defs.constant_proxy('WEBrick::HTTPStatus::ServerError'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
   end
 
   defs.define_constant('WEBrick::HTTPStatus::Info') do |klass|
     klass.inherits(defs.constant_proxy('WEBrick::HTTPStatus::Status'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
   end
 
   defs.define_constant('WEBrick::HTTPStatus::InsufficientStorage') do |klass|
     klass.inherits(defs.constant_proxy('WEBrick::HTTPStatus::ServerError'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
   end
 
   defs.define_constant('WEBrick::HTTPStatus::InternalServerError') do |klass|
     klass.inherits(defs.constant_proxy('WEBrick::HTTPStatus::ServerError'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
   end
 
   defs.define_constant('WEBrick::HTTPStatus::LengthRequired') do |klass|
     klass.inherits(defs.constant_proxy('WEBrick::HTTPStatus::ClientError'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
   end
 
   defs.define_constant('WEBrick::HTTPStatus::Locked') do |klass|
     klass.inherits(defs.constant_proxy('WEBrick::HTTPStatus::ClientError'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
   end
 
   defs.define_constant('WEBrick::HTTPStatus::MethodNotAllowed') do |klass|
     klass.inherits(defs.constant_proxy('WEBrick::HTTPStatus::ClientError'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
   end
 
   defs.define_constant('WEBrick::HTTPStatus::MovedPermanently') do |klass|
     klass.inherits(defs.constant_proxy('WEBrick::HTTPStatus::Redirect'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
   end
 
   defs.define_constant('WEBrick::HTTPStatus::MultiStatus') do |klass|
     klass.inherits(defs.constant_proxy('WEBrick::HTTPStatus::Success'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
   end
 
   defs.define_constant('WEBrick::HTTPStatus::MultipleChoices') do |klass|
     klass.inherits(defs.constant_proxy('WEBrick::HTTPStatus::Redirect'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
   end
 
   defs.define_constant('WEBrick::HTTPStatus::NetworkAuthenticationRequired') do |klass|
     klass.inherits(defs.constant_proxy('WEBrick::HTTPStatus::ServerError'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
   end
 
   defs.define_constant('WEBrick::HTTPStatus::NoContent') do |klass|
     klass.inherits(defs.constant_proxy('WEBrick::HTTPStatus::Success'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
   end
 
   defs.define_constant('WEBrick::HTTPStatus::NonAuthoritativeInformation') do |klass|
     klass.inherits(defs.constant_proxy('WEBrick::HTTPStatus::Success'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
   end
 
   defs.define_constant('WEBrick::HTTPStatus::NotAcceptable') do |klass|
     klass.inherits(defs.constant_proxy('WEBrick::HTTPStatus::ClientError'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
   end
 
   defs.define_constant('WEBrick::HTTPStatus::NotFound') do |klass|
     klass.inherits(defs.constant_proxy('WEBrick::HTTPStatus::ClientError'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
   end
 
   defs.define_constant('WEBrick::HTTPStatus::NotImplemented') do |klass|
     klass.inherits(defs.constant_proxy('WEBrick::HTTPStatus::ServerError'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
   end
 
   defs.define_constant('WEBrick::HTTPStatus::NotModified') do |klass|
     klass.inherits(defs.constant_proxy('WEBrick::HTTPStatus::Redirect'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
   end
 
   defs.define_constant('WEBrick::HTTPStatus::OK') do |klass|
     klass.inherits(defs.constant_proxy('WEBrick::HTTPStatus::Success'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
   end
 
   defs.define_constant('WEBrick::HTTPStatus::PartialContent') do |klass|
     klass.inherits(defs.constant_proxy('WEBrick::HTTPStatus::Success'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
   end
 
   defs.define_constant('WEBrick::HTTPStatus::PaymentRequired') do |klass|
     klass.inherits(defs.constant_proxy('WEBrick::HTTPStatus::ClientError'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
   end
 
   defs.define_constant('WEBrick::HTTPStatus::PreconditionFailed') do |klass|
     klass.inherits(defs.constant_proxy('WEBrick::HTTPStatus::ClientError'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
   end
 
   defs.define_constant('WEBrick::HTTPStatus::PreconditionRequired') do |klass|
     klass.inherits(defs.constant_proxy('WEBrick::HTTPStatus::ClientError'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
   end
 
   defs.define_constant('WEBrick::HTTPStatus::ProxyAuthenticationRequired') do |klass|
     klass.inherits(defs.constant_proxy('WEBrick::HTTPStatus::ClientError'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
   end
 
@@ -2157,89 +1927,56 @@ RubyLint.registry.register('WEBrick') do |defs|
 
   defs.define_constant('WEBrick::HTTPStatus::Redirect') do |klass|
     klass.inherits(defs.constant_proxy('WEBrick::HTTPStatus::Status'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
   end
 
   defs.define_constant('WEBrick::HTTPStatus::RequestEntityTooLarge') do |klass|
     klass.inherits(defs.constant_proxy('WEBrick::HTTPStatus::ClientError'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
   end
 
   defs.define_constant('WEBrick::HTTPStatus::RequestHeaderFieldsTooLarge') do |klass|
     klass.inherits(defs.constant_proxy('WEBrick::HTTPStatus::ClientError'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
   end
 
   defs.define_constant('WEBrick::HTTPStatus::RequestRangeNotSatisfiable') do |klass|
     klass.inherits(defs.constant_proxy('WEBrick::HTTPStatus::ClientError'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
   end
 
   defs.define_constant('WEBrick::HTTPStatus::RequestTimeout') do |klass|
     klass.inherits(defs.constant_proxy('WEBrick::HTTPStatus::ClientError'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
   end
 
   defs.define_constant('WEBrick::HTTPStatus::RequestURITooLarge') do |klass|
     klass.inherits(defs.constant_proxy('WEBrick::HTTPStatus::ClientError'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
   end
 
   defs.define_constant('WEBrick::HTTPStatus::ResetContent') do |klass|
     klass.inherits(defs.constant_proxy('WEBrick::HTTPStatus::Success'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
   end
 
   defs.define_constant('WEBrick::HTTPStatus::SeeOther') do |klass|
     klass.inherits(defs.constant_proxy('WEBrick::HTTPStatus::Redirect'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
   end
 
   defs.define_constant('WEBrick::HTTPStatus::ServerError') do |klass|
     klass.inherits(defs.constant_proxy('WEBrick::HTTPStatus::Error'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
   end
 
   defs.define_constant('WEBrick::HTTPStatus::ServiceUnavailable') do |klass|
     klass.inherits(defs.constant_proxy('WEBrick::HTTPStatus::ServerError'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
   end
 
   defs.define_constant('WEBrick::HTTPStatus::Status') do |klass|
     klass.inherits(defs.constant_proxy('StandardError'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
     klass.define_method('code')
 
@@ -2265,73 +2002,46 @@ RubyLint.registry.register('WEBrick') do |defs|
 
   defs.define_constant('WEBrick::HTTPStatus::Success') do |klass|
     klass.inherits(defs.constant_proxy('WEBrick::HTTPStatus::Status'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
   end
 
   defs.define_constant('WEBrick::HTTPStatus::SwitchingProtocols') do |klass|
     klass.inherits(defs.constant_proxy('WEBrick::HTTPStatus::Info'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
   end
 
   defs.define_constant('WEBrick::HTTPStatus::TemporaryRedirect') do |klass|
     klass.inherits(defs.constant_proxy('WEBrick::HTTPStatus::Redirect'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
   end
 
   defs.define_constant('WEBrick::HTTPStatus::TooManyRequests') do |klass|
     klass.inherits(defs.constant_proxy('WEBrick::HTTPStatus::ClientError'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
   end
 
   defs.define_constant('WEBrick::HTTPStatus::Unauthorized') do |klass|
     klass.inherits(defs.constant_proxy('WEBrick::HTTPStatus::ClientError'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
   end
 
   defs.define_constant('WEBrick::HTTPStatus::UnprocessableEntity') do |klass|
     klass.inherits(defs.constant_proxy('WEBrick::HTTPStatus::ClientError'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
   end
 
   defs.define_constant('WEBrick::HTTPStatus::UnsupportedMediaType') do |klass|
     klass.inherits(defs.constant_proxy('WEBrick::HTTPStatus::ClientError'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
   end
 
   defs.define_constant('WEBrick::HTTPStatus::UpgradeRequired') do |klass|
     klass.inherits(defs.constant_proxy('WEBrick::HTTPStatus::ClientError'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
   end
 
   defs.define_constant('WEBrick::HTTPStatus::UseProxy') do |klass|
     klass.inherits(defs.constant_proxy('WEBrick::HTTPStatus::Redirect'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
   end
 
@@ -2439,11 +2149,6 @@ RubyLint.registry.register('WEBrick') do |defs|
 
   defs.define_constant('WEBrick::HTTPUtils::FormData') do |klass|
     klass.inherits(defs.constant_proxy('String'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::String'))
-    klass.inherits(defs.constant_proxy('Comparable'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
     klass.define_instance_method('<<') do |method|
       method.define_argument('str')
@@ -2486,9 +2191,6 @@ RubyLint.registry.register('WEBrick') do |defs|
 
   defs.define_constant('WEBrick::HTTPUtils::FormData::Complexifier') do |klass|
     klass.inherits(defs.constant_proxy('Object'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
     klass.define_instance_method('convert')
 
@@ -2527,9 +2229,6 @@ RubyLint.registry.register('WEBrick') do |defs|
 
   defs.define_constant('WEBrick::HTTPUtils::FormData::Rationalizer') do |klass|
     klass.inherits(defs.constant_proxy('Object'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
     klass.define_instance_method('convert')
 
@@ -2563,9 +2262,6 @@ RubyLint.registry.register('WEBrick') do |defs|
   defs.define_constant('WEBrick::HTTPVersion') do |klass|
     klass.inherits(defs.constant_proxy('Object'))
     klass.inherits(defs.constant_proxy('Comparable'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
     klass.define_method('convert') do |method|
       method.define_argument('version')
@@ -2599,9 +2295,6 @@ RubyLint.registry.register('WEBrick') do |defs|
 
   defs.define_constant('WEBrick::Log') do |klass|
     klass.inherits(defs.constant_proxy('WEBrick::BasicLog'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
     klass.define_instance_method('initialize') do |method|
       method.define_optional_argument('log_file')
@@ -2647,17 +2340,11 @@ RubyLint.registry.register('WEBrick') do |defs|
 
   defs.define_constant('WEBrick::ServerError') do |klass|
     klass.inherits(defs.constant_proxy('StandardError'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
   end
 
   defs.define_constant('WEBrick::SimpleServer') do |klass|
     klass.inherits(defs.constant_proxy('Object'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
     klass.define_method('start')
   end
@@ -2703,9 +2390,6 @@ RubyLint.registry.register('WEBrick') do |defs|
   defs.define_constant('WEBrick::Utils::TimeoutHandler') do |klass|
     klass.inherits(defs.constant_proxy('Object'))
     klass.inherits(defs.constant_proxy('Singleton'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
     klass.define_method('cancel') do |method|
       method.define_argument('id')

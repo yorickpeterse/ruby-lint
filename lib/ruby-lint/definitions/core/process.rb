@@ -6,7 +6,6 @@
 RubyLint.registry.register('Process') do |defs|
   defs.define_constant('Process') do |klass|
     klass.inherits(defs.constant_proxy('Object'))
-    klass.inherits(defs.constant_proxy('Process::Constants'))
 
     klass.define_method('abort') do |method|
       method.define_optional_argument('msg')
@@ -508,18 +507,12 @@ RubyLint.registry.register('Process') do |defs|
 
   defs.define_constant('Process::Rlimit') do |klass|
     klass.inherits(defs.constant_proxy('Rubinius::FFI::Struct'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
   end
 
   defs.define_constant('Process::Rlimit::InlineArray') do |klass|
     klass.inherits(defs.constant_proxy('Object'))
     klass.inherits(defs.constant_proxy('Enumerable'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
     klass.define_instance_method('[]') do |method|
       method.define_argument('idx')
@@ -548,10 +541,6 @@ RubyLint.registry.register('Process') do |defs|
 
   defs.define_constant('Process::Rlimit::InlineCharArray') do |klass|
     klass.inherits(defs.constant_proxy('Rubinius::FFI::Struct::InlineArray'))
-    klass.inherits(defs.constant_proxy('Enumerable'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
     klass.define_instance_method('inspect')
 
@@ -562,9 +551,6 @@ RubyLint.registry.register('Process') do |defs|
 
   defs.define_constant('Process::Status') do |klass|
     klass.inherits(defs.constant_proxy('Object'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
     klass.define_instance_method('&') do |method|
       method.define_argument('num')

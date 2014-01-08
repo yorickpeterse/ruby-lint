@@ -6,9 +6,6 @@
 RubyLint.registry.register('Regexp') do |defs|
   defs.define_constant('Regexp') do |klass|
     klass.inherits(defs.constant_proxy('Object'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
     klass.define_method('allocate')
 
@@ -232,9 +229,6 @@ RubyLint.registry.register('Regexp') do |defs|
 
   defs.define_constant('Regexp::SourceParser') do |klass|
     klass.inherits(defs.constant_proxy('Object'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
     klass.define_instance_method('add_part!')
 
@@ -276,9 +270,6 @@ RubyLint.registry.register('Regexp') do |defs|
 
   defs.define_constant('Regexp::SourceParser::LookAheadGroupPart') do |klass|
     klass.inherits(defs.constant_proxy('Regexp::SourceParser::Part'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
     klass.define_instance_method('to_s')
   end
@@ -290,9 +281,6 @@ RubyLint.registry.register('Regexp') do |defs|
 
   defs.define_constant('Regexp::SourceParser::OptionsGroupPart') do |klass|
     klass.inherits(defs.constant_proxy('Regexp::SourceParser::Part'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
     klass.define_instance_method('flatten')
 
@@ -314,9 +302,6 @@ RubyLint.registry.register('Regexp') do |defs|
 
   defs.define_constant('Regexp::SourceParser::Part') do |klass|
     klass.inherits(defs.constant_proxy('Object'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
     klass.define_instance_method('<<') do |method|
       method.define_argument('str')

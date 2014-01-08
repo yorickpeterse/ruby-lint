@@ -6,9 +6,6 @@
 RubyLint.registry.register('SignalException') do |defs|
   defs.define_constant('SignalException') do |klass|
     klass.inherits(defs.constant_proxy('Exception'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
     klass.define_instance_method('initialize') do |method|
       method.define_optional_argument('signo')

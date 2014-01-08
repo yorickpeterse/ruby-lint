@@ -6,7 +6,6 @@
 RubyLint.registry.register('Math') do |defs|
   defs.define_constant('Math') do |klass|
     klass.inherits(defs.constant_proxy('Object'))
-    klass.inherits(defs.constant_proxy('Math'))
 
     klass.define_method('acos') do |method|
       method.define_argument('z')

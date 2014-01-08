@@ -6,7 +6,6 @@
 RubyLint.registry.register('SimpleDelegator') do |defs|
   defs.define_constant('SimpleDelegator') do |klass|
     klass.inherits(defs.constant_proxy('Delegator'))
-    klass.inherits(defs.constant_proxy('Kernel'))
 
     klass.define_instance_method('__getobj__')
 

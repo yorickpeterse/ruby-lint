@@ -61,17 +61,11 @@ RubyLint.registry.register('IRB') do |defs|
 
   defs.define_constant('IRB::Abort') do |klass|
     klass.inherits(defs.constant_proxy('Exception'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
   end
 
   defs.define_constant('IRB::Context') do |klass|
     klass.inherits(defs.constant_proxy('Object'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
     klass.define_instance_method('__inspect__')
 
@@ -288,11 +282,7 @@ RubyLint.registry.register('IRB') do |defs|
 
   defs.define_constant('IRB::DefaultEncodings') do |klass|
     klass.inherits(defs.constant_proxy('Struct'))
-    klass.inherits(defs.constant_proxy('#<Module:0x20c04>'))
-    klass.inherits(defs.constant_proxy('Enumerable'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
+    klass.inherits(defs.constant_proxy('#<Module:0x20be0>'))
 
     klass.define_method('[]') do |method|
       method.define_rest_argument('args')
@@ -316,9 +306,6 @@ RubyLint.registry.register('IRB') do |defs|
   defs.define_constant('IRB::DefaultEncodings::Enumerator') do |klass|
     klass.inherits(defs.constant_proxy('Object'))
     klass.inherits(defs.constant_proxy('Enumerable'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
     klass.define_instance_method('each') do |method|
       method.define_rest_argument('args')
@@ -353,9 +340,6 @@ RubyLint.registry.register('IRB') do |defs|
 
   defs.define_constant('IRB::DefaultEncodings::Group') do |klass|
     klass.inherits(defs.constant_proxy('Rubinius::FFI::Struct'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
     klass.define_instance_method('gid')
 
@@ -368,9 +352,6 @@ RubyLint.registry.register('IRB') do |defs|
 
   defs.define_constant('IRB::DefaultEncodings::Passwd') do |klass|
     klass.inherits(defs.constant_proxy('Rubinius::FFI::Struct'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
     klass.define_instance_method('dir')
 
@@ -394,9 +375,6 @@ RubyLint.registry.register('IRB') do |defs|
 
   defs.define_constant('IRB::DefaultEncodings::SortedElement') do |klass|
     klass.inherits(defs.constant_proxy('Object'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
     klass.define_instance_method('<=>') do |method|
       method.define_argument('other')
@@ -416,10 +394,6 @@ RubyLint.registry.register('IRB') do |defs|
 
   defs.define_constant('IRB::DefaultEncodings::Tms') do |klass|
     klass.inherits(defs.constant_proxy('Struct'))
-    klass.inherits(defs.constant_proxy('Enumerable'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
     klass.define_method('[]') do |method|
       method.define_rest_argument('args')
@@ -587,9 +561,6 @@ RubyLint.registry.register('IRB') do |defs|
 
   defs.define_constant('IRB::FileInputMethod') do |klass|
     klass.inherits(defs.constant_proxy('IRB::InputMethod'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
     klass.define_instance_method('encoding')
 
@@ -613,9 +584,6 @@ RubyLint.registry.register('IRB') do |defs|
 
   defs.define_constant('IRB::InputMethod') do |klass|
     klass.inherits(defs.constant_proxy('Object'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
     klass.define_instance_method('file_name')
 
@@ -636,9 +604,6 @@ RubyLint.registry.register('IRB') do |defs|
 
   defs.define_constant('IRB::Inspector') do |klass|
     klass.inherits(defs.constant_proxy('Object'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
     klass.define_method('def_inspector') do |method|
       method.define_argument('key')
@@ -671,9 +636,6 @@ RubyLint.registry.register('IRB') do |defs|
 
   defs.define_constant('IRB::Irb') do |klass|
     klass.inherits(defs.constant_proxy('Object'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
     klass.define_instance_method('context')
 
@@ -728,9 +690,6 @@ RubyLint.registry.register('IRB') do |defs|
 
   defs.define_constant('IRB::Locale') do |klass|
     klass.inherits(defs.constant_proxy('Object'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
     klass.define_instance_method('String') do |method|
       method.define_argument('mes')
@@ -853,9 +812,6 @@ RubyLint.registry.register('IRB') do |defs|
 
   defs.define_constant('IRB::Notifier::AbstractNotifier') do |klass|
     klass.inherits(defs.constant_proxy('Object'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
     klass.define_instance_method('exec_if')
 
@@ -899,9 +855,6 @@ RubyLint.registry.register('IRB') do |defs|
 
   defs.define_constant('IRB::Notifier::CompositeNotifier') do |klass|
     klass.inherits(defs.constant_proxy('IRB::Notifier::AbstractNotifier'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
     klass.define_instance_method('def_notifier') do |method|
       method.define_argument('level')
@@ -937,26 +890,17 @@ RubyLint.registry.register('IRB') do |defs|
 
   defs.define_constant('IRB::Notifier::ErrUndefinedNotifier') do |klass|
     klass.inherits(defs.constant_proxy('StandardError'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
   end
 
   defs.define_constant('IRB::Notifier::ErrUnrecognizedLevel') do |klass|
     klass.inherits(defs.constant_proxy('StandardError'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
   end
 
   defs.define_constant('IRB::Notifier::LeveledNotifier') do |klass|
     klass.inherits(defs.constant_proxy('IRB::Notifier::AbstractNotifier'))
     klass.inherits(defs.constant_proxy('Comparable'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
     klass.define_instance_method('<=>') do |method|
       method.define_argument('other')
@@ -977,10 +921,6 @@ RubyLint.registry.register('IRB') do |defs|
 
   defs.define_constant('IRB::Notifier::NoMsgNotifier') do |klass|
     klass.inherits(defs.constant_proxy('IRB::Notifier::LeveledNotifier'))
-    klass.inherits(defs.constant_proxy('Comparable'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
     klass.define_instance_method('initialize')
 
@@ -989,9 +929,6 @@ RubyLint.registry.register('IRB') do |defs|
 
   defs.define_constant('IRB::OutputMethod') do |klass|
     klass.inherits(defs.constant_proxy('Object'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
     klass.define_method('included') do |method|
       method.define_argument('mod')
@@ -1041,18 +978,12 @@ RubyLint.registry.register('IRB') do |defs|
 
   defs.define_constant('IRB::OutputMethod::NotImplementedError') do |klass|
     klass.inherits(defs.constant_proxy('StandardError'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
   end
 
   defs.define_constant('IRB::ReadlineInputMethod') do |klass|
     klass.inherits(defs.constant_proxy('IRB::InputMethod'))
     klass.inherits(defs.constant_proxy('Readline'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
     klass.define_instance_method('encoding')
 
@@ -1118,9 +1049,6 @@ RubyLint.registry.register('IRB') do |defs|
 
   defs.define_constant('IRB::SLex') do |klass|
     klass.inherits(defs.constant_proxy('Object'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
     klass.define_method('included') do |method|
       method.define_argument('mod')
@@ -1198,25 +1126,16 @@ RubyLint.registry.register('IRB') do |defs|
 
   defs.define_constant('IRB::SLex::ErrNodeAlreadyExists') do |klass|
     klass.inherits(defs.constant_proxy('StandardError'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
   end
 
   defs.define_constant('IRB::SLex::ErrNodeNothing') do |klass|
     klass.inherits(defs.constant_proxy('StandardError'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
   end
 
   defs.define_constant('IRB::SLex::Node') do |klass|
     klass.inherits(defs.constant_proxy('Object'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
     klass.define_instance_method('create_subnode') do |method|
       method.define_argument('chrs')
@@ -1262,9 +1181,6 @@ RubyLint.registry.register('IRB') do |defs|
 
   defs.define_constant('IRB::StdioInputMethod') do |klass|
     klass.inherits(defs.constant_proxy('IRB::InputMethod'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
     klass.define_instance_method('encoding')
 
@@ -1283,9 +1199,6 @@ RubyLint.registry.register('IRB') do |defs|
 
   defs.define_constant('IRB::StdioOutputMethod') do |klass|
     klass.inherits(defs.constant_proxy('IRB::OutputMethod'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
     klass.define_instance_method('print') do |method|
       method.define_rest_argument('opts')
@@ -1294,17 +1207,11 @@ RubyLint.registry.register('IRB') do |defs|
 
   defs.define_constant('IRB::StdioOutputMethod::NotImplementedError') do |klass|
     klass.inherits(defs.constant_proxy('StandardError'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
   end
 
   defs.define_constant('IRB::WorkSpace') do |klass|
     klass.inherits(defs.constant_proxy('Object'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
     klass.define_instance_method('binding')
 

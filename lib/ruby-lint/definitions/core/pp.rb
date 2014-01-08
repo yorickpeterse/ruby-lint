@@ -7,9 +7,6 @@ RubyLint.registry.register('PP') do |defs|
   defs.define_constant('PP') do |klass|
     klass.inherits(defs.constant_proxy('PrettyPrint'))
     klass.inherits(defs.constant_proxy('PP::PPMethods'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
     klass.define_method('mcall') do |method|
       method.define_argument('obj')
@@ -37,9 +34,6 @@ RubyLint.registry.register('PP') do |defs|
 
   defs.define_constant('PP::Breakable') do |klass|
     klass.inherits(defs.constant_proxy('Object'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
     klass.define_instance_method('indent')
 
@@ -63,9 +57,6 @@ RubyLint.registry.register('PP') do |defs|
 
   defs.define_constant('PP::Group') do |klass|
     klass.inherits(defs.constant_proxy('Object'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
     klass.define_instance_method('break')
 
@@ -86,9 +77,6 @@ RubyLint.registry.register('PP') do |defs|
 
   defs.define_constant('PP::GroupQueue') do |klass|
     klass.inherits(defs.constant_proxy('Object'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
     klass.define_instance_method('delete') do |method|
       method.define_argument('group')
@@ -194,9 +182,6 @@ RubyLint.registry.register('PP') do |defs|
   defs.define_constant('PP::SingleLine') do |klass|
     klass.inherits(defs.constant_proxy('PrettyPrint::SingleLine'))
     klass.inherits(defs.constant_proxy('PP::PPMethods'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
   end
 
@@ -212,9 +197,6 @@ RubyLint.registry.register('PP') do |defs|
 
   defs.define_constant('PP::Text') do |klass|
     klass.inherits(defs.constant_proxy('Object'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
     klass.define_instance_method('add') do |method|
       method.define_argument('obj')

@@ -6,7 +6,6 @@
 RubyLint.registry.register('URI') do |defs|
   defs.define_constant('URI') do |klass|
     klass.inherits(defs.constant_proxy('Object'))
-    klass.inherits(defs.constant_proxy('URI::REGEXP'))
 
     klass.define_method('decode_www_form') do |method|
       method.define_argument('str')
@@ -68,9 +67,6 @@ RubyLint.registry.register('URI') do |defs|
 
   defs.define_constant('URI::BadURIError') do |klass|
     klass.inherits(defs.constant_proxy('URI::Error'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
   end
 
@@ -86,9 +82,6 @@ RubyLint.registry.register('URI') do |defs|
 
   defs.define_constant('URI::Error') do |klass|
     klass.inherits(defs.constant_proxy('StandardError'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
   end
 
@@ -120,11 +113,6 @@ RubyLint.registry.register('URI') do |defs|
   defs.define_constant('URI::FTP') do |klass|
     klass.inherits(defs.constant_proxy('URI::Generic'))
     klass.inherits(defs.constant_proxy('OpenURI::OpenRead'))
-    klass.inherits(defs.constant_proxy('URI'))
-    klass.inherits(defs.constant_proxy('URI::REGEXP'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
     klass.define_method('build') do |method|
       method.define_argument('args')
@@ -179,9 +167,6 @@ RubyLint.registry.register('URI') do |defs|
     klass.inherits(defs.constant_proxy('Object'))
     klass.inherits(defs.constant_proxy('URI'))
     klass.inherits(defs.constant_proxy('URI::REGEXP'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
     klass.define_method('build') do |method|
       method.define_argument('args')
@@ -412,11 +397,6 @@ RubyLint.registry.register('URI') do |defs|
   defs.define_constant('URI::HTTP') do |klass|
     klass.inherits(defs.constant_proxy('URI::Generic'))
     klass.inherits(defs.constant_proxy('OpenURI::OpenRead'))
-    klass.inherits(defs.constant_proxy('URI'))
-    klass.inherits(defs.constant_proxy('URI::REGEXP'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
     klass.define_method('build') do |method|
       method.define_argument('args')
@@ -439,12 +419,6 @@ RubyLint.registry.register('URI') do |defs|
 
   defs.define_constant('URI::HTTPS') do |klass|
     klass.inherits(defs.constant_proxy('URI::HTTP'))
-    klass.inherits(defs.constant_proxy('OpenURI::OpenRead'))
-    klass.inherits(defs.constant_proxy('URI'))
-    klass.inherits(defs.constant_proxy('URI::REGEXP'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
   end
 
@@ -465,9 +439,6 @@ RubyLint.registry.register('URI') do |defs|
 
   defs.define_constant('URI::HTTPS::BadURIError') do |klass|
     klass.inherits(defs.constant_proxy('URI::Error'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
   end
 
@@ -493,9 +464,6 @@ RubyLint.registry.register('URI') do |defs|
 
   defs.define_constant('URI::HTTPS::Error') do |klass|
     klass.inherits(defs.constant_proxy('StandardError'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
   end
 
@@ -527,11 +495,6 @@ RubyLint.registry.register('URI') do |defs|
   defs.define_constant('URI::HTTPS::FTP') do |klass|
     klass.inherits(defs.constant_proxy('URI::Generic'))
     klass.inherits(defs.constant_proxy('OpenURI::OpenRead'))
-    klass.inherits(defs.constant_proxy('URI'))
-    klass.inherits(defs.constant_proxy('URI::REGEXP'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
     klass.define_method('build') do |method|
       method.define_argument('args')
@@ -586,9 +549,6 @@ RubyLint.registry.register('URI') do |defs|
     klass.inherits(defs.constant_proxy('Object'))
     klass.inherits(defs.constant_proxy('URI'))
     klass.inherits(defs.constant_proxy('URI::REGEXP'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
     klass.define_method('build') do |method|
       method.define_argument('args')
@@ -819,11 +779,6 @@ RubyLint.registry.register('URI') do |defs|
   defs.define_constant('URI::HTTPS::HTTP') do |klass|
     klass.inherits(defs.constant_proxy('URI::Generic'))
     klass.inherits(defs.constant_proxy('OpenURI::OpenRead'))
-    klass.inherits(defs.constant_proxy('URI'))
-    klass.inherits(defs.constant_proxy('URI::REGEXP'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
     klass.define_method('build') do |method|
       method.define_argument('args')
@@ -846,27 +801,16 @@ RubyLint.registry.register('URI') do |defs|
 
   defs.define_constant('URI::HTTPS::InvalidComponentError') do |klass|
     klass.inherits(defs.constant_proxy('URI::Error'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
   end
 
   defs.define_constant('URI::HTTPS::InvalidURIError') do |klass|
     klass.inherits(defs.constant_proxy('URI::Error'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
   end
 
   defs.define_constant('URI::HTTPS::LDAP') do |klass|
     klass.inherits(defs.constant_proxy('URI::Generic'))
-    klass.inherits(defs.constant_proxy('URI'))
-    klass.inherits(defs.constant_proxy('URI::REGEXP'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
     klass.define_method('build') do |method|
       method.define_argument('args')
@@ -933,21 +877,11 @@ RubyLint.registry.register('URI') do |defs|
 
   defs.define_constant('URI::HTTPS::LDAPS') do |klass|
     klass.inherits(defs.constant_proxy('URI::LDAP'))
-    klass.inherits(defs.constant_proxy('URI'))
-    klass.inherits(defs.constant_proxy('URI::REGEXP'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
   end
 
   defs.define_constant('URI::HTTPS::MailTo') do |klass|
     klass.inherits(defs.constant_proxy('URI::Generic'))
-    klass.inherits(defs.constant_proxy('URI'))
-    klass.inherits(defs.constant_proxy('URI::REGEXP'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
     klass.define_method('build') do |method|
       method.define_argument('args')
@@ -1004,9 +938,6 @@ RubyLint.registry.register('URI') do |defs|
   defs.define_constant('URI::HTTPS::Parser') do |klass|
     klass.inherits(defs.constant_proxy('Object'))
     klass.inherits(defs.constant_proxy('URI::REGEXP'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
     klass.define_instance_method('escape') do |method|
       method.define_argument('str')
@@ -1143,27 +1074,16 @@ RubyLint.registry.register('URI') do |defs|
 
   defs.define_constant('URI::InvalidComponentError') do |klass|
     klass.inherits(defs.constant_proxy('URI::Error'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
   end
 
   defs.define_constant('URI::InvalidURIError') do |klass|
     klass.inherits(defs.constant_proxy('URI::Error'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
   end
 
   defs.define_constant('URI::LDAP') do |klass|
     klass.inherits(defs.constant_proxy('URI::Generic'))
-    klass.inherits(defs.constant_proxy('URI'))
-    klass.inherits(defs.constant_proxy('URI::REGEXP'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
     klass.define_method('build') do |method|
       method.define_argument('args')
@@ -1230,21 +1150,11 @@ RubyLint.registry.register('URI') do |defs|
 
   defs.define_constant('URI::LDAPS') do |klass|
     klass.inherits(defs.constant_proxy('URI::LDAP'))
-    klass.inherits(defs.constant_proxy('URI'))
-    klass.inherits(defs.constant_proxy('URI::REGEXP'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
   end
 
   defs.define_constant('URI::MailTo') do |klass|
     klass.inherits(defs.constant_proxy('URI::Generic'))
-    klass.inherits(defs.constant_proxy('URI'))
-    klass.inherits(defs.constant_proxy('URI::REGEXP'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
     klass.define_method('build') do |method|
       method.define_argument('args')
@@ -1301,9 +1211,6 @@ RubyLint.registry.register('URI') do |defs|
   defs.define_constant('URI::Parser') do |klass|
     klass.inherits(defs.constant_proxy('Object'))
     klass.inherits(defs.constant_proxy('URI::REGEXP'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
     klass.define_instance_method('escape') do |method|
       method.define_argument('str')

@@ -6,12 +6,6 @@
 RubyLint.registry.register('UDPSocket') do |defs|
   defs.define_constant('UDPSocket') do |klass|
     klass.inherits(defs.constant_proxy('IPSocket'))
-    klass.inherits(defs.constant_proxy('Unmarshalable'))
-    klass.inherits(defs.constant_proxy('File::Constants'))
-    klass.inherits(defs.constant_proxy('Enumerable'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
     klass.define_instance_method('bind') do |method|
       method.define_argument('host')
@@ -55,12 +49,6 @@ RubyLint.registry.register('UDPSocket') do |defs|
 
   defs.define_constant('UDPSocket::BidirectionalPipe') do |klass|
     klass.inherits(defs.constant_proxy('IO'))
-    klass.inherits(defs.constant_proxy('Unmarshalable'))
-    klass.inherits(defs.constant_proxy('File::Constants'))
-    klass.inherits(defs.constant_proxy('Enumerable'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
     klass.define_instance_method('<<') do |method|
       method.define_argument('obj')
@@ -116,18 +104,12 @@ RubyLint.registry.register('UDPSocket') do |defs|
   defs.define_constant('UDPSocket::EAGAINWaitReadable') do |klass|
     klass.inherits(defs.constant_proxy('Errno::EAGAIN'))
     klass.inherits(defs.constant_proxy('IO::WaitReadable'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
   end
 
   defs.define_constant('UDPSocket::EAGAINWaitWritable') do |klass|
     klass.inherits(defs.constant_proxy('Errno::EAGAIN'))
     klass.inherits(defs.constant_proxy('IO::WaitWritable'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
   end
 
@@ -138,9 +120,6 @@ RubyLint.registry.register('UDPSocket') do |defs|
 
   defs.define_constant('UDPSocket::EachReader') do |klass|
     klass.inherits(defs.constant_proxy('Object'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
     klass.define_instance_method('each')
 
@@ -165,9 +144,6 @@ RubyLint.registry.register('UDPSocket') do |defs|
   defs.define_constant('UDPSocket::Enumerator') do |klass|
     klass.inherits(defs.constant_proxy('Object'))
     klass.inherits(defs.constant_proxy('Enumerable'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
     klass.define_instance_method('each') do |method|
       method.define_rest_argument('args')
@@ -302,9 +278,6 @@ RubyLint.registry.register('UDPSocket') do |defs|
 
   defs.define_constant('UDPSocket::InternalBuffer') do |klass|
     klass.inherits(defs.constant_proxy('Object'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
     klass.define_method('allocate')
 
@@ -468,9 +441,6 @@ RubyLint.registry.register('UDPSocket') do |defs|
 
   defs.define_constant('UDPSocket::SortedElement') do |klass|
     klass.inherits(defs.constant_proxy('Object'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
     klass.define_instance_method('<=>') do |method|
       method.define_argument('other')
@@ -490,9 +460,6 @@ RubyLint.registry.register('UDPSocket') do |defs|
 
   defs.define_constant('UDPSocket::StreamCopier') do |klass|
     klass.inherits(defs.constant_proxy('Object'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
     klass.define_instance_method('initialize') do |method|
       method.define_argument('from')

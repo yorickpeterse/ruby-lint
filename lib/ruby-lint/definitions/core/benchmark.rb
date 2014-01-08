@@ -48,9 +48,6 @@ RubyLint.registry.register('Benchmark') do |defs|
 
   defs.define_constant('Benchmark::Job') do |klass|
     klass.inherits(defs.constant_proxy('Object'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
     klass.define_instance_method('initialize') do |method|
       method.define_argument('width')
@@ -75,9 +72,6 @@ RubyLint.registry.register('Benchmark') do |defs|
 
   defs.define_constant('Benchmark::Report') do |klass|
     klass.inherits(defs.constant_proxy('Object'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
     klass.define_instance_method('initialize') do |method|
       method.define_optional_argument('width')
@@ -103,9 +97,6 @@ RubyLint.registry.register('Benchmark') do |defs|
 
   defs.define_constant('Benchmark::Tms') do |klass|
     klass.inherits(defs.constant_proxy('Object'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
     klass.define_instance_method('*') do |method|
       method.define_argument('x')

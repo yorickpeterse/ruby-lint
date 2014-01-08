@@ -16,10 +16,6 @@ RubyLint.registry.register('Digest') do |defs|
 
   defs.define_constant('Digest::Base') do |klass|
     klass.inherits(defs.constant_proxy('Digest::Class'))
-    klass.inherits(defs.constant_proxy('Digest::Instance'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
     klass.define_method('allocate')
 
@@ -39,9 +35,6 @@ RubyLint.registry.register('Digest') do |defs|
   defs.define_constant('Digest::Class') do |klass|
     klass.inherits(defs.constant_proxy('Object'))
     klass.inherits(defs.constant_proxy('Digest::Instance'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
     klass.define_method('base64digest') do |method|
       method.define_argument('str')
@@ -103,28 +96,16 @@ RubyLint.registry.register('Digest') do |defs|
 
   defs.define_constant('Digest::MD5') do |klass|
     klass.inherits(defs.constant_proxy('Digest::Base'))
-    klass.inherits(defs.constant_proxy('Digest::Instance'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
   end
 
   defs.define_constant('Digest::SHA1') do |klass|
     klass.inherits(defs.constant_proxy('Digest::Base'))
-    klass.inherits(defs.constant_proxy('Digest::Instance'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
   end
 
   defs.define_constant('Digest::SHA2') do |klass|
     klass.inherits(defs.constant_proxy('Digest::Class'))
-    klass.inherits(defs.constant_proxy('Digest::Instance'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
     klass.define_instance_method('<<') do |method|
       method.define_argument('str')
@@ -151,28 +132,16 @@ RubyLint.registry.register('Digest') do |defs|
 
   defs.define_constant('Digest::SHA256') do |klass|
     klass.inherits(defs.constant_proxy('Digest::Base'))
-    klass.inherits(defs.constant_proxy('Digest::Instance'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
   end
 
   defs.define_constant('Digest::SHA384') do |klass|
     klass.inherits(defs.constant_proxy('Digest::Base'))
-    klass.inherits(defs.constant_proxy('Digest::Instance'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
   end
 
   defs.define_constant('Digest::SHA512') do |klass|
     klass.inherits(defs.constant_proxy('Digest::Base'))
-    klass.inherits(defs.constant_proxy('Digest::Instance'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
   end
 end

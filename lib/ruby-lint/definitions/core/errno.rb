@@ -14,9 +14,6 @@ RubyLint.registry.register('Errno') do |defs|
 
   defs.define_constant('Errno::E2BIG') do |klass|
     klass.inherits(defs.constant_proxy('SystemCallError'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
   end
 
@@ -32,9 +29,6 @@ RubyLint.registry.register('Errno') do |defs|
 
   defs.define_constant('Errno::EACCES') do |klass|
     klass.inherits(defs.constant_proxy('SystemCallError'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
   end
 
@@ -50,9 +44,6 @@ RubyLint.registry.register('Errno') do |defs|
 
   defs.define_constant('Errno::EADDRINUSE') do |klass|
     klass.inherits(defs.constant_proxy('SystemCallError'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
   end
 
@@ -68,9 +59,6 @@ RubyLint.registry.register('Errno') do |defs|
 
   defs.define_constant('Errno::EADDRNOTAVAIL') do |klass|
     klass.inherits(defs.constant_proxy('SystemCallError'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
   end
 
@@ -86,9 +74,6 @@ RubyLint.registry.register('Errno') do |defs|
 
   defs.define_constant('Errno::EADV') do |klass|
     klass.inherits(defs.constant_proxy('SystemCallError'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
   end
 
@@ -104,9 +89,6 @@ RubyLint.registry.register('Errno') do |defs|
 
   defs.define_constant('Errno::EAFNOSUPPORT') do |klass|
     klass.inherits(defs.constant_proxy('SystemCallError'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
   end
 
@@ -122,9 +104,6 @@ RubyLint.registry.register('Errno') do |defs|
 
   defs.define_constant('Errno::EAGAIN') do |klass|
     klass.inherits(defs.constant_proxy('SystemCallError'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
   end
 
@@ -140,9 +119,6 @@ RubyLint.registry.register('Errno') do |defs|
 
   defs.define_constant('Errno::EALREADY') do |klass|
     klass.inherits(defs.constant_proxy('SystemCallError'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
   end
 
@@ -158,9 +134,6 @@ RubyLint.registry.register('Errno') do |defs|
 
   defs.define_constant('Errno::EBADE') do |klass|
     klass.inherits(defs.constant_proxy('SystemCallError'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
   end
 
@@ -176,9 +149,6 @@ RubyLint.registry.register('Errno') do |defs|
 
   defs.define_constant('Errno::EBADF') do |klass|
     klass.inherits(defs.constant_proxy('SystemCallError'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
   end
 
@@ -194,9 +164,6 @@ RubyLint.registry.register('Errno') do |defs|
 
   defs.define_constant('Errno::EBADFD') do |klass|
     klass.inherits(defs.constant_proxy('SystemCallError'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
   end
 
@@ -212,9 +179,6 @@ RubyLint.registry.register('Errno') do |defs|
 
   defs.define_constant('Errno::EBADMSG') do |klass|
     klass.inherits(defs.constant_proxy('SystemCallError'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
   end
 
@@ -230,9 +194,6 @@ RubyLint.registry.register('Errno') do |defs|
 
   defs.define_constant('Errno::EBADR') do |klass|
     klass.inherits(defs.constant_proxy('SystemCallError'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
   end
 
@@ -248,9 +209,6 @@ RubyLint.registry.register('Errno') do |defs|
 
   defs.define_constant('Errno::EBADRQC') do |klass|
     klass.inherits(defs.constant_proxy('SystemCallError'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
   end
 
@@ -266,9 +224,6 @@ RubyLint.registry.register('Errno') do |defs|
 
   defs.define_constant('Errno::EBADSLT') do |klass|
     klass.inherits(defs.constant_proxy('SystemCallError'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
   end
 
@@ -284,9 +239,6 @@ RubyLint.registry.register('Errno') do |defs|
 
   defs.define_constant('Errno::EBFONT') do |klass|
     klass.inherits(defs.constant_proxy('SystemCallError'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
   end
 
@@ -302,9 +254,6 @@ RubyLint.registry.register('Errno') do |defs|
 
   defs.define_constant('Errno::EBUSY') do |klass|
     klass.inherits(defs.constant_proxy('SystemCallError'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
   end
 
@@ -320,9 +269,6 @@ RubyLint.registry.register('Errno') do |defs|
 
   defs.define_constant('Errno::ECANCELED') do |klass|
     klass.inherits(defs.constant_proxy('SystemCallError'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
   end
 
@@ -338,9 +284,6 @@ RubyLint.registry.register('Errno') do |defs|
 
   defs.define_constant('Errno::ECHILD') do |klass|
     klass.inherits(defs.constant_proxy('SystemCallError'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
   end
 
@@ -356,9 +299,6 @@ RubyLint.registry.register('Errno') do |defs|
 
   defs.define_constant('Errno::ECHRNG') do |klass|
     klass.inherits(defs.constant_proxy('SystemCallError'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
   end
 
@@ -374,9 +314,6 @@ RubyLint.registry.register('Errno') do |defs|
 
   defs.define_constant('Errno::ECOMM') do |klass|
     klass.inherits(defs.constant_proxy('SystemCallError'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
   end
 
@@ -392,9 +329,6 @@ RubyLint.registry.register('Errno') do |defs|
 
   defs.define_constant('Errno::ECONNABORTED') do |klass|
     klass.inherits(defs.constant_proxy('SystemCallError'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
   end
 
@@ -410,9 +344,6 @@ RubyLint.registry.register('Errno') do |defs|
 
   defs.define_constant('Errno::ECONNREFUSED') do |klass|
     klass.inherits(defs.constant_proxy('SystemCallError'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
   end
 
@@ -428,9 +359,6 @@ RubyLint.registry.register('Errno') do |defs|
 
   defs.define_constant('Errno::ECONNRESET') do |klass|
     klass.inherits(defs.constant_proxy('SystemCallError'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
   end
 
@@ -446,9 +374,6 @@ RubyLint.registry.register('Errno') do |defs|
 
   defs.define_constant('Errno::EDEADLK') do |klass|
     klass.inherits(defs.constant_proxy('SystemCallError'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
   end
 
@@ -464,17 +389,11 @@ RubyLint.registry.register('Errno') do |defs|
 
   defs.define_constant('Errno::EDEADLOCK') do |klass|
     klass.inherits(defs.constant_proxy('SystemCallError'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
   end
 
   defs.define_constant('Errno::EDESTADDRREQ') do |klass|
     klass.inherits(defs.constant_proxy('SystemCallError'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
   end
 
@@ -490,9 +409,6 @@ RubyLint.registry.register('Errno') do |defs|
 
   defs.define_constant('Errno::EDOTDOT') do |klass|
     klass.inherits(defs.constant_proxy('SystemCallError'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
   end
 
@@ -508,9 +424,6 @@ RubyLint.registry.register('Errno') do |defs|
 
   defs.define_constant('Errno::EDQUOT') do |klass|
     klass.inherits(defs.constant_proxy('SystemCallError'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
   end
 
@@ -526,9 +439,6 @@ RubyLint.registry.register('Errno') do |defs|
 
   defs.define_constant('Errno::EEXIST') do |klass|
     klass.inherits(defs.constant_proxy('SystemCallError'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
   end
 
@@ -544,9 +454,6 @@ RubyLint.registry.register('Errno') do |defs|
 
   defs.define_constant('Errno::EFAULT') do |klass|
     klass.inherits(defs.constant_proxy('SystemCallError'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
   end
 
@@ -562,9 +469,6 @@ RubyLint.registry.register('Errno') do |defs|
 
   defs.define_constant('Errno::EFBIG') do |klass|
     klass.inherits(defs.constant_proxy('SystemCallError'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
   end
 
@@ -580,9 +484,6 @@ RubyLint.registry.register('Errno') do |defs|
 
   defs.define_constant('Errno::EHOSTDOWN') do |klass|
     klass.inherits(defs.constant_proxy('SystemCallError'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
   end
 
@@ -598,9 +499,6 @@ RubyLint.registry.register('Errno') do |defs|
 
   defs.define_constant('Errno::EHOSTUNREACH') do |klass|
     klass.inherits(defs.constant_proxy('SystemCallError'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
   end
 
@@ -616,9 +514,6 @@ RubyLint.registry.register('Errno') do |defs|
 
   defs.define_constant('Errno::EIDRM') do |klass|
     klass.inherits(defs.constant_proxy('SystemCallError'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
   end
 
@@ -634,9 +529,6 @@ RubyLint.registry.register('Errno') do |defs|
 
   defs.define_constant('Errno::EILSEQ') do |klass|
     klass.inherits(defs.constant_proxy('SystemCallError'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
   end
 
@@ -652,9 +544,6 @@ RubyLint.registry.register('Errno') do |defs|
 
   defs.define_constant('Errno::EINPROGRESS') do |klass|
     klass.inherits(defs.constant_proxy('SystemCallError'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
   end
 
@@ -670,9 +559,6 @@ RubyLint.registry.register('Errno') do |defs|
 
   defs.define_constant('Errno::EINTR') do |klass|
     klass.inherits(defs.constant_proxy('SystemCallError'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
   end
 
@@ -688,9 +574,6 @@ RubyLint.registry.register('Errno') do |defs|
 
   defs.define_constant('Errno::EINVAL') do |klass|
     klass.inherits(defs.constant_proxy('SystemCallError'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
   end
 
@@ -706,9 +589,6 @@ RubyLint.registry.register('Errno') do |defs|
 
   defs.define_constant('Errno::EIO') do |klass|
     klass.inherits(defs.constant_proxy('SystemCallError'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
   end
 
@@ -724,9 +604,6 @@ RubyLint.registry.register('Errno') do |defs|
 
   defs.define_constant('Errno::EISCONN') do |klass|
     klass.inherits(defs.constant_proxy('SystemCallError'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
   end
 
@@ -742,9 +619,6 @@ RubyLint.registry.register('Errno') do |defs|
 
   defs.define_constant('Errno::EISDIR') do |klass|
     klass.inherits(defs.constant_proxy('SystemCallError'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
   end
 
@@ -760,9 +634,6 @@ RubyLint.registry.register('Errno') do |defs|
 
   defs.define_constant('Errno::EISNAM') do |klass|
     klass.inherits(defs.constant_proxy('SystemCallError'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
   end
 
@@ -778,9 +649,6 @@ RubyLint.registry.register('Errno') do |defs|
 
   defs.define_constant('Errno::EKEYEXPIRED') do |klass|
     klass.inherits(defs.constant_proxy('SystemCallError'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
   end
 
@@ -796,9 +664,6 @@ RubyLint.registry.register('Errno') do |defs|
 
   defs.define_constant('Errno::EKEYREJECTED') do |klass|
     klass.inherits(defs.constant_proxy('SystemCallError'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
   end
 
@@ -814,9 +679,6 @@ RubyLint.registry.register('Errno') do |defs|
 
   defs.define_constant('Errno::EKEYREVOKED') do |klass|
     klass.inherits(defs.constant_proxy('SystemCallError'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
   end
 
@@ -832,9 +694,6 @@ RubyLint.registry.register('Errno') do |defs|
 
   defs.define_constant('Errno::EL2HLT') do |klass|
     klass.inherits(defs.constant_proxy('SystemCallError'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
   end
 
@@ -850,9 +709,6 @@ RubyLint.registry.register('Errno') do |defs|
 
   defs.define_constant('Errno::EL2NSYNC') do |klass|
     klass.inherits(defs.constant_proxy('SystemCallError'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
   end
 
@@ -868,9 +724,6 @@ RubyLint.registry.register('Errno') do |defs|
 
   defs.define_constant('Errno::EL3HLT') do |klass|
     klass.inherits(defs.constant_proxy('SystemCallError'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
   end
 
@@ -886,9 +739,6 @@ RubyLint.registry.register('Errno') do |defs|
 
   defs.define_constant('Errno::EL3RST') do |klass|
     klass.inherits(defs.constant_proxy('SystemCallError'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
   end
 
@@ -904,9 +754,6 @@ RubyLint.registry.register('Errno') do |defs|
 
   defs.define_constant('Errno::ELIBACC') do |klass|
     klass.inherits(defs.constant_proxy('SystemCallError'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
   end
 
@@ -922,9 +769,6 @@ RubyLint.registry.register('Errno') do |defs|
 
   defs.define_constant('Errno::ELIBBAD') do |klass|
     klass.inherits(defs.constant_proxy('SystemCallError'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
   end
 
@@ -940,9 +784,6 @@ RubyLint.registry.register('Errno') do |defs|
 
   defs.define_constant('Errno::ELIBEXEC') do |klass|
     klass.inherits(defs.constant_proxy('SystemCallError'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
   end
 
@@ -958,9 +799,6 @@ RubyLint.registry.register('Errno') do |defs|
 
   defs.define_constant('Errno::ELIBMAX') do |klass|
     klass.inherits(defs.constant_proxy('SystemCallError'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
   end
 
@@ -976,9 +814,6 @@ RubyLint.registry.register('Errno') do |defs|
 
   defs.define_constant('Errno::ELIBSCN') do |klass|
     klass.inherits(defs.constant_proxy('SystemCallError'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
   end
 
@@ -994,9 +829,6 @@ RubyLint.registry.register('Errno') do |defs|
 
   defs.define_constant('Errno::ELNRNG') do |klass|
     klass.inherits(defs.constant_proxy('SystemCallError'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
   end
 
@@ -1012,9 +844,6 @@ RubyLint.registry.register('Errno') do |defs|
 
   defs.define_constant('Errno::ELOOP') do |klass|
     klass.inherits(defs.constant_proxy('SystemCallError'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
   end
 
@@ -1030,9 +859,6 @@ RubyLint.registry.register('Errno') do |defs|
 
   defs.define_constant('Errno::EMEDIUMTYPE') do |klass|
     klass.inherits(defs.constant_proxy('SystemCallError'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
   end
 
@@ -1048,9 +874,6 @@ RubyLint.registry.register('Errno') do |defs|
 
   defs.define_constant('Errno::EMFILE') do |klass|
     klass.inherits(defs.constant_proxy('SystemCallError'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
   end
 
@@ -1066,9 +889,6 @@ RubyLint.registry.register('Errno') do |defs|
 
   defs.define_constant('Errno::EMLINK') do |klass|
     klass.inherits(defs.constant_proxy('SystemCallError'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
   end
 
@@ -1084,9 +904,6 @@ RubyLint.registry.register('Errno') do |defs|
 
   defs.define_constant('Errno::EMSGSIZE') do |klass|
     klass.inherits(defs.constant_proxy('SystemCallError'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
   end
 
@@ -1102,9 +919,6 @@ RubyLint.registry.register('Errno') do |defs|
 
   defs.define_constant('Errno::EMULTIHOP') do |klass|
     klass.inherits(defs.constant_proxy('SystemCallError'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
   end
 
@@ -1120,9 +934,6 @@ RubyLint.registry.register('Errno') do |defs|
 
   defs.define_constant('Errno::ENAMETOOLONG') do |klass|
     klass.inherits(defs.constant_proxy('SystemCallError'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
   end
 
@@ -1138,9 +949,6 @@ RubyLint.registry.register('Errno') do |defs|
 
   defs.define_constant('Errno::ENAVAIL') do |klass|
     klass.inherits(defs.constant_proxy('SystemCallError'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
   end
 
@@ -1156,9 +964,6 @@ RubyLint.registry.register('Errno') do |defs|
 
   defs.define_constant('Errno::ENETDOWN') do |klass|
     klass.inherits(defs.constant_proxy('SystemCallError'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
   end
 
@@ -1174,9 +979,6 @@ RubyLint.registry.register('Errno') do |defs|
 
   defs.define_constant('Errno::ENETRESET') do |klass|
     klass.inherits(defs.constant_proxy('SystemCallError'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
   end
 
@@ -1192,9 +994,6 @@ RubyLint.registry.register('Errno') do |defs|
 
   defs.define_constant('Errno::ENETUNREACH') do |klass|
     klass.inherits(defs.constant_proxy('SystemCallError'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
   end
 
@@ -1210,9 +1009,6 @@ RubyLint.registry.register('Errno') do |defs|
 
   defs.define_constant('Errno::ENFILE') do |klass|
     klass.inherits(defs.constant_proxy('SystemCallError'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
   end
 
@@ -1228,9 +1024,6 @@ RubyLint.registry.register('Errno') do |defs|
 
   defs.define_constant('Errno::ENOANO') do |klass|
     klass.inherits(defs.constant_proxy('SystemCallError'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
   end
 
@@ -1246,9 +1039,6 @@ RubyLint.registry.register('Errno') do |defs|
 
   defs.define_constant('Errno::ENOBUFS') do |klass|
     klass.inherits(defs.constant_proxy('SystemCallError'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
   end
 
@@ -1264,9 +1054,6 @@ RubyLint.registry.register('Errno') do |defs|
 
   defs.define_constant('Errno::ENOCSI') do |klass|
     klass.inherits(defs.constant_proxy('SystemCallError'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
   end
 
@@ -1282,9 +1069,6 @@ RubyLint.registry.register('Errno') do |defs|
 
   defs.define_constant('Errno::ENODATA') do |klass|
     klass.inherits(defs.constant_proxy('SystemCallError'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
   end
 
@@ -1300,9 +1084,6 @@ RubyLint.registry.register('Errno') do |defs|
 
   defs.define_constant('Errno::ENODEV') do |klass|
     klass.inherits(defs.constant_proxy('SystemCallError'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
   end
 
@@ -1318,9 +1099,6 @@ RubyLint.registry.register('Errno') do |defs|
 
   defs.define_constant('Errno::ENOENT') do |klass|
     klass.inherits(defs.constant_proxy('SystemCallError'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
   end
 
@@ -1336,9 +1114,6 @@ RubyLint.registry.register('Errno') do |defs|
 
   defs.define_constant('Errno::ENOEXEC') do |klass|
     klass.inherits(defs.constant_proxy('SystemCallError'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
   end
 
@@ -1354,9 +1129,6 @@ RubyLint.registry.register('Errno') do |defs|
 
   defs.define_constant('Errno::ENOKEY') do |klass|
     klass.inherits(defs.constant_proxy('SystemCallError'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
   end
 
@@ -1372,9 +1144,6 @@ RubyLint.registry.register('Errno') do |defs|
 
   defs.define_constant('Errno::ENOLCK') do |klass|
     klass.inherits(defs.constant_proxy('SystemCallError'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
   end
 
@@ -1390,9 +1159,6 @@ RubyLint.registry.register('Errno') do |defs|
 
   defs.define_constant('Errno::ENOLINK') do |klass|
     klass.inherits(defs.constant_proxy('SystemCallError'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
   end
 
@@ -1408,9 +1174,6 @@ RubyLint.registry.register('Errno') do |defs|
 
   defs.define_constant('Errno::ENOMEDIUM') do |klass|
     klass.inherits(defs.constant_proxy('SystemCallError'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
   end
 
@@ -1426,9 +1189,6 @@ RubyLint.registry.register('Errno') do |defs|
 
   defs.define_constant('Errno::ENOMEM') do |klass|
     klass.inherits(defs.constant_proxy('SystemCallError'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
   end
 
@@ -1444,9 +1204,6 @@ RubyLint.registry.register('Errno') do |defs|
 
   defs.define_constant('Errno::ENOMSG') do |klass|
     klass.inherits(defs.constant_proxy('SystemCallError'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
   end
 
@@ -1462,9 +1219,6 @@ RubyLint.registry.register('Errno') do |defs|
 
   defs.define_constant('Errno::ENONET') do |klass|
     klass.inherits(defs.constant_proxy('SystemCallError'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
   end
 
@@ -1480,9 +1234,6 @@ RubyLint.registry.register('Errno') do |defs|
 
   defs.define_constant('Errno::ENOPKG') do |klass|
     klass.inherits(defs.constant_proxy('SystemCallError'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
   end
 
@@ -1498,9 +1249,6 @@ RubyLint.registry.register('Errno') do |defs|
 
   defs.define_constant('Errno::ENOPROTOOPT') do |klass|
     klass.inherits(defs.constant_proxy('SystemCallError'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
   end
 
@@ -1516,9 +1264,6 @@ RubyLint.registry.register('Errno') do |defs|
 
   defs.define_constant('Errno::ENOSPC') do |klass|
     klass.inherits(defs.constant_proxy('SystemCallError'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
   end
 
@@ -1534,9 +1279,6 @@ RubyLint.registry.register('Errno') do |defs|
 
   defs.define_constant('Errno::ENOSR') do |klass|
     klass.inherits(defs.constant_proxy('SystemCallError'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
   end
 
@@ -1552,9 +1294,6 @@ RubyLint.registry.register('Errno') do |defs|
 
   defs.define_constant('Errno::ENOSTR') do |klass|
     klass.inherits(defs.constant_proxy('SystemCallError'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
   end
 
@@ -1570,9 +1309,6 @@ RubyLint.registry.register('Errno') do |defs|
 
   defs.define_constant('Errno::ENOSYS') do |klass|
     klass.inherits(defs.constant_proxy('SystemCallError'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
   end
 
@@ -1588,9 +1324,6 @@ RubyLint.registry.register('Errno') do |defs|
 
   defs.define_constant('Errno::ENOTBLK') do |klass|
     klass.inherits(defs.constant_proxy('SystemCallError'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
   end
 
@@ -1606,9 +1339,6 @@ RubyLint.registry.register('Errno') do |defs|
 
   defs.define_constant('Errno::ENOTCONN') do |klass|
     klass.inherits(defs.constant_proxy('SystemCallError'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
   end
 
@@ -1624,9 +1354,6 @@ RubyLint.registry.register('Errno') do |defs|
 
   defs.define_constant('Errno::ENOTDIR') do |klass|
     klass.inherits(defs.constant_proxy('SystemCallError'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
   end
 
@@ -1642,9 +1369,6 @@ RubyLint.registry.register('Errno') do |defs|
 
   defs.define_constant('Errno::ENOTEMPTY') do |klass|
     klass.inherits(defs.constant_proxy('SystemCallError'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
   end
 
@@ -1660,9 +1384,6 @@ RubyLint.registry.register('Errno') do |defs|
 
   defs.define_constant('Errno::ENOTNAM') do |klass|
     klass.inherits(defs.constant_proxy('SystemCallError'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
   end
 
@@ -1678,9 +1399,6 @@ RubyLint.registry.register('Errno') do |defs|
 
   defs.define_constant('Errno::ENOTRECOVERABLE') do |klass|
     klass.inherits(defs.constant_proxy('SystemCallError'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
   end
 
@@ -1696,9 +1414,6 @@ RubyLint.registry.register('Errno') do |defs|
 
   defs.define_constant('Errno::ENOTSOCK') do |klass|
     klass.inherits(defs.constant_proxy('SystemCallError'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
   end
 
@@ -1714,9 +1429,6 @@ RubyLint.registry.register('Errno') do |defs|
 
   defs.define_constant('Errno::ENOTTY') do |klass|
     klass.inherits(defs.constant_proxy('SystemCallError'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
   end
 
@@ -1732,9 +1444,6 @@ RubyLint.registry.register('Errno') do |defs|
 
   defs.define_constant('Errno::ENOTUNIQ') do |klass|
     klass.inherits(defs.constant_proxy('SystemCallError'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
   end
 
@@ -1750,9 +1459,6 @@ RubyLint.registry.register('Errno') do |defs|
 
   defs.define_constant('Errno::ENXIO') do |klass|
     klass.inherits(defs.constant_proxy('SystemCallError'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
   end
 
@@ -1768,9 +1474,6 @@ RubyLint.registry.register('Errno') do |defs|
 
   defs.define_constant('Errno::EOPNOTSUPP') do |klass|
     klass.inherits(defs.constant_proxy('SystemCallError'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
   end
 
@@ -1786,9 +1489,6 @@ RubyLint.registry.register('Errno') do |defs|
 
   defs.define_constant('Errno::EOVERFLOW') do |klass|
     klass.inherits(defs.constant_proxy('SystemCallError'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
   end
 
@@ -1804,9 +1504,6 @@ RubyLint.registry.register('Errno') do |defs|
 
   defs.define_constant('Errno::EOWNERDEAD') do |klass|
     klass.inherits(defs.constant_proxy('SystemCallError'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
   end
 
@@ -1822,9 +1519,6 @@ RubyLint.registry.register('Errno') do |defs|
 
   defs.define_constant('Errno::EPERM') do |klass|
     klass.inherits(defs.constant_proxy('SystemCallError'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
   end
 
@@ -1840,9 +1534,6 @@ RubyLint.registry.register('Errno') do |defs|
 
   defs.define_constant('Errno::EPFNOSUPPORT') do |klass|
     klass.inherits(defs.constant_proxy('SystemCallError'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
   end
 
@@ -1858,9 +1549,6 @@ RubyLint.registry.register('Errno') do |defs|
 
   defs.define_constant('Errno::EPIPE') do |klass|
     klass.inherits(defs.constant_proxy('SystemCallError'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
   end
 
@@ -1876,9 +1564,6 @@ RubyLint.registry.register('Errno') do |defs|
 
   defs.define_constant('Errno::EPROTO') do |klass|
     klass.inherits(defs.constant_proxy('SystemCallError'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
   end
 
@@ -1894,9 +1579,6 @@ RubyLint.registry.register('Errno') do |defs|
 
   defs.define_constant('Errno::EPROTONOSUPPORT') do |klass|
     klass.inherits(defs.constant_proxy('SystemCallError'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
   end
 
@@ -1912,9 +1594,6 @@ RubyLint.registry.register('Errno') do |defs|
 
   defs.define_constant('Errno::EPROTOTYPE') do |klass|
     klass.inherits(defs.constant_proxy('SystemCallError'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
   end
 
@@ -1930,9 +1609,6 @@ RubyLint.registry.register('Errno') do |defs|
 
   defs.define_constant('Errno::ERANGE') do |klass|
     klass.inherits(defs.constant_proxy('SystemCallError'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
   end
 
@@ -1948,9 +1624,6 @@ RubyLint.registry.register('Errno') do |defs|
 
   defs.define_constant('Errno::EREMCHG') do |klass|
     klass.inherits(defs.constant_proxy('SystemCallError'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
   end
 
@@ -1966,9 +1639,6 @@ RubyLint.registry.register('Errno') do |defs|
 
   defs.define_constant('Errno::EREMOTE') do |klass|
     klass.inherits(defs.constant_proxy('SystemCallError'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
   end
 
@@ -1984,9 +1654,6 @@ RubyLint.registry.register('Errno') do |defs|
 
   defs.define_constant('Errno::EREMOTEIO') do |klass|
     klass.inherits(defs.constant_proxy('SystemCallError'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
   end
 
@@ -2002,9 +1669,6 @@ RubyLint.registry.register('Errno') do |defs|
 
   defs.define_constant('Errno::ERESTART') do |klass|
     klass.inherits(defs.constant_proxy('SystemCallError'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
   end
 
@@ -2020,9 +1684,6 @@ RubyLint.registry.register('Errno') do |defs|
 
   defs.define_constant('Errno::ERFKILL') do |klass|
     klass.inherits(defs.constant_proxy('SystemCallError'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
   end
 
@@ -2038,9 +1699,6 @@ RubyLint.registry.register('Errno') do |defs|
 
   defs.define_constant('Errno::EROFS') do |klass|
     klass.inherits(defs.constant_proxy('SystemCallError'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
   end
 
@@ -2056,9 +1714,6 @@ RubyLint.registry.register('Errno') do |defs|
 
   defs.define_constant('Errno::ESHUTDOWN') do |klass|
     klass.inherits(defs.constant_proxy('SystemCallError'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
   end
 
@@ -2074,9 +1729,6 @@ RubyLint.registry.register('Errno') do |defs|
 
   defs.define_constant('Errno::ESOCKTNOSUPPORT') do |klass|
     klass.inherits(defs.constant_proxy('SystemCallError'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
   end
 
@@ -2092,9 +1744,6 @@ RubyLint.registry.register('Errno') do |defs|
 
   defs.define_constant('Errno::ESPIPE') do |klass|
     klass.inherits(defs.constant_proxy('SystemCallError'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
   end
 
@@ -2110,9 +1759,6 @@ RubyLint.registry.register('Errno') do |defs|
 
   defs.define_constant('Errno::ESRCH') do |klass|
     klass.inherits(defs.constant_proxy('SystemCallError'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
   end
 
@@ -2128,9 +1774,6 @@ RubyLint.registry.register('Errno') do |defs|
 
   defs.define_constant('Errno::ESRMNT') do |klass|
     klass.inherits(defs.constant_proxy('SystemCallError'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
   end
 
@@ -2146,9 +1789,6 @@ RubyLint.registry.register('Errno') do |defs|
 
   defs.define_constant('Errno::ESTALE') do |klass|
     klass.inherits(defs.constant_proxy('SystemCallError'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
   end
 
@@ -2164,9 +1804,6 @@ RubyLint.registry.register('Errno') do |defs|
 
   defs.define_constant('Errno::ESTRPIPE') do |klass|
     klass.inherits(defs.constant_proxy('SystemCallError'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
   end
 
@@ -2182,9 +1819,6 @@ RubyLint.registry.register('Errno') do |defs|
 
   defs.define_constant('Errno::ETIME') do |klass|
     klass.inherits(defs.constant_proxy('SystemCallError'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
   end
 
@@ -2200,9 +1834,6 @@ RubyLint.registry.register('Errno') do |defs|
 
   defs.define_constant('Errno::ETIMEDOUT') do |klass|
     klass.inherits(defs.constant_proxy('SystemCallError'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
   end
 
@@ -2218,9 +1849,6 @@ RubyLint.registry.register('Errno') do |defs|
 
   defs.define_constant('Errno::ETOOMANYREFS') do |klass|
     klass.inherits(defs.constant_proxy('SystemCallError'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
   end
 
@@ -2236,9 +1864,6 @@ RubyLint.registry.register('Errno') do |defs|
 
   defs.define_constant('Errno::ETXTBSY') do |klass|
     klass.inherits(defs.constant_proxy('SystemCallError'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
   end
 
@@ -2254,9 +1879,6 @@ RubyLint.registry.register('Errno') do |defs|
 
   defs.define_constant('Errno::EUCLEAN') do |klass|
     klass.inherits(defs.constant_proxy('SystemCallError'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
   end
 
@@ -2272,9 +1894,6 @@ RubyLint.registry.register('Errno') do |defs|
 
   defs.define_constant('Errno::EUNATCH') do |klass|
     klass.inherits(defs.constant_proxy('SystemCallError'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
   end
 
@@ -2290,9 +1909,6 @@ RubyLint.registry.register('Errno') do |defs|
 
   defs.define_constant('Errno::EUSERS') do |klass|
     klass.inherits(defs.constant_proxy('SystemCallError'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
   end
 
@@ -2308,17 +1924,11 @@ RubyLint.registry.register('Errno') do |defs|
 
   defs.define_constant('Errno::EWOULDBLOCK') do |klass|
     klass.inherits(defs.constant_proxy('SystemCallError'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
   end
 
   defs.define_constant('Errno::EXDEV') do |klass|
     klass.inherits(defs.constant_proxy('SystemCallError'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
   end
 
@@ -2334,9 +1944,6 @@ RubyLint.registry.register('Errno') do |defs|
 
   defs.define_constant('Errno::EXFULL') do |klass|
     klass.inherits(defs.constant_proxy('SystemCallError'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
   end
 

@@ -8,12 +8,6 @@ RubyLint.registry.register('Socket') do |defs|
     klass.inherits(defs.constant_proxy('BasicSocket'))
     klass.inherits(defs.constant_proxy('Socket::ListenAndAccept'))
     klass.inherits(defs.constant_proxy('IO::Socketable'))
-    klass.inherits(defs.constant_proxy('Unmarshalable'))
-    klass.inherits(defs.constant_proxy('File::Constants'))
-    klass.inherits(defs.constant_proxy('Enumerable'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
     klass.define_method('get_protocol_family') do |method|
       method.define_argument('family')
@@ -231,12 +225,6 @@ RubyLint.registry.register('Socket') do |defs|
 
   defs.define_constant('Socket::BidirectionalPipe') do |klass|
     klass.inherits(defs.constant_proxy('IO'))
-    klass.inherits(defs.constant_proxy('Unmarshalable'))
-    klass.inherits(defs.constant_proxy('File::Constants'))
-    klass.inherits(defs.constant_proxy('Enumerable'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
     klass.define_instance_method('<<') do |method|
       method.define_argument('obj')
@@ -1432,18 +1420,12 @@ RubyLint.registry.register('Socket') do |defs|
   defs.define_constant('Socket::EAGAINWaitReadable') do |klass|
     klass.inherits(defs.constant_proxy('Errno::EAGAIN'))
     klass.inherits(defs.constant_proxy('IO::WaitReadable'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
   end
 
   defs.define_constant('Socket::EAGAINWaitWritable') do |klass|
     klass.inherits(defs.constant_proxy('Errno::EAGAIN'))
     klass.inherits(defs.constant_proxy('IO::WaitWritable'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
   end
 
@@ -1504,9 +1486,6 @@ RubyLint.registry.register('Socket') do |defs|
 
   defs.define_constant('Socket::EachReader') do |klass|
     klass.inherits(defs.constant_proxy('Object'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
     klass.define_instance_method('each')
 
@@ -1531,9 +1510,6 @@ RubyLint.registry.register('Socket') do |defs|
   defs.define_constant('Socket::Enumerator') do |klass|
     klass.inherits(defs.constant_proxy('Object'))
     klass.inherits(defs.constant_proxy('Enumerable'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
     klass.define_instance_method('each') do |method|
       method.define_rest_argument('args')
@@ -1774,18 +1750,12 @@ RubyLint.registry.register('Socket') do |defs|
 
   defs.define_constant('Socket::Foreign::Addrinfo') do |klass|
     klass.inherits(defs.constant_proxy('Rubinius::FFI::Struct'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
   end
 
   defs.define_constant('Socket::Foreign::Addrinfo::InlineArray') do |klass|
     klass.inherits(defs.constant_proxy('Object'))
     klass.inherits(defs.constant_proxy('Enumerable'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
     klass.define_instance_method('[]') do |method|
       method.define_argument('idx')
@@ -1814,10 +1784,6 @@ RubyLint.registry.register('Socket') do |defs|
 
   defs.define_constant('Socket::Foreign::Addrinfo::InlineCharArray') do |klass|
     klass.inherits(defs.constant_proxy('Rubinius::FFI::Struct::InlineArray'))
-    klass.inherits(defs.constant_proxy('Enumerable'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
     klass.define_instance_method('inspect')
 
@@ -1828,18 +1794,12 @@ RubyLint.registry.register('Socket') do |defs|
 
   defs.define_constant('Socket::Foreign::Linger') do |klass|
     klass.inherits(defs.constant_proxy('Rubinius::FFI::Struct'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
   end
 
   defs.define_constant('Socket::Foreign::Linger::InlineArray') do |klass|
     klass.inherits(defs.constant_proxy('Object'))
     klass.inherits(defs.constant_proxy('Enumerable'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
     klass.define_instance_method('[]') do |method|
       method.define_argument('idx')
@@ -1868,10 +1828,6 @@ RubyLint.registry.register('Socket') do |defs|
 
   defs.define_constant('Socket::Foreign::Linger::InlineCharArray') do |klass|
     klass.inherits(defs.constant_proxy('Rubinius::FFI::Struct::InlineArray'))
-    klass.inherits(defs.constant_proxy('Enumerable'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
     klass.define_instance_method('inspect')
 
@@ -2322,9 +2278,6 @@ RubyLint.registry.register('Socket') do |defs|
 
   defs.define_constant('Socket::InternalBuffer') do |klass|
     klass.inherits(defs.constant_proxy('Object'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
     klass.define_method('allocate')
 
@@ -2427,7 +2380,6 @@ RubyLint.registry.register('Socket') do |defs|
 
   defs.define_constant('Socket::ListenAndAccept') do |klass|
     klass.inherits(defs.constant_proxy('Object'))
-    klass.inherits(defs.constant_proxy('IO::Socketable'))
 
     klass.define_instance_method('accept')
 
@@ -2620,9 +2572,6 @@ RubyLint.registry.register('Socket') do |defs|
 
   defs.define_constant('Socket::Option') do |klass|
     klass.inherits(defs.constant_proxy('Object'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
     klass.define_method('bool') do |method|
       method.define_argument('family')
@@ -3017,9 +2966,6 @@ RubyLint.registry.register('Socket') do |defs|
 
   defs.define_constant('Socket::Servent') do |klass|
     klass.inherits(defs.constant_proxy('Rubinius::FFI::Struct'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
     klass.define_instance_method('initialize') do |method|
       method.define_argument('data')
@@ -3033,9 +2979,6 @@ RubyLint.registry.register('Socket') do |defs|
   defs.define_constant('Socket::Servent::InlineArray') do |klass|
     klass.inherits(defs.constant_proxy('Object'))
     klass.inherits(defs.constant_proxy('Enumerable'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
     klass.define_instance_method('[]') do |method|
       method.define_argument('idx')
@@ -3064,10 +3007,6 @@ RubyLint.registry.register('Socket') do |defs|
 
   defs.define_constant('Socket::Servent::InlineCharArray') do |klass|
     klass.inherits(defs.constant_proxy('Rubinius::FFI::Struct::InlineArray'))
-    klass.inherits(defs.constant_proxy('Enumerable'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
     klass.define_instance_method('inspect')
 
@@ -3078,9 +3017,6 @@ RubyLint.registry.register('Socket') do |defs|
 
   defs.define_constant('Socket::SockAddr_In') do |klass|
     klass.inherits(defs.constant_proxy('Rubinius::FFI::Struct'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
     klass.define_instance_method('initialize') do |method|
       method.define_argument('sockaddrin')
@@ -3094,9 +3030,6 @@ RubyLint.registry.register('Socket') do |defs|
   defs.define_constant('Socket::SockAddr_In::InlineArray') do |klass|
     klass.inherits(defs.constant_proxy('Object'))
     klass.inherits(defs.constant_proxy('Enumerable'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
     klass.define_instance_method('[]') do |method|
       method.define_argument('idx')
@@ -3125,10 +3058,6 @@ RubyLint.registry.register('Socket') do |defs|
 
   defs.define_constant('Socket::SockAddr_In::InlineCharArray') do |klass|
     klass.inherits(defs.constant_proxy('Rubinius::FFI::Struct::InlineArray'))
-    klass.inherits(defs.constant_proxy('Enumerable'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
     klass.define_instance_method('inspect')
 
@@ -3139,9 +3068,6 @@ RubyLint.registry.register('Socket') do |defs|
 
   defs.define_constant('Socket::SockAddr_Un') do |klass|
     klass.inherits(defs.constant_proxy('Rubinius::FFI::Struct'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
     klass.define_instance_method('initialize') do |method|
       method.define_optional_argument('filename')
@@ -3155,9 +3081,6 @@ RubyLint.registry.register('Socket') do |defs|
   defs.define_constant('Socket::SockAddr_Un::InlineArray') do |klass|
     klass.inherits(defs.constant_proxy('Object'))
     klass.inherits(defs.constant_proxy('Enumerable'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
     klass.define_instance_method('[]') do |method|
       method.define_argument('idx')
@@ -3186,10 +3109,6 @@ RubyLint.registry.register('Socket') do |defs|
 
   defs.define_constant('Socket::SockAddr_Un::InlineCharArray') do |klass|
     klass.inherits(defs.constant_proxy('Rubinius::FFI::Struct::InlineArray'))
-    klass.inherits(defs.constant_proxy('Enumerable'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
     klass.define_instance_method('inspect')
 
@@ -3206,9 +3125,6 @@ RubyLint.registry.register('Socket') do |defs|
 
   defs.define_constant('Socket::SortedElement') do |klass|
     klass.inherits(defs.constant_proxy('Object'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
     klass.define_instance_method('<=>') do |method|
       method.define_argument('other')
@@ -3228,9 +3144,6 @@ RubyLint.registry.register('Socket') do |defs|
 
   defs.define_constant('Socket::StreamCopier') do |klass|
     klass.inherits(defs.constant_proxy('Object'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
     klass.define_instance_method('initialize') do |method|
       method.define_argument('from')

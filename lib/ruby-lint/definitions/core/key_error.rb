@@ -6,9 +6,6 @@
 RubyLint.registry.register('KeyError') do |defs|
   defs.define_constant('KeyError') do |klass|
     klass.inherits(defs.constant_proxy('IndexError'))
-    klass.inherits(defs.constant_proxy('PP::ObjectMixin'))
-    klass.inherits(defs.constant_proxy('MakeMakefile'))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object'))
 
   end
 end
