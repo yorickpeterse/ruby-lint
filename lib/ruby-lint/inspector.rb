@@ -122,11 +122,21 @@ module RubyLint
     # @return [Array]
     #
     def inspect_modules
-      if constant.respond_to?(:included_modules)
-        return constant.included_modules
-      else
-        return []
+      modules = []
+
+      if constant.respond_to?(:ancestors)
+        parent = inspect_superclass
+
+        # Take all the modules included *directly* into the constant.
+        modules = constant.ancestors.take_while do |ancestor|
+          parent && ancestor != parent
+        end
+
+        # Get rid of non Module instances.
+        modules = modules.select { |mod| mod.instance_of?(Module) }
       end
+
+      return modules
     end
 
     ##

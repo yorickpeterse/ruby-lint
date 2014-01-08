@@ -89,13 +89,19 @@ describe RubyLint::Inspector do
 
   context 'inspecting included modules' do
     before :all do
-      klass     = Class.new { include Enumerable }
-      inspector = RubyLint::Inspector.new(klass)
-      @modules  = inspector.inspect_modules
+      klass = Class.new { include Enumerable }
+      child = Class.new(klass) { include Enumerable }
+
+      @modules       = RubyLint::Inspector.new(klass).inspect_modules
+      @child_modules = RubyLint::Inspector.new(child).inspect_modules
     end
 
     example 'include Enumerable' do
       @modules.include?(Enumerable).should == true
+    end
+
+    example 'ignore modules that are already included in the parent' do
+      @child_modules.empty?.should == true
     end
   end
 
