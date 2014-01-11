@@ -2,7 +2,14 @@ module RubyLint
   module Definition
     ##
     # The Registry class is used to register and store definitions that have
-    # to be applied to instances of {RubyLint::VirtualMachine}.
+    # to be applied to instances of {RubyLint::VirtualMachine}. It can also be
+    # used to load constant definition files from a custom load path.
+    #
+    # @!attribute [r] load_path
+    #  @return [Array] List of directories to search in for definitions.
+    #
+    # @!attribute [r] loaded_constants
+    #  @return [Set] Set containing the constants loaded from the load path.
     #
     # @!attribute [r] registered
     #  @return [Hash] Returns the registered definitions as a Hash. The keys
@@ -10,10 +17,22 @@ module RubyLint
     #   when evaluated, create the corresponding definitions.
     #
     class Registry
-      attr_reader :registered
+      attr_reader :load_path, :loaded_constants, :registered
+
+      ##
+      # The default load path to use.
+      #
+      # @return [Array]
+      #
+      DEFAULT_LOAD_PATH = [
+        File.expand_path('../../definitions/core', __FILE__),
+        File.expand_path('../../definitions/rails', __FILE__)
+      ]
 
       def initialize
-        @registered = {}
+        @registered       = {}
+        @load_path        = DEFAULT_LOAD_PATH.dup
+        @loaded_constants = Set.new
       end
 
       ##
@@ -60,6 +79,41 @@ module RubyLint
       #
       def apply(constant, definitions)
         get(constant).call(definitions)
+      end
+
+      ##
+      # Tries to find a definition in the current load path and loads it if
+      # found.
+      #
+      # @param [String] constant The name of the top level constant.
+      #
+      def load(constant)
+        if loaded_constants.include?(constant) or include?(constant)
+          return
+        end
+
+        filename = file_for_constant(constant)
+
+        load_path.each do |dir|
+          filepath = File.join(dir, filename)
+
+          if File.file?(filepath)
+            require(filepath)
+            loaded_constants << constant
+
+            break
+          end
+        end
+      end
+
+      private
+
+      ##
+      # @param [String] constant
+      # @return [String]
+      #
+      def file_for_constant(constant)
+        return constant.snake_case + '.rb'
       end
     end # Registry
   end # Definition

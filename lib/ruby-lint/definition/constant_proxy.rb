@@ -83,7 +83,14 @@ module RubyLint
       # @return [TrueClass|FalseClass]
       #
       def use_registry?(constant)
-        return registry && registry.include?(constant)
+        return false unless registry
+
+        # Don't load the constant if we already have it.
+        return true if registry.include?(constant)
+
+        registry.load(constant)
+
+        return registry.include?(constant)
       end
 
       ##

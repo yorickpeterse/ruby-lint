@@ -62,4 +62,35 @@ describe RubyLint::Definition::Registry do
       @root.lookup(:const, 'Foo').has_definition?(:method, 'bar').should == true
     end
   end
+
+  context 'managing load paths' do
+    before do
+      @registry = RubyLint::Definition::Registry.new
+    end
+
+    example 'use the default load path' do
+      @registry.load_path
+        .should == RubyLint::Definition::Registry::DEFAULT_LOAD_PATH
+    end
+
+    example 'add a path to the load path' do
+      @registry.load_path << 'foo'
+
+      @registry.load_path.include?('foo').should == true
+    end
+  end
+
+  context 'loading constant definitions from the load path' do
+    before do
+      RubyLint.registry.load('Rational')
+    end
+
+    example 'load the String constant' do
+      RubyLint.registry.loaded_constants.include?('Rational').should == true
+    end
+
+    example 'register the String definition' do
+      RubyLint.registry.include?('Rational').should == true
+    end
+  end
 end

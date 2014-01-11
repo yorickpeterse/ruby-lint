@@ -56,4 +56,30 @@ describe RubyLint::Definition::ConstantProxy do
       @proxy.lookup(:const, 'Foo').is_a?(ruby_object).should == true
     end
   end
+
+  context 'loading definitions automatically' do
+    before do
+      @source   = ruby_object.new
+      @registry = RubyLint::Definition::Registry.new
+
+      @proxy = RubyLint::Definition::ConstantProxy
+        .new(@source, 'ActionController', @registry)
+    end
+
+    example 'load a definition from the filesystem' do
+      @registry.should_receive(:load).with('ActionController')
+
+      @proxy.lookup(:const, 'Foo')
+    end
+
+    example 'do not load the definition when it is already loaded' do
+      @registry.should_not receive(:load)
+
+      @registry.register('ActionController') do |defs|
+        defs.define_constant('ActionController')
+      end
+
+      @proxy.lookup(:const, 'Foo')
+    end
+  end
 end

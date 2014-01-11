@@ -14,7 +14,7 @@ describe RubyLint::VirtualMachine do
     end
 
     example 'include built-in Rails definitions' do
-      @controller.has_definition?(:method, 'protect_from_forgery')
+      @controller.has_definition?(:method, 'allow_forgery_protection')
         .should == true
     end
   end

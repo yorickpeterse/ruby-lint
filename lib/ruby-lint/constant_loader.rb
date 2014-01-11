@@ -95,7 +95,11 @@ module RubyLint
     # @param [String] constant
     #
     def load_constant(constant)
-      if loaded?(constant) or !RubyLint.registry.registered.key?(constant)
+      return if loaded?(constant)
+
+      RubyLint.registry.load(constant)
+
+      unless RubyLint.registry.include?(constant)
         return
       end
 
