@@ -1,11 +1,16 @@
 # This file was automatically generated, any manual changes will be lost the
 # next time this file is generated.
 #
-# Platform: rbx 2.2.3.n364
+# Platform: rbx 2.2.3.n9
 
 RubyLint.registry.register('AbstractController') do |defs|
   defs.define_constant('AbstractController') do |klass|
     klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
+
+  end
+
+  defs.define_constant('AbstractController::ActionNotFound') do |klass|
+    klass.inherits(defs.constant_proxy('StandardError', RubyLint.registry))
 
   end
 
@@ -17,8 +22,6 @@ RubyLint.registry.register('AbstractController') do |defs|
   defs.define_constant('AbstractController::Base') do |klass|
     klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
     klass.inherits(defs.constant_proxy('ActiveSupport::Configurable', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object', RubyLint.registry))
 
     klass.define_method('abstract')
 
@@ -89,10 +92,6 @@ RubyLint.registry.register('AbstractController') do |defs|
 
   defs.define_constant('AbstractController::Base::Configuration') do |klass|
     klass.inherits(defs.constant_proxy('ActiveSupport::InheritableOptions', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Hash', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('Enumerable', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object', RubyLint.registry))
 
     klass.define_method('compile_methods!') do |method|
       method.define_argument('keys')
@@ -368,6 +367,26 @@ RubyLint.registry.register('AbstractController') do |defs|
     end
   end
 
+  defs.define_constant('AbstractController::DoubleRenderError') do |klass|
+    klass.inherits(defs.constant_proxy('AbstractController::Error', RubyLint.registry))
+
+    klass.define_instance_method('initialize') do |method|
+      method.define_optional_argument('message')
+
+      method.returns { |object| object.instance }
+    end
+  end
+
+  defs.define_constant('AbstractController::DoubleRenderError::DEFAULT_MESSAGE') do |klass|
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
+
+  end
+
+  defs.define_constant('AbstractController::Error') do |klass|
+    klass.inherits(defs.constant_proxy('StandardError', RubyLint.registry))
+
+  end
+
   defs.define_constant('AbstractController::Helpers') do |klass|
     klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
@@ -398,9 +417,6 @@ RubyLint.registry.register('AbstractController') do |defs|
 
   defs.define_constant('AbstractController::Helpers::ClassMethods::MissingHelperError') do |klass|
     klass.inherits(defs.constant_proxy('LoadError', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Blamable', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object', RubyLint.registry))
 
     klass.define_instance_method('initialize') do |method|
       method.define_argument('error')
@@ -412,23 +428,38 @@ RubyLint.registry.register('AbstractController') do |defs|
 
   defs.define_constant('AbstractController::Helpers::ClassMethods::MissingHelperError::InvalidExtensionError') do |klass|
     klass.inherits(defs.constant_proxy('LoadError', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Blamable', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object', RubyLint.registry))
 
   end
 
   defs.define_constant('AbstractController::Helpers::ClassMethods::MissingHelperError::MRIExtensionError') do |klass|
     klass.inherits(defs.constant_proxy('LoadError::InvalidExtensionError', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Blamable', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object', RubyLint.registry))
 
   end
 
   defs.define_constant('AbstractController::Helpers::ClassMethods::MissingHelperError::REGEXPS') do |klass|
     klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
+  end
+
+  defs.define_constant('AbstractController::I18nProxy') do |klass|
+    klass.inherits(defs.constant_proxy('I18n::Config', RubyLint.registry))
+
+    klass.define_instance_method('initialize') do |method|
+      method.define_argument('original_config')
+      method.define_argument('lookup_context')
+
+      method.returns { |object| object.instance }
+    end
+
+    klass.define_instance_method('locale')
+
+    klass.define_instance_method('locale=') do |method|
+      method.define_argument('value')
+    end
+
+    klass.define_instance_method('lookup_context')
+
+    klass.define_instance_method('original_config')
   end
 
   defs.define_constant('AbstractController::Layouts') do |klass|

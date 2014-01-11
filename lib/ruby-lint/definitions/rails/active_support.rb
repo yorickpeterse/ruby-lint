@@ -1,7 +1,7 @@
 # This file was automatically generated, any manual changes will be lost the
 # next time this file is generated.
 #
-# Platform: rbx 2.2.3.n364
+# Platform: rbx 2.2.3.n9
 
 RubyLint.registry.register('ActiveSupport') do |defs|
   defs.define_constant('ActiveSupport') do |klass|
@@ -95,8 +95,6 @@ RubyLint.registry.register('ActiveSupport') do |defs|
 
   defs.define_constant('ActiveSupport::BacktraceCleaner') do |klass|
     klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object', RubyLint.registry))
 
     klass.define_instance_method('add_filter') do |method|
       method.define_block_argument('block')
@@ -157,8 +155,6 @@ RubyLint.registry.register('ActiveSupport') do |defs|
 
   defs.define_constant('ActiveSupport::Cache::Entry') do |klass|
     klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object', RubyLint.registry))
 
     klass.define_instance_method('dup_value!')
 
@@ -189,8 +185,6 @@ RubyLint.registry.register('ActiveSupport') do |defs|
 
   defs.define_constant('ActiveSupport::Cache::FileStore') do |klass|
     klass.inherits(defs.constant_proxy('ActiveSupport::Cache::Store', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object', RubyLint.registry))
 
     klass.define_instance_method('cache_path')
 
@@ -260,8 +254,6 @@ RubyLint.registry.register('ActiveSupport') do |defs|
 
   defs.define_constant('ActiveSupport::Cache::MemCacheStore') do |klass|
     klass.inherits(defs.constant_proxy('ActiveSupport::Cache::Store', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object', RubyLint.registry))
 
     klass.define_method('build_mem_cache') do |method|
       method.define_rest_argument('addresses')
@@ -334,8 +326,6 @@ RubyLint.registry.register('ActiveSupport') do |defs|
 
   defs.define_constant('ActiveSupport::Cache::MemoryStore') do |klass|
     klass.inherits(defs.constant_proxy('ActiveSupport::Cache::Store', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object', RubyLint.registry))
 
     klass.define_instance_method('cached_size') do |method|
       method.define_argument('key')
@@ -410,8 +400,6 @@ RubyLint.registry.register('ActiveSupport') do |defs|
 
   defs.define_constant('ActiveSupport::Cache::NullStore') do |klass|
     klass.inherits(defs.constant_proxy('ActiveSupport::Cache::Store', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object', RubyLint.registry))
 
     klass.define_instance_method('cleanup') do |method|
       method.define_optional_argument('options')
@@ -463,8 +451,6 @@ RubyLint.registry.register('ActiveSupport') do |defs|
 
   defs.define_constant('ActiveSupport::Cache::Store') do |klass|
     klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object', RubyLint.registry))
 
     klass.define_method('instrument')
 
@@ -628,8 +614,6 @@ RubyLint.registry.register('ActiveSupport') do |defs|
 
   defs.define_constant('ActiveSupport::Cache::Strategy::LocalCache::LocalCacheRegistry') do |klass|
     klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object', RubyLint.registry))
 
     klass.define_instance_method('cache_for') do |method|
       method.define_argument('local_cache_key')
@@ -645,8 +629,6 @@ RubyLint.registry.register('ActiveSupport') do |defs|
 
   defs.define_constant('ActiveSupport::Cache::Strategy::LocalCache::LocalStore') do |klass|
     klass.inherits(defs.constant_proxy('ActiveSupport::Cache::Store', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object', RubyLint.registry))
 
     klass.define_instance_method('clear') do |method|
       method.define_optional_argument('options')
@@ -675,8 +657,6 @@ RubyLint.registry.register('ActiveSupport') do |defs|
 
   defs.define_constant('ActiveSupport::Cache::Strategy::LocalCache::Middleware') do |klass|
     klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object', RubyLint.registry))
 
     klass.define_instance_method('call') do |method|
       method.define_argument('env')
@@ -705,8 +685,6 @@ RubyLint.registry.register('ActiveSupport') do |defs|
 
   defs.define_constant('ActiveSupport::CachingKeyGenerator') do |klass|
     klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object', RubyLint.registry))
 
     klass.define_instance_method('generate_key') do |method|
       method.define_argument('salt')
@@ -736,8 +714,6 @@ RubyLint.registry.register('ActiveSupport') do |defs|
 
   defs.define_constant('ActiveSupport::Callbacks::Callback') do |klass|
     klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object', RubyLint.registry))
 
     klass.define_instance_method('_update_filter') do |method|
       method.define_argument('filter_options')
@@ -1160,8 +1136,6 @@ RubyLint.registry.register('ActiveSupport') do |defs|
 
   defs.define_constant('ActiveSupport::Dependencies::ClassCache') do |klass|
     klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object', RubyLint.registry))
 
     klass.define_instance_method('[]') do |method|
       method.define_argument('key')
@@ -1252,8 +1226,6 @@ RubyLint.registry.register('ActiveSupport') do |defs|
   defs.define_constant('ActiveSupport::Dependencies::WatchStack') do |klass|
     klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
     klass.inherits(defs.constant_proxy('Enumerable', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object', RubyLint.registry))
 
     klass.define_instance_method('each') do |method|
       method.define_block_argument('block')
@@ -1273,8 +1245,6 @@ RubyLint.registry.register('ActiveSupport') do |defs|
   defs.define_constant('ActiveSupport::Dependencies::WatchStack::Enumerator') do |klass|
     klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
     klass.inherits(defs.constant_proxy('Enumerable', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object', RubyLint.registry))
 
     klass.define_instance_method('each') do |method|
       method.define_rest_argument('args')
@@ -1309,8 +1279,6 @@ RubyLint.registry.register('ActiveSupport') do |defs|
 
   defs.define_constant('ActiveSupport::Dependencies::WatchStack::SortedElement') do |klass|
     klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object', RubyLint.registry))
 
     klass.define_instance_method('<=>') do |method|
       method.define_argument('other')
@@ -1335,8 +1303,6 @@ RubyLint.registry.register('ActiveSupport') do |defs|
     klass.inherits(defs.constant_proxy('ActiveSupport::Deprecation::Behavior', RubyLint.registry))
     klass.inherits(defs.constant_proxy('ActiveSupport::Deprecation::InstanceDelegator', RubyLint.registry))
     klass.inherits(defs.constant_proxy('Singleton', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object', RubyLint.registry))
 
     klass.define_method('behavior') do |method|
       method.define_rest_argument('args')
@@ -1461,8 +1427,6 @@ RubyLint.registry.register('ActiveSupport') do |defs|
 
   defs.define_constant('ActiveSupport::Deprecation::DeprecatedConstantProxy') do |klass|
     klass.inherits(defs.constant_proxy('ActiveSupport::Deprecation::DeprecationProxy', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object', RubyLint.registry))
 
     klass.define_instance_method('class')
 
@@ -1477,8 +1441,6 @@ RubyLint.registry.register('ActiveSupport') do |defs|
 
   defs.define_constant('ActiveSupport::Deprecation::DeprecatedInstanceVariableProxy') do |klass|
     klass.inherits(defs.constant_proxy('ActiveSupport::Deprecation::DeprecationProxy', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object', RubyLint.registry))
 
     klass.define_instance_method('initialize') do |method|
       method.define_argument('instance')
@@ -1492,8 +1454,6 @@ RubyLint.registry.register('ActiveSupport') do |defs|
 
   defs.define_constant('ActiveSupport::Deprecation::DeprecatedObjectProxy') do |klass|
     klass.inherits(defs.constant_proxy('ActiveSupport::Deprecation::DeprecationProxy', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object', RubyLint.registry))
 
     klass.define_instance_method('initialize') do |method|
       method.define_argument('object')
@@ -1506,8 +1466,6 @@ RubyLint.registry.register('ActiveSupport') do |defs|
 
   defs.define_constant('ActiveSupport::Deprecation::DeprecationProxy') do |klass|
     klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object', RubyLint.registry))
 
     klass.define_method('new') do |method|
       method.define_rest_argument('args')
@@ -1585,9 +1543,6 @@ RubyLint.registry.register('ActiveSupport') do |defs|
 
   defs.define_constant('ActiveSupport::DeprecationException') do |klass|
     klass.inherits(defs.constant_proxy('StandardError', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Blamable', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object', RubyLint.registry))
 
   end
 
@@ -1692,8 +1647,6 @@ RubyLint.registry.register('ActiveSupport') do |defs|
 
   defs.define_constant('ActiveSupport::FileUpdateChecker') do |klass|
     klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object', RubyLint.registry))
 
     klass.define_instance_method('execute')
 
@@ -1726,11 +1679,6 @@ RubyLint.registry.register('ActiveSupport') do |defs|
 
   defs.define_constant('ActiveSupport::Gzip::Stream') do |klass|
     klass.inherits(defs.constant_proxy('StringIO', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('IO::Readable', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('IO::Writable', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('Enumerable', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object', RubyLint.registry))
 
     klass.define_instance_method('close')
 
@@ -1743,8 +1691,6 @@ RubyLint.registry.register('ActiveSupport') do |defs|
 
   defs.define_constant('ActiveSupport::Gzip::Stream::Data') do |klass|
     klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object', RubyLint.registry))
 
     klass.define_instance_method('encoding')
 
@@ -1772,8 +1718,6 @@ RubyLint.registry.register('ActiveSupport') do |defs|
   defs.define_constant('ActiveSupport::Gzip::Stream::Enumerator') do |klass|
     klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
     klass.inherits(defs.constant_proxy('Enumerable', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object', RubyLint.registry))
 
     klass.define_instance_method('each') do |method|
       method.define_rest_argument('args')
@@ -1808,8 +1752,6 @@ RubyLint.registry.register('ActiveSupport') do |defs|
 
   defs.define_constant('ActiveSupport::Gzip::Stream::SortedElement') do |klass|
     klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object', RubyLint.registry))
 
     klass.define_instance_method('<=>') do |method|
       method.define_argument('other')
@@ -1834,10 +1776,6 @@ RubyLint.registry.register('ActiveSupport') do |defs|
 
   defs.define_constant('ActiveSupport::HashWithIndifferentAccess') do |klass|
     klass.inherits(defs.constant_proxy('Hash', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Hash', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('Enumerable', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object', RubyLint.registry))
 
     klass.define_method('[]') do |method|
       method.define_rest_argument('args')
@@ -1966,8 +1904,6 @@ RubyLint.registry.register('ActiveSupport') do |defs|
 
   defs.define_constant('ActiveSupport::HashWithIndifferentAccess::Bucket') do |klass|
     klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object', RubyLint.registry))
 
     klass.define_instance_method('delete') do |method|
       method.define_argument('key')
@@ -2017,8 +1953,6 @@ RubyLint.registry.register('ActiveSupport') do |defs|
   defs.define_constant('ActiveSupport::HashWithIndifferentAccess::Entries') do |klass|
     klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
     klass.inherits(defs.constant_proxy('Enumerable', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object', RubyLint.registry))
 
     klass.define_method('[]') do |method|
       method.define_rest_argument('args')
@@ -2146,8 +2080,6 @@ RubyLint.registry.register('ActiveSupport') do |defs|
   defs.define_constant('ActiveSupport::HashWithIndifferentAccess::Enumerator') do |klass|
     klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
     klass.inherits(defs.constant_proxy('Enumerable', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object', RubyLint.registry))
 
     klass.define_instance_method('each') do |method|
       method.define_rest_argument('args')
@@ -2182,8 +2114,6 @@ RubyLint.registry.register('ActiveSupport') do |defs|
 
   defs.define_constant('ActiveSupport::HashWithIndifferentAccess::Iterator') do |klass|
     klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object', RubyLint.registry))
 
     klass.define_instance_method('initialize') do |method|
       method.define_argument('state')
@@ -2208,8 +2138,6 @@ RubyLint.registry.register('ActiveSupport') do |defs|
 
   defs.define_constant('ActiveSupport::HashWithIndifferentAccess::SortedElement') do |klass|
     klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object', RubyLint.registry))
 
     klass.define_instance_method('<=>') do |method|
       method.define_argument('other')
@@ -2229,8 +2157,6 @@ RubyLint.registry.register('ActiveSupport') do |defs|
 
   defs.define_constant('ActiveSupport::HashWithIndifferentAccess::State') do |klass|
     klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object', RubyLint.registry))
 
     klass.define_method('from') do |method|
       method.define_argument('state')
@@ -2346,8 +2272,6 @@ RubyLint.registry.register('ActiveSupport') do |defs|
 
   defs.define_constant('ActiveSupport::Inflector::Inflections') do |klass|
     klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object', RubyLint.registry))
 
     klass.define_method('instance') do |method|
       method.define_optional_argument('locale')
@@ -2402,10 +2326,6 @@ RubyLint.registry.register('ActiveSupport') do |defs|
 
   defs.define_constant('ActiveSupport::InheritableOptions') do |klass|
     klass.inherits(defs.constant_proxy('ActiveSupport::OrderedOptions', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Hash', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('Enumerable', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object', RubyLint.registry))
 
     klass.define_instance_method('inheritable_copy')
 
@@ -2418,8 +2338,6 @@ RubyLint.registry.register('ActiveSupport') do |defs|
 
   defs.define_constant('ActiveSupport::InheritableOptions::Bucket') do |klass|
     klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object', RubyLint.registry))
 
     klass.define_instance_method('delete') do |method|
       method.define_argument('key')
@@ -2469,8 +2387,6 @@ RubyLint.registry.register('ActiveSupport') do |defs|
   defs.define_constant('ActiveSupport::InheritableOptions::Entries') do |klass|
     klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
     klass.inherits(defs.constant_proxy('Enumerable', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object', RubyLint.registry))
 
     klass.define_method('[]') do |method|
       method.define_rest_argument('args')
@@ -2598,8 +2514,6 @@ RubyLint.registry.register('ActiveSupport') do |defs|
   defs.define_constant('ActiveSupport::InheritableOptions::Enumerator') do |klass|
     klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
     klass.inherits(defs.constant_proxy('Enumerable', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object', RubyLint.registry))
 
     klass.define_instance_method('each') do |method|
       method.define_rest_argument('args')
@@ -2634,8 +2548,6 @@ RubyLint.registry.register('ActiveSupport') do |defs|
 
   defs.define_constant('ActiveSupport::InheritableOptions::Iterator') do |klass|
     klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object', RubyLint.registry))
 
     klass.define_instance_method('initialize') do |method|
       method.define_argument('state')
@@ -2660,8 +2572,6 @@ RubyLint.registry.register('ActiveSupport') do |defs|
 
   defs.define_constant('ActiveSupport::InheritableOptions::SortedElement') do |klass|
     klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object', RubyLint.registry))
 
     klass.define_instance_method('<=>') do |method|
       method.define_argument('other')
@@ -2681,8 +2591,6 @@ RubyLint.registry.register('ActiveSupport') do |defs|
 
   defs.define_constant('ActiveSupport::InheritableOptions::State') do |klass|
     klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object', RubyLint.registry))
 
     klass.define_method('from') do |method|
       method.define_argument('state')
@@ -2775,9 +2683,6 @@ RubyLint.registry.register('ActiveSupport') do |defs|
 
   defs.define_constant('ActiveSupport::JSON::Encoding::CircularReferenceError') do |klass|
     klass.inherits(defs.constant_proxy('StandardError', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Blamable', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object', RubyLint.registry))
 
   end
 
@@ -2788,8 +2693,6 @@ RubyLint.registry.register('ActiveSupport') do |defs|
 
   defs.define_constant('ActiveSupport::JSON::Encoding::Encoder') do |klass|
     klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object', RubyLint.registry))
 
     klass.define_instance_method('as_json') do |method|
       method.define_argument('value')
@@ -2820,10 +2723,6 @@ RubyLint.registry.register('ActiveSupport') do |defs|
 
   defs.define_constant('ActiveSupport::JSON::Variable') do |klass|
     klass.inherits(defs.constant_proxy('String', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::String', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('Comparable', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object', RubyLint.registry))
 
     klass.define_instance_method('as_json') do |method|
       method.define_optional_argument('options')
@@ -2842,8 +2741,6 @@ RubyLint.registry.register('ActiveSupport') do |defs|
 
   defs.define_constant('ActiveSupport::JSON::Variable::Complexifier') do |klass|
     klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object', RubyLint.registry))
 
     klass.define_instance_method('convert')
 
@@ -2872,8 +2769,6 @@ RubyLint.registry.register('ActiveSupport') do |defs|
 
   defs.define_constant('ActiveSupport::JSON::Variable::Rationalizer') do |klass|
     klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object', RubyLint.registry))
 
     klass.define_instance_method('convert')
 
@@ -2886,8 +2781,6 @@ RubyLint.registry.register('ActiveSupport') do |defs|
 
   defs.define_constant('ActiveSupport::KeyGenerator') do |klass|
     klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object', RubyLint.registry))
 
     klass.define_instance_method('generate_key') do |method|
       method.define_argument('salt')
@@ -2904,8 +2797,6 @@ RubyLint.registry.register('ActiveSupport') do |defs|
 
   defs.define_constant('ActiveSupport::LegacyKeyGenerator') do |klass|
     klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object', RubyLint.registry))
 
     klass.define_instance_method('generate_key') do |method|
       method.define_argument('salt')
@@ -2925,8 +2816,6 @@ RubyLint.registry.register('ActiveSupport') do |defs|
 
   defs.define_constant('ActiveSupport::LogSubscriber') do |klass|
     klass.inherits(defs.constant_proxy('ActiveSupport::Subscriber', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object', RubyLint.registry))
 
     klass.define_method('colorize_logging')
 
@@ -3052,9 +2941,6 @@ RubyLint.registry.register('ActiveSupport') do |defs|
   defs.define_constant('ActiveSupport::Logger') do |klass|
     klass.inherits(defs.constant_proxy('Logger', RubyLint.registry))
     klass.inherits(defs.constant_proxy('LoggerSilence', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('Logger::Severity', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object', RubyLint.registry))
 
     klass.define_method('broadcast') do |method|
       method.define_argument('logger')
@@ -3082,8 +2968,6 @@ RubyLint.registry.register('ActiveSupport') do |defs|
   defs.define_constant('ActiveSupport::Logger::Application') do |klass|
     klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
     klass.inherits(defs.constant_proxy('Logger::Severity', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object', RubyLint.registry))
 
     klass.define_instance_method('appname')
 
@@ -3134,9 +3018,6 @@ RubyLint.registry.register('ActiveSupport') do |defs|
 
   defs.define_constant('ActiveSupport::Logger::Error') do |klass|
     klass.inherits(defs.constant_proxy('RuntimeError', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Blamable', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object', RubyLint.registry))
 
   end
 
@@ -3147,8 +3028,6 @@ RubyLint.registry.register('ActiveSupport') do |defs|
 
   defs.define_constant('ActiveSupport::Logger::Formatter') do |klass|
     klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object', RubyLint.registry))
 
     klass.define_instance_method('call') do |method|
       method.define_argument('severity')
@@ -3171,8 +3050,6 @@ RubyLint.registry.register('ActiveSupport') do |defs|
 
   defs.define_constant('ActiveSupport::Logger::LogDevice') do |klass|
     klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object', RubyLint.registry))
 
     klass.define_instance_method('close')
 
@@ -3209,16 +3086,11 @@ RubyLint.registry.register('ActiveSupport') do |defs|
 
   defs.define_constant('ActiveSupport::Logger::ShiftingError') do |klass|
     klass.inherits(defs.constant_proxy('Logger::Error', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Blamable', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object', RubyLint.registry))
 
   end
 
   defs.define_constant('ActiveSupport::Logger::SimpleFormatter') do |klass|
     klass.inherits(defs.constant_proxy('Logger::Formatter', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object', RubyLint.registry))
 
     klass.define_instance_method('call') do |method|
       method.define_argument('severity')
@@ -3250,8 +3122,6 @@ RubyLint.registry.register('ActiveSupport') do |defs|
 
   defs.define_constant('ActiveSupport::MessageEncryptor') do |klass|
     klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object', RubyLint.registry))
 
     klass.define_instance_method('decrypt_and_verify') do |method|
       method.define_argument('value')
@@ -3271,9 +3141,6 @@ RubyLint.registry.register('ActiveSupport') do |defs|
 
   defs.define_constant('ActiveSupport::MessageEncryptor::InvalidMessage') do |klass|
     klass.inherits(defs.constant_proxy('StandardError', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Blamable', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object', RubyLint.registry))
 
   end
 
@@ -3291,16 +3158,11 @@ RubyLint.registry.register('ActiveSupport') do |defs|
 
   defs.define_constant('ActiveSupport::MessageEncryptor::OpenSSLCipherError') do |klass|
     klass.inherits(defs.constant_proxy('OpenSSL::OpenSSLError', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Blamable', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object', RubyLint.registry))
 
   end
 
   defs.define_constant('ActiveSupport::MessageVerifier') do |klass|
     klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object', RubyLint.registry))
 
     klass.define_instance_method('generate') do |method|
       method.define_argument('value')
@@ -3320,9 +3182,6 @@ RubyLint.registry.register('ActiveSupport') do |defs|
 
   defs.define_constant('ActiveSupport::MessageVerifier::InvalidSignature') do |klass|
     klass.inherits(defs.constant_proxy('StandardError', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Blamable', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object', RubyLint.registry))
 
   end
 
@@ -3387,8 +3246,6 @@ RubyLint.registry.register('ActiveSupport') do |defs|
 
   defs.define_constant('ActiveSupport::Notifications::Event') do |klass|
     klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object', RubyLint.registry))
 
     klass.define_instance_method('<<') do |method|
       method.define_argument('event')
@@ -3428,8 +3285,6 @@ RubyLint.registry.register('ActiveSupport') do |defs|
   defs.define_constant('ActiveSupport::Notifications::Fanout') do |klass|
     klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
     klass.inherits(defs.constant_proxy('Mutex_m', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object', RubyLint.registry))
 
     klass.define_instance_method('finish') do |method|
       method.define_argument('name')
@@ -3495,8 +3350,6 @@ RubyLint.registry.register('ActiveSupport') do |defs|
 
   defs.define_constant('ActiveSupport::Notifications::Fanout::Subscribers::AllMessages') do |klass|
     klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object', RubyLint.registry))
 
     klass.define_instance_method('finish') do |method|
       method.define_argument('name')
@@ -3532,8 +3385,6 @@ RubyLint.registry.register('ActiveSupport') do |defs|
 
   defs.define_constant('ActiveSupport::Notifications::Fanout::Subscribers::Evented') do |klass|
     klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object', RubyLint.registry))
 
     klass.define_instance_method('finish') do |method|
       method.define_argument('name')
@@ -3570,8 +3421,6 @@ RubyLint.registry.register('ActiveSupport') do |defs|
 
   defs.define_constant('ActiveSupport::Notifications::Fanout::Subscribers::Timed') do |klass|
     klass.inherits(defs.constant_proxy('ActiveSupport::Notifications::Fanout::Subscribers::Evented', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object', RubyLint.registry))
 
     klass.define_instance_method('finish') do |method|
       method.define_argument('name')
@@ -3600,8 +3449,6 @@ RubyLint.registry.register('ActiveSupport') do |defs|
 
   defs.define_constant('ActiveSupport::Notifications::InstrumentationRegistry') do |klass|
     klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object', RubyLint.registry))
 
     klass.define_instance_method('initialize')
 
@@ -3612,8 +3459,6 @@ RubyLint.registry.register('ActiveSupport') do |defs|
 
   defs.define_constant('ActiveSupport::Notifications::Instrumenter') do |klass|
     klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object', RubyLint.registry))
 
     klass.define_instance_method('finish') do |method|
       method.define_argument('name')
@@ -3695,8 +3540,6 @@ RubyLint.registry.register('ActiveSupport') do |defs|
 
   defs.define_constant('ActiveSupport::OptionMerger') do |klass|
     klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object', RubyLint.registry))
 
     klass.define_instance_method('initialize') do |method|
       method.define_argument('context')
@@ -3708,10 +3551,6 @@ RubyLint.registry.register('ActiveSupport') do |defs|
 
   defs.define_constant('ActiveSupport::OrderedHash') do |klass|
     klass.inherits(defs.constant_proxy('Hash', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Hash', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('Enumerable', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object', RubyLint.registry))
 
     klass.define_instance_method('encode_with') do |method|
       method.define_argument('coder')
@@ -3726,8 +3565,6 @@ RubyLint.registry.register('ActiveSupport') do |defs|
 
   defs.define_constant('ActiveSupport::OrderedHash::Bucket') do |klass|
     klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object', RubyLint.registry))
 
     klass.define_instance_method('delete') do |method|
       method.define_argument('key')
@@ -3777,8 +3614,6 @@ RubyLint.registry.register('ActiveSupport') do |defs|
   defs.define_constant('ActiveSupport::OrderedHash::Entries') do |klass|
     klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
     klass.inherits(defs.constant_proxy('Enumerable', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object', RubyLint.registry))
 
     klass.define_method('[]') do |method|
       method.define_rest_argument('args')
@@ -3906,8 +3741,6 @@ RubyLint.registry.register('ActiveSupport') do |defs|
   defs.define_constant('ActiveSupport::OrderedHash::Enumerator') do |klass|
     klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
     klass.inherits(defs.constant_proxy('Enumerable', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object', RubyLint.registry))
 
     klass.define_instance_method('each') do |method|
       method.define_rest_argument('args')
@@ -3942,8 +3775,6 @@ RubyLint.registry.register('ActiveSupport') do |defs|
 
   defs.define_constant('ActiveSupport::OrderedHash::Iterator') do |klass|
     klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object', RubyLint.registry))
 
     klass.define_instance_method('initialize') do |method|
       method.define_argument('state')
@@ -3968,8 +3799,6 @@ RubyLint.registry.register('ActiveSupport') do |defs|
 
   defs.define_constant('ActiveSupport::OrderedHash::SortedElement') do |klass|
     klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object', RubyLint.registry))
 
     klass.define_instance_method('<=>') do |method|
       method.define_argument('other')
@@ -3989,8 +3818,6 @@ RubyLint.registry.register('ActiveSupport') do |defs|
 
   defs.define_constant('ActiveSupport::OrderedHash::State') do |klass|
     klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object', RubyLint.registry))
 
     klass.define_method('from') do |method|
       method.define_argument('state')
@@ -4020,10 +3847,6 @@ RubyLint.registry.register('ActiveSupport') do |defs|
 
   defs.define_constant('ActiveSupport::OrderedOptions') do |klass|
     klass.inherits(defs.constant_proxy('Hash', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Hash', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('Enumerable', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object', RubyLint.registry))
 
     klass.define_instance_method('[]') do |method|
       method.define_argument('key')
@@ -4046,8 +3869,6 @@ RubyLint.registry.register('ActiveSupport') do |defs|
 
   defs.define_constant('ActiveSupport::OrderedOptions::Bucket') do |klass|
     klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object', RubyLint.registry))
 
     klass.define_instance_method('delete') do |method|
       method.define_argument('key')
@@ -4097,8 +3918,6 @@ RubyLint.registry.register('ActiveSupport') do |defs|
   defs.define_constant('ActiveSupport::OrderedOptions::Entries') do |klass|
     klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
     klass.inherits(defs.constant_proxy('Enumerable', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object', RubyLint.registry))
 
     klass.define_method('[]') do |method|
       method.define_rest_argument('args')
@@ -4226,8 +4045,6 @@ RubyLint.registry.register('ActiveSupport') do |defs|
   defs.define_constant('ActiveSupport::OrderedOptions::Enumerator') do |klass|
     klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
     klass.inherits(defs.constant_proxy('Enumerable', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object', RubyLint.registry))
 
     klass.define_instance_method('each') do |method|
       method.define_rest_argument('args')
@@ -4262,8 +4079,6 @@ RubyLint.registry.register('ActiveSupport') do |defs|
 
   defs.define_constant('ActiveSupport::OrderedOptions::Iterator') do |klass|
     klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object', RubyLint.registry))
 
     klass.define_instance_method('initialize') do |method|
       method.define_argument('state')
@@ -4288,8 +4103,6 @@ RubyLint.registry.register('ActiveSupport') do |defs|
 
   defs.define_constant('ActiveSupport::OrderedOptions::SortedElement') do |klass|
     klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object', RubyLint.registry))
 
     klass.define_instance_method('<=>') do |method|
       method.define_argument('other')
@@ -4309,8 +4122,6 @@ RubyLint.registry.register('ActiveSupport') do |defs|
 
   defs.define_constant('ActiveSupport::OrderedOptions::State') do |klass|
     klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object', RubyLint.registry))
 
     klass.define_method('from') do |method|
       method.define_argument('state')
@@ -4359,9 +4170,6 @@ RubyLint.registry.register('ActiveSupport') do |defs|
   defs.define_constant('ActiveSupport::Railtie') do |klass|
     klass.inherits(defs.constant_proxy('Rails::Railtie', RubyLint.registry))
     klass.inherits(defs.constant_proxy('Rails::Railtie::Configurable', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('Rails::Initializable', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object', RubyLint.registry))
 
   end
 
@@ -4401,10 +4209,6 @@ RubyLint.registry.register('ActiveSupport') do |defs|
   defs.define_constant('ActiveSupport::Railtie::Collection') do |klass|
     klass.inherits(defs.constant_proxy('Array', RubyLint.registry))
     klass.inherits(defs.constant_proxy('TSort', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Array', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('Enumerable', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object', RubyLint.registry))
 
     klass.define_instance_method('+') do |method|
       method.define_argument('other')
@@ -4425,8 +4229,6 @@ RubyLint.registry.register('ActiveSupport') do |defs|
 
   defs.define_constant('ActiveSupport::Railtie::Configuration') do |klass|
     klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object', RubyLint.registry))
 
     klass.define_method('eager_load_namespaces')
 
@@ -4471,8 +4273,6 @@ RubyLint.registry.register('ActiveSupport') do |defs|
 
   defs.define_constant('ActiveSupport::Railtie::Initializer') do |klass|
     klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object', RubyLint.registry))
 
     klass.define_instance_method('after')
 
@@ -4527,10 +4327,6 @@ RubyLint.registry.register('ActiveSupport') do |defs|
 
   defs.define_constant('ActiveSupport::SafeBuffer') do |klass|
     klass.inherits(defs.constant_proxy('String', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::String', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('Comparable', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object', RubyLint.registry))
 
     klass.define_instance_method('%') do |method|
       method.define_argument('args')
@@ -4757,8 +4553,6 @@ RubyLint.registry.register('ActiveSupport') do |defs|
 
   defs.define_constant('ActiveSupport::SafeBuffer::Complexifier') do |klass|
     klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object', RubyLint.registry))
 
     klass.define_instance_method('convert')
 
@@ -4787,8 +4581,6 @@ RubyLint.registry.register('ActiveSupport') do |defs|
 
   defs.define_constant('ActiveSupport::SafeBuffer::Rationalizer') do |klass|
     klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object', RubyLint.registry))
 
     klass.define_instance_method('convert')
 
@@ -4801,9 +4593,6 @@ RubyLint.registry.register('ActiveSupport') do |defs|
 
   defs.define_constant('ActiveSupport::SafeBuffer::SafeConcatError') do |klass|
     klass.inherits(defs.constant_proxy('StandardError', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Blamable', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object', RubyLint.registry))
 
     klass.define_instance_method('initialize')
   end
@@ -4815,17 +4604,11 @@ RubyLint.registry.register('ActiveSupport') do |defs|
 
   defs.define_constant('ActiveSupport::StringInquirer') do |klass|
     klass.inherits(defs.constant_proxy('String', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::String', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('Comparable', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object', RubyLint.registry))
 
   end
 
   defs.define_constant('ActiveSupport::StringInquirer::Complexifier') do |klass|
     klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object', RubyLint.registry))
 
     klass.define_instance_method('convert')
 
@@ -4854,8 +4637,6 @@ RubyLint.registry.register('ActiveSupport') do |defs|
 
   defs.define_constant('ActiveSupport::StringInquirer::Rationalizer') do |klass|
     klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object', RubyLint.registry))
 
     klass.define_instance_method('convert')
 
@@ -4868,8 +4649,6 @@ RubyLint.registry.register('ActiveSupport') do |defs|
 
   defs.define_constant('ActiveSupport::Subscriber') do |klass|
     klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object', RubyLint.registry))
 
     klass.define_method('attach_to') do |method|
       method.define_argument('namespace')
@@ -4896,8 +4675,6 @@ RubyLint.registry.register('ActiveSupport') do |defs|
 
   defs.define_constant('ActiveSupport::SubscriberQueueRegistry') do |klass|
     klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object', RubyLint.registry))
 
     klass.define_instance_method('get_queue') do |method|
       method.define_argument('queue_key')
@@ -4972,11 +4749,6 @@ RubyLint.registry.register('ActiveSupport') do |defs|
     klass.inherits(defs.constant_proxy('ActiveSupport::Callbacks', RubyLint.registry))
     klass.inherits(defs.constant_proxy('ActiveSupport::Testing::SetupAndTeardown', RubyLint.registry))
     klass.inherits(defs.constant_proxy('ActiveSupport::Testing::TaggedLogging', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('MiniTest::Assertions', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('MiniTest::Unit::Guard', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('MiniTest::Unit::LifecycleHooks', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object', RubyLint.registry))
 
     klass.define_method('_setup_callbacks')
 
@@ -5108,9 +4880,6 @@ RubyLint.registry.register('ActiveSupport') do |defs|
 
   defs.define_constant('ActiveSupport::TestCase::Assertion') do |klass|
     klass.inherits(defs.constant_proxy('Exception', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Blamable', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object', RubyLint.registry))
 
   end
 
@@ -5121,8 +4890,6 @@ RubyLint.registry.register('ActiveSupport') do |defs|
 
   defs.define_constant('ActiveSupport::TestCase::Callback') do |klass|
     klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object', RubyLint.registry))
 
     klass.define_instance_method('_update_filter') do |method|
       method.define_argument('filter_options')
@@ -5200,10 +4967,6 @@ RubyLint.registry.register('ActiveSupport') do |defs|
 
   defs.define_constant('ActiveSupport::TestCase::CallbackChain') do |klass|
     klass.inherits(defs.constant_proxy('Array', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Array', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('Enumerable', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object', RubyLint.registry))
 
     klass.define_instance_method('append') do |method|
       method.define_rest_argument('callbacks')
@@ -5365,7 +5128,6 @@ RubyLint.registry.register('ActiveSupport') do |defs|
 
   defs.define_constant('ActiveSupport::Testing::Isolation') do |klass|
     klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Testing::Isolation::Forking', RubyLint.registry))
 
     klass.define_method('forking_env?')
 
@@ -5412,8 +5174,6 @@ RubyLint.registry.register('ActiveSupport') do |defs|
 
   defs.define_constant('ActiveSupport::Testing::ProxyTestResult') do |klass|
     klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object', RubyLint.registry))
 
     klass.define_instance_method('__replay__') do |method|
       method.define_argument('result')
@@ -5445,9 +5205,6 @@ RubyLint.registry.register('ActiveSupport') do |defs|
 
   defs.define_constant('ActiveSupport::Testing::RemoteError') do |klass|
     klass.inherits(defs.constant_proxy('StandardError', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Blamable', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object', RubyLint.registry))
 
     klass.define_instance_method('backtrace')
 
@@ -5493,8 +5250,6 @@ RubyLint.registry.register('ActiveSupport') do |defs|
   defs.define_constant('ActiveSupport::TimeWithZone') do |klass|
     klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
     klass.inherits(defs.constant_proxy('Comparable', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object', RubyLint.registry))
 
     klass.define_method('name')
 
@@ -5697,8 +5452,6 @@ RubyLint.registry.register('ActiveSupport') do |defs|
   defs.define_constant('ActiveSupport::TimeZone') do |klass|
     klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
     klass.inherits(defs.constant_proxy('Comparable', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object', RubyLint.registry))
 
     klass.define_method('[]') do |method|
       method.define_argument('arg')
@@ -5843,8 +5596,6 @@ RubyLint.registry.register('ActiveSupport') do |defs|
 
   defs.define_constant('ActiveSupport::XMLConverter') do |klass|
     klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object', RubyLint.registry))
 
     klass.define_instance_method('initialize') do |method|
       method.define_argument('xml')
@@ -5863,9 +5614,6 @@ RubyLint.registry.register('ActiveSupport') do |defs|
 
   defs.define_constant('ActiveSupport::XMLConverter::DisallowedType') do |klass|
     klass.inherits(defs.constant_proxy('StandardError', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Blamable', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object', RubyLint.registry))
 
     klass.define_instance_method('initialize') do |method|
       method.define_argument('type')

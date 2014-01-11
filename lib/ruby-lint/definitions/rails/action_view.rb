@@ -1,7 +1,7 @@
 # This file was automatically generated, any manual changes will be lost the
 # next time this file is generated.
 #
-# Platform: rbx 2.2.3.n364
+# Platform: rbx 2.2.3.n9
 
 RubyLint.registry.register('ActionView') do |defs|
   defs.define_constant('ActionView') do |klass|
@@ -12,8 +12,6 @@ RubyLint.registry.register('ActionView') do |defs|
 
   defs.define_constant('ActionView::AbstractRenderer') do |klass|
     klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object', RubyLint.registry))
 
     klass.define_instance_method('extract_details') do |method|
       method.define_argument('options')
@@ -64,9 +62,6 @@ RubyLint.registry.register('ActionView') do |defs|
 
   defs.define_constant('ActionView::ActionViewError') do |klass|
     klass.inherits(defs.constant_proxy('StandardError', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Blamable', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object', RubyLint.registry))
 
   end
 
@@ -102,8 +97,6 @@ RubyLint.registry.register('ActionView') do |defs|
     klass.inherits(defs.constant_proxy('ERB::Util', RubyLint.registry))
     klass.inherits(defs.constant_proxy('ActionView::Context', RubyLint.registry))
     klass.inherits(defs.constant_proxy('ActionView::CompiledTemplates', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object', RubyLint.registry))
 
     klass.define_method('_routes')
 
@@ -302,7 +295,6 @@ RubyLint.registry.register('ActionView') do |defs|
 
   defs.define_constant('ActionView::Base::AssetTagHelper') do |klass|
     klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('ActionView::Helpers::AssetUrlHelper', RubyLint.registry))
 
     klass.define_instance_method('audio_tag') do |method|
       method.define_rest_argument('sources')
@@ -502,8 +494,6 @@ RubyLint.registry.register('ActionView') do |defs|
 
   defs.define_constant('ActionView::Base::AtomBuilder') do |klass|
     klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object', RubyLint.registry))
 
     klass.define_instance_method('initialize') do |method|
       method.define_argument('xml')
@@ -514,8 +504,6 @@ RubyLint.registry.register('ActionView') do |defs|
 
   defs.define_constant('ActionView::Base::AtomFeedBuilder') do |klass|
     klass.inherits(defs.constant_proxy('ActionView::Helpers::AtomFeedHelper::AtomBuilder', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object', RubyLint.registry))
 
     klass.define_instance_method('entry') do |method|
       method.define_argument('record')
@@ -757,8 +745,6 @@ RubyLint.registry.register('ActionView') do |defs|
 
   defs.define_constant('ActionView::Base::Cycle') do |klass|
     klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object', RubyLint.registry))
 
     klass.define_instance_method('current_value')
 
@@ -882,8 +868,6 @@ RubyLint.registry.register('ActionView') do |defs|
     klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
     klass.inherits(defs.constant_proxy('ActionView::Helpers::TagHelper', RubyLint.registry))
     klass.inherits(defs.constant_proxy('ActionView::Helpers::CaptureHelper', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object', RubyLint.registry))
 
     klass.define_instance_method('day')
 
@@ -926,8 +910,6 @@ RubyLint.registry.register('ActionView') do |defs|
 
   defs.define_constant('ActionView::Base::DebugHelper') do |klass|
     klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('ActionView::Helpers::TagHelper', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('ActionView::Helpers::CaptureHelper', RubyLint.registry))
 
     klass.define_instance_method('debug') do |method|
       method.define_argument('object')
@@ -937,8 +919,6 @@ RubyLint.registry.register('ActionView') do |defs|
   defs.define_constant('ActionView::Base::FormBuilder') do |klass|
     klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
     klass.inherits(defs.constant_proxy('ActionView::ModelNaming', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object', RubyLint.registry))
 
     klass.define_method('_to_partial_path')
 
@@ -1202,7 +1182,6 @@ RubyLint.registry.register('ActionView') do |defs|
 
   defs.define_constant('ActionView::Base::FormHelper') do |klass|
     klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('ActionView::ModelNaming', RubyLint.registry))
 
     klass.define_instance_method('check_box') do |method|
       method.define_argument('object_name')
@@ -1357,10 +1336,6 @@ RubyLint.registry.register('ActionView') do |defs|
 
   defs.define_constant('ActionView::Base::FormOptionsHelper') do |klass|
     klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('ActionView::Helpers::TextHelper', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('ActionView::Helpers::TagHelper', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('ActionView::Helpers::CaptureHelper', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('ActionView::Helpers::SanitizeHelper', RubyLint.registry))
 
     klass.define_instance_method('collection_check_boxes') do |method|
       method.define_argument('object')
@@ -1654,9 +1629,6 @@ RubyLint.registry.register('ActionView') do |defs|
 
   defs.define_constant('ActionView::Base::InvalidNumberError') do |klass|
     klass.inherits(defs.constant_proxy('StandardError', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Blamable', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object', RubyLint.registry))
 
     klass.define_instance_method('initialize') do |method|
       method.define_argument('number')
@@ -1787,8 +1759,6 @@ RubyLint.registry.register('ActionView') do |defs|
 
   defs.define_constant('ActionView::Base::RecordTagHelper') do |klass|
     klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('ActionView::RecordIdentifier', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('ActionView::ModelNaming', RubyLint.registry))
 
     klass.define_instance_method('content_tag_for') do |method|
       method.define_argument('tag_name')
@@ -1843,7 +1813,6 @@ RubyLint.registry.register('ActionView') do |defs|
 
   defs.define_constant('ActionView::Base::TagHelper') do |klass|
     klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('ActionView::Helpers::CaptureHelper', RubyLint.registry))
 
     klass.define_instance_method('cdata_section') do |method|
       method.define_argument('content')
@@ -2026,7 +1995,6 @@ RubyLint.registry.register('ActionView') do |defs|
 
   defs.define_constant('ActionView::Context') do |klass|
     klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('ActionView::CompiledTemplates', RubyLint.registry))
 
     klass.define_instance_method('_layout_for') do |method|
       method.define_optional_argument('name')
@@ -2045,8 +2013,6 @@ RubyLint.registry.register('ActionView') do |defs|
 
   defs.define_constant('ActionView::DependencyTracker') do |klass|
     klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object', RubyLint.registry))
 
     klass.define_method('find_dependencies') do |method|
       method.define_argument('name')
@@ -2065,8 +2031,6 @@ RubyLint.registry.register('ActionView') do |defs|
 
   defs.define_constant('ActionView::DependencyTracker::ERBTracker') do |klass|
     klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object', RubyLint.registry))
 
     klass.define_method('call') do |method|
       method.define_argument('name')
@@ -2095,8 +2059,6 @@ RubyLint.registry.register('ActionView') do |defs|
 
   defs.define_constant('ActionView::Digestor') do |klass|
     klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object', RubyLint.registry))
 
     klass.define_method('cache')
 
@@ -2140,16 +2102,11 @@ RubyLint.registry.register('ActionView') do |defs|
 
   defs.define_constant('ActionView::EncodingError') do |klass|
     klass.inherits(defs.constant_proxy('StandardError', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Blamable', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object', RubyLint.registry))
 
   end
 
   defs.define_constant('ActionView::FallbackFileSystemResolver') do |klass|
     klass.inherits(defs.constant_proxy('ActionView::FileSystemResolver', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object', RubyLint.registry))
 
     klass.define_method('instances')
 
@@ -2160,8 +2117,6 @@ RubyLint.registry.register('ActionView') do |defs|
 
   defs.define_constant('ActionView::FallbackFileSystemResolver::Cache') do |klass|
     klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object', RubyLint.registry))
 
     klass.define_instance_method('cache') do |method|
       method.define_argument('key')
@@ -2188,8 +2143,6 @@ RubyLint.registry.register('ActionView') do |defs|
 
   defs.define_constant('ActionView::FallbackFileSystemResolver::Path') do |klass|
     klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object', RubyLint.registry))
 
     klass.define_method('build') do |method|
       method.define_argument('name')
@@ -2223,8 +2176,6 @@ RubyLint.registry.register('ActionView') do |defs|
 
   defs.define_constant('ActionView::FileSystemResolver') do |klass|
     klass.inherits(defs.constant_proxy('ActionView::PathResolver', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object', RubyLint.registry))
 
     klass.define_instance_method('==') do |method|
       method.define_argument('resolver')
@@ -2248,8 +2199,6 @@ RubyLint.registry.register('ActionView') do |defs|
 
   defs.define_constant('ActionView::FileSystemResolver::Cache') do |klass|
     klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object', RubyLint.registry))
 
     klass.define_instance_method('cache') do |method|
       method.define_argument('key')
@@ -2276,8 +2225,6 @@ RubyLint.registry.register('ActionView') do |defs|
 
   defs.define_constant('ActionView::FileSystemResolver::Path') do |klass|
     klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object', RubyLint.registry))
 
     klass.define_method('build') do |method|
       method.define_argument('name')
@@ -2311,28 +2258,6 @@ RubyLint.registry.register('ActionView') do |defs|
 
   defs.define_constant('ActionView::Helpers') do |klass|
     klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('ActionView::Helpers::TranslationHelper', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('ActionView::Helpers::RenderingHelper', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('ActionView::Helpers::RecordTagHelper', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('ActionView::RecordIdentifier', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('ActionView::ModelNaming', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('ActionView::Helpers::OutputSafetyHelper', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('ActionView::Helpers::NumberHelper', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('ActionView::Helpers::JavaScriptHelper', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('ActionView::Helpers::FormOptionsHelper', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('ActionView::Helpers::TextHelper', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('ActionView::Helpers::DebugHelper', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('ActionView::Helpers::TagHelper', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('ActionView::Helpers::DateHelper', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('ActionView::Helpers::CsrfHelper', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('ActionView::Helpers::ControllerHelper', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('ActionView::Helpers::CaptureHelper', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('ActionView::Helpers::SanitizeHelper', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('ActionView::Helpers::CacheHelper', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('ActionView::Helpers::AtomFeedHelper', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('ActionView::Helpers::AssetUrlHelper', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('ActionView::Helpers::ActiveModelHelper', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Benchmarkable', RubyLint.registry))
 
   end
 
@@ -2375,8 +2300,6 @@ RubyLint.registry.register('ActionView') do |defs|
 
   defs.define_constant('ActionView::Helpers::AtomBuilder') do |klass|
     klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object', RubyLint.registry))
 
     klass.define_instance_method('initialize') do |method|
       method.define_argument('xml')
@@ -2387,8 +2310,6 @@ RubyLint.registry.register('ActionView') do |defs|
 
   defs.define_constant('ActionView::Helpers::AtomFeedBuilder') do |klass|
     klass.inherits(defs.constant_proxy('ActionView::Helpers::AtomFeedHelper::AtomBuilder', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object', RubyLint.registry))
 
     klass.define_instance_method('entry') do |method|
       method.define_argument('record')
@@ -2621,8 +2542,6 @@ RubyLint.registry.register('ActionView') do |defs|
 
   defs.define_constant('ActionView::Helpers::Cycle') do |klass|
     klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object', RubyLint.registry))
 
     klass.define_instance_method('current_value')
 
@@ -2745,8 +2664,6 @@ RubyLint.registry.register('ActionView') do |defs|
   defs.define_constant('ActionView::Helpers::FormBuilder') do |klass|
     klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
     klass.inherits(defs.constant_proxy('ActionView::ModelNaming', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object', RubyLint.registry))
 
     klass.define_method('_to_partial_path')
 
@@ -3010,7 +2927,6 @@ RubyLint.registry.register('ActionView') do |defs|
 
   defs.define_constant('ActionView::Helpers::FormHelper') do |klass|
     klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('ActionView::ModelNaming', RubyLint.registry))
 
     klass.define_instance_method('check_box') do |method|
       method.define_argument('object_name')
@@ -3351,9 +3267,6 @@ RubyLint.registry.register('ActionView') do |defs|
 
   defs.define_constant('ActionView::Helpers::InvalidNumberError') do |klass|
     klass.inherits(defs.constant_proxy('StandardError', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Blamable', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object', RubyLint.registry))
 
     klass.define_instance_method('initialize') do |method|
       method.define_argument('number')
@@ -3443,8 +3356,6 @@ RubyLint.registry.register('ActionView') do |defs|
 
   defs.define_constant('ActionView::LogSubscriber') do |klass|
     klass.inherits(defs.constant_proxy('ActiveSupport::LogSubscriber', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object', RubyLint.registry))
 
     klass.define_instance_method('from_rails_root') do |method|
       method.define_argument('string')
@@ -3525,8 +3436,6 @@ RubyLint.registry.register('ActionView') do |defs|
     klass.inherits(defs.constant_proxy('ActionView::LookupContext::ViewPaths', RubyLint.registry))
     klass.inherits(defs.constant_proxy('ActionView::LookupContext::DetailsCache', RubyLint.registry))
     klass.inherits(defs.constant_proxy('ActionView::LookupContext::Accessors', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object', RubyLint.registry))
 
     klass.define_method('fallbacks')
 
@@ -3640,8 +3549,6 @@ RubyLint.registry.register('ActionView') do |defs|
 
   defs.define_constant('ActionView::LookupContext::DetailsKey') do |klass|
     klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object', RubyLint.registry))
 
     klass.define_method('clear')
 
@@ -3733,17 +3640,11 @@ RubyLint.registry.register('ActionView') do |defs|
 
   defs.define_constant('ActionView::MissingRequestError') do |klass|
     klass.inherits(defs.constant_proxy('StandardError', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Blamable', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object', RubyLint.registry))
 
   end
 
   defs.define_constant('ActionView::MissingTemplate') do |klass|
     klass.inherits(defs.constant_proxy('ActionView::ActionViewError', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Blamable', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object', RubyLint.registry))
 
     klass.define_instance_method('initialize') do |method|
       method.define_argument('paths')
@@ -3773,8 +3674,6 @@ RubyLint.registry.register('ActionView') do |defs|
 
   defs.define_constant('ActionView::OptimizedFileSystemResolver') do |klass|
     klass.inherits(defs.constant_proxy('ActionView::FileSystemResolver', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object', RubyLint.registry))
 
     klass.define_instance_method('build_query') do |method|
       method.define_argument('path')
@@ -3784,8 +3683,6 @@ RubyLint.registry.register('ActionView') do |defs|
 
   defs.define_constant('ActionView::OptimizedFileSystemResolver::Cache') do |klass|
     klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object', RubyLint.registry))
 
     klass.define_instance_method('cache') do |method|
       method.define_argument('key')
@@ -3812,8 +3709,6 @@ RubyLint.registry.register('ActionView') do |defs|
 
   defs.define_constant('ActionView::OptimizedFileSystemResolver::Path') do |klass|
     klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object', RubyLint.registry))
 
     klass.define_method('build') do |method|
       method.define_argument('name')
@@ -3847,10 +3742,6 @@ RubyLint.registry.register('ActionView') do |defs|
 
   defs.define_constant('ActionView::OutputBuffer') do |klass|
     klass.inherits(defs.constant_proxy('ActiveSupport::SafeBuffer', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::String', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('Comparable', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object', RubyLint.registry))
 
     klass.define_instance_method('<<') do |method|
       method.define_argument('value')
@@ -3877,8 +3768,6 @@ RubyLint.registry.register('ActionView') do |defs|
 
   defs.define_constant('ActionView::OutputBuffer::Complexifier') do |klass|
     klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object', RubyLint.registry))
 
     klass.define_instance_method('convert')
 
@@ -3907,8 +3796,6 @@ RubyLint.registry.register('ActionView') do |defs|
 
   defs.define_constant('ActionView::OutputBuffer::Rationalizer') do |klass|
     klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object', RubyLint.registry))
 
     klass.define_instance_method('convert')
 
@@ -3921,9 +3808,6 @@ RubyLint.registry.register('ActionView') do |defs|
 
   defs.define_constant('ActionView::OutputBuffer::SafeConcatError') do |klass|
     klass.inherits(defs.constant_proxy('StandardError', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Blamable', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object', RubyLint.registry))
 
     klass.define_instance_method('initialize')
   end
@@ -3935,8 +3819,6 @@ RubyLint.registry.register('ActionView') do |defs|
 
   defs.define_constant('ActionView::OutputFlow') do |klass|
     klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object', RubyLint.registry))
 
     klass.define_instance_method('append') do |method|
       method.define_argument('key')
@@ -3964,16 +3846,12 @@ RubyLint.registry.register('ActionView') do |defs|
 
   defs.define_constant('ActionView::PartialDigestor') do |klass|
     klass.inherits(defs.constant_proxy('ActionView::Digestor', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object', RubyLint.registry))
 
     klass.define_instance_method('partial?')
   end
 
   defs.define_constant('ActionView::PartialRenderer') do |klass|
     klass.inherits(defs.constant_proxy('ActionView::AbstractRenderer', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object', RubyLint.registry))
 
     klass.define_instance_method('initialize') do |method|
       method.define_rest_argument('arg1')
@@ -4004,8 +3882,6 @@ RubyLint.registry.register('ActionView') do |defs|
 
   defs.define_constant('ActionView::PathResolver') do |klass|
     klass.inherits(defs.constant_proxy('ActionView::Resolver', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object', RubyLint.registry))
 
     klass.define_instance_method('initialize') do |method|
       method.define_optional_argument('pattern')
@@ -4016,8 +3892,6 @@ RubyLint.registry.register('ActionView') do |defs|
 
   defs.define_constant('ActionView::PathResolver::Cache') do |klass|
     klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object', RubyLint.registry))
 
     klass.define_instance_method('cache') do |method|
       method.define_argument('key')
@@ -4044,8 +3918,6 @@ RubyLint.registry.register('ActionView') do |defs|
 
   defs.define_constant('ActionView::PathResolver::Path') do |klass|
     klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object', RubyLint.registry))
 
     klass.define_method('build') do |method|
       method.define_argument('name')
@@ -4080,8 +3952,6 @@ RubyLint.registry.register('ActionView') do |defs|
   defs.define_constant('ActionView::PathSet') do |klass|
     klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
     klass.inherits(defs.constant_proxy('Enumerable', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object', RubyLint.registry))
 
     klass.define_instance_method('+') do |method|
       method.define_argument('array')
@@ -4164,8 +4034,6 @@ RubyLint.registry.register('ActionView') do |defs|
   defs.define_constant('ActionView::PathSet::Enumerator') do |klass|
     klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
     klass.inherits(defs.constant_proxy('Enumerable', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object', RubyLint.registry))
 
     klass.define_instance_method('each') do |method|
       method.define_rest_argument('args')
@@ -4200,8 +4068,6 @@ RubyLint.registry.register('ActionView') do |defs|
 
   defs.define_constant('ActionView::PathSet::SortedElement') do |klass|
     klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object', RubyLint.registry))
 
     klass.define_instance_method('<=>') do |method|
       method.define_argument('other')
@@ -4222,9 +4088,6 @@ RubyLint.registry.register('ActionView') do |defs|
   defs.define_constant('ActionView::Railtie') do |klass|
     klass.inherits(defs.constant_proxy('Rails::Railtie', RubyLint.registry))
     klass.inherits(defs.constant_proxy('Rails::Railtie::Configurable', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('Rails::Initializable', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object', RubyLint.registry))
 
   end
 
@@ -4264,10 +4127,6 @@ RubyLint.registry.register('ActionView') do |defs|
   defs.define_constant('ActionView::Railtie::Collection') do |klass|
     klass.inherits(defs.constant_proxy('Array', RubyLint.registry))
     klass.inherits(defs.constant_proxy('TSort', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Array', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('Enumerable', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object', RubyLint.registry))
 
     klass.define_instance_method('+') do |method|
       method.define_argument('other')
@@ -4288,8 +4147,6 @@ RubyLint.registry.register('ActionView') do |defs|
 
   defs.define_constant('ActionView::Railtie::Configuration') do |klass|
     klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object', RubyLint.registry))
 
     klass.define_method('eager_load_namespaces')
 
@@ -4334,8 +4191,6 @@ RubyLint.registry.register('ActionView') do |defs|
 
   defs.define_constant('ActionView::Railtie::Initializer') do |klass|
     klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object', RubyLint.registry))
 
     klass.define_instance_method('after')
 
@@ -4369,7 +4224,6 @@ RubyLint.registry.register('ActionView') do |defs|
 
   defs.define_constant('ActionView::RecordIdentifier') do |klass|
     klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('ActionView::ModelNaming', RubyLint.registry))
 
     klass.define_instance_method('dom_class') do |method|
       method.define_argument('record_or_class')
@@ -4398,8 +4252,6 @@ RubyLint.registry.register('ActionView') do |defs|
 
   defs.define_constant('ActionView::Renderer') do |klass|
     klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object', RubyLint.registry))
 
     klass.define_instance_method('initialize') do |method|
       method.define_argument('lookup_context')
@@ -4435,8 +4287,6 @@ RubyLint.registry.register('ActionView') do |defs|
 
   defs.define_constant('ActionView::Resolver') do |klass|
     klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object', RubyLint.registry))
 
     klass.define_method('caching')
 
@@ -4471,196 +4321,8 @@ RubyLint.registry.register('ActionView') do |defs|
     klass.define_instance_method('initialize')
   end
 
-  defs.define_constant('ActionView::Resolver::Cache') do |klass|
-    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object', RubyLint.registry))
-
-    klass.define_instance_method('cache') do |method|
-      method.define_argument('key')
-      method.define_argument('name')
-      method.define_argument('prefix')
-      method.define_argument('partial')
-      method.define_argument('locals')
-    end
-
-    klass.define_instance_method('clear')
-
-    klass.define_instance_method('initialize')
-  end
-
-  defs.define_constant('ActionView::Resolver::Cache::KEY_BLOCK') do |klass|
-    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
-
-  end
-
-  defs.define_constant('ActionView::Resolver::Cache::NAME_BLOCK') do |klass|
-    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
-
-  end
-
-  defs.define_constant('ActionView::Resolver::Cache::NO_TEMPLATES') do |klass|
-    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
-
-  end
-
-  defs.define_constant('ActionView::Resolver::Cache::PARTIAL_BLOCK') do |klass|
-    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
-
-  end
-
-  defs.define_constant('ActionView::Resolver::Cache::PREFIX_BLOCK') do |klass|
-    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
-
-  end
-
-  defs.define_constant('ActionView::Resolver::Cache::SmallCache') do |klass|
-    klass.inherits(defs.constant_proxy('ThreadSafe::Cache', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('#<Module:0x2e804>'))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object', RubyLint.registry))
-
-    klass.define_instance_method('initialize') do |method|
-      method.define_optional_argument('options')
-
-      method.returns { |object| object.instance }
-    end
-  end
-
-  defs.define_constant('ActionView::Resolver::Cache::SmallCache::DEFAULT_CAPACITY') do |klass|
-    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
-
-  end
-
-  defs.define_constant('ActionView::Resolver::Cache::SmallCache::HASH_BITS') do |klass|
-    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
-
-  end
-
-  defs.define_constant('ActionView::Resolver::Cache::SmallCache::KEY_ERROR') do |klass|
-    klass.inherits(defs.constant_proxy('IndexError', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Blamable', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object', RubyLint.registry))
-
-  end
-
-  defs.define_constant('ActionView::Resolver::Cache::SmallCache::LOCKED') do |klass|
-    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
-
-  end
-
-  defs.define_constant('ActionView::Resolver::Cache::SmallCache::MAX_CAPACITY') do |klass|
-    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
-
-  end
-
-  defs.define_constant('ActionView::Resolver::Cache::SmallCache::MOVED') do |klass|
-    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
-
-  end
-
-  defs.define_constant('ActionView::Resolver::Cache::SmallCache::NOW_RESIZING') do |klass|
-    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
-
-  end
-
-  defs.define_constant('ActionView::Resolver::Cache::SmallCache::Node') do |klass|
-    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('ThreadSafe::Util::CheapLockable', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('#<Module:0x2e80c>'))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object', RubyLint.registry))
-
-    klass.define_method('locked_hash?') do |method|
-      method.define_argument('hash')
-    end
-
-    klass.define_instance_method('initialize') do |method|
-      method.define_argument('hash')
-      method.define_argument('key')
-      method.define_argument('value')
-      method.define_optional_argument('next_node')
-
-      method.returns { |object| object.instance }
-    end
-
-    klass.define_instance_method('key')
-
-    klass.define_instance_method('key?') do |method|
-      method.define_argument('key')
-    end
-
-    klass.define_instance_method('locked?')
-
-    klass.define_instance_method('matches?') do |method|
-      method.define_argument('key')
-      method.define_argument('hash')
-    end
-
-    klass.define_instance_method('pure_hash')
-
-    klass.define_instance_method('try_await_lock') do |method|
-      method.define_argument('table')
-      method.define_argument('i')
-    end
-
-    klass.define_instance_method('try_lock_via_hash') do |method|
-      method.define_optional_argument('node_hash')
-    end
-
-    klass.define_instance_method('unlock_via_hash') do |method|
-      method.define_argument('locked_hash')
-      method.define_argument('node_hash')
-    end
-  end
-
-  defs.define_constant('ActionView::Resolver::Cache::SmallCache::TRANSFER_BUFFER_SIZE') do |klass|
-    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
-
-  end
-
-  defs.define_constant('ActionView::Resolver::Cache::SmallCache::Table') do |klass|
-    klass.inherits(defs.constant_proxy('ThreadSafe::Util::PowerOfTwoTuple', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('Enumerable', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object', RubyLint.registry))
-
-    klass.define_instance_method('cas_new_node') do |method|
-      method.define_argument('i')
-      method.define_argument('hash')
-      method.define_argument('key')
-      method.define_argument('value')
-    end
-
-    klass.define_instance_method('delete_node_at') do |method|
-      method.define_argument('i')
-      method.define_argument('node')
-      method.define_argument('predecessor_node')
-    end
-
-    klass.define_instance_method('try_lock_via_hash') do |method|
-      method.define_argument('i')
-      method.define_argument('node')
-      method.define_argument('node_hash')
-    end
-
-    klass.define_instance_method('try_to_cas_in_computed') do |method|
-      method.define_argument('i')
-      method.define_argument('hash')
-      method.define_argument('key')
-    end
-  end
-
-  defs.define_constant('ActionView::Resolver::Cache::SmallCache::WAITING') do |klass|
-    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
-
-  end
-
   defs.define_constant('ActionView::Resolver::Path') do |klass|
     klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object', RubyLint.registry))
 
     klass.define_method('build') do |method|
       method.define_argument('name')
@@ -4694,9 +4356,6 @@ RubyLint.registry.register('ActionView') do |defs|
 
   defs.define_constant('ActionView::RoutingUrlFor') do |klass|
     klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('ActionDispatch::Routing::UrlFor', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('ActionDispatch::Routing::PolymorphicRoutes', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('ActionController::ModelNaming', RubyLint.registry))
 
     klass.define_method('default_url_options=') do |method|
       method.define_argument('obj')
@@ -4719,8 +4378,6 @@ RubyLint.registry.register('ActionView') do |defs|
 
   defs.define_constant('ActionView::StreamingBuffer') do |klass|
     klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object', RubyLint.registry))
 
     klass.define_instance_method('<<') do |method|
       method.define_argument('value')
@@ -4755,8 +4412,6 @@ RubyLint.registry.register('ActionView') do |defs|
 
   defs.define_constant('ActionView::StreamingFlow') do |klass|
     klass.inherits(defs.constant_proxy('ActionView::OutputFlow', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object', RubyLint.registry))
 
     klass.define_instance_method('append!') do |method|
       method.define_argument('key')
@@ -4777,8 +4432,6 @@ RubyLint.registry.register('ActionView') do |defs|
 
   defs.define_constant('ActionView::StreamingTemplateRenderer') do |klass|
     klass.inherits(defs.constant_proxy('ActionView::TemplateRenderer', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object', RubyLint.registry))
 
     klass.define_instance_method('render_template') do |method|
       method.define_argument('template')
@@ -4789,8 +4442,6 @@ RubyLint.registry.register('ActionView') do |defs|
 
   defs.define_constant('ActionView::StreamingTemplateRenderer::Body') do |klass|
     klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object', RubyLint.registry))
 
     klass.define_instance_method('each') do |method|
       method.define_block_argument('block')
@@ -4805,8 +4456,6 @@ RubyLint.registry.register('ActionView') do |defs|
 
   defs.define_constant('ActionView::Template') do |klass|
     klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object', RubyLint.registry))
 
     klass.define_instance_method('compile') do |method|
       method.define_argument('view')
@@ -4883,9 +4532,6 @@ RubyLint.registry.register('ActionView') do |defs|
 
   defs.define_constant('ActionView::Template::Error') do |klass|
     klass.inherits(defs.constant_proxy('ActionView::ActionViewError', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Blamable', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object', RubyLint.registry))
 
     klass.define_instance_method('annoted_source_code')
 
@@ -4958,8 +4604,6 @@ RubyLint.registry.register('ActionView') do |defs|
 
   defs.define_constant('ActionView::Template::Handlers::Builder') do |klass|
     klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object', RubyLint.registry))
 
     klass.define_method('default_format')
 
@@ -4984,8 +4628,6 @@ RubyLint.registry.register('ActionView') do |defs|
 
   defs.define_constant('ActionView::Template::Handlers::ERB') do |klass|
     klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object', RubyLint.registry))
 
     klass.define_method('call') do |method|
       method.define_argument('template')
@@ -5049,15 +4691,6 @@ RubyLint.registry.register('ActionView') do |defs|
 
   defs.define_constant('ActionView::Template::Handlers::Erubis') do |klass|
     klass.inherits(defs.constant_proxy('Erubis::Eruby', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('Erubis::RubyGenerator', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('Erubis::StringBufferEnhancer', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('Erubis::RubyEvaluator', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('Erubis::Generator', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('Erubis::Basic::Converter', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('Erubis::Converter', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('Erubis::Evaluator', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object', RubyLint.registry))
 
     klass.define_instance_method('add_expr') do |method|
       method.define_argument('src')
@@ -5110,8 +4743,6 @@ RubyLint.registry.register('ActionView') do |defs|
 
   defs.define_constant('ActionView::Template::Handlers::Raw') do |klass|
     klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object', RubyLint.registry))
 
     klass.define_instance_method('call') do |method|
       method.define_argument('template')
@@ -5120,8 +4751,6 @@ RubyLint.registry.register('ActionView') do |defs|
 
   defs.define_constant('ActionView::Template::Text') do |klass|
     klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object', RubyLint.registry))
 
     klass.define_instance_method('formats')
 
@@ -5149,8 +4778,6 @@ RubyLint.registry.register('ActionView') do |defs|
 
   defs.define_constant('ActionView::Template::Types') do |klass|
     klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object', RubyLint.registry))
 
     klass.define_method('[]') do |method|
       method.define_argument('type')
@@ -5175,8 +4802,6 @@ RubyLint.registry.register('ActionView') do |defs|
 
   defs.define_constant('ActionView::Template::Types::Type') do |klass|
     klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object', RubyLint.registry))
 
     klass.define_method('[]') do |method|
       method.define_argument('type')
@@ -5230,9 +4855,6 @@ RubyLint.registry.register('ActionView') do |defs|
 
   defs.define_constant('ActionView::TemplateError') do |klass|
     klass.inherits(defs.constant_proxy('ActionView::ActionViewError', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Blamable', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object', RubyLint.registry))
 
     klass.define_instance_method('annoted_source_code')
 
@@ -5265,8 +4887,6 @@ RubyLint.registry.register('ActionView') do |defs|
 
   defs.define_constant('ActionView::TemplateRenderer') do |klass|
     klass.inherits(defs.constant_proxy('ActionView::AbstractRenderer', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object', RubyLint.registry))
 
     klass.define_instance_method('determine_template') do |method|
       method.define_argument('options')
@@ -5345,17 +4965,6 @@ RubyLint.registry.register('ActionView') do |defs|
     klass.inherits(defs.constant_proxy('ActionDispatch::Assertions::RoutingAssertions', RubyLint.registry))
     klass.inherits(defs.constant_proxy('ActionDispatch::Assertions::ResponseAssertions', RubyLint.registry))
     klass.inherits(defs.constant_proxy('ActionDispatch::Assertions::DomAssertions', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Testing::Pending', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Testing::Deprecation', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Testing::Assertions', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Callbacks', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Testing::SetupAndTeardown', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Testing::TaggedLogging', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('MiniTest::Assertions', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('MiniTest::Unit::Guard', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('MiniTest::Unit::LifecycleHooks', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object', RubyLint.registry))
 
     klass.define_method('_helper_methods')
 
@@ -5429,15 +5038,11 @@ RubyLint.registry.register('ActionView') do |defs|
 
   defs.define_constant('ActionView::TestCase::Assertion') do |klass|
     klass.inherits(defs.constant_proxy('Exception', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Blamable', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object', RubyLint.registry))
 
   end
 
   defs.define_constant('ActionView::TestCase::AssetTagHelper') do |klass|
     klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('ActionView::Helpers::AssetUrlHelper', RubyLint.registry))
 
     klass.define_instance_method('audio_tag') do |method|
       method.define_rest_argument('sources')
@@ -5637,8 +5242,6 @@ RubyLint.registry.register('ActionView') do |defs|
 
   defs.define_constant('ActionView::TestCase::AtomBuilder') do |klass|
     klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object', RubyLint.registry))
 
     klass.define_instance_method('initialize') do |method|
       method.define_argument('xml')
@@ -5649,8 +5252,6 @@ RubyLint.registry.register('ActionView') do |defs|
 
   defs.define_constant('ActionView::TestCase::AtomFeedBuilder') do |klass|
     klass.inherits(defs.constant_proxy('ActionView::Helpers::AtomFeedHelper::AtomBuilder', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object', RubyLint.registry))
 
     klass.define_instance_method('entry') do |method|
       method.define_argument('record')
@@ -5686,15 +5287,6 @@ RubyLint.registry.register('ActionView') do |defs|
 
   defs.define_constant('ActionView::TestCase::Behavior') do |klass|
     klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('ActionView::RoutingUrlFor', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('ActionDispatch::Routing::UrlFor', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('ActionView::RecordIdentifier', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('ActionView::ModelNaming', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('ActionDispatch::Routing::PolymorphicRoutes', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('ActionController::ModelNaming', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('ActionView::Context', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('ActionView::CompiledTemplates', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('ActionDispatch::TestProcess', RubyLint.registry))
 
     klass.define_instance_method('config')
 
@@ -5780,8 +5372,6 @@ RubyLint.registry.register('ActionView') do |defs|
 
   defs.define_constant('ActionView::TestCase::Behavior::RenderedViewsCollection') do |klass|
     klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object', RubyLint.registry))
 
     klass.define_instance_method('add') do |method|
       method.define_argument('view')
@@ -5838,8 +5428,6 @@ RubyLint.registry.register('ActionView') do |defs|
 
   defs.define_constant('ActionView::TestCase::Callback') do |klass|
     klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object', RubyLint.registry))
 
     klass.define_instance_method('_update_filter') do |method|
       method.define_argument('filter_options')
@@ -5917,10 +5505,6 @@ RubyLint.registry.register('ActionView') do |defs|
 
   defs.define_constant('ActionView::TestCase::CallbackChain') do |klass|
     klass.inherits(defs.constant_proxy('Array', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Array', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('Enumerable', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object', RubyLint.registry))
 
     klass.define_instance_method('append') do |method|
       method.define_rest_argument('callbacks')
@@ -6077,8 +5661,6 @@ RubyLint.registry.register('ActionView') do |defs|
 
   defs.define_constant('ActionView::TestCase::Cycle') do |klass|
     klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object', RubyLint.registry))
 
     klass.define_instance_method('current_value')
 
@@ -6202,8 +5784,6 @@ RubyLint.registry.register('ActionView') do |defs|
     klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
     klass.inherits(defs.constant_proxy('ActionView::Helpers::TagHelper', RubyLint.registry))
     klass.inherits(defs.constant_proxy('ActionView::Helpers::CaptureHelper', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object', RubyLint.registry))
 
     klass.define_instance_method('day')
 
@@ -6246,8 +5826,6 @@ RubyLint.registry.register('ActionView') do |defs|
 
   defs.define_constant('ActionView::TestCase::DebugHelper') do |klass|
     klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('ActionView::Helpers::TagHelper', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('ActionView::Helpers::CaptureHelper', RubyLint.registry))
 
     klass.define_instance_method('debug') do |method|
       method.define_argument('object')
@@ -6273,8 +5851,6 @@ RubyLint.registry.register('ActionView') do |defs|
   defs.define_constant('ActionView::TestCase::FormBuilder') do |klass|
     klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
     klass.inherits(defs.constant_proxy('ActionView::ModelNaming', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object', RubyLint.registry))
 
     klass.define_method('_to_partial_path')
 
@@ -6538,7 +6114,6 @@ RubyLint.registry.register('ActionView') do |defs|
 
   defs.define_constant('ActionView::TestCase::FormHelper') do |klass|
     klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('ActionView::ModelNaming', RubyLint.registry))
 
     klass.define_instance_method('check_box') do |method|
       method.define_argument('object_name')
@@ -6693,10 +6268,6 @@ RubyLint.registry.register('ActionView') do |defs|
 
   defs.define_constant('ActionView::TestCase::FormOptionsHelper') do |klass|
     klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('ActionView::Helpers::TextHelper', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('ActionView::Helpers::TagHelper', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('ActionView::Helpers::CaptureHelper', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('ActionView::Helpers::SanitizeHelper', RubyLint.registry))
 
     klass.define_instance_method('collection_check_boxes') do |method|
       method.define_argument('object')
@@ -6985,9 +6556,6 @@ RubyLint.registry.register('ActionView') do |defs|
 
   defs.define_constant('ActionView::TestCase::InvalidNumberError') do |klass|
     klass.inherits(defs.constant_proxy('StandardError', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Blamable', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object', RubyLint.registry))
 
     klass.define_instance_method('initialize') do |method|
       method.define_argument('number')
@@ -7131,8 +6699,6 @@ RubyLint.registry.register('ActionView') do |defs|
 
   defs.define_constant('ActionView::TestCase::RecordTagHelper') do |klass|
     klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('ActionView::RecordIdentifier', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('ActionView::ModelNaming', RubyLint.registry))
 
     klass.define_instance_method('content_tag_for') do |method|
       method.define_argument('tag_name')
@@ -7151,8 +6717,6 @@ RubyLint.registry.register('ActionView') do |defs|
 
   defs.define_constant('ActionView::TestCase::RenderedViewsCollection') do |klass|
     klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object', RubyLint.registry))
 
     klass.define_instance_method('add') do |method|
       method.define_argument('view')
@@ -7312,7 +6876,6 @@ RubyLint.registry.register('ActionView') do |defs|
 
   defs.define_constant('ActionView::TestCase::TagHelper') do |klass|
     klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('ActionView::Helpers::CaptureHelper', RubyLint.registry))
 
     klass.define_instance_method('cdata_section') do |method|
       method.define_argument('content')
@@ -7346,53 +6909,6 @@ RubyLint.registry.register('ActionView') do |defs|
   defs.define_constant('ActionView::TestCase::TestController') do |klass|
     klass.inherits(defs.constant_proxy('ActionController::Base', RubyLint.registry))
     klass.inherits(defs.constant_proxy('ActionDispatch::TestProcess', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('ActionController::ParamsWrapper', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('ActionController::Instrumentation', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('ActionController::Rescue', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('ActionController::HttpAuthentication::Token::ControllerMethods', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('ActionController::HttpAuthentication::Digest::ControllerMethods', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('ActionController::HttpAuthentication::Basic::ControllerMethods', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('ActionController::RecordIdentifier', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('ActionController::DataStreaming', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('ActionController::Streaming', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('ActionController::ForceSSL', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('ActionController::RequestForgeryProtection', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('ActionController::Flash', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('ActionController::Cookies', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('ActionController::StrongParameters', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Rescuable', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('ActionController::ImplicitRender', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('ActionController::MimeResponds', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('ActionController::Caching', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('ActionController::Caching::Fragments', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('ActionController::Caching::ConfigMethods', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('AbstractController::Callbacks', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Callbacks', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('ActionController::ConditionalGet', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('ActionController::Head', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('ActionController::Renderers::All', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('ActionController::Renderers', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('ActionController::Rendering', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('ActionController::Redirecting', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('ActionController::RackDelegation', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Benchmarkable', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('AbstractController::Logger', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('ActionController::UrlFor', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('AbstractController::UrlFor', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('ActionDispatch::Routing::UrlFor', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('ActionDispatch::Routing::PolymorphicRoutes', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('ActionController::ModelNaming', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('ActionController::HideActions', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('ActionController::Helpers', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('AbstractController::Helpers', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('AbstractController::AssetPaths', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('AbstractController::Translation', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('AbstractController::Layouts', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('AbstractController::Rendering', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('AbstractController::ViewPaths', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Configurable', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object', RubyLint.registry))
 
     klass.define_method('_helpers')
 
@@ -7436,8 +6952,6 @@ RubyLint.registry.register('ActionView') do |defs|
 
   defs.define_constant('ActionView::TestCase::TestController::Callback') do |klass|
     klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object', RubyLint.registry))
 
     klass.define_instance_method('_update_filter') do |method|
       method.define_argument('filter_options')
@@ -7515,10 +7029,6 @@ RubyLint.registry.register('ActionView') do |defs|
 
   defs.define_constant('ActionView::TestCase::TestController::CallbackChain') do |klass|
     klass.inherits(defs.constant_proxy('Array', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Array', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('Enumerable', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object', RubyLint.registry))
 
     klass.define_instance_method('append') do |method|
       method.define_rest_argument('callbacks')
@@ -7562,8 +7072,6 @@ RubyLint.registry.register('ActionView') do |defs|
   defs.define_constant('ActionView::TestCase::TestController::Collector') do |klass|
     klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
     klass.inherits(defs.constant_proxy('AbstractController::Collector', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object', RubyLint.registry))
 
     klass.define_instance_method('all') do |method|
       method.define_rest_argument('args')
@@ -7613,10 +7121,6 @@ RubyLint.registry.register('ActionView') do |defs|
 
   defs.define_constant('ActionView::TestCase::TestController::Configuration') do |klass|
     klass.inherits(defs.constant_proxy('ActiveSupport::InheritableOptions', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Hash', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('Enumerable', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object', RubyLint.registry))
 
     klass.define_method('compile_methods!') do |method|
       method.define_argument('keys')
@@ -7647,8 +7151,6 @@ RubyLint.registry.register('ActionView') do |defs|
 
   defs.define_constant('ActionView::TestCase::TestController::FileBody') do |klass|
     klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object', RubyLint.registry))
 
     klass.define_instance_method('each')
 
@@ -7711,12 +7213,8 @@ RubyLint.registry.register('ActionView') do |defs|
   end
 
   defs.define_constant('ActionView::TestCase::TestController::Options') do |klass|
-    klass.inherits(defs.constant_proxy('#<Class:0x2e524>'))
+    klass.inherits(defs.constant_proxy('#<Class:0x2e88c>', RubyLint.registry))
     klass.inherits(defs.constant_proxy('Mutex_m', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('#<Module:0x2e52c>'))
-    klass.inherits(defs.constant_proxy('Enumerable', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object', RubyLint.registry))
 
     klass.define_method('from_hash') do |method|
       method.define_argument('hash')
@@ -7925,9 +7423,6 @@ RubyLint.registry.register('ActionView') do |defs|
 
   defs.define_constant('ActionView::WrongEncodingError') do |klass|
     klass.inherits(defs.constant_proxy('ActionView::EncodingError', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Blamable', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('ActiveSupport::Dependencies::Loadable', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('JSON::Ext::Generator::GeneratorMethods::Object', RubyLint.registry))
 
     klass.define_instance_method('initialize') do |method|
       method.define_argument('string')
