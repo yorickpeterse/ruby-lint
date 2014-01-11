@@ -67,7 +67,7 @@ module RubyLint
       # @return [TrueClass|FalseClass]
       #
       def include?(constant)
-        return registered.key?(constant)
+        return registered.key?(constant) || loaded_constants.include?(constant)
       end
 
       ##
@@ -88,9 +88,7 @@ module RubyLint
       # @param [String] constant The name of the top level constant.
       #
       def load(constant)
-        if loaded_constants.include?(constant) or include?(constant)
-          return
-        end
+        return if include?(constant)
 
         filename = file_for_constant(constant)
 
