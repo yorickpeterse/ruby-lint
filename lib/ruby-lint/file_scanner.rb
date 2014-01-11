@@ -69,14 +69,14 @@ module RubyLint
       return @constant_paths_cache[constant]
     end
 
-    private
-
     ##
     # @return [Array]
     #
     def glob_ruby_files
-      return Dir.glob("#{directories.join(',')}/**/*.rb")
+      return Dir.glob("{#{directories.join(',')}}/**/*.rb")
     end
+
+    private
 
     ##
     # Searches all the files that could potentially define the given constant

@@ -23,6 +23,12 @@ describe RubyLint::FileScanner do
     scanner.directories.include?(app).should == false
   end
 
+  example 'glob Ruby source files in multiple directories' do
+    scanner = RubyLint::FileScanner.new([@lib_dir, @rails_dir])
+
+    scanner.glob_ruby_files.empty?.should == false
+  end
+
   example 'finding a class' do
     scanner = RubyLint::FileScanner.new([@lib_dir])
     paths   = scanner.scan('Example::User')
