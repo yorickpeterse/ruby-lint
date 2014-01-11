@@ -69,7 +69,7 @@ module RubyLint
     # Called after a new instance of the class is created.
     #
     def after_initialize
-      @loaded = {}
+      @loaded = Set.new
     end
 
     ##
@@ -86,7 +86,7 @@ module RubyLint
     # @return [TrueClass|FalseClass]
     #
     def loaded?(constant)
-      return loaded.key?(constant)
+      return loaded.include?(constant)
     end
 
     ##
@@ -103,7 +103,7 @@ module RubyLint
         return
       end
 
-      loaded[constant] = true
+      loaded << constant
 
       RubyLint.registry.apply(constant, definitions)
     end
