@@ -26,7 +26,8 @@ module RubyLint
       #
       DEFAULT_LOAD_PATH = [
         File.expand_path('../../definitions/core', __FILE__),
-        File.expand_path('../../definitions/rails', __FILE__)
+        File.expand_path('../../definitions/rails', __FILE__),
+        File.expand_path('../../definitions/gems', __FILE__)
       ]
 
       def initialize
