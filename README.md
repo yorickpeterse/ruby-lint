@@ -134,6 +134,7 @@ In the past Gems were also signed using PGP, this is no longer the case.
 * {file:architecture Architecture}
 * {file:code\_analysis Code Analysis}
 * {file:configuration Configuration}
+* {file:definitions Definitions}
 
 ## License
 
