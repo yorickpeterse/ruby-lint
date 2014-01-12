@@ -11,7 +11,7 @@ module RubyLint
   # Global variables are also bootstrapped.
   #
   # @!attribute [r] loaded
-  #  @return [Hash] Hash containing the loaded constants.
+  #  @return [Set] Set containing the loaded constants.
   #
   # @!attribute [r] definitions
   #  @return [RubyLint::Definition::RubyObject]
@@ -90,6 +90,13 @@ module RubyLint
     end
 
     ##
+    # @return [RubyLint::Definition::Registry]
+    #
+    def registry
+      return RubyLint.registry
+    end
+
+    ##
     # Tries to load the definitions for the given constant.
     #
     # @param [String] constant
@@ -97,15 +104,22 @@ module RubyLint
     def load_constant(constant)
       return if loaded?(constant)
 
-      RubyLint.registry.load(constant)
+      registry.load(constant)
 
-      unless RubyLint.registry.include?(constant)
-        return
-      end
+      return unless registry.include?(constant)
 
+      apply(constant)
+    end
+
+    private
+
+    ##
+    # @param [String] constant
+    #
+    def apply(constant)
       loaded << constant
 
-      RubyLint.registry.apply(constant, definitions)
+      registry.apply(constant, definitions)
     end
   end # ConstantLoader
 end # RubyLint
