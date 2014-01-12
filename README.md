@@ -4,10 +4,21 @@
 [![Coverage Status](https://coveralls.io/repos/YorickPeterse/ruby-lint/badge.png?branch=master)](https://coveralls.io/r/YorickPeterse/ruby-lint)
 [![Code Climate](https://codeclimate.com/github/YorickPeterse/ruby-lint.png)](https://codeclimate.com/github/YorickPeterse/ruby-lint)
 
-ruby-lint is a linter and static code analysis tool for Ruby. It is inspired by
-similar tools such as jshint, flake8 and similar tools. ruby-lint primarily
-focuses on logic related errors such as the use of non existing variables
-instead of focusing on semantics (e.g. the amount of characters per line).
+ruby-lint is a static code analysis tool for Ruby. It is inspired by tools such
+as jshint, flake8 and similar tools. ruby-lint primarily focuses on logic
+related errors such as the use of non existing variables instead of focusing on
+semantics (e.g. the amount of characters per line).
+
+The features of ruby-lint include but are not limited to the detection of
+unused variables, the use of undefined methods and method calls with invalid
+argument amounts and more. More in-depth analysis will be added over time.
+
+The aim of ruby-lint is to provide analysis that is as accurate as possible.
+However, due to the dynamic nature of Ruby and the sheer amount of meta-magic
+in third-party code there will at times be false positives. Analysis can be
+improved by documenting your code using [YARD][yard], in particular the
+`@param` and `@return` tags are used by ruby-lint to obtain extra information
+when processing methods.
 
 ## Requirements
 
@@ -133,3 +144,4 @@ in the root directory of this repository.
 [syntastic]: https://github.com/scrooloose/syntastic
 [flycheck]: https://github.com/flycheck/flycheck/
 [rubocop]: https://github.com/bbatsov/rubocop
+[yard]: http://yardoc.org/
