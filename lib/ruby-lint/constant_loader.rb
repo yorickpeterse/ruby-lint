@@ -59,7 +59,7 @@ module RubyLint
     # Bootstraps various core definitions (Fixnum, Object, etc) and loads the
     # extra constants referred in the supplied AST.
     #
-    # @param [Array<RubyLint::AST::Node] ast
+    # @param [Array<RubyLint::AST::Node>] ast
     #
     def run(ast)
       ast.each { |node| iterate(node) }
