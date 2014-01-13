@@ -3,8 +3,13 @@ source 'https://rubygems.org/'
 gemspec
 
 group :testing do
-  gem 'rubysl', :platform => :rbx
-  gem 'rubinius-developer_tools', :platform => :rbx
-  gem 'racc', :platform => :rbx
-  gem 'ruby-prof', :platform => :mri
+  platform :rbx do
+    gem 'rubysl'
+    gem 'rubinius-developer_tools'
+    gem 'racc'
+  end
+
+  platform :mri do
+    gem 'ruby-prof'
+  end
 end
