@@ -64,6 +64,7 @@ require_relative 'ruby-lint/analysis/undefined_variables'
 require_relative 'ruby-lint/analysis/undefined_methods'
 require_relative 'ruby-lint/analysis/argument_amount'
 require_relative 'ruby-lint/analysis/pedantics'
+require_relative 'ruby-lint/analysis/useless_equality_checks'
 
 require_relative 'ruby-lint/report'
 require_relative 'ruby-lint/report/entry'

@@ -775,6 +775,20 @@ Received: #{arguments.length}
       return found
     end
 
+    ##
+    # Evaluates and returns the value of the given node.
+    #
+    # @param [RubyLint::AST::Node] node
+    # @return [RubyLint::Definition::RubyObject]
+    #
+    def evaluate_node(node)
+      value_stack.add_stack
+
+      iterate(node)
+
+      return value_stack.pop.first
+    end
+
     private
 
     ##
@@ -1059,20 +1073,6 @@ Received: #{arguments.length}
       if definition and !definition.frozen?
         definition.reference_amount += 1
       end
-    end
-
-    ##
-    # Evaluates and returns the value of the given node.
-    #
-    # @param [RubyLint::AST::Node] node
-    # @return [RubyLint::Definition::RubyObject]
-    #
-    def evaluate_node(node)
-      value_stack.add_stack
-
-      iterate(node)
-
-      return value_stack.pop.first
     end
 
     ##
