@@ -343,7 +343,7 @@ module RubyLint
       #
       def call(context = self)
         retval = respond_to?(:return_value) ? return_value : nil
-        retval = retval.call(context) if retval.respond_to?(:call)
+        retval = retval.call(context) if retval.is_a?(Proc)
 
         return retval
       end
