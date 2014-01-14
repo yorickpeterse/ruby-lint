@@ -57,8 +57,8 @@ lib/ruby-lint/cache.rb
 lib/ruby-lint/cache_entry.rb
 lib/ruby-lint/cli.rb
 lib/ruby-lint/cli/analyze.rb
-lib/ruby-lint/cli/ast.rb
 lib/ruby-lint/cli/base.rb
+lib/ruby-lint/cli/cache.rb
 lib/ruby-lint/configuration.rb
 lib/ruby-lint/constant_loader.rb
 lib/ruby-lint/constant_path.rb
@@ -361,7 +361,6 @@ spec/ruby-lint/ast/node_spec.rb
 spec/ruby-lint/cache_entry_spec.rb
 spec/ruby-lint/cache_spec.rb
 spec/ruby-lint/cli/analyze_spec.rb
-spec/ruby-lint/cli/ast_spec.rb
 spec/ruby-lint/configuration_spec.rb
 spec/ruby-lint/constant_loader_spec.rb
 spec/ruby-lint/constant_path.rb
