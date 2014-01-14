@@ -1182,7 +1182,7 @@ Received: #{arguments.length}
       # THINK: currently ruby-lint assumes methods always return a single type
       # but YARD allows you to specify multiple ones. For now we'll take the
       # first one but there should be a nicer way to do this.
-      definition.returns(definitions[0]) if definitions[0]
+      definition.returns(definitions[0].instance) if definitions[0]
     end
 
     ##

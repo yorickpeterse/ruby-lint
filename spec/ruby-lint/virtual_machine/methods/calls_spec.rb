@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe RubyLint::VirtualMachine do
   context 'evaluating method calls' do
-    example 'evaluate a call to a method with a known return type' do
+    before :all do
       code = <<-EOF
 # @return [String]
 def example
@@ -12,13 +12,14 @@ end
 variable = example
       EOF
 
-      defs   = build_definitions(code)
-      method = defs.lookup(:instance_method, 'example')
-      var    = defs.lookup(:lvar, 'variable').value
-      string = defs.lookup(:const, 'String')
+      @defs = build_definitions(code)
+    end
 
-      method.return_value.should == string
-      var.should                 == string
+    example 'assign the correct return value to a local variable' do
+      value = @defs.lookup(:lvar, 'variable').value
+
+      value.type.should == :const
+      value.name.should == 'String'
     end
   end
 end

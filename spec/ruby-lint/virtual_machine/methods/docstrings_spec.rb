@@ -53,18 +53,28 @@ end
   end
 
   context 'method return values and docstrings' do
-    example 'extract the type of a return tag' do
+    before :all do
       code = <<-CODE
 # @return [Numeric]
 def example
 end
       CODE
 
-      defs    = build_definitions(code)
-      method  = defs.lookup(:instance_method, 'example')
-      numeric = defs.lookup(:const, 'Numeric')
+      @defs = build_definitions(code)
+    end
 
-      method.return_value.should == numeric
+    example 'extract the type of a return tag' do
+      method  = @defs.lookup(:instance_method, 'example')
+      numeric = @defs.lookup(:const, 'Numeric')
+
+      method.return_value.type.should == :const
+      method.return_value.name.should == 'Numeric'
+    end
+
+    example 'return values as instances' do
+      method = @defs.lookup(:instance_method, 'example')
+
+      method.return_value.instance?.should == true
     end
   end
 end
