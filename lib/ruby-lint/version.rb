@@ -1,3 +1,3 @@
 module RubyLint
-  VERSION = '1.0.3'
+  VERSION = '1.1.0.pre1'
 end # RubyLint
