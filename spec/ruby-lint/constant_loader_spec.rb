@@ -47,6 +47,18 @@ describe RubyLint::ConstantLoader do
     end
   end
 
+  context 'dealing with case sensitivity' do
+    before do
+      @loader.bootstrap
+    end
+
+    example 'do not raise when loading process.rb for the PROCESS constant' do
+      block = lambda { @loader.load_constant('PROCESS') }
+
+      block.should_not raise_error
+    end
+  end
+
   context 'iterating over an AST' do
     before do
       @ast = s(:root, s(:const, nil, 'PP'))

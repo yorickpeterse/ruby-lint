@@ -98,7 +98,12 @@ module RubyLint
 
           if File.file?(filepath)
             require(filepath)
-            loaded_constants << constant
+
+            # Only update the path if we actually found the right constant
+            # file.
+            if registered.key?(constant)
+              loaded_constants << constant
+            end
 
             break
           end
