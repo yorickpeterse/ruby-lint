@@ -30,7 +30,7 @@ module RubyLint
         left_type  = definition_type(left)
         right_type = definition_type(right)
 
-        if left_type != right_type
+        if left_type != right_type and add_warning?(left_type, right_type)
           warning(
             "Comparing #{left_type} with #{right_type} evaluates to false",
             node
@@ -54,6 +54,14 @@ module RubyLint
         end
 
         return name
+      end
+
+      ##
+      # @param [String] left
+      # @param [String] right
+      #
+      def add_warning?(left, right)
+        return left != 'unknown' && right != 'unknown'
       end
     end # UselessEqualityChecks
   end # Analysis

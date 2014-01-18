@@ -53,4 +53,17 @@ end
 
     entry.message.should == 'Comparing String with Fixnum evaluates to false'
   end
+
+  example 'ignore values that are unknown' do
+    code = <<-EOF
+def foo
+end
+
+10 == foo
+    EOF
+
+    report = build_report(code, RubyLint::Analysis::UselessEqualityChecks)
+
+    report.entries.empty?.should == true
+  end
 end
