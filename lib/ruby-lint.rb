@@ -10,7 +10,7 @@ require 'zlib'
 
 require_relative 'ruby-lint/extensions/string'
 
-require_relative 'ruby-lint/base'
+require_relative 'ruby-lint/ruby_lint'
 require_relative 'ruby-lint/variable_predicates'
 require_relative 'ruby-lint/ast/node'
 require_relative 'ruby-lint/ast/builder'
