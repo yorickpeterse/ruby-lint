@@ -59,7 +59,17 @@ describe RubyLint::Definition::Registry do
     end
 
     example 'define sub definitions correctly' do
-      @root.lookup(:const, 'Foo').has_definition?(:method, 'bar').should == true
+      @root.lookup(:const, 'Foo')
+        .has_definition?(:method, 'bar')
+        .should == true
+    end
+
+    example 'do not overwrite existing definitions' do
+      foo = @root.lookup(:const, 'Foo')
+
+      @registry.apply('Foo', @root)
+
+      @root.lookup(:const, 'Foo').should == foo
     end
   end
 

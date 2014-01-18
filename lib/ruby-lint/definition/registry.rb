@@ -79,7 +79,9 @@ module RubyLint
       # @param [RubyLint::Definition::RubyObject] definitions
       #
       def apply(constant, definitions)
-        get(constant).call(definitions)
+        unless definitions.defines?(:const, constant)
+          get(constant).call(definitions)
+        end
       end
 
       ##
