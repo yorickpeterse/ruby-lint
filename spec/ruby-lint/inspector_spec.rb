@@ -105,6 +105,19 @@ describe RubyLint::Inspector do
     end
   end
 
+  context 'inspecing included modules with anonymous modules' do
+    before :all do
+      mod   = Module.new { def foo; end }
+      klass = Class.new { include mod }
+
+      @modules = RubyLint::Inspector.new(klass).inspect_modules
+    end
+
+    example 'ignore anonymous modules' do
+      @modules.empty?.should == true
+    end
+  end
+
   context 'inspecting class methods' do
     before :all do
       inspector = RubyLint::Inspector.new(Encoding)

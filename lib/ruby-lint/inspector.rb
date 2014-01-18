@@ -132,8 +132,10 @@ module RubyLint
           parent && ancestor != parent
         end
 
-        # Get rid of non Module instances.
-        modules = modules.select { |mod| mod.instance_of?(Module) }
+        # Get rid of non Module instances and modules that don't have a name.
+        modules = modules.select do |mod|
+          mod.instance_of?(Module) && mod.name
+        end
       end
 
       return modules
