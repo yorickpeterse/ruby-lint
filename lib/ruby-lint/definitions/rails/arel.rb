@@ -1,7 +1,7 @@
 # This file was automatically generated, any manual changes will be lost the
 # next time this file is generated.
 #
-# Platform: rbx 2.2.3.n9
+# Platform: rbx 2.2.3.n18
 
 RubyLint.registry.register('Arel') do |defs|
   defs.define_constant('Arel') do |klass|
@@ -23,12 +23,7 @@ RubyLint.registry.register('Arel') do |defs|
   end
 
   defs.define_constant('Arel::Attribute') do |klass|
-    klass.inherits(defs.constant_proxy('#<Class:0x2ee18>', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('Arel::Math', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('Arel::OrderPredications', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('Arel::AliasPredication', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('Arel::Predications', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('Arel::Expressions', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
     klass.define_instance_method('lower')
   end
@@ -42,12 +37,7 @@ RubyLint.registry.register('Arel') do |defs|
   end
 
   defs.define_constant('Arel::Attributes::Attribute') do |klass|
-    klass.inherits(defs.constant_proxy('#<Class:0x2ee18>', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('Arel::Math', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('Arel::OrderPredications', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('Arel::AliasPredication', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('Arel::Predications', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('Arel::Expressions', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
     klass.define_instance_method('lower')
   end
@@ -6879,7 +6869,7 @@ RubyLint.registry.register('Arel') do |defs|
   end
 
   defs.define_constant('Arel::SelectManager::Row') do |klass|
-    klass.inherits(defs.constant_proxy('#<Class:0x2ee40>', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
     klass.define_instance_method('id')
 
@@ -7306,7 +7296,7 @@ RubyLint.registry.register('Arel') do |defs|
   end
 
   defs.define_constant('Arel::Visitors::Dot::Edge') do |klass|
-    klass.inherits(defs.constant_proxy('#<Class:0x2ee44>', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 

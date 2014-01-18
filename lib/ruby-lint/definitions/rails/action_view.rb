@@ -1,7 +1,7 @@
 # This file was automatically generated, any manual changes will be lost the
 # next time this file is generated.
 #
-# Platform: rbx 2.2.3.n9
+# Platform: rbx 2.2.3.n18
 
 RubyLint.registry.register('ActionView') do |defs|
   defs.define_constant('ActionView') do |klass|
@@ -7213,8 +7213,7 @@ RubyLint.registry.register('ActionView') do |defs|
   end
 
   defs.define_constant('ActionView::TestCase::TestController::Options') do |klass|
-    klass.inherits(defs.constant_proxy('#<Class:0x2e88c>', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('Mutex_m', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
     klass.define_method('from_hash') do |method|
       method.define_argument('hash')

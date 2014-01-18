@@ -1,7 +1,7 @@
 # This file was automatically generated, any manual changes will be lost the
 # next time this file is generated.
 #
-# Platform: rbx 2.2.3.n9
+# Platform: rbx 2.2.3.n18
 
 RubyLint.registry.register('ActiveRecord') do |defs|
   defs.define_constant('ActiveRecord') do |klass|
@@ -142,7 +142,6 @@ RubyLint.registry.register('ActiveRecord') do |defs|
 
   defs.define_constant('ActiveRecord::AssociationRelation::JoinOperation') do |klass|
     klass.inherits(defs.constant_proxy('Struct', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('#<Module:0x2ebf4>', RubyLint.registry))
 
     klass.define_method('[]') do |method|
       method.define_rest_argument('args')
@@ -955,7 +954,6 @@ RubyLint.registry.register('ActiveRecord') do |defs|
     klass.inherits(defs.constant_proxy('ActiveRecord::AttributeMethods::BeforeTypeCast', RubyLint.registry))
     klass.inherits(defs.constant_proxy('ActiveRecord::AttributeMethods::Write', RubyLint.registry))
     klass.inherits(defs.constant_proxy('ActiveRecord::AttributeMethods::Read', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('#<Module:0x2ec64>', RubyLint.registry))
     klass.inherits(defs.constant_proxy('ActiveRecord::AttributeMethods', RubyLint.registry))
     klass.inherits(defs.constant_proxy('ActiveModel::AttributeMethods', RubyLint.registry))
     klass.inherits(defs.constant_proxy('ActiveRecord::Locking::Pessimistic', RubyLint.registry))
@@ -1886,7 +1884,7 @@ RubyLint.registry.register('ActiveRecord') do |defs|
   end
 
   defs.define_constant('ActiveRecord::Base::Attribute') do |klass|
-    klass.inherits(defs.constant_proxy('#<Class:0x2ecbc>', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
     klass.define_instance_method('serialize')
 
@@ -3867,7 +3865,7 @@ RubyLint.registry.register('ActiveRecord') do |defs|
   end
 
   defs.define_constant('ActiveRecord::ConnectionAdapters::ColumnDefinition') do |klass|
-    klass.inherits(defs.constant_proxy('#<Class:0x2ecdc>', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
     klass.define_instance_method('primary_key?')
 
@@ -4477,7 +4475,7 @@ RubyLint.registry.register('ActiveRecord') do |defs|
   end
 
   defs.define_constant('ActiveRecord::ConnectionAdapters::IndexDefinition') do |klass|
-    klass.inherits(defs.constant_proxy('#<Class:0x2ece0>', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end
 
@@ -6553,7 +6551,7 @@ RubyLint.registry.register('ActiveRecord') do |defs|
   end
 
   defs.define_constant('ActiveRecord::Migration::ReversibleBlockHelper') do |klass|
-    klass.inherits(defs.constant_proxy('#<Class:0x2ecf8>', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
     klass.define_instance_method('down')
 
@@ -6699,7 +6697,7 @@ RubyLint.registry.register('ActiveRecord') do |defs|
   end
 
   defs.define_constant('ActiveRecord::MigrationProxy') do |klass|
-    klass.inherits(defs.constant_proxy('#<Class:0x2ecfc>', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
     klass.define_instance_method('announce') do |method|
       method.define_rest_argument('args')
@@ -9155,7 +9153,7 @@ RubyLint.registry.register('ActiveRecord') do |defs|
   end
 
   defs.define_constant('ActiveRecord::Schema::ReversibleBlockHelper') do |klass|
-    klass.inherits(defs.constant_proxy('#<Class:0x2ecf8>', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
     klass.define_instance_method('down')
 
@@ -9196,7 +9194,6 @@ RubyLint.registry.register('ActiveRecord') do |defs|
   defs.define_constant('ActiveRecord::SchemaMigration') do |klass|
     klass.inherits(defs.constant_proxy('ActiveRecord::Base', RubyLint.registry))
     klass.inherits(defs.constant_proxy('ActiveRecord::SchemaMigration::GeneratedFeatureMethods', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('#<Module:0x2ed24>', RubyLint.registry))
 
     klass.define_method('_validators')
 
@@ -9532,7 +9529,7 @@ RubyLint.registry.register('ActiveRecord') do |defs|
   end
 
   defs.define_constant('ActiveRecord::SchemaMigration::Attribute') do |klass|
-    klass.inherits(defs.constant_proxy('#<Class:0x2ecbc>', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
     klass.define_instance_method('serialize')
 

@@ -1,7 +1,7 @@
 # This file was automatically generated, any manual changes will be lost the
 # next time this file is generated.
 #
-# Platform: rbx 2.2.3.n9
+# Platform: rbx 2.2.3.n18
 
 RubyLint.registry.register('ActiveModel') do |defs|
   defs.define_constant('ActiveModel') do |klass|
@@ -112,7 +112,6 @@ RubyLint.registry.register('ActiveModel') do |defs|
 
   defs.define_constant('ActiveModel::AttributeMethods::ClassMethods::AttributeMethodMatcher::AttributeMethodMatch') do |klass|
     klass.inherits(defs.constant_proxy('Struct', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('#<Module:0x2eb88>', RubyLint.registry))
 
     klass.define_method('[]') do |method|
       method.define_rest_argument('args')

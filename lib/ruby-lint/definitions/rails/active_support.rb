@@ -1,7 +1,7 @@
 # This file was automatically generated, any manual changes will be lost the
 # next time this file is generated.
 #
-# Platform: rbx 2.2.3.n9
+# Platform: rbx 2.2.3.n18
 
 RubyLint.registry.register('ActiveSupport') do |defs|
   defs.define_constant('ActiveSupport') do |klass|

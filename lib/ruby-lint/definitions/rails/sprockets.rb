@@ -1,7 +1,7 @@
 # This file was automatically generated, any manual changes will be lost the
 # next time this file is generated.
 #
-# Platform: rbx 2.2.3.n9
+# Platform: rbx 2.2.3.n18
 
 RubyLint.registry.register('Sprockets') do |defs|
   defs.define_constant('Sprockets') do |klass|
@@ -864,7 +864,7 @@ RubyLint.registry.register('Sprockets') do |defs|
   end
 
   defs.define_constant('Sprockets::ProcessedAsset::DependencyFile') do |klass|
-    klass.inherits(defs.constant_proxy('#<Class:0x2ef28>', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
     klass.define_instance_method('eql?') do |method|
       method.define_argument('other')
