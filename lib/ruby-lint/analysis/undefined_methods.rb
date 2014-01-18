@@ -43,7 +43,8 @@ module RubyLint
       # @param [String] name
       #
       def has_definition?(scope, name)
-        exists = scope.has_definition?(scope.method_call_type, name)
+        type   = scope.method_call_type
+        exists = scope.has_definition?(type, name)
 
         # Due to the way `parser` wraps block nodes (`(block (send) ...)`
         # opposed to `(send ... (block))`) we'll try to find the method in the
@@ -51,6 +52,12 @@ module RubyLint
         if !exists and scope.block?
           prev   = previous_scope
           exists = prev.has_definition?(prev.method_call_type, name)
+        end
+
+        # If method_missing is defined we'll assume the method calls are
+        # handled gracefully and not add any errors for them.
+        if !exists and scope.has_definition?(type, 'method_missing')
+          exists = true
         end
 
         return exists

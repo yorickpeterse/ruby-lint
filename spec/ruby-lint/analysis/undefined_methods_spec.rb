@@ -317,4 +317,21 @@ end
     entry.message.should == 'undefined method to_foo on an instance of ' \
       'Fixnum, Bignum or Numeric'
   end
+
+  context 'method missing' do
+    example 'do not add errors when method_missing is defined' do
+      code = <<-CODE
+class Foo
+  def method_missing; end
+end
+
+foo = Foo.new
+foo.bar
+      CODE
+
+      report = build_report(code, RubyLint::Analysis::UndefinedMethods)
+
+      report.entries.empty?.should == true
+    end
+  end
 end
