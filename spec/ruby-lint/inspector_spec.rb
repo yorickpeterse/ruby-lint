@@ -87,6 +87,19 @@ describe RubyLint::Inspector do
     end
   end
 
+  context 'inspecting anonymous parent classes' do
+    before :all do
+      parent = Class.new
+      klass  = Class.new(parent)
+
+      @inspector = RubyLint::Inspector.new(klass)
+    end
+
+    example 'ignore anonymous parent classes' do
+      @inspector.inspect_superclass.nil?.should == true
+    end
+  end
+
   context 'inspecting included modules' do
     before :all do
       klass = Class.new { include Enumerable }
