@@ -1,12 +1,11 @@
 # This file was automatically generated, any manual changes will be lost the
 # next time this file is generated.
 #
-# Platform: rbx 2.2.3.n364
+# Platform: rbx 2.2.3.n18
 
 RubyLint.registry.register('Tempfile') do |defs|
   defs.define_constant('Tempfile') do |klass|
-    klass.inherits(defs.constant_proxy('#<Class:0x2362c>'))
-    klass.inherits(defs.constant_proxy('Dir::Tmpname', RubyLint.registry))
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
     klass.define_method('create') do |method|
       method.define_argument('basename')

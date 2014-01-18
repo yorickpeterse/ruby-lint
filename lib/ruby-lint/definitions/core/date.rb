@@ -1,14 +1,12 @@
 # This file was automatically generated, any manual changes will be lost the
 # next time this file is generated.
 #
-# Platform: rbx 2.2.3.n364
+# Platform: rbx 2.2.3.n18
 
 RubyLint.registry.register('Date') do |defs|
   defs.define_constant('Date') do |klass|
     klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('#<Module:0x1fb70>'))
     klass.inherits(defs.constant_proxy('Comparable', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('#<Module:0x1fb78>'))
 
     klass.define_method('_httpdate') do |method|
       method.define_argument('str')
@@ -411,6 +409,106 @@ RubyLint.registry.register('Date') do |defs|
   end
 
   defs.define_constant('Date::ENGLAND') do |klass|
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
+
+  end
+
+  defs.define_constant('Date::Format') do |klass|
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
+
+  end
+
+  defs.define_constant('Date::Format::ABBR_DAYS') do |klass|
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
+
+  end
+
+  defs.define_constant('Date::Format::ABBR_MONTHS') do |klass|
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
+
+  end
+
+  defs.define_constant('Date::Format::Bag') do |klass|
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
+
+    klass.define_instance_method('[]') do |method|
+      method.define_argument('key')
+    end
+
+    klass.define_instance_method('[]=') do |method|
+      method.define_argument('key')
+      method.define_argument('val')
+    end
+
+    klass.define_instance_method('_cent')
+
+    klass.define_instance_method('_cent=')
+
+    klass.define_instance_method('_comp')
+
+    klass.define_instance_method('_comp=')
+
+    klass.define_instance_method('_merid')
+
+    klass.define_instance_method('_merid=')
+
+    klass.define_instance_method('hour')
+
+    klass.define_instance_method('hour=')
+
+    klass.define_instance_method('initialize')
+
+    klass.define_instance_method('mday')
+
+    klass.define_instance_method('mday=')
+
+    klass.define_instance_method('min')
+
+    klass.define_instance_method('min=')
+
+    klass.define_instance_method('mon')
+
+    klass.define_instance_method('mon=')
+
+    klass.define_instance_method('offset')
+
+    klass.define_instance_method('offset=')
+
+    klass.define_instance_method('sec')
+
+    klass.define_instance_method('sec=')
+
+    klass.define_instance_method('sec_fraction')
+
+    klass.define_instance_method('sec_fraction=')
+
+    klass.define_instance_method('to_hash')
+
+    klass.define_instance_method('year')
+
+    klass.define_instance_method('year=')
+
+    klass.define_instance_method('zone')
+
+    klass.define_instance_method('zone=')
+  end
+
+  defs.define_constant('Date::Format::Bag::Fast') do |klass|
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
+
+  end
+
+  defs.define_constant('Date::Format::DAYS') do |klass|
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
+
+  end
+
+  defs.define_constant('Date::Format::MONTHS') do |klass|
+    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
+
+  end
+
+  defs.define_constant('Date::Format::ZONES') do |klass|
     klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
   end

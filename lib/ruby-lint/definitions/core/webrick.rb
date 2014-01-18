@@ -1,7 +1,7 @@
 # This file was automatically generated, any manual changes will be lost the
 # next time this file is generated.
 #
-# Platform: rbx 2.2.3.n364
+# Platform: rbx 2.2.3.n18
 
 RubyLint.registry.register('WEBrick') do |defs|
   defs.define_constant('WEBrick') do |klass|
@@ -483,7 +483,6 @@ RubyLint.registry.register('WEBrick') do |defs|
 
   defs.define_constant('WEBrick::HTTPAuth::DigestAuth::OpaqueInfo') do |klass|
     klass.inherits(defs.constant_proxy('Struct', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('#<Module:0x23d0c>'))
 
     klass.define_method('[]') do |method|
       method.define_rest_argument('args')
@@ -852,7 +851,6 @@ RubyLint.registry.register('WEBrick') do |defs|
 
   defs.define_constant('WEBrick::HTTPAuth::ProxyDigestAuth::OpaqueInfo') do |klass|
     klass.inherits(defs.constant_proxy('Struct', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('#<Module:0x23d0c>'))
 
     klass.define_method('[]') do |method|
       method.define_rest_argument('args')
@@ -2219,12 +2217,6 @@ RubyLint.registry.register('WEBrick') do |defs|
   defs.define_constant('WEBrick::HTTPUtils::FormData::EmptyRawHeader') do |klass|
     klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
 
-  end
-
-  defs.define_constant('WEBrick::HTTPUtils::FormData::Extend') do |klass|
-    klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
-
-    klass.define_instance_method('json_create')
   end
 
   defs.define_constant('WEBrick::HTTPUtils::FormData::Rationalizer') do |klass|

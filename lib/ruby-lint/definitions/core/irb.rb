@@ -1,7 +1,7 @@
 # This file was automatically generated, any manual changes will be lost the
 # next time this file is generated.
 #
-# Platform: rbx 2.2.3.n364
+# Platform: rbx 2.2.3.n18
 
 RubyLint.registry.register('IRB') do |defs|
   defs.define_constant('IRB') do |klass|
@@ -282,7 +282,6 @@ RubyLint.registry.register('IRB') do |defs|
 
   defs.define_constant('IRB::DefaultEncodings') do |klass|
     klass.inherits(defs.constant_proxy('Struct', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('#<Module:0x20be0>'))
 
     klass.define_method('[]') do |method|
       method.define_rest_argument('args')

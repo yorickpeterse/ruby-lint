@@ -1,7 +1,7 @@
 # This file was automatically generated, any manual changes will be lost the
 # next time this file is generated.
 #
-# Platform: rbx 2.2.3.n364
+# Platform: rbx 2.2.3.n18
 
 RubyLint.registry.register('CSV') do |defs|
   defs.define_constant('CSV') do |klass|
@@ -360,7 +360,6 @@ RubyLint.registry.register('CSV') do |defs|
 
   defs.define_constant('CSV::FieldInfo') do |klass|
     klass.inherits(defs.constant_proxy('Struct', RubyLint.registry))
-    klass.inherits(defs.constant_proxy('#<Module:0x1f748>'))
 
     klass.define_method('[]') do |method|
       method.define_rest_argument('args')
