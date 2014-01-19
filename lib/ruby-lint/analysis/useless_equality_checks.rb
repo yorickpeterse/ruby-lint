@@ -25,7 +25,11 @@ module RubyLint
         return unless name == :==
 
         left  = vm.associations[receiver]
-        right = vm.evaluate_node(arg)
+        right = vm.associations[arg]
+
+        if !left or !right
+          return
+        end
 
         left_type  = definition_type(left)
         right_type = definition_type(right)

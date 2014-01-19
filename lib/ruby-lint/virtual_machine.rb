@@ -620,6 +620,7 @@ module RubyLint
           update_parents_from_tag(docstring_tags.param_tags[name], var)
         end
 
+        associate_node(node, var)
         current_scope.add(type, name, var)
         current_scope.add_definition(var)
       end
@@ -665,6 +666,13 @@ Location: #{node.file} on line #{node.line}, column #{node.column}
 Expected: #{args_length}
 Received: #{arguments.length}
         EOF
+      end
+
+      # Associate the argument definitions with their nodes.
+      arguments.each_with_index do |obj, index|
+        arg_node = node.children[2 + index]
+
+        associate_node(arg_node, obj)
       end
 
       # If the receiver doesn't exist there's no point in associating a context

@@ -10,7 +10,7 @@ class A
 end
       CODE
 
-      assoc = build_associations(code).to_a.last.last
+      assoc = build_associations(code).to_a[-2].last
 
       assoc.type.should          == :block
       assoc.instance_type.should == :instance

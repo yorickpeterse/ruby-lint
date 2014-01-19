@@ -66,4 +66,16 @@ end
 
     report.entries.empty?.should == true
   end
+
+  example 'calling methods on objects that return unknown values' do
+    code = <<-CODE
+def example(number)
+  return '10' == number.to_s
+end
+    CODE
+
+    report = build_report(code, RubyLint::Analysis::UselessEqualityChecks)
+
+    report.entries.empty?.should == true
+  end
 end

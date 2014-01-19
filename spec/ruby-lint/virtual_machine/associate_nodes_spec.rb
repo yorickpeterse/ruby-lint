@@ -28,7 +28,7 @@ describe RubyLint::VirtualMachine do
       associations = build_associations('foo(:bar)')
       nodes        = associations.keys
 
-      nodes.length.should  == 1
+      nodes.length.should  == 2
       nodes[0].type.should == :root
     end
 
@@ -49,11 +49,13 @@ describe RubyLint::VirtualMachine do
       nodes        = associations.keys
       values       = associations.values
 
-      nodes.length.should  == 2
+      nodes.length.should  == 3
       nodes[0].type.should == :root
-      nodes[1].type.should == :send
+      nodes[1].type.should == :sym
+      nodes[2].type.should == :send
 
-      values[1].type.should == :unknown
+      values[1].type.should == :sym
+      values[2].type.should == :unknown
     end
   end
 end
