@@ -112,7 +112,7 @@ class Slop
     #
     # Returns a new instance of Slop.
     def optspec(string, config = {})
-      warn '[DEPRECATED] `Slop.optspec` is deprecated and will be removed in version 4'
+      warn "[DEPRECATED] `Slop.optspec` is deprecated and will be removed in version 4"
       config[:banner], optspec = string.split(/^--+$/, 2) if string[/^--+$/]
       lines = optspec.split("\n").reject(&:empty?)
       opts  = Slop.new(config)
@@ -349,7 +349,7 @@ class Slop
   def run(callable = nil, &block)
     @runner = callable || block
     unless @runner.respond_to?(:call)
-      raise ArgumentError, 'You must specify a callable object or a block to #run'
+      raise ArgumentError, "You must specify a callable object or a block to #run"
     end
   end
 
@@ -464,8 +464,8 @@ class Slop
     if banner.nil?
       banner = "Usage: #{File.basename($0, '.*')}"
       banner << " #{@command}" if @command
-      banner << ' [command]' if @commands.any?
-      banner << ' [options]'
+      banner << " [command]" if @commands.any?
+      banner << " [options]"
     end
     if banner
       "#{banner}\n#{@separators[0] ? "#{@separators[0]}\n" : ''}#{optstr}"
@@ -511,7 +511,7 @@ class Slop
 
     if option
       option.count += 1 unless item.start_with?('--no-')
-      option.count += 1 if option.key[0, 3] == 'no-'
+      option.count += 1 if option.key[0, 3] == "no-"
       @trash << index
       @triggered_options << option
 
