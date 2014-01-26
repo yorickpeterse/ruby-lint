@@ -24,15 +24,8 @@ module RubyLint
 
         return unless name == :==
 
-        left  = vm.associations[receiver]
-        right = vm.associations[arg]
-
-        if !left or !right
-          return
-        end
-
-        left_type  = definition_type(left)
-        right_type = definition_type(right)
+        left_type  = node_type(receiver)
+        right_type = node_type(arg)
 
         if skip_type?(left_type) or skip_type?(right_type)
           return
@@ -44,6 +37,23 @@ module RubyLint
             node
           )
         end
+      end
+
+      ##
+      # Returns the type name for a given AST node.
+      #
+      # @param [RubyLint::AST::Node] node
+      # @return [String]
+      #
+      def node_type(node)
+        definition = vm.associations[node]
+        type       = nil
+
+        if definition
+          type = definition_type(definition)
+        end
+
+        return type
       end
 
       ##
