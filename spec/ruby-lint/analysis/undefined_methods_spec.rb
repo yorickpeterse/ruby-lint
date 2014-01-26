@@ -48,7 +48,7 @@ String.example_method
   example 'add an error when calling a method defined in a different scope' do
     code = <<-CODE
 class Person
-  def name
+  def person_name
     return 'name'
   end
 
@@ -57,7 +57,7 @@ class Person
   end
 end
 
-name
+person_name
     CODE
 
     report = build_report(code, RubyLint::Analysis::UndefinedMethods)
@@ -70,7 +70,7 @@ name
 
     entry.line.should    == 11
     entry.column.should  == 1
-    entry.message.should == 'undefined method name'
+    entry.message.should == 'undefined method person_name'
   end
 
   describe 'core Ruby types' do

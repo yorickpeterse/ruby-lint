@@ -68,6 +68,10 @@ module RubyLint
     # @!attribute [r] file
     #  @return [String] The file path of the definition.
     #
+    # @!attribute [r] inherit_self
+    #  @return [TrueClass|FalseClass] When set to `false` child definitions
+    #   created using `define_constant` do not inherit the current definition.
+    #
     class RubyObject
       include VariablePredicates
 
@@ -119,6 +123,7 @@ module RubyLint
         :column,
         :definitions,
         :file,
+        :inherit_self,
         :line,
         :members_as_value,
         :name,
@@ -146,6 +151,8 @@ module RubyLint
       # @yieldparam [RubyLint::Definition::RubyObject]
       #
       def initialize(options = {})
+        @inherit_self = true
+
         options.each do |key, value|
           instance_variable_set("@#{key}", value)
         end
@@ -695,7 +702,7 @@ module RubyLint
           :name    => name,
           :type    => type,
           :value   => value,
-          :parents => [self],
+          :parents => inherit_self ? [self] : nil,
           &block
         )
 

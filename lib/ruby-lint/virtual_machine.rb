@@ -808,8 +808,13 @@ Received: #{arguments.length}
       definitions = Definition::RubyObject.new(
         :name          => 'root',
         :type          => :root,
-        :instance_type => :instance
+        :instance_type => :instance,
+        :inherit_self  => false
       )
+
+      definitions.parents = [
+        definitions.constant_proxy('Object', RubyLint.registry)
+      ]
 
       definitions.define_self
 
