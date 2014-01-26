@@ -34,7 +34,11 @@ module RubyLint
         left_type  = definition_type(left)
         right_type = definition_type(right)
 
-        if left_type != right_type and add_warning?(left_type, right_type)
+        if skip_type?(left_type) or skip_type?(right_type)
+          return
+        end
+
+        if left_type != right_type
           warning(
             "Comparing #{left_type} with #{right_type} evaluates to false",
             node
@@ -49,23 +53,29 @@ module RubyLint
       # @return [String]
       #
       def definition_type(object)
-        name = object.type.to_s
+        name = nil
 
-        if object.name and !object.name.empty?
-          name = object.name
-        elsif object.ruby_class
+        # Built-in types such as Array.
+        if object.ruby_class
           name = object.ruby_class
+
+        # Variables
+        elsif object.variable? and object.value
+          name = definition_type(object.value)
+
+        # Constants.
+        elsif object.constant? and !object.name.empty?
+          name = object.name
         end
 
         return name
       end
 
       ##
-      # @param [String] left
-      # @param [String] right
+      # @param [String] type
       #
-      def add_warning?(left, right)
-        return left != 'unknown' && right != 'unknown'
+      def skip_type?(type)
+        return !type || type == 'unknown'
       end
     end # UselessEqualityChecks
   end # Analysis

@@ -34,6 +34,13 @@ module RubyLint
       :nil    => 'NilClass'
     }
 
+    ##
+    # List of variable types used in {#variable?}.
+    #
+    # @return [Array]
+    #
+    VARIABLE_TYPES = [:lvar, :ivar, :cvar, :gvar]
+
     PREDICATE_METHODS.each do |type|
       define_method("#{type}?") do
         return @type == type
@@ -59,6 +66,13 @@ module RubyLint
     #
     def ruby_class
       return RUBY_CLASSES[type]
+    end
+
+    ##
+    # @return [TrueClass|FalseClass]
+    #
+    def variable?
+      return VARIABLE_TYPES.include?(type)
     end
   end # VariablePredicates
 end # RubyLint
