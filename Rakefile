@@ -1,8 +1,5 @@
-require File.expand_path('../lib/ruby-lint/extensions/string', __FILE__)
-require File.expand_path('../lib/ruby-lint/inspector', __FILE__)
-require File.expand_path('../lib/ruby-lint/definition_generator', __FILE__)
-
-require File.expand_path('../lib/ruby-lint/rake_task', __FILE__)
+require_relative 'lib/ruby-lint/definition_generator'
+require_relative 'lib/ruby-lint/rake_task'
 
 RubyLint::RakeTask.new do |task|
   task.name  = 'lint'
