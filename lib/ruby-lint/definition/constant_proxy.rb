@@ -20,6 +20,8 @@ module RubyLint
     #  @return [RubyLint::Definition::RubyObject]
     #
     class ConstantProxy
+      include VariablePredicates
+
       attr_reader :proxy_source, :proxy_name, :proxy_definition, :registry
 
       ##
