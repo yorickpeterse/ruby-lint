@@ -75,33 +75,10 @@ Examples:
   # @return [Array]
   #
   def extract_files(files)
-    existing = []
+    return RubyLint::FileList.new.process(files)
 
-    files.each do |file|
-      file = File.expand_path(file)
-
-      if File.file?(file)
-        existing << file
-
-      elsif File.directory?(file)
-        existing = existing | glob_files(file)
-
-      else
-        abort "The file/directory #{file} does not exist"
-      end
-    end
-
-    return existing
-  end
-
-  ##
-  # Returns a list of Ruby files in the given directory. This list includes
-  # deeply nested files.
-  #
-  # @return [Array]
-  #
-  def glob_files(directory)
-    return Dir.glob(File.join(directory, '**/*.rb'))
+  rescue Errno::ENOENT => error
+    abort error.message
   end
 
   ##
