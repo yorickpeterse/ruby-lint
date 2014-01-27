@@ -113,4 +113,70 @@ end
         .should == true
     end
   end
+
+  context 'attr methods and argument amounts' do
+    example 'set the arguments for attr' do
+      code = <<-CODE
+class Example
+  attr :foo
+end
+      CODE
+
+      defs = build_definitions(code)
+
+      defs.lookup(:const, 'Example')
+        .lookup(:instance_method, 'foo')
+        .arguments
+        .empty?
+        .should == true
+    end
+
+    example 'set the arguments for attr_reader' do
+      code = <<-CODE
+class Example
+  attr_reader :foo
+end
+      CODE
+
+      defs = build_definitions(code)
+
+      defs.lookup(:const, 'Example')
+        .lookup(:instance_method, 'foo')
+        .arguments
+        .empty?
+        .should == true
+    end
+
+    example 'set the arguments for attr_writer' do
+      code = <<-CODE
+class Example
+  attr_writer :foo
+end
+      CODE
+
+      defs = build_definitions(code)
+
+      defs.lookup(:const, 'Example')
+        .lookup(:instance_method, 'foo=')
+        .arguments
+        .length
+        .should == 1
+    end
+
+    example 'set the arguments for attr_accessor' do
+      code = <<-CODE
+class Example
+  attr_accessor :foo
+end
+      CODE
+
+      defs = build_definitions(code)
+
+      defs.lookup(:const, 'Example')
+        .lookup(:instance_method, 'foo=')
+        .arguments
+        .length
+        .should == 1
+    end
+  end
 end

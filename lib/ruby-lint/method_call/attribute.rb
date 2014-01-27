@@ -85,7 +85,9 @@ module RubyLint
           name = name + '='
         end
 
-        context.define_instance_method(name)
+        context.define_instance_method(name) do |method|
+          method.define_argument('value') if setter
+        end
 
         unless context.has_definition?(:ivar, ivar_name)
           ivar = Definition::RubyObject.new(
