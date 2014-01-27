@@ -290,7 +290,7 @@ RubyLint.registry.register('Module') do |defs|
     klass.define_instance_method('yaml_as') do |method|
       method.define_argument('url')
     end
-  end
 
-  defs.copy(defs.lookup(:const, 'Module'), :instance_method, :method)
+    klass.copy(klass, :instance_method, :method)
+  end
 end

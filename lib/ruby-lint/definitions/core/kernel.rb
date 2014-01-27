@@ -546,10 +546,10 @@ RubyLint.registry.register('Kernel') do |defs|
     klass.define_method('untrust')
 
     klass.define_method('untrusted?')
-  end
 
-  # Methods defined in Kernel (both class and instance methods) are globally
-  # available regardless of whether the code is evaluated in a class or
-  # instance context.
-  defs.copy(defs.lookup(:const, 'Kernel'), :method, :instance_method)
+    # Methods defined in Kernel (both class and instance methods) are globally
+    # available regardless of whether the code is evaluated in a class or
+    # instance context.
+    klass.copy(klass, :method, :instance_method)
+  end
 end
