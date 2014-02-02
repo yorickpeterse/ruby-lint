@@ -51,7 +51,6 @@ lib/ruby-lint/analysis/unused_variables.rb
 lib/ruby-lint/analysis/useless_equality_checks.rb
 lib/ruby-lint/ast/builder.rb
 lib/ruby-lint/ast/node.rb
-lib/ruby-lint/base.rb
 lib/ruby-lint/benchmark/average.rb
 lib/ruby-lint/cache.rb
 lib/ruby-lint/cache_entry.rb
@@ -281,6 +280,8 @@ lib/ruby-lint/definitions/core/yaml.rb
 lib/ruby-lint/definitions/core/zero_division_error.rb
 lib/ruby-lint/definitions/core/zlib.rb
 lib/ruby-lint/definitions/gems/.gitkeep
+lib/ruby-lint/definitions/gems/devise.rb
+lib/ruby-lint/definitions/gems/nokogiri.rb
 lib/ruby-lint/definitions/rails/abstract_controller.rb
 lib/ruby-lint/definitions/rails/action_controller.rb
 lib/ruby-lint/definitions/rails/action_dispatch.rb
@@ -298,6 +299,7 @@ lib/ruby-lint/docstring/param_tag.rb
 lib/ruby-lint/docstring/parser.rb
 lib/ruby-lint/docstring/return_tag.rb
 lib/ruby-lint/extensions/string.rb
+lib/ruby-lint/file_list.rb
 lib/ruby-lint/file_loader.rb
 lib/ruby-lint/file_scanner.rb
 lib/ruby-lint/generated_constant.rb
@@ -316,8 +318,10 @@ lib/ruby-lint/parser.rb
 lib/ruby-lint/presenter/json.rb
 lib/ruby-lint/presenter/syntastic.rb
 lib/ruby-lint/presenter/text.rb
+lib/ruby-lint/rake_task.rb
 lib/ruby-lint/report.rb
 lib/ruby-lint/report/entry.rb
+lib/ruby-lint/ruby_lint.rb
 lib/ruby-lint/runner.rb
 lib/ruby-lint/template/definition.erb
 lib/ruby-lint/template/scope.rb
@@ -378,11 +382,13 @@ spec/ruby-lint/definitions/env_spec.rb
 spec/ruby-lint/definitions/file_spec.rb
 spec/ruby-lint/definitions/fixnum_spec.rb
 spec/ruby-lint/definitions/io_spec.rb
+spec/ruby-lint/definitions/kernel_spec.rb
 spec/ruby-lint/definitions/range_spec.rb
 spec/ruby-lint/definitions/string_spec.rb
 spec/ruby-lint/docstring/mapping.rb
 spec/ruby-lint/docstring/parser_spec.rb
 spec/ruby-lint/extensions/string_spec.rb
+spec/ruby-lint/file_list_spec.rb
 spec/ruby-lint/file_loader_spec.rb
 spec/ruby-lint/file_scanner_spec.rb
 spec/ruby-lint/inspector_spec.rb
@@ -432,6 +438,7 @@ spec/ruby-lint/virtual_machine/methods/define_method_spec.rb
 spec/ruby-lint/virtual_machine/methods/defining_spec.rb
 spec/ruby-lint/virtual_machine/methods/docstrings_spec.rb
 spec/ruby-lint/virtual_machine/methods/exporting_spec.rb
+spec/ruby-lint/virtual_machine/methods/kernel_spec.rb
 spec/ruby-lint/virtual_machine/methods/parameters_spec.rb
 spec/ruby-lint/virtual_machine/methods/patching_spec.rb
 spec/ruby-lint/virtual_machine/methods/scoping_spec.rb
