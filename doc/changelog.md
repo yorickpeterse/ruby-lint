@@ -5,6 +5,46 @@ This document contains a short summary of the various releases of ruby-lint.
 For a full list of commits included in each release see the corresponding Git
 tags (named after the versions).
 
+## 1.1.0 - 2014-02-02
+
+This release changes the way the definitions system works so that it no longer
+stores a set of global definition objects. Instead "templates" (so to speak)
+are provided which are applied to individual `RubyLint::VirtualMachine`
+instances. This makes it much easier to analyze code that patches core classes
+such as `String` or `Fixnum`.
+
+There have also been various other, smaller changes. The ones worth mentioning
+as following:
+
+* A new analysis class, UselessEqualityChecks, has been added. This class adds
+  warnings for expressions such as `"foo" == true`.
+* A Rake task class has been added, making it easier to integrate ruby-lint in
+  a Rakefile.
+* The CLI has been cleaned up and the `plot` and `ast` commands have been
+  removed. A new command, `cache` has been introduced to manage ruby-lint cache
+  files more easily.
+* A bug has been fixed that would prevent ruby-lint from properly loading files
+  from multiple directories, see Git commit
+  `292bb2b73aa6adfdc750fb846884025afc841393`.
+* Definitions have been added for Devise and Nokogiri.
+* Most built-in definitions have been re-generated.
+* Definitions system has been overhauled to no longer use a global state and a
+  complex data copying system. Instead the definitions are applied to every
+  individual `RubyLint::VirtualMachine` instance.
+* Updated the version of the parser Gem to use.
+
+The following bugs/issues have been resolved in this release:
+
+* https://github.com/YorickPeterse/ruby-lint/issues/89
+* https://github.com/YorickPeterse/ruby-lint/issues/85
+* https://github.com/YorickPeterse/ruby-lint/issues/91
+* https://github.com/YorickPeterse/ruby-lint/issues/92
+* https://github.com/YorickPeterse/ruby-lint/issues/93
+* https://github.com/YorickPeterse/ruby-lint/issues/94
+* https://github.com/YorickPeterse/ruby-lint/issues/100
+* https://github.com/YorickPeterse/ruby-lint/issues/101
+* https://github.com/YorickPeterse/ruby-lint/issues/102
+
 ## 1.0.3 - 2013-12-23
 
 * `self` is now defined as a class and instance method to ensure that the right
