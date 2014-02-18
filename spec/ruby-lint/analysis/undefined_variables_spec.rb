@@ -129,6 +129,13 @@ end
     report.entries.empty?.should == true
   end
 
+  example 'do not add errors for built-in class names' do
+    code   = 'class String; end'
+    report = build_report(code, RubyLint::Analysis::UndefinedVariables)
+
+    report.entries.empty?.should == true
+  end
+
   example 'do not add errors when aliasing global variables' do
     code   = 'alias $ARGV $*'
     report = build_report(code, RubyLint::Analysis::UndefinedVariables)

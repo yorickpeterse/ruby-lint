@@ -41,9 +41,9 @@ module RubyLint
     #
     VARIABLE_TYPES = [:lvar, :ivar, :cvar, :gvar]
 
-    PREDICATE_METHODS.each do |type|
-      define_method("#{type}?") do
-        return @type == type
+    PREDICATE_METHODS.each do |method|
+      define_method("#{method}?") do
+        return type == method
       end
     end
 
