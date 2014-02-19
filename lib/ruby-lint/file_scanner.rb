@@ -114,6 +114,11 @@ module RubyLint
     # @return [Array]
     #
     def match_globbed_files(segment)
+      # Ensure that we match entire path segments. Just using the segment would
+      # result in partial filename matching (e.g. "foo.rb" matching
+      # "bar_foo.rb"). We don't want that.
+      segment = "/#{segment}"
+
       return @glob_cache.select { |p| p.include?(segment) }
     end
 
@@ -138,9 +143,13 @@ module RubyLint
     def constant_to_dashed_path(constant)
       segments = constant.split('::')
       last     = segments[-1]
-      path     = segments[0..-2].join('/').snake_case.gsub('_', '-')
+      prefix   = segments[0..-2].join('/').snake_case.gsub('_', '-')
 
-      return "#{path}/#{last.snake_case}.rb"
+      unless prefix.empty?
+        prefix += '/'
+      end
+
+      return "#{prefix}#{last.snake_case}.rb"
     end
 
     ##
