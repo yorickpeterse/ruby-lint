@@ -20,14 +20,11 @@ module RubyLint
   #  @return [Array] A list of extra nodes (and their comments) a VM instance
   #   should process before processing the file being analyzed.
   #
-  # @!attribute [r] debug
-  #  @return [TrueClass|FalseClass]
-  #
   # @!attribute [r] paths
   #  @return [Set]
   #
   class FileLoader < Iterator
-    attr_reader :file_scanner, :parser, :nodes, :comments, :debug, :paths
+    attr_reader :file_scanner, :parser, :nodes, :comments, :paths
 
     ##
     # Called after a new instance of this class is created.
@@ -55,8 +52,6 @@ module RubyLint
 
         paths << path
 
-        debug_message("Processing extra file: #{path}")
-
         process_file(last_name, path)
       end
     end
@@ -70,26 +65,13 @@ module RubyLint
     def process_file(constant_name, path)
       code = File.read(path)
 
-      unless code.include?(constant_name)
-        debug_message(
-          %Q{  Skipping since "#{constant_name}" was not found in this file}
-        )
-
-        return
-      end
+      return unless code.include?(constant_name)
 
       ast, comments = parser.parse(code, path)
 
       iterate(ast)
 
       nodes << [ast, comments]
-    end
-
-    ##
-    # @param [String] message
-    #
-    def debug_message(message)
-      STDERR.puts(message) if debug
     end
   end # FileLoader
 end # RubyLint

@@ -101,8 +101,7 @@ module RubyLint
 
       loader = FileLoader.new(
         :directories  => configuration.directories,
-        :ignore_paths => configuration.ignore_paths,
-        :debug        => configuration.debug
+        :ignore_paths => configuration.ignore_paths
       )
 
       nodes    = []
