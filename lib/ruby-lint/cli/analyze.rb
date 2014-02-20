@@ -160,27 +160,12 @@ Examples:
   #
   #:nocov:
   def debug_header(config)
-    directories = config.directories.map do |dir|
-      File.directory?(dir) ? "#{dir}: exists" : "#{dir}: doesn't exist"
-    end
-
-    directories = directories.empty? ? 'None' : directories.join("\n")
-
     stderr.puts <<-EOF.strip
 ruby:      #{RUBY_DESCRIPTION}
 ruby-lint: #{RubyLint::VERSION}
 directory: #{Dir.pwd}
-
-Caching:
-
-enabled:   #{config.enable_cache}
-directory: #{config.cache_directory}
-
-Directories:
-
-#{directories}
-
-------
+caching:   #{config.enable_cache}
+cache:     #{config.cache_directory}
     EOF
 
     stderr.puts
