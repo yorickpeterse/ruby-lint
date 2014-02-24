@@ -108,3 +108,16 @@ For example, if you only want to analyze RSpec files:
     end
 
 By default all analysis classes are enabled.
+
+## Registering Analysis Classes
+
+In order for a analysis class to become available in {RubyLint::Configuration}
+objects, either via the CLI or via Ruby directly, you must register the
+analysis class. This can be done by calling the class method
+{RubyLint::Analysis::Base.register}:
+
+    class CamelCaseVariables < RubyLint::Analysis::Base
+      register 'camel_case_variables'
+    end
+
+The value should be a `snake_cased` string that matches the class name.
