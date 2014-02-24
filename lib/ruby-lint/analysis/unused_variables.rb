@@ -6,6 +6,8 @@ module RubyLint
     # corresponding warning message.
     #
     class UnusedVariables < Base
+      register 'unused_variables'
+
       ##
       # Hash containing the various variable types for which to add warnings
       # and human readable names for these types.

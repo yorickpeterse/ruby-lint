@@ -4,7 +4,9 @@ module RubyLint
     # Presenter that formats output that can be easily used in Syntastic
     # plugins.
     #
-    class Syntastic
+    class Syntastic < Base
+      register 'syntastic'
+
       ##
       # The format to use for each entry.
       #

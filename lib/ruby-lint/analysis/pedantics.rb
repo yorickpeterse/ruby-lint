@@ -6,6 +6,8 @@ module RubyLint
     # statements and various other pedantics.
     #
     class Pedantics < Base
+      register 'pedantics'
+
       [:if, :unless, :until, :while].each do |type|
         define_method("on_#{type}") do |node|
           if node.location.respond_to?(:begin) and node.location.begin

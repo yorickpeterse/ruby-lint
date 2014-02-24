@@ -13,6 +13,8 @@ module RubyLint
     #     end
     #
     class ShadowingVariables < Base
+      register 'shadowing_variables'
+
       ##
       # @param [RubyLint::AST::Node] node
       #

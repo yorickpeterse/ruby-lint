@@ -16,6 +16,8 @@ module RubyLint
     # result in it never caching certain data.
     #
     class UselessEqualityChecks < Base
+      register 'useless_equality_checks'
+
       ##
       # @param [RubyLint::AST::Node] node
       #

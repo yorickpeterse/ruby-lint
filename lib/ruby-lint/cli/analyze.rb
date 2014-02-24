@@ -30,15 +30,15 @@ Configuration:
 
 Analysis Classes:
 
-  #{RubyLint::CLI.format_names('analysis')}
+  #{RubyLint::CLI.format_names(:available_analysis_classes)}
 
 Presenters:
 
-  #{RubyLint::CLI.format_names('presenters')}
+  #{RubyLint::CLI.format_names(:available_presenters)}
 
 Reporting Levels:
 
-  #{RubyLint::CLI.format_names('levels')}
+  #{RubyLint::CLI.format_names(:available_report_levels)}
 
 Examples:
 

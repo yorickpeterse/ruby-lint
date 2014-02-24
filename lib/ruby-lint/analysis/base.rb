@@ -25,6 +25,16 @@ module RubyLint
       SCOPES = [:root, :block, :class, :def, :module, :sclass]
 
       ##
+      # Registers the current class in
+      # {RubyLint::Configuration.available_analysis_classes}.
+      #
+      # @param [String] name A human friendly name of the current class.
+      #
+      def self.register(name)
+        Configuration.available_analysis_classes[name] = self
+      end
+
+      ##
       # Returns a boolean that indicates if the analysis class should be used
       # or not.
       #

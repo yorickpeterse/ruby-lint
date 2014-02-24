@@ -4,7 +4,9 @@ module RubyLint
     # {RubyLint::Presenter::JSON} formats a instance of {RubyLint::Report} into
     # a JSON formatted string.
     #
-    class JSON
+    class JSON < Base
+      register 'json'
+
       ##
       # @param [RubyLint::Report] report The report to present.
       # @return [String]

@@ -4,7 +4,9 @@ module RubyLint
     # {RubyLint::Presenter::Text} formats a instance of {RubyLint::Report} into
     # a text based, human readable format.
     #
-    class Text
+    class Text < Base
+      register 'text'
+
       ##
       # The default format to use when presenting report entries.
       #

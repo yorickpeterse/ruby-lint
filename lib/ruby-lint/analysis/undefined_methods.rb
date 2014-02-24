@@ -12,6 +12,8 @@ module RubyLint
     #     'test'.foobar # => undefined method foobar on an instance of String
     #
     class UndefinedMethods < Base
+      register 'undefined_methods'
+
       ##
       # @param [RubyLint::AST::Node] node
       #

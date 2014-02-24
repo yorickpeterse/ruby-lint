@@ -10,6 +10,8 @@ module RubyLint
     # {RubyLint::Analysis::UndefinedMethods} instead.
     #
     class UndefinedVariables < Base
+      register 'undefined_variables'
+
       ##
       # Hash containing the various variable types to add errors for whenever
       # they are used but not defined.

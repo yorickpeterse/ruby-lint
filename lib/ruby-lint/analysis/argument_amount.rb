@@ -6,6 +6,8 @@ module RubyLint
     # amount was given.
     #
     class ArgumentAmount < Base
+      register 'argument_amount'
+
       ##
       # Hash that contains method names that should be used for analysis
       # instead of the ones specified in the keys.

@@ -21,15 +21,14 @@ module RubyLint
     #:nocov:
 
     ##
-    # Returns a String containing a list of names as registered in
-    # {RubyLint::Configuration.names}.
+    # Formats the keys of a particular Hash stored on class level in
+    # {RubyLint::Configuration}.
     #
-    # @param [String] scope
-    # @see RubyLint::Configuration.names
+    # @param [Symbol] name
     # @return [String]
     #
-    def self.format_names(scope)
-      return "* #{Configuration.names[scope].keys.sort.join("\n  * ")}"
+    def self.format_names(name)
+      return "* #{Configuration.send(name).keys.sort.join("\n  * ")}"
     end
 
     ##

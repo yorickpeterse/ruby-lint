@@ -70,42 +70,55 @@ module RubyLint
     end
 
     ##
-    # Provides a small block based DSL for registering multiple names.
-    #
-    # @param [String] scope The scope to store the names under.
-    # @see RubyLint::Configuration.names
-    #
-    def self.register_names(scope)
-      hash = {}
-
-      yield hash
-
-      names[scope] = hash
-    end
-
-    ##
-    # Returns a Hash used for storing values and their human readable names.
-    # This Hash is primarily used for the CLI.
+    # Returns the available analysis classes. See
+    # {RubyLint::Analysis::Base.register} for more information on registering
+    # analysis classes.
     #
     # @return [Hash]
     #
-    def self.names
-      return @names ||= {}
+    def self.available_analysis_classes
+      return @available_analysis_classes ||= {}
+    end
+
+    ##
+    # Returns the available report levels.
+    #
+    # @return [Hash]
+    #
+    def self.available_report_levels
+      unless @available_report_levels
+        @available_report_levels = {}
+
+        RubyLint::Report::DEFAULT_LEVELS.each do |level|
+          @available_report_levels[level.to_s] = level
+        end
+      end
+
+      return @available_report_levels
+    end
+
+    ##
+    # Returns the available presenter classes. See
+    # {RubyLint::Presenter::Base.register} for more information on registering
+    # presenters.
+    #
+    # @return [Hash]
+    #
+    def self.available_presenters
+      return @available_presenters ||= {}
     end
 
     ##
     # @param [Hash] options
     #
     def initialize(options = {})
-      @debug           = false
-      @enable_cache    = default_cache_value
+      @debug        = false
+      @enable_cache = default_cache_value
 
       options.each do |key, value|
         setter = "#{key}="
 
-        if respond_to?(setter)
-          send(setter, value)
-        end
+        send(setter, value) if respond_to?(setter)
       end
 
       @analysis_classes ||= default_analysis_classes
@@ -141,7 +154,7 @@ module RubyLint
     # @return [Array]
     #
     def report_levels=(given)
-      available = self.class.names['levels']
+      available = self.class.available_report_levels
       levels    = []
 
       given.each do |level|
@@ -164,7 +177,7 @@ module RubyLint
     # @raise ArgumentError Raised when an invalid presenter is specified.
     #
     def presenter=(name)
-      found = self.class.names['presenters'][name]
+      found = self.class.available_presenters[name]
 
       if found
         @presenter = found
@@ -181,7 +194,7 @@ module RubyLint
     #
     def analysis_classes=(names)
       classes   = []
-      available = self.class.names['analysis']
+      available = self.class.available_analysis_classes
 
       names.each do |name|
         classes << available[name] if available[name]
@@ -222,14 +235,14 @@ module RubyLint
     # @return [Array]
     #
     def default_analysis_classes
-      return self.class.names['analysis'].values
+      return self.class.available_analysis_classes.values
     end
 
     ##
     # @return [Array]
     #
     def default_report_levels
-      return RubyLint::Report::DEFAULT_LEVELS
+      return self.class.available_report_levels.values
     end
 
     ##
