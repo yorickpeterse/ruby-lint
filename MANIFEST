@@ -23,6 +23,7 @@ checksum/ruby-lint-1.0.0.pre.preview1.gem.sha512
 checksum/ruby-lint-1.0.1.gem.sha512
 checksum/ruby-lint-1.0.2.gem.sha512
 checksum/ruby-lint-1.0.3.gem.sha512
+checksum/ruby-lint-1.1.0.gem.sha512
 doc/.gitkeep
 doc/DCO.md
 doc/architecture.md
@@ -61,7 +62,6 @@ lib/ruby-lint/cli/cache.rb
 lib/ruby-lint/configuration.rb
 lib/ruby-lint/constant_loader.rb
 lib/ruby-lint/constant_path.rb
-lib/ruby-lint/default_names.rb
 lib/ruby-lint/definition/constant_proxy.rb
 lib/ruby-lint/definition/registry.rb
 lib/ruby-lint/definition/ruby_method.rb
@@ -281,6 +281,7 @@ lib/ruby-lint/definitions/core/zero_division_error.rb
 lib/ruby-lint/definitions/core/zlib.rb
 lib/ruby-lint/definitions/gems/.gitkeep
 lib/ruby-lint/definitions/gems/devise.rb
+lib/ruby-lint/definitions/gems/minitest.rb
 lib/ruby-lint/definitions/gems/nokogiri.rb
 lib/ruby-lint/definitions/rails/abstract_controller.rb
 lib/ruby-lint/definitions/rails/action_controller.rb
@@ -315,6 +316,7 @@ lib/ruby-lint/method_call_info.rb
 lib/ruby-lint/nested_stack.rb
 lib/ruby-lint/node_hash.rb
 lib/ruby-lint/parser.rb
+lib/ruby-lint/presenter/base.rb
 lib/ruby-lint/presenter/json.rb
 lib/ruby-lint/presenter/syntastic.rb
 lib/ruby-lint/presenter/text.rb
@@ -362,6 +364,7 @@ spec/ruby-lint/analysis/undefined_variables_spec.rb
 spec/ruby-lint/analysis/unused_variables_spec.rb
 spec/ruby-lint/analysis/useless_equality_checks_spec.rb
 spec/ruby-lint/ast/node_spec.rb
+spec/ruby-lint/bugs/inherit_logger_spec.rb
 spec/ruby-lint/cache_entry_spec.rb
 spec/ruby-lint/cache_spec.rb
 spec/ruby-lint/cli/analyze_spec.rb
@@ -377,6 +380,7 @@ spec/ruby-lint/definition_builder/primitive_spec.rb
 spec/ruby-lint/definition_builder/ruby_class_spec.rb
 spec/ruby-lint/definition_builder/ruby_method_spec.rb
 spec/ruby-lint/definition_builder/ruby_module_spec.rb
+spec/ruby-lint/definitions/argf_spec.rb
 spec/ruby-lint/definitions/argv_spec.rb
 spec/ruby-lint/definitions/env_spec.rb
 spec/ruby-lint/definitions/file_spec.rb
