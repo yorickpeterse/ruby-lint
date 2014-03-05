@@ -288,6 +288,13 @@ end
     report.entries.empty?.should == true
   end
 
+  example 'treat ARGF as an instance' do
+    code   = 'ARGF.each_line'
+    report = build_report(code, RubyLint::Analysis::UndefinedMethods)
+
+    report.entries.empty?.should == true
+  end
+
   example 'do not add errors for private/protected/public' do
     code = <<-CODE
 private

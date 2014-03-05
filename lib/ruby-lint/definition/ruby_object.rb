@@ -374,9 +374,10 @@ module RubyLint
       #
       # @param [#to_sym] type
       # @param [String] name
+      # @param [Array] exclude Parent definitions to exclude.
       # @return [TrueClass|FalseClass]
       #
-      def has_definition?(type, name)
+      def has_definition?(type, name, exclude = [])
         type, name = prepare_lookup(type, name)
 
         if definitions.key?(type) and definitions[type].key?(name)
@@ -384,7 +385,9 @@ module RubyLint
 
         elsif lookup_parent?(type)
           parents.each do |parent|
-            return true if parent.has_definition?(type, name)
+            next if exclude.include?(parent)
+
+            return true if parent.has_definition?(type, name, exclude | [self])
           end
         end
 
