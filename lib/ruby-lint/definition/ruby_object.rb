@@ -260,11 +260,18 @@ module RubyLint
       #
       # @param [#to_sym] type
       # @param [String] name
+      #
       # @param [TrueClass|FalseClass] lookup_parent Whether definitions should
       #  be looked up from parent definitions.
+      #
+      # @param [Array] exclude A list of definitions to skip when looking up
+      #  parents. This list is used to prevent stack errors when dealing with
+      #  recursive definitions. A good example of this is `Logger` and
+      #  `Logger::Severity` which both inherit from each other.
+      #
       # @return [RubyLint::Definition::RubyObject|NilClass]
       #
-      def lookup(type, name, lookup_parent = true)
+      def lookup(type, name, lookup_parent = true, exclude = [])
         type, name = prepare_lookup(type, name)
         found      = nil
 
@@ -275,7 +282,10 @@ module RubyLint
         # takes the parents themselves also into account.
         elsif lookup_parent?(type) and lookup_parent
           parents.each do |parent|
-            parent_definition = determine_parent(parent, type, name)
+            # If we've already processed the parent we'll skip it.
+            next if exclude.include?(parent)
+
+            parent_definition = determine_parent(parent, type, name, exclude)
 
             if parent_definition
               found = parent_definition
@@ -677,13 +687,14 @@ module RubyLint
       # @param [RubyLint::Definition::RubyObject] parent
       # @param [Symbol] type
       # @param [String] name
+      # @param [Array] exclude
       # @return [RubyLint::Definition::RubyObject]
       #
-      def determine_parent(parent, type, name)
+      def determine_parent(parent, type, name, exclude = [])
         if parent.type == type and parent.name == name
           parent_definition = parent
         else
-          parent_definition = parent.lookup(type, name)
+          parent_definition = parent.lookup(type, name, true, exclude | [self])
         end
 
         return parent_definition
