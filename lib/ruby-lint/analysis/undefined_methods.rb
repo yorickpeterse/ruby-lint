@@ -20,8 +20,9 @@ module RubyLint
       def on_send(node)
         receiver, name, _  = *node
 
-        name  = name.to_s
-        scope = current_scope
+        receiver = unpack_receiver(receiver)
+        name     = name.to_s
+        scope    = current_scope
 
         if receiver and vm.associations.key?(receiver)
           scope = vm.associations[receiver]

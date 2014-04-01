@@ -14,6 +14,8 @@ module RubyLint
     #  @return [RubyLint::Configuration]
     #
     class Base < Iterator
+      include MethodEvaluation
+
       attr_reader :report, :vm, :config
 
       ##

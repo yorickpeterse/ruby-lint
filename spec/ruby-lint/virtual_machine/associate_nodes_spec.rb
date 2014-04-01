@@ -15,7 +15,7 @@ describe RubyLint::VirtualMachine do
     assoc[method].should      == defs.lookup(:instance_method, 'foobar')
   end
 
-  describe 'method calls' do
+  context 'method calls' do
     example 'should not add associations' do
       associations = build_associations('foo')
       nodes        = associations.keys
@@ -56,6 +56,20 @@ describe RubyLint::VirtualMachine do
 
       values[1].type.should == :sym
       values[2].type.should == :unknown
+    end
+  end
+
+  context 'calling methods on blocks' do
+    before :all do
+      @assocs = build_associations('foo { }.bar').values
+    end
+
+    example 'create an association for the (block) node' do
+      @assocs[1].type.should == :block
+    end
+
+    example 'create an association for the (send) node' do
+      @assocs[2].type.should == :unknown
     end
   end
 end

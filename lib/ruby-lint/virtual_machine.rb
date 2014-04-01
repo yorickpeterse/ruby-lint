@@ -70,6 +70,8 @@ module RubyLint
   #  @return [RubyLint::Docstring::Mapping]
   #
   class VirtualMachine < Iterator
+    include MethodEvaluation
+
     attr_reader :associations,
       :comments,
       :definitions,
@@ -651,6 +653,7 @@ module RubyLint
     def after_send(node)
       receiver, name, _ = *node
 
+      receiver    = unpack_receiver(receiver)
       name        = name.to_s
       args_length = node.children[2..-1].length
       values      = value_stack.pop
