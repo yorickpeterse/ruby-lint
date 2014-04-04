@@ -105,6 +105,7 @@ The following analysis classes are currently available:
 * `undefined_methods`
 * `undefined_variables`
 * `unused_variables`
+* `useless_equality_checks`
 
 By default all of these are enabled.
 
