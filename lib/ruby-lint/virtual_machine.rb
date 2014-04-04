@@ -673,7 +673,7 @@ Received: #{arguments.length}
 
       # Associate the argument definitions with their nodes.
       arguments.each_with_index do |obj, index|
-        arg_node = node.children[2 + index]
+        arg_node = unpack_block(node.children[2 + index])
 
         associate_node(arg_node, obj)
       end

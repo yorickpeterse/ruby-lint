@@ -72,4 +72,14 @@ describe RubyLint::VirtualMachine do
       @assocs[2].type.should == :unknown
     end
   end
+
+  context 'calling nested methods with blocks' do
+    before :all do
+      @assocs = build_associations('Hash[NUMBERS.map { }]').keys
+    end
+
+    example 'associate the return value of NUMBERS.map with the (send) node' do
+      @assocs[3].type.should == :send
+    end
+  end
 end
