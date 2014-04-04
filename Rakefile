@@ -4,15 +4,12 @@ require_relative 'lib/ruby-lint/rake_task'
 require 'yaml'
 require 'bundler/gem_tasks'
 require 'digest/sha2'
-require 'coveralls/rake/task'
 require 'rake/clean'
 
 RubyLint::RakeTask.new do |task|
   task.name  = 'lint'
   task.files = ['./lib/ruby-lint']
 end
-
-Coveralls::RakeTask.new
 
 GEMSPEC = Gem::Specification.load('ruby-lint.gemspec')
 
