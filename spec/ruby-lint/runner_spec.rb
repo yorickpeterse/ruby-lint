@@ -3,11 +3,6 @@ require 'spec_helper'
 describe RubyLint::Runner do
   before do
     @configuration = RubyLint::Configuration.new
-    @cache_dir     = Dir.mktmpdir('ruby-lint')
-  end
-
-  after do
-    FileUtils.rm_rf(@cache_dir)
   end
 
   example 'run analysis on a single file' do

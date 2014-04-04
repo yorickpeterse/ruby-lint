@@ -5,7 +5,6 @@ require 'parser/current'
 
 require 'yaml'
 require 'set'
-require 'digest/sha1'
 require 'zlib'
 
 require_relative 'ruby-lint/extensions/string'
@@ -27,10 +26,6 @@ require_relative 'ruby-lint/docstring/parser'
 require_relative 'ruby-lint/docstring/param_tag'
 require_relative 'ruby-lint/docstring/return_tag'
 require_relative 'ruby-lint/docstring/mapping'
-
-require_relative 'ruby-lint/node_hash'
-require_relative 'ruby-lint/cache'
-require_relative 'ruby-lint/cache_entry'
 
 require_relative 'ruby-lint/constant_path'
 require_relative 'ruby-lint/inspector'

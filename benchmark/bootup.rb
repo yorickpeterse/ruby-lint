@@ -4,7 +4,7 @@
 require_relative '../lib/ruby-lint/benchmark/average'
 
 script  = File.expand_path('../../bin/ruby-lint', __FILE__)
-command = "#{script} analyze --disable-cache lib/ruby-lint/virtual_machine.rb"
+command = "#{script} analyze lib/ruby-lint/virtual_machine.rb"
 
 RubyLint::Benchmark::Average.measure do
   output = `#{command}`

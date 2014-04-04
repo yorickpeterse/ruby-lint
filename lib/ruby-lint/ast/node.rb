@@ -44,21 +44,6 @@ module RubyLint
       def inspect_oneline
         return inspect.gsub(/\s*\n\s*/, ' ')
       end
-
-      ##
-      # Generates a unique SHA1 digest hash based on the current node.
-      #
-      # @return [String]
-      #
-      def sha1
-        input = inspect
-
-        if location and location.expression
-          input << "#{file}#{line}#{column}"
-        end
-
-        return Digest::SHA1.hexdigest(input)
-      end
     end # Node
   end # AST
 end # RubyLint

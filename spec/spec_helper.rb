@@ -13,9 +13,6 @@ if ENV['COVERALLS']
   require_relative 'support/coveralls'
 end
 
-# Disable caching of RubyLint::Runner for all tests.
-ENV['RUBY_LINT_DISABLE_CACHE'] = '1'
-
 require_relative '../lib/ruby-lint'
 require_relative 'support/building'
 require_relative 'support/parsing'

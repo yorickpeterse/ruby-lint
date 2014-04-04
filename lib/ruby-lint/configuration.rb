@@ -22,20 +22,10 @@ module RubyLint
   # @!attribute [rw] ignore_paths
   #  @return [Array]
   #
-  # @!attribute [rw] enable_cache
-  #  When set to `true` external files and their associated data will be
-  #  cached.
-  #  @return [TrueClass|FalseClass]
-  #
-  # @!attribute [r] cache_directory
-  #  The path to the directory to use for storing cache files.
-  #  @return [String]
-  #
   class Configuration
-    attr_reader :analysis_classes, :report_levels, :presenter, :directories,
-      :cache_directory
+    attr_reader :analysis_classes, :report_levels, :presenter, :directories
 
-    attr_accessor :debug, :ignore_paths, :enable_cache
+    attr_accessor :debug, :ignore_paths
 
     ##
     # Returns an Array of locations from which to load configuration files.
@@ -112,8 +102,7 @@ module RubyLint
     # @param [Hash] options
     #
     def initialize(options = {})
-      @debug        = false
-      @enable_cache = default_cache_value
+      @debug = false
 
       options.each do |key, value|
         setter = "#{key}="
@@ -126,16 +115,6 @@ module RubyLint
       @presenter        ||= default_presenter
       @directories      ||= default_directories
       @ignore_paths     ||= []
-      @cache_directory  ||= default_cache_directory
-    end
-
-    ##
-    # Expands and sets the path as the cache directory.
-    #
-    # @param [String] path
-    #
-    def cache_directory=(path)
-      @cache_directory = File.expand_path(path)
     end
 
     ##
@@ -257,29 +236,6 @@ module RubyLint
     #
     def default_directories
       return FileScanner.default_directories
-    end
-
-    ##
-    # @return [TrueClass|FalseClass]
-    #
-    def default_cache_value
-      return ENV['RUBY_LINT_DISABLE_CACHE'] ? false : true
-    end
-
-    ##
-    # The default cache directory to use. Per the XDG specification
-    # (http://standards.freedesktop.org/basedir-spec/basedir-spec-latest.html)
-    # this is set to `$XDG_CACHE_HOME`/`$HOME/.cache` by default.
-    #
-    # @return [String]
-    #
-    def default_cache_directory
-      root = ENV['XDG_CACHE_HOME'] || File.join(ENV['HOME'], '.cache')
-
-      # ~/.cache might not exist on non Linux systems.
-      Dir.mkdir(root) unless File.directory?(root)
-
-      return File.join(root, 'ruby-lint')
     end
   end # Configuration
 end # RubyLint

@@ -65,8 +65,6 @@ Examples:
   on :b, :benchmark, 'Enables benchmarking mode'
   on :d, :debug, 'Displays debugging output in STDERR'
 
-  on :'disable-cache', 'Disables caching of external files'
-
   ##
   # Returns an Array containing the file paths that exist. If a non existing
   # file is encountered `abort` is called.
@@ -131,10 +129,6 @@ Examples:
     option_mapping.each do |key, setter|
       configuration.send(setter, options[key]) if options[key]
     end
-
-    if options[:'disable-cache']
-      configuration.enable_cache = false
-    end
   end
 
   ##
@@ -164,8 +158,6 @@ Examples:
 ruby:      #{RUBY_DESCRIPTION}
 ruby-lint: #{RubyLint::VERSION}
 directory: #{Dir.pwd}
-caching:   #{config.enable_cache}
-cache:     #{config.cache_directory}
     EOF
 
     stderr.puts
