@@ -313,6 +313,7 @@ lib/ruby-lint/method_call/base.rb
 lib/ruby-lint/method_call/define_method.rb
 lib/ruby-lint/method_call/include.rb
 lib/ruby-lint/method_call_info.rb
+lib/ruby-lint/method_evaluation.rb
 lib/ruby-lint/nested_stack.rb
 lib/ruby-lint/node_hash.rb
 lib/ruby-lint/parser.rb
