@@ -54,9 +54,11 @@ Example:
 
     ---
     requires:
-      - ruby-lint/definitions/rails
+      - ruby-lint/definitions/gems/devise
 
-By default this option is left empty.
+By default this option is left empty. You do not need to use this option for
+loading built-in definitions unless stated otherwise. For example, definitions
+for Rails are loaded automatically.
 
 ### report_levels
 
