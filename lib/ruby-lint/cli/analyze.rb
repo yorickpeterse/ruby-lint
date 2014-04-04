@@ -147,23 +147,6 @@ Examples:
       "(#{memory_kb.round(2)} KB)"
   end
 
-  ##
-  # Shows a lump of debugging information before the rest of the output.
-  #
-  # @param [RubyLint::Configuration] config
-  #
-  #:nocov:
-  def debug_header(config)
-    stderr.puts <<-EOF.strip
-ruby:      #{RUBY_DESCRIPTION}
-ruby-lint: #{RubyLint::VERSION}
-directory: #{Dir.pwd}
-    EOF
-
-    stderr.puts
-  end
-  #:nocov:
-
   run do |opts, args|
     abort 'You must specify at least one file to analyze' if args.empty?
 
@@ -172,8 +155,6 @@ directory: #{Dir.pwd}
     configuration = RubyLint::Configuration.load_from_file
 
     configure(configuration, opts)
-
-    debug_header(configuration) if configuration.debug
 
     runner    = RubyLint::Runner.new(configuration)
     output    = runner.analyze(files)
