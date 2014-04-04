@@ -21,6 +21,7 @@ require_relative 'ruby-lint/file_list'
 require_relative 'ruby-lint/nested_stack'
 require_relative 'ruby-lint/configuration'
 require_relative 'ruby-lint/runner'
+require_relative 'ruby-lint/command'
 
 require_relative 'ruby-lint/docstring/parser'
 require_relative 'ruby-lint/docstring/param_tag'

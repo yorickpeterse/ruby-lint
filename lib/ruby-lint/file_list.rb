@@ -23,7 +23,7 @@ module RubyLint
           existing = existing | glob_files(file)
 
         else
-          raise Errno::ENOENT, "The file/directory #{file} does not exist"
+          raise Errno::ENOENT, file
         end
       end
 
