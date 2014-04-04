@@ -40,8 +40,13 @@ module RubyLint
         type  = REMAP_TYPES.fetch(type, type)
         found = current.lookup(type, name, index == 0)
 
-        if found
-          current = found.const? ? found : found.value
+        if found and found.const?
+          current = found
+
+        # Local variables and the likes.
+        elsif found and found.value
+          current = found.value
+
         else
           return
         end
