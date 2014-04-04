@@ -653,7 +653,7 @@ module RubyLint
     def after_send(node)
       receiver, name, _ = *node
 
-      receiver    = unpack_receiver(receiver)
+      receiver    = unpack_block(receiver)
       name        = name.to_s
       args_length = node.children[2..-1].length
       values      = value_stack.pop

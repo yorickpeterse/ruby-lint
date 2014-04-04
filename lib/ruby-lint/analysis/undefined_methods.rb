@@ -20,7 +20,7 @@ module RubyLint
       def on_send(node)
         receiver, name, _  = *node
 
-        receiver = unpack_receiver(receiver)
+        receiver = unpack_block(receiver)
         name     = name.to_s
         scope    = current_scope
 
