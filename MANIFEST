@@ -443,7 +443,6 @@ spec/ruby-lint/virtual_machine/self_spec.rb
 spec/ruby-lint/virtual_machine/unused_spec.rb
 spec/spec_helper.rb
 spec/support/building.rb
-spec/support/coveralls.rb
 spec/support/definitions.rb
 spec/support/fixtures.rb
 spec/support/parsing.rb
@@ -459,4 +458,3 @@ task/manifest.rake
 task/tag.rake
 task/test.rake
 task/todo.rake
-task/travis.rake
