@@ -112,7 +112,7 @@ module RubyLint
     #
     def report_diagnostic(diagnostic, report)
       report.add(
-        :level   => :error,
+        :level   => :warning,
         :message => diagnostic.message,
         :line    => diagnostic.location.line,
         :column  => diagnostic.location.column + 1,
