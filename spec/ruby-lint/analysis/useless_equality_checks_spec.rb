@@ -91,17 +91,5 @@ end
 
       report.entries.empty?.should == true
     end
-
-    example 'ignore an instance variable without a value' do
-      code = <<-CODE
-[10, 20].each do |@number|
-  @number == false
-end
-      CODE
-
-      report = build_report(code, RubyLint::Analysis::UselessEqualityChecks)
-
-      report.entries.empty?.should == true
-    end
   end
 end
