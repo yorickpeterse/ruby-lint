@@ -21,3 +21,7 @@ notifications:
       on_failure: always
 
 cache: bundler
+
+os:
+  - linux
+  - osx
