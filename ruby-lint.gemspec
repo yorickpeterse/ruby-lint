@@ -9,13 +9,23 @@ Gem::Specification.new do |s|
   s.summary     = 'A linter and static code analysis tool for Ruby.'
   s.homepage    = 'https://github.com/yorickpeterse/ruby-lint/'
   s.description = s.summary
-  s.executables = ['ruby-lint']
   s.license     = 'MIT'
 
   s.post_install_message = 'Please report any issues at: ' \
     'https://github.com/YorickPeterse/ruby-lint/issues/new'
 
-  s.files = File.read(File.expand_path('../MANIFEST', __FILE__)).split("\n")
+  s.files = Dir.glob([
+    'checksum/*.*',
+    'doc/**/*.*',
+    'lib/**/*.*',
+    '.yardopts',
+    'CONTRIBUTING.md',
+    'LICENSE',
+    'README.md',
+    '*.gemspec'
+  ])
+
+  s.executables = ['ruby-lint']
 
   s.has_rdoc              = 'yard'
   s.required_ruby_version = '>= 1.9.3'
