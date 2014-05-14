@@ -8,10 +8,6 @@ rvm:
   - rbx-2.2
   - jruby
 
-matrix:
-  allow_failures:
-    - rvm: jruby-19mode
-
 notifications:
   email:
     recipients:
