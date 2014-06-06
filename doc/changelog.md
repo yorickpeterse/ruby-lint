@@ -5,6 +5,36 @@ This document contains a short summary of the various releases of ruby-lint.
 For a full list of commits included in each release see the corresponding Git
 tags (named after the versions).
 
+## 2.0.0 - 2014-06-06
+
+Although the version number might suggest otherwise this is a rather modest
+release compared to previous releases.
+
+There are 3 big changes in this release:
+
+1. A refactored and less confusing CLI.
+2. The caching system has been removed as it was too problematic.
+3. The API used for registering analysis classes has been changed to make it
+   easier to register custom classes.
+
+The first change is not backwards compatible with previous releases of
+ruby-lint, hence the mayor version increase.
+
+The following other changes are included in this release:
+
+* Fuzzy file matching when scanning for external files has been removed. This
+  was too problematic and would cause problems such as
+  <https://github.com/YorickPeterse/ruby-lint/issues/105>.
+* Definitions for Minitest have been added.
+* Proper handling of methods called on block return values.
+* Constant paths with variables in them are handled properly.
+* Diagnostics emitted by the parser Gem are re-used properly by ruby-lint
+  instead of always being displayed as errors.
+* ARGF is handled with extra care so that ruby-lint doesn't throw tons of false
+  positives.
+* Debug output has been removed from the CLI, it will be replaced with a better
+  system in the near future.
+
 ## 1.1.0 - 2014-02-02
 
 This release changes the way the definitions system works so that it no longer
