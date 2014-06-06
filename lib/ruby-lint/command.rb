@@ -69,7 +69,7 @@ module RubyLint
 
     ##
     # @param [RubyLint::Configuration] configuration
-    # @param [Hash] opts
+    # @param [Hash] options
     #
     def configure(configuration, options)
       OPTION_MAPPING.each do |key, setter|
