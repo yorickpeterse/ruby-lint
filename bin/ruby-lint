@@ -84,7 +84,7 @@ Examples:
     command = RubyLint::Command.new(opts)
 
     begin
-      command.run(args)
+      exit command.run(args)
     rescue Errno::ENOENT => error
       abort error.message
     end

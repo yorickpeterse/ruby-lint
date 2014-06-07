@@ -40,6 +40,7 @@ module RubyLint
     # Runs the command with the supplied arguments.
     #
     # @param [Array] args
+    # @return [Integer]
     #
     def run(args)
       start_time    = Time.now.to_f
@@ -55,6 +56,7 @@ module RubyLint
       puts output unless output.empty?
 
       show_benchmark_info(exec_time) if options[:benchmark]
+      return output.empty? ? 0 : 1
     end
 
     ##

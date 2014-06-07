@@ -13,29 +13,33 @@ describe RubyLint::Command do
   example 'analyze a valid Ruby file' do
     file = fixture_path('valid.rb')
 
-    @command.run([file])
+    @ret = @command.run([file])
 
     @stdout.empty?.should == true
+    @ret.should == 0
   end
 
   example 'analyze an invalid Ruby file' do
     file = fixture_path('invalid.rb')
 
-    @command.run([file])
+    @ret = @command.run([file])
 
     @stdout.should =~ /undefined method foobar/
+    @ret.should == 1
   end
 
   example 'include benchmarking output' do
-    @command.run([fixture_path('valid.rb')])
+    @ret = @command.run([fixture_path('valid.rb')])
 
     @stderr.should =~ /Execution time:/
     @stderr.should =~ /Memory usage:/
+    @ret.should == 0
   end
 
   example 'run analysis on an entire directory' do
-    @command.run([fixture_path('deeply')])
+    @ret = @command.run([fixture_path('deeply')])
 
     @stdout.should =~ /undefined method foobar/
+    @ret.should == 1
   end
 end
