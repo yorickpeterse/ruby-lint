@@ -51,10 +51,16 @@ module RubyLint
       runner    = Runner.new(configuration)
       output    = runner.analyze(files)
       exec_time = Time.now.to_f - start_time
+      status    = 0
 
-      puts output unless output.empty?
+      unless output.empty?
+        status = 1
+        puts output
+      end
 
       show_benchmark_info(exec_time) if options[:benchmark]
+
+      exit(status)
     end
 
     ##
