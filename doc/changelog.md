@@ -5,6 +5,11 @@ This document contains a short summary of the various releases of ruby-lint.
 For a full list of commits included in each release see the corresponding Git
 tags (named after the versions).
 
+## 2.0.1 - 2014-06-11
+
+* The exit status of ruby-lint is set to 1 when there is data to report. See
+  <https://github.com/YorickPeterse/ruby-lint/issues/117> for more info.
+
 ## 2.0.0 - 2014-06-06
 
 Although the version number might suggest otherwise this is a rather modest
