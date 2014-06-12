@@ -85,6 +85,12 @@ describe RubyLint::Inspector do
     example 'return the parent class' do
       @inspector.inspect_superclass.should == BasicObject
     end
+
+    example 'handle missing parent classes' do
+      inspector = RubyLint::Inspector.new(BasicObject)
+
+      inspector.inspect_superclass.nil?.should == true
+    end
   end
 
   context 'inspecting anonymous parent classes' do

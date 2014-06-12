@@ -149,7 +149,9 @@ module RubyLint
     def inspect_superclass
       parent = nil
 
-      if constant.respond_to?(:superclass) && constant.superclass.name
+      if constant.respond_to?(:superclass) \
+      and constant.superclass \
+      and constant.superclass.name
         return constant.superclass
       end
 
