@@ -38,7 +38,6 @@ Data
 Date
 DateTime
 Delegator
-Digest
 Dir
 EOFError
 ERB

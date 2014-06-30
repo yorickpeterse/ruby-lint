@@ -16,6 +16,7 @@ __END__
 ARGV
 BasicObject
 Class
+Digest
 ENV
 Kernel
 Module
