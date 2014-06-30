@@ -47,7 +47,9 @@ RubyLint.registry.register('Digest') do |defs|
       method.define_argument('name')
     end
 
-    klass.define_method('hexdigest')
+    klass.define_method('hexdigest') do |method|
+      method.define_argument('data')
+    end
   end
 
   defs.define_constant('Digest::Instance') do |klass|
@@ -75,7 +77,9 @@ RubyLint.registry.register('Digest') do |defs|
       method.define_argument('name')
     end
 
-    klass.define_instance_method('hexdigest')
+    klass.define_instance_method('hexdigest') do |method|
+      method.define_argument('data')
+    end
 
     klass.define_instance_method('hexdigest!')
 
