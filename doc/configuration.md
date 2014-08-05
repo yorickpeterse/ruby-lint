@@ -129,16 +129,6 @@ Example:
       - app
       - lib
 
-### debug
-
-A boolean that indicates that debugging mode should be enabled or disabled, by
-default this is disabled.
-
-Example:
-
-    ---
-    debug: true
-
 ### ignore_paths
 
 A list of patterns to apply to the `directories` option to filter out unwanted

@@ -14,8 +14,7 @@ module RubyLint
     OPTION_MAPPING = {
       :levels    => :report_levels=,
       :presenter => :presenter=,
-      :analysis  => :analysis_classes=,
-      :debug     => :debug=
+      :analysis  => :analysis_classes=
     }
 
     ##
