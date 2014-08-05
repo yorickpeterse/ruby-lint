@@ -88,27 +88,27 @@ the following output:
 * Vim using [Syntastic][syntastic]
 * Emacs using [Flycheck][flycheck]
 
-## ruby-lint versus Rubocop
+## ruby-lint versus RuboCop
 
 A question commonly asked is what purpose ruby-lint serves compared to other
-tools such as [Rubocop][rubocop]. After all, upon first sight the two tools
+tools such as [RuboCop][rubocop]. After all, upon first sight the two tools
 look pretty similar.
 
-The big difference between ruby-lint and Rubocop is that ruby-lint focuses
+The big difference between ruby-lint and RuboCop is that ruby-lint focuses
 primarily on technical problems such as the use of undefined methods/variables,
-unused variables/method arguments and more. Rubocop on the other hand focuses
+unused variables/method arguments and more. RuboCop on the other hand focuses
 mostly on style related issues based on a community driven Ruby style guide.
 This means that it will for example warn you about methods written using
 camelCase and method bodies that are considered to be too long.
 
-Personally I have little interest in adding style related analysis as Rubocop
+Personally I have little interest in adding style related analysis as RuboCop
 already does that and in my opinion does a far better job at it. I also simply
 think it's too boring to write analysis like this. Having said that, ruby-lint
 has some basic style related analysis (e.g. the use of `BEGIN`) but this mostly
 serves as a simple example on how to write analysis code.
 
 In the end it depends on what your needs are. If you have a team that's having
-trouble following a consistent coding style then Rubocop is probably the right
+trouble following a consistent coding style then RuboCop is probably the right
 tool for the job. On the other hand, if you're trying to debug a nasty bug then
 ruby-lint will most likely be more useful.
 
