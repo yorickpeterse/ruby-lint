@@ -32,7 +32,7 @@ module RubyLint
     ##
     # @param [Hash|Slop] options
     #
-    def initialize(options)
+    def initialize(options = {})
       @options = options
     end
 
@@ -44,7 +44,7 @@ module RubyLint
     def run(args)
       start_time    = Time.now.to_f
       files         = extract_files(args)
-      configuration = Configuration.load_from_file
+      configuration = load_configuration
 
       configure(configuration, options)
 
@@ -61,6 +61,21 @@ module RubyLint
       show_benchmark_info(exec_time) if options[:benchmark]
 
       exit(status)
+    end
+
+    ##
+    # @return [RubyLint::Configuration]
+    #
+    def load_configuration
+      if options[:config]
+        unless File.file?(options[:config])
+          raise Errno::ENOENT, options[:config]
+        end
+
+        return Configuration.load_from_file([options[:config]])
+      else
+        return Configuration.load_from_file
+      end
     end
 
     ##

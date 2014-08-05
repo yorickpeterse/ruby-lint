@@ -1,48 +1,73 @@
 require 'spec_helper'
 
 describe RubyLint::Command do
-  before do
-    @command = RubyLint::Command.new(:benchmark => true)
-    @stdout  = ''
-    @stderr  = ''
+  context 'CLI usage' do
+    before do
+      @command = described_class.new(:benchmark => true)
+      @stdout  = ''
+      @stderr  = ''
 
-    @command.stub(:puts) { |data| @stdout << data }
-    @command.stub(:stderr) { |data| @stderr << data }
-    @command.stub(:exit)
+      @command.stub(:puts) { |data| @stdout << data }
+      @command.stub(:stderr) { |data| @stderr << data }
+      @command.stub(:exit)
+    end
+
+    example 'analyze a valid Ruby file' do
+      file = fixture_path('valid.rb')
+
+      @command.run([file])
+
+      @stdout.empty?.should == true
+    end
+
+    example 'analyze an invalid Ruby file' do
+      file = fixture_path('invalid.rb')
+
+      @command.run([file])
+
+      @stdout.should =~ /undefined method foobar/
+    end
+
+    example 'include benchmarking output' do
+      @command.run([fixture_path('valid.rb')])
+
+      @stderr.should =~ /Execution time:/
+      @stderr.should =~ /Memory usage:/
+    end
+
+    example 'run analysis on an entire directory' do
+      @command.run([fixture_path('deeply')])
+
+      @stdout.should =~ /undefined method foobar/
+    end
+
+    example 'set the status code to 1 for non empty output' do
+      @command.should_receive(:exit).with(1)
+
+      @command.run([fixture_path('invalid.rb')])
+    end
   end
 
-  example 'analyze a valid Ruby file' do
-    file = fixture_path('valid.rb')
+  context '#load_configuration' do
+    example 'load the default configuration files' do
+      RubyLint::Configuration.should_receive(:load_from_file)
 
-    @command.run([file])
+      described_class.new.load_configuration
+    end
 
-    @stdout.empty?.should == true
-  end
+    example 'load a specific configuration file' do
+      config = File.expand_path('../../../ruby-lint.yml', __FILE__)
 
-  example 'analyze an invalid Ruby file' do
-    file = fixture_path('invalid.rb')
+      RubyLint::Configuration.should_receive(:load_from_file).with([config])
 
-    @command.run([file])
+      described_class.new(:config => config).load_configuration
+    end
 
-    @stdout.should =~ /undefined method foobar/
-  end
+    example 'raise Errno::ENOENT if the configuration file does not exist' do
+      command = described_class.new(:config => 'foobar.yml')
+      block   = lambda { command.load_configuration }
 
-  example 'include benchmarking output' do
-    @command.run([fixture_path('valid.rb')])
-
-    @stderr.should =~ /Execution time:/
-    @stderr.should =~ /Memory usage:/
-  end
-
-  example 'run analysis on an entire directory' do
-    @command.run([fixture_path('deeply')])
-
-    @stdout.should =~ /undefined method foobar/
-  end
-
-  example 'set the status code to 1 for non empty output' do
-    @command.should_receive(:exit).with(1)
-
-    @command.run([fixture_path('invalid.rb')])
+      block.should raise_error(Errno::ENOENT)
+    end
   end
 end

@@ -77,6 +77,7 @@ Examples:
   on :p=, :presenter=, 'The presenter to use', :as => String
   on :a=, :analysis=, 'The analysis classes to use', :as => Array
   on :b, :benchmark, 'Enables benchmarking mode'
+  on :c=, :config=, 'Path to a custom configuration file', :as => String
 
   run do |opts, args|
     abort 'You must specify at least one file to analyze' if args.empty?
