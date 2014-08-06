@@ -60,8 +60,6 @@ module RubyLint
     # @return [Array]
     #
     def scan(constant)
-      @glob_cache ||= directories.empty? ? [] : glob_ruby_files
-
       unless constant_paths_cached?(constant)
         build_constant_paths_cache(constant)
       end
@@ -72,11 +70,56 @@ module RubyLint
     ##
     # @return [Array]
     #
+    def glob_cache
+      @glob_cache ||= directories.empty? ? [] : glob_ruby_files
+    end
+
+    ##
+    # @return [Array]
+    #
     def glob_ruby_files
       return Dir.glob("{#{directories.join(',')}}/**/*.rb")
     end
 
-    private
+    ##
+    # Returns the file path for the given constant.
+    #
+    # @example
+    #  constant_to_path('FooBar::Baz') # => "foo_bar/baz.rb"
+    #
+    # @param [String] constant
+    # @return [String]
+    #
+    def constant_to_path(constant)
+      return constant.gsub('::', '/').snake_case + '.rb'
+    end
+
+    ##
+    # Returns a path similar to {#constant_to_path} but using dashes instead of
+    # underscores for the first directory.
+    #
+    # @example
+    #  constant_to_dashed_path('FooBar::Baz') # => "foo-bar/baz.rb"
+    #
+    # @see [#constant_to_path]
+    #
+    def constant_to_dashed_path(constant)
+      const_segments = constant.split('::')
+      path_segments  = []
+
+      const_segments.each_with_index do |segment, index|
+        segment = segment.snake_case
+
+        # Use dashes for the first segment (= top level directory).
+        if const_segments.length > 1 and index == 0
+          segment = segment.gsub('_', '-')
+        end
+
+        path_segments << segment
+      end
+
+      return path_segments.join('/') + '.rb'
+    end
 
     ##
     # Searches all the files that could potentially define the given constant
@@ -119,7 +162,7 @@ module RubyLint
       # "bar_foo.rb"). We don't want that.
       segment = "/#{segment}"
 
-      return @glob_cache.select { |p| p.include?(segment) }
+      return glob_cache.select { |p| p.include?(segment) }
     end
 
     ##
@@ -127,37 +170,6 @@ module RubyLint
     #
     def constant_paths_cached?(constant)
       return @constant_paths_cache.key?(constant)
-    end
-
-    ##
-    # @param [String] constant
-    # @return [String]
-    #
-    def constant_to_path(constant)
-      return constant.gsub('::', '/').snake_case + '.rb'
-    end
-
-    ##
-    # @see #constant_to_path
-    #
-    def constant_to_dashed_path(constant)
-      segments = constant.split('::')
-      last     = segments[-1]
-      prefix   = segments[0..-2].join('/').snake_case.gsub('_', '-')
-
-      unless prefix.empty?
-        prefix += '/'
-      end
-
-      return "#{prefix}#{last.snake_case}.rb"
-    end
-
-    ##
-    # @param [String] segment
-    # @return [String]
-    #
-    def glob_pattern(segment)
-      return "{#{directories.join(',')}}/**/#{segment}.rb"
     end
   end # FileScanner
 end # RubyLint
