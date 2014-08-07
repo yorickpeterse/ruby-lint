@@ -83,11 +83,6 @@ the following output:
     test.rb: warning: line 12, column 1: unused local variable greeting
     test.rb: error: line 14, column 1: wrong number of arguments (expected 0 but got 1)
 
-## Integration
-
-* Vim using [Syntastic][syntastic]
-* Emacs using [Flycheck][flycheck]
-
 ## ruby-lint versus RuboCop
 
 A question commonly asked is what purpose ruby-lint serves compared to other
@@ -141,7 +136,5 @@ All source code in this repository is licensed under the MIT license unless
 specified otherwise. A copy of this license can be found in the file "LICENSE"
 in the root directory of this repository.
 
-[syntastic]: https://github.com/scrooloose/syntastic
-[flycheck]: https://github.com/flycheck/flycheck/
 [rubocop]: https://github.com/bbatsov/rubocop
 [yard]: http://yardoc.org/
