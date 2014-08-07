@@ -22,7 +22,7 @@ when processing methods.
 ## Requirements
 
 * a Ruby implementation running 1.9 or newer
-* a Unix based Operating System
+* a Unix based Operating System (Windows with MinGW [may work](#windows))
 
 The following Ruby implementations/versions are officially supported:
 
@@ -126,6 +126,13 @@ example:
     10a51f27c455e5743fff7fefe29512cff20116b805bec148e09d4bade1727e3beab7f7f9ee97b020d290773edcb7bd1685858ccad0bbd1a35cc0282c00c760c6  pkg/ruby-lint-0.9.1.gem
 
 In the past Gems were also signed using PGP, this is no longer the case.
+
+<a name="windows"></a>
+## Windows Support
+
+Since ruby-lint does not make native operating system calls nor invoke command-line utilities, *in principle* there is no inherent reason why ruby-lint should not work on Windows, but the primary developers do not actively test ruby-lint on Windows. Therefore, any Windows support is incidental.
+
+Windows 7 with MRI Ruby 1.9.3 from [RubyInstaller](http://rubyinstaller.org) and ruby-lint version [2.0.2](https://github.com/YorickPeterse/ruby-lint/releases/tag/2.0.2) has been tested by a community member and seems to work correctly, at least for simple projects. When specifying file paths (relative or absolute) to ruby-lint's command line arguments or configuration files, both forward slashes (`/`) and backslashes (`\`) are known to work. To avoid potential problems in file path parsing, you should avoid passing a "raw" drive letter like `D:` to any ruby-lint command line argument or configuration parameter that deals with file paths. The safest way is to always store your project and any search directories in at least one folder inside your drive letter. So, a path of `D:\libs` is okay, but `D:` is not.
 
 ## Documentation
 
