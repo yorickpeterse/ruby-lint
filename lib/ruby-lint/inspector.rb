@@ -38,7 +38,7 @@ module RubyLint
     #
     def inspect_constants(source = constant, ignore = [])
       names          = []
-      source_name    = source.to_s
+      source_name    = source.name
       have_children  = []
       include_source = source != Object
 
