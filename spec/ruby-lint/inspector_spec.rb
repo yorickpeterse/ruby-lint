@@ -64,10 +64,16 @@ describe RubyLint::Inspector do
 
   context 'Ruby implementation shenanigans' do
     before :all do
-      mod = Module.new { include Enumerable }
+      module InspectorExampleModule
+        include Enumerable
+      end
 
-      inspector  = RubyLint::Inspector.new(mod)
+      inspector  = RubyLint::Inspector.new(InspectorExampleModule)
       @constants = inspector.inspect_constants
+    end
+
+    after :all do
+      Object.send(:remove_const, :InspectorExampleModule)
     end
 
     # This test was added since Rubinius defines `Range::Enumerator` which is
