@@ -1,9 +1,20 @@
 module RubyLint
   module Analysis
     ##
-    # The {RubyLint::Analysis::UselessRuby} class checks for various useless
-    # Ruby features, the use of redundant tokens such as `then` for `if`
-    # statements and various other pedantics.
+    # This class adds (pedantic) warnings for various features that aren't
+    # really that useful or needed. This serves mostly as a simple example on
+    # how to write an analysis class.
+    #
+    # Currently warnings are added for the following:
+    #
+    # * BEGIN/END blocks
+    # * Statements that use `then` or `do` when it's not needed
+    #
+    # For example:
+    #
+    #     BEGIN { puts 'foo' }
+    #
+    # This would result in the warning "BEGIN/END is useless" being added.
     #
     class Pedantics < Base
       register 'pedantics'
