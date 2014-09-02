@@ -2,6 +2,7 @@
 
 [![Build Status](https://travis-ci.org/YorickPeterse/ruby-lint.png?branch=master)](https://travis-ci.org/YorickPeterse/ruby-lint)
 [![Code Climate](https://codeclimate.com/github/YorickPeterse/ruby-lint.png)](https://codeclimate.com/github/YorickPeterse/ruby-lint)
+[![Inline docs](http://inch-ci.org/github/YorickPeterse/ruby-lint.png?branch=master)](http://inch-ci.org/github/YorickPeterse/ruby-lint)
 
 ruby-lint is a static code analysis tool for Ruby. It is inspired by tools such
 as jshint, flake8 and similar tools. ruby-lint primarily focuses on logic
