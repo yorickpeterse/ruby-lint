@@ -14,11 +14,11 @@ end
       @kernel      = @definitions.lookup(:const, 'Kernel')
     end
 
-    example 'add the method to the Kernel module' do
+    it 'adds the method to the Kernel module' do
       @kernel.has_definition?(:instance_method, 'foobar').should == true
     end
 
-    example 'add the method to the global scope' do
+    it 'adds the method to the global scope' do
       @definitions.has_definition?(:instance_method, 'foobar').should == true
     end
   end

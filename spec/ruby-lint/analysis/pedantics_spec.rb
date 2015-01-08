@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe RubyLint::Analysis::Pedantics do
-  example 'warn when using do/then in various statements' do
+  it 'warns when using do/then in various statements' do
     code = <<-CODE
 if true then; end
 unless true then; end
@@ -25,7 +25,7 @@ while true do; end
 
   # See https://github.com/YorickPeterse/ruby-lint/issues/32 for the motivation
   # behind this test.
-  example 'not warn when no do/then identifier is used in a statement' do
+  it 'does not warn when no do/then identifier is used in a statement' do
     code = <<-CODE.strip
 if true; end
 
@@ -43,7 +43,7 @@ foo ? true : false
     report.entries.empty?.should == true
   end
 
-  example 'warn for the use of BEGIN/END' do
+  it 'warns for the use of BEGIN/END' do
     code = <<-CODE
 BEGIN {}
 END {}

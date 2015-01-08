@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe RubyLint::VirtualMachine do
   describe 'hash assignments' do
-    example 'assign an empty hash' do
+    it 'assigns an empty hash' do
       defs  = build_definitions('numbers = {}')
       value = defs.lookup(:lvar, 'numbers').value
 
@@ -12,7 +12,7 @@ describe RubyLint::VirtualMachine do
       value.has_definition?(:instance_method, 'each').should == true
     end
 
-    example 'assign a hash with values' do
+    it 'assigns a hash with values' do
       defs    = build_definitions('numbers = {:one => 1, :two => 2}')
       hash    = defs.lookup(:lvar, 'numbers').value
       members = {'one' => 1, 'two' => 2}
@@ -26,7 +26,7 @@ describe RubyLint::VirtualMachine do
       end
     end
 
-    example 'process single key assignments' do
+    it 'processes single key assignments' do
       defs   = build_definitions('numbers = {}; numbers[:one] = 1')
       hash   = defs.lookup(:lvar, 'numbers').value
       member = hash.lookup(:member, 'one')
@@ -35,7 +35,7 @@ describe RubyLint::VirtualMachine do
       member.value.value.should == 1
     end
 
-    example 'process key assignments using variables' do
+    it 'processes key assignments using variables' do
       code = <<-CODE
 key          = :two
 numbers      = {:one => 1}

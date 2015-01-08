@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe RubyLint::VirtualMachine do
   context 'method arguments and docstrings' do
-    example 'extract the type of a parameter' do
+    it 'extracts the type of a parameter' do
       code = <<-CODE
 # @param [Numeric] number
 def example(number)
@@ -19,7 +19,7 @@ end
       number.parents.include?(numeric).should == true
     end
 
-    example 'extract the type of a parameter using a method' do
+    it 'extracts the type of a parameter using a method' do
       code = <<-CODE
 # @param [#to_s] number
 def example(number)
@@ -33,7 +33,7 @@ end
       number.lookup(:instance_method, 'to_s').is_a?(ruby_method).should == true
     end
 
-    example 'extract multiple types from a parameter' do
+    it 'extracts multiple types from a parameter' do
       code = <<-CODE
 # @param [Float|Fixnum] number
 def example(number)
@@ -63,7 +63,7 @@ end
       @defs = build_definitions(code)
     end
 
-    example 'extract the type of a return tag' do
+    it 'extracts the type of a return tag' do
       method  = @defs.lookup(:instance_method, 'example')
       numeric = @defs.lookup(:const, 'Numeric')
 
@@ -71,7 +71,7 @@ end
       method.return_value.name.should == 'Numeric'
     end
 
-    example 'return values as instances' do
+    it 'returns values as instances' do
       method = @defs.lookup(:instance_method, 'example')
 
       method.return_value.instance?.should == true

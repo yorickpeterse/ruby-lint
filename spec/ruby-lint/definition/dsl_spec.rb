@@ -6,13 +6,13 @@ describe RubyLint::Definition::RubyObject do
   end
 
   describe 'definining constants using a DSL' do
-    example 'define a constant' do
+    it 'defines a constant' do
       @first.define_constant('B')
 
       @first.lookup(:const, 'B').is_a?(ruby_object).should == true
     end
 
-    example 'define a constant using a block' do
+    it 'defines a constant using a block' do
       @first.define_constant('B') do |b|
         b.define_constant('C')
       end
@@ -23,7 +23,7 @@ describe RubyLint::Definition::RubyObject do
         .should == true
     end
 
-    example 'inherit from another object' do
+    it 'inherits from another object' do
       @first.define_constant('B') do |b|
         b.define_constant('C')
       end
@@ -38,7 +38,7 @@ describe RubyLint::Definition::RubyObject do
         .should == true
     end
 
-    example 'define a constant using a constant path' do
+    it 'defines a constant using a constant path' do
       @first.define_constant('A')
       @first.define_constant('A::B')
 
@@ -50,13 +50,13 @@ describe RubyLint::Definition::RubyObject do
   end
 
   describe 'defining methods using a DSL' do
-    example 'define a method' do
+    it 'defines a method' do
       @first.define_method('example')
 
       @first.lookup(:method, 'example').is_a?(ruby_method).should == true
     end
 
-    example 'define an instance method' do
+    it 'defines an instance method' do
       @first.define_instance_method('example')
 
       @first.lookup(:instance_method, 'example') \
@@ -64,7 +64,7 @@ describe RubyLint::Definition::RubyObject do
         .should == true
     end
 
-    example 'define a method\'s return value' do
+    it 'defines a method\'s return value' do
       string = ruby_object.new(:type => :str, :value => 'hello')
 
       @first.define_method('example') do |example|
@@ -77,14 +77,14 @@ describe RubyLint::Definition::RubyObject do
         .should == true
     end
 
-    example 'add a required argument' do
+    it 'adds a required argument' do
       arg = method_with_argument(@first, :argument).arguments.first
 
       arg.is_a?(ruby_object).should == true
       arg.name.should                == 'number'
     end
 
-    example 'add a optional argument' do
+    it 'adds a optional argument' do
       arg = method_with_argument(@first, :optional_argument) \
         .optional_arguments \
         .first
@@ -93,21 +93,21 @@ describe RubyLint::Definition::RubyObject do
       arg.name.should                == 'number'
     end
 
-    example 'add a rest argument' do
+    it 'adds a rest argument' do
       arg = method_with_argument(@first, :rest_argument).rest_argument
 
       arg.is_a?(ruby_object).should == true
       arg.name.should                == 'number'
     end
 
-    example 'add a block argument' do
+    it 'adds a block argument' do
       arg = method_with_argument(@first, :block_argument).block_argument
 
       arg.is_a?(ruby_object).should == true
       arg.name.should                == 'number'
     end
 
-    example 'easily define constructor methods' do
+    it 'easily defines constructor methods' do
       @first.define_constructors do |method|
         method.define_argument('name')
       end
@@ -122,7 +122,7 @@ describe RubyLint::Definition::RubyObject do
   end
 
   describe 'defining global variables using a DSL' do
-    example 'define a global variable' do
+    it 'defines a global variable' do
       @first.define_global_variable('$number', '10')
 
       found = @first.lookup(:gvar, '$number')

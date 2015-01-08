@@ -7,11 +7,11 @@ describe 'ruby-lint definitions' do
       @const = root.lookup(:const, 'ARGV')
     end
 
-    example 'treat ARGV as an instance' do
+    it 'is an instance' do
       @const.instance?.should == true
     end
 
-    example 'ARGV should be an Array' do
+    it 'has the instance method "each"' do
       @const.has_definition?(:instance_method, 'each').should == true
     end
   end

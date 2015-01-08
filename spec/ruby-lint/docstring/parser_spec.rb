@@ -4,7 +4,7 @@ describe RubyLint::Docstring::Parser do
   let(:parser) { RubyLint::Docstring::Parser.new }
 
   context '@param tags' do
-    example 'parse a tag with just the parameter name' do
+    it 'parses a tag with just the parameter name' do
       comments = ['# @param number']
       tag      = parser.parse(comments)[0]
 
@@ -13,7 +13,7 @@ describe RubyLint::Docstring::Parser do
       tag.name.should == 'number'
     end
 
-    example 'parse a tag with a parameter name and description' do
+    it 'parses a tag with a parameter name and description' do
       comments = ['# @param number The number.']
       tag      = parser.parse(comments)[0]
 
@@ -21,7 +21,7 @@ describe RubyLint::Docstring::Parser do
       tag.description.should == 'The number.'
     end
 
-    example 'parse a tag with a type' do
+    it 'parses a tag with a type' do
       comments = ['# @param [Numeric] number']
       tag      = parser.parse(comments)[0]
 
@@ -29,7 +29,7 @@ describe RubyLint::Docstring::Parser do
       tag.types.should == ['Numeric']
     end
 
-    example 'parse a tag with a type and description' do
+    it 'parses a tag with a type and description' do
       comments = ['# @param [Numeric] number The number.']
       tag      = parser.parse(comments)[0]
 
@@ -38,7 +38,7 @@ describe RubyLint::Docstring::Parser do
       tag.description.should == 'The number.'
     end
 
-    example 'parse a tag with a compound type' do
+    it 'parses a tag with a compound type' do
       comments = ['# @param [Array<String>] names The names']
       tag      = parser.parse(comments)[0]
 
@@ -47,7 +47,7 @@ describe RubyLint::Docstring::Parser do
       tag.types.should       == ['Array']
     end
 
-    example 'should parse a tag with a namespace in it' do
+    it 'should parse a tag with a namespace in it' do
       comments = ['# @param [Foo::Bar] baz']
       tag      = parser.parse(comments)[0]
 
@@ -57,7 +57,7 @@ describe RubyLint::Docstring::Parser do
   end
 
   context '@return tags' do
-    example 'parse a tag with just the type' do
+    it 'parses a tag with just the type' do
       comments = ['# @return [Numeric]']
       tag      = parser.parse(comments)[0]
 
@@ -67,7 +67,7 @@ describe RubyLint::Docstring::Parser do
       tag.types.should            == ['Numeric']
     end
 
-    example 'parse a tag with the type and description' do
+    it 'parses a tag with the type and description' do
       comments = ['# @return [Numeric] The number.']
       tag      = parser.parse(comments)[0]
 
@@ -77,7 +77,7 @@ describe RubyLint::Docstring::Parser do
       tag.description.should == 'The number.'
     end
 
-    example 'parse a tag with the description' do
+    it 'parses a tag with the description' do
       comments = ['# @return Hello']
       tag      = parser.parse(comments)[0]
 

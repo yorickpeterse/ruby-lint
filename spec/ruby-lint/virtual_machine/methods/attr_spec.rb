@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe RubyLint::VirtualMachine do
   context 'attr methods' do
-    example 'should define a read-only attribute using #attr' do
+    it 'should define a read-only attribute using #attr' do
       code = <<-CODE
 class Example
   attr :number
@@ -25,7 +25,7 @@ end
         .should == true
     end
 
-    example 'should define an accessor attribute using #attr' do
+    it 'should define an accessor attribute using #attr' do
       code = <<-CODE
 class Example
   attr :number, true
@@ -47,7 +47,7 @@ end
         .should == true
     end
 
-    example 'should define a read-only attribute using #attr_reader' do
+    it 'should define a read-only attribute using #attr_reader' do
       code = <<-CODE
 class Example
   attr_reader :number
@@ -69,7 +69,7 @@ end
         .should == true
     end
 
-    example 'should define a write-only attribute using #attr_writer' do
+    it 'should define a write-only attribute using #attr_writer' do
       code = <<-CODE
 class Example
   attr_writer :number
@@ -91,7 +91,7 @@ end
         .should == true
     end
 
-    example 'should define an accessor attribute using #attr_accessor' do
+    it 'should define an accessor attribute using #attr_accessor' do
       code = <<-CODE
 class Example
   attr_accessor :number
@@ -115,7 +115,7 @@ end
   end
 
   context 'attr methods and argument amounts' do
-    example 'set the arguments for attr' do
+    it 'sets the arguments for attr' do
       code = <<-CODE
 class Example
   attr :foo
@@ -131,7 +131,7 @@ end
         .should == true
     end
 
-    example 'set the arguments for attr_reader' do
+    it 'sets the arguments for attr_reader' do
       code = <<-CODE
 class Example
   attr_reader :foo
@@ -147,7 +147,7 @@ end
         .should == true
     end
 
-    example 'set the arguments for attr_writer' do
+    it 'sets the arguments for attr_writer' do
       code = <<-CODE
 class Example
   attr_writer :foo
@@ -163,7 +163,7 @@ end
         .should == 1
     end
 
-    example 'set the arguments for attr_accessor' do
+    it 'sets the arguments for attr_accessor' do
       code = <<-CODE
 class Example
   attr_accessor :foo

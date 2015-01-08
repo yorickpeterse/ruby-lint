@@ -9,19 +9,19 @@ describe RubyLint::DefinitionBuilder::RubyModule do
       @module  = @vm.definitions.lookup(:const, 'Module')
     end
 
-    example 'return the name of the module' do
+    it 'returns the name of the module' do
       @builder.build.name.should == 'A'
     end
 
-    example 'return the parent definitions' do
+    it 'returns the parent definitions' do
       @builder.build.parents.should == [@module, @vm.current_scope]
     end
 
-    example 'return the reference amount' do
+    it 'returns the reference amount' do
       @builder.build.reference_amount.should == 1
     end
 
-    example 'return the scope to define the module in' do
+    it 'returns the scope to define the module in' do
       @builder.scope.should == @vm.current_scope
     end
   end
@@ -37,15 +37,15 @@ describe RubyLint::DefinitionBuilder::RubyModule do
       @module  = @vm.definitions.lookup(:const, 'Module')
     end
 
-    example 'return the name of the module' do
+    it 'returns the name of the module' do
       @builder.build.name.should == 'B'
     end
 
-    example 'return the parent definitions' do
+    it 'returns the parent definitions' do
       @builder.build.parents.should == [@module, @vm.current_scope]
     end
 
-    example 'return the scope to define the module in' do
+    it 'returns the scope to define the module in' do
       @builder.scope.should == @vm.definitions.lookup(:const, 'A')
     end
   end

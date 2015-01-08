@@ -14,12 +14,12 @@ end
     @definition = build_definitions(code).lookup(:const, 'Example')
   end
 
-  example 'inherit from the Logger class' do
+  it 'inherits from the Logger class' do
     @definition.has_definition?(:instance_method, 'datetime_format')
       .should == true
   end
 
-  example 'mark the instance variable as unused' do
+  it 'marks the instance variable as unused' do
     @definition.lookup(:ivar, '@messages').used?.should == false
   end
 end

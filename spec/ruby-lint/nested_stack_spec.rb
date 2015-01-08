@@ -5,7 +5,7 @@ describe RubyLint::NestedStack do
     @stack = RubyLint::NestedStack.new
   end
 
-  example 'add a new stack' do
+  it 'adds a new stack' do
     @stack.empty?.should == true
 
     @stack.add_stack
@@ -13,7 +13,7 @@ describe RubyLint::NestedStack do
     @stack.empty?.should == false
   end
 
-  example 'push and pop values from the stack' do
+  it 'pushes and pop values from the stack' do
     @stack.add_stack
     @stack.push(10)
 

@@ -9,7 +9,7 @@ describe RubyLint::VirtualMachine do
     #       Foo # => points to the class
     #     end
     #
-    example 'add the constant to itself' do
+    it 'adds the constant to itself' do
       code = <<-CODE
   module A
   end

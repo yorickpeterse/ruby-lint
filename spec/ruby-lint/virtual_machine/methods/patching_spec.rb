@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe RubyLint::VirtualMachine do
   describe 'patching methods' do
-    example 'add a class method to the String class' do
+    it 'adds a class method to the String class' do
       code = <<-CODE
 class String
   def self.foobar

@@ -1,18 +1,18 @@
 require 'spec_helper'
 
 describe RubyLint::Parser do
-  example 'parse a block of Ruby code' do
+  it 'parses a block of Ruby code' do
     ast = parse('10', false)
 
     ast.type.should            == :root
     ast.children.length.should == 1
   end
 
-  example 'use a custom node class' do
+  it 'uses a custom node class' do
     parse('10').class.should == RubyLint::AST::Node
   end
 
-  example 'parse and return the comments mapping' do
+  it 'parses and return the comments mapping' do
     code = <<-CODE
 # Hello world
 def foobar
@@ -29,7 +29,7 @@ end
     comment.location.line.should == 1
   end
 
-  example 'parse an empty file' do
+  it 'parses an empty file' do
     ast = parse('', false)
 
     ast.type.should            == :root

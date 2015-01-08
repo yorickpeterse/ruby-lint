@@ -8,19 +8,19 @@ describe RubyLint::DefinitionBuilder::RubyMethod do
       @builder = RubyLint::DefinitionBuilder::RubyMethod.new(node, @vm)
     end
 
-    example 'return the name of the method' do
+    it 'returns the name of the method' do
       @builder.build.name.should == 'example'
     end
 
-    example 'return the type of the method' do
+    it 'returns the type of the method' do
       @builder.build.type.should == :instance_method
     end
 
-    example 'return the parent definitions' do
+    it 'returns the parent definitions' do
       @builder.build.parents.should == [@vm.current_scope]
     end
 
-    example 'return the scope to define the method in' do
+    it 'returns the scope to define the method in' do
       @builder.scope.should == @vm.current_scope
     end
   end
@@ -38,15 +38,15 @@ describe RubyLint::DefinitionBuilder::RubyMethod do
       )
     end
 
-    example 'return the name of the method' do
+    it 'returns the name of the method' do
       @builder.build.name.should == 'example'
     end
 
-    example 'return the parent definitions' do
+    it 'returns the parent definitions' do
       @builder.build.parents.should == [@vm.definitions.lookup(:const, 'A')]
     end
 
-    example 'return the scope to define the method in' do
+    it 'returns the scope to define the method in' do
       @builder.scope.should == @vm.definitions.lookup(:const, 'A')
     end
   end

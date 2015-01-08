@@ -3,7 +3,7 @@ require 'spec_helper'
 describe RubyLint::VirtualMachine do
   context 'constants and local variables' do
     # https://github.com/YorickPeterse/ruby-lint/issues/60
-    example 'access a constant path using a local variable' do
+    it 'accesses a constant path using a local variable' do
       code = <<-CODE
 module Example
   NUMBER = 10

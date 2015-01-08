@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe RubyLint::Analysis::ArgumentAmount do
-  example 'validate the amount of required arguments' do
+  it 'validates the amount of required arguments' do
     code = <<-CODE
 def example(first, second)
 end
@@ -19,7 +19,7 @@ example
     entry.message.should == 'wrong number of arguments (expected 2 but got 0)'
   end
 
-  example 'validate argument amounts when using optional arguments' do
+  it 'validates argument amounts when using optional arguments' do
     code = <<-CODE
 def example(first, second, third = nil)
 end
@@ -38,7 +38,7 @@ example
       '(expected 2..3 but got 0)'
   end
 
-  example 'validate argument amounts when using rest arguments' do
+  it 'validates argument amounts when using rest arguments' do
     code = <<-CODE
 def example(first, second, *args)
 end
@@ -57,7 +57,7 @@ example
       '(expected 2 but got 0)'
   end
 
-  example 'validate argument amounts when using a required and rest argument' do
+  it 'validates argument amounts when using a required and rest argument' do
     code = <<-CODE
 def example(required, *numbers)
 end
@@ -70,7 +70,7 @@ example(10, 20, 30)
     report.entries.length.should == 0
   end
 
-  example 'take variable assignments into account' do
+  it 'takes variable assignments into account' do
     code = <<-CODE
 name = 'Ruby'
 
@@ -82,14 +82,14 @@ name.downcase
     report.entries.empty?.should == true
   end
 
-  example 'not validate methods called on undefined receivers' do
+  it 'does not validate methods called on undefined receivers' do
     code   = 'A.example_method'
     report = build_report(code, RubyLint::Analysis::ArgumentAmount)
 
     report.entries.empty?.should == true
   end
 
-  example 'use #initialize for arguments when processing .new' do
+  it 'uses #initialize for arguments when processing .new' do
     code = <<-CODE
 class Person
   def initialize(name)
@@ -115,7 +115,7 @@ Person.new(10, 20)
     second.message.should == 'wrong number of arguments (expected 1 but got 2)'
   end
 
-  example 'ignore block arguments' do
+  it 'ignores block arguments' do
     code = <<-CODE
 def example; end
 

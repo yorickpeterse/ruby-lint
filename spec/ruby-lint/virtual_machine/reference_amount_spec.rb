@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe RubyLint::VirtualMachine do
   describe 'reference counting' do
-    example 'count the amount of references for a variable' do
+    it 'counts the amount of references for a variable' do
       code = <<-CODE
   number = 10
   number
@@ -14,7 +14,7 @@ describe RubyLint::VirtualMachine do
       defs.lookup(:lvar, 'number').reference_amount.should == 2
     end
 
-    example 'count the amount of references for a constant path' do
+    it 'counts the amount of references for a constant path' do
       code = <<-CODE
   module A; end
   A::B = 10
@@ -30,7 +30,7 @@ describe RubyLint::VirtualMachine do
         .should == 2
     end
 
-    example 'mark variables created using OR/AND assignments as used' do
+    it 'marks variables created using OR/AND assignments as used' do
       code = <<-CODE
 number1 = 5
 
@@ -47,7 +47,7 @@ number1 &&= 10
       number1.used?.should == true
     end
 
-    example 'overwriting a variable should increase the reference amount' do
+    it 'overwritings a variable should increase the reference amount' do
       code = <<-CODE
 number = 10
 number = 20
@@ -58,7 +58,7 @@ number = 20
       defs.lookup(:lvar, 'number').reference_amount.should == 1
     end
 
-    example 'track ivar references in parent scopes' do
+    it 'tracks ivar references in parent scopes' do
       code = <<-CODE
 def first
   @number = 10

@@ -6,11 +6,11 @@ describe RubyLint::Definition::Registry do
   end
 
   context 'registering definitions' do
-    example 'no definitions should be registered by default' do
+    it 'does not register definitions by default' do
       @registry.registered.empty?.should == true
     end
 
-    example 'register a definition' do
+    it 'registers a definition' do
       @registry.register('String') { }
 
       @registry.registered.key?('String').should == true
@@ -18,11 +18,11 @@ describe RubyLint::Definition::Registry do
   end
 
   context 'checking if definitions exist' do
-    example 'check for a non existing definition' do
+    it 'checks for a non existing definition' do
       @registry.include?('Foo').should == false
     end
 
-    example 'check for an existing definition' do
+    it 'checks for an existing definition' do
       @registry.register('Foo') { }
 
       @registry.include?('Foo').should == true
@@ -30,11 +30,11 @@ describe RubyLint::Definition::Registry do
   end
 
   context 'retrieving definitions' do
-    example 'raise when the constant does not exist' do
+    it 'raises when the constant does not exist' do
       lambda { @registry.get('Foo') }.should raise_error(ArgumentError)
     end
 
-    example 'return the definition when it exists' do
+    it 'returns the definition when it exists' do
       @registry.register('Foo') { }
 
       @registry.get('Foo').is_a?(Proc).should == true
@@ -54,17 +54,17 @@ describe RubyLint::Definition::Registry do
       @registry.apply('Foo', @root)
     end
 
-    example 'define the constant' do
+    it 'defines the constant' do
       @root.has_definition?(:const, 'Foo').should == true
     end
 
-    example 'define sub definitions correctly' do
+    it 'defines sub definitions correctly' do
       @root.lookup(:const, 'Foo')
         .has_definition?(:method, 'bar')
         .should == true
     end
 
-    example 'do not overwrite existing definitions' do
+    it 'does not overwrite existing definitions' do
       foo = @root.lookup(:const, 'Foo')
 
       @registry.apply('Foo', @root)
@@ -78,12 +78,12 @@ describe RubyLint::Definition::Registry do
       @registry = RubyLint::Definition::Registry.new
     end
 
-    example 'use the default load path' do
+    it 'uses the default load path' do
       @registry.load_path
         .should == RubyLint::Definition::Registry::DEFAULT_LOAD_PATH
     end
 
-    example 'add a path to the load path' do
+    it 'adds a path to the load path' do
       @registry.load_path << 'foo'
 
       @registry.load_path.include?('foo').should == true
@@ -95,11 +95,11 @@ describe RubyLint::Definition::Registry do
       RubyLint.registry.load('Rational')
     end
 
-    example 'load the String constant' do
+    it 'loads the String constant' do
       RubyLint.registry.loaded_constants.include?('Rational').should == true
     end
 
-    example 'register the String definition' do
+    it 'registers the String definition' do
       RubyLint.registry.include?('Rational').should == true
     end
   end

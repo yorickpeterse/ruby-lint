@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe RubyLint::VirtualMachine do
   describe 'scoping method definitions' do
-    example 'process a global method' do
+    it 'processes a global method' do
       defs    = build_definitions('def example; end')
       example = defs.lookup(:instance_method, 'example')
 
@@ -12,7 +12,7 @@ describe RubyLint::VirtualMachine do
       example.name.should == 'example'
     end
 
-    example 'process a nested method' do
+    it 'processes a nested method' do
       code = <<-CODE
 def first
   def second
@@ -32,7 +32,7 @@ end
       defs.lookup(:instance_method, 'second').nil?.should == true
     end
 
-    example 'process a global and nested method' do
+    it 'processes a global and nested method' do
       code = <<-CODE
 def first
   def second

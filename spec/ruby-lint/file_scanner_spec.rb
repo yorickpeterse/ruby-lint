@@ -11,15 +11,15 @@ describe RubyLint::FileScanner do
       @scanner = described_class.new
     end
 
-    example 'raise when a non enumerable argument is given' do
+    it 'raises when a non enumerable argument is given' do
       lambda { described_class.new(10) }.should raise_error(TypeError)
     end
 
-    example 'set the default directories' do
+    it 'sets the default directories' do
       @scanner.directories.empty?.should == false
     end
 
-    example 'do not include non existing directories' do
+    it 'does not include non existing directories' do
       app = File.join(Dir.pwd, 'app')
 
       @scanner.directories.include?(app).should == false
@@ -27,13 +27,13 @@ describe RubyLint::FileScanner do
   end
 
   context '#glob_ruby_files' do
-    example 'glob Ruby source files in a single directory' do
+    it 'globs Ruby source files in a single directory' do
       scanner = described_class.new([@lib_dir])
 
       scanner.glob_ruby_files.empty?.should == false
     end
 
-    example 'glob Ruby source files in multiple directories' do
+    it 'globs Ruby source files in multiple directories' do
       scanner = described_class.new([@lib_dir, @rails_dir])
 
       scanner.glob_ruby_files.empty?.should == false
@@ -41,21 +41,21 @@ describe RubyLint::FileScanner do
   end
 
   context '#scan' do
-    example 'finding a class' do
+    it 'finds a class' do
       scanner = described_class.new([@lib_dir])
       paths   = scanner.scan('Example::User')
 
       paths.should == [fixture_path('file_scanner/lib/example/user.rb')]
     end
 
-    example 'finding a class using dashes for the directory names' do
+    it 'finds a class using dashes for the directory names' do
       scanner = described_class.new([@lib_dir])
       paths   = scanner.scan('TestDashes::Foo')
 
       paths.should == [fixture_path('file_scanner/lib/test-dashes/foo.rb')]
     end
 
-    example 'finding a class using a Rails structure' do
+    it 'finds a class using a Rails structure' do
       scanner = described_class.new([@rails_dir])
       paths   = scanner.scan('User')
 
@@ -65,7 +65,7 @@ describe RubyLint::FileScanner do
       ]
     end
 
-    example 'finding a namespaced class using a Rails structure' do
+    it 'finds a namespaced class using a Rails structure' do
       scanner = described_class.new([@rails_dir])
       paths   = scanner.scan('Example::User')
 
@@ -74,13 +74,13 @@ describe RubyLint::FileScanner do
       ]
     end
 
-    example 'ignoring directories' do
+    it 'ignores directories' do
       scanner = described_class.new([@lib_dir], [@lib_dir])
 
       scanner.scan('Example::User').empty?.should == true
     end
 
-    example 'do not scan when there are no directories' do
+    it 'does not scan when there are no directories' do
       scanner = described_class.new([])
 
       scanner.should_not receive(:glob_ruby_files)
@@ -94,19 +94,19 @@ describe RubyLint::FileScanner do
       @scanner = described_class.new([@lib_dir])
     end
 
-    example 'return the path for a single constant segment' do
+    it 'returns the path for a single constant segment' do
       @scanner.constant_to_path('Foo').should == 'foo.rb'
     end
 
-    example 'return the path for two constant segments' do
+    it 'returns the path for two constant segments' do
       @scanner.constant_to_path('Foo::Bar').should == 'foo/bar.rb'
     end
 
-    example 'return the path for three constant segments' do
+    it 'returns the path for three constant segments' do
       @scanner.constant_to_path('Foo::Bar::Baz').should == 'foo/bar/baz.rb'
     end
 
-    example 'snake case the constant names' do
+    it 'snakes case the constant names' do
       @scanner.constant_to_path('FooBar').should == 'foo_bar.rb'
     end
   end
@@ -116,16 +116,16 @@ describe RubyLint::FileScanner do
       @scanner = described_class.new([@lib_dir])
     end
 
-    example 'return the path for a single constant segment' do
+    it 'returns the path for a single constant segment' do
       @scanner.constant_to_dashed_path('RubyLint').should == 'ruby_lint.rb'
     end
 
-    example 'return the path for two constant segments' do
+    it 'returns the path for two constant segments' do
       @scanner.constant_to_dashed_path('RubyLint::FooBar')
         .should == 'ruby-lint/foo_bar.rb'
     end
 
-    example 'return the path for three constant segments' do
+    it 'returns the path for three constant segments' do
       @scanner.constant_to_dashed_path('RubyLint::FooBar::BazBaz')
         .should == 'ruby-lint/foo_bar/baz_baz.rb'
     end
@@ -136,11 +136,11 @@ describe RubyLint::FileScanner do
       @scanner = described_class.new([@rails_dir])
     end
 
-    example 'build an empty cache for a missing constant' do
+    it 'builds an empty cache for a missing constant' do
       @scanner.build_constant_paths_cache('FoobarDoesNotExist').should be_empty
     end
 
-    example 'build the cache for a User class' do
+    it 'builds the cache for a User class' do
       cache = @scanner.build_constant_paths_cache('User')
 
       cache.should == [

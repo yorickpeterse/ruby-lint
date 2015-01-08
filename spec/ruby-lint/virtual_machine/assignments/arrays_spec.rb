@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe RubyLint::VirtualMachine do
   describe 'array assignments' do
-    example 'assign an empty array' do
+    it 'assigns an empty array' do
       defs  = build_definitions('numbers = []')
       value = defs.lookup(:lvar, 'numbers').value
 
@@ -12,7 +12,7 @@ describe RubyLint::VirtualMachine do
       value.has_definition?(:instance_method, 'each').should == true
     end
 
-    example 'assign an array with values' do
+    it 'assigns an array with values' do
       defs    = build_definitions('numbers = [10, 20]')
       array   = defs.lookup(:lvar, 'numbers').value
       members = [10, 20]
@@ -27,7 +27,7 @@ describe RubyLint::VirtualMachine do
       end
     end
 
-    example 'process single index assignments' do
+    it 'processes single index assignments' do
       code = <<-CODE
   numbers    = []
   numbers[0] = 10
@@ -50,7 +50,7 @@ describe RubyLint::VirtualMachine do
       first.value.value.should              == 10
     end
 
-    example 'process multiple index assignments' do
+    it 'processes multiple index assignments' do
       code = <<-CODE
 numbers        = []
 numbers[0,1]   = 10
@@ -70,7 +70,7 @@ numbers[4,5,6] = 40, 50
       numbers.lookup(:member, '6').value.should       == nil
     end
 
-    example 'process index assignments using variables' do
+    it 'processes index assignments using variables' do
       code = <<-CODE
 index          = 1
 numbers        = [10]

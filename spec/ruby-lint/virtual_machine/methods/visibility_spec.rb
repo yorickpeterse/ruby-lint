@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe RubyLint::VirtualMachine do
   describe 'method visibility' do
-    example 'define a method as public' do
+    it 'defines a method as public' do
       code = <<-CODE
 def example
 end
@@ -13,7 +13,7 @@ end
       defs.lookup(:instance_method, 'example').visibility.should == :public
     end
 
-    example 'define a method as private' do
+    it 'defines a method as private' do
       code = <<-CODE
 private
 
@@ -26,7 +26,7 @@ end
       defs.lookup(:instance_method, 'example').visibility.should == :private
     end
 
-    example 'define a method as protected' do
+    it 'defines a method as protected' do
       code = <<-CODE
 protected
 
@@ -39,7 +39,7 @@ end
       defs.lookup(:instance_method, 'example').visibility.should == :protected
     end
 
-    example 'define a method as private and then reset it' do
+    it 'defines a method as private and then reset it' do
       code = <<-CODE
 private
 

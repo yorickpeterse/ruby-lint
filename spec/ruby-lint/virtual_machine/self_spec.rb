@@ -19,16 +19,16 @@ end
       @constant   = definitions.lookup(:const, 'Example')
     end
 
-    example 'set the right instance type' do
+    it 'sets the right instance type' do
       @constant.lookup(:ivar, '@class_self').value.instance?.should    == false
       @constant.lookup(:ivar, '@instance_self').value.instance?.should == true
     end
 
-    example 'self should be defined as a class method' do
+    it 'defines the method "self"' do
       @constant.lookup(:method, 'self').is_a?(ruby_method).should == true
     end
 
-    example 'self should be defined as an instance method' do
+    it 'defines the instance method "self"' do
       @constant.lookup(:instance_method, 'self')
         .is_a?(ruby_method)
         .should == true

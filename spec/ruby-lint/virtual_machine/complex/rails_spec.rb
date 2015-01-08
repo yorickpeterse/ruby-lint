@@ -8,12 +8,12 @@ describe RubyLint::VirtualMachine do
       @controller = @defs.lookup(:const, 'ApplicationController')
     end
 
-    example 'inherit the parent controller' do
+    it 'inherits the parent controller' do
       @controller.has_definition?(:instance_method, 'login_required')
         .should == true
     end
 
-    example 'include built-in Rails definitions' do
+    it 'includes built-in Rails definitions' do
       @controller.has_definition?(:method, 'allow_forgery_protection')
         .should == true
     end

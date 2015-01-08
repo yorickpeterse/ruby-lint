@@ -17,13 +17,13 @@ end
       @definitions = build_definitions(code)
     end
 
-    example 'define the [] method' do
+    it 'defines the [] method' do
       @definitions.lookup(:const, 'Example')
         .has_definition?(:instance_method, '[]')
         .should == true
     end
 
-    example 'define the []= method' do
+    it 'defines the []= method' do
       @definitions.lookup(:const, 'Example')
         .has_definition?(:instance_method, '[]=')
         .should == true

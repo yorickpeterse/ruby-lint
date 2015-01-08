@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe RubyLint::VirtualMachine do
   context 'inheriting definitions using modules' do
-    example 'modules should inherit from Kernel' do
+    it 'inherits from Kernel' do
       code = 'module Foo; end'
       defs = build_definitions(code)
 

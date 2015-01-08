@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe 'RubyLint::Report' do
-  example 'add a message using #add' do
+  it 'adds a message using #add' do
     report = RubyLint::Report.new
 
     report.add(
@@ -23,7 +23,7 @@ describe 'RubyLint::Report' do
     entry.file.should    == 'file.rb'
   end
 
-  example 'ignore invalid reporting levels' do
+  it 'ignores invalid reporting levels' do
     report = RubyLint::Report.new
 
     report.add(

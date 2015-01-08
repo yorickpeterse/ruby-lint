@@ -7,16 +7,16 @@ describe RubyLint::Definition::ConstantProxy do
       @proxy  = RubyLint::Definition::ConstantProxy.new(@source, 'Foo')
     end
 
-    example 'create a new constant proxy' do
+    it 'creates a new constant proxy' do
       @proxy.proxy_source.should == @source
       @proxy.proxy_name.should   == 'Foo'
     end
 
-    example 'act like a RubyObject definition' do
+    it 'acts like a RubyObject definition' do
       @proxy.lookup(:const, 'Bar').nil?.should == true
     end
 
-    example 'cache the definition when it exists' do
+    it 'caches the definition when it exists' do
       @proxy.name.nil?.should == true
       @proxy.type.nil?.should == true
 
@@ -30,7 +30,7 @@ describe RubyLint::Definition::ConstantProxy do
       @proxy.lookup(:const, 'VERSION').is_a?(ruby_object).should == true
     end
 
-    example 'delegating #inspect' do
+    it 'delegates #inspect to the underlying object' do
       foo = @source.define_constant('Foo')
 
       @proxy.inspect.should == foo.inspect
@@ -46,11 +46,11 @@ describe RubyLint::Definition::ConstantProxy do
         .new(@source, 'Foo', @registry)
     end
 
-    example 'do not load anything when the registry is empty' do
+    it 'does not load anything when the registry is empty' do
       @proxy.lookup(:const, 'Foo').nil?.should == true
     end
 
-    example 'autoload a definition when possible' do
+    it 'autoloads a definition when possible' do
       @registry.register('Foo') { |defs| defs.define_constant('Foo') }
 
       @proxy.lookup(:const, 'Foo').is_a?(ruby_object).should == true
@@ -66,13 +66,13 @@ describe RubyLint::Definition::ConstantProxy do
         .new(@source, 'ActionController', @registry)
     end
 
-    example 'load a definition from the filesystem' do
+    it 'loads a definition from the filesystem' do
       @registry.should_receive(:load).with('ActionController')
 
       @proxy.lookup(:const, 'Foo')
     end
 
-    example 'do not load the definition when it is already loaded' do
+    it 'does not load the definition when it is already loaded' do
       @registry.should_not receive(:load)
 
       @registry.register('ActionController') do |defs|

@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe RubyLint::VirtualMachine do
   describe 'defining class methods' do
-    example 'define a single class method using `self`' do
+    it 'defines a single class method using `self`' do
       code = <<-CODE
 class Example
   def self.class_method

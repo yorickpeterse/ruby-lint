@@ -6,11 +6,11 @@ describe 'ruby-lint definitions' do
       @string = load_definitions('String').lookup(:const, 'String')
     end
 
-    example 'define self as a class method' do
+    it 'defines self as a class method' do
       @string.lookup(:method, 'self').return_value.class?.should == true
     end
 
-    example 'define self as an instance method' do
+    it 'defines self as an instance method' do
       @string.lookup(:instance_method, 'self')
         .return_value
         .instance?

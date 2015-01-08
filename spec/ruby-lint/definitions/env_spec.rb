@@ -6,7 +6,7 @@ describe 'ruby-lint definitions' do
       @const = load_definitions('ENV').lookup(:const, 'ENV')
     end
 
-    example 'treat ENV as an instance' do
+    it 'treats ENV as an instance' do
       @const.instance?.should == true
     end
   end

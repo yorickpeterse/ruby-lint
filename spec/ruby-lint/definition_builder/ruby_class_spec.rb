@@ -8,15 +8,15 @@ describe RubyLint::DefinitionBuilder::RubyClass do
       @builder = RubyLint::DefinitionBuilder::RubyClass.new(node, @vm)
     end
 
-    example 'return the name of the class' do
+    it 'returns the name of the class' do
       @builder.build.name.should == 'A'
     end
 
-    example 'return the type of the class' do
+    it 'returns the type of the class' do
       @builder.build.type.should == :const
     end
 
-    example 'return the parent definitions' do
+    it 'returns the parent definitions' do
       built = @builder.build
 
       built.parents.length.should == 2
@@ -25,11 +25,11 @@ describe RubyLint::DefinitionBuilder::RubyClass do
       built.parents[1].name.should == 'root'
     end
 
-    example 'return the reference amount' do
+    it 'returns the reference amount' do
       @builder.build.reference_amount.should == 1
     end
 
-    example 'return the scope to define the class in' do
+    it 'returns the scope to define the class in' do
       @builder.scope.should == @vm.current_scope
     end
   end
@@ -47,11 +47,11 @@ describe RubyLint::DefinitionBuilder::RubyClass do
       )
     end
 
-    example 'return the name of the class' do
+    it 'returns the name of the class' do
       @builder.build.name.should == 'A'
     end
 
-    example 'return the parent definitions' do
+    it 'returns the parent definitions' do
       built = @builder.build
 
       built.parents.length.should == 2
@@ -60,7 +60,7 @@ describe RubyLint::DefinitionBuilder::RubyClass do
       built.parents[1].name.should == 'root'
     end
 
-    example 'return the scope to define the class in' do
+    it 'returns the scope to define the class in' do
       @builder.scope.should == @vm.current_scope
     end
   end
@@ -87,11 +87,11 @@ describe RubyLint::DefinitionBuilder::RubyClass do
       )
     end
 
-    example 'return the name of the class' do
+    it 'returns the name of the class' do
       @builder.build.name.should == 'B'
     end
 
-    example 'return the parent definitions' do
+    it 'returns the parent definitions' do
       built = @builder.build
 
       built.parents.length.should == 2
@@ -100,7 +100,7 @@ describe RubyLint::DefinitionBuilder::RubyClass do
       built.parents[1].name.should == 'root'
     end
 
-    example 'return the scope to define the class in' do
+    it 'returns the scope to define the class in' do
       @builder.scope.should == @vm.definitions.lookup(:const, 'A')
     end
   end

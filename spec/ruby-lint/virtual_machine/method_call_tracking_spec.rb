@@ -24,11 +24,11 @@ end
       @string     = definitions.lookup(:const, 'String')
     end
 
-    example 'track the right amount of method calls' do
+    it 'tracks the right amount of method calls' do
       @third.calls.length.should == 3
     end
 
-    example 'track call location information' do
+    it 'tracks call location information' do
       @third.calls[0].line.should   == 8
       @third.calls[0].column.should == 3
 
@@ -36,12 +36,12 @@ end
       @third.calls[1].column.should == 3
     end
 
-    example 'track the call definitions' do
+    it 'tracks the call definitions' do
       @third.calls[0].definition.should == @first
       @third.calls[1].definition.should == @second
     end
 
-    example 'track call location information in inverse direction' do
+    it 'tracks call location information in inverse direction' do
       @first.callers[0].line.should   == 8
       @first.callers[0].column.should == 3
 
@@ -49,7 +49,7 @@ end
       @second.callers[0].column.should == 3
     end
 
-    example 'track method calls in inverse direction' do
+    it 'tracks method calls in inverse direction' do
       @first.callers[0].definition.should  == @third
       @second.callers[0].definition.should == @third
     end

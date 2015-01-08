@@ -15,7 +15,7 @@ variable = example
       @defs = build_definitions(code)
     end
 
-    example 'assign the correct return value to a local variable' do
+    it 'assigns the correct return value to a local variable' do
       value = @defs.lookup(:lvar, 'variable').value
 
       value.type.should == :const

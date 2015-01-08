@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe RubyLint::VirtualMachine do
   describe 'scoping class definitions' do
-    example 'process a global class' do
+    it 'processes a global class' do
       defs    = build_definitions('class Example; end')
       example = defs.lookup(:const, 'Example')
 
@@ -12,7 +12,7 @@ describe RubyLint::VirtualMachine do
       example.name.should == 'Example'
     end
 
-    example 'process a nested class' do
+    it 'processes a nested class' do
       code = <<-CODE
 class First
   class Second
@@ -32,7 +32,7 @@ end
         .should == true
     end
 
-    example 'process a global and nested class' do
+    it 'processes a global and nested class' do
       code = <<-CODE
 class First
   class Second

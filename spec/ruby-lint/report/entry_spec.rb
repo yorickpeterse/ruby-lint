@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe RubyLint::Report::Entry do
-  example 'sort a list of entries' do
+  it 'sorts a list of entries' do
     entries = [
       RubyLint::Report::Entry.new(
         :level   => :info,

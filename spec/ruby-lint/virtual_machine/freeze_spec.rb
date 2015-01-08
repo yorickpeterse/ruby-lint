@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe RubyLint::VirtualMachine do
-  example 'freeze the VM and all instance variables' do
+  it 'freezes the VM and all instance variables' do
     vm = RubyLint::VirtualMachine.new
 
     vm.freeze

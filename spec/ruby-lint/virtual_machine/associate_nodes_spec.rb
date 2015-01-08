@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe RubyLint::VirtualMachine do
-  example 'associate AST nodes and their definitions' do
+  it 'associates AST nodes and their definitions' do
     tokens = parse('def foobar; end', false)
     vm     = RubyLint::VirtualMachine.new
 
@@ -16,7 +16,7 @@ describe RubyLint::VirtualMachine do
   end
 
   context 'method calls' do
-    example 'should not add associations' do
+    it 'should not add associations' do
       associations = build_associations('foo')
       nodes        = associations.keys
 
@@ -24,7 +24,7 @@ describe RubyLint::VirtualMachine do
       nodes[0].type.should == :root
     end
 
-    example 'should not add associations for methods with arguments' do
+    it 'should not add associations for methods with arguments' do
       associations = build_associations('foo(:bar)')
       nodes        = associations.keys
 
@@ -32,7 +32,7 @@ describe RubyLint::VirtualMachine do
       nodes[0].type.should == :root
     end
 
-    example 'should not add associations for methods called on methods' do
+    it 'should not add associations for methods called on methods' do
       associations = build_associations('foo.bar')
       nodes        = associations.keys
       values       = associations.values
@@ -44,7 +44,7 @@ describe RubyLint::VirtualMachine do
       values[1].type.should == :unknown
     end
 
-    example 'should not add associations for stacked methods with arguments' do
+    it 'should not add associations for stacked methods with arguments' do
       associations = build_associations('foo.bar(:baz)')
       nodes        = associations.keys
       values       = associations.values
@@ -64,11 +64,11 @@ describe RubyLint::VirtualMachine do
       @assocs = build_associations('foo { }.bar').values
     end
 
-    example 'create an association for the (block) node' do
+    it 'creates an association for the (block) node' do
       @assocs[1].type.should == :block
     end
 
-    example 'create an association for the (send) node' do
+    it 'creates an association for the (send) node' do
       @assocs[2].type.should == :unknown
     end
   end
@@ -78,7 +78,7 @@ describe RubyLint::VirtualMachine do
       @assocs = build_associations('Hash[NUMBERS.map { }]').keys
     end
 
-    example 'associate the return value of NUMBERS.map with the (send) node' do
+    it 'associates the return value of NUMBERS.map with the (send) node' do
       @assocs[3].type.should == :send
     end
   end

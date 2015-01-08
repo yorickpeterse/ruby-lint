@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe RubyLint::Presenter::Syntastic do
-  example 'format a set of entries' do
+  it 'formats a set of entries' do
     report    = RubyLint::Report.new
     presenter = RubyLint::Presenter::Syntastic.new
 

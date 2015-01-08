@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe RubyLint::VirtualMachine do
   describe 'defining methods' do
-    example 'process a definition with a variable assignment in the body' do
+    it 'processes a definition with a variable assignment in the body' do
       code = <<-CODE
   def example
     number = 10
@@ -19,7 +19,7 @@ describe RubyLint::VirtualMachine do
       defs.lookup(:lvar, 'number').nil?.should == true
     end
 
-    example 'process a definition with a receiver' do
+    it 'processes a definition with a receiver' do
       code = <<-CODE
   def String.example
     number = 10

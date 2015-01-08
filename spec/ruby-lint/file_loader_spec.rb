@@ -7,7 +7,7 @@ describe RubyLint::FileLoader do
   end
 
   context 'rails projects' do
-    example 'finding a class' do
+    it 'finds a class' do
       loader = RubyLint::FileLoader.new(:directories => [@rails_dir])
       ast    = parse('User')
 
@@ -21,7 +21,7 @@ describe RubyLint::FileLoader do
         .should == fixture_path('file_scanner/rails/app/models/user.rb')
     end
 
-    example 'finding a namespaced class' do
+    it 'finds a namespaced class' do
       loader = RubyLint::FileLoader.new(:directories => [@rails_dir])
       ast    = parse('Example::User')
 
@@ -37,7 +37,7 @@ describe RubyLint::FileLoader do
   end
 
   context 'regular Ruby projects' do
-    example 'finding a class' do
+    it 'finds a class' do
       loader = RubyLint::FileLoader.new(:directories => [@lib_dir])
       ast    = parse('Example::User')
 
@@ -50,7 +50,7 @@ describe RubyLint::FileLoader do
       const.file.should == fixture_path('file_scanner/lib/example/user.rb')
     end
 
-    example 'recursively find dependencies' do
+    it 'recursively finds dependencies' do
       loader = RubyLint::FileLoader.new(:directories => [@lib_dir])
       ast    = parse('Example::Recursive::Source')
 

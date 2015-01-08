@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe 'Building module definitions' do
   describe 'scoping definitions' do
-    example 'process a global module' do
+    it 'processes a global module' do
       defs    = build_definitions('module Example; end')
       example = defs.lookup(:const, 'Example')
 
@@ -12,7 +12,7 @@ describe 'Building module definitions' do
       example.name.should == 'Example'
     end
 
-    example 'process a nested module' do
+    it 'processes a nested module' do
       code = <<-CODE
 module First
   module Second
@@ -32,7 +32,7 @@ end
         .should == true
     end
 
-    example 'process a global and nested module' do
+    it 'processes a global and nested module' do
       code = <<-CODE
 module First
   module Second
@@ -68,7 +68,7 @@ end
   end
 
   describe 'redefining modules' do
-    example 'update a module when it is redefined' do
+    it 'updates a module when it is redefined' do
       code = <<-CODE
 module First
 end
@@ -87,7 +87,7 @@ end
         .should == true
     end
 
-    example 'should not pollute modules in a different namespace' do
+    it 'should not pollute modules in a different namespace' do
       code = <<-CODE
 module Foo
   module Parser
@@ -119,7 +119,7 @@ end
   end
 
   describe 'including modules' do
-    example 'include a module' do
+    it 'includes a module' do
       code = <<-CODE
 module First
   def example
@@ -139,7 +139,7 @@ end
         .should == true
     end
 
-    example 'extend a module' do
+    it 'extends a module' do
       code = <<-CODE
 module First
   def example
@@ -159,7 +159,7 @@ end
         .should == true
     end
 
-    example 'include a module using a constant path' do
+    it 'includes a module using a constant path' do
       code = <<-CODE
 module First
   module Second
@@ -181,7 +181,7 @@ end
         .should == true
     end
 
-    example 'include a module using a variable' do
+    it 'includes a module using a variable' do
       code = <<-CODE
 module First
   def example

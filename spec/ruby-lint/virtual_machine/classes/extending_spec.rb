@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe RubyLint::VirtualMachine do
   describe 'extending classes' do
-    example 'set the default parent class' do
+    it 'sets the default parent class' do
       defs = build_definitions('class First; end')
 
       defs.lookup(:const, 'First') \
@@ -11,7 +11,7 @@ describe RubyLint::VirtualMachine do
         .should == true
     end
 
-    example 'extend a class using a parent' do
+    it 'extends a class using a parent' do
       code = <<-CODE
 class First
   def example
@@ -35,7 +35,7 @@ end
         .should == true
     end
 
-    example 'extend a class using a constant path as the parent class' do
+    it 'extends a class using a constant path as the parent class' do
       code = <<-CODE
 class First
   class Second
@@ -61,7 +61,7 @@ end
         .should == true
     end
 
-    example 'extend a class using a variable' do
+    it 'extends a class using a variable' do
       code = <<-CODE
 parent = String
 
@@ -83,7 +83,7 @@ end
     #
     # See https://github.com/YorickPeterse/ruby-lint/issues/32 for the
     # motivation behind this fix/test.
-    example 'inherit Object as a fallback when the parent can not be found' do
+    it 'inherits Object as a fallback when the parent can not be found' do
       code = <<-CODE
 class Foo < Bar
 end
@@ -97,7 +97,7 @@ end
       parents.include?(defs.lookup(:const, 'Object')).should == true
     end
 
-    example 'inherit from Object when importing String' do
+    it 'inherits from Object when importing String' do
       defs = build_definitions('String')
 
       defs.lookup(:const, 'String') \

@@ -5,7 +5,7 @@ describe RubyLint::DefinitionBuilder::Primitive do
     @vm = RubyLint::VirtualMachine.new
   end
 
-  example 'build an integer definition' do
+  it 'builds an integer definition' do
     builder = RubyLint::DefinitionBuilder::Primitive.new(s(:int, 10), @vm)
     built   = builder.build
 
@@ -13,7 +13,7 @@ describe RubyLint::DefinitionBuilder::Primitive do
     built.value.should == 10
   end
 
-  example 'build a float definition' do
+  it 'builds a float definition' do
     builder = RubyLint::DefinitionBuilder::Primitive.new(s(:float, 10.0), @vm)
     built   = builder.build
 
@@ -21,7 +21,7 @@ describe RubyLint::DefinitionBuilder::Primitive do
     built.value.should == 10.0
   end
 
-  example 'build a string definition' do
+  it 'builds a string definition' do
     builder = RubyLint::DefinitionBuilder::Primitive.new(s(:str, 'a'), @vm)
     built   = builder.build
 
@@ -29,7 +29,7 @@ describe RubyLint::DefinitionBuilder::Primitive do
     built.value.should == 'a'
   end
 
-  example 'build a symbol definition' do
+  it 'builds a symbol definition' do
     builder = RubyLint::DefinitionBuilder::Primitive.new(s(:sym, :a), @vm)
     built   = builder.build
 
@@ -37,13 +37,13 @@ describe RubyLint::DefinitionBuilder::Primitive do
     built.value.should == :a
   end
 
-  example 'build primitives as instances by default' do
+  it 'builds primitives as instances by default' do
     builder = RubyLint::DefinitionBuilder::Primitive.new(s(:int, 10), @vm)
 
     builder.build.instance?.should == true
   end
 
-  example 'allow custom options to be defined' do
+  it 'allows custom options to be defined' do
     builder = RubyLint::DefinitionBuilder::Primitive.new(
       s(:int, 10),
       @vm,
@@ -53,7 +53,7 @@ describe RubyLint::DefinitionBuilder::Primitive do
     builder.build.class?.should == true
   end
 
-  example 'include the definitions of the corresponding Ruby class' do
+  it 'includes the definitions of the corresponding Ruby class' do
     builder = RubyLint::DefinitionBuilder::Primitive.new(s(:int, 10), @vm)
     built   = builder.build
 

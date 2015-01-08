@@ -7,11 +7,11 @@ describe 'ruby-lint definitions' do
       @fixnum = root.lookup(:const, 'Fixnum')
     end
 
-    example 'inherit from Integer' do
+    it 'inherits from Integer' do
       @fixnum.parents.map(&:name).include?('Integer').should == true
     end
 
-    example 'respond to methods from Numeric' do
+    it 'responds to methods from Numeric' do
       @fixnum.has_definition?(:instance_method, '%').should == true
     end
   end

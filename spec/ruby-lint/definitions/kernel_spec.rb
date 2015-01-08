@@ -7,11 +7,11 @@ describe 'ruby-lint definitions' do
       @kernel = @root.lookup(:const, 'Kernel')
     end
 
-    example 'The method is_a?() should be a class method' do
+    it 'defines the "is_a?" method' do
       @kernel.defines?(:method, 'is_a?').should == true
     end
 
-    example 'The method is_a?() should be an instance method' do
+    it 'defines the "is_a?" instance method' do
       @kernel.defines?(:instance_method, 'is_a?').should == true
     end
   end

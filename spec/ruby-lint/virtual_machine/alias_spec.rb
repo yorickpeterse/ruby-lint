@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe RubyLint::VirtualMachine do
   describe 'alias' do
-    example 'alias methods' do
+    it 'aliases methods' do
       code = <<-CODE
 def bar
 end
@@ -16,7 +16,7 @@ alias foo bar
       defs.lookup(:instance_method, 'foo').is_a?(ruby_method).should == true
     end
 
-    example 'alias methods using symbols' do
+    it 'aliases methods using symbols' do
       code = <<-CODE
 def bar
 end
@@ -30,7 +30,7 @@ alias :foo :bar
       defs.lookup(:instance_method, 'foo').is_a?(ruby_method).should == true
     end
 
-    example 'alias methods using alias_method' do
+    it 'aliases methods using alias_method' do
       code = <<-CODE
 def bar
 end
@@ -44,7 +44,7 @@ alias_method :foo, :bar
       defs.lookup(:instance_method, 'foo').is_a?(ruby_method).should == true
     end
 
-    example 'alias global variables' do
+    it 'aliases global variables' do
       code = 'alias $ARGV $*'
       defs = build_definitions(code)
 

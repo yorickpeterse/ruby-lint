@@ -14,19 +14,19 @@ describe ruby_object do
     )
   end
 
-  example 'return the name of the object' do
+  it 'returns the name of the object' do
     @object.name.should == 'hello'
   end
 
-  example 'return the object type' do
+  it 'returns the object type' do
     @object.type.should == :lvar
   end
 
-  example 'return the value of the node' do
+  it 'returns the value of the node' do
     @object.value.value.should == '10'
   end
 
-  example 'only store RubyObject objects' do
+  it 'only stores RubyObject objects' do
     obj = ruby_object.new(
       :type => :lvar,
       :name => 'foo'
@@ -36,13 +36,13 @@ describe ruby_object do
     lambda { @object.add(:lvar, 'foo', obj) }.should_not raise_error
   end
 
-  example 'only add valid collection types' do
+  it 'only adds valid collection types' do
     obj = ruby_object.new(:name => 'Foo', :type => :test)
 
     lambda { @object.add_definition(obj) }.should raise_error(ArgumentError)
   end
 
-  example 'look up a constant path' do
+  it 'looks up a constant path' do
     first  = ruby_object.new(:name => 'A', :type => :const)
     second = ruby_object.new(:name => 'B', :type => :const)
     third  = ruby_object.new(:name => 'C', :type => :const)
@@ -53,7 +53,7 @@ describe ruby_object do
     first.lookup_constant_path('B::C').should == third
   end
 
-  example 'store a variable' do
+  it 'stores a variable' do
     var = ruby_object.new(
       :type => :lvar,
       :name => 'number'
@@ -69,7 +69,7 @@ describe ruby_object do
     found.type.should == :lvar
   end
 
-  example 'set the parent definitions' do
+  it 'sets the parent definitions' do
     var1 = ruby_object.new(
       :type  => :lvar,
       :name  => 'numberx',
@@ -86,7 +86,7 @@ describe ruby_object do
     var2.parents.length.should == 1
   end
 
-  example 'retrieve parent definitions' do
+  it 'retrieves parent definitions' do
     method = ruby_object.new(
       :type => :lvar,
       :name => 'example'
@@ -107,7 +107,7 @@ describe ruby_object do
     found.name.should == 'example'
   end
 
-  example 'create a shim of a definition' do
+  it 'creates a shim of a definition' do
     object = ruby_object.new(:type => :const, :name => 'Foo')
     shim   = object.shim
 
@@ -115,7 +115,7 @@ describe ruby_object do
     shim.parents.should == [object]
   end
 
-  example 'create a RubyObject that represents an instance' do
+  it 'creates a RubyObject that represents an instance' do
     object = ruby_object.new(:type => :const, :name => 'String')
 
     object.instance_type.should == :class
@@ -127,7 +127,7 @@ describe ruby_object do
     instance.instance_type.should == :instance
   end
 
-  example 'add data to a parent definition' do
+  it 'adds data to a parent definition' do
     initial = ruby_object.new(
       :type  => :lvar,
       :name  => 'test',
@@ -165,7 +165,7 @@ describe ruby_object do
     parent.lookup(child_only.type, child_only.name).nil?.should == true
   end
 
-  example 'return the members as the definition value' do
+  it 'returns the members as the definition value' do
     array  = ruby_object.new(:type => :array, :members_as_value => true)
     values = [10, 20]
 
@@ -191,7 +191,7 @@ describe ruby_object do
     end
   end
 
-  example 'merging two definitions' do
+  it 'merges two definitions' do
     source = ruby_object.new(:type => :const, :name => 'Source')
     target = ruby_object.new(:type => :const, :name => 'Target')
     const  = ruby_object.new(:type => :const, :name => 'Foo')
@@ -203,7 +203,7 @@ describe ruby_object do
     target.lookup(:const, 'Foo').should == const
   end
 
-  example 'storing location information in a definition' do
+  it 'stores location information in a definition' do
     obj = ruby_object.new(:line => 10, :column => 3, :file => '(ruby-lint)')
 
     obj.line.should   == 10
@@ -220,27 +220,27 @@ describe ruby_object do
       @instance.define_self
     end
 
-    example 'define instance level self for an instance' do
+    it 'defines instance level self for an instance' do
       @instance.lookup(:instance_method, 'self')
         .return_value
         .should == @instance
     end
 
-    example 'define class level self for an instance' do
+    it 'defines class level self for an instance' do
       @instance.lookup(:method, 'self')
         .return_value
         .parents
         .should == [@instance]
     end
 
-    example 'define instance level self for a class' do
+    it 'defines instance level self for a class' do
       @class.lookup(:instance_method, 'self')
         .return_value
         .parents
         .should == [@class]
     end
 
-    example 'define class level self for a class' do
+    it 'defines class level self for a class' do
       @class.lookup(:method, 'self').return_value.should == @class
     end
   end
@@ -251,11 +251,11 @@ describe ruby_object do
       @proxy = @root.constant_proxy('Bar')
     end
 
-    example 'create a constant proxy' do
+    it 'creates a constant proxy' do
       @proxy.is_a?(RubyLint::Definition::ConstantProxy).should == true
     end
 
-    example 'point to the definition when it exists' do
+    it 'points to the definition when it exists' do
       baz = @root.define_constant('Bar').define_constant('Baz')
 
       @proxy.lookup(:const, 'Baz').should == baz

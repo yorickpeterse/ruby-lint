@@ -7,11 +7,11 @@ describe RubyLint::Inspector do
       @constants = inspector.inspect_constants
     end
 
-    example 'include the source constant' do
+    it 'includes the source constant' do
       @constants.include?('Encoding').should == true
     end
 
-    example 'include the child constants' do
+    it 'includes the child constants' do
       @constants.include?('Encoding::BINARY').should     == true
       @constants.include?('Encoding::ASCII_8BIT').should == true
     end
@@ -26,11 +26,11 @@ describe RubyLint::Inspector do
       )
     end
 
-    example 'ignore duplicates' do
+    it 'ignores duplicates' do
       @constants.include?('Encoding::BINARY').should == false
     end
 
-    example 'include other constants' do
+    it 'includes other constants' do
       @constants.include?('Encoding::ASCII_8BIT').should == true
     end
   end
@@ -46,17 +46,17 @@ describe RubyLint::Inspector do
       @constants = inspector.inspect_constants(inspector.constant, ignore)
     end
 
-    example 'include Class and Module' do
+    it 'includes Class and Module' do
       @constants.include?('Class').should  == true
       @constants.include?('Module').should == true
     end
 
-    example 'exclude recursive constants' do
+    it 'excludes recursive constants' do
       @constants.include?('Class::Object').should  == false
       @constants.include?('Module::Object').should == false
     end
 
-    example 'include other regular constants' do
+    it 'includes other regular constants' do
       @constants.include?('Encoding').should         == true
       @constants.include?('Encoding::BINARY').should == true
     end
@@ -78,7 +78,7 @@ describe RubyLint::Inspector do
 
     # This test was added since Rubinius defines `Range::Enumerator` which is
     # an alias of `Enumerable::Enumerator`.
-    example 'ignore constants from a different root constant' do
+    it 'ignores constants from a different root constant' do
       @constants.include?('Enumerable::Enumerator').should == false
     end
   end
@@ -88,11 +88,11 @@ describe RubyLint::Inspector do
       @inspector = RubyLint::Inspector.new(Object)
     end
 
-    example 'return the parent class' do
+    it 'returns the parent class' do
       @inspector.inspect_superclass.should == BasicObject
     end
 
-    example 'handle missing parent classes' do
+    it 'handles missing parent classes' do
       inspector = RubyLint::Inspector.new(BasicObject)
 
       inspector.inspect_superclass.nil?.should == true
@@ -107,7 +107,7 @@ describe RubyLint::Inspector do
       @inspector = RubyLint::Inspector.new(klass)
     end
 
-    example 'ignore anonymous parent classes' do
+    it 'ignores anonymous parent classes' do
       @inspector.inspect_superclass.nil?.should == true
     end
   end
@@ -121,11 +121,11 @@ describe RubyLint::Inspector do
       @child_modules = RubyLint::Inspector.new(child).inspect_modules
     end
 
-    example 'include Enumerable' do
+    it 'includes Enumerable' do
       @modules.include?(Enumerable).should == true
     end
 
-    example 'ignore modules that are already included in the parent' do
+    it 'ignores modules that are already included in the parent' do
       @child_modules.empty?.should == true
     end
   end
@@ -138,7 +138,7 @@ describe RubyLint::Inspector do
       @modules = RubyLint::Inspector.new(klass).inspect_modules
     end
 
-    example 'ignore anonymous modules' do
+    it 'ignores anonymous modules' do
       @modules.empty?.should == true
     end
   end
@@ -149,7 +149,7 @@ describe RubyLint::Inspector do
       @methods  = inspector.inspect_methods.map(&:name)
     end
 
-    example 'include a method' do
+    it 'includes a method' do
       @methods.include?(:find).should == true
     end
   end
@@ -160,7 +160,7 @@ describe RubyLint::Inspector do
       @methods  = inspector.inspect_instance_methods.map(&:name)
     end
 
-    example 'include a method' do
+    it 'includes a method' do
       @methods.include?(:to_s).should == true
     end
   end
@@ -173,11 +173,11 @@ describe RubyLint::Inspector do
       @methods  = inspector.inspect_instance_methods.map(&:name)
     end
 
-    example 'exclude parent methods' do
+    it 'excludes parent methods' do
       @methods.include?(:foo).should == false
     end
 
-    example 'include the instance methods of the source' do
+    it 'includes the instance methods of the source' do
       @methods.include?(:bar).should == true
     end
   end
@@ -190,11 +190,11 @@ describe RubyLint::Inspector do
       @methods  = inspector.inspect_instance_methods.map(&:name)
     end
 
-    example 'do not include methods from included modules' do
+    it 'does not include methods from included modules' do
       @methods.include?(:foo).should == false
     end
 
-    example 'include methods defined directly in the class' do
+    it 'includes methods defined directly in the class' do
       @methods.include?(:bar).should == true
     end
   end
@@ -206,7 +206,7 @@ describe RubyLint::Inspector do
       @methods  = inspector.inspect_instance_methods.map(&:name)
     end
 
-    example 'only include methods of the sub class' do
+    it 'only includes methods of the sub class' do
       @methods.should == [:foo]
     end
   end
@@ -225,11 +225,11 @@ describe RubyLint::Inspector do
         .map(&:name)
     end
 
-    example 'exclude initialize if it is not defined directly' do
+    it 'excludes initialize if it is not defined directly' do
       @no_init_methods.include?(:initialize).should == false
     end
 
-    example 'include initialize if it is defined directly' do
+    it 'includes initialize if it is defined directly' do
       @init_methods.include?(:initialize).should == true
     end
   end

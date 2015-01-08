@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe RubyLint::VirtualMachine do
   describe 'using sclass blocks' do
-    example 'define a class method using `class << self`' do
+    it 'defines a class method using `class << self`' do
       code = <<-CODE
 class First
   class << self
@@ -20,7 +20,7 @@ end
         .should == true
     end
 
-    example 'define an instance method using `class << self` in the global scope' do
+    it 'defines an instance method using `class << self` in the global scope' do
       code = <<-CODE
 class << self
   def example
@@ -35,7 +35,7 @@ end
         .should == true
     end
 
-    example 'define a class method using `class << String`' do
+    it 'defines a class method using `class << String`' do
       code = <<-CODE
 class << String
   def example
@@ -51,7 +51,7 @@ end
         .should == true
     end
 
-    example 'define a class method using `class << String` nested in a class' do
+    it 'defines a class method using `class << String` nested in a class' do
       code = <<-CODE
 class First
   class << String
@@ -74,7 +74,7 @@ end
         .should == true
     end
 
-    example 'define an instance method using `class << variable`' do
+    it 'defines an instance method using `class << variable`' do
       code = <<-CODE
 variable = "foo"
 

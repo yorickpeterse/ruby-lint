@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe RubyLint::VirtualMachine do
   context 'definition location information' do
-    example 'store location information of a class' do
+    it 'stores location information of a class' do
       code = <<-CODE
 # Example class.
 class Example
@@ -17,7 +17,7 @@ end
       obj.file.should   == '(ruby-lint)'
     end
 
-    example 'store location information of a module' do
+    it 'stores location information of a module' do
       code = <<-CODE
 # Example module.
 module Example
@@ -32,7 +32,7 @@ end
       obj.file.should   == '(ruby-lint)'
     end
 
-    example 'store location information of a method' do
+    it 'stores location information of a method' do
       code = <<-CODE
 # Example module.
 def example
@@ -47,7 +47,7 @@ end
       obj.file.should   == '(ruby-lint)'
     end
 
-    example 'store location information of a variable' do
+    it 'stores location information of a variable' do
       code = <<-CODE
 # Example assignment
 number = 10

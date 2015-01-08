@@ -12,7 +12,7 @@ describe RubyLint::Command do
       @command.stub(:exit)
     end
 
-    example 'analyze a valid Ruby file' do
+    it 'analyzes a valid Ruby file' do
       file = fixture_path('valid.rb')
 
       @command.run([file])
@@ -20,7 +20,7 @@ describe RubyLint::Command do
       @stdout.empty?.should == true
     end
 
-    example 'analyze an invalid Ruby file' do
+    it 'analyzes an invalid Ruby file' do
       file = fixture_path('invalid.rb')
 
       @command.run([file])
@@ -28,20 +28,20 @@ describe RubyLint::Command do
       @stdout.should =~ /undefined method foobar/
     end
 
-    example 'include benchmarking output' do
+    it 'includes benchmarking output' do
       @command.run([fixture_path('valid.rb')])
 
       @stderr.should =~ /Execution time:/
       @stderr.should =~ /Memory usage:/
     end
 
-    example 'run analysis on an entire directory' do
+    it 'runs analysis on an entire directory' do
       @command.run([fixture_path('deeply')])
 
       @stdout.should =~ /undefined method foobar/
     end
 
-    example 'set the status code to 1 for non empty output' do
+    it 'sets the status code to 1 for non empty output' do
       @command.should_receive(:exit).with(1)
 
       @command.run([fixture_path('invalid.rb')])
@@ -49,13 +49,13 @@ describe RubyLint::Command do
   end
 
   context '#load_configuration' do
-    example 'load the default configuration files' do
+    it 'loads the default configuration files' do
       RubyLint::Configuration.should_receive(:load_from_file)
 
       described_class.new.load_configuration
     end
 
-    example 'load a specific configuration file' do
+    it 'loads a specific configuration file' do
       config = File.expand_path('../../../ruby-lint.yml', __FILE__)
 
       RubyLint::Configuration.should_receive(:load_from_file).with([config])
@@ -63,7 +63,7 @@ describe RubyLint::Command do
       described_class.new(:config => config).load_configuration
     end
 
-    example 'raise Errno::ENOENT if the configuration file does not exist' do
+    it 'raises Errno::ENOENT if the configuration file does not exist' do
       command = described_class.new(:config => 'foobar.yml')
       block   = lambda { command.load_configuration }
 

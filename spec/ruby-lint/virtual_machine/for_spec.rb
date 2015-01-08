@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe 'Building variable definitions using for loops' do
-  example 'create local variables' do
+  it 'creates local variables' do
     code = <<-CODE
 for key, value in something
 

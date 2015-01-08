@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe RubyLint::VirtualMachine do
   describe 'exporting variables out of method scopes' do
-    example 'export variables to the outer scope' do
+    it 'exports variables to the outer scope' do
       code = <<-CODE
 def example
   @number = 10

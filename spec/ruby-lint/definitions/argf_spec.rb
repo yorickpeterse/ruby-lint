@@ -7,7 +7,7 @@ describe 'ruby-lint definitions' do
       @const = root.lookup(:const, 'ARGF')
     end
 
-    example 'respond to each_line' do
+    it 'responds to each_line' do
       @const.has_definition?(:instance_method, 'each_line').should == true
     end
   end

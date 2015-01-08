@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe RubyLint::Analysis::UnusedVariables do
-  example 'warn for unused local variables' do
+  it 'warns for unused local variables' do
     report = build_report('number = 1', RubyLint::Analysis::UnusedVariables)
     entry  = report.entries[0]
 
@@ -12,7 +12,7 @@ describe RubyLint::Analysis::UnusedVariables do
     entry.message.should == 'unused local variable number'
   end
 
-  example 'warn for unused instance variables' do
+  it 'warns for unused instance variables' do
     report = build_report('@number = 1', RubyLint::Analysis::UnusedVariables)
     entry = report.entries[0]
 
@@ -21,7 +21,7 @@ describe RubyLint::Analysis::UnusedVariables do
     entry.message.should == 'unused instance variable @number'
   end
 
-  example 'do not warn for used variables' do
+  it 'does not warn for used variables' do
     code = <<-CODE
 number = 1
 
@@ -33,7 +33,7 @@ number
     report.entries.empty?.should == true
   end
 
-  example 'warn for unused constants' do
+  it 'warns for unused constants' do
     report = build_report('NUMBER = 10', RubyLint::Analysis::UnusedVariables)
     entry  = report.entries[0]
 
@@ -44,7 +44,7 @@ number
     entry.message.should == 'unused constant NUMBER'
   end
 
-  example 'do not warn for used constants' do
+  it 'does not warn for used constants' do
     code = <<-CODE
 A = 10
 
@@ -56,7 +56,7 @@ A
     report.entries.empty?.should == true
   end
 
-  example 'warn for unused constant paths' do
+  it 'warns for unused constant paths' do
     code = <<-CODE
 module A
 end
@@ -77,7 +77,7 @@ A::B = 10
     entry.message.should == 'unused constant A::B'
   end
 
-  example 'warn for unused variables in a method scope' do
+  it 'warns for unused variables in a method scope' do
     code = <<-CODE
 def some_method
   number = 10
@@ -94,7 +94,7 @@ end
     entry.message.should == 'unused local variable number'
   end
 
-  example 'do not add a warning when assigning a variable to another variable' do
+  it 'does not add a warning when assigning a variable to another variable' do
     code = <<-CODE
 first  = 10
 second = first
@@ -111,7 +111,7 @@ second = first
     entry.message.should == 'unused local variable second'
   end
 
-  example 'do not add warnings when defining classes and modules' do
+  it 'does not add warnings when defining classes and modules' do
     code = <<-CODE
 module A
 end
@@ -125,7 +125,7 @@ end
     report.entries.empty?.should == true
   end
 
-  example 'ignore ivars if there is a corresponding method' do
+  it 'ignores ivars if there is a corresponding method' do
     code = <<-CODE
 @number = 10
 
@@ -137,14 +137,14 @@ def number; end
     report.entries.empty?.should == true
   end
 
-  example 'ignore local variables that start with an underscore' do
+  it 'ignores local variables that start with an underscore' do
     report = build_report('_number = 10', RubyLint::Analysis::UnusedVariables)
 
     report.entries.empty?.should == true
   end
 
   context 'method arguments' do
-    example 'warn for a unused argument' do
+    it 'warns for a unused argument' do
       code = <<-CODE
 def multiply(number)
 end
@@ -158,7 +158,7 @@ end
       entry.column.should  == 14
     end
 
-    example 'warn for a unused optional argument' do
+    it 'warns for a unused optional argument' do
       code = <<-CODE
 def multiply(amount = 2)
 end
@@ -172,7 +172,7 @@ end
       entry.column.should  == 14
     end
 
-    example 'warn for a unused rest argument' do
+    it 'warns for a unused rest argument' do
       code = <<-CODE
 def multiply(*args)
 end
@@ -186,7 +186,7 @@ end
       entry.column.should  == 14
     end
 
-    example 'warn for a unused block argument' do
+    it 'warns for a unused block argument' do
       code = <<-CODE
 def multiply(&block)
 end
@@ -201,7 +201,7 @@ end
     end
 
     specific_ruby_version '2.0' do
-      example 'warn for a unused keyword argument' do
+      it 'warns for a unused keyword argument' do
         code = <<-CODE
 def multiply(amount: 10)
 end
@@ -216,7 +216,7 @@ end
       end
     end
 
-    example 'do not warn for a used argument' do
+    it 'does not warn for a used argument' do
       code = <<-CODE
 def multiply(number)
   return number * 2
@@ -228,7 +228,7 @@ end
       report.entries.empty?.should == true
     end
 
-    example 'do not warn for unused anonymous splat arguments' do
+    it 'does not warn for unused anonymous splat arguments' do
       code = <<-CODE
 def example(*)
 end
@@ -241,7 +241,7 @@ end
   end
 
   context 'block arguments' do
-    example 'warn for a unused argument' do
+    it 'warns for a unused argument' do
       code = <<-CODE
 [10, 20].each do |number|
 end
@@ -255,7 +255,7 @@ end
       entry.column.should  == 19
     end
 
-    example 'do not warn for a used argument' do
+    it 'does not warn for a used argument' do
       code = <<-CODE
 [10, 20].each do |number|
   number

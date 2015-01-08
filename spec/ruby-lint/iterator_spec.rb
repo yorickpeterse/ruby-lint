@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe 'RubyLint::Iterator' do
-  example 'call after_initialize if it is defined' do
+  it 'calls after_initialize if it is defined' do
     iterator = Class.new(RubyLint::Iterator) do
       attr_reader :number
 
@@ -13,7 +13,7 @@ describe 'RubyLint::Iterator' do
     iterator.new.number.should == 10
   end
 
-  example 'iterate over a simple AST' do
+  it 'iterates over a simple AST' do
     ast = parse('10; 20; 30', false)
 
     iterator = Class.new(RubyLint::Iterator) do
@@ -59,7 +59,7 @@ describe 'RubyLint::Iterator' do
     ]
   end
 
-  example 'iterate over a multi dimensional AST' do
+  it 'iterates over a multi dimensional AST' do
     code = <<-CODE
 class Example
   def some_method
@@ -99,7 +99,7 @@ end
     iterator.options[:call].should   == :puts
   end
 
-  example 'skipping child nodes' do
+  it 'skips child nodes' do
     code = <<-CODE
 module A
   class B
@@ -134,7 +134,7 @@ end
     iterator.options[:class].should  == false
   end
 
-  example 'allow callbacks without arguments' do
+  it 'allows callbacks without arguments' do
     ast      = parse('10', false)
     iterator = Class.new(RubyLint::Iterator) do
       attr_reader :number

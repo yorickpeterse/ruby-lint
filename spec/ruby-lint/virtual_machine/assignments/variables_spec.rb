@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe RubyLint::VirtualMachine do
   context 'variable assignments' do
-    example 'assign different types of variables' do
+    it 'assigns different types of variables' do
       types = {
         'number'   => :lvar,
         '@number'  => :ivar,
@@ -19,7 +19,7 @@ describe RubyLint::VirtualMachine do
       end
     end
 
-    example 'assign multiple values to multiple variables' do
+    it 'assigns multiple values to multiple variables' do
       defs    = build_definitions('number, numberx = 10, 20')
       number  = defs.lookup(:lvar, 'number')
       numberx = defs.lookup(:lvar, 'numberx')
@@ -35,7 +35,7 @@ describe RubyLint::VirtualMachine do
       numberx.value.value.should == 20
     end
 
-    example 'assign a value to a constant path' do
+    it 'assigns a value to a constant path' do
       defs = build_definitions('module Foo; end; Foo::FOO = 10')
       foo  = defs.lookup(:const, 'Foo').lookup(:const, 'FOO')
 
@@ -45,7 +45,7 @@ describe RubyLint::VirtualMachine do
       foo.value.value.should == 10
     end
 
-    example 'assign a single value to multiple variables' do
+    it 'assigns a single value to multiple variables' do
       code = 'first = second = third = 10'
       defs = build_definitions(code)
 
@@ -59,7 +59,7 @@ describe RubyLint::VirtualMachine do
       end
     end
 
-    example 'resolve variables in assignments' do
+    it 'resolves variables in assignments' do
       code = <<-CODE
 a = 1
 b = a
@@ -82,7 +82,7 @@ d = c
       defs.lookup(:lvar, 'foo').value.value.should == 100
     end
 
-    example 'assign nil to a value' do
+    it 'assigns nil to a value' do
       defs  = build_definitions('variable = nil')
       value = defs.lookup(:lvar, 'variable').value
 
@@ -90,7 +90,7 @@ d = c
       value.parents[0].name.should == 'NilClass'
     end
 
-    example 'assign true to a value' do
+    it 'assigns true to a value' do
       defs  = build_definitions('variable = true')
       value = defs.lookup(:lvar, 'variable').value
 
@@ -98,7 +98,7 @@ d = c
       value.parents[0].name.should == 'TrueClass'
     end
 
-    example 'assign false to a value' do
+    it 'assigns false to a value' do
       defs  = build_definitions('variable = false')
       value = defs.lookup(:lvar, 'variable').value
 
@@ -106,14 +106,14 @@ d = c
       value.parents[0].name.should == 'FalseClass'
     end
 
-    example 'assigning a magic global variable to a variable' do
+    it 'assigns a magic global variable to a variable' do
       defs  = build_definitions('variable = $1')
       value = defs.lookup(:lvar, 'variable').value
 
       value.type.should == :unknown
     end
 
-    example 'global variables should be assigned in the global scope' do
+    it 'globals variables should be assigned in the global scope' do
       code = <<-CODE
 class Foo
   def foo

@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe RubyLint::VirtualMachine do
   describe 'slop' do
-    example 'process the Slop gem' do
+    it 'processes the Slop gem' do
       code  = fixture('complex/slop.rb')
       defs  = build_definitions(code)
       const = defs.lookup(:const, 'Slop')

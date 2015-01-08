@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe RubyLint::Analysis::Base do
-  example 'require a VM' do
+  it 'requires a VM' do
     lambda { RubyLint::Analysis::Base.new }.should raise_error(ArgumentError)
 
     vm  = RubyLint::VirtualMachine.new
@@ -10,7 +10,7 @@ describe RubyLint::Analysis::Base do
     blk.should_not raise_error
   end
 
-  example 'allow config objects to be passed in' do
+  it 'allows config objects to be passed in' do
     vm     = RubyLint::VirtualMachine.new
     config = RubyLint::Configuration.new
     base   = RubyLint::Analysis::Base.new(:vm => vm, :config => config)
@@ -18,7 +18,7 @@ describe RubyLint::Analysis::Base do
     base.config.should == config
   end
 
-  example 'enable analysis by default' do
+  it 'enables analysis by default' do
     RubyLint::Analysis::Base.analyze?(double(:ast), double(:vm)).should == true
   end
 end

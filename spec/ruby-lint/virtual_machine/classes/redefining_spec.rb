@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe RubyLint::VirtualMachine do
   describe 'redefining classes' do
-    example 'update a class when it is redefined' do
+    it 'updates a class when it is redefined' do
       code = <<-CODE
 class First
 end
@@ -35,15 +35,15 @@ end
         @fixnum  = defs.lookup(:const, 'Fixnum')
       end
 
-      example 'include newly defined methods' do
+      it 'includes newly defined methods' do
         @integer.has_definition?(:instance_method, 'foobar').should == true
       end
 
-      example 'include existing methods' do
+      it 'includes existing methods' do
         @integer.has_definition?(:instance_method, '%').should == true
       end
 
-      example 'update definitions that point to the redefined definition' do
+      it 'updates definitions that point to the redefined definition' do
         @fixnum.has_definition?(:instance_method, 'foobar').should == true
       end
     end

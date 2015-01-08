@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe RubyLint::Analysis::ShadowingVariables do
-  example 'warn for shadowing outer variables' do
+  it 'warns for shadowing outer variables' do
     code = <<-CODE
 number = 10
 
@@ -20,7 +20,7 @@ end
     entry.message.should == 'shadowing outer local variable number'
   end
 
-  example 'not warn for shadowed variables in a new scope' do
+  it 'does not warn for shadowed variables in a new scope' do
     code = <<-CODE
 number = 10
 
@@ -36,7 +36,7 @@ end
     report.entries.empty?.should == true
   end
 
-  example 'warn when shadowing variables after a new scope' do
+  it 'warns when shadowing variables after a new scope' do
     code = <<-CODE
 number = 10
 
@@ -57,7 +57,7 @@ end
     entry.message.should == 'shadowing outer local variable number'
   end
 
-  example 'not fail when re-using the same block' do
+  it 'does not fail when re-using the same block' do
     code = <<-CODE
 number = 10
 

@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe RubyLint::VirtualMachine do
-  example 'make variables available in a block' do
+  it 'makes variables available in a block' do
     code = <<-CODE
 number = 10
 
@@ -17,7 +17,7 @@ end
     number.value.value.should        == 10
   end
 
-  example 'make block arguments available as variables inside the block only' do
+  it 'makes block arguments available as variables inside the block only' do
     code = <<-CODE
 example do
   number = 10
@@ -33,7 +33,7 @@ end
     block_def.lookup(:lvar, 'number').value.value.should == 10
   end
 
-  example 'blocks should be instances by default' do
+  it 'blocks should be instances by default' do
     code = <<-CODE
 example do
 end
@@ -45,7 +45,7 @@ end
     block.instance_type.should == :instance
   end
 
-  example 'blocks should inherit the instance type from the outer scope' do
+  it 'blocks should inherit the instance type from the outer scope' do
     code = <<-CODE
 class A
   example do
@@ -59,7 +59,7 @@ end
     block.instance_type.should == :class
   end
 
-  example 'update outer variables modified in the block' do
+  it 'updates outer variables modified in the block' do
     code = <<-CODE
 number   = 10
 @number  = 10

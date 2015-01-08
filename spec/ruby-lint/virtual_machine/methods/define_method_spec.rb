@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe RubyLint::VirtualMachine do
   context 'define_method' do
-    example 'change the instance type of the block to `:instance`' do
+    it 'changes the instance type of the block to `:instance`' do
       code = <<-CODE
 class A
   define_method(:example) do
@@ -16,7 +16,7 @@ end
       assoc.instance_type.should == :instance
     end
 
-    example 'should not mess up nested blocks' do
+    it 'should not mess up nested blocks' do
       code = <<-CODE
 class A
   something.each do
