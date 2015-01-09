@@ -5,6 +5,18 @@ This document contains a short summary of the various releases of ruby-lint.
 For a full list of commits included in each release see the corresponding Git
 tags (named after the versions).
 
+## 2.0.3 - 2015-01-09
+
+* ruby-lint now adds errors for certain iteration/loop keywords that are used
+  outside of loops. See <http://git.io/dsVzhA> for more information.
+* The FileScanner was modified to allow it to process directories containing
+  dashes, see <http://git.io/eNiq9A> for more information.
+* Definitions for Mongoid, Sinatra, win32ole, glib2, gtk3, libxml, RubyTree, and
+  the ALM REST API were added.
+* Usage of `Array#|` has been replaced with `Array#+` in
+  `RubyObject#determine_parent`, leading to a small performance boost, see
+  <http://git.io/1SIguw> for more information.
+
 ## 2.0.2 - 2014-08-05
 
 * Definitions for Celluloid have been added.
