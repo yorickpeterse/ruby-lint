@@ -1,6 +1,4 @@
 ---
-sudo: false
-
 script: bundle exec rake
 
 rvm:
