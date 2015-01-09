@@ -697,7 +697,9 @@ module RubyLint
         if parent.type == type and parent.name == name
           parent_definition = parent
         else
-          parent_definition = parent.lookup(type, name, true, exclude | [self])
+          exclude = exclude + [self] unless exclude.include?(self)
+
+          parent_definition = parent.lookup(type, name, true, exclude)
         end
 
         return parent_definition
