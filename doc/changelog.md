@@ -5,6 +5,11 @@ This document contains a short summary of the various releases of ruby-lint.
 For a full list of commits included in each release see the corresponding Git
 tags (named after the versions).
 
+## 2.0.4 - 2015-04-15
+
+Definitions were added for test-unit to take care of
+<https://github.com/YorickPeterse/ruby-lint/issues/142>.
+
 ## 2.0.3 - 2015-01-09
 
 * ruby-lint now adds errors for certain iteration/loop keywords that are used
