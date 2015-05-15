@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
   s.summary     = 'A linter and static code analysis tool for Ruby.'
   s.homepage    = 'https://github.com/yorickpeterse/ruby-lint/'
   s.description = s.summary
-  s.license     = 'MIT'
+  s.license     = 'MPL-2.0'
 
   s.post_install_message = 'Please report any issues at: ' \
     'https://github.com/YorickPeterse/ruby-lint/issues/new'
