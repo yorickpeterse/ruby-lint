@@ -121,7 +121,7 @@ In the past Gems were also signed using PGP, this is no longer the case.
 
 ## Documentation
 
-* {file:contributing Contributing}
+* {file:CONTRIBUTING Contributing}
 * {file:architecture Architecture}
 * {file:code\_analysis Code Analysis}
 * {file:configuration Configuration}
