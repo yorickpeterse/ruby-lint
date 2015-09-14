@@ -75,7 +75,7 @@ module RubyLint
     # @return [Array]
     #
     def parse_file(parser, file)
-      return parser.parse(File.read(file, encoding: Encoding::UTF_8), file)
+      return parser.parse(File.read(file, :encoding => Encoding::UTF_8), file)
     end
 
     ##
