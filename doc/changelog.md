@@ -5,6 +5,14 @@ This document contains a short summary of the various releases of ruby-lint.
 For a full list of commits included in each release see the corresponding Git
 tags (named after the versions).
 
+## 2.0.5 - 2015-09-14
+
+* When reading files to analyse the encoding is explicitly set to UTF8,
+  see commit 78eab2a79ae4b66e365b14062d0b7dd64fb1ad04 for more information.
+  Thanks to Carsten Bormann for adding this.
+* The license was changed from MIT to MPL 2.0, see commit
+  f1c3aa396c815b42524cfaab5e2abdd74d5bd081 for more information.
+
 ## 2.0.4 - 2015-04-15
 
 Definitions were added for test-unit to take care of
