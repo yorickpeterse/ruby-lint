@@ -203,6 +203,10 @@ RubyLint.registry.register('Module') do |defs|
       method.define_block_argument('prc')
     end
 
+    klass.define_instance_method('module_function') do |method|
+      method.define_rest_argument('syms')
+    end
+
     klass.define_instance_method('name')
 
     klass.define_instance_method('private_class_method') do |method|
