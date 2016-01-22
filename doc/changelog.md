@@ -5,6 +5,11 @@ This document contains a short summary of the various releases of ruby-lint.
 For a full list of commits included in each release see the corresponding Git
 tags (named after the versions).
 
+## 2.1.0 - 2016-01-22
+
+Ryan McKern added a definition for `Module#module_function` in pull request
+<https://github.com/YorickPeterse/ruby-lint/pull/162>.
+
 ## 2.0.5 - 2015-09-14
 
 * When reading files to analyse the encoding is explicitly set to UTF8,
