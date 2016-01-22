@@ -2,7 +2,15 @@
 
 Everybody is more than welcome to contribute to ruby-lint, no matter how small
 the change. To keep everything running smoothly there are a few guidelines that
-one should follow. These are as following:
+one should follow.
+
+## Code of Conduct
+
+The code of conduct ("CoC") can be found in the file "COC.md". Everybody
+participating in this project must adhere to the rules and guidelines stated in
+this CoC.
+
+## General
 
 * When changing code make sure to write RSpec tests for the changes.
 * Document code using YARD. At the very least the method arguments and return
