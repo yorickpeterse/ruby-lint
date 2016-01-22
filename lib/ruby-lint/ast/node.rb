@@ -42,7 +42,7 @@ module RubyLint
       # @return [String]
       #
       def inspect_oneline
-        return inspect.gsub(/\s*\n\s*/, ' ')
+        return to_s.gsub(/\s*\n\s*/, ' ')
       end
     end # Node
   end # AST
