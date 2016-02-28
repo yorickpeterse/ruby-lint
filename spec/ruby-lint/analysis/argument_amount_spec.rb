@@ -128,4 +128,15 @@ example(&block)
 
     report.entries.empty?.should == true
   end
+
+  it 'ignores one required argument in parallel assignment' do
+    code = <<-CODE
+h = Hash.new
+h[1], h[2] = 1, 2
+    CODE
+
+    report = build_report(code, RubyLint::Analysis::ArgumentAmount)
+
+    report.entries.empty?.should == true
+  end
 end
