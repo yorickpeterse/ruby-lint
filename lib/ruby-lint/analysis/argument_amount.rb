@@ -112,6 +112,12 @@ module RubyLint
           max = min + method.amount(:optarg) + method.amount(:restarg)
         end
 
+        # If the method follows the writer naming pattern with a '=' ending,
+        # the parser generates send nodes with one less argument than needed in
+        # the case of parallel assignment. Here reducing minimum prevents false
+        # positive warnings to be generated.
+        min -= 1 if method.name =~ /=$/
+
         return min, max
       end
 
