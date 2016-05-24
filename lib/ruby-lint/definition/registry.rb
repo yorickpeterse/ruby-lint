@@ -40,6 +40,7 @@ module RubyLint
       # Registers a new definition with the given name.
       #
       # @param [String] name The name of the constant.
+      # @yieldparam [RubyLint::Definition::RubyObject] defs
       #
       def register(name, &block)
         registered[name] = block

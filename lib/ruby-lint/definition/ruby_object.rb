@@ -543,6 +543,7 @@ module RubyLint
       #  string.define_constant('NEWLINE')
       #
       # @param [String] name
+      # @yieldparam [RubyLint::Definition::RubyObject] defs
       # @return [RubyLint::Definition::RubyObject]
       #
       def define_constant(name, &block)
@@ -578,7 +579,8 @@ module RubyLint
       # @example
       #  string.define_method(:new)
       #
-      # @param [String] name
+      # @param [String,Symbol] name
+      # @yieldparam [RubyLint::Definition::RubyMethod] method
       # @return [RubyLint::Definition::RubyMethod]
       #
       def define_method(name, &block)
@@ -592,6 +594,9 @@ module RubyLint
       #  string.define_instance_method(:gsub)
       #
       # @see RubyLint::Definition::RubyObject#define_method
+      # @param [String,Symbol] name
+      # @yieldparam [RubyLint::Definition::RubyMethod] method
+      # @return [RubyLint::Definition::RubyMethod]
       #
       def define_instance_method(name, &block)
         return add_child_method(:instance_method, name, &block)
@@ -615,7 +620,7 @@ module RubyLint
       ##
       # Adds the object(s) to the list of parent definitions.
       #
-      # @param [Array] definitions
+      # @param [Array<RubyLint::Definition::ConstantProxy>] definitions
       #
       def inherits(*definitions)
         self.parents.concat(definitions)
@@ -623,6 +628,8 @@ module RubyLint
 
       ##
       # @see {RubyLint::Definition::ConstantProxy#initialize}
+      # @param [String] name
+      # @param [RubyLint::Definition::Registry] registry
       # @return [RubyLint::Definition::ConstantProxy]
       #
       def constant_proxy(name, registry = nil)
