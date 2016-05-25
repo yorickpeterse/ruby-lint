@@ -1,4 +1,9 @@
 ---
+# http://stackoverflow.com/questions/36979283/how-to-fix-travis-error-nomethoderror-undefined-method-spec-for-nilnilclass
+# https://github.com/travis-ci/travis-ci/issues/3531
+before_install:
+  - gem install bundler
+
 script: bundle exec rake
 
 rvm:
