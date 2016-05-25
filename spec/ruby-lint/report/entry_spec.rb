@@ -55,4 +55,60 @@ describe RubyLint::Report::Entry do
     entries[4].file.should  == 'c.rb'
     entries[4].level.should == :error
   end
+
+  describe '#<=>' do
+    it 'compares smaller file name, smaller line number' do
+      a = RubyLint::Report::Entry.new(:file => 'a.rb', :line => 1)
+      b = RubyLint::Report::Entry.new(:file => 'b.rb', :line => 2)
+      (a<=>b).should < 0
+    end
+
+    it 'compares smaller file name, equal line number' do
+      a = RubyLint::Report::Entry.new(:file => 'a.rb', :line => 1)
+      b = RubyLint::Report::Entry.new(:file => 'b.rb', :line => 1)
+      (a<=>b).should < 0
+    end
+
+    it 'compares smaller file name, bigger line number' do
+      a = RubyLint::Report::Entry.new(:file => 'a.rb', :line => 2)
+      b = RubyLint::Report::Entry.new(:file => 'b.rb', :line => 1)
+      (a<=>b).should < 0
+    end
+
+    it 'compares equal file name, smaller line number' do
+      a = RubyLint::Report::Entry.new(:file => 'a.rb', :line => 1)
+      b = RubyLint::Report::Entry.new(:file => 'a.rb', :line => 2)
+      (a<=>b).should < 0
+    end
+
+    it 'compares equal file name, equal line number' do
+      a = RubyLint::Report::Entry.new(:file => 'a.rb', :line => 1)
+      b = RubyLint::Report::Entry.new(:file => 'a.rb', :line => 1)
+      (a<=>b).should == 0
+    end
+
+    it 'compares equal file name, bigger line number' do
+      a = RubyLint::Report::Entry.new(:file => 'a.rb', :line => 2)
+      b = RubyLint::Report::Entry.new(:file => 'a.rb', :line => 1)
+      (a<=>b).should > 0
+    end
+
+    it 'compares bigger file name, smaller line number' do
+      a = RubyLint::Report::Entry.new(:file => 'b.rb', :line => 1)
+      b = RubyLint::Report::Entry.new(:file => 'a.rb', :line => 2)
+      (a<=>b).should > 0
+    end
+
+    it 'compares bigger file name, equal line number' do
+      a = RubyLint::Report::Entry.new(:file => 'b.rb', :line => 1)
+      b = RubyLint::Report::Entry.new(:file => 'a.rb', :line => 1)
+      (a<=>b).should > 0
+    end
+
+    it 'compares bigger file name, bigger line number' do
+      a = RubyLint::Report::Entry.new(:file => 'b.rb', :line => 2)
+      b = RubyLint::Report::Entry.new(:file => 'a.rb', :line => 1)
+      (a<=>b).should > 0
+    end
+  end
 end
