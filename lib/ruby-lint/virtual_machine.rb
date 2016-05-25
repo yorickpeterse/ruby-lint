@@ -216,8 +216,6 @@ module RubyLint
     ##
     # Processes a regular variable assignment.
     #
-    # @param [RubyLint::AST::Node] node
-    #
     def on_assign
       reset_assignment_value
       value_stack.add_stack
@@ -225,6 +223,8 @@ module RubyLint
 
     ##
     # @see #on_assign
+    #
+    # @param [RubyLint::AST::Node] node
     #
     def after_assign(node)
       type  = ASSIGNMENT_TYPES[node.type]
@@ -279,9 +279,6 @@ module RubyLint
       add_variable(variable, scope)
     end
 
-    ##
-    # @param [RubyLint::AST::Node] node
-    #
     def on_masgn
       add_stacks
     end
@@ -302,9 +299,6 @@ module RubyLint
       end
     end
 
-    ##
-    # @param [RubyLint::AST::Node] node
-    #
     def on_or_asgn
       add_stacks
     end
@@ -321,17 +315,12 @@ module RubyLint
       end
     end
 
-    ##
-    # @param [RubyLint::AST::Node] node
-    #
     def on_and_asgn
       add_stacks
     end
 
     ##
     # Processes an `and` assignment in the form of `variable &&= value`.
-    #
-    # @param [RubyLint::AST::Node] node
     #
     def after_and_asgn
       variable = variable_stack.pop.first
