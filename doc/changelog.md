@@ -5,6 +5,20 @@ This document contains a short summary of the various releases of ruby-lint.
 For a full list of commits included in each release see the corresponding Git
 tags (named after the versions).
 
+## 2.2.0 - 2016-05-26
+
+* Martin Vidner added a present for Emacs, see commit
+  ffd38a22cc840eb786088582efdfea1ba8635d8d for more information.
+* Martin Vidner added tests for Report::Entry#<=>, see commits
+  15d9797f7f32c7f615fb473a99ed8769e8b7a826 and
+  1e77ab825ac5b254c096ff1d6d4eba1fc4e8ea86 for more information.
+* Martin Vidner cleaned up some YARD comments and fixed the Travis
+  configuration. See commits e3acb83ecc4a7ff4f5f76130a68ea6a676d216f9,
+  738fd2eae4811fb1617f475c552e763cc1fd460e, and
+  1e364b6307b7f4b64b1eeeb0a05ccfe9c430b093 for more information.
+* A bug with parallel assignments was fixed by Mistral Contrastin. See commit
+  f177ff67b9439b98678807d50efb433f4c3e774b for more information.
+
 ## 2.1.0 - 2016-01-22
 
 Ryan McKern added a definition for `Module#module_function` in pull request
