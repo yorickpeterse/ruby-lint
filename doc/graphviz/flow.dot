@@ -2,6 +2,9 @@
 // ruby-lint.
 
 digraph flow {
+    "Source" [shape=box];
+    "Report" [shape=box];
+
     "Source" -> "Parser" -> "Virtual Machine" -> "Analysis";
     "Analysis" -> "Report" -> "Presenter";
 }
