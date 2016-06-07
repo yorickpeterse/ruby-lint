@@ -36,7 +36,8 @@ module RubyLint
           text = argument_text(method, given)
 
           error(
-            "wrong number of arguments (expected #{text} but got #{given})",
+            "wrong number of arguments for '#{method.name}' " \
+              "(expected #{text} but got #{given})",
             node
           )
         end
