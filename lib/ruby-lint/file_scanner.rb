@@ -39,7 +39,7 @@ module RubyLint
     # @param [Array] directories A collection of base directories to search in.
     # @param [Array] ignore A list of paths to ignore.
     #
-    def initialize(directories = self.class.default_directories, ignore = [])
+    def initialize(directories = self.class.default_directories, ignore = [], constant_paths = {})
       unless directories.respond_to?(:each)
         raise TypeError, 'Directories must be specified as an Enumerable'
       end
@@ -48,7 +48,7 @@ module RubyLint
       @ignore      = ignore || []
 
       # Hash that will contain the matching file paths for a given constant.
-      @constant_paths_cache = {}
+      @constant_paths_cache = constant_paths || {}
     end
 
     ##
@@ -154,7 +154,8 @@ module RubyLint
     end
 
     ##
-    # @return [Array]
+    # @param segment [String] file path segment
+    # @return [Array<String>] matching elements of glob cache
     #
     def match_globbed_files(segment)
       # Ensure that we match entire path segments. Just using the segment would

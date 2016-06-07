@@ -74,6 +74,17 @@ describe RubyLint::FileScanner do
       ]
     end
 
+    it 'finds a class that has an explicit file location' do
+      filename = fixture_path('file_scanner/lib/mynet/dns_server.rb')
+
+      scanner = described_class.new([@lib_dir], [], {'DNSServer'=>[filename]})
+      paths   = scanner.scan('DNSServer')
+
+      paths.should == [
+        filename
+      ]
+    end
+
     it 'ignores directories' do
       scanner = described_class.new([@lib_dir], [@lib_dir])
 

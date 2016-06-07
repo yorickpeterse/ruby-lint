@@ -148,3 +148,15 @@ Example:
     ---
     ignore_paths:
       - lib/ruby-lint/definitions
+
+### constant_paths
+
+In cases when your constants are defined in files that are not named according
+to the conventions, use `constant_path` to explicitly set where a constant
+should be found. It is a mapping from constant names to single files or to
+lists of files:
+
+    ---
+    constant_paths:
+      DNSServer: lib/mynet/dns_server.rb
+      DNSServerError: lib/mynet/dns_server.rb

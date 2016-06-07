@@ -83,7 +83,8 @@ module RubyLint
     def process_external_files(root_ast)
       loader = FileLoader.new(
         :directories  => configuration.directories,
-        :ignore_paths => configuration.ignore_paths
+        :ignore_paths => configuration.ignore_paths,
+        :constant_paths => configuration.constant_paths
       )
 
       nodes    = []
