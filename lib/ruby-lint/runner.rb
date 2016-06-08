@@ -30,12 +30,6 @@ module RubyLint
 
       parser.consumer = proc do |diag|
         report_diagnostic(diag, report)
-
-        # FIXME: there's a bug in the pure Ruby version of Racc causing it hang
-        # after detecting a syntax error (it stays forever in recovery mode).
-        # To work around this we'll have to bail out after detecting the first
-        # syntax error.
-        return presenter.present(report)
       end
 
       files.each do |file|
