@@ -110,5 +110,17 @@ describe RubyLint::Report::Entry do
       b = RubyLint::Report::Entry.new(:file => 'a.rb', :line => 1)
       (a<=>b).should > 0
     end
+
+    it 'compares whole paths, not basenames' do
+      a = RubyLint::Report::Entry.new(:file => 'a/b.rb', :line => 2)
+      b = RubyLint::Report::Entry.new(:file => 'b/a.rb', :line => 1)
+      (a<=>b).should < 0
+    end
+
+    it 'compares also column numbers' do
+      a = RubyLint::Report::Entry.new(:file => 'a.rb', :line => 1, :column => 1)
+      b = RubyLint::Report::Entry.new(:file => 'a.rb', :line => 1, :column => 2)
+      (a<=>b).should < 0
+    end
   end
 end
