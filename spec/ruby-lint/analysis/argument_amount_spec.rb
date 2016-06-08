@@ -16,7 +16,8 @@ example
 
     entry.line.should    == 4
     entry.column.should  == 1
-    entry.message.should == 'wrong number of arguments (expected 2 but got 0)'
+    entry.message.should == "wrong number of arguments for 'example' " \
+    "(expected 2 but got 0)"
   end
 
   it 'validates argument amounts when using optional arguments' do
@@ -34,8 +35,8 @@ example
 
     entry.line.should    == 4
     entry.column.should  == 1
-    entry.message.should == 'wrong number of arguments ' \
-      '(expected 2..3 but got 0)'
+    entry.message.should == "wrong number of arguments for 'example' " \
+      "(expected 2..3 but got 0)"
   end
 
   it 'validates argument amounts when using rest arguments' do
@@ -53,8 +54,8 @@ example
 
     entry.line.should    == 4
     entry.column.should  == 1
-    entry.message.should == 'wrong number of arguments ' \
-      '(expected 2 but got 0)'
+    entry.message.should == "wrong number of arguments for 'example' " \
+      "(expected 2 but got 0)"
   end
 
   it 'validates argument amounts when using a required and rest argument' do
@@ -108,11 +109,13 @@ Person.new(10, 20)
 
     first.line.should    == 6
     first.column.should  == 1
-    first.message.should == 'wrong number of arguments (expected 1 but got 0)'
+    first.message.should == "wrong number of arguments for 'initialize' " \
+      "(expected 1 but got 0)"
 
     second.line.should    == 7
     second.column.should  == 1
-    second.message.should == 'wrong number of arguments (expected 1 but got 2)'
+    second.message.should == "wrong number of arguments for 'initialize' " \
+      "(expected 1 but got 2)"
   end
 
   it 'ignores block arguments' do
