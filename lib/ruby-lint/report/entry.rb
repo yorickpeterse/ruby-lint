@@ -67,7 +67,7 @@ module RubyLint
       # @return [Numeric]
       #
       def <=>(other)
-        [filename, line] <=> [other.filename, other.line]
+        [file, line, column] <=> [other.file, other.line, other.column]
       end
     end # Entry
   end # Report
