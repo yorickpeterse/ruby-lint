@@ -9,10 +9,12 @@ module RubyLint
     #  @return [Array] List of directories to search in for definitions.
     #
     # @!attribute [r] loaded_constants
-    #  @return [Set] Set containing the constants loaded from the load path.
+    #  @return [Set<String>] Set containing the constants loaded from
+    #   the load path.
     #
     # @!attribute [r] registered
-    #  @return [Hash] Returns the registered definitions as a Hash. The keys
+    #  @return [Hash{String=>Proc}]
+    #   Returns the registered definitions as a Hash. The keys
     #   are set to the constant names, the values to `Proc` instances that,
     #   when evaluated, create the corresponding definitions.
     #
@@ -22,7 +24,7 @@ module RubyLint
       ##
       # The default load path to use.
       #
-      # @return [Array]
+      # @return [Array<String>]
       #
       DEFAULT_LOAD_PATH = [
         File.expand_path('../../definitions/core', __FILE__),
@@ -90,6 +92,7 @@ module RubyLint
       # found.
       #
       # @param [String] constant The name of the top level constant.
+      # @return [void]
       #
       def load(constant)
         return if include?(constant)

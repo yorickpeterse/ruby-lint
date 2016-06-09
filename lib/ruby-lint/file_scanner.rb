@@ -4,10 +4,10 @@ module RubyLint
   # potentially define a given Ruby constant (path).
   #
   # @!attribute [r] directories
-  #  @return [Array]
+  #  @return [Array<String>]
   #
   # @!attribute [r] ignore
-  #  @return [Array]
+  #  @return [Array<String>]
   #
   class FileScanner
     attr_reader :directories, :ignore
@@ -16,12 +16,12 @@ module RubyLint
     # Array containing names of directories that (often) contain Ruby source
     # files.
     #
-    # @return [Array]
+    # @return [Array<String>]
     #
     RUBY_DIRECTORIES = %w{app lib}
 
     ##
-    # @return [Array]
+    # @return [Array<String>]
     #
     def self.default_directories
       directories = []
@@ -38,6 +38,7 @@ module RubyLint
     ##
     # @param [Array] directories A collection of base directories to search in.
     # @param [Array] ignore A list of paths to ignore.
+    # @param [Hash{String=>Array<String>}] constant_paths
     #
     def initialize(directories = self.class.default_directories, ignore = [], constant_paths = {})
       unless directories.respond_to?(:each)
@@ -57,7 +58,7 @@ module RubyLint
     # (e.g. `a.rb` comes before `foo/a.rb`).
     #
     # @param [String] constant
-    # @return [Array]
+    # @return [Array<String>]
     #
     def scan(constant)
       unless constant_paths_cached?(constant)
@@ -68,14 +69,14 @@ module RubyLint
     end
 
     ##
-    # @return [Array]
+    # @return [Array<String>]
     #
     def glob_cache
       @glob_cache ||= directories.empty? ? [] : glob_ruby_files
     end
 
     ##
-    # @return [Array]
+    # @return [Array<String>]
     #
     def glob_ruby_files
       return Dir.glob("{#{directories.join(',')}}/**/*.rb")
@@ -167,6 +168,7 @@ module RubyLint
     end
 
     ##
+    # @param [String] constant
     # @return [TrueClass|FalseClass]
     #
     def constant_paths_cached?(constant)

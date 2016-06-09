@@ -17,7 +17,7 @@ module RubyLint
   #  @return [Array]
   #
   # @!attribute [r] constant_paths
-  #  @return [Hash<String,Array<String>>] files containing a given constant
+  #  @return [Hash{String=>Array<String>}] files containing a given constant
   #
   # @!attribute [rw] debug
   #  @return [TrueClass|FalseClass]
