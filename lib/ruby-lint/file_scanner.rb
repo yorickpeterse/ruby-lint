@@ -4,10 +4,10 @@ module RubyLint
   # potentially define a given Ruby constant (path).
   #
   # @!attribute [r] directories
-  #  @return [Array]
+  #  @return [Array<String>]
   #
   # @!attribute [r] ignore
-  #  @return [Array]
+  #  @return [Array<String>]
   #
   class FileScanner
     attr_reader :directories, :ignore
@@ -16,12 +16,12 @@ module RubyLint
     # Array containing names of directories that (often) contain Ruby source
     # files.
     #
-    # @return [Array]
+    # @return [Array<String>]
     #
     RUBY_DIRECTORIES = %w{app lib}
 
     ##
-    # @return [Array]
+    # @return [Array<String>]
     #
     def self.default_directories
       directories = []
@@ -38,8 +38,9 @@ module RubyLint
     ##
     # @param [Array] directories A collection of base directories to search in.
     # @param [Array] ignore A list of paths to ignore.
+    # @param [Hash{String=>Array<String>}] constant_paths
     #
-    def initialize(directories = self.class.default_directories, ignore = [])
+    def initialize(directories = self.class.default_directories, ignore = [], constant_paths = {})
       unless directories.respond_to?(:each)
         raise TypeError, 'Directories must be specified as an Enumerable'
       end
@@ -48,7 +49,7 @@ module RubyLint
       @ignore      = ignore || []
 
       # Hash that will contain the matching file paths for a given constant.
-      @constant_paths_cache = {}
+      @constant_paths_cache = constant_paths || {}
     end
 
     ##
@@ -57,7 +58,7 @@ module RubyLint
     # (e.g. `a.rb` comes before `foo/a.rb`).
     #
     # @param [String] constant
-    # @return [Array]
+    # @return [Array<String>]
     #
     def scan(constant)
       unless constant_paths_cached?(constant)
@@ -68,14 +69,14 @@ module RubyLint
     end
 
     ##
-    # @return [Array]
+    # @return [Array<String>]
     #
     def glob_cache
       @glob_cache ||= directories.empty? ? [] : glob_ruby_files
     end
 
     ##
-    # @return [Array]
+    # @return [Array<String>]
     #
     def glob_ruby_files
       return Dir.glob("{#{directories.join(',')}}/**/*.rb")
@@ -154,7 +155,8 @@ module RubyLint
     end
 
     ##
-    # @return [Array]
+    # @param segment [String] file path segment
+    # @return [Array<String>] matching elements of glob cache
     #
     def match_globbed_files(segment)
       # Ensure that we match entire path segments. Just using the segment would
@@ -166,6 +168,7 @@ module RubyLint
     end
 
     ##
+    # @param [String] constant
     # @return [TrueClass|FalseClass]
     #
     def constant_paths_cached?(constant)

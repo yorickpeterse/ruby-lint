@@ -65,7 +65,7 @@ module RubyLint
     end
 
     ##
-    # Returns a String containing the full constant path, e.g.
+    # Returns a String containing the full constant path, for example
     # "RubyLint::Runner".
     #
     # @return [String]

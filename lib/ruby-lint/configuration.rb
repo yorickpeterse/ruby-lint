@@ -16,6 +16,9 @@ module RubyLint
   # @!attribute [r] directories
   #  @return [Array]
   #
+  # @!attribute [r] constant_paths
+  #  @return [Hash{String=>Array<String>}] files containing a given constant
+  #
   # @!attribute [rw] debug
   #  @return [TrueClass|FalseClass]
   #
@@ -24,6 +27,7 @@ module RubyLint
   #
   class Configuration
     attr_reader :analysis_classes, :report_levels, :presenter, :directories
+    attr_reader :constant_paths
 
     attr_accessor :debug, :ignore_paths
 
@@ -115,6 +119,7 @@ module RubyLint
       @presenter        ||= default_presenter
       @directories      ||= default_directories
       @ignore_paths     ||= []
+      @constant_paths   ||= {}
     end
 
     ##
@@ -206,6 +211,11 @@ module RubyLint
       end
 
       @directories = valid
+    end
+
+    def constant_paths=(constant_paths)
+      # ensure that the values are arrays, make them of single elements in yaml
+      @constant_paths = constant_paths.map {|k,v| [k, Array(v)]}.to_h
     end
 
     ##

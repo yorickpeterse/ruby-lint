@@ -11,9 +11,10 @@ module RubyLint
   # Global variables are also bootstrapped.
   #
   # @!attribute [r] loaded
-  #  @return [Set] Set containing the loaded constants.
+  #  @return [Set<String>] Set containing the loaded constants.
   #
   # @!attribute [r] definitions
+  #  (initialized via {Iterator#initialize})
   #  @return [RubyLint::Definition::RubyObject]
   #
   class ConstantLoader < Iterator
@@ -22,14 +23,14 @@ module RubyLint
     ##
     # Built-in definitions that should be bootstrapped.
     #
-    # @return [Array]
+    # @return [Array<String>]
     #
     BOOTSTRAP_CONSTS = %w{Module Class Kernel BasicObject Object}
 
     ##
     # List of global variables that should be bootstrapped.
     #
-    # @return [Array]
+    # @return [Array<String>]
     #
     BOOTSTRAP_GVARS = [
       '$!', '$$', '$&', '$\'', '$*', '$+', '$,', '$-0', '$-F', '$-I', '$-K',

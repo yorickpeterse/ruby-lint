@@ -30,7 +30,7 @@ module RubyLint
     # Called after a new instance of this class is created.
     #
     def after_initialize
-      @file_scanner = FileScanner.new(@directories, @ignore_paths)
+      @file_scanner = FileScanner.new(@directories, @ignore_paths, @constant_paths)
       @parser       = Parser.new
       @nodes        = []
       @paths        = Set.new
