@@ -34,10 +34,10 @@ module RubyLint
     BOOTSTRAP_GVARS = [
       '$!', '$$', '$&', '$\'', '$*', '$+', '$,', '$-0', '$-F', '$-I', '$-K',
       '$-W', '$-a', '$-d', '$-i', '$-l', '$-p', '$-v', '$-w', '$.', '$/', '$0',
-      '$1', '$2', '$3', '$4', '$5', '$6', '$7', '$8', '$9', '$:', '$;', '$<',
-      '$=', '$>', '$?', '$@', '$DEBUG', '$FILENAME', '$KCODE',
+      '$:', '$;', '$<', '$=', '$>', '$?', '$@', '$DEBUG', '$FILENAME', '$KCODE',
       '$LOADED_FEATURES', '$LOAD_PATH', '$PROGRAM_NAME', '$SAFE', '$VERBOSE',
       '$\"', '$\\', '$_', '$`', '$stderr', '$stdin', '$stdout', '$~'
+      # Regexp $1, $2,... $99 are lazy loaded when first used
     ]
 
     ##

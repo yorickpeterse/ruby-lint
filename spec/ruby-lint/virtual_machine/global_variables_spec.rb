@@ -9,7 +9,7 @@ describe RubyLint::VirtualMachine do
 
     it 'provides a list of default global variables' do
       @defs.lookup(:gvar, '$LOAD_PATH').is_a?(ruby_object).should == true
-      @defs.lookup(:gvar, '$9').is_a?(ruby_object).should         == true
+      @defs.lookup(:gvar, '$,').is_a?(ruby_object).should         == true
     end
   end
 end
