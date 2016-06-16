@@ -1,4 +1,4 @@
-require 'spec_helper'
+require_relative '../../spec_helper'
 
 describe RubyLint::Analysis::UndefinedVariables do
   it 'adds an error for using an undefined instance variable' do
@@ -138,6 +138,13 @@ end
 
   it 'does not add errors when aliasing global variables' do
     code   = 'alias $ARGV $*'
+    report = build_report(code, RubyLint::Analysis::UndefinedVariables)
+
+    report.entries.empty?.should == true
+  end
+
+  it 'does not add errors when using regexp captured global variables' do
+    code   = '$10'
     report = build_report(code, RubyLint::Analysis::UndefinedVariables)
 
     report.entries.empty?.should == true

@@ -33,11 +33,11 @@ module RubyLint
     #
     BOOTSTRAP_GVARS = [
       '$!', '$$', '$&', '$\'', '$*', '$+', '$,', '$-0', '$-F', '$-I', '$-K',
-      '$-W', '$-a', '$-d', '$-i', '$-l', '$-p', '$-v', '$-w', '$.', '$/', '$0',
-      '$1', '$2', '$3', '$4', '$5', '$6', '$7', '$8', '$9', '$:', '$;', '$<',
-      '$=', '$>', '$?', '$@', '$DEBUG', '$FILENAME', '$KCODE',
+      '$-W', '$-a', '$-d', '$-i', '$-l', '$-p', '$-v', '$-w', '$.', '$/', '$:',
+      '$;', '$<', '$=', '$>', '$?', '$@', '$DEBUG', '$FILENAME', '$KCODE',
       '$LOADED_FEATURES', '$LOAD_PATH', '$PROGRAM_NAME', '$SAFE', '$VERBOSE',
-      '$\"', '$\\', '$_', '$`', '$stderr', '$stdin', '$stdout', '$~'
+      '$\"', '$\\', '$_', '$`', '$stderr', '$stdin', '$stdout', '$~', '$0'
+      # regexp's $<int> is lazy loaded when used as it is not limited (#175)
     ]
 
     ##
