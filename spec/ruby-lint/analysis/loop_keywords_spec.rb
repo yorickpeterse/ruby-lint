@@ -71,6 +71,13 @@ describe RubyLint::Analysis::LoopKeywords do
       report.entries.should be_empty
     end
 
+    it 'does not error when using break inside outer nested loop' do
+      code   = 'while true; while true; end; break; end'
+      report = build_report(code, described_class)
+
+      report.entries.should be_empty
+    end
+
     it 'does not error when using break inside an until loop' do
       code   = 'until true; break; end'
       report = build_report(code, described_class)
