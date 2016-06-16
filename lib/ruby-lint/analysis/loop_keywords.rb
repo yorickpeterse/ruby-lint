@@ -44,11 +44,12 @@ module RubyLint
 
       STATEMENTS.each do |statement|
         define_method("on_#{statement}") do
-          @allow_keyword = true
+          @allow_keyword ||= 0
+          @allow_keyword += 1
         end
 
         define_method("after_#{statement}") do
-          @allow_keyword = false
+          @allow_keyword -= 1
         end
       end
 
@@ -57,7 +58,7 @@ module RubyLint
       # @param [RubyLint::AST::Node] node
       #
       def verify_keyword(keyword, node)
-        if current_scope.type != :block and !@allow_keyword
+        if current_scope.type != :block && [0, nil].include?(@allow_keyword)
           error("#{keyword} can only be used inside a loop/block", node)
         end
       end
