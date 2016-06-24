@@ -76,4 +76,38 @@ describe RubyLint::ConstantLoader do
       @loader.run([@ast])
     end
   end
+
+  context 'loading scoped constants' do
+    before(:all) do
+      # cannot be undone, hope it is OK
+      RubyLint.registry.register('Foo') do |defs|
+        defs.define_constant('Foo') do |klass|
+          klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
+          klass.define_method('hello_foo')
+        end
+      end
+      RubyLint.registry.register('Foo::Bar') do |defs|
+        defs.define_constant('Foo::Bar') do |klass|
+          klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
+          klass.define_method('hello_bar')
+        end
+      end
+    end
+
+    it 'loads a constant from a scope' do
+      code = <<-CODE
+module Foo
+  class Qux
+    def hello_qux
+      Bar.hello_bar
+    end
+  end
+end
+      CODE
+      @ast = parse(code)
+
+      @loader.run([@ast])
+      @loader.loaded?('Foo::Bar').should == true
+    end
+  end
 end
