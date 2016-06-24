@@ -84,6 +84,24 @@ describe RubyLint::ConstantLoader do
     end
   end
 
+  context 'iterating over an AST with ::PP' do
+    before do
+      @ast = s(:root, s(:const, s(:cbase), 'PP'))
+    end
+
+    it 'loads a constant' do
+      @loader.run([@ast])
+      @loader.loaded?('PP').should == true
+    end
+
+    it 'calls the correct callbacks' do
+      @loader.should_receive(:on_const)
+        .with(an_instance_of(RubyLint::AST::Node))
+
+      @loader.run([@ast])
+    end
+  end
+
   context 'loading scoped constants' do
     before do
       @registry.register('Foo') do |defs|
