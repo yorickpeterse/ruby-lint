@@ -102,7 +102,7 @@ module RubyLint
     # @param [RubyLint::Node] node
     #
     def on_const(node)
-      load_nested_constant(ConstantPath.new(node).root_node[1])
+      load_nested_constant(ConstantPath.new(node).to_s)
     end
 
     ##
@@ -129,13 +129,17 @@ module RubyLint
     # @param [String] constant name, possibly unqualified
     #
     def load_nested_constant(constant)
-      # ["A", "B", "C"] -> ["A::B::C", "A::B", "A"]
-      namespaces = module_nesting.size.downto(1).map do |n|
-        module_nesting.take(n).join("::")
-      end
+      if constant.start_with?("::")
+        constant = constant.sub(/^::/, "")
+      else
+        # ["A", "B", "C"] -> ["A::B::C", "A::B", "A"]
+        namespaces = module_nesting.size.downto(1).map do |n|
+          module_nesting.take(n).join("::")
+        end
 
-      namespaces.each do |ns|
-        load_constant("#{ns}::#{constant}")
+        namespaces.each do |ns|
+          load_constant("#{ns}::#{constant}")
+        end
       end
       load_constant(constant)
     end
