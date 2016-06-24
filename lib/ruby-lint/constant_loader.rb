@@ -83,8 +83,18 @@ module RubyLint
       @module_nesting.push(cp.to_s)
     end
 
+    def after_module(_node)
+      @module_nesting.pop
+    end
 
-    def after_module(node)
+    def on_class(node)
+      name, _parent, _body = *node
+      cp = ConstantPath.new(name)
+
+      @module_nesting.push(cp.to_s)
+    end
+
+    def after_class(_node)
       @module_nesting.pop
     end
 
