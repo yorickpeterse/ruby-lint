@@ -15,6 +15,13 @@ describe RubyLint::ConstantPath do
     name.should == 'Foo::Bar'
   end
 
+  example 'generate the name of an absolute constant path' do
+    node = s(:const, s(:cbase), :Foo)
+    name = RubyLint::ConstantPath.new(node).to_s
+
+    name.should == '::Foo'
+  end
+
   context 'resolving definitions' do
     before :all do
       @scope = ruby_object.new(:type => :const, :name => 'Example')
