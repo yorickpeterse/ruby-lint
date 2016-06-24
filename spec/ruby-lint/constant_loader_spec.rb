@@ -2,8 +2,15 @@ require 'spec_helper'
 
 describe RubyLint::ConstantLoader do
   before do
+    @registry    = RubyLint::Definition::Registry.new
     @definitions = ruby_object.new
     @loader      = RubyLint::ConstantLoader.new(:definitions => @definitions)
+
+    # Having our own registry is one thing, but the definitions
+    # in ruby-lint/definitions/core insist on applying themselves to the
+    # global one (before we can stub it) so we borrow the result now
+    @registry.stub(:registered).and_return(RubyLint.registry.registered.dup)
+    @loader.stub(:registry).and_return(@registry)
   end
 
   context 'bootstrapping definitions' do
@@ -78,23 +85,21 @@ describe RubyLint::ConstantLoader do
   end
 
   context 'loading scoped constants' do
-    before(:all) do
-      # cannot be undone, hope it is OK
-      RubyLint.registry.register('Foo') do |defs|
+    it 'loads a constant from a scope' do
+      @registry.register('Foo') do |defs|
         defs.define_constant('Foo') do |klass|
-          klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
+          klass.inherits(defs.constant_proxy('Object', @registry))
           klass.define_method('hello_foo')
         end
       end
-      RubyLint.registry.register('Foo::Bar') do |defs|
+
+      @registry.register('Foo::Bar') do |defs|
         defs.define_constant('Foo::Bar') do |klass|
-          klass.inherits(defs.constant_proxy('Object', RubyLint.registry))
+          klass.inherits(defs.constant_proxy('Object', @registry))
           klass.define_method('hello_bar')
         end
       end
-    end
 
-    it 'loads a constant from a scope' do
       code = <<-CODE
 module Foo
   class Qux
