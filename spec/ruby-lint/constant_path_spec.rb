@@ -24,7 +24,7 @@ describe RubyLint::ConstantPath do
 
   context 'resolving definitions' do
     before :all do
-      @scope = ruby_object.new(:type => :const, :name => 'Example')
+      @scope = ruby_object.new(:type => :root, :name => 'root')
       @foo   = @scope.define_constant('Foo')
       @bar   = @foo.define_constant('Bar')
 
@@ -42,6 +42,16 @@ describe RubyLint::ConstantPath do
 
     example 'resolve a path of purely constants' do
       node = s(:const, s(:const, nil, :Foo), :Bar)
+      defs = RubyLint::ConstantPath.new(node).resolve(@scope)
+
+      defs.is_a?(ruby_object).should == true
+
+      defs.name.should == 'Bar'
+      defs.type.should == :const
+    end
+
+    example 'resolve a path of an absolute constant' do
+      node = s(:const, s(:const, s(:cbase), :Foo), :Bar)
       defs = RubyLint::ConstantPath.new(node).resolve(@scope)
 
       defs.is_a?(ruby_object).should == true
