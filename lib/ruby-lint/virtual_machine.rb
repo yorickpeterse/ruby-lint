@@ -352,6 +352,8 @@ module RubyLint
     #
     def on_nth_ref(node)
       var = definitions.lookup(:gvar, "$#{node.children[0]}")
+      # If the number is not found, then add it as there is no limit for them
+      var = definitions.define_global_variable(node.children[0]) if !var && node.children[0].is_a?(Fixnum)
 
       push_value(var.value)
     end

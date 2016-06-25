@@ -142,4 +142,11 @@ end
 
     report.entries.empty?.should == true
   end
+
+  it 'does not add errors when using regexp captured global variables' do
+    code   = '$10'
+    report = build_report(code, RubyLint::Analysis::UndefinedVariables)
+
+    report.entries.empty?.should == true
+  end
 end
