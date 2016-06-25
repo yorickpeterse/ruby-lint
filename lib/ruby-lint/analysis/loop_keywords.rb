@@ -24,6 +24,11 @@ module RubyLint
     class LoopKeywords < Base
       register 'loop_keywords'
 
+      def after_initialize
+        @loop_nesting = 0
+        super
+      end
+
       ##
       # List of keywords that can only be used inside a loop.
       #
@@ -44,11 +49,11 @@ module RubyLint
 
       STATEMENTS.each do |statement|
         define_method("on_#{statement}") do
-          @allow_keyword = true
+          @loop_nesting += 1
         end
 
         define_method("after_#{statement}") do
-          @allow_keyword = false
+          @loop_nesting -= 1
         end
       end
 
@@ -57,7 +62,7 @@ module RubyLint
       # @param [RubyLint::AST::Node] node
       #
       def verify_keyword(keyword, node)
-        if current_scope.type != :block and !@allow_keyword
+        if current_scope.type != :block and @loop_nesting.zero?
           error("#{keyword} can only be used inside a loop/block", node)
         end
       end
