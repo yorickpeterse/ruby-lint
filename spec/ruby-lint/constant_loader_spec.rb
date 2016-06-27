@@ -2,8 +2,15 @@ require 'spec_helper'
 
 describe RubyLint::ConstantLoader do
   before do
+    @registry    = RubyLint::Definition::Registry.new
     @definitions = ruby_object.new
     @loader      = RubyLint::ConstantLoader.new(:definitions => @definitions)
+
+    # Having our own registry is one thing, but the definitions
+    # in ruby-lint/definitions/core insist on applying themselves to the
+    # global one (before we can stub it) so we borrow the result now
+    @registry.stub(:registered).and_return(RubyLint.registry.registered.dup)
+    @loader.stub(:registry).and_return(@registry)
   end
 
   context 'bootstrapping definitions' do
@@ -74,6 +81,56 @@ describe RubyLint::ConstantLoader do
         .with(an_instance_of(RubyLint::AST::Node))
 
       @loader.run([@ast])
+    end
+  end
+
+  context 'loading scoped constants' do
+    before do
+      @registry.register('Foo') do |defs|
+        defs.define_constant('Foo') do |klass|
+          klass.inherits(defs.constant_proxy('Object', @registry))
+          klass.define_method('hello_foo')
+        end
+      end
+
+      @registry.register('Foo::Bar') do |defs|
+        defs.define_constant('Foo::Bar') do |klass|
+          klass.inherits(defs.constant_proxy('Object', @registry))
+          klass.define_method('hello_bar')
+        end
+      end
+    end
+
+    it 'loads a constant from a module scope' do
+      code = <<-CODE
+module Foo
+  class Qux
+    def hello_qux
+      Bar.hello_bar
+    end
+  end
+end
+      CODE
+      @ast = parse(code)
+
+      @loader.run([@ast])
+      @loader.loaded?('Foo::Bar').should == true
+    end
+
+    it 'loads a constant from a class scope' do
+      code = <<-CODE
+class Foo
+  class Qux
+    def hello_qux
+      Bar.hello_bar
+    end
+  end
+end
+      CODE
+      @ast = parse(code)
+
+      @loader.run([@ast])
+      @loader.loaded?('Foo::Bar').should == true
     end
   end
 end

@@ -16,8 +16,11 @@ module RubyLint
   # @!attribute [r] definitions
   #  @return [RubyLint::Definition::RubyObject]
   #
+  # @!attribute [r] module_nesting
+  #  @return [Array<String>]
+  #
   class ConstantLoader < Iterator
-    attr_reader :loaded, :definitions
+    attr_reader :loaded, :definitions, :module_nesting
 
     ##
     # Built-in definitions that should be bootstrapped.
@@ -70,13 +73,36 @@ module RubyLint
     #
     def after_initialize
       @loaded = Set.new
+      @module_nesting = []
+    end
+
+    def on_module(node)
+      name, _body = *node
+      cp = ConstantPath.new(name)
+
+      @module_nesting.push(cp.to_s)
+    end
+
+    def after_module(_node)
+      @module_nesting.pop
+    end
+
+    def on_class(node)
+      name, _parent, _body = *node
+      cp = ConstantPath.new(name)
+
+      @module_nesting.push(cp.to_s)
+    end
+
+    def after_class(_node)
+      @module_nesting.pop
     end
 
     ##
     # @param [RubyLint::Node] node
     #
     def on_const(node)
-      load_constant(ConstantPath.new(node).root_node[1])
+      load_nested_constant(ConstantPath.new(node).root_node[1])
     end
 
     ##
@@ -94,6 +120,24 @@ module RubyLint
     #
     def registry
       return RubyLint.registry
+    end
+
+    ##
+    # Tries to load the definitions for the given constant.
+    # Takes into account what modules we are in to resolve the constant name.
+    #
+    # @param [String] constant name, possibly unqualified
+    #
+    def load_nested_constant(constant)
+      # ["A", "B", "C"] -> ["A::B::C", "A::B", "A"]
+      namespaces = module_nesting.size.downto(1).map do |n|
+        module_nesting.take(n).join("::")
+      end
+
+      namespaces.each do |ns|
+        load_constant("#{ns}::#{constant}")
+      end
+      load_constant(constant)
     end
 
     ##
