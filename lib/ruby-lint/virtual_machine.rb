@@ -103,7 +103,9 @@ module RubyLint
       :int,
       :float,
       :str,
+      :dstr,
       :sym,
+      :regexp,
       :true,
       :false,
       :nil,
@@ -446,6 +448,13 @@ module RubyLint
       method = scope.lookup(scope.method_call_type, 'self')
 
       push_value(method.return_value)
+    end
+
+    ##
+    # Pushes the return value of the block yielded to, that is, an unknown one.
+    #
+    def on_yield
+      push_unknown_value
     end
 
     ##
