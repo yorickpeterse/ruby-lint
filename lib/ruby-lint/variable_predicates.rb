@@ -20,6 +20,7 @@ module RubyLint
     #
     RUBY_CLASSES = {
       :str    => 'String',
+      :dstr   => 'String',
       :sym    => 'Symbol',
       :int    => 'Fixnum',
       :float  => 'Float',

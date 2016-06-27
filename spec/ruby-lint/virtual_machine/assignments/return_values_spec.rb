@@ -38,6 +38,17 @@ number = example
     value.instance?.should == true
   end
 
+  it 'assigns a return value for a bare yield' do
+    code = <<-CODE
+number = yield
+    CODE
+
+    defs = build_definitions(code)
+
+    defs.lookup(:lvar, 'number').value.should_not == nil
+  end
+
+
   describe 'setting instance types for core Ruby types' do
     it 'creates a new String instance' do
       defs = build_definitions('number = "10"')
@@ -45,8 +56,31 @@ number = example
       defs.lookup(:lvar, 'number').value.instance?.should == true
     end
 
+    it 'creates a new interpolated String instance' do
+      defs = build_definitions('number = "#{1}#{0}"')
+
+      defs.lookup(:lvar, 'number').value.instance?.should == true
+    end
+
+    it 'creates a new heredoc String instance' do
+      code = <<-CODE
+number = <<EOS
+EOS
+      CODE
+
+      defs = build_definitions(code)
+
+      defs.lookup(:lvar, 'number').value.instance?.should == true
+    end
+
     it 'creates a new Symbol instance' do
       defs = build_definitions('number = :"10"')
+
+      defs.lookup(:lvar, 'number').value.instance?.should == true
+    end
+
+    it 'creates a new Regexp instance' do
+      defs = build_definitions('number = //')
 
       defs.lookup(:lvar, 'number').value.instance?.should == true
     end
