@@ -278,6 +278,8 @@ module RubyLint
         if defines?(type, name)
           found = definitions[type][name]
 
+        elsif type == :cbase
+          found = top_scope
         # Look up the definition in the parent scope(s) (if any are set). This
         # takes the parents themselves also into account.
         elsif lookup_parent?(type) and lookup_parent
@@ -675,6 +677,12 @@ module RubyLint
         address = (object_id << 1).to_s(16)
 
         return %Q(#<#{self.class}:0x#{address} #{attributes.join(' ')}>)
+      end
+
+      def top_scope
+        return self if type == :root
+        scope = parents.last   # the enclosing scope
+        scope ? scope.top_scope : self
       end
 
       private

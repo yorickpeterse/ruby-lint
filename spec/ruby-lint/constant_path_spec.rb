@@ -1,13 +1,6 @@
 require 'spec_helper'
 
 describe RubyLint::ConstantPath do
-  example 'return the root node of a constant path' do
-    node = s(:const, s(:const, nil, :Foo), :Bar)
-    root = RubyLint::ConstantPath.new(node).root_node
-
-    root.should == [:const, 'Foo']
-  end
-
   example 'generate the name of a constant path' do
     node = s(:const, s(:const, nil, :Foo), :Bar)
     name = RubyLint::ConstantPath.new(node).to_s
@@ -15,9 +8,16 @@ describe RubyLint::ConstantPath do
     name.should == 'Foo::Bar'
   end
 
+  example 'generate the name of an absolute constant path' do
+    node = s(:const, s(:cbase), :Foo)
+    name = RubyLint::ConstantPath.new(node).to_s
+
+    name.should == '::Foo'
+  end
+
   context 'resolving definitions' do
     before :all do
-      @scope = ruby_object.new(:type => :const, :name => 'Example')
+      @scope = ruby_object.new(:type => :root, :name => 'root')
       @foo   = @scope.define_constant('Foo')
       @bar   = @foo.define_constant('Bar')
 
@@ -35,6 +35,16 @@ describe RubyLint::ConstantPath do
 
     example 'resolve a path of purely constants' do
       node = s(:const, s(:const, nil, :Foo), :Bar)
+      defs = RubyLint::ConstantPath.new(node).resolve(@scope)
+
+      defs.is_a?(ruby_object).should == true
+
+      defs.name.should == 'Bar'
+      defs.type.should == :const
+    end
+
+    example 'resolve a path of an absolute constant' do
+      node = s(:const, s(:const, s(:cbase), :Foo), :Bar)
       defs = RubyLint::ConstantPath.new(node).resolve(@scope)
 
       defs.is_a?(ruby_object).should == true

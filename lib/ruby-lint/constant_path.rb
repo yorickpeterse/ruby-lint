@@ -40,7 +40,7 @@ module RubyLint
         type  = REMAP_TYPES.fetch(type, type)
         found = current.lookup(type, name, index == 0)
 
-        if found and found.const?
+        if found and (found.const? or found.type == :root)
           current = found
 
         # Local variables and the likes.
@@ -53,15 +53,6 @@ module RubyLint
       end
 
       return current
-    end
-
-    ##
-    # Returns the very first segment of the constant path as an AST node.
-    #
-    # @return [RubyLint::AST::Node]
-    #
-    def root_node
-      return constant_segments.first
     end
 
     ##
