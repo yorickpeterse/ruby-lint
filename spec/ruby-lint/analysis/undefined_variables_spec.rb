@@ -67,6 +67,48 @@ A::B
     entry.message.should == 'undefined constant A::B'
   end
 
+  it 'does not add errors for absolute constants' do
+    code = <<-CODE
+module Project
+  class File
+    def self.Exists(filename)
+      ::File.exist?(filename)
+    end
+  end
+end
+
+fn = "foo"
+puts File.exist?(fn)
+puts ::File.exist?(fn)
+puts Project::File.Exists(fn)
+    CODE
+    report = build_report(code, RubyLint::Analysis::UndefinedVariables)
+
+    report.entries.empty?.should == true
+  end
+
+  it 'does not add errors for absolute constants, with multiple parents' do
+    code = <<-CODE
+module Project
+  include Comparable
+  class File < Enumerable
+    include Comparable
+    def self.Exists(filename)
+      ::File.exist?(filename)
+    end
+  end
+end
+
+fn = "foo"
+puts File.exist?(fn)
+puts ::File.exist?(fn)
+puts Project::File.Exists(fn)
+    CODE
+    report = build_report(code, RubyLint::Analysis::UndefinedVariables)
+
+    report.entries.empty?.should == true
+  end
+
   it 'does not depend on the order of variable definitions' do
     code = <<-CODE
 class Person
