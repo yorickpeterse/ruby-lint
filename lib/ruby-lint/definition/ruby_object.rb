@@ -37,10 +37,12 @@ module RubyLint
     #  @return [Symbol] The type of object, e.g. `:const`.
     #
     # @!attribute [r] definitions
-    #  @return [Hash] Hash containing all child the definitions.
+    #  @return [Hash{Symbol => Hash{String => Object}}]
+    #    Hash keyed by type and name, containing all child the definitions.
     #
     # @!attribute [rw] parents
-    #  @return [Array] Array containing the parent definitions.
+    #  @return [Array<RubyLint::Definition::RubyObject>]
+    #    Array containing the parent definitions.
     #
     # @!attribute [rw] reference_amount
     #  @return [Numeric] The amount of times an object was referenced.
@@ -51,7 +53,7 @@ module RubyLint
     #   instance.
     #
     # @!attribute [r] update_parents
-    #  @return [Array] A list of data types to also add to the parent
+    #  @return [Array<Symbol>] A list of data types to also add to the parent
     #   definitions when adding an object to the current one.
     #
     # @!attribute [r] members_as_value
@@ -79,7 +81,7 @@ module RubyLint
       # Array containing items that should be looked up in the parent
       # definition if they're not found in the current one.
       #
-      # @return [Array]
+      # @return [Array<Symbol>]
       #
       LOOKUP_PARENT = [
         :const,
@@ -264,7 +266,8 @@ module RubyLint
       # @param [TrueClass|FalseClass] lookup_parent Whether definitions should
       #  be looked up from parent definitions.
       #
-      # @param [Array] exclude A list of definitions to skip when looking up
+      # @param [Array<RubyLint::Definition::RubyObject>] exclude
+      #  A list of definitions to skip when looking up
       #  parents. This list is used to prevent stack errors when dealing with
       #  recursive definitions. A good example of this is `Logger` and
       #  `Logger::Severity` which both inherit from each other.
@@ -376,7 +379,8 @@ module RubyLint
       #
       # @param [#to_sym] type
       # @param [String] name
-      # @param [Array] exclude Parent definitions to exclude.
+      # @param [Array<RubyLint::Definition::RubyObject>] exclude
+      #   Parent definitions to exclude.
       # @return [TrueClass|FalseClass]
       #
       def has_definition?(type, name, exclude = [])
@@ -705,7 +709,7 @@ module RubyLint
       # @param [RubyLint::Definition::RubyObject] parent
       # @param [Symbol] type
       # @param [String] name
-      # @param [Array] exclude
+      # @param [Array<RubyLint::Definition::RubyObject>] exclude
       # @return [RubyLint::Definition::RubyObject]
       #
       def determine_parent(parent, type, name, exclude = [])
@@ -777,7 +781,7 @@ module RubyLint
       #
       # @param [#to_sym] type
       # @param [#to_s] name
-      # @return [Array]
+      # @return [Array(Symbol,String)]
       #
       def prepare_lookup(type, name)
         return type.to_sym, name.to_s

@@ -31,7 +31,7 @@ module RubyLint
     #
     # @param [RubyLint::Definition::RubyObject] scope The scope to use for the
     #  lookups.
-    # @return [RubyLint::Definition::RubyObject]
+    # @return [RubyLint::Definition::RubyObject|NilClass]
     #
     def resolve(scope)
       current = scope
@@ -69,7 +69,7 @@ module RubyLint
     # Returns an Array containing the segments of a constant path.
     #
     # @param [RubyLint::AST::Node] node
-    # @return [Array<String>]
+    # @return [Array<Array(Symbol,String)>]
     #
     def constant_segments(node = self.node)
       segments = []
