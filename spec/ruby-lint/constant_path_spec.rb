@@ -1,13 +1,6 @@
 require 'spec_helper'
 
 describe RubyLint::ConstantPath do
-  example 'return the root node of a constant path' do
-    node = s(:const, s(:const, nil, :Foo), :Bar)
-    root = RubyLint::ConstantPath.new(node).root_node
-
-    root.should == [:const, 'Foo']
-  end
-
   example 'generate the name of a constant path' do
     node = s(:const, s(:const, nil, :Foo), :Bar)
     name = RubyLint::ConstantPath.new(node).to_s

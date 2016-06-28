@@ -56,15 +56,6 @@ module RubyLint
     end
 
     ##
-    # Returns the very first segment of the constant path as an AST node.
-    #
-    # @return [RubyLint::AST::Node]
-    #
-    def root_node
-      return constant_segments.first
-    end
-
-    ##
     # Returns a String containing the full constant path, e.g.
     # "RubyLint::Runner".
     #
