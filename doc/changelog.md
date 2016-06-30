@@ -5,7 +5,7 @@ This document contains a short summary of the various releases of ruby-lint.
 For a full list of commits included in each release see the corresponding Git
 tags (named after the versions).
 
-## unreleased
+## 2.3.0 - 2016-06-30
 
 Analysis fixes:
 
