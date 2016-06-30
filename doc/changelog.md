@@ -5,6 +5,45 @@ This document contains a short summary of the various releases of ruby-lint.
 For a full list of commits included in each release see the corresponding Git
 tags (named after the versions).
 
+## unreleased
+
+Analysis fixes:
+
+* Absolute constant names, such as `::File`, are resolved correctly.
+  ([PR#188][PR188] by Martin Vidner)
+* When a `Bar` constant is seen inside a `Foo` module, load the definitions
+  for `Foo::Bar`.
+  ([PR#184][PR184] by Martin Vidner)
+* loop_keywords analysis is no longer fooled by nested loops.
+  ([PR#185][PR185] by Josef Reidinger)
+
+Parsing fixes:
+
+* Fixed an exception "Not enough argument definitions" when determining the
+  value of an empty regex (`//`), empty heredoc, or a bare `yield`.
+  ([PR#187][PR187] by Martin Vidner)
+* Do not crash for `$10` and bigger.
+  ([PR#186][PR186] by Josef Reidinger)
+* Analysis is no longer cut short by Ruby syntax warnings.
+  ([PR#177][PR177] by Martin Vidner)
+
+Report improvements:
+
+* argument_amount analysis mentions the method name in the report.
+  ([PR#172][PR172] by Martin Vidner)
+* Reports are sorted by the whole pathname, then by line numbers, and newly
+  also by column numbers.
+  ([PR#176][PR176] by Martin Vidner)
+
+[PR172]: https://github.com/YorickPeterse/ruby-lint/pull/172
+[PR176]: https://github.com/YorickPeterse/ruby-lint/pull/176
+[PR177]: https://github.com/YorickPeterse/ruby-lint/pull/177
+[PR184]: https://github.com/YorickPeterse/ruby-lint/pull/184
+[PR185]: https://github.com/YorickPeterse/ruby-lint/pull/185
+[PR186]: https://github.com/YorickPeterse/ruby-lint/pull/186
+[PR187]: https://github.com/YorickPeterse/ruby-lint/pull/187
+[PR188]: https://github.com/YorickPeterse/ruby-lint/pull/188
+
 ## 2.2.0 - 2016-05-26
 
 * Martin Vidner added a present for Emacs, see commit

@@ -18,6 +18,7 @@ this CoC.
 * Wrap lines at 80 characters per line.
 * Git commits should have a <= 50 character summary, optionally followed by a
   blank line and a more in depth description of 80 characters per line.
+* Write a summary of your contribution to the {file:changelog changelog}.
 
 ## Editor Setup
 
