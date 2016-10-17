@@ -2,15 +2,14 @@ body
 {
     font-size:   14px;
     line-height: 1.6;
-    margin:      0 auto;
-    max-width:   960px;
 }
 
-p code
+p code, dd code, li code
 {
-    background:    #f2f2f2;
-    padding-left:  3px;
-    padding-right: 3px;
+    background: #f9f2f4;
+    color: #c7254e;
+    border-radius: 4px;
+    padding: 2px 4px;
 }
 
 pre.code
@@ -18,6 +17,13 @@ pre.code
     font-size:   13px;
     line-height: 1.4;
     overflow:    auto;
+}
+
+blockquote
+{
+    border-left: 5px solid #eee;
+    margin: 0px;
+    padding-left: 15px;
 }
 
 /**
