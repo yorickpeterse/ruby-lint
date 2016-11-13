@@ -534,6 +534,7 @@ module RubyLint
     def on_sclass(node)
       parent       = node.children[0]
       definition   = evaluate_node(parent)
+      definition.define_self
       @method_type = definition.method_call_type
 
       associate_node(node, definition)
