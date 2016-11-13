@@ -5,6 +5,13 @@ This document contains a short summary of the various releases of ruby-lint.
 For a full list of commits included in each release see the corresponding Git
 tags (named after the versions).
 
+## unreleased
+
+* Do not crash on `class << A; self; end`.
+  ([PR#200][PR200] by Martin Vidner)
+
+[PR200]: https://github.com/YorickPeterse/ruby-lint/pull/200
+
 ## 2.3.1 - 2016-10-17
 
 This release adds definitions for RSpec, thanks to Alex Moore-Niemi!
