@@ -51,6 +51,16 @@ end
         .should == true
     end
 
+    it 'defines self within `class << Foo`' do
+      code = <<-CODE
+class << Foo
+  self
+end
+      CODE
+
+      expect { build_definitions(code) }.to_not raise_error
+    end
+
     it 'defines a class method using `class << String` nested in a class' do
       code = <<-CODE
 class First
