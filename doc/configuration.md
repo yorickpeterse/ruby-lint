@@ -2,7 +2,7 @@
 # Configuration
 
 The default configuration of ruby-lint should be suitable for most people.
-However, depending on your code base you may get an usual amount of false
+However, depending on your code base you may get an unusual amount of false
 positives. In particular the class {RubyLint::Analysis::UndefinedMethods} can
 produce a lot of false positives.
 
