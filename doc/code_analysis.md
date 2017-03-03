@@ -94,7 +94,7 @@ The full code of this exercise looks like the following:
 ## Conditional Analysis
 
 In some cases you want to use a certain analysis class but only enable it if a
-certain condition is met. In order to do so a analysis class should define a
+certain condition is met. In order to do so, an analysis class should define a
 class method called `analyze?` that returns a boolean that indicates if the
 class should be used or not. The basic signature of this method can be seen at
 {RubyLint::Analysis::Base.analyze?}.
@@ -111,7 +111,7 @@ By default all analysis classes are enabled.
 
 ## Registering Analysis Classes
 
-In order for a analysis class to become available in {RubyLint::Configuration}
+In order for an analysis class to become available in {RubyLint::Configuration}
 objects, either via the CLI or via Ruby directly, you must register the
 analysis class. This can be done by calling the class method
 {RubyLint::Analysis::Base.register}:
