@@ -76,9 +76,10 @@ Given the following code:
 Analysing this file using ruby-lint (with the default settings) would result in
 the following output:
 
-    test.rb: error: line 7, column 22: undefined instance variable @name
-    test.rb: warning: line 12, column 1: unused local variable greeting
-    test.rb: error: line 14, column 1: wrong number of arguments for 'greet' (expected 0 but got 1)
+    test.rb|2 col 18 warning| unused argument name
+    test.rb|7 col 22 error| undefined instance variable @name
+    test.rb|12 col 1 warning| unused local variable greeting
+    test.rb|14 col 1 error| wrong number of arguments for 'greet' (expected 0 but got 1)
 
 ## ruby-lint versus RuboCop
 
